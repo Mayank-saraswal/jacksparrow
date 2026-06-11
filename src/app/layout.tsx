@@ -55,6 +55,12 @@ export default async function RootLayout({
                 {userId ? (
                   <>
                     <Link
+                      href="/inbox"
+                      className="text-xs text-muted-foreground hover:text-foreground"
+                    >
+                      Inbox
+                    </Link>
+                    <Link
                       href="/integrations"
                       className="text-xs text-muted-foreground hover:text-foreground"
                     >
