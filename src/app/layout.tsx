@@ -4,6 +4,7 @@ import { type Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import { ClerkProvider, SignInButton, UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
+import { Lightning } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 
 import { TRPCReactProvider } from "@/trpc/react";
@@ -39,8 +40,15 @@ export default async function RootLayout({
       >
         <body>
           <TRPCReactProvider>
-            <header className="flex h-12 items-center justify-between border-b border-border px-4">
-              <Link href="/" className="text-sm font-semibold">
+            <header className="sticky top-0 z-40 flex h-12 items-center justify-between border-b border-border bg-background/80 px-4 backdrop-blur">
+              <Link
+                href="/"
+                className="flex items-center gap-1.5 text-sm font-semibold tracking-tight"
+              >
+                <Lightning
+                  weight="fill"
+                  className="size-4 text-primary"
+                />
                 Jack Sparrow
               </Link>
               <nav className="flex items-center gap-3">

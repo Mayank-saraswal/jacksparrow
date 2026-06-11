@@ -73,3 +73,95 @@ model CorsairEvent {
   @@map("corsair_events")
 }
 
+
+// ─────────────────────────────────────────────────────────────────────────────
+// App models (Phase 2) — everything Corsair doesn't track for us.
+// `User` is keyed by the Clerk user id (same value used as the Corsair tenant).
+// ─────────────────────────────────────────────────────────────────────────────
+
+model User {
+  id                   String    @id
+  createdAt            DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt            DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  gmailBackfilledAt    DateTime? @map("gmail_backfilled_at") @db.Timestamptz
+  calendarBackfilledAt DateTime? @map("calendar_backfilled_at") @db.Timestamptz
+
+  channelLinks    ChannelLink[]
+  emailEmbeddings EmailEmbedding[]
+  priorityScores  PriorityScore[]
+  pendingActions  PendingAction[]
+  preference      UserPreference?
+
+  @@map("users")
+}
+
+model ChannelLink {
+  id             String   @id @default(cuid())
+  userId         String   @map("user_id")
+  channel        String // "telegram" | "whatsapp"
+  externalChatId String   @map("external_chat_id")
+  linkedAt       DateTime @default(now()) @map("linked_at") @db.Timestamptz
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([channel, externalChatId])
+  @@index([userId])
+  @@map("channel_links")
+}
+
+model EmailEmbedding {
+  id              String                       @id @default(cuid())
+  userId          String                       @map("user_id")
+  corsairEntityId String                       @map("corsair_entity_id")
+  threadId        String                       @map("thread_id")
+  subjectSnippet  String                       @map("subject_snippet")
+  embedding       Unsupported("vector(1536)")?
+  indexedAt       DateTime                     @default(now()) @map("indexed_at") @db.Timestamptz
+  user            User                         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([corsairEntityId])
+  @@index([threadId])
+  @@map("email_embeddings")
+}
+
+model PriorityScore {
+  id              String   @id @default(cuid())
+  userId          String   @map("user_id")
+  corsairEntityId String   @map("corsair_entity_id")
+  label           String // "urgent" | "important" | "normal" | "low"
+  reason          String?
+  model           String?
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([corsairEntityId])
+  @@map("priority_scores")
+}
+
+model PendingAction {
+  id                   String    @id @default(cuid())
+  userId               String    @map("user_id")
+  channel              String // "web" | "telegram" | "whatsapp"
+  kind                 String
+  draftPayload         Json      @default("{}") @map("draft_payload")
+  corsairOperationPath String?   @map("corsair_operation_path")
+  status               String    @default("pending") // pending|approved|rejected|executed
+  createdAt            DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  resolvedAt           DateTime? @map("resolved_at") @db.Timestamptz
+  user                 User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@map("pending_actions")
+}
+
+model UserPreference {
+  id                String @id @default(cuid())
+  userId            String @unique @map("user_id")
+  splitInboxRules   Json   @default("{}") @map("split_inbox_rules")
+  shortcutOverrides Json   @default("{}") @map("shortcut_overrides")
+  user              User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+}

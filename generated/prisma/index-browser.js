@@ -161,6 +161,60 @@ exports.Prisma.CorsairEventScalarFieldEnum = {
   status: 'status'
 };
 
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  gmailBackfilledAt: 'gmailBackfilledAt',
+  calendarBackfilledAt: 'calendarBackfilledAt'
+};
+
+exports.Prisma.ChannelLinkScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  channel: 'channel',
+  externalChatId: 'externalChatId',
+  linkedAt: 'linkedAt'
+};
+
+exports.Prisma.EmailEmbeddingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  corsairEntityId: 'corsairEntityId',
+  threadId: 'threadId',
+  subjectSnippet: 'subjectSnippet',
+  indexedAt: 'indexedAt'
+};
+
+exports.Prisma.PriorityScoreScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  corsairEntityId: 'corsairEntityId',
+  label: 'label',
+  reason: 'reason',
+  model: 'model',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PendingActionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  channel: 'channel',
+  kind: 'kind',
+  draftPayload: 'draftPayload',
+  corsairOperationPath: 'corsairOperationPath',
+  status: 'status',
+  createdAt: 'createdAt',
+  resolvedAt: 'resolvedAt'
+};
+
+exports.Prisma.UserPreferenceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  splitInboxRules: 'splitInboxRules',
+  shortcutOverrides: 'shortcutOverrides'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -191,7 +245,13 @@ exports.Prisma.ModelName = {
   CorsairIntegration: 'CorsairIntegration',
   CorsairAccount: 'CorsairAccount',
   CorsairEntity: 'CorsairEntity',
-  CorsairEvent: 'CorsairEvent'
+  CorsairEvent: 'CorsairEvent',
+  User: 'User',
+  ChannelLink: 'ChannelLink',
+  EmailEmbedding: 'EmailEmbedding',
+  PriorityScore: 'PriorityScore',
+  PendingAction: 'PendingAction',
+  UserPreference: 'UserPreference'
 };
 
 /**

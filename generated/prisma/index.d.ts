@@ -33,6 +33,36 @@ export type CorsairEntity = $Result.DefaultSelection<Prisma.$CorsairEntityPayloa
  * 
  */
 export type CorsairEvent = $Result.DefaultSelection<Prisma.$CorsairEventPayload>
+/**
+ * Model User
+ * 
+ */
+export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model ChannelLink
+ * 
+ */
+export type ChannelLink = $Result.DefaultSelection<Prisma.$ChannelLinkPayload>
+/**
+ * Model EmailEmbedding
+ * 
+ */
+export type EmailEmbedding = $Result.DefaultSelection<Prisma.$EmailEmbeddingPayload>
+/**
+ * Model PriorityScore
+ * 
+ */
+export type PriorityScore = $Result.DefaultSelection<Prisma.$PriorityScorePayload>
+/**
+ * Model PendingAction
+ * 
+ */
+export type PendingAction = $Result.DefaultSelection<Prisma.$PendingActionPayload>
+/**
+ * Model UserPreference
+ * 
+ */
+export type UserPreference = $Result.DefaultSelection<Prisma.$UserPreferencePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -191,6 +221,66 @@ export class PrismaClient<
     * ```
     */
   get corsairEvent(): Prisma.CorsairEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.channelLink`: Exposes CRUD operations for the **ChannelLink** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ChannelLinks
+    * const channelLinks = await prisma.channelLink.findMany()
+    * ```
+    */
+  get channelLink(): Prisma.ChannelLinkDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.emailEmbedding`: Exposes CRUD operations for the **EmailEmbedding** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmailEmbeddings
+    * const emailEmbeddings = await prisma.emailEmbedding.findMany()
+    * ```
+    */
+  get emailEmbedding(): Prisma.EmailEmbeddingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.priorityScore`: Exposes CRUD operations for the **PriorityScore** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PriorityScores
+    * const priorityScores = await prisma.priorityScore.findMany()
+    * ```
+    */
+  get priorityScore(): Prisma.PriorityScoreDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.pendingAction`: Exposes CRUD operations for the **PendingAction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PendingActions
+    * const pendingActions = await prisma.pendingAction.findMany()
+    * ```
+    */
+  get pendingAction(): Prisma.PendingActionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userPreference`: Exposes CRUD operations for the **UserPreference** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserPreferences
+    * const userPreferences = await prisma.userPreference.findMany()
+    * ```
+    */
+  get userPreference(): Prisma.UserPreferenceDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -635,7 +725,13 @@ export namespace Prisma {
     CorsairIntegration: 'CorsairIntegration',
     CorsairAccount: 'CorsairAccount',
     CorsairEntity: 'CorsairEntity',
-    CorsairEvent: 'CorsairEvent'
+    CorsairEvent: 'CorsairEvent',
+    User: 'User',
+    ChannelLink: 'ChannelLink',
+    EmailEmbedding: 'EmailEmbedding',
+    PriorityScore: 'PriorityScore',
+    PendingAction: 'PendingAction',
+    UserPreference: 'UserPreference'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -654,7 +750,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent"
+      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent" | "user" | "channelLink" | "emailEmbedding" | "priorityScore" | "pendingAction" | "userPreference"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -954,6 +1050,450 @@ export namespace Prisma {
           }
         }
       }
+      User: {
+        payload: Prisma.$UserPayload<ExtArgs>
+        fields: Prisma.UserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findFirst: {
+            args: Prisma.UserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findMany: {
+            args: Prisma.UserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          create: {
+            args: Prisma.UserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          createMany: {
+            args: Prisma.UserCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          delete: {
+            args: Prisma.UserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          update: {
+            args: Prisma.UserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          aggregate: {
+            args: Prisma.UserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUser>
+          }
+          groupBy: {
+            args: Prisma.UserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserCountArgs<ExtArgs>
+            result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      ChannelLink: {
+        payload: Prisma.$ChannelLinkPayload<ExtArgs>
+        fields: Prisma.ChannelLinkFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ChannelLinkFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChannelLinkPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ChannelLinkFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChannelLinkPayload>
+          }
+          findFirst: {
+            args: Prisma.ChannelLinkFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChannelLinkPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ChannelLinkFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChannelLinkPayload>
+          }
+          findMany: {
+            args: Prisma.ChannelLinkFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChannelLinkPayload>[]
+          }
+          create: {
+            args: Prisma.ChannelLinkCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChannelLinkPayload>
+          }
+          createMany: {
+            args: Prisma.ChannelLinkCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ChannelLinkCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChannelLinkPayload>[]
+          }
+          delete: {
+            args: Prisma.ChannelLinkDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChannelLinkPayload>
+          }
+          update: {
+            args: Prisma.ChannelLinkUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChannelLinkPayload>
+          }
+          deleteMany: {
+            args: Prisma.ChannelLinkDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ChannelLinkUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ChannelLinkUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChannelLinkPayload>[]
+          }
+          upsert: {
+            args: Prisma.ChannelLinkUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChannelLinkPayload>
+          }
+          aggregate: {
+            args: Prisma.ChannelLinkAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateChannelLink>
+          }
+          groupBy: {
+            args: Prisma.ChannelLinkGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ChannelLinkGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ChannelLinkCountArgs<ExtArgs>
+            result: $Utils.Optional<ChannelLinkCountAggregateOutputType> | number
+          }
+        }
+      }
+      EmailEmbedding: {
+        payload: Prisma.$EmailEmbeddingPayload<ExtArgs>
+        fields: Prisma.EmailEmbeddingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmailEmbeddingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailEmbeddingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmailEmbeddingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailEmbeddingPayload>
+          }
+          findFirst: {
+            args: Prisma.EmailEmbeddingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailEmbeddingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmailEmbeddingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailEmbeddingPayload>
+          }
+          findMany: {
+            args: Prisma.EmailEmbeddingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailEmbeddingPayload>[]
+          }
+          create: {
+            args: Prisma.EmailEmbeddingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailEmbeddingPayload>
+          }
+          createMany: {
+            args: Prisma.EmailEmbeddingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmailEmbeddingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailEmbeddingPayload>[]
+          }
+          delete: {
+            args: Prisma.EmailEmbeddingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailEmbeddingPayload>
+          }
+          update: {
+            args: Prisma.EmailEmbeddingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailEmbeddingPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmailEmbeddingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmailEmbeddingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmailEmbeddingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailEmbeddingPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmailEmbeddingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailEmbeddingPayload>
+          }
+          aggregate: {
+            args: Prisma.EmailEmbeddingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmailEmbedding>
+          }
+          groupBy: {
+            args: Prisma.EmailEmbeddingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmailEmbeddingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmailEmbeddingCountArgs<ExtArgs>
+            result: $Utils.Optional<EmailEmbeddingCountAggregateOutputType> | number
+          }
+        }
+      }
+      PriorityScore: {
+        payload: Prisma.$PriorityScorePayload<ExtArgs>
+        fields: Prisma.PriorityScoreFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PriorityScoreFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PriorityScorePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PriorityScoreFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PriorityScorePayload>
+          }
+          findFirst: {
+            args: Prisma.PriorityScoreFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PriorityScorePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PriorityScoreFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PriorityScorePayload>
+          }
+          findMany: {
+            args: Prisma.PriorityScoreFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PriorityScorePayload>[]
+          }
+          create: {
+            args: Prisma.PriorityScoreCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PriorityScorePayload>
+          }
+          createMany: {
+            args: Prisma.PriorityScoreCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PriorityScoreCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PriorityScorePayload>[]
+          }
+          delete: {
+            args: Prisma.PriorityScoreDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PriorityScorePayload>
+          }
+          update: {
+            args: Prisma.PriorityScoreUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PriorityScorePayload>
+          }
+          deleteMany: {
+            args: Prisma.PriorityScoreDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PriorityScoreUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PriorityScoreUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PriorityScorePayload>[]
+          }
+          upsert: {
+            args: Prisma.PriorityScoreUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PriorityScorePayload>
+          }
+          aggregate: {
+            args: Prisma.PriorityScoreAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePriorityScore>
+          }
+          groupBy: {
+            args: Prisma.PriorityScoreGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PriorityScoreGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PriorityScoreCountArgs<ExtArgs>
+            result: $Utils.Optional<PriorityScoreCountAggregateOutputType> | number
+          }
+        }
+      }
+      PendingAction: {
+        payload: Prisma.$PendingActionPayload<ExtArgs>
+        fields: Prisma.PendingActionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PendingActionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingActionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PendingActionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingActionPayload>
+          }
+          findFirst: {
+            args: Prisma.PendingActionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingActionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PendingActionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingActionPayload>
+          }
+          findMany: {
+            args: Prisma.PendingActionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingActionPayload>[]
+          }
+          create: {
+            args: Prisma.PendingActionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingActionPayload>
+          }
+          createMany: {
+            args: Prisma.PendingActionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PendingActionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingActionPayload>[]
+          }
+          delete: {
+            args: Prisma.PendingActionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingActionPayload>
+          }
+          update: {
+            args: Prisma.PendingActionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingActionPayload>
+          }
+          deleteMany: {
+            args: Prisma.PendingActionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PendingActionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PendingActionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingActionPayload>[]
+          }
+          upsert: {
+            args: Prisma.PendingActionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingActionPayload>
+          }
+          aggregate: {
+            args: Prisma.PendingActionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePendingAction>
+          }
+          groupBy: {
+            args: Prisma.PendingActionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PendingActionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PendingActionCountArgs<ExtArgs>
+            result: $Utils.Optional<PendingActionCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserPreference: {
+        payload: Prisma.$UserPreferencePayload<ExtArgs>
+        fields: Prisma.UserPreferenceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserPreferenceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPreferencePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserPreferenceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPreferencePayload>
+          }
+          findFirst: {
+            args: Prisma.UserPreferenceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPreferencePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserPreferenceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPreferencePayload>
+          }
+          findMany: {
+            args: Prisma.UserPreferenceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPreferencePayload>[]
+          }
+          create: {
+            args: Prisma.UserPreferenceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPreferencePayload>
+          }
+          createMany: {
+            args: Prisma.UserPreferenceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserPreferenceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPreferencePayload>[]
+          }
+          delete: {
+            args: Prisma.UserPreferenceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPreferencePayload>
+          }
+          update: {
+            args: Prisma.UserPreferenceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPreferencePayload>
+          }
+          deleteMany: {
+            args: Prisma.UserPreferenceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserPreferenceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserPreferenceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPreferencePayload>[]
+          }
+          upsert: {
+            args: Prisma.UserPreferenceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPreferencePayload>
+          }
+          aggregate: {
+            args: Prisma.UserPreferenceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserPreference>
+          }
+          groupBy: {
+            args: Prisma.UserPreferenceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserPreferenceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserPreferenceCountArgs<ExtArgs>
+            result: $Utils.Optional<UserPreferenceCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1054,6 +1594,12 @@ export namespace Prisma {
     corsairAccount?: CorsairAccountOmit
     corsairEntity?: CorsairEntityOmit
     corsairEvent?: CorsairEventOmit
+    user?: UserOmit
+    channelLink?: ChannelLinkOmit
+    emailEmbedding?: EmailEmbeddingOmit
+    priorityScore?: PriorityScoreOmit
+    pendingAction?: PendingActionOmit
+    userPreference?: UserPreferenceOmit
   }
 
   /* Types for Logging */
@@ -1197,6 +1743,64 @@ export namespace Prisma {
    */
   export type CorsairAccountCountOutputTypeCountEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CorsairEventWhereInput
+  }
+
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    channelLinks: number
+    emailEmbeddings: number
+    priorityScores: number
+    pendingActions: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    channelLinks?: boolean | UserCountOutputTypeCountChannelLinksArgs
+    emailEmbeddings?: boolean | UserCountOutputTypeCountEmailEmbeddingsArgs
+    priorityScores?: boolean | UserCountOutputTypeCountPriorityScoresArgs
+    pendingActions?: boolean | UserCountOutputTypeCountPendingActionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountChannelLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChannelLinkWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountEmailEmbeddingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailEmbeddingWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPriorityScoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PriorityScoreWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPendingActionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PendingActionWhereInput
   }
 
 
@@ -5595,6 +6199,6539 @@ export namespace Prisma {
 
 
   /**
+   * Model User
+   */
+
+  export type AggregateUser = {
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserMinAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    gmailBackfilledAt: Date | null
+    calendarBackfilledAt: Date | null
+  }
+
+  export type UserMaxAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    gmailBackfilledAt: Date | null
+    calendarBackfilledAt: Date | null
+  }
+
+  export type UserCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    updatedAt: number
+    gmailBackfilledAt: number
+    calendarBackfilledAt: number
+    _all: number
+  }
+
+
+  export type UserMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    gmailBackfilledAt?: true
+    calendarBackfilledAt?: true
+  }
+
+  export type UserMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    gmailBackfilledAt?: true
+    calendarBackfilledAt?: true
+  }
+
+  export type UserCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    gmailBackfilledAt?: true
+    calendarBackfilledAt?: true
+    _all?: true
+  }
+
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which User to aggregate.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Users
+    **/
+    _count?: true | UserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type GetUserAggregateType<T extends UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUser[P]>
+      : GetScalarType<T[P], AggregateUser[P]>
+  }
+
+
+
+
+  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum
+    having?: UserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserCountAggregateInputType | true
+    _min?: UserMinAggregateInputType
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type UserGroupByOutputType = {
+    id: string
+    createdAt: Date
+    updatedAt: Date
+    gmailBackfilledAt: Date | null
+    calendarBackfilledAt: Date | null
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
+            : GetScalarType<T[P], UserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    gmailBackfilledAt?: boolean
+    calendarBackfilledAt?: boolean
+    channelLinks?: boolean | User$channelLinksArgs<ExtArgs>
+    emailEmbeddings?: boolean | User$emailEmbeddingsArgs<ExtArgs>
+    priorityScores?: boolean | User$priorityScoresArgs<ExtArgs>
+    pendingActions?: boolean | User$pendingActionsArgs<ExtArgs>
+    preference?: boolean | User$preferenceArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user"]>
+
+  export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    gmailBackfilledAt?: boolean
+    calendarBackfilledAt?: boolean
+  }, ExtArgs["result"]["user"]>
+
+  export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    gmailBackfilledAt?: boolean
+    calendarBackfilledAt?: boolean
+  }, ExtArgs["result"]["user"]>
+
+  export type UserSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    gmailBackfilledAt?: boolean
+    calendarBackfilledAt?: boolean
+  }
+
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "gmailBackfilledAt" | "calendarBackfilledAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    channelLinks?: boolean | User$channelLinksArgs<ExtArgs>
+    emailEmbeddings?: boolean | User$emailEmbeddingsArgs<ExtArgs>
+    priorityScores?: boolean | User$priorityScoresArgs<ExtArgs>
+    pendingActions?: boolean | User$pendingActionsArgs<ExtArgs>
+    preference?: boolean | User$preferenceArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "User"
+    objects: {
+      channelLinks: Prisma.$ChannelLinkPayload<ExtArgs>[]
+      emailEmbeddings: Prisma.$EmailEmbeddingPayload<ExtArgs>[]
+      priorityScores: Prisma.$PriorityScorePayload<ExtArgs>[]
+      pendingActions: Prisma.$PendingActionPayload<ExtArgs>[]
+      preference: Prisma.$UserPreferencePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      createdAt: Date
+      updatedAt: Date
+      gmailBackfilledAt: Date | null
+      calendarBackfilledAt: Date | null
+    }, ExtArgs["result"]["user"]>
+    composites: {}
+  }
+
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
+
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserCountAggregateInputType | true
+    }
+
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
+    /**
+     * Find zero or one User that matches the filter.
+     * @param {UserFindUniqueArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one User that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Users
+     * const users = await prisma.user.findMany()
+     * 
+     * // Get first 10 Users
+     * const users = await prisma.user.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a User.
+     * @param {UserCreateArgs} args - Arguments to create a User.
+     * @example
+     * // Create one User
+     * const User = await prisma.user.create({
+     *   data: {
+     *     // ... data to create a User
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Users.
+     * @param {UserCreateManyArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const user = await prisma.user.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Users and returns the data saved in the database.
+     * @param {UserCreateManyAndReturnArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const user = await prisma.user.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Users and only return the `id`
+     * const userWithIdOnly = await prisma.user.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a User.
+     * @param {UserDeleteArgs} args - Arguments to delete one User.
+     * @example
+     * // Delete one User
+     * const User = await prisma.user.delete({
+     *   where: {
+     *     // ... filter to delete one User
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one User.
+     * @param {UserUpdateArgs} args - Arguments to update one User.
+     * @example
+     * // Update one User
+     * const user = await prisma.user.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Users.
+     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
+     * @example
+     * // Delete a few Users
+     * const { count } = await prisma.user.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users and returns the data updated in the database.
+     * @param {UserUpdateManyAndReturnArgs} args - Arguments to update many Users.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Users and only return the `id`
+     * const userWithIdOnly = await prisma.user.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(args: SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one User.
+     * @param {UserUpsertArgs} args - Arguments to update or create a User.
+     * @example
+     * // Update or create a User
+     * const user = await prisma.user.upsert({
+     *   create: {
+     *     // ... data to create a User
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the User we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCountArgs} args - Arguments to filter Users to count.
+     * @example
+     * // Count the number of Users
+     * const count = await prisma.user.count({
+     *   where: {
+     *     // ... the filter for the Users we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserCountArgs>(
+      args?: Subset<T, UserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+
+    /**
+     * Group by User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserGroupByArgs['orderBy'] }
+        : { orderBy?: UserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the User model
+   */
+  readonly fields: UserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for User.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    channelLinks<T extends User$channelLinksArgs<ExtArgs> = {}>(args?: Subset<T, User$channelLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    emailEmbeddings<T extends User$emailEmbeddingsArgs<ExtArgs> = {}>(args?: Subset<T, User$emailEmbeddingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    priorityScores<T extends User$priorityScoresArgs<ExtArgs> = {}>(args?: Subset<T, User$priorityScoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    pendingActions<T extends User$pendingActionsArgs<ExtArgs> = {}>(args?: Subset<T, User$pendingActionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    preference<T extends User$preferenceArgs<ExtArgs> = {}>(args?: Subset<T, User$preferenceArgs<ExtArgs>>): Prisma__UserPreferenceClient<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the User model
+   */
+  interface UserFieldRefs {
+    readonly id: FieldRef<"User", 'String'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly gmailBackfilledAt: FieldRef<"User", 'DateTime'>
+    readonly calendarBackfilledAt: FieldRef<"User", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * User findUnique
+   */
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User findUniqueOrThrow
+   */
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User findFirst
+   */
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User findFirstOrThrow
+   */
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User findMany
+   */
+  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which Users to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User create
+   */
+  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The data needed to create a User.
+     */
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
+  }
+
+  /**
+   * User createMany
+   */
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Users.
+     */
+    data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * User createManyAndReturn
+   */
+  export type UserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * The data used to create many Users.
+     */
+    data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * User update
+   */
+  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The data needed to update a User.
+     */
+    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    /**
+     * Choose, which User to update.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User updateMany
+   */
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Users.
+     */
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    /**
+     * Filter which Users to update
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * User updateManyAndReturn
+   */
+  export type UserUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * The data used to update Users.
+     */
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    /**
+     * Filter which Users to update
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * User upsert
+   */
+  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The filter to search for the User to update in case it exists.
+     */
+    where: UserWhereUniqueInput
+    /**
+     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
+     */
+    create: XOR<UserCreateInput, UserUncheckedCreateInput>
+    /**
+     * In case the User was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+  }
+
+  /**
+   * User delete
+   */
+  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter which User to delete.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User deleteMany
+   */
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Users to delete
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * User.channelLinks
+   */
+  export type User$channelLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkInclude<ExtArgs> | null
+    where?: ChannelLinkWhereInput
+    orderBy?: ChannelLinkOrderByWithRelationInput | ChannelLinkOrderByWithRelationInput[]
+    cursor?: ChannelLinkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChannelLinkScalarFieldEnum | ChannelLinkScalarFieldEnum[]
+  }
+
+  /**
+   * User.emailEmbeddings
+   */
+  export type User$emailEmbeddingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingInclude<ExtArgs> | null
+    where?: EmailEmbeddingWhereInput
+    orderBy?: EmailEmbeddingOrderByWithRelationInput | EmailEmbeddingOrderByWithRelationInput[]
+    cursor?: EmailEmbeddingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmailEmbeddingScalarFieldEnum | EmailEmbeddingScalarFieldEnum[]
+  }
+
+  /**
+   * User.priorityScores
+   */
+  export type User$priorityScoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreInclude<ExtArgs> | null
+    where?: PriorityScoreWhereInput
+    orderBy?: PriorityScoreOrderByWithRelationInput | PriorityScoreOrderByWithRelationInput[]
+    cursor?: PriorityScoreWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PriorityScoreScalarFieldEnum | PriorityScoreScalarFieldEnum[]
+  }
+
+  /**
+   * User.pendingActions
+   */
+  export type User$pendingActionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionInclude<ExtArgs> | null
+    where?: PendingActionWhereInput
+    orderBy?: PendingActionOrderByWithRelationInput | PendingActionOrderByWithRelationInput[]
+    cursor?: PendingActionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PendingActionScalarFieldEnum | PendingActionScalarFieldEnum[]
+  }
+
+  /**
+   * User.preference
+   */
+  export type User$preferenceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceInclude<ExtArgs> | null
+    where?: UserPreferenceWhereInput
+  }
+
+  /**
+   * User without action
+   */
+  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ChannelLink
+   */
+
+  export type AggregateChannelLink = {
+    _count: ChannelLinkCountAggregateOutputType | null
+    _min: ChannelLinkMinAggregateOutputType | null
+    _max: ChannelLinkMaxAggregateOutputType | null
+  }
+
+  export type ChannelLinkMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    channel: string | null
+    externalChatId: string | null
+    linkedAt: Date | null
+  }
+
+  export type ChannelLinkMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    channel: string | null
+    externalChatId: string | null
+    linkedAt: Date | null
+  }
+
+  export type ChannelLinkCountAggregateOutputType = {
+    id: number
+    userId: number
+    channel: number
+    externalChatId: number
+    linkedAt: number
+    _all: number
+  }
+
+
+  export type ChannelLinkMinAggregateInputType = {
+    id?: true
+    userId?: true
+    channel?: true
+    externalChatId?: true
+    linkedAt?: true
+  }
+
+  export type ChannelLinkMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    channel?: true
+    externalChatId?: true
+    linkedAt?: true
+  }
+
+  export type ChannelLinkCountAggregateInputType = {
+    id?: true
+    userId?: true
+    channel?: true
+    externalChatId?: true
+    linkedAt?: true
+    _all?: true
+  }
+
+  export type ChannelLinkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ChannelLink to aggregate.
+     */
+    where?: ChannelLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChannelLinks to fetch.
+     */
+    orderBy?: ChannelLinkOrderByWithRelationInput | ChannelLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ChannelLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChannelLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChannelLinks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ChannelLinks
+    **/
+    _count?: true | ChannelLinkCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ChannelLinkMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ChannelLinkMaxAggregateInputType
+  }
+
+  export type GetChannelLinkAggregateType<T extends ChannelLinkAggregateArgs> = {
+        [P in keyof T & keyof AggregateChannelLink]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateChannelLink[P]>
+      : GetScalarType<T[P], AggregateChannelLink[P]>
+  }
+
+
+
+
+  export type ChannelLinkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChannelLinkWhereInput
+    orderBy?: ChannelLinkOrderByWithAggregationInput | ChannelLinkOrderByWithAggregationInput[]
+    by: ChannelLinkScalarFieldEnum[] | ChannelLinkScalarFieldEnum
+    having?: ChannelLinkScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ChannelLinkCountAggregateInputType | true
+    _min?: ChannelLinkMinAggregateInputType
+    _max?: ChannelLinkMaxAggregateInputType
+  }
+
+  export type ChannelLinkGroupByOutputType = {
+    id: string
+    userId: string
+    channel: string
+    externalChatId: string
+    linkedAt: Date
+    _count: ChannelLinkCountAggregateOutputType | null
+    _min: ChannelLinkMinAggregateOutputType | null
+    _max: ChannelLinkMaxAggregateOutputType | null
+  }
+
+  type GetChannelLinkGroupByPayload<T extends ChannelLinkGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ChannelLinkGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ChannelLinkGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ChannelLinkGroupByOutputType[P]>
+            : GetScalarType<T[P], ChannelLinkGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ChannelLinkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    channel?: boolean
+    externalChatId?: boolean
+    linkedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["channelLink"]>
+
+  export type ChannelLinkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    channel?: boolean
+    externalChatId?: boolean
+    linkedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["channelLink"]>
+
+  export type ChannelLinkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    channel?: boolean
+    externalChatId?: boolean
+    linkedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["channelLink"]>
+
+  export type ChannelLinkSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    channel?: boolean
+    externalChatId?: boolean
+    linkedAt?: boolean
+  }
+
+  export type ChannelLinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "channel" | "externalChatId" | "linkedAt", ExtArgs["result"]["channelLink"]>
+  export type ChannelLinkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ChannelLinkIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ChannelLinkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ChannelLinkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ChannelLink"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      channel: string
+      externalChatId: string
+      linkedAt: Date
+    }, ExtArgs["result"]["channelLink"]>
+    composites: {}
+  }
+
+  type ChannelLinkGetPayload<S extends boolean | null | undefined | ChannelLinkDefaultArgs> = $Result.GetResult<Prisma.$ChannelLinkPayload, S>
+
+  type ChannelLinkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ChannelLinkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ChannelLinkCountAggregateInputType | true
+    }
+
+  export interface ChannelLinkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ChannelLink'], meta: { name: 'ChannelLink' } }
+    /**
+     * Find zero or one ChannelLink that matches the filter.
+     * @param {ChannelLinkFindUniqueArgs} args - Arguments to find a ChannelLink
+     * @example
+     * // Get one ChannelLink
+     * const channelLink = await prisma.channelLink.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ChannelLinkFindUniqueArgs>(args: SelectSubset<T, ChannelLinkFindUniqueArgs<ExtArgs>>): Prisma__ChannelLinkClient<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ChannelLink that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ChannelLinkFindUniqueOrThrowArgs} args - Arguments to find a ChannelLink
+     * @example
+     * // Get one ChannelLink
+     * const channelLink = await prisma.channelLink.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ChannelLinkFindUniqueOrThrowArgs>(args: SelectSubset<T, ChannelLinkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ChannelLinkClient<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ChannelLink that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChannelLinkFindFirstArgs} args - Arguments to find a ChannelLink
+     * @example
+     * // Get one ChannelLink
+     * const channelLink = await prisma.channelLink.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ChannelLinkFindFirstArgs>(args?: SelectSubset<T, ChannelLinkFindFirstArgs<ExtArgs>>): Prisma__ChannelLinkClient<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ChannelLink that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChannelLinkFindFirstOrThrowArgs} args - Arguments to find a ChannelLink
+     * @example
+     * // Get one ChannelLink
+     * const channelLink = await prisma.channelLink.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ChannelLinkFindFirstOrThrowArgs>(args?: SelectSubset<T, ChannelLinkFindFirstOrThrowArgs<ExtArgs>>): Prisma__ChannelLinkClient<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ChannelLinks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChannelLinkFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ChannelLinks
+     * const channelLinks = await prisma.channelLink.findMany()
+     * 
+     * // Get first 10 ChannelLinks
+     * const channelLinks = await prisma.channelLink.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const channelLinkWithIdOnly = await prisma.channelLink.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ChannelLinkFindManyArgs>(args?: SelectSubset<T, ChannelLinkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ChannelLink.
+     * @param {ChannelLinkCreateArgs} args - Arguments to create a ChannelLink.
+     * @example
+     * // Create one ChannelLink
+     * const ChannelLink = await prisma.channelLink.create({
+     *   data: {
+     *     // ... data to create a ChannelLink
+     *   }
+     * })
+     * 
+     */
+    create<T extends ChannelLinkCreateArgs>(args: SelectSubset<T, ChannelLinkCreateArgs<ExtArgs>>): Prisma__ChannelLinkClient<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ChannelLinks.
+     * @param {ChannelLinkCreateManyArgs} args - Arguments to create many ChannelLinks.
+     * @example
+     * // Create many ChannelLinks
+     * const channelLink = await prisma.channelLink.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ChannelLinkCreateManyArgs>(args?: SelectSubset<T, ChannelLinkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ChannelLinks and returns the data saved in the database.
+     * @param {ChannelLinkCreateManyAndReturnArgs} args - Arguments to create many ChannelLinks.
+     * @example
+     * // Create many ChannelLinks
+     * const channelLink = await prisma.channelLink.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ChannelLinks and only return the `id`
+     * const channelLinkWithIdOnly = await prisma.channelLink.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ChannelLinkCreateManyAndReturnArgs>(args?: SelectSubset<T, ChannelLinkCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ChannelLink.
+     * @param {ChannelLinkDeleteArgs} args - Arguments to delete one ChannelLink.
+     * @example
+     * // Delete one ChannelLink
+     * const ChannelLink = await prisma.channelLink.delete({
+     *   where: {
+     *     // ... filter to delete one ChannelLink
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ChannelLinkDeleteArgs>(args: SelectSubset<T, ChannelLinkDeleteArgs<ExtArgs>>): Prisma__ChannelLinkClient<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ChannelLink.
+     * @param {ChannelLinkUpdateArgs} args - Arguments to update one ChannelLink.
+     * @example
+     * // Update one ChannelLink
+     * const channelLink = await prisma.channelLink.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ChannelLinkUpdateArgs>(args: SelectSubset<T, ChannelLinkUpdateArgs<ExtArgs>>): Prisma__ChannelLinkClient<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ChannelLinks.
+     * @param {ChannelLinkDeleteManyArgs} args - Arguments to filter ChannelLinks to delete.
+     * @example
+     * // Delete a few ChannelLinks
+     * const { count } = await prisma.channelLink.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ChannelLinkDeleteManyArgs>(args?: SelectSubset<T, ChannelLinkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ChannelLinks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChannelLinkUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ChannelLinks
+     * const channelLink = await prisma.channelLink.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ChannelLinkUpdateManyArgs>(args: SelectSubset<T, ChannelLinkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ChannelLinks and returns the data updated in the database.
+     * @param {ChannelLinkUpdateManyAndReturnArgs} args - Arguments to update many ChannelLinks.
+     * @example
+     * // Update many ChannelLinks
+     * const channelLink = await prisma.channelLink.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ChannelLinks and only return the `id`
+     * const channelLinkWithIdOnly = await prisma.channelLink.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ChannelLinkUpdateManyAndReturnArgs>(args: SelectSubset<T, ChannelLinkUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ChannelLink.
+     * @param {ChannelLinkUpsertArgs} args - Arguments to update or create a ChannelLink.
+     * @example
+     * // Update or create a ChannelLink
+     * const channelLink = await prisma.channelLink.upsert({
+     *   create: {
+     *     // ... data to create a ChannelLink
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ChannelLink we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ChannelLinkUpsertArgs>(args: SelectSubset<T, ChannelLinkUpsertArgs<ExtArgs>>): Prisma__ChannelLinkClient<$Result.GetResult<Prisma.$ChannelLinkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ChannelLinks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChannelLinkCountArgs} args - Arguments to filter ChannelLinks to count.
+     * @example
+     * // Count the number of ChannelLinks
+     * const count = await prisma.channelLink.count({
+     *   where: {
+     *     // ... the filter for the ChannelLinks we want to count
+     *   }
+     * })
+    **/
+    count<T extends ChannelLinkCountArgs>(
+      args?: Subset<T, ChannelLinkCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ChannelLinkCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ChannelLink.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChannelLinkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ChannelLinkAggregateArgs>(args: Subset<T, ChannelLinkAggregateArgs>): Prisma.PrismaPromise<GetChannelLinkAggregateType<T>>
+
+    /**
+     * Group by ChannelLink.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChannelLinkGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ChannelLinkGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ChannelLinkGroupByArgs['orderBy'] }
+        : { orderBy?: ChannelLinkGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ChannelLinkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChannelLinkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ChannelLink model
+   */
+  readonly fields: ChannelLinkFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ChannelLink.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ChannelLinkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ChannelLink model
+   */
+  interface ChannelLinkFieldRefs {
+    readonly id: FieldRef<"ChannelLink", 'String'>
+    readonly userId: FieldRef<"ChannelLink", 'String'>
+    readonly channel: FieldRef<"ChannelLink", 'String'>
+    readonly externalChatId: FieldRef<"ChannelLink", 'String'>
+    readonly linkedAt: FieldRef<"ChannelLink", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ChannelLink findUnique
+   */
+  export type ChannelLinkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which ChannelLink to fetch.
+     */
+    where: ChannelLinkWhereUniqueInput
+  }
+
+  /**
+   * ChannelLink findUniqueOrThrow
+   */
+  export type ChannelLinkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which ChannelLink to fetch.
+     */
+    where: ChannelLinkWhereUniqueInput
+  }
+
+  /**
+   * ChannelLink findFirst
+   */
+  export type ChannelLinkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which ChannelLink to fetch.
+     */
+    where?: ChannelLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChannelLinks to fetch.
+     */
+    orderBy?: ChannelLinkOrderByWithRelationInput | ChannelLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ChannelLinks.
+     */
+    cursor?: ChannelLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChannelLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChannelLinks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ChannelLinks.
+     */
+    distinct?: ChannelLinkScalarFieldEnum | ChannelLinkScalarFieldEnum[]
+  }
+
+  /**
+   * ChannelLink findFirstOrThrow
+   */
+  export type ChannelLinkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which ChannelLink to fetch.
+     */
+    where?: ChannelLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChannelLinks to fetch.
+     */
+    orderBy?: ChannelLinkOrderByWithRelationInput | ChannelLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ChannelLinks.
+     */
+    cursor?: ChannelLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChannelLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChannelLinks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ChannelLinks.
+     */
+    distinct?: ChannelLinkScalarFieldEnum | ChannelLinkScalarFieldEnum[]
+  }
+
+  /**
+   * ChannelLink findMany
+   */
+  export type ChannelLinkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which ChannelLinks to fetch.
+     */
+    where?: ChannelLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChannelLinks to fetch.
+     */
+    orderBy?: ChannelLinkOrderByWithRelationInput | ChannelLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ChannelLinks.
+     */
+    cursor?: ChannelLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChannelLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChannelLinks.
+     */
+    skip?: number
+    distinct?: ChannelLinkScalarFieldEnum | ChannelLinkScalarFieldEnum[]
+  }
+
+  /**
+   * ChannelLink create
+   */
+  export type ChannelLinkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ChannelLink.
+     */
+    data: XOR<ChannelLinkCreateInput, ChannelLinkUncheckedCreateInput>
+  }
+
+  /**
+   * ChannelLink createMany
+   */
+  export type ChannelLinkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ChannelLinks.
+     */
+    data: ChannelLinkCreateManyInput | ChannelLinkCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ChannelLink createManyAndReturn
+   */
+  export type ChannelLinkCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * The data used to create many ChannelLinks.
+     */
+    data: ChannelLinkCreateManyInput | ChannelLinkCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ChannelLink update
+   */
+  export type ChannelLinkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ChannelLink.
+     */
+    data: XOR<ChannelLinkUpdateInput, ChannelLinkUncheckedUpdateInput>
+    /**
+     * Choose, which ChannelLink to update.
+     */
+    where: ChannelLinkWhereUniqueInput
+  }
+
+  /**
+   * ChannelLink updateMany
+   */
+  export type ChannelLinkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ChannelLinks.
+     */
+    data: XOR<ChannelLinkUpdateManyMutationInput, ChannelLinkUncheckedUpdateManyInput>
+    /**
+     * Filter which ChannelLinks to update
+     */
+    where?: ChannelLinkWhereInput
+    /**
+     * Limit how many ChannelLinks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ChannelLink updateManyAndReturn
+   */
+  export type ChannelLinkUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * The data used to update ChannelLinks.
+     */
+    data: XOR<ChannelLinkUpdateManyMutationInput, ChannelLinkUncheckedUpdateManyInput>
+    /**
+     * Filter which ChannelLinks to update
+     */
+    where?: ChannelLinkWhereInput
+    /**
+     * Limit how many ChannelLinks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ChannelLink upsert
+   */
+  export type ChannelLinkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ChannelLink to update in case it exists.
+     */
+    where: ChannelLinkWhereUniqueInput
+    /**
+     * In case the ChannelLink found by the `where` argument doesn't exist, create a new ChannelLink with this data.
+     */
+    create: XOR<ChannelLinkCreateInput, ChannelLinkUncheckedCreateInput>
+    /**
+     * In case the ChannelLink was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ChannelLinkUpdateInput, ChannelLinkUncheckedUpdateInput>
+  }
+
+  /**
+   * ChannelLink delete
+   */
+  export type ChannelLinkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkInclude<ExtArgs> | null
+    /**
+     * Filter which ChannelLink to delete.
+     */
+    where: ChannelLinkWhereUniqueInput
+  }
+
+  /**
+   * ChannelLink deleteMany
+   */
+  export type ChannelLinkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ChannelLinks to delete
+     */
+    where?: ChannelLinkWhereInput
+    /**
+     * Limit how many ChannelLinks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ChannelLink without action
+   */
+  export type ChannelLinkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChannelLink
+     */
+    select?: ChannelLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChannelLink
+     */
+    omit?: ChannelLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChannelLinkInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EmailEmbedding
+   */
+
+  export type AggregateEmailEmbedding = {
+    _count: EmailEmbeddingCountAggregateOutputType | null
+    _min: EmailEmbeddingMinAggregateOutputType | null
+    _max: EmailEmbeddingMaxAggregateOutputType | null
+  }
+
+  export type EmailEmbeddingMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    corsairEntityId: string | null
+    threadId: string | null
+    subjectSnippet: string | null
+    indexedAt: Date | null
+  }
+
+  export type EmailEmbeddingMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    corsairEntityId: string | null
+    threadId: string | null
+    subjectSnippet: string | null
+    indexedAt: Date | null
+  }
+
+  export type EmailEmbeddingCountAggregateOutputType = {
+    id: number
+    userId: number
+    corsairEntityId: number
+    threadId: number
+    subjectSnippet: number
+    indexedAt: number
+    _all: number
+  }
+
+
+  export type EmailEmbeddingMinAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    threadId?: true
+    subjectSnippet?: true
+    indexedAt?: true
+  }
+
+  export type EmailEmbeddingMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    threadId?: true
+    subjectSnippet?: true
+    indexedAt?: true
+  }
+
+  export type EmailEmbeddingCountAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    threadId?: true
+    subjectSnippet?: true
+    indexedAt?: true
+    _all?: true
+  }
+
+  export type EmailEmbeddingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmailEmbedding to aggregate.
+     */
+    where?: EmailEmbeddingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailEmbeddings to fetch.
+     */
+    orderBy?: EmailEmbeddingOrderByWithRelationInput | EmailEmbeddingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmailEmbeddingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailEmbeddings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailEmbeddings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmailEmbeddings
+    **/
+    _count?: true | EmailEmbeddingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmailEmbeddingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmailEmbeddingMaxAggregateInputType
+  }
+
+  export type GetEmailEmbeddingAggregateType<T extends EmailEmbeddingAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmailEmbedding]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmailEmbedding[P]>
+      : GetScalarType<T[P], AggregateEmailEmbedding[P]>
+  }
+
+
+
+
+  export type EmailEmbeddingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailEmbeddingWhereInput
+    orderBy?: EmailEmbeddingOrderByWithAggregationInput | EmailEmbeddingOrderByWithAggregationInput[]
+    by: EmailEmbeddingScalarFieldEnum[] | EmailEmbeddingScalarFieldEnum
+    having?: EmailEmbeddingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmailEmbeddingCountAggregateInputType | true
+    _min?: EmailEmbeddingMinAggregateInputType
+    _max?: EmailEmbeddingMaxAggregateInputType
+  }
+
+  export type EmailEmbeddingGroupByOutputType = {
+    id: string
+    userId: string
+    corsairEntityId: string
+    threadId: string
+    subjectSnippet: string
+    indexedAt: Date
+    _count: EmailEmbeddingCountAggregateOutputType | null
+    _min: EmailEmbeddingMinAggregateOutputType | null
+    _max: EmailEmbeddingMaxAggregateOutputType | null
+  }
+
+  type GetEmailEmbeddingGroupByPayload<T extends EmailEmbeddingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmailEmbeddingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmailEmbeddingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmailEmbeddingGroupByOutputType[P]>
+            : GetScalarType<T[P], EmailEmbeddingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmailEmbeddingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    threadId?: boolean
+    subjectSnippet?: boolean
+    indexedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["emailEmbedding"]>
+
+  export type EmailEmbeddingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    threadId?: boolean
+    subjectSnippet?: boolean
+    indexedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["emailEmbedding"]>
+
+  export type EmailEmbeddingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    threadId?: boolean
+    subjectSnippet?: boolean
+    indexedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["emailEmbedding"]>
+
+  export type EmailEmbeddingSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    threadId?: boolean
+    subjectSnippet?: boolean
+    indexedAt?: boolean
+  }
+
+  export type EmailEmbeddingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "corsairEntityId" | "threadId" | "subjectSnippet" | "indexedAt", ExtArgs["result"]["emailEmbedding"]>
+  export type EmailEmbeddingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type EmailEmbeddingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type EmailEmbeddingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $EmailEmbeddingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmailEmbedding"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      corsairEntityId: string
+      threadId: string
+      subjectSnippet: string
+      indexedAt: Date
+    }, ExtArgs["result"]["emailEmbedding"]>
+    composites: {}
+  }
+
+  type EmailEmbeddingGetPayload<S extends boolean | null | undefined | EmailEmbeddingDefaultArgs> = $Result.GetResult<Prisma.$EmailEmbeddingPayload, S>
+
+  type EmailEmbeddingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmailEmbeddingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmailEmbeddingCountAggregateInputType | true
+    }
+
+  export interface EmailEmbeddingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmailEmbedding'], meta: { name: 'EmailEmbedding' } }
+    /**
+     * Find zero or one EmailEmbedding that matches the filter.
+     * @param {EmailEmbeddingFindUniqueArgs} args - Arguments to find a EmailEmbedding
+     * @example
+     * // Get one EmailEmbedding
+     * const emailEmbedding = await prisma.emailEmbedding.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmailEmbeddingFindUniqueArgs>(args: SelectSubset<T, EmailEmbeddingFindUniqueArgs<ExtArgs>>): Prisma__EmailEmbeddingClient<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmailEmbedding that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmailEmbeddingFindUniqueOrThrowArgs} args - Arguments to find a EmailEmbedding
+     * @example
+     * // Get one EmailEmbedding
+     * const emailEmbedding = await prisma.emailEmbedding.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmailEmbeddingFindUniqueOrThrowArgs>(args: SelectSubset<T, EmailEmbeddingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmailEmbeddingClient<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmailEmbedding that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailEmbeddingFindFirstArgs} args - Arguments to find a EmailEmbedding
+     * @example
+     * // Get one EmailEmbedding
+     * const emailEmbedding = await prisma.emailEmbedding.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmailEmbeddingFindFirstArgs>(args?: SelectSubset<T, EmailEmbeddingFindFirstArgs<ExtArgs>>): Prisma__EmailEmbeddingClient<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmailEmbedding that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailEmbeddingFindFirstOrThrowArgs} args - Arguments to find a EmailEmbedding
+     * @example
+     * // Get one EmailEmbedding
+     * const emailEmbedding = await prisma.emailEmbedding.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmailEmbeddingFindFirstOrThrowArgs>(args?: SelectSubset<T, EmailEmbeddingFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmailEmbeddingClient<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmailEmbeddings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailEmbeddingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmailEmbeddings
+     * const emailEmbeddings = await prisma.emailEmbedding.findMany()
+     * 
+     * // Get first 10 EmailEmbeddings
+     * const emailEmbeddings = await prisma.emailEmbedding.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const emailEmbeddingWithIdOnly = await prisma.emailEmbedding.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmailEmbeddingFindManyArgs>(args?: SelectSubset<T, EmailEmbeddingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmailEmbedding.
+     * @param {EmailEmbeddingCreateArgs} args - Arguments to create a EmailEmbedding.
+     * @example
+     * // Create one EmailEmbedding
+     * const EmailEmbedding = await prisma.emailEmbedding.create({
+     *   data: {
+     *     // ... data to create a EmailEmbedding
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmailEmbeddingCreateArgs>(args: SelectSubset<T, EmailEmbeddingCreateArgs<ExtArgs>>): Prisma__EmailEmbeddingClient<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmailEmbeddings.
+     * @param {EmailEmbeddingCreateManyArgs} args - Arguments to create many EmailEmbeddings.
+     * @example
+     * // Create many EmailEmbeddings
+     * const emailEmbedding = await prisma.emailEmbedding.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmailEmbeddingCreateManyArgs>(args?: SelectSubset<T, EmailEmbeddingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmailEmbeddings and returns the data saved in the database.
+     * @param {EmailEmbeddingCreateManyAndReturnArgs} args - Arguments to create many EmailEmbeddings.
+     * @example
+     * // Create many EmailEmbeddings
+     * const emailEmbedding = await prisma.emailEmbedding.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmailEmbeddings and only return the `id`
+     * const emailEmbeddingWithIdOnly = await prisma.emailEmbedding.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmailEmbeddingCreateManyAndReturnArgs>(args?: SelectSubset<T, EmailEmbeddingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmailEmbedding.
+     * @param {EmailEmbeddingDeleteArgs} args - Arguments to delete one EmailEmbedding.
+     * @example
+     * // Delete one EmailEmbedding
+     * const EmailEmbedding = await prisma.emailEmbedding.delete({
+     *   where: {
+     *     // ... filter to delete one EmailEmbedding
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmailEmbeddingDeleteArgs>(args: SelectSubset<T, EmailEmbeddingDeleteArgs<ExtArgs>>): Prisma__EmailEmbeddingClient<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmailEmbedding.
+     * @param {EmailEmbeddingUpdateArgs} args - Arguments to update one EmailEmbedding.
+     * @example
+     * // Update one EmailEmbedding
+     * const emailEmbedding = await prisma.emailEmbedding.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmailEmbeddingUpdateArgs>(args: SelectSubset<T, EmailEmbeddingUpdateArgs<ExtArgs>>): Prisma__EmailEmbeddingClient<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmailEmbeddings.
+     * @param {EmailEmbeddingDeleteManyArgs} args - Arguments to filter EmailEmbeddings to delete.
+     * @example
+     * // Delete a few EmailEmbeddings
+     * const { count } = await prisma.emailEmbedding.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmailEmbeddingDeleteManyArgs>(args?: SelectSubset<T, EmailEmbeddingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmailEmbeddings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailEmbeddingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmailEmbeddings
+     * const emailEmbedding = await prisma.emailEmbedding.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmailEmbeddingUpdateManyArgs>(args: SelectSubset<T, EmailEmbeddingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmailEmbeddings and returns the data updated in the database.
+     * @param {EmailEmbeddingUpdateManyAndReturnArgs} args - Arguments to update many EmailEmbeddings.
+     * @example
+     * // Update many EmailEmbeddings
+     * const emailEmbedding = await prisma.emailEmbedding.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmailEmbeddings and only return the `id`
+     * const emailEmbeddingWithIdOnly = await prisma.emailEmbedding.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmailEmbeddingUpdateManyAndReturnArgs>(args: SelectSubset<T, EmailEmbeddingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmailEmbedding.
+     * @param {EmailEmbeddingUpsertArgs} args - Arguments to update or create a EmailEmbedding.
+     * @example
+     * // Update or create a EmailEmbedding
+     * const emailEmbedding = await prisma.emailEmbedding.upsert({
+     *   create: {
+     *     // ... data to create a EmailEmbedding
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmailEmbedding we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmailEmbeddingUpsertArgs>(args: SelectSubset<T, EmailEmbeddingUpsertArgs<ExtArgs>>): Prisma__EmailEmbeddingClient<$Result.GetResult<Prisma.$EmailEmbeddingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmailEmbeddings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailEmbeddingCountArgs} args - Arguments to filter EmailEmbeddings to count.
+     * @example
+     * // Count the number of EmailEmbeddings
+     * const count = await prisma.emailEmbedding.count({
+     *   where: {
+     *     // ... the filter for the EmailEmbeddings we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmailEmbeddingCountArgs>(
+      args?: Subset<T, EmailEmbeddingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmailEmbeddingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmailEmbedding.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailEmbeddingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmailEmbeddingAggregateArgs>(args: Subset<T, EmailEmbeddingAggregateArgs>): Prisma.PrismaPromise<GetEmailEmbeddingAggregateType<T>>
+
+    /**
+     * Group by EmailEmbedding.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailEmbeddingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmailEmbeddingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmailEmbeddingGroupByArgs['orderBy'] }
+        : { orderBy?: EmailEmbeddingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmailEmbeddingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmailEmbeddingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmailEmbedding model
+   */
+  readonly fields: EmailEmbeddingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmailEmbedding.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmailEmbeddingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmailEmbedding model
+   */
+  interface EmailEmbeddingFieldRefs {
+    readonly id: FieldRef<"EmailEmbedding", 'String'>
+    readonly userId: FieldRef<"EmailEmbedding", 'String'>
+    readonly corsairEntityId: FieldRef<"EmailEmbedding", 'String'>
+    readonly threadId: FieldRef<"EmailEmbedding", 'String'>
+    readonly subjectSnippet: FieldRef<"EmailEmbedding", 'String'>
+    readonly indexedAt: FieldRef<"EmailEmbedding", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmailEmbedding findUnique
+   */
+  export type EmailEmbeddingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailEmbedding to fetch.
+     */
+    where: EmailEmbeddingWhereUniqueInput
+  }
+
+  /**
+   * EmailEmbedding findUniqueOrThrow
+   */
+  export type EmailEmbeddingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailEmbedding to fetch.
+     */
+    where: EmailEmbeddingWhereUniqueInput
+  }
+
+  /**
+   * EmailEmbedding findFirst
+   */
+  export type EmailEmbeddingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailEmbedding to fetch.
+     */
+    where?: EmailEmbeddingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailEmbeddings to fetch.
+     */
+    orderBy?: EmailEmbeddingOrderByWithRelationInput | EmailEmbeddingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmailEmbeddings.
+     */
+    cursor?: EmailEmbeddingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailEmbeddings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailEmbeddings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailEmbeddings.
+     */
+    distinct?: EmailEmbeddingScalarFieldEnum | EmailEmbeddingScalarFieldEnum[]
+  }
+
+  /**
+   * EmailEmbedding findFirstOrThrow
+   */
+  export type EmailEmbeddingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailEmbedding to fetch.
+     */
+    where?: EmailEmbeddingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailEmbeddings to fetch.
+     */
+    orderBy?: EmailEmbeddingOrderByWithRelationInput | EmailEmbeddingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmailEmbeddings.
+     */
+    cursor?: EmailEmbeddingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailEmbeddings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailEmbeddings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailEmbeddings.
+     */
+    distinct?: EmailEmbeddingScalarFieldEnum | EmailEmbeddingScalarFieldEnum[]
+  }
+
+  /**
+   * EmailEmbedding findMany
+   */
+  export type EmailEmbeddingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailEmbeddings to fetch.
+     */
+    where?: EmailEmbeddingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailEmbeddings to fetch.
+     */
+    orderBy?: EmailEmbeddingOrderByWithRelationInput | EmailEmbeddingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmailEmbeddings.
+     */
+    cursor?: EmailEmbeddingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailEmbeddings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailEmbeddings.
+     */
+    skip?: number
+    distinct?: EmailEmbeddingScalarFieldEnum | EmailEmbeddingScalarFieldEnum[]
+  }
+
+  /**
+   * EmailEmbedding create
+   */
+  export type EmailEmbeddingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmailEmbedding.
+     */
+    data: XOR<EmailEmbeddingCreateInput, EmailEmbeddingUncheckedCreateInput>
+  }
+
+  /**
+   * EmailEmbedding createMany
+   */
+  export type EmailEmbeddingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmailEmbeddings.
+     */
+    data: EmailEmbeddingCreateManyInput | EmailEmbeddingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmailEmbedding createManyAndReturn
+   */
+  export type EmailEmbeddingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmailEmbeddings.
+     */
+    data: EmailEmbeddingCreateManyInput | EmailEmbeddingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmailEmbedding update
+   */
+  export type EmailEmbeddingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmailEmbedding.
+     */
+    data: XOR<EmailEmbeddingUpdateInput, EmailEmbeddingUncheckedUpdateInput>
+    /**
+     * Choose, which EmailEmbedding to update.
+     */
+    where: EmailEmbeddingWhereUniqueInput
+  }
+
+  /**
+   * EmailEmbedding updateMany
+   */
+  export type EmailEmbeddingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmailEmbeddings.
+     */
+    data: XOR<EmailEmbeddingUpdateManyMutationInput, EmailEmbeddingUncheckedUpdateManyInput>
+    /**
+     * Filter which EmailEmbeddings to update
+     */
+    where?: EmailEmbeddingWhereInput
+    /**
+     * Limit how many EmailEmbeddings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailEmbedding updateManyAndReturn
+   */
+  export type EmailEmbeddingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * The data used to update EmailEmbeddings.
+     */
+    data: XOR<EmailEmbeddingUpdateManyMutationInput, EmailEmbeddingUncheckedUpdateManyInput>
+    /**
+     * Filter which EmailEmbeddings to update
+     */
+    where?: EmailEmbeddingWhereInput
+    /**
+     * Limit how many EmailEmbeddings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmailEmbedding upsert
+   */
+  export type EmailEmbeddingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmailEmbedding to update in case it exists.
+     */
+    where: EmailEmbeddingWhereUniqueInput
+    /**
+     * In case the EmailEmbedding found by the `where` argument doesn't exist, create a new EmailEmbedding with this data.
+     */
+    create: XOR<EmailEmbeddingCreateInput, EmailEmbeddingUncheckedCreateInput>
+    /**
+     * In case the EmailEmbedding was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmailEmbeddingUpdateInput, EmailEmbeddingUncheckedUpdateInput>
+  }
+
+  /**
+   * EmailEmbedding delete
+   */
+  export type EmailEmbeddingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingInclude<ExtArgs> | null
+    /**
+     * Filter which EmailEmbedding to delete.
+     */
+    where: EmailEmbeddingWhereUniqueInput
+  }
+
+  /**
+   * EmailEmbedding deleteMany
+   */
+  export type EmailEmbeddingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmailEmbeddings to delete
+     */
+    where?: EmailEmbeddingWhereInput
+    /**
+     * Limit how many EmailEmbeddings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailEmbedding without action
+   */
+  export type EmailEmbeddingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailEmbedding
+     */
+    select?: EmailEmbeddingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailEmbedding
+     */
+    omit?: EmailEmbeddingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailEmbeddingInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PriorityScore
+   */
+
+  export type AggregatePriorityScore = {
+    _count: PriorityScoreCountAggregateOutputType | null
+    _min: PriorityScoreMinAggregateOutputType | null
+    _max: PriorityScoreMaxAggregateOutputType | null
+  }
+
+  export type PriorityScoreMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    corsairEntityId: string | null
+    label: string | null
+    reason: string | null
+    model: string | null
+    createdAt: Date | null
+  }
+
+  export type PriorityScoreMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    corsairEntityId: string | null
+    label: string | null
+    reason: string | null
+    model: string | null
+    createdAt: Date | null
+  }
+
+  export type PriorityScoreCountAggregateOutputType = {
+    id: number
+    userId: number
+    corsairEntityId: number
+    label: number
+    reason: number
+    model: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type PriorityScoreMinAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    label?: true
+    reason?: true
+    model?: true
+    createdAt?: true
+  }
+
+  export type PriorityScoreMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    label?: true
+    reason?: true
+    model?: true
+    createdAt?: true
+  }
+
+  export type PriorityScoreCountAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    label?: true
+    reason?: true
+    model?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type PriorityScoreAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PriorityScore to aggregate.
+     */
+    where?: PriorityScoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PriorityScores to fetch.
+     */
+    orderBy?: PriorityScoreOrderByWithRelationInput | PriorityScoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PriorityScoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PriorityScores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PriorityScores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PriorityScores
+    **/
+    _count?: true | PriorityScoreCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PriorityScoreMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PriorityScoreMaxAggregateInputType
+  }
+
+  export type GetPriorityScoreAggregateType<T extends PriorityScoreAggregateArgs> = {
+        [P in keyof T & keyof AggregatePriorityScore]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePriorityScore[P]>
+      : GetScalarType<T[P], AggregatePriorityScore[P]>
+  }
+
+
+
+
+  export type PriorityScoreGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PriorityScoreWhereInput
+    orderBy?: PriorityScoreOrderByWithAggregationInput | PriorityScoreOrderByWithAggregationInput[]
+    by: PriorityScoreScalarFieldEnum[] | PriorityScoreScalarFieldEnum
+    having?: PriorityScoreScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PriorityScoreCountAggregateInputType | true
+    _min?: PriorityScoreMinAggregateInputType
+    _max?: PriorityScoreMaxAggregateInputType
+  }
+
+  export type PriorityScoreGroupByOutputType = {
+    id: string
+    userId: string
+    corsairEntityId: string
+    label: string
+    reason: string | null
+    model: string | null
+    createdAt: Date
+    _count: PriorityScoreCountAggregateOutputType | null
+    _min: PriorityScoreMinAggregateOutputType | null
+    _max: PriorityScoreMaxAggregateOutputType | null
+  }
+
+  type GetPriorityScoreGroupByPayload<T extends PriorityScoreGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PriorityScoreGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PriorityScoreGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PriorityScoreGroupByOutputType[P]>
+            : GetScalarType<T[P], PriorityScoreGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PriorityScoreSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    label?: boolean
+    reason?: boolean
+    model?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["priorityScore"]>
+
+  export type PriorityScoreSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    label?: boolean
+    reason?: boolean
+    model?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["priorityScore"]>
+
+  export type PriorityScoreSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    label?: boolean
+    reason?: boolean
+    model?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["priorityScore"]>
+
+  export type PriorityScoreSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    label?: boolean
+    reason?: boolean
+    model?: boolean
+    createdAt?: boolean
+  }
+
+  export type PriorityScoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "corsairEntityId" | "label" | "reason" | "model" | "createdAt", ExtArgs["result"]["priorityScore"]>
+  export type PriorityScoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type PriorityScoreIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type PriorityScoreIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $PriorityScorePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PriorityScore"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      corsairEntityId: string
+      label: string
+      reason: string | null
+      model: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["priorityScore"]>
+    composites: {}
+  }
+
+  type PriorityScoreGetPayload<S extends boolean | null | undefined | PriorityScoreDefaultArgs> = $Result.GetResult<Prisma.$PriorityScorePayload, S>
+
+  type PriorityScoreCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PriorityScoreFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PriorityScoreCountAggregateInputType | true
+    }
+
+  export interface PriorityScoreDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PriorityScore'], meta: { name: 'PriorityScore' } }
+    /**
+     * Find zero or one PriorityScore that matches the filter.
+     * @param {PriorityScoreFindUniqueArgs} args - Arguments to find a PriorityScore
+     * @example
+     * // Get one PriorityScore
+     * const priorityScore = await prisma.priorityScore.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PriorityScoreFindUniqueArgs>(args: SelectSubset<T, PriorityScoreFindUniqueArgs<ExtArgs>>): Prisma__PriorityScoreClient<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PriorityScore that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PriorityScoreFindUniqueOrThrowArgs} args - Arguments to find a PriorityScore
+     * @example
+     * // Get one PriorityScore
+     * const priorityScore = await prisma.priorityScore.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PriorityScoreFindUniqueOrThrowArgs>(args: SelectSubset<T, PriorityScoreFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PriorityScoreClient<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PriorityScore that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriorityScoreFindFirstArgs} args - Arguments to find a PriorityScore
+     * @example
+     * // Get one PriorityScore
+     * const priorityScore = await prisma.priorityScore.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PriorityScoreFindFirstArgs>(args?: SelectSubset<T, PriorityScoreFindFirstArgs<ExtArgs>>): Prisma__PriorityScoreClient<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PriorityScore that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriorityScoreFindFirstOrThrowArgs} args - Arguments to find a PriorityScore
+     * @example
+     * // Get one PriorityScore
+     * const priorityScore = await prisma.priorityScore.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PriorityScoreFindFirstOrThrowArgs>(args?: SelectSubset<T, PriorityScoreFindFirstOrThrowArgs<ExtArgs>>): Prisma__PriorityScoreClient<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PriorityScores that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriorityScoreFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PriorityScores
+     * const priorityScores = await prisma.priorityScore.findMany()
+     * 
+     * // Get first 10 PriorityScores
+     * const priorityScores = await prisma.priorityScore.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const priorityScoreWithIdOnly = await prisma.priorityScore.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PriorityScoreFindManyArgs>(args?: SelectSubset<T, PriorityScoreFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PriorityScore.
+     * @param {PriorityScoreCreateArgs} args - Arguments to create a PriorityScore.
+     * @example
+     * // Create one PriorityScore
+     * const PriorityScore = await prisma.priorityScore.create({
+     *   data: {
+     *     // ... data to create a PriorityScore
+     *   }
+     * })
+     * 
+     */
+    create<T extends PriorityScoreCreateArgs>(args: SelectSubset<T, PriorityScoreCreateArgs<ExtArgs>>): Prisma__PriorityScoreClient<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PriorityScores.
+     * @param {PriorityScoreCreateManyArgs} args - Arguments to create many PriorityScores.
+     * @example
+     * // Create many PriorityScores
+     * const priorityScore = await prisma.priorityScore.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PriorityScoreCreateManyArgs>(args?: SelectSubset<T, PriorityScoreCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PriorityScores and returns the data saved in the database.
+     * @param {PriorityScoreCreateManyAndReturnArgs} args - Arguments to create many PriorityScores.
+     * @example
+     * // Create many PriorityScores
+     * const priorityScore = await prisma.priorityScore.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PriorityScores and only return the `id`
+     * const priorityScoreWithIdOnly = await prisma.priorityScore.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PriorityScoreCreateManyAndReturnArgs>(args?: SelectSubset<T, PriorityScoreCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PriorityScore.
+     * @param {PriorityScoreDeleteArgs} args - Arguments to delete one PriorityScore.
+     * @example
+     * // Delete one PriorityScore
+     * const PriorityScore = await prisma.priorityScore.delete({
+     *   where: {
+     *     // ... filter to delete one PriorityScore
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PriorityScoreDeleteArgs>(args: SelectSubset<T, PriorityScoreDeleteArgs<ExtArgs>>): Prisma__PriorityScoreClient<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PriorityScore.
+     * @param {PriorityScoreUpdateArgs} args - Arguments to update one PriorityScore.
+     * @example
+     * // Update one PriorityScore
+     * const priorityScore = await prisma.priorityScore.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PriorityScoreUpdateArgs>(args: SelectSubset<T, PriorityScoreUpdateArgs<ExtArgs>>): Prisma__PriorityScoreClient<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PriorityScores.
+     * @param {PriorityScoreDeleteManyArgs} args - Arguments to filter PriorityScores to delete.
+     * @example
+     * // Delete a few PriorityScores
+     * const { count } = await prisma.priorityScore.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PriorityScoreDeleteManyArgs>(args?: SelectSubset<T, PriorityScoreDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PriorityScores.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriorityScoreUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PriorityScores
+     * const priorityScore = await prisma.priorityScore.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PriorityScoreUpdateManyArgs>(args: SelectSubset<T, PriorityScoreUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PriorityScores and returns the data updated in the database.
+     * @param {PriorityScoreUpdateManyAndReturnArgs} args - Arguments to update many PriorityScores.
+     * @example
+     * // Update many PriorityScores
+     * const priorityScore = await prisma.priorityScore.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PriorityScores and only return the `id`
+     * const priorityScoreWithIdOnly = await prisma.priorityScore.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PriorityScoreUpdateManyAndReturnArgs>(args: SelectSubset<T, PriorityScoreUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PriorityScore.
+     * @param {PriorityScoreUpsertArgs} args - Arguments to update or create a PriorityScore.
+     * @example
+     * // Update or create a PriorityScore
+     * const priorityScore = await prisma.priorityScore.upsert({
+     *   create: {
+     *     // ... data to create a PriorityScore
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PriorityScore we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PriorityScoreUpsertArgs>(args: SelectSubset<T, PriorityScoreUpsertArgs<ExtArgs>>): Prisma__PriorityScoreClient<$Result.GetResult<Prisma.$PriorityScorePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PriorityScores.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriorityScoreCountArgs} args - Arguments to filter PriorityScores to count.
+     * @example
+     * // Count the number of PriorityScores
+     * const count = await prisma.priorityScore.count({
+     *   where: {
+     *     // ... the filter for the PriorityScores we want to count
+     *   }
+     * })
+    **/
+    count<T extends PriorityScoreCountArgs>(
+      args?: Subset<T, PriorityScoreCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PriorityScoreCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PriorityScore.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriorityScoreAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PriorityScoreAggregateArgs>(args: Subset<T, PriorityScoreAggregateArgs>): Prisma.PrismaPromise<GetPriorityScoreAggregateType<T>>
+
+    /**
+     * Group by PriorityScore.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriorityScoreGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PriorityScoreGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PriorityScoreGroupByArgs['orderBy'] }
+        : { orderBy?: PriorityScoreGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PriorityScoreGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPriorityScoreGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PriorityScore model
+   */
+  readonly fields: PriorityScoreFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PriorityScore.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PriorityScoreClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PriorityScore model
+   */
+  interface PriorityScoreFieldRefs {
+    readonly id: FieldRef<"PriorityScore", 'String'>
+    readonly userId: FieldRef<"PriorityScore", 'String'>
+    readonly corsairEntityId: FieldRef<"PriorityScore", 'String'>
+    readonly label: FieldRef<"PriorityScore", 'String'>
+    readonly reason: FieldRef<"PriorityScore", 'String'>
+    readonly model: FieldRef<"PriorityScore", 'String'>
+    readonly createdAt: FieldRef<"PriorityScore", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PriorityScore findUnique
+   */
+  export type PriorityScoreFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreInclude<ExtArgs> | null
+    /**
+     * Filter, which PriorityScore to fetch.
+     */
+    where: PriorityScoreWhereUniqueInput
+  }
+
+  /**
+   * PriorityScore findUniqueOrThrow
+   */
+  export type PriorityScoreFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreInclude<ExtArgs> | null
+    /**
+     * Filter, which PriorityScore to fetch.
+     */
+    where: PriorityScoreWhereUniqueInput
+  }
+
+  /**
+   * PriorityScore findFirst
+   */
+  export type PriorityScoreFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreInclude<ExtArgs> | null
+    /**
+     * Filter, which PriorityScore to fetch.
+     */
+    where?: PriorityScoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PriorityScores to fetch.
+     */
+    orderBy?: PriorityScoreOrderByWithRelationInput | PriorityScoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PriorityScores.
+     */
+    cursor?: PriorityScoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PriorityScores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PriorityScores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PriorityScores.
+     */
+    distinct?: PriorityScoreScalarFieldEnum | PriorityScoreScalarFieldEnum[]
+  }
+
+  /**
+   * PriorityScore findFirstOrThrow
+   */
+  export type PriorityScoreFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreInclude<ExtArgs> | null
+    /**
+     * Filter, which PriorityScore to fetch.
+     */
+    where?: PriorityScoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PriorityScores to fetch.
+     */
+    orderBy?: PriorityScoreOrderByWithRelationInput | PriorityScoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PriorityScores.
+     */
+    cursor?: PriorityScoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PriorityScores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PriorityScores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PriorityScores.
+     */
+    distinct?: PriorityScoreScalarFieldEnum | PriorityScoreScalarFieldEnum[]
+  }
+
+  /**
+   * PriorityScore findMany
+   */
+  export type PriorityScoreFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreInclude<ExtArgs> | null
+    /**
+     * Filter, which PriorityScores to fetch.
+     */
+    where?: PriorityScoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PriorityScores to fetch.
+     */
+    orderBy?: PriorityScoreOrderByWithRelationInput | PriorityScoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PriorityScores.
+     */
+    cursor?: PriorityScoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PriorityScores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PriorityScores.
+     */
+    skip?: number
+    distinct?: PriorityScoreScalarFieldEnum | PriorityScoreScalarFieldEnum[]
+  }
+
+  /**
+   * PriorityScore create
+   */
+  export type PriorityScoreCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PriorityScore.
+     */
+    data: XOR<PriorityScoreCreateInput, PriorityScoreUncheckedCreateInput>
+  }
+
+  /**
+   * PriorityScore createMany
+   */
+  export type PriorityScoreCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PriorityScores.
+     */
+    data: PriorityScoreCreateManyInput | PriorityScoreCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PriorityScore createManyAndReturn
+   */
+  export type PriorityScoreCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * The data used to create many PriorityScores.
+     */
+    data: PriorityScoreCreateManyInput | PriorityScoreCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PriorityScore update
+   */
+  export type PriorityScoreUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PriorityScore.
+     */
+    data: XOR<PriorityScoreUpdateInput, PriorityScoreUncheckedUpdateInput>
+    /**
+     * Choose, which PriorityScore to update.
+     */
+    where: PriorityScoreWhereUniqueInput
+  }
+
+  /**
+   * PriorityScore updateMany
+   */
+  export type PriorityScoreUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PriorityScores.
+     */
+    data: XOR<PriorityScoreUpdateManyMutationInput, PriorityScoreUncheckedUpdateManyInput>
+    /**
+     * Filter which PriorityScores to update
+     */
+    where?: PriorityScoreWhereInput
+    /**
+     * Limit how many PriorityScores to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PriorityScore updateManyAndReturn
+   */
+  export type PriorityScoreUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * The data used to update PriorityScores.
+     */
+    data: XOR<PriorityScoreUpdateManyMutationInput, PriorityScoreUncheckedUpdateManyInput>
+    /**
+     * Filter which PriorityScores to update
+     */
+    where?: PriorityScoreWhereInput
+    /**
+     * Limit how many PriorityScores to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PriorityScore upsert
+   */
+  export type PriorityScoreUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PriorityScore to update in case it exists.
+     */
+    where: PriorityScoreWhereUniqueInput
+    /**
+     * In case the PriorityScore found by the `where` argument doesn't exist, create a new PriorityScore with this data.
+     */
+    create: XOR<PriorityScoreCreateInput, PriorityScoreUncheckedCreateInput>
+    /**
+     * In case the PriorityScore was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PriorityScoreUpdateInput, PriorityScoreUncheckedUpdateInput>
+  }
+
+  /**
+   * PriorityScore delete
+   */
+  export type PriorityScoreDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreInclude<ExtArgs> | null
+    /**
+     * Filter which PriorityScore to delete.
+     */
+    where: PriorityScoreWhereUniqueInput
+  }
+
+  /**
+   * PriorityScore deleteMany
+   */
+  export type PriorityScoreDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PriorityScores to delete
+     */
+    where?: PriorityScoreWhereInput
+    /**
+     * Limit how many PriorityScores to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PriorityScore without action
+   */
+  export type PriorityScoreDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PriorityScore
+     */
+    select?: PriorityScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PriorityScore
+     */
+    omit?: PriorityScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriorityScoreInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PendingAction
+   */
+
+  export type AggregatePendingAction = {
+    _count: PendingActionCountAggregateOutputType | null
+    _min: PendingActionMinAggregateOutputType | null
+    _max: PendingActionMaxAggregateOutputType | null
+  }
+
+  export type PendingActionMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    channel: string | null
+    kind: string | null
+    corsairOperationPath: string | null
+    status: string | null
+    createdAt: Date | null
+    resolvedAt: Date | null
+  }
+
+  export type PendingActionMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    channel: string | null
+    kind: string | null
+    corsairOperationPath: string | null
+    status: string | null
+    createdAt: Date | null
+    resolvedAt: Date | null
+  }
+
+  export type PendingActionCountAggregateOutputType = {
+    id: number
+    userId: number
+    channel: number
+    kind: number
+    draftPayload: number
+    corsairOperationPath: number
+    status: number
+    createdAt: number
+    resolvedAt: number
+    _all: number
+  }
+
+
+  export type PendingActionMinAggregateInputType = {
+    id?: true
+    userId?: true
+    channel?: true
+    kind?: true
+    corsairOperationPath?: true
+    status?: true
+    createdAt?: true
+    resolvedAt?: true
+  }
+
+  export type PendingActionMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    channel?: true
+    kind?: true
+    corsairOperationPath?: true
+    status?: true
+    createdAt?: true
+    resolvedAt?: true
+  }
+
+  export type PendingActionCountAggregateInputType = {
+    id?: true
+    userId?: true
+    channel?: true
+    kind?: true
+    draftPayload?: true
+    corsairOperationPath?: true
+    status?: true
+    createdAt?: true
+    resolvedAt?: true
+    _all?: true
+  }
+
+  export type PendingActionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PendingAction to aggregate.
+     */
+    where?: PendingActionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PendingActions to fetch.
+     */
+    orderBy?: PendingActionOrderByWithRelationInput | PendingActionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PendingActionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PendingActions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PendingActions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PendingActions
+    **/
+    _count?: true | PendingActionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PendingActionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PendingActionMaxAggregateInputType
+  }
+
+  export type GetPendingActionAggregateType<T extends PendingActionAggregateArgs> = {
+        [P in keyof T & keyof AggregatePendingAction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePendingAction[P]>
+      : GetScalarType<T[P], AggregatePendingAction[P]>
+  }
+
+
+
+
+  export type PendingActionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PendingActionWhereInput
+    orderBy?: PendingActionOrderByWithAggregationInput | PendingActionOrderByWithAggregationInput[]
+    by: PendingActionScalarFieldEnum[] | PendingActionScalarFieldEnum
+    having?: PendingActionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PendingActionCountAggregateInputType | true
+    _min?: PendingActionMinAggregateInputType
+    _max?: PendingActionMaxAggregateInputType
+  }
+
+  export type PendingActionGroupByOutputType = {
+    id: string
+    userId: string
+    channel: string
+    kind: string
+    draftPayload: JsonValue
+    corsairOperationPath: string | null
+    status: string
+    createdAt: Date
+    resolvedAt: Date | null
+    _count: PendingActionCountAggregateOutputType | null
+    _min: PendingActionMinAggregateOutputType | null
+    _max: PendingActionMaxAggregateOutputType | null
+  }
+
+  type GetPendingActionGroupByPayload<T extends PendingActionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PendingActionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PendingActionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PendingActionGroupByOutputType[P]>
+            : GetScalarType<T[P], PendingActionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PendingActionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    channel?: boolean
+    kind?: boolean
+    draftPayload?: boolean
+    corsairOperationPath?: boolean
+    status?: boolean
+    createdAt?: boolean
+    resolvedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pendingAction"]>
+
+  export type PendingActionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    channel?: boolean
+    kind?: boolean
+    draftPayload?: boolean
+    corsairOperationPath?: boolean
+    status?: boolean
+    createdAt?: boolean
+    resolvedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pendingAction"]>
+
+  export type PendingActionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    channel?: boolean
+    kind?: boolean
+    draftPayload?: boolean
+    corsairOperationPath?: boolean
+    status?: boolean
+    createdAt?: boolean
+    resolvedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pendingAction"]>
+
+  export type PendingActionSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    channel?: boolean
+    kind?: boolean
+    draftPayload?: boolean
+    corsairOperationPath?: boolean
+    status?: boolean
+    createdAt?: boolean
+    resolvedAt?: boolean
+  }
+
+  export type PendingActionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "channel" | "kind" | "draftPayload" | "corsairOperationPath" | "status" | "createdAt" | "resolvedAt", ExtArgs["result"]["pendingAction"]>
+  export type PendingActionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type PendingActionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type PendingActionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $PendingActionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PendingAction"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      channel: string
+      kind: string
+      draftPayload: Prisma.JsonValue
+      corsairOperationPath: string | null
+      status: string
+      createdAt: Date
+      resolvedAt: Date | null
+    }, ExtArgs["result"]["pendingAction"]>
+    composites: {}
+  }
+
+  type PendingActionGetPayload<S extends boolean | null | undefined | PendingActionDefaultArgs> = $Result.GetResult<Prisma.$PendingActionPayload, S>
+
+  type PendingActionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PendingActionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PendingActionCountAggregateInputType | true
+    }
+
+  export interface PendingActionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PendingAction'], meta: { name: 'PendingAction' } }
+    /**
+     * Find zero or one PendingAction that matches the filter.
+     * @param {PendingActionFindUniqueArgs} args - Arguments to find a PendingAction
+     * @example
+     * // Get one PendingAction
+     * const pendingAction = await prisma.pendingAction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PendingActionFindUniqueArgs>(args: SelectSubset<T, PendingActionFindUniqueArgs<ExtArgs>>): Prisma__PendingActionClient<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PendingAction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PendingActionFindUniqueOrThrowArgs} args - Arguments to find a PendingAction
+     * @example
+     * // Get one PendingAction
+     * const pendingAction = await prisma.pendingAction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PendingActionFindUniqueOrThrowArgs>(args: SelectSubset<T, PendingActionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PendingActionClient<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PendingAction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingActionFindFirstArgs} args - Arguments to find a PendingAction
+     * @example
+     * // Get one PendingAction
+     * const pendingAction = await prisma.pendingAction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PendingActionFindFirstArgs>(args?: SelectSubset<T, PendingActionFindFirstArgs<ExtArgs>>): Prisma__PendingActionClient<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PendingAction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingActionFindFirstOrThrowArgs} args - Arguments to find a PendingAction
+     * @example
+     * // Get one PendingAction
+     * const pendingAction = await prisma.pendingAction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PendingActionFindFirstOrThrowArgs>(args?: SelectSubset<T, PendingActionFindFirstOrThrowArgs<ExtArgs>>): Prisma__PendingActionClient<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PendingActions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingActionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PendingActions
+     * const pendingActions = await prisma.pendingAction.findMany()
+     * 
+     * // Get first 10 PendingActions
+     * const pendingActions = await prisma.pendingAction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pendingActionWithIdOnly = await prisma.pendingAction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PendingActionFindManyArgs>(args?: SelectSubset<T, PendingActionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PendingAction.
+     * @param {PendingActionCreateArgs} args - Arguments to create a PendingAction.
+     * @example
+     * // Create one PendingAction
+     * const PendingAction = await prisma.pendingAction.create({
+     *   data: {
+     *     // ... data to create a PendingAction
+     *   }
+     * })
+     * 
+     */
+    create<T extends PendingActionCreateArgs>(args: SelectSubset<T, PendingActionCreateArgs<ExtArgs>>): Prisma__PendingActionClient<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PendingActions.
+     * @param {PendingActionCreateManyArgs} args - Arguments to create many PendingActions.
+     * @example
+     * // Create many PendingActions
+     * const pendingAction = await prisma.pendingAction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PendingActionCreateManyArgs>(args?: SelectSubset<T, PendingActionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PendingActions and returns the data saved in the database.
+     * @param {PendingActionCreateManyAndReturnArgs} args - Arguments to create many PendingActions.
+     * @example
+     * // Create many PendingActions
+     * const pendingAction = await prisma.pendingAction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PendingActions and only return the `id`
+     * const pendingActionWithIdOnly = await prisma.pendingAction.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PendingActionCreateManyAndReturnArgs>(args?: SelectSubset<T, PendingActionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PendingAction.
+     * @param {PendingActionDeleteArgs} args - Arguments to delete one PendingAction.
+     * @example
+     * // Delete one PendingAction
+     * const PendingAction = await prisma.pendingAction.delete({
+     *   where: {
+     *     // ... filter to delete one PendingAction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PendingActionDeleteArgs>(args: SelectSubset<T, PendingActionDeleteArgs<ExtArgs>>): Prisma__PendingActionClient<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PendingAction.
+     * @param {PendingActionUpdateArgs} args - Arguments to update one PendingAction.
+     * @example
+     * // Update one PendingAction
+     * const pendingAction = await prisma.pendingAction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PendingActionUpdateArgs>(args: SelectSubset<T, PendingActionUpdateArgs<ExtArgs>>): Prisma__PendingActionClient<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PendingActions.
+     * @param {PendingActionDeleteManyArgs} args - Arguments to filter PendingActions to delete.
+     * @example
+     * // Delete a few PendingActions
+     * const { count } = await prisma.pendingAction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PendingActionDeleteManyArgs>(args?: SelectSubset<T, PendingActionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PendingActions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingActionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PendingActions
+     * const pendingAction = await prisma.pendingAction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PendingActionUpdateManyArgs>(args: SelectSubset<T, PendingActionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PendingActions and returns the data updated in the database.
+     * @param {PendingActionUpdateManyAndReturnArgs} args - Arguments to update many PendingActions.
+     * @example
+     * // Update many PendingActions
+     * const pendingAction = await prisma.pendingAction.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PendingActions and only return the `id`
+     * const pendingActionWithIdOnly = await prisma.pendingAction.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PendingActionUpdateManyAndReturnArgs>(args: SelectSubset<T, PendingActionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PendingAction.
+     * @param {PendingActionUpsertArgs} args - Arguments to update or create a PendingAction.
+     * @example
+     * // Update or create a PendingAction
+     * const pendingAction = await prisma.pendingAction.upsert({
+     *   create: {
+     *     // ... data to create a PendingAction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PendingAction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PendingActionUpsertArgs>(args: SelectSubset<T, PendingActionUpsertArgs<ExtArgs>>): Prisma__PendingActionClient<$Result.GetResult<Prisma.$PendingActionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PendingActions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingActionCountArgs} args - Arguments to filter PendingActions to count.
+     * @example
+     * // Count the number of PendingActions
+     * const count = await prisma.pendingAction.count({
+     *   where: {
+     *     // ... the filter for the PendingActions we want to count
+     *   }
+     * })
+    **/
+    count<T extends PendingActionCountArgs>(
+      args?: Subset<T, PendingActionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PendingActionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PendingAction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingActionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PendingActionAggregateArgs>(args: Subset<T, PendingActionAggregateArgs>): Prisma.PrismaPromise<GetPendingActionAggregateType<T>>
+
+    /**
+     * Group by PendingAction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingActionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PendingActionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PendingActionGroupByArgs['orderBy'] }
+        : { orderBy?: PendingActionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PendingActionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPendingActionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PendingAction model
+   */
+  readonly fields: PendingActionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PendingAction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PendingActionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PendingAction model
+   */
+  interface PendingActionFieldRefs {
+    readonly id: FieldRef<"PendingAction", 'String'>
+    readonly userId: FieldRef<"PendingAction", 'String'>
+    readonly channel: FieldRef<"PendingAction", 'String'>
+    readonly kind: FieldRef<"PendingAction", 'String'>
+    readonly draftPayload: FieldRef<"PendingAction", 'Json'>
+    readonly corsairOperationPath: FieldRef<"PendingAction", 'String'>
+    readonly status: FieldRef<"PendingAction", 'String'>
+    readonly createdAt: FieldRef<"PendingAction", 'DateTime'>
+    readonly resolvedAt: FieldRef<"PendingAction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PendingAction findUnique
+   */
+  export type PendingActionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionInclude<ExtArgs> | null
+    /**
+     * Filter, which PendingAction to fetch.
+     */
+    where: PendingActionWhereUniqueInput
+  }
+
+  /**
+   * PendingAction findUniqueOrThrow
+   */
+  export type PendingActionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionInclude<ExtArgs> | null
+    /**
+     * Filter, which PendingAction to fetch.
+     */
+    where: PendingActionWhereUniqueInput
+  }
+
+  /**
+   * PendingAction findFirst
+   */
+  export type PendingActionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionInclude<ExtArgs> | null
+    /**
+     * Filter, which PendingAction to fetch.
+     */
+    where?: PendingActionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PendingActions to fetch.
+     */
+    orderBy?: PendingActionOrderByWithRelationInput | PendingActionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PendingActions.
+     */
+    cursor?: PendingActionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PendingActions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PendingActions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PendingActions.
+     */
+    distinct?: PendingActionScalarFieldEnum | PendingActionScalarFieldEnum[]
+  }
+
+  /**
+   * PendingAction findFirstOrThrow
+   */
+  export type PendingActionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionInclude<ExtArgs> | null
+    /**
+     * Filter, which PendingAction to fetch.
+     */
+    where?: PendingActionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PendingActions to fetch.
+     */
+    orderBy?: PendingActionOrderByWithRelationInput | PendingActionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PendingActions.
+     */
+    cursor?: PendingActionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PendingActions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PendingActions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PendingActions.
+     */
+    distinct?: PendingActionScalarFieldEnum | PendingActionScalarFieldEnum[]
+  }
+
+  /**
+   * PendingAction findMany
+   */
+  export type PendingActionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionInclude<ExtArgs> | null
+    /**
+     * Filter, which PendingActions to fetch.
+     */
+    where?: PendingActionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PendingActions to fetch.
+     */
+    orderBy?: PendingActionOrderByWithRelationInput | PendingActionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PendingActions.
+     */
+    cursor?: PendingActionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PendingActions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PendingActions.
+     */
+    skip?: number
+    distinct?: PendingActionScalarFieldEnum | PendingActionScalarFieldEnum[]
+  }
+
+  /**
+   * PendingAction create
+   */
+  export type PendingActionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PendingAction.
+     */
+    data: XOR<PendingActionCreateInput, PendingActionUncheckedCreateInput>
+  }
+
+  /**
+   * PendingAction createMany
+   */
+  export type PendingActionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PendingActions.
+     */
+    data: PendingActionCreateManyInput | PendingActionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PendingAction createManyAndReturn
+   */
+  export type PendingActionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * The data used to create many PendingActions.
+     */
+    data: PendingActionCreateManyInput | PendingActionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PendingAction update
+   */
+  export type PendingActionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PendingAction.
+     */
+    data: XOR<PendingActionUpdateInput, PendingActionUncheckedUpdateInput>
+    /**
+     * Choose, which PendingAction to update.
+     */
+    where: PendingActionWhereUniqueInput
+  }
+
+  /**
+   * PendingAction updateMany
+   */
+  export type PendingActionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PendingActions.
+     */
+    data: XOR<PendingActionUpdateManyMutationInput, PendingActionUncheckedUpdateManyInput>
+    /**
+     * Filter which PendingActions to update
+     */
+    where?: PendingActionWhereInput
+    /**
+     * Limit how many PendingActions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PendingAction updateManyAndReturn
+   */
+  export type PendingActionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * The data used to update PendingActions.
+     */
+    data: XOR<PendingActionUpdateManyMutationInput, PendingActionUncheckedUpdateManyInput>
+    /**
+     * Filter which PendingActions to update
+     */
+    where?: PendingActionWhereInput
+    /**
+     * Limit how many PendingActions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PendingAction upsert
+   */
+  export type PendingActionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PendingAction to update in case it exists.
+     */
+    where: PendingActionWhereUniqueInput
+    /**
+     * In case the PendingAction found by the `where` argument doesn't exist, create a new PendingAction with this data.
+     */
+    create: XOR<PendingActionCreateInput, PendingActionUncheckedCreateInput>
+    /**
+     * In case the PendingAction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PendingActionUpdateInput, PendingActionUncheckedUpdateInput>
+  }
+
+  /**
+   * PendingAction delete
+   */
+  export type PendingActionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionInclude<ExtArgs> | null
+    /**
+     * Filter which PendingAction to delete.
+     */
+    where: PendingActionWhereUniqueInput
+  }
+
+  /**
+   * PendingAction deleteMany
+   */
+  export type PendingActionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PendingActions to delete
+     */
+    where?: PendingActionWhereInput
+    /**
+     * Limit how many PendingActions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PendingAction without action
+   */
+  export type PendingActionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingAction
+     */
+    select?: PendingActionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PendingAction
+     */
+    omit?: PendingActionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingActionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserPreference
+   */
+
+  export type AggregateUserPreference = {
+    _count: UserPreferenceCountAggregateOutputType | null
+    _min: UserPreferenceMinAggregateOutputType | null
+    _max: UserPreferenceMaxAggregateOutputType | null
+  }
+
+  export type UserPreferenceMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+  }
+
+  export type UserPreferenceMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+  }
+
+  export type UserPreferenceCountAggregateOutputType = {
+    id: number
+    userId: number
+    splitInboxRules: number
+    shortcutOverrides: number
+    _all: number
+  }
+
+
+  export type UserPreferenceMinAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type UserPreferenceMaxAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type UserPreferenceCountAggregateInputType = {
+    id?: true
+    userId?: true
+    splitInboxRules?: true
+    shortcutOverrides?: true
+    _all?: true
+  }
+
+  export type UserPreferenceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserPreference to aggregate.
+     */
+    where?: UserPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserPreferences to fetch.
+     */
+    orderBy?: UserPreferenceOrderByWithRelationInput | UserPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserPreferences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserPreferences
+    **/
+    _count?: true | UserPreferenceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserPreferenceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserPreferenceMaxAggregateInputType
+  }
+
+  export type GetUserPreferenceAggregateType<T extends UserPreferenceAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserPreference]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserPreference[P]>
+      : GetScalarType<T[P], AggregateUserPreference[P]>
+  }
+
+
+
+
+  export type UserPreferenceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserPreferenceWhereInput
+    orderBy?: UserPreferenceOrderByWithAggregationInput | UserPreferenceOrderByWithAggregationInput[]
+    by: UserPreferenceScalarFieldEnum[] | UserPreferenceScalarFieldEnum
+    having?: UserPreferenceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserPreferenceCountAggregateInputType | true
+    _min?: UserPreferenceMinAggregateInputType
+    _max?: UserPreferenceMaxAggregateInputType
+  }
+
+  export type UserPreferenceGroupByOutputType = {
+    id: string
+    userId: string
+    splitInboxRules: JsonValue
+    shortcutOverrides: JsonValue
+    _count: UserPreferenceCountAggregateOutputType | null
+    _min: UserPreferenceMinAggregateOutputType | null
+    _max: UserPreferenceMaxAggregateOutputType | null
+  }
+
+  type GetUserPreferenceGroupByPayload<T extends UserPreferenceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserPreferenceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserPreferenceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserPreferenceGroupByOutputType[P]>
+            : GetScalarType<T[P], UserPreferenceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserPreferenceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    splitInboxRules?: boolean
+    shortcutOverrides?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userPreference"]>
+
+  export type UserPreferenceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    splitInboxRules?: boolean
+    shortcutOverrides?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userPreference"]>
+
+  export type UserPreferenceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    splitInboxRules?: boolean
+    shortcutOverrides?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userPreference"]>
+
+  export type UserPreferenceSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    splitInboxRules?: boolean
+    shortcutOverrides?: boolean
+  }
+
+  export type UserPreferenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "splitInboxRules" | "shortcutOverrides", ExtArgs["result"]["userPreference"]>
+  export type UserPreferenceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserPreferenceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserPreferenceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserPreferencePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserPreference"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      splitInboxRules: Prisma.JsonValue
+      shortcutOverrides: Prisma.JsonValue
+    }, ExtArgs["result"]["userPreference"]>
+    composites: {}
+  }
+
+  type UserPreferenceGetPayload<S extends boolean | null | undefined | UserPreferenceDefaultArgs> = $Result.GetResult<Prisma.$UserPreferencePayload, S>
+
+  type UserPreferenceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserPreferenceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserPreferenceCountAggregateInputType | true
+    }
+
+  export interface UserPreferenceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserPreference'], meta: { name: 'UserPreference' } }
+    /**
+     * Find zero or one UserPreference that matches the filter.
+     * @param {UserPreferenceFindUniqueArgs} args - Arguments to find a UserPreference
+     * @example
+     * // Get one UserPreference
+     * const userPreference = await prisma.userPreference.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserPreferenceFindUniqueArgs>(args: SelectSubset<T, UserPreferenceFindUniqueArgs<ExtArgs>>): Prisma__UserPreferenceClient<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserPreference that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserPreferenceFindUniqueOrThrowArgs} args - Arguments to find a UserPreference
+     * @example
+     * // Get one UserPreference
+     * const userPreference = await prisma.userPreference.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserPreferenceFindUniqueOrThrowArgs>(args: SelectSubset<T, UserPreferenceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserPreferenceClient<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserPreference that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPreferenceFindFirstArgs} args - Arguments to find a UserPreference
+     * @example
+     * // Get one UserPreference
+     * const userPreference = await prisma.userPreference.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserPreferenceFindFirstArgs>(args?: SelectSubset<T, UserPreferenceFindFirstArgs<ExtArgs>>): Prisma__UserPreferenceClient<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserPreference that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPreferenceFindFirstOrThrowArgs} args - Arguments to find a UserPreference
+     * @example
+     * // Get one UserPreference
+     * const userPreference = await prisma.userPreference.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserPreferenceFindFirstOrThrowArgs>(args?: SelectSubset<T, UserPreferenceFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserPreferenceClient<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserPreferences that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPreferenceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserPreferences
+     * const userPreferences = await prisma.userPreference.findMany()
+     * 
+     * // Get first 10 UserPreferences
+     * const userPreferences = await prisma.userPreference.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userPreferenceWithIdOnly = await prisma.userPreference.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserPreferenceFindManyArgs>(args?: SelectSubset<T, UserPreferenceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserPreference.
+     * @param {UserPreferenceCreateArgs} args - Arguments to create a UserPreference.
+     * @example
+     * // Create one UserPreference
+     * const UserPreference = await prisma.userPreference.create({
+     *   data: {
+     *     // ... data to create a UserPreference
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserPreferenceCreateArgs>(args: SelectSubset<T, UserPreferenceCreateArgs<ExtArgs>>): Prisma__UserPreferenceClient<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserPreferences.
+     * @param {UserPreferenceCreateManyArgs} args - Arguments to create many UserPreferences.
+     * @example
+     * // Create many UserPreferences
+     * const userPreference = await prisma.userPreference.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserPreferenceCreateManyArgs>(args?: SelectSubset<T, UserPreferenceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserPreferences and returns the data saved in the database.
+     * @param {UserPreferenceCreateManyAndReturnArgs} args - Arguments to create many UserPreferences.
+     * @example
+     * // Create many UserPreferences
+     * const userPreference = await prisma.userPreference.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserPreferences and only return the `id`
+     * const userPreferenceWithIdOnly = await prisma.userPreference.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserPreferenceCreateManyAndReturnArgs>(args?: SelectSubset<T, UserPreferenceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserPreference.
+     * @param {UserPreferenceDeleteArgs} args - Arguments to delete one UserPreference.
+     * @example
+     * // Delete one UserPreference
+     * const UserPreference = await prisma.userPreference.delete({
+     *   where: {
+     *     // ... filter to delete one UserPreference
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserPreferenceDeleteArgs>(args: SelectSubset<T, UserPreferenceDeleteArgs<ExtArgs>>): Prisma__UserPreferenceClient<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserPreference.
+     * @param {UserPreferenceUpdateArgs} args - Arguments to update one UserPreference.
+     * @example
+     * // Update one UserPreference
+     * const userPreference = await prisma.userPreference.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserPreferenceUpdateArgs>(args: SelectSubset<T, UserPreferenceUpdateArgs<ExtArgs>>): Prisma__UserPreferenceClient<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserPreferences.
+     * @param {UserPreferenceDeleteManyArgs} args - Arguments to filter UserPreferences to delete.
+     * @example
+     * // Delete a few UserPreferences
+     * const { count } = await prisma.userPreference.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserPreferenceDeleteManyArgs>(args?: SelectSubset<T, UserPreferenceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserPreferences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPreferenceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserPreferences
+     * const userPreference = await prisma.userPreference.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserPreferenceUpdateManyArgs>(args: SelectSubset<T, UserPreferenceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserPreferences and returns the data updated in the database.
+     * @param {UserPreferenceUpdateManyAndReturnArgs} args - Arguments to update many UserPreferences.
+     * @example
+     * // Update many UserPreferences
+     * const userPreference = await prisma.userPreference.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserPreferences and only return the `id`
+     * const userPreferenceWithIdOnly = await prisma.userPreference.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserPreferenceUpdateManyAndReturnArgs>(args: SelectSubset<T, UserPreferenceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserPreference.
+     * @param {UserPreferenceUpsertArgs} args - Arguments to update or create a UserPreference.
+     * @example
+     * // Update or create a UserPreference
+     * const userPreference = await prisma.userPreference.upsert({
+     *   create: {
+     *     // ... data to create a UserPreference
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserPreference we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserPreferenceUpsertArgs>(args: SelectSubset<T, UserPreferenceUpsertArgs<ExtArgs>>): Prisma__UserPreferenceClient<$Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserPreferences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPreferenceCountArgs} args - Arguments to filter UserPreferences to count.
+     * @example
+     * // Count the number of UserPreferences
+     * const count = await prisma.userPreference.count({
+     *   where: {
+     *     // ... the filter for the UserPreferences we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserPreferenceCountArgs>(
+      args?: Subset<T, UserPreferenceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserPreferenceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserPreference.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPreferenceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserPreferenceAggregateArgs>(args: Subset<T, UserPreferenceAggregateArgs>): Prisma.PrismaPromise<GetUserPreferenceAggregateType<T>>
+
+    /**
+     * Group by UserPreference.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPreferenceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserPreferenceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserPreferenceGroupByArgs['orderBy'] }
+        : { orderBy?: UserPreferenceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserPreferenceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserPreferenceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserPreference model
+   */
+  readonly fields: UserPreferenceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserPreference.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserPreferenceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserPreference model
+   */
+  interface UserPreferenceFieldRefs {
+    readonly id: FieldRef<"UserPreference", 'String'>
+    readonly userId: FieldRef<"UserPreference", 'String'>
+    readonly splitInboxRules: FieldRef<"UserPreference", 'Json'>
+    readonly shortcutOverrides: FieldRef<"UserPreference", 'Json'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserPreference findUnique
+   */
+  export type UserPreferenceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which UserPreference to fetch.
+     */
+    where: UserPreferenceWhereUniqueInput
+  }
+
+  /**
+   * UserPreference findUniqueOrThrow
+   */
+  export type UserPreferenceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which UserPreference to fetch.
+     */
+    where: UserPreferenceWhereUniqueInput
+  }
+
+  /**
+   * UserPreference findFirst
+   */
+  export type UserPreferenceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which UserPreference to fetch.
+     */
+    where?: UserPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserPreferences to fetch.
+     */
+    orderBy?: UserPreferenceOrderByWithRelationInput | UserPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserPreferences.
+     */
+    cursor?: UserPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserPreferences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserPreferences.
+     */
+    distinct?: UserPreferenceScalarFieldEnum | UserPreferenceScalarFieldEnum[]
+  }
+
+  /**
+   * UserPreference findFirstOrThrow
+   */
+  export type UserPreferenceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which UserPreference to fetch.
+     */
+    where?: UserPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserPreferences to fetch.
+     */
+    orderBy?: UserPreferenceOrderByWithRelationInput | UserPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserPreferences.
+     */
+    cursor?: UserPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserPreferences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserPreferences.
+     */
+    distinct?: UserPreferenceScalarFieldEnum | UserPreferenceScalarFieldEnum[]
+  }
+
+  /**
+   * UserPreference findMany
+   */
+  export type UserPreferenceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which UserPreferences to fetch.
+     */
+    where?: UserPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserPreferences to fetch.
+     */
+    orderBy?: UserPreferenceOrderByWithRelationInput | UserPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserPreferences.
+     */
+    cursor?: UserPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserPreferences.
+     */
+    skip?: number
+    distinct?: UserPreferenceScalarFieldEnum | UserPreferenceScalarFieldEnum[]
+  }
+
+  /**
+   * UserPreference create
+   */
+  export type UserPreferenceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserPreference.
+     */
+    data: XOR<UserPreferenceCreateInput, UserPreferenceUncheckedCreateInput>
+  }
+
+  /**
+   * UserPreference createMany
+   */
+  export type UserPreferenceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserPreferences.
+     */
+    data: UserPreferenceCreateManyInput | UserPreferenceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserPreference createManyAndReturn
+   */
+  export type UserPreferenceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserPreferences.
+     */
+    data: UserPreferenceCreateManyInput | UserPreferenceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserPreference update
+   */
+  export type UserPreferenceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserPreference.
+     */
+    data: XOR<UserPreferenceUpdateInput, UserPreferenceUncheckedUpdateInput>
+    /**
+     * Choose, which UserPreference to update.
+     */
+    where: UserPreferenceWhereUniqueInput
+  }
+
+  /**
+   * UserPreference updateMany
+   */
+  export type UserPreferenceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserPreferences.
+     */
+    data: XOR<UserPreferenceUpdateManyMutationInput, UserPreferenceUncheckedUpdateManyInput>
+    /**
+     * Filter which UserPreferences to update
+     */
+    where?: UserPreferenceWhereInput
+    /**
+     * Limit how many UserPreferences to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserPreference updateManyAndReturn
+   */
+  export type UserPreferenceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * The data used to update UserPreferences.
+     */
+    data: XOR<UserPreferenceUpdateManyMutationInput, UserPreferenceUncheckedUpdateManyInput>
+    /**
+     * Filter which UserPreferences to update
+     */
+    where?: UserPreferenceWhereInput
+    /**
+     * Limit how many UserPreferences to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserPreference upsert
+   */
+  export type UserPreferenceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserPreference to update in case it exists.
+     */
+    where: UserPreferenceWhereUniqueInput
+    /**
+     * In case the UserPreference found by the `where` argument doesn't exist, create a new UserPreference with this data.
+     */
+    create: XOR<UserPreferenceCreateInput, UserPreferenceUncheckedCreateInput>
+    /**
+     * In case the UserPreference was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserPreferenceUpdateInput, UserPreferenceUncheckedUpdateInput>
+  }
+
+  /**
+   * UserPreference delete
+   */
+  export type UserPreferenceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter which UserPreference to delete.
+     */
+    where: UserPreferenceWhereUniqueInput
+  }
+
+  /**
+   * UserPreference deleteMany
+   */
+  export type UserPreferenceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserPreferences to delete
+     */
+    where?: UserPreferenceWhereInput
+    /**
+     * Limit how many UserPreferences to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserPreference without action
+   */
+  export type UserPreferenceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPreference
+     */
+    select?: UserPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPreference
+     */
+    omit?: UserPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPreferenceInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5658,6 +12795,78 @@ export namespace Prisma {
   };
 
   export type CorsairEventScalarFieldEnum = (typeof CorsairEventScalarFieldEnum)[keyof typeof CorsairEventScalarFieldEnum]
+
+
+  export const UserScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    gmailBackfilledAt: 'gmailBackfilledAt',
+    calendarBackfilledAt: 'calendarBackfilledAt'
+  };
+
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const ChannelLinkScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    channel: 'channel',
+    externalChatId: 'externalChatId',
+    linkedAt: 'linkedAt'
+  };
+
+  export type ChannelLinkScalarFieldEnum = (typeof ChannelLinkScalarFieldEnum)[keyof typeof ChannelLinkScalarFieldEnum]
+
+
+  export const EmailEmbeddingScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    corsairEntityId: 'corsairEntityId',
+    threadId: 'threadId',
+    subjectSnippet: 'subjectSnippet',
+    indexedAt: 'indexedAt'
+  };
+
+  export type EmailEmbeddingScalarFieldEnum = (typeof EmailEmbeddingScalarFieldEnum)[keyof typeof EmailEmbeddingScalarFieldEnum]
+
+
+  export const PriorityScoreScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    corsairEntityId: 'corsairEntityId',
+    label: 'label',
+    reason: 'reason',
+    model: 'model',
+    createdAt: 'createdAt'
+  };
+
+  export type PriorityScoreScalarFieldEnum = (typeof PriorityScoreScalarFieldEnum)[keyof typeof PriorityScoreScalarFieldEnum]
+
+
+  export const PendingActionScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    channel: 'channel',
+    kind: 'kind',
+    draftPayload: 'draftPayload',
+    corsairOperationPath: 'corsairOperationPath',
+    status: 'status',
+    createdAt: 'createdAt',
+    resolvedAt: 'resolvedAt'
+  };
+
+  export type PendingActionScalarFieldEnum = (typeof PendingActionScalarFieldEnum)[keyof typeof PendingActionScalarFieldEnum]
+
+
+  export const UserPreferenceScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    splitInboxRules: 'splitInboxRules',
+    shortcutOverrides: 'shortcutOverrides'
+  };
+
+  export type UserPreferenceScalarFieldEnum = (typeof UserPreferenceScalarFieldEnum)[keyof typeof UserPreferenceScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6030,6 +13239,379 @@ export namespace Prisma {
     status?: StringNullableWithAggregatesFilter<"CorsairEvent"> | string | null
   }
 
+  export type UserWhereInput = {
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    id?: StringFilter<"User"> | string
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    gmailBackfilledAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    calendarBackfilledAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    channelLinks?: ChannelLinkListRelationFilter
+    emailEmbeddings?: EmailEmbeddingListRelationFilter
+    priorityScores?: PriorityScoreListRelationFilter
+    pendingActions?: PendingActionListRelationFilter
+    preference?: XOR<UserPreferenceNullableScalarRelationFilter, UserPreferenceWhereInput> | null
+  }
+
+  export type UserOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    gmailBackfilledAt?: SortOrderInput | SortOrder
+    calendarBackfilledAt?: SortOrderInput | SortOrder
+    channelLinks?: ChannelLinkOrderByRelationAggregateInput
+    emailEmbeddings?: EmailEmbeddingOrderByRelationAggregateInput
+    priorityScores?: PriorityScoreOrderByRelationAggregateInput
+    pendingActions?: PendingActionOrderByRelationAggregateInput
+    preference?: UserPreferenceOrderByWithRelationInput
+  }
+
+  export type UserWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    gmailBackfilledAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    calendarBackfilledAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    channelLinks?: ChannelLinkListRelationFilter
+    emailEmbeddings?: EmailEmbeddingListRelationFilter
+    priorityScores?: PriorityScoreListRelationFilter
+    pendingActions?: PendingActionListRelationFilter
+    preference?: XOR<UserPreferenceNullableScalarRelationFilter, UserPreferenceWhereInput> | null
+  }, "id">
+
+  export type UserOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    gmailBackfilledAt?: SortOrderInput | SortOrder
+    calendarBackfilledAt?: SortOrderInput | SortOrder
+    _count?: UserCountOrderByAggregateInput
+    _max?: UserMaxOrderByAggregateInput
+    _min?: UserMinOrderByAggregateInput
+  }
+
+  export type UserScalarWhereWithAggregatesInput = {
+    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    OR?: UserScalarWhereWithAggregatesInput[]
+    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"User"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    gmailBackfilledAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    calendarBackfilledAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  }
+
+  export type ChannelLinkWhereInput = {
+    AND?: ChannelLinkWhereInput | ChannelLinkWhereInput[]
+    OR?: ChannelLinkWhereInput[]
+    NOT?: ChannelLinkWhereInput | ChannelLinkWhereInput[]
+    id?: StringFilter<"ChannelLink"> | string
+    userId?: StringFilter<"ChannelLink"> | string
+    channel?: StringFilter<"ChannelLink"> | string
+    externalChatId?: StringFilter<"ChannelLink"> | string
+    linkedAt?: DateTimeFilter<"ChannelLink"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ChannelLinkOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    externalChatId?: SortOrder
+    linkedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ChannelLinkWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    channel_externalChatId?: ChannelLinkChannelExternalChatIdCompoundUniqueInput
+    AND?: ChannelLinkWhereInput | ChannelLinkWhereInput[]
+    OR?: ChannelLinkWhereInput[]
+    NOT?: ChannelLinkWhereInput | ChannelLinkWhereInput[]
+    userId?: StringFilter<"ChannelLink"> | string
+    channel?: StringFilter<"ChannelLink"> | string
+    externalChatId?: StringFilter<"ChannelLink"> | string
+    linkedAt?: DateTimeFilter<"ChannelLink"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "channel_externalChatId">
+
+  export type ChannelLinkOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    externalChatId?: SortOrder
+    linkedAt?: SortOrder
+    _count?: ChannelLinkCountOrderByAggregateInput
+    _max?: ChannelLinkMaxOrderByAggregateInput
+    _min?: ChannelLinkMinOrderByAggregateInput
+  }
+
+  export type ChannelLinkScalarWhereWithAggregatesInput = {
+    AND?: ChannelLinkScalarWhereWithAggregatesInput | ChannelLinkScalarWhereWithAggregatesInput[]
+    OR?: ChannelLinkScalarWhereWithAggregatesInput[]
+    NOT?: ChannelLinkScalarWhereWithAggregatesInput | ChannelLinkScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ChannelLink"> | string
+    userId?: StringWithAggregatesFilter<"ChannelLink"> | string
+    channel?: StringWithAggregatesFilter<"ChannelLink"> | string
+    externalChatId?: StringWithAggregatesFilter<"ChannelLink"> | string
+    linkedAt?: DateTimeWithAggregatesFilter<"ChannelLink"> | Date | string
+  }
+
+  export type EmailEmbeddingWhereInput = {
+    AND?: EmailEmbeddingWhereInput | EmailEmbeddingWhereInput[]
+    OR?: EmailEmbeddingWhereInput[]
+    NOT?: EmailEmbeddingWhereInput | EmailEmbeddingWhereInput[]
+    id?: StringFilter<"EmailEmbedding"> | string
+    userId?: StringFilter<"EmailEmbedding"> | string
+    corsairEntityId?: StringFilter<"EmailEmbedding"> | string
+    threadId?: StringFilter<"EmailEmbedding"> | string
+    subjectSnippet?: StringFilter<"EmailEmbedding"> | string
+    indexedAt?: DateTimeFilter<"EmailEmbedding"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type EmailEmbeddingOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    threadId?: SortOrder
+    subjectSnippet?: SortOrder
+    indexedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type EmailEmbeddingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EmailEmbeddingWhereInput | EmailEmbeddingWhereInput[]
+    OR?: EmailEmbeddingWhereInput[]
+    NOT?: EmailEmbeddingWhereInput | EmailEmbeddingWhereInput[]
+    userId?: StringFilter<"EmailEmbedding"> | string
+    corsairEntityId?: StringFilter<"EmailEmbedding"> | string
+    threadId?: StringFilter<"EmailEmbedding"> | string
+    subjectSnippet?: StringFilter<"EmailEmbedding"> | string
+    indexedAt?: DateTimeFilter<"EmailEmbedding"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type EmailEmbeddingOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    threadId?: SortOrder
+    subjectSnippet?: SortOrder
+    indexedAt?: SortOrder
+    _count?: EmailEmbeddingCountOrderByAggregateInput
+    _max?: EmailEmbeddingMaxOrderByAggregateInput
+    _min?: EmailEmbeddingMinOrderByAggregateInput
+  }
+
+  export type EmailEmbeddingScalarWhereWithAggregatesInput = {
+    AND?: EmailEmbeddingScalarWhereWithAggregatesInput | EmailEmbeddingScalarWhereWithAggregatesInput[]
+    OR?: EmailEmbeddingScalarWhereWithAggregatesInput[]
+    NOT?: EmailEmbeddingScalarWhereWithAggregatesInput | EmailEmbeddingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmailEmbedding"> | string
+    userId?: StringWithAggregatesFilter<"EmailEmbedding"> | string
+    corsairEntityId?: StringWithAggregatesFilter<"EmailEmbedding"> | string
+    threadId?: StringWithAggregatesFilter<"EmailEmbedding"> | string
+    subjectSnippet?: StringWithAggregatesFilter<"EmailEmbedding"> | string
+    indexedAt?: DateTimeWithAggregatesFilter<"EmailEmbedding"> | Date | string
+  }
+
+  export type PriorityScoreWhereInput = {
+    AND?: PriorityScoreWhereInput | PriorityScoreWhereInput[]
+    OR?: PriorityScoreWhereInput[]
+    NOT?: PriorityScoreWhereInput | PriorityScoreWhereInput[]
+    id?: StringFilter<"PriorityScore"> | string
+    userId?: StringFilter<"PriorityScore"> | string
+    corsairEntityId?: StringFilter<"PriorityScore"> | string
+    label?: StringFilter<"PriorityScore"> | string
+    reason?: StringNullableFilter<"PriorityScore"> | string | null
+    model?: StringNullableFilter<"PriorityScore"> | string | null
+    createdAt?: DateTimeFilter<"PriorityScore"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type PriorityScoreOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    label?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    model?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type PriorityScoreWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PriorityScoreWhereInput | PriorityScoreWhereInput[]
+    OR?: PriorityScoreWhereInput[]
+    NOT?: PriorityScoreWhereInput | PriorityScoreWhereInput[]
+    userId?: StringFilter<"PriorityScore"> | string
+    corsairEntityId?: StringFilter<"PriorityScore"> | string
+    label?: StringFilter<"PriorityScore"> | string
+    reason?: StringNullableFilter<"PriorityScore"> | string | null
+    model?: StringNullableFilter<"PriorityScore"> | string | null
+    createdAt?: DateTimeFilter<"PriorityScore"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type PriorityScoreOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    label?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    model?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: PriorityScoreCountOrderByAggregateInput
+    _max?: PriorityScoreMaxOrderByAggregateInput
+    _min?: PriorityScoreMinOrderByAggregateInput
+  }
+
+  export type PriorityScoreScalarWhereWithAggregatesInput = {
+    AND?: PriorityScoreScalarWhereWithAggregatesInput | PriorityScoreScalarWhereWithAggregatesInput[]
+    OR?: PriorityScoreScalarWhereWithAggregatesInput[]
+    NOT?: PriorityScoreScalarWhereWithAggregatesInput | PriorityScoreScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PriorityScore"> | string
+    userId?: StringWithAggregatesFilter<"PriorityScore"> | string
+    corsairEntityId?: StringWithAggregatesFilter<"PriorityScore"> | string
+    label?: StringWithAggregatesFilter<"PriorityScore"> | string
+    reason?: StringNullableWithAggregatesFilter<"PriorityScore"> | string | null
+    model?: StringNullableWithAggregatesFilter<"PriorityScore"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"PriorityScore"> | Date | string
+  }
+
+  export type PendingActionWhereInput = {
+    AND?: PendingActionWhereInput | PendingActionWhereInput[]
+    OR?: PendingActionWhereInput[]
+    NOT?: PendingActionWhereInput | PendingActionWhereInput[]
+    id?: StringFilter<"PendingAction"> | string
+    userId?: StringFilter<"PendingAction"> | string
+    channel?: StringFilter<"PendingAction"> | string
+    kind?: StringFilter<"PendingAction"> | string
+    draftPayload?: JsonFilter<"PendingAction">
+    corsairOperationPath?: StringNullableFilter<"PendingAction"> | string | null
+    status?: StringFilter<"PendingAction"> | string
+    createdAt?: DateTimeFilter<"PendingAction"> | Date | string
+    resolvedAt?: DateTimeNullableFilter<"PendingAction"> | Date | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type PendingActionOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    kind?: SortOrder
+    draftPayload?: SortOrder
+    corsairOperationPath?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    resolvedAt?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type PendingActionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PendingActionWhereInput | PendingActionWhereInput[]
+    OR?: PendingActionWhereInput[]
+    NOT?: PendingActionWhereInput | PendingActionWhereInput[]
+    userId?: StringFilter<"PendingAction"> | string
+    channel?: StringFilter<"PendingAction"> | string
+    kind?: StringFilter<"PendingAction"> | string
+    draftPayload?: JsonFilter<"PendingAction">
+    corsairOperationPath?: StringNullableFilter<"PendingAction"> | string | null
+    status?: StringFilter<"PendingAction"> | string
+    createdAt?: DateTimeFilter<"PendingAction"> | Date | string
+    resolvedAt?: DateTimeNullableFilter<"PendingAction"> | Date | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type PendingActionOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    kind?: SortOrder
+    draftPayload?: SortOrder
+    corsairOperationPath?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    resolvedAt?: SortOrderInput | SortOrder
+    _count?: PendingActionCountOrderByAggregateInput
+    _max?: PendingActionMaxOrderByAggregateInput
+    _min?: PendingActionMinOrderByAggregateInput
+  }
+
+  export type PendingActionScalarWhereWithAggregatesInput = {
+    AND?: PendingActionScalarWhereWithAggregatesInput | PendingActionScalarWhereWithAggregatesInput[]
+    OR?: PendingActionScalarWhereWithAggregatesInput[]
+    NOT?: PendingActionScalarWhereWithAggregatesInput | PendingActionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PendingAction"> | string
+    userId?: StringWithAggregatesFilter<"PendingAction"> | string
+    channel?: StringWithAggregatesFilter<"PendingAction"> | string
+    kind?: StringWithAggregatesFilter<"PendingAction"> | string
+    draftPayload?: JsonWithAggregatesFilter<"PendingAction">
+    corsairOperationPath?: StringNullableWithAggregatesFilter<"PendingAction"> | string | null
+    status?: StringWithAggregatesFilter<"PendingAction"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"PendingAction"> | Date | string
+    resolvedAt?: DateTimeNullableWithAggregatesFilter<"PendingAction"> | Date | string | null
+  }
+
+  export type UserPreferenceWhereInput = {
+    AND?: UserPreferenceWhereInput | UserPreferenceWhereInput[]
+    OR?: UserPreferenceWhereInput[]
+    NOT?: UserPreferenceWhereInput | UserPreferenceWhereInput[]
+    id?: StringFilter<"UserPreference"> | string
+    userId?: StringFilter<"UserPreference"> | string
+    splitInboxRules?: JsonFilter<"UserPreference">
+    shortcutOverrides?: JsonFilter<"UserPreference">
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type UserPreferenceOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    splitInboxRules?: SortOrder
+    shortcutOverrides?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type UserPreferenceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: UserPreferenceWhereInput | UserPreferenceWhereInput[]
+    OR?: UserPreferenceWhereInput[]
+    NOT?: UserPreferenceWhereInput | UserPreferenceWhereInput[]
+    splitInboxRules?: JsonFilter<"UserPreference">
+    shortcutOverrides?: JsonFilter<"UserPreference">
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type UserPreferenceOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    splitInboxRules?: SortOrder
+    shortcutOverrides?: SortOrder
+    _count?: UserPreferenceCountOrderByAggregateInput
+    _max?: UserPreferenceMaxOrderByAggregateInput
+    _min?: UserPreferenceMinOrderByAggregateInput
+  }
+
+  export type UserPreferenceScalarWhereWithAggregatesInput = {
+    AND?: UserPreferenceScalarWhereWithAggregatesInput | UserPreferenceScalarWhereWithAggregatesInput[]
+    OR?: UserPreferenceScalarWhereWithAggregatesInput[]
+    NOT?: UserPreferenceScalarWhereWithAggregatesInput | UserPreferenceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserPreference"> | string
+    userId?: StringWithAggregatesFilter<"UserPreference"> | string
+    splitInboxRules?: JsonWithAggregatesFilter<"UserPreference">
+    shortcutOverrides?: JsonWithAggregatesFilter<"UserPreference">
+  }
+
   export type CorsairIntegrationCreateInput = {
     id: string
     createdAt?: Date | string
@@ -6317,6 +13899,399 @@ export namespace Prisma {
     eventType?: StringFieldUpdateOperationsInput | string
     payload?: JsonNullValueInput | InputJsonValue
     status?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserCreateInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateManyInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+  }
+
+  export type UserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type UserUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ChannelLinkCreateInput = {
+    id?: string
+    channel: string
+    externalChatId: string
+    linkedAt?: Date | string
+    user: UserCreateNestedOneWithoutChannelLinksInput
+  }
+
+  export type ChannelLinkUncheckedCreateInput = {
+    id?: string
+    userId: string
+    channel: string
+    externalChatId: string
+    linkedAt?: Date | string
+  }
+
+  export type ChannelLinkUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    externalChatId?: StringFieldUpdateOperationsInput | string
+    linkedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutChannelLinksNestedInput
+  }
+
+  export type ChannelLinkUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    externalChatId?: StringFieldUpdateOperationsInput | string
+    linkedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChannelLinkCreateManyInput = {
+    id?: string
+    userId: string
+    channel: string
+    externalChatId: string
+    linkedAt?: Date | string
+  }
+
+  export type ChannelLinkUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    externalChatId?: StringFieldUpdateOperationsInput | string
+    linkedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChannelLinkUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    externalChatId?: StringFieldUpdateOperationsInput | string
+    linkedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailEmbeddingCreateInput = {
+    id?: string
+    corsairEntityId: string
+    threadId: string
+    subjectSnippet: string
+    indexedAt?: Date | string
+    user: UserCreateNestedOneWithoutEmailEmbeddingsInput
+  }
+
+  export type EmailEmbeddingUncheckedCreateInput = {
+    id?: string
+    userId: string
+    corsairEntityId: string
+    threadId: string
+    subjectSnippet: string
+    indexedAt?: Date | string
+  }
+
+  export type EmailEmbeddingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    subjectSnippet?: StringFieldUpdateOperationsInput | string
+    indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutEmailEmbeddingsNestedInput
+  }
+
+  export type EmailEmbeddingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    subjectSnippet?: StringFieldUpdateOperationsInput | string
+    indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailEmbeddingCreateManyInput = {
+    id?: string
+    userId: string
+    corsairEntityId: string
+    threadId: string
+    subjectSnippet: string
+    indexedAt?: Date | string
+  }
+
+  export type EmailEmbeddingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    subjectSnippet?: StringFieldUpdateOperationsInput | string
+    indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailEmbeddingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    subjectSnippet?: StringFieldUpdateOperationsInput | string
+    indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PriorityScoreCreateInput = {
+    id?: string
+    corsairEntityId: string
+    label: string
+    reason?: string | null
+    model?: string | null
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutPriorityScoresInput
+  }
+
+  export type PriorityScoreUncheckedCreateInput = {
+    id?: string
+    userId: string
+    corsairEntityId: string
+    label: string
+    reason?: string | null
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type PriorityScoreUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutPriorityScoresNestedInput
+  }
+
+  export type PriorityScoreUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PriorityScoreCreateManyInput = {
+    id?: string
+    userId: string
+    corsairEntityId: string
+    label: string
+    reason?: string | null
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type PriorityScoreUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PriorityScoreUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PendingActionCreateInput = {
+    id?: string
+    channel: string
+    kind: string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: string | null
+    status?: string
+    createdAt?: Date | string
+    resolvedAt?: Date | string | null
+    user: UserCreateNestedOneWithoutPendingActionsInput
+  }
+
+  export type PendingActionUncheckedCreateInput = {
+    id?: string
+    userId: string
+    channel: string
+    kind: string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: string | null
+    status?: string
+    createdAt?: Date | string
+    resolvedAt?: Date | string | null
+  }
+
+  export type PendingActionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: UserUpdateOneRequiredWithoutPendingActionsNestedInput
+  }
+
+  export type PendingActionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PendingActionCreateManyInput = {
+    id?: string
+    userId: string
+    channel: string
+    kind: string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: string | null
+    status?: string
+    createdAt?: Date | string
+    resolvedAt?: Date | string | null
+  }
+
+  export type PendingActionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PendingActionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type UserPreferenceCreateInput = {
+    id?: string
+    splitInboxRules?: JsonNullValueInput | InputJsonValue
+    shortcutOverrides?: JsonNullValueInput | InputJsonValue
+    user: UserCreateNestedOneWithoutPreferenceInput
+  }
+
+  export type UserPreferenceUncheckedCreateInput = {
+    id?: string
+    userId: string
+    splitInboxRules?: JsonNullValueInput | InputJsonValue
+    shortcutOverrides?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type UserPreferenceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    splitInboxRules?: JsonNullValueInput | InputJsonValue
+    shortcutOverrides?: JsonNullValueInput | InputJsonValue
+    user?: UserUpdateOneRequiredWithoutPreferenceNestedInput
+  }
+
+  export type UserPreferenceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    splitInboxRules?: JsonNullValueInput | InputJsonValue
+    shortcutOverrides?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type UserPreferenceCreateManyInput = {
+    id?: string
+    userId: string
+    splitInboxRules?: JsonNullValueInput | InputJsonValue
+    shortcutOverrides?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type UserPreferenceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    splitInboxRules?: JsonNullValueInput | InputJsonValue
+    shortcutOverrides?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type UserPreferenceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    splitInboxRules?: JsonNullValueInput | InputJsonValue
+    shortcutOverrides?: JsonNullValueInput | InputJsonValue
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6616,6 +14591,242 @@ export namespace Prisma {
     status?: SortOrder
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type ChannelLinkListRelationFilter = {
+    every?: ChannelLinkWhereInput
+    some?: ChannelLinkWhereInput
+    none?: ChannelLinkWhereInput
+  }
+
+  export type EmailEmbeddingListRelationFilter = {
+    every?: EmailEmbeddingWhereInput
+    some?: EmailEmbeddingWhereInput
+    none?: EmailEmbeddingWhereInput
+  }
+
+  export type PriorityScoreListRelationFilter = {
+    every?: PriorityScoreWhereInput
+    some?: PriorityScoreWhereInput
+    none?: PriorityScoreWhereInput
+  }
+
+  export type PendingActionListRelationFilter = {
+    every?: PendingActionWhereInput
+    some?: PendingActionWhereInput
+    none?: PendingActionWhereInput
+  }
+
+  export type UserPreferenceNullableScalarRelationFilter = {
+    is?: UserPreferenceWhereInput | null
+    isNot?: UserPreferenceWhereInput | null
+  }
+
+  export type ChannelLinkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EmailEmbeddingOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PriorityScoreOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PendingActionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    gmailBackfilledAt?: SortOrder
+    calendarBackfilledAt?: SortOrder
+  }
+
+  export type UserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    gmailBackfilledAt?: SortOrder
+    calendarBackfilledAt?: SortOrder
+  }
+
+  export type UserMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    gmailBackfilledAt?: SortOrder
+    calendarBackfilledAt?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type ChannelLinkChannelExternalChatIdCompoundUniqueInput = {
+    channel: string
+    externalChatId: string
+  }
+
+  export type ChannelLinkCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    externalChatId?: SortOrder
+    linkedAt?: SortOrder
+  }
+
+  export type ChannelLinkMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    externalChatId?: SortOrder
+    linkedAt?: SortOrder
+  }
+
+  export type ChannelLinkMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    externalChatId?: SortOrder
+    linkedAt?: SortOrder
+  }
+
+  export type EmailEmbeddingCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    threadId?: SortOrder
+    subjectSnippet?: SortOrder
+    indexedAt?: SortOrder
+  }
+
+  export type EmailEmbeddingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    threadId?: SortOrder
+    subjectSnippet?: SortOrder
+    indexedAt?: SortOrder
+  }
+
+  export type EmailEmbeddingMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    threadId?: SortOrder
+    subjectSnippet?: SortOrder
+    indexedAt?: SortOrder
+  }
+
+  export type PriorityScoreCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    label?: SortOrder
+    reason?: SortOrder
+    model?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PriorityScoreMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    label?: SortOrder
+    reason?: SortOrder
+    model?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PriorityScoreMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    label?: SortOrder
+    reason?: SortOrder
+    model?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PendingActionCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    kind?: SortOrder
+    draftPayload?: SortOrder
+    corsairOperationPath?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    resolvedAt?: SortOrder
+  }
+
+  export type PendingActionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    kind?: SortOrder
+    corsairOperationPath?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    resolvedAt?: SortOrder
+  }
+
+  export type PendingActionMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    kind?: SortOrder
+    corsairOperationPath?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    resolvedAt?: SortOrder
+  }
+
+  export type UserPreferenceCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    splitInboxRules?: SortOrder
+    shortcutOverrides?: SortOrder
+  }
+
+  export type UserPreferenceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type UserPreferenceMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
   export type CorsairAccountCreateNestedManyWithoutIntegrationInput = {
     create?: XOR<CorsairAccountCreateWithoutIntegrationInput, CorsairAccountUncheckedCreateWithoutIntegrationInput> | CorsairAccountCreateWithoutIntegrationInput[] | CorsairAccountUncheckedCreateWithoutIntegrationInput[]
     connectOrCreate?: CorsairAccountCreateOrConnectWithoutIntegrationInput | CorsairAccountCreateOrConnectWithoutIntegrationInput[]
@@ -6796,6 +15007,280 @@ export namespace Prisma {
     update?: XOR<XOR<CorsairAccountUpdateToOneWithWhereWithoutEventsInput, CorsairAccountUpdateWithoutEventsInput>, CorsairAccountUncheckedUpdateWithoutEventsInput>
   }
 
+  export type ChannelLinkCreateNestedManyWithoutUserInput = {
+    create?: XOR<ChannelLinkCreateWithoutUserInput, ChannelLinkUncheckedCreateWithoutUserInput> | ChannelLinkCreateWithoutUserInput[] | ChannelLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChannelLinkCreateOrConnectWithoutUserInput | ChannelLinkCreateOrConnectWithoutUserInput[]
+    createMany?: ChannelLinkCreateManyUserInputEnvelope
+    connect?: ChannelLinkWhereUniqueInput | ChannelLinkWhereUniqueInput[]
+  }
+
+  export type EmailEmbeddingCreateNestedManyWithoutUserInput = {
+    create?: XOR<EmailEmbeddingCreateWithoutUserInput, EmailEmbeddingUncheckedCreateWithoutUserInput> | EmailEmbeddingCreateWithoutUserInput[] | EmailEmbeddingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailEmbeddingCreateOrConnectWithoutUserInput | EmailEmbeddingCreateOrConnectWithoutUserInput[]
+    createMany?: EmailEmbeddingCreateManyUserInputEnvelope
+    connect?: EmailEmbeddingWhereUniqueInput | EmailEmbeddingWhereUniqueInput[]
+  }
+
+  export type PriorityScoreCreateNestedManyWithoutUserInput = {
+    create?: XOR<PriorityScoreCreateWithoutUserInput, PriorityScoreUncheckedCreateWithoutUserInput> | PriorityScoreCreateWithoutUserInput[] | PriorityScoreUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PriorityScoreCreateOrConnectWithoutUserInput | PriorityScoreCreateOrConnectWithoutUserInput[]
+    createMany?: PriorityScoreCreateManyUserInputEnvelope
+    connect?: PriorityScoreWhereUniqueInput | PriorityScoreWhereUniqueInput[]
+  }
+
+  export type PendingActionCreateNestedManyWithoutUserInput = {
+    create?: XOR<PendingActionCreateWithoutUserInput, PendingActionUncheckedCreateWithoutUserInput> | PendingActionCreateWithoutUserInput[] | PendingActionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PendingActionCreateOrConnectWithoutUserInput | PendingActionCreateOrConnectWithoutUserInput[]
+    createMany?: PendingActionCreateManyUserInputEnvelope
+    connect?: PendingActionWhereUniqueInput | PendingActionWhereUniqueInput[]
+  }
+
+  export type UserPreferenceCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserPreferenceCreateWithoutUserInput, UserPreferenceUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserPreferenceCreateOrConnectWithoutUserInput
+    connect?: UserPreferenceWhereUniqueInput
+  }
+
+  export type ChannelLinkUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ChannelLinkCreateWithoutUserInput, ChannelLinkUncheckedCreateWithoutUserInput> | ChannelLinkCreateWithoutUserInput[] | ChannelLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChannelLinkCreateOrConnectWithoutUserInput | ChannelLinkCreateOrConnectWithoutUserInput[]
+    createMany?: ChannelLinkCreateManyUserInputEnvelope
+    connect?: ChannelLinkWhereUniqueInput | ChannelLinkWhereUniqueInput[]
+  }
+
+  export type EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<EmailEmbeddingCreateWithoutUserInput, EmailEmbeddingUncheckedCreateWithoutUserInput> | EmailEmbeddingCreateWithoutUserInput[] | EmailEmbeddingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailEmbeddingCreateOrConnectWithoutUserInput | EmailEmbeddingCreateOrConnectWithoutUserInput[]
+    createMany?: EmailEmbeddingCreateManyUserInputEnvelope
+    connect?: EmailEmbeddingWhereUniqueInput | EmailEmbeddingWhereUniqueInput[]
+  }
+
+  export type PriorityScoreUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<PriorityScoreCreateWithoutUserInput, PriorityScoreUncheckedCreateWithoutUserInput> | PriorityScoreCreateWithoutUserInput[] | PriorityScoreUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PriorityScoreCreateOrConnectWithoutUserInput | PriorityScoreCreateOrConnectWithoutUserInput[]
+    createMany?: PriorityScoreCreateManyUserInputEnvelope
+    connect?: PriorityScoreWhereUniqueInput | PriorityScoreWhereUniqueInput[]
+  }
+
+  export type PendingActionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<PendingActionCreateWithoutUserInput, PendingActionUncheckedCreateWithoutUserInput> | PendingActionCreateWithoutUserInput[] | PendingActionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PendingActionCreateOrConnectWithoutUserInput | PendingActionCreateOrConnectWithoutUserInput[]
+    createMany?: PendingActionCreateManyUserInputEnvelope
+    connect?: PendingActionWhereUniqueInput | PendingActionWhereUniqueInput[]
+  }
+
+  export type UserPreferenceUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserPreferenceCreateWithoutUserInput, UserPreferenceUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserPreferenceCreateOrConnectWithoutUserInput
+    connect?: UserPreferenceWhereUniqueInput
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type ChannelLinkUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ChannelLinkCreateWithoutUserInput, ChannelLinkUncheckedCreateWithoutUserInput> | ChannelLinkCreateWithoutUserInput[] | ChannelLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChannelLinkCreateOrConnectWithoutUserInput | ChannelLinkCreateOrConnectWithoutUserInput[]
+    upsert?: ChannelLinkUpsertWithWhereUniqueWithoutUserInput | ChannelLinkUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ChannelLinkCreateManyUserInputEnvelope
+    set?: ChannelLinkWhereUniqueInput | ChannelLinkWhereUniqueInput[]
+    disconnect?: ChannelLinkWhereUniqueInput | ChannelLinkWhereUniqueInput[]
+    delete?: ChannelLinkWhereUniqueInput | ChannelLinkWhereUniqueInput[]
+    connect?: ChannelLinkWhereUniqueInput | ChannelLinkWhereUniqueInput[]
+    update?: ChannelLinkUpdateWithWhereUniqueWithoutUserInput | ChannelLinkUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ChannelLinkUpdateManyWithWhereWithoutUserInput | ChannelLinkUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ChannelLinkScalarWhereInput | ChannelLinkScalarWhereInput[]
+  }
+
+  export type EmailEmbeddingUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EmailEmbeddingCreateWithoutUserInput, EmailEmbeddingUncheckedCreateWithoutUserInput> | EmailEmbeddingCreateWithoutUserInput[] | EmailEmbeddingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailEmbeddingCreateOrConnectWithoutUserInput | EmailEmbeddingCreateOrConnectWithoutUserInput[]
+    upsert?: EmailEmbeddingUpsertWithWhereUniqueWithoutUserInput | EmailEmbeddingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EmailEmbeddingCreateManyUserInputEnvelope
+    set?: EmailEmbeddingWhereUniqueInput | EmailEmbeddingWhereUniqueInput[]
+    disconnect?: EmailEmbeddingWhereUniqueInput | EmailEmbeddingWhereUniqueInput[]
+    delete?: EmailEmbeddingWhereUniqueInput | EmailEmbeddingWhereUniqueInput[]
+    connect?: EmailEmbeddingWhereUniqueInput | EmailEmbeddingWhereUniqueInput[]
+    update?: EmailEmbeddingUpdateWithWhereUniqueWithoutUserInput | EmailEmbeddingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EmailEmbeddingUpdateManyWithWhereWithoutUserInput | EmailEmbeddingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EmailEmbeddingScalarWhereInput | EmailEmbeddingScalarWhereInput[]
+  }
+
+  export type PriorityScoreUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PriorityScoreCreateWithoutUserInput, PriorityScoreUncheckedCreateWithoutUserInput> | PriorityScoreCreateWithoutUserInput[] | PriorityScoreUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PriorityScoreCreateOrConnectWithoutUserInput | PriorityScoreCreateOrConnectWithoutUserInput[]
+    upsert?: PriorityScoreUpsertWithWhereUniqueWithoutUserInput | PriorityScoreUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PriorityScoreCreateManyUserInputEnvelope
+    set?: PriorityScoreWhereUniqueInput | PriorityScoreWhereUniqueInput[]
+    disconnect?: PriorityScoreWhereUniqueInput | PriorityScoreWhereUniqueInput[]
+    delete?: PriorityScoreWhereUniqueInput | PriorityScoreWhereUniqueInput[]
+    connect?: PriorityScoreWhereUniqueInput | PriorityScoreWhereUniqueInput[]
+    update?: PriorityScoreUpdateWithWhereUniqueWithoutUserInput | PriorityScoreUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PriorityScoreUpdateManyWithWhereWithoutUserInput | PriorityScoreUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PriorityScoreScalarWhereInput | PriorityScoreScalarWhereInput[]
+  }
+
+  export type PendingActionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PendingActionCreateWithoutUserInput, PendingActionUncheckedCreateWithoutUserInput> | PendingActionCreateWithoutUserInput[] | PendingActionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PendingActionCreateOrConnectWithoutUserInput | PendingActionCreateOrConnectWithoutUserInput[]
+    upsert?: PendingActionUpsertWithWhereUniqueWithoutUserInput | PendingActionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PendingActionCreateManyUserInputEnvelope
+    set?: PendingActionWhereUniqueInput | PendingActionWhereUniqueInput[]
+    disconnect?: PendingActionWhereUniqueInput | PendingActionWhereUniqueInput[]
+    delete?: PendingActionWhereUniqueInput | PendingActionWhereUniqueInput[]
+    connect?: PendingActionWhereUniqueInput | PendingActionWhereUniqueInput[]
+    update?: PendingActionUpdateWithWhereUniqueWithoutUserInput | PendingActionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PendingActionUpdateManyWithWhereWithoutUserInput | PendingActionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PendingActionScalarWhereInput | PendingActionScalarWhereInput[]
+  }
+
+  export type UserPreferenceUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserPreferenceCreateWithoutUserInput, UserPreferenceUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserPreferenceCreateOrConnectWithoutUserInput
+    upsert?: UserPreferenceUpsertWithoutUserInput
+    disconnect?: UserPreferenceWhereInput | boolean
+    delete?: UserPreferenceWhereInput | boolean
+    connect?: UserPreferenceWhereUniqueInput
+    update?: XOR<XOR<UserPreferenceUpdateToOneWithWhereWithoutUserInput, UserPreferenceUpdateWithoutUserInput>, UserPreferenceUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ChannelLinkUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ChannelLinkCreateWithoutUserInput, ChannelLinkUncheckedCreateWithoutUserInput> | ChannelLinkCreateWithoutUserInput[] | ChannelLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChannelLinkCreateOrConnectWithoutUserInput | ChannelLinkCreateOrConnectWithoutUserInput[]
+    upsert?: ChannelLinkUpsertWithWhereUniqueWithoutUserInput | ChannelLinkUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ChannelLinkCreateManyUserInputEnvelope
+    set?: ChannelLinkWhereUniqueInput | ChannelLinkWhereUniqueInput[]
+    disconnect?: ChannelLinkWhereUniqueInput | ChannelLinkWhereUniqueInput[]
+    delete?: ChannelLinkWhereUniqueInput | ChannelLinkWhereUniqueInput[]
+    connect?: ChannelLinkWhereUniqueInput | ChannelLinkWhereUniqueInput[]
+    update?: ChannelLinkUpdateWithWhereUniqueWithoutUserInput | ChannelLinkUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ChannelLinkUpdateManyWithWhereWithoutUserInput | ChannelLinkUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ChannelLinkScalarWhereInput | ChannelLinkScalarWhereInput[]
+  }
+
+  export type EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EmailEmbeddingCreateWithoutUserInput, EmailEmbeddingUncheckedCreateWithoutUserInput> | EmailEmbeddingCreateWithoutUserInput[] | EmailEmbeddingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailEmbeddingCreateOrConnectWithoutUserInput | EmailEmbeddingCreateOrConnectWithoutUserInput[]
+    upsert?: EmailEmbeddingUpsertWithWhereUniqueWithoutUserInput | EmailEmbeddingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EmailEmbeddingCreateManyUserInputEnvelope
+    set?: EmailEmbeddingWhereUniqueInput | EmailEmbeddingWhereUniqueInput[]
+    disconnect?: EmailEmbeddingWhereUniqueInput | EmailEmbeddingWhereUniqueInput[]
+    delete?: EmailEmbeddingWhereUniqueInput | EmailEmbeddingWhereUniqueInput[]
+    connect?: EmailEmbeddingWhereUniqueInput | EmailEmbeddingWhereUniqueInput[]
+    update?: EmailEmbeddingUpdateWithWhereUniqueWithoutUserInput | EmailEmbeddingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EmailEmbeddingUpdateManyWithWhereWithoutUserInput | EmailEmbeddingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EmailEmbeddingScalarWhereInput | EmailEmbeddingScalarWhereInput[]
+  }
+
+  export type PriorityScoreUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PriorityScoreCreateWithoutUserInput, PriorityScoreUncheckedCreateWithoutUserInput> | PriorityScoreCreateWithoutUserInput[] | PriorityScoreUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PriorityScoreCreateOrConnectWithoutUserInput | PriorityScoreCreateOrConnectWithoutUserInput[]
+    upsert?: PriorityScoreUpsertWithWhereUniqueWithoutUserInput | PriorityScoreUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PriorityScoreCreateManyUserInputEnvelope
+    set?: PriorityScoreWhereUniqueInput | PriorityScoreWhereUniqueInput[]
+    disconnect?: PriorityScoreWhereUniqueInput | PriorityScoreWhereUniqueInput[]
+    delete?: PriorityScoreWhereUniqueInput | PriorityScoreWhereUniqueInput[]
+    connect?: PriorityScoreWhereUniqueInput | PriorityScoreWhereUniqueInput[]
+    update?: PriorityScoreUpdateWithWhereUniqueWithoutUserInput | PriorityScoreUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PriorityScoreUpdateManyWithWhereWithoutUserInput | PriorityScoreUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PriorityScoreScalarWhereInput | PriorityScoreScalarWhereInput[]
+  }
+
+  export type PendingActionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PendingActionCreateWithoutUserInput, PendingActionUncheckedCreateWithoutUserInput> | PendingActionCreateWithoutUserInput[] | PendingActionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PendingActionCreateOrConnectWithoutUserInput | PendingActionCreateOrConnectWithoutUserInput[]
+    upsert?: PendingActionUpsertWithWhereUniqueWithoutUserInput | PendingActionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PendingActionCreateManyUserInputEnvelope
+    set?: PendingActionWhereUniqueInput | PendingActionWhereUniqueInput[]
+    disconnect?: PendingActionWhereUniqueInput | PendingActionWhereUniqueInput[]
+    delete?: PendingActionWhereUniqueInput | PendingActionWhereUniqueInput[]
+    connect?: PendingActionWhereUniqueInput | PendingActionWhereUniqueInput[]
+    update?: PendingActionUpdateWithWhereUniqueWithoutUserInput | PendingActionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PendingActionUpdateManyWithWhereWithoutUserInput | PendingActionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PendingActionScalarWhereInput | PendingActionScalarWhereInput[]
+  }
+
+  export type UserPreferenceUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserPreferenceCreateWithoutUserInput, UserPreferenceUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserPreferenceCreateOrConnectWithoutUserInput
+    upsert?: UserPreferenceUpsertWithoutUserInput
+    disconnect?: UserPreferenceWhereInput | boolean
+    delete?: UserPreferenceWhereInput | boolean
+    connect?: UserPreferenceWhereUniqueInput
+    update?: XOR<XOR<UserPreferenceUpdateToOneWithWhereWithoutUserInput, UserPreferenceUpdateWithoutUserInput>, UserPreferenceUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserCreateNestedOneWithoutChannelLinksInput = {
+    create?: XOR<UserCreateWithoutChannelLinksInput, UserUncheckedCreateWithoutChannelLinksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChannelLinksInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutChannelLinksNestedInput = {
+    create?: XOR<UserCreateWithoutChannelLinksInput, UserUncheckedCreateWithoutChannelLinksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChannelLinksInput
+    upsert?: UserUpsertWithoutChannelLinksInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutChannelLinksInput, UserUpdateWithoutChannelLinksInput>, UserUncheckedUpdateWithoutChannelLinksInput>
+  }
+
+  export type UserCreateNestedOneWithoutEmailEmbeddingsInput = {
+    create?: XOR<UserCreateWithoutEmailEmbeddingsInput, UserUncheckedCreateWithoutEmailEmbeddingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEmailEmbeddingsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutEmailEmbeddingsNestedInput = {
+    create?: XOR<UserCreateWithoutEmailEmbeddingsInput, UserUncheckedCreateWithoutEmailEmbeddingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEmailEmbeddingsInput
+    upsert?: UserUpsertWithoutEmailEmbeddingsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEmailEmbeddingsInput, UserUpdateWithoutEmailEmbeddingsInput>, UserUncheckedUpdateWithoutEmailEmbeddingsInput>
+  }
+
+  export type UserCreateNestedOneWithoutPriorityScoresInput = {
+    create?: XOR<UserCreateWithoutPriorityScoresInput, UserUncheckedCreateWithoutPriorityScoresInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPriorityScoresInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutPriorityScoresNestedInput = {
+    create?: XOR<UserCreateWithoutPriorityScoresInput, UserUncheckedCreateWithoutPriorityScoresInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPriorityScoresInput
+    upsert?: UserUpsertWithoutPriorityScoresInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPriorityScoresInput, UserUpdateWithoutPriorityScoresInput>, UserUncheckedUpdateWithoutPriorityScoresInput>
+  }
+
+  export type UserCreateNestedOneWithoutPendingActionsInput = {
+    create?: XOR<UserCreateWithoutPendingActionsInput, UserUncheckedCreateWithoutPendingActionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPendingActionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutPendingActionsNestedInput = {
+    create?: XOR<UserCreateWithoutPendingActionsInput, UserUncheckedCreateWithoutPendingActionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPendingActionsInput
+    upsert?: UserUpsertWithoutPendingActionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPendingActionsInput, UserUpdateWithoutPendingActionsInput>, UserUncheckedUpdateWithoutPendingActionsInput>
+  }
+
+  export type UserCreateNestedOneWithoutPreferenceInput = {
+    create?: XOR<UserCreateWithoutPreferenceInput, UserUncheckedCreateWithoutPreferenceInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPreferenceInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutPreferenceNestedInput = {
+    create?: XOR<UserCreateWithoutPreferenceInput, UserUncheckedCreateWithoutPreferenceInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPreferenceInput
+    upsert?: UserUpsertWithoutPreferenceInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPreferenceInput, UserUpdateWithoutPreferenceInput>, UserUncheckedUpdateWithoutPreferenceInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -6926,6 +15411,31 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type CorsairAccountCreateWithoutIntegrationInput = {
@@ -7278,6 +15788,591 @@ export namespace Prisma {
     entities?: CorsairEntityUncheckedUpdateManyWithoutAccountNestedInput
   }
 
+  export type ChannelLinkCreateWithoutUserInput = {
+    id?: string
+    channel: string
+    externalChatId: string
+    linkedAt?: Date | string
+  }
+
+  export type ChannelLinkUncheckedCreateWithoutUserInput = {
+    id?: string
+    channel: string
+    externalChatId: string
+    linkedAt?: Date | string
+  }
+
+  export type ChannelLinkCreateOrConnectWithoutUserInput = {
+    where: ChannelLinkWhereUniqueInput
+    create: XOR<ChannelLinkCreateWithoutUserInput, ChannelLinkUncheckedCreateWithoutUserInput>
+  }
+
+  export type ChannelLinkCreateManyUserInputEnvelope = {
+    data: ChannelLinkCreateManyUserInput | ChannelLinkCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmailEmbeddingCreateWithoutUserInput = {
+    id?: string
+    corsairEntityId: string
+    threadId: string
+    subjectSnippet: string
+    indexedAt?: Date | string
+  }
+
+  export type EmailEmbeddingUncheckedCreateWithoutUserInput = {
+    id?: string
+    corsairEntityId: string
+    threadId: string
+    subjectSnippet: string
+    indexedAt?: Date | string
+  }
+
+  export type EmailEmbeddingCreateOrConnectWithoutUserInput = {
+    where: EmailEmbeddingWhereUniqueInput
+    create: XOR<EmailEmbeddingCreateWithoutUserInput, EmailEmbeddingUncheckedCreateWithoutUserInput>
+  }
+
+  export type EmailEmbeddingCreateManyUserInputEnvelope = {
+    data: EmailEmbeddingCreateManyUserInput | EmailEmbeddingCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PriorityScoreCreateWithoutUserInput = {
+    id?: string
+    corsairEntityId: string
+    label: string
+    reason?: string | null
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type PriorityScoreUncheckedCreateWithoutUserInput = {
+    id?: string
+    corsairEntityId: string
+    label: string
+    reason?: string | null
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type PriorityScoreCreateOrConnectWithoutUserInput = {
+    where: PriorityScoreWhereUniqueInput
+    create: XOR<PriorityScoreCreateWithoutUserInput, PriorityScoreUncheckedCreateWithoutUserInput>
+  }
+
+  export type PriorityScoreCreateManyUserInputEnvelope = {
+    data: PriorityScoreCreateManyUserInput | PriorityScoreCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PendingActionCreateWithoutUserInput = {
+    id?: string
+    channel: string
+    kind: string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: string | null
+    status?: string
+    createdAt?: Date | string
+    resolvedAt?: Date | string | null
+  }
+
+  export type PendingActionUncheckedCreateWithoutUserInput = {
+    id?: string
+    channel: string
+    kind: string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: string | null
+    status?: string
+    createdAt?: Date | string
+    resolvedAt?: Date | string | null
+  }
+
+  export type PendingActionCreateOrConnectWithoutUserInput = {
+    where: PendingActionWhereUniqueInput
+    create: XOR<PendingActionCreateWithoutUserInput, PendingActionUncheckedCreateWithoutUserInput>
+  }
+
+  export type PendingActionCreateManyUserInputEnvelope = {
+    data: PendingActionCreateManyUserInput | PendingActionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserPreferenceCreateWithoutUserInput = {
+    id?: string
+    splitInboxRules?: JsonNullValueInput | InputJsonValue
+    shortcutOverrides?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type UserPreferenceUncheckedCreateWithoutUserInput = {
+    id?: string
+    splitInboxRules?: JsonNullValueInput | InputJsonValue
+    shortcutOverrides?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type UserPreferenceCreateOrConnectWithoutUserInput = {
+    where: UserPreferenceWhereUniqueInput
+    create: XOR<UserPreferenceCreateWithoutUserInput, UserPreferenceUncheckedCreateWithoutUserInput>
+  }
+
+  export type ChannelLinkUpsertWithWhereUniqueWithoutUserInput = {
+    where: ChannelLinkWhereUniqueInput
+    update: XOR<ChannelLinkUpdateWithoutUserInput, ChannelLinkUncheckedUpdateWithoutUserInput>
+    create: XOR<ChannelLinkCreateWithoutUserInput, ChannelLinkUncheckedCreateWithoutUserInput>
+  }
+
+  export type ChannelLinkUpdateWithWhereUniqueWithoutUserInput = {
+    where: ChannelLinkWhereUniqueInput
+    data: XOR<ChannelLinkUpdateWithoutUserInput, ChannelLinkUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ChannelLinkUpdateManyWithWhereWithoutUserInput = {
+    where: ChannelLinkScalarWhereInput
+    data: XOR<ChannelLinkUpdateManyMutationInput, ChannelLinkUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ChannelLinkScalarWhereInput = {
+    AND?: ChannelLinkScalarWhereInput | ChannelLinkScalarWhereInput[]
+    OR?: ChannelLinkScalarWhereInput[]
+    NOT?: ChannelLinkScalarWhereInput | ChannelLinkScalarWhereInput[]
+    id?: StringFilter<"ChannelLink"> | string
+    userId?: StringFilter<"ChannelLink"> | string
+    channel?: StringFilter<"ChannelLink"> | string
+    externalChatId?: StringFilter<"ChannelLink"> | string
+    linkedAt?: DateTimeFilter<"ChannelLink"> | Date | string
+  }
+
+  export type EmailEmbeddingUpsertWithWhereUniqueWithoutUserInput = {
+    where: EmailEmbeddingWhereUniqueInput
+    update: XOR<EmailEmbeddingUpdateWithoutUserInput, EmailEmbeddingUncheckedUpdateWithoutUserInput>
+    create: XOR<EmailEmbeddingCreateWithoutUserInput, EmailEmbeddingUncheckedCreateWithoutUserInput>
+  }
+
+  export type EmailEmbeddingUpdateWithWhereUniqueWithoutUserInput = {
+    where: EmailEmbeddingWhereUniqueInput
+    data: XOR<EmailEmbeddingUpdateWithoutUserInput, EmailEmbeddingUncheckedUpdateWithoutUserInput>
+  }
+
+  export type EmailEmbeddingUpdateManyWithWhereWithoutUserInput = {
+    where: EmailEmbeddingScalarWhereInput
+    data: XOR<EmailEmbeddingUpdateManyMutationInput, EmailEmbeddingUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type EmailEmbeddingScalarWhereInput = {
+    AND?: EmailEmbeddingScalarWhereInput | EmailEmbeddingScalarWhereInput[]
+    OR?: EmailEmbeddingScalarWhereInput[]
+    NOT?: EmailEmbeddingScalarWhereInput | EmailEmbeddingScalarWhereInput[]
+    id?: StringFilter<"EmailEmbedding"> | string
+    userId?: StringFilter<"EmailEmbedding"> | string
+    corsairEntityId?: StringFilter<"EmailEmbedding"> | string
+    threadId?: StringFilter<"EmailEmbedding"> | string
+    subjectSnippet?: StringFilter<"EmailEmbedding"> | string
+    indexedAt?: DateTimeFilter<"EmailEmbedding"> | Date | string
+  }
+
+  export type PriorityScoreUpsertWithWhereUniqueWithoutUserInput = {
+    where: PriorityScoreWhereUniqueInput
+    update: XOR<PriorityScoreUpdateWithoutUserInput, PriorityScoreUncheckedUpdateWithoutUserInput>
+    create: XOR<PriorityScoreCreateWithoutUserInput, PriorityScoreUncheckedCreateWithoutUserInput>
+  }
+
+  export type PriorityScoreUpdateWithWhereUniqueWithoutUserInput = {
+    where: PriorityScoreWhereUniqueInput
+    data: XOR<PriorityScoreUpdateWithoutUserInput, PriorityScoreUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PriorityScoreUpdateManyWithWhereWithoutUserInput = {
+    where: PriorityScoreScalarWhereInput
+    data: XOR<PriorityScoreUpdateManyMutationInput, PriorityScoreUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type PriorityScoreScalarWhereInput = {
+    AND?: PriorityScoreScalarWhereInput | PriorityScoreScalarWhereInput[]
+    OR?: PriorityScoreScalarWhereInput[]
+    NOT?: PriorityScoreScalarWhereInput | PriorityScoreScalarWhereInput[]
+    id?: StringFilter<"PriorityScore"> | string
+    userId?: StringFilter<"PriorityScore"> | string
+    corsairEntityId?: StringFilter<"PriorityScore"> | string
+    label?: StringFilter<"PriorityScore"> | string
+    reason?: StringNullableFilter<"PriorityScore"> | string | null
+    model?: StringNullableFilter<"PriorityScore"> | string | null
+    createdAt?: DateTimeFilter<"PriorityScore"> | Date | string
+  }
+
+  export type PendingActionUpsertWithWhereUniqueWithoutUserInput = {
+    where: PendingActionWhereUniqueInput
+    update: XOR<PendingActionUpdateWithoutUserInput, PendingActionUncheckedUpdateWithoutUserInput>
+    create: XOR<PendingActionCreateWithoutUserInput, PendingActionUncheckedCreateWithoutUserInput>
+  }
+
+  export type PendingActionUpdateWithWhereUniqueWithoutUserInput = {
+    where: PendingActionWhereUniqueInput
+    data: XOR<PendingActionUpdateWithoutUserInput, PendingActionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PendingActionUpdateManyWithWhereWithoutUserInput = {
+    where: PendingActionScalarWhereInput
+    data: XOR<PendingActionUpdateManyMutationInput, PendingActionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type PendingActionScalarWhereInput = {
+    AND?: PendingActionScalarWhereInput | PendingActionScalarWhereInput[]
+    OR?: PendingActionScalarWhereInput[]
+    NOT?: PendingActionScalarWhereInput | PendingActionScalarWhereInput[]
+    id?: StringFilter<"PendingAction"> | string
+    userId?: StringFilter<"PendingAction"> | string
+    channel?: StringFilter<"PendingAction"> | string
+    kind?: StringFilter<"PendingAction"> | string
+    draftPayload?: JsonFilter<"PendingAction">
+    corsairOperationPath?: StringNullableFilter<"PendingAction"> | string | null
+    status?: StringFilter<"PendingAction"> | string
+    createdAt?: DateTimeFilter<"PendingAction"> | Date | string
+    resolvedAt?: DateTimeNullableFilter<"PendingAction"> | Date | string | null
+  }
+
+  export type UserPreferenceUpsertWithoutUserInput = {
+    update: XOR<UserPreferenceUpdateWithoutUserInput, UserPreferenceUncheckedUpdateWithoutUserInput>
+    create: XOR<UserPreferenceCreateWithoutUserInput, UserPreferenceUncheckedCreateWithoutUserInput>
+    where?: UserPreferenceWhereInput
+  }
+
+  export type UserPreferenceUpdateToOneWithWhereWithoutUserInput = {
+    where?: UserPreferenceWhereInput
+    data: XOR<UserPreferenceUpdateWithoutUserInput, UserPreferenceUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserPreferenceUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    splitInboxRules?: JsonNullValueInput | InputJsonValue
+    shortcutOverrides?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type UserPreferenceUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    splitInboxRules?: JsonNullValueInput | InputJsonValue
+    shortcutOverrides?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type UserCreateWithoutChannelLinksInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutChannelLinksInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutChannelLinksInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutChannelLinksInput, UserUncheckedCreateWithoutChannelLinksInput>
+  }
+
+  export type UserUpsertWithoutChannelLinksInput = {
+    update: XOR<UserUpdateWithoutChannelLinksInput, UserUncheckedUpdateWithoutChannelLinksInput>
+    create: XOR<UserCreateWithoutChannelLinksInput, UserUncheckedCreateWithoutChannelLinksInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutChannelLinksInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutChannelLinksInput, UserUncheckedUpdateWithoutChannelLinksInput>
+  }
+
+  export type UserUpdateWithoutChannelLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutChannelLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutEmailEmbeddingsInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutEmailEmbeddingsInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutEmailEmbeddingsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutEmailEmbeddingsInput, UserUncheckedCreateWithoutEmailEmbeddingsInput>
+  }
+
+  export type UserUpsertWithoutEmailEmbeddingsInput = {
+    update: XOR<UserUpdateWithoutEmailEmbeddingsInput, UserUncheckedUpdateWithoutEmailEmbeddingsInput>
+    create: XOR<UserCreateWithoutEmailEmbeddingsInput, UserUncheckedCreateWithoutEmailEmbeddingsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutEmailEmbeddingsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutEmailEmbeddingsInput, UserUncheckedUpdateWithoutEmailEmbeddingsInput>
+  }
+
+  export type UserUpdateWithoutEmailEmbeddingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutEmailEmbeddingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutPriorityScoresInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPriorityScoresInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPriorityScoresInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPriorityScoresInput, UserUncheckedCreateWithoutPriorityScoresInput>
+  }
+
+  export type UserUpsertWithoutPriorityScoresInput = {
+    update: XOR<UserUpdateWithoutPriorityScoresInput, UserUncheckedUpdateWithoutPriorityScoresInput>
+    create: XOR<UserCreateWithoutPriorityScoresInput, UserUncheckedCreateWithoutPriorityScoresInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPriorityScoresInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPriorityScoresInput, UserUncheckedUpdateWithoutPriorityScoresInput>
+  }
+
+  export type UserUpdateWithoutPriorityScoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPriorityScoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutPendingActionsInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPendingActionsInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPendingActionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPendingActionsInput, UserUncheckedCreateWithoutPendingActionsInput>
+  }
+
+  export type UserUpsertWithoutPendingActionsInput = {
+    update: XOR<UserUpdateWithoutPendingActionsInput, UserUncheckedUpdateWithoutPendingActionsInput>
+    create: XOR<UserCreateWithoutPendingActionsInput, UserUncheckedCreateWithoutPendingActionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPendingActionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPendingActionsInput, UserUncheckedUpdateWithoutPendingActionsInput>
+  }
+
+  export type UserUpdateWithoutPendingActionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPendingActionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutPreferenceInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPreferenceInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPreferenceInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPreferenceInput, UserUncheckedCreateWithoutPreferenceInput>
+  }
+
+  export type UserUpsertWithoutPreferenceInput = {
+    update: XOR<UserUpdateWithoutPreferenceInput, UserUncheckedUpdateWithoutPreferenceInput>
+    create: XOR<UserCreateWithoutPreferenceInput, UserUncheckedCreateWithoutPreferenceInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPreferenceInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPreferenceInput, UserUncheckedUpdateWithoutPreferenceInput>
+  }
+
+  export type UserUpdateWithoutPreferenceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPreferenceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type CorsairAccountCreateManyIntegrationInput = {
     id: string
     createdAt?: Date | string
@@ -7392,6 +16487,146 @@ export namespace Prisma {
     eventType?: StringFieldUpdateOperationsInput | string
     payload?: JsonNullValueInput | InputJsonValue
     status?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ChannelLinkCreateManyUserInput = {
+    id?: string
+    channel: string
+    externalChatId: string
+    linkedAt?: Date | string
+  }
+
+  export type EmailEmbeddingCreateManyUserInput = {
+    id?: string
+    corsairEntityId: string
+    threadId: string
+    subjectSnippet: string
+    indexedAt?: Date | string
+  }
+
+  export type PriorityScoreCreateManyUserInput = {
+    id?: string
+    corsairEntityId: string
+    label: string
+    reason?: string | null
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type PendingActionCreateManyUserInput = {
+    id?: string
+    channel: string
+    kind: string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: string | null
+    status?: string
+    createdAt?: Date | string
+    resolvedAt?: Date | string | null
+  }
+
+  export type ChannelLinkUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    externalChatId?: StringFieldUpdateOperationsInput | string
+    linkedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChannelLinkUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    externalChatId?: StringFieldUpdateOperationsInput | string
+    linkedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChannelLinkUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    externalChatId?: StringFieldUpdateOperationsInput | string
+    linkedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailEmbeddingUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    subjectSnippet?: StringFieldUpdateOperationsInput | string
+    indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailEmbeddingUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    subjectSnippet?: StringFieldUpdateOperationsInput | string
+    indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailEmbeddingUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    subjectSnippet?: StringFieldUpdateOperationsInput | string
+    indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PriorityScoreUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PriorityScoreUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PriorityScoreUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PendingActionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PendingActionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PendingActionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    draftPayload?: JsonNullValueInput | InputJsonValue
+    corsairOperationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
 

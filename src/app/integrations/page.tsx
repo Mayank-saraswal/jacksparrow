@@ -1,13 +1,15 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-import { api } from "@/trpc/server";
+import { SectionLabel } from "@/components/ui/section-label";
 import { IntegrationsList } from "./_components/integrations-list";
 
 const ERROR_MESSAGES: Record<string, string> = {
   oauth_failed: "Something went wrong connecting your account. Please try again.",
-  invalid_state: "The connection request expired or was tampered with. Please try again.",
-  missing_code_or_state: "The provider did not return a valid response. Please try again.",
+  invalid_state:
+    "The connection request expired or was tampered with. Please try again.",
+  missing_code_or_state:
+    "The provider did not return a valid response. Please try again.",
   access_denied: "You declined the permission request.",
 };
 
@@ -19,8 +21,6 @@ export default async function IntegrationsPage({
   const { userId } = await auth();
   if (!userId) redirect("/sign-in");
 
-  const integrations = await api.integrations.status();
-
   const params = await searchParams;
   const connected =
     typeof params.connected === "string" ? params.connected : undefined;
@@ -30,26 +30,32 @@ export default async function IntegrationsPage({
     : undefined;
 
   return (
-    <main className="mx-auto w-full max-w-3xl px-4 py-10">
-      <header className="mb-6">
-        <h1 className="text-xl font-semibold">Integrations</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Connect your accounts to power your inbox.
+    <main className="mx-auto w-full max-w-3xl px-6 py-12 sm:py-16">
+      <header className="mb-8">
+        <SectionLabel index={1} total={2}>
+          Connections
+        </SectionLabel>
+        <h1 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+          Integrations
+        </h1>
+        <p className="mt-2 max-w-md text-sm text-muted-foreground">
+          Connect your accounts to power your inbox. We pull your recent mail and
+          calendar in the background as soon as you connect.
         </p>
       </header>
 
       {connected && (
-        <div className="mb-4 border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-700 dark:text-emerald-400">
-          {connected} connected successfully.
+        <div className="mb-5 flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-700 dark:text-emerald-400">
+          {connected} connected successfully — syncing your data now.
         </div>
       )}
       {errorMessage && (
-        <div className="mb-4 border border-destructive/30 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+        <div className="mb-5 rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-xs text-destructive">
           {errorMessage}
         </div>
       )}
 
-      <IntegrationsList integrations={integrations} />
+      <IntegrationsList />
     </main>
   );
 }

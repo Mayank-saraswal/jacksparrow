@@ -2,6 +2,7 @@ import { processOAuthCallback } from "corsair/oauth";
 import { NextResponse, type NextRequest } from "next/server";
 
 import { env } from "@/env";
+import { inngest } from "@/inngest/client";
 import { getSessionTenantId } from "@/server/auth";
 import { corsair, isSupportedPlugin } from "@/server/corsair";
 
@@ -60,6 +61,13 @@ export async function GET(
       state,
       redirectUri,
     });
+
+    // Kick off the initial backfill of this integration's recent data.
+    await inngest.send({
+      name: "integration/connected",
+      data: { clerkUserId: tenantId, plugin: result.plugin },
+    });
+
     return redirectWith("connected", result.plugin);
   } catch (err) {
     console.error(`[corsair oauth] callback failed for ${plugin}:`, err);

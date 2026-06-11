@@ -6,6 +6,7 @@
   "scripts": {
     "build": "next build",
     "check": "next lint && tsc --noEmit",
+    "corsair:setup": "bun run scripts/corsair-setup.ts",
     "db:generate": "prisma migrate dev",
     "db:migrate": "prisma migrate deploy",
     "db:push": "prisma db push",
@@ -18,7 +19,8 @@
     "lint:fix": "next lint --fix",
     "preview": "next build && next start",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+     "ngrok:dev": "ngrok http --url=vast-lemur-notable.ngrok-free.app 3000"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.70",
