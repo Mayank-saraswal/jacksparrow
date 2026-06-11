@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model CorsairIntegration {
+  id        String           @id
+  createdAt DateTime         @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime         @updatedAt @map("updated_at") @db.Timestamptz
+  name      String
+  config    Json             @default("{}")
+  dek       String?
+  accounts  CorsairAccount[]
+
+  @@map("corsair_integrations")
+}
+
+model CorsairAccount {
+  id            String             @id
+  createdAt     DateTime           @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt     DateTime           @updatedAt @map("updated_at") @db.Timestamptz
+  tenantId      String             @map("tenant_id")
+  integrationId String             @map("integration_id")
+  config        Json               @default("{}")
+  dek           String?
+  integration   CorsairIntegration @relation(fields: [integrationId], references: [id])
+  entities      CorsairEntity[]
+  events        CorsairEvent[]
+
+  @@index([integrationId])
+  @@index([tenantId])
+  @@index([tenantId, integrationId])
+  @@map("corsair_accounts")
+}
+
+model CorsairEntity {
+  id         String         @id
+  createdAt  DateTime       @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt  DateTime       @updatedAt @map("updated_at") @db.Timestamptz
+  accountId  String         @map("account_id")
+  entityId   String         @map("entity_id")
+  entityType String         @map("entity_type")
+  version    String
+  data       Json           @default("{}")
+  account    CorsairAccount @relation(fields: [accountId], references: [id])
+
+  @@index([accountId])
+  @@index([accountId, entityType])
+  @@index([entityId])
+  @@map("corsair_entities")
+}
+
+model CorsairEvent {
+  id        String         @id
+  createdAt DateTime       @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime       @updatedAt @map("updated_at") @db.Timestamptz
+  accountId String         @map("account_id")
+  eventType String         @map("event_type")
+  payload   Json           @default("{}")
+  status    String?
+  account   CorsairAccount @relation(fields: [accountId], references: [id])
+
+  @@index([accountId])
+  @@map("corsair_events")
+}
