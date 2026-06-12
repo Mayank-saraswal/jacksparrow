@@ -20,8 +20,25 @@ export const env = createEnv({
     // Google OAuth app credentials (shared by Gmail + Calendar).
     GOOGLE_CLIENT_ID: z.string().min(1),
     GOOGLE_CLIENT_SECRET: z.string().min(1),
+    // Microsoft (Outlook) OAuth credentials. Optional: Outlook connect is
+    // disabled when absent.
+    MICROSOFT_CLIENT_ID: z.string().optional(),
+    MICROSOFT_CLIENT_SECRET: z.string().optional(),
+    // Slack OAuth credentials (org-level). Optional.
+    SLACK_CLIENT_ID: z.string().optional(),
+    SLACK_CLIENT_SECRET: z.string().optional(),
     // Clerk server key.
     CLERK_SECRET_KEY: z.string().min(1),
+    // Clerk webhook signing secret (org + membership sync). Optional so the app
+    // boots without team features configured.
+    CLERK_WEBHOOK_SECRET: z.string().optional(),
+    // Stripe billing (Phase 3). Optional: billing is disabled when absent.
+    STRIPE_SECRET_KEY: z.string().optional(),
+    STRIPE_WEBHOOK_SECRET: z.string().optional(),
+    STRIPE_PRICE_PRO_MONTHLY: z.string().optional(),
+    STRIPE_PRICE_PRO_YEARLY: z.string().optional(),
+    STRIPE_PRICE_BUSINESS_MONTHLY: z.string().optional(),
+    STRIPE_PRICE_BUSINESS_YEARLY: z.string().optional(),
     // OpenAI (Vercel AI SDK provider) — embeddings/LLM. Optional: features that
     // need it are skipped when absent.
     OPENAI_API_KEY: z.string().optional(),
@@ -58,7 +75,18 @@ export const env = createEnv({
     APP_URL: process.env.APP_URL,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    MICROSOFT_CLIENT_ID: process.env.MICROSOFT_CLIENT_ID,
+    MICROSOFT_CLIENT_SECRET: process.env.MICROSOFT_CLIENT_SECRET,
+    SLACK_CLIENT_ID: process.env.SLACK_CLIENT_ID,
+    SLACK_CLIENT_SECRET: process.env.SLACK_CLIENT_SECRET,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
+    CLERK_WEBHOOK_SECRET: process.env.CLERK_WEBHOOK_SECRET,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+    STRIPE_PRICE_PRO_MONTHLY: process.env.STRIPE_PRICE_PRO_MONTHLY,
+    STRIPE_PRICE_PRO_YEARLY: process.env.STRIPE_PRICE_PRO_YEARLY,
+    STRIPE_PRICE_BUSINESS_MONTHLY: process.env.STRIPE_PRICE_BUSINESS_MONTHLY,
+    STRIPE_PRICE_BUSINESS_YEARLY: process.env.STRIPE_PRICE_BUSINESS_YEARLY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
     TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
     TELEGRAM_WEBHOOK_SECRET: process.env.TELEGRAM_WEBHOOK_SECRET,

@@ -11,6 +11,11 @@ import { extractDomain } from "@/lib/split-rules";
 import { DRAFT_MODEL } from "@/server/models";
 import { db } from "@/server/db";
 import {
+  assertWithinLimit,
+  incrementUsage,
+  ownerForContext,
+} from "@/server/billing/entitlements";
+import {
   retrieveStyleSamples,
   buildDraftSystemPrompt,
   buildDraftUserPrompt,
@@ -30,12 +35,20 @@ const bodySchema = z.object({
  * parallel so first tokens arrive quickly, then a single LLM call streams back.
  */
 export async function POST(req: Request) {
-  const { userId } = await auth();
+  const { userId, orgId } = await auth();
   if (!userId) return new Response("Unauthorized", { status: 401 });
   if (!env.OPENAI_API_KEY) {
     return new Response("AI is not configured (missing OPENAI_API_KEY).", {
       status: 503,
     });
+  }
+
+  // Enforce the monthly AI-action budget before doing any work.
+  const owner = ownerForContext(userId, orgId ?? null);
+  try {
+    await assertWithinLimit(owner, userId, "ai_action");
+  } catch {
+    return new Response("limit_exceeded", { status: 403 });
   }
 
   const parsed = bodySchema.safeParse(await req.json());
@@ -77,6 +90,9 @@ export async function POST(req: Request) {
     system: buildDraftSystemPrompt(profile, samples, mode),
     prompt: buildDraftUserPrompt(threadText, instruction, mode),
   });
+
+  // Count the AI action against the monthly budget (best-effort).
+  void incrementUsage(owner, userId, "ai_action");
 
   return result.toTextStreamResponse();
 }

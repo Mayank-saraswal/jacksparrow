@@ -166,7 +166,8 @@ exports.Prisma.UserScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   gmailBackfilledAt: 'gmailBackfilledAt',
-  calendarBackfilledAt: 'calendarBackfilledAt'
+  calendarBackfilledAt: 'calendarBackfilledAt',
+  outlookBackfilledAt: 'outlookBackfilledAt'
 };
 
 exports.Prisma.ChannelLinkScalarFieldEnum = {
@@ -256,6 +257,8 @@ exports.Prisma.FollowUpScalarFieldEnum = {
 exports.Prisma.SyncItemScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  orgId: 'orgId',
+  sharedInboxId: 'sharedInboxId',
   corsairEntityId: 'corsairEntityId',
   type: 'type',
   title: 'title',
@@ -335,6 +338,98 @@ exports.Prisma.RuleSuggestionScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.OrganizationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MembershipScalarFieldEnum = {
+  id: 'id',
+  orgId: 'orgId',
+  userId: 'userId',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SharedInboxScalarFieldEnum = {
+  id: 'id',
+  orgId: 'orgId',
+  name: 'name',
+  plugin: 'plugin',
+  corsairAccountId: 'corsairAccountId',
+  connectedByUserId: 'connectedByUserId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ThreadAssignmentScalarFieldEnum = {
+  id: 'id',
+  sharedInboxId: 'sharedInboxId',
+  threadId: 'threadId',
+  assigneeUserId: 'assigneeUserId',
+  status: 'status',
+  updatedByUserId: 'updatedByUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ThreadCommentScalarFieldEnum = {
+  id: 'id',
+  sharedInboxId: 'sharedInboxId',
+  threadId: 'threadId',
+  authorUserId: 'authorUserId',
+  body: 'body',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AssignmentEventScalarFieldEnum = {
+  id: 'id',
+  sharedInboxId: 'sharedInboxId',
+  threadId: 'threadId',
+  actorUserId: 'actorUserId',
+  kind: 'kind',
+  meta: 'meta',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.BillingCustomerScalarFieldEnum = {
+  id: 'id',
+  ownerType: 'ownerType',
+  ownerId: 'ownerId',
+  stripeCustomerId: 'stripeCustomerId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SubscriptionScalarFieldEnum = {
+  id: 'id',
+  billingCustomerId: 'billingCustomerId',
+  stripeSubscriptionId: 'stripeSubscriptionId',
+  plan: 'plan',
+  status: 'status',
+  seats: 'seats',
+  currentPeriodEnd: 'currentPeriodEnd',
+  cancelAtPeriodEnd: 'cancelAtPeriodEnd',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UsageRecordScalarFieldEnum = {
+  id: 'id',
+  ownerType: 'ownerType',
+  ownerId: 'ownerId',
+  userId: 'userId',
+  metric: 'metric',
+  count: 'count',
+  periodStart: 'periodStart'
+};
+
+exports.Prisma.StripeEventScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  processedAt: 'processedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -382,7 +477,17 @@ exports.Prisma.ModelName = {
   ThreadSummary: 'ThreadSummary',
   TriageFeedback: 'TriageFeedback',
   SenderAffinity: 'SenderAffinity',
-  RuleSuggestion: 'RuleSuggestion'
+  RuleSuggestion: 'RuleSuggestion',
+  Organization: 'Organization',
+  Membership: 'Membership',
+  SharedInbox: 'SharedInbox',
+  ThreadAssignment: 'ThreadAssignment',
+  ThreadComment: 'ThreadComment',
+  AssignmentEvent: 'AssignmentEvent',
+  BillingCustomer: 'BillingCustomer',
+  Subscription: 'Subscription',
+  UsageRecord: 'UsageRecord',
+  StripeEvent: 'StripeEvent'
 };
 
 /**

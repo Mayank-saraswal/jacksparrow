@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 
 import { type Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
-import { ClerkProvider, SignInButton, UserButton } from "@clerk/nextjs";
+import { ClerkProvider, SignInButton, UserButton, OrganizationSwitcher } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 
@@ -79,6 +79,12 @@ export default async function RootLayout({
                       Scheduled
                     </Link>
                     <Link
+                      href="/team"
+                      className="text-xs text-muted-foreground hover:text-foreground"
+                    >
+                      Team
+                    </Link>
+                    <Link
                       href="/integrations"
                       className="text-xs text-muted-foreground hover:text-foreground"
                     >
@@ -90,6 +96,18 @@ export default async function RootLayout({
                     >
                       Settings
                     </Link>
+                    <Link
+                      href="/settings/billing"
+                      className="text-xs text-muted-foreground hover:text-foreground"
+                    >
+                      Billing
+                    </Link>
+                    <OrganizationSwitcher
+                      hidePersonal={false}
+                      afterCreateOrganizationUrl="/settings/organization"
+                      afterSelectOrganizationUrl="/inbox"
+                      afterSelectPersonalUrl="/inbox"
+                    />
                     <UserButton />
                   </>
                 ) : (

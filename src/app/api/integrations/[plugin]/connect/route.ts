@@ -1,16 +1,23 @@
 import { generateOAuthUrl } from "corsair/oauth";
+import { auth } from "@clerk/nextjs/server";
 import { NextResponse, type NextRequest } from "next/server";
 
 import { env } from "@/env";
-import { getSessionTenantId } from "@/server/auth";
-import { corsair, isSupportedPlugin } from "@/server/corsair";
+import { db } from "@/server/db";
+import {
+  corsair,
+  isSupportedPlugin,
+  tenantId as toTenantId,
+  type TenantRef,
+} from "@/server/corsair";
 
 /**
- * Starts the OAuth flow for the given plugin (gmail | googlecalendar).
+ * Starts the OAuth flow for the given plugin.
  *
- * Redirects the signed-in user to Google's consent screen, scoped to their
- * tenant (Clerk user id). The HMAC-signed state is stored in an httpOnly
- * cookie and verified on the callback to prevent CSRF.
+ * Personal connect (default) binds the grant to the user's tenant. Org connect
+ * (`?scope=org`, admin only) binds it to `org:{orgId}` so shared inboxes /
+ * Slack land under the org tenant. The chosen tenant is signed into the state
+ * cookie alongside Corsair's state and re-verified on the callback.
  */
 export async function GET(
   request: NextRequest,
@@ -22,25 +29,46 @@ export async function GET(
     return NextResponse.json({ error: "Unknown integration" }, { status: 404 });
   }
 
-  const tenantId = await getSessionTenantId();
-  if (!tenantId) {
+  const { userId, orgId } = await auth();
+  if (!userId) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 
+  const scope = request.nextUrl.searchParams.get("scope");
+  let ref: TenantRef = { kind: "user", userId };
+
+  if (scope === "org") {
+    if (!orgId) {
+      return NextResponse.json({ error: "No active organization" }, { status: 400 });
+    }
+    // Org connect is admin-only (verified against our mirrored membership).
+    const membership = await db.membership.findUnique({
+      where: { orgId_userId: { orgId, userId } },
+      select: { role: true },
+    });
+    if (membership?.role !== "admin") {
+      return NextResponse.json({ error: "Admin required" }, { status: 403 });
+    }
+    ref = { kind: "org", orgId };
+  }
+
+  const tenant = toTenantId(ref);
   const redirectUri = `${env.APP_URL}/api/integrations/${plugin}/callback`;
 
   const { url, state } = await generateOAuthUrl(corsair, plugin, {
-    tenantId,
+    tenantId: tenant,
     redirectUri,
   });
 
   const response = NextResponse.redirect(url);
-  response.cookies.set("oauth_state", state, {
+  const cookieOpts = {
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "lax" as const,
     secure: env.NODE_ENV === "production",
     maxAge: 60 * 10,
     path: "/",
-  });
+  };
+  response.cookies.set("oauth_state", state, cookieOpts);
+  response.cookies.set("oauth_tenant", tenant, cookieOpts);
   return response;
 }

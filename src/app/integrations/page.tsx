@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 
 import { SectionLabel } from "@/components/ui/section-label";
 import { IntegrationsList } from "./_components/integrations-list";
+import { OrgIntegrations } from "./_components/org-integrations";
 import { ScoreInboxButton } from "./_components/score-inbox-button";
 
 const ERROR_MESSAGES: Record<string, string> = {
@@ -57,6 +58,7 @@ export default async function IntegrationsPage({
       )}
 
       <IntegrationsList />
+      <OrgIntegrations />
       <ScoreInboxButton />
     </main>
   );

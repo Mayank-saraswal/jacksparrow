@@ -84,6 +84,7 @@ model User {
   updatedAt            DateTime  @updatedAt @map("updated_at") @db.Timestamptz
   gmailBackfilledAt    DateTime? @map("gmail_backfilled_at") @db.Timestamptz
   calendarBackfilledAt DateTime? @map("calendar_backfilled_at") @db.Timestamptz
+  outlookBackfilledAt  DateTime? @map("outlook_backfilled_at") @db.Timestamptz
 
   channelLinks     ChannelLink[]
   emailEmbeddings  EmailEmbedding[]
@@ -237,8 +238,10 @@ model FollowUp {
 model SyncItem {
   id              String   @id @default(cuid())
   userId          String   @map("user_id")
+  orgId           String?  @map("org_id")
+  sharedInboxId   String?  @map("shared_inbox_id")
   corsairEntityId String   @map("corsair_entity_id")
-  type            String // "email" | "event"
+  type            String // "email" | "event" | "slack"
   title           String
   snippet         String
   timestamp       DateTime @db.Timestamptz
@@ -247,6 +250,8 @@ model SyncItem {
 
   @@unique([userId, corsairEntityId])
   @@index([userId, timestamp])
+  @@index([orgId, timestamp])
+  @@index([sharedInboxId, timestamp])
   @@map("sync_items")
 }
 
@@ -367,4 +372,163 @@ model RuleSuggestion {
 
   @@index([userId, status])
   @@map("rule_suggestions")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Phase 3 — Teams: organizations, shared inboxes, billing
+//
+// Clerk Organizations are the identity source; Organization/Membership mirror
+// them locally for joins. Org-shared accounts use the Corsair tenant
+// `org:{orgId}`; personal accounts stay per-user.
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Organization {
+  id        String   @id // Clerk organization id
+  name      String
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  memberships   Membership[]
+  sharedInboxes SharedInbox[]
+
+  @@map("organizations")
+}
+
+model Membership {
+  id        String   @id @default(cuid())
+  orgId     String   @map("org_id")
+  userId    String   @map("user_id")
+  role      String   @default("member") // "admin" | "member"
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@unique([orgId, userId])
+  @@index([userId])
+  @@map("memberships")
+}
+
+// An org-owned email account every member can triage collaboratively.
+model SharedInbox {
+  id                String   @id @default(cuid())
+  orgId             String   @map("org_id")
+  name              String
+  plugin            String // "gmail" | "outlook"
+  corsairAccountId  String?  @map("corsair_account_id")
+  connectedByUserId String   @map("connected_by_user_id")
+  createdAt         DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  organization Organization       @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  assignments  ThreadAssignment[]
+  comments     ThreadComment[]
+  events       AssignmentEvent[]
+
+  @@index([orgId])
+  @@map("shared_inboxes")
+}
+
+model ThreadAssignment {
+  id              String   @id @default(cuid())
+  sharedInboxId   String   @map("shared_inbox_id")
+  threadId        String   @map("thread_id")
+  assigneeUserId  String?  @map("assignee_user_id")
+  status          String   @default("open") // open | assigned | snoozed | closed
+  updatedByUserId String   @map("updated_by_user_id")
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  sharedInbox SharedInbox @relation(fields: [sharedInboxId], references: [id], onDelete: Cascade)
+
+  @@unique([sharedInboxId, threadId])
+  @@index([sharedInboxId, status])
+  @@index([assigneeUserId])
+  @@map("thread_assignments")
+}
+
+// Internal notes on a shared-inbox thread — never emailed to the correspondent.
+model ThreadComment {
+  id            String   @id @default(cuid())
+  sharedInboxId String   @map("shared_inbox_id")
+  threadId      String   @map("thread_id")
+  authorUserId  String   @map("author_user_id")
+  body          String
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  sharedInbox SharedInbox @relation(fields: [sharedInboxId], references: [id], onDelete: Cascade)
+
+  @@index([sharedInboxId, threadId])
+  @@map("thread_comments")
+}
+
+// Audit trail of everything that happened on a shared-inbox thread.
+model AssignmentEvent {
+  id            String   @id @default(cuid())
+  sharedInboxId String   @map("shared_inbox_id")
+  threadId      String   @map("thread_id")
+  actorUserId   String   @map("actor_user_id")
+  kind          String // assigned | unassigned | closed | reopened | commented | replied
+  meta          Json     @default("{}")
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  sharedInbox SharedInbox @relation(fields: [sharedInboxId], references: [id], onDelete: Cascade)
+
+  @@index([sharedInboxId, threadId])
+  @@map("assignment_events")
+}
+
+// ── Billing (Stripe) ─────────────────────────────────────────────────────────
+
+model BillingCustomer {
+  id               String   @id @default(cuid())
+  ownerType        String   @map("owner_type") // "user" | "org"
+  ownerId          String   @map("owner_id")
+  stripeCustomerId String   @unique @map("stripe_customer_id")
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  subscriptions Subscription[]
+
+  @@unique([ownerType, ownerId])
+  @@map("billing_customers")
+}
+
+model Subscription {
+  id                   String    @id @default(cuid())
+  billingCustomerId    String    @map("billing_customer_id")
+  stripeSubscriptionId String    @unique @map("stripe_subscription_id")
+  plan                 String // "free" | "pro" | "business"
+  status               String // active | trialing | past_due | canceled | ...
+  seats                Int       @default(1)
+  currentPeriodEnd     DateTime? @map("current_period_end") @db.Timestamptz
+  cancelAtPeriodEnd    Boolean   @default(false) @map("cancel_at_period_end")
+  updatedAt            DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+
+  billingCustomer BillingCustomer @relation(fields: [billingCustomerId], references: [id], onDelete: Cascade)
+
+  @@index([billingCustomerId])
+  @@map("subscriptions")
+}
+
+// Monthly metered usage buckets, incremented atomically.
+model UsageRecord {
+  id          String   @id @default(cuid())
+  ownerType   String   @map("owner_type")
+  ownerId     String   @map("owner_id")
+  userId      String   @map("user_id")
+  metric      String // "ai_action" | "embedding" | "summary"
+  count       Int      @default(0)
+  periodStart DateTime @map("period_start") @db.Timestamptz
+
+  @@unique([ownerType, ownerId, userId, metric, periodStart])
+  @@index([ownerType, ownerId])
+  @@map("usage_records")
+}
+
+// Dedupe table for Stripe webhook idempotency.
+model StripeEvent {
+  id          String   @id // Stripe event id
+  type        String
+  processedAt DateTime @default(now()) @map("processed_at") @db.Timestamptz
+
+  @@map("stripe_events")
 }

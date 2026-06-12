@@ -3,6 +3,7 @@
 import {
   EnvelopeSimple,
   CalendarBlank,
+  MicrosoftOutlookLogo,
   CheckCircle,
   Warning,
   CircleNotch,
@@ -22,7 +23,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-type SupportedPlugin = "gmail" | "googlecalendar";
+type SupportedPlugin = "gmail" | "googlecalendar" | "outlook";
 
 const PLUGIN_META: Record<
   SupportedPlugin,
@@ -37,6 +38,11 @@ const PLUGIN_META: Record<
     name: "Google Calendar",
     description: "Sync events and availability from your calendars.",
     icon: CalendarBlank,
+  },
+  outlook: {
+    name: "Outlook",
+    description: "Read, send, and organize email from your Microsoft account.",
+    icon: MicrosoftOutlookLogo,
   },
 };
 

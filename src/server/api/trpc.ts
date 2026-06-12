@@ -12,6 +12,7 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { db } from "@/server/db";
+import { assertMember, assertAdmin } from "@/server/authz";
 
 /**
  * 1. CONTEXT
@@ -26,11 +27,15 @@ import { db } from "@/server/db";
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
-  const { userId } = await auth();
+  const { userId, orgId, orgRole } = await auth();
 
   return {
     db,
     userId,
+    // Active organization (from the verified Clerk session), if any. The
+    // authoritative role check happens against our mirrored Membership table.
+    orgId: orgId ?? null,
+    orgRole: orgRole ?? null,
     ...opts,
   };
 };
@@ -123,3 +128,37 @@ export const protectedProcedure = t.procedure
     }
     return next({ ctx: { ...ctx, userId: ctx.userId } });
   });
+
+/**
+ * Organization procedure
+ *
+ * Requires a signed-in user WITH an active organization, and verifies the
+ * membership against our mirrored table (not just the Clerk claim). Narrows
+ * `orgId` to a string and adds the authoritative `role` to context.
+ */
+export const orgProcedure = protectedProcedure.use(async ({ ctx, next }) => {
+  if (!ctx.orgId) {
+    throw new TRPCError({
+      code: "FORBIDDEN",
+      message: "No active organization. Switch to or create an organization.",
+    });
+  }
+  const membership = await assertMember(ctx.orgId, ctx.userId);
+  return next({ ctx: { ...ctx, orgId: ctx.orgId, role: membership.role } });
+});
+
+/**
+ * Organization admin procedure — like `orgProcedure` but requires role admin.
+ */
+export const orgAdminProcedure = protectedProcedure.use(
+  async ({ ctx, next }) => {
+    if (!ctx.orgId) {
+      throw new TRPCError({
+        code: "FORBIDDEN",
+        message: "No active organization.",
+      });
+    }
+    const membership = await assertAdmin(ctx.orgId, ctx.userId);
+    return next({ ctx: { ...ctx, orgId: ctx.orgId, role: membership.role } });
+  },
+);

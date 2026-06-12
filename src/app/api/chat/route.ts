@@ -4,16 +4,29 @@ import { auth } from "@clerk/nextjs/server";
 
 import { env } from "@/env";
 import { buildAgentTools } from "@/server/agent/tools";
+import {
+  assertWithinLimit,
+  incrementUsage,
+  ownerForContext,
+} from "@/server/billing/entitlements";
 
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { userId } = await auth();
+  const { userId, orgId } = await auth();
   if (!userId) return new Response("Unauthorized", { status: 401 });
   if (!env.OPENAI_API_KEY) {
     return new Response("AI is not configured (missing OPENAI_API_KEY).", {
       status: 503,
     });
+  }
+
+  // Each agent message is a paid AI action.
+  const owner = ownerForContext(userId, orgId ?? null);
+  try {
+    await assertWithinLimit(owner, userId, "ai_action");
+  } catch {
+    return new Response("limit_exceeded", { status: 403 });
   }
 
   const body = (await req.json()) as { messages?: ModelMessage[] };
@@ -34,6 +47,8 @@ export async function POST(req: Request) {
     tools: buildAgentTools(userId),
     stopWhen: stepCountIs(6),
   });
+
+  void incrementUsage(owner, userId, "ai_action");
 
   return result.toTextStreamResponse();
 }

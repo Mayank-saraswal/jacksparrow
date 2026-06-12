@@ -3,8 +3,11 @@ import { serve } from "inngest/next";
 import { inngest } from "../../../inngest/client";
 import {
   backfillIntegration,
+  billingSeatsSync,
   channelCallbackReceived,
   channelMessageReceived,
+  clerkMembershipSync,
+  clerkOrgSync,
   corsairWebhookReceived,
   followUpReminders,
   gmailWatchOnConnect,
@@ -15,6 +18,7 @@ import {
   scoreInboxBackfill,
   searchEmbeddingsBackfill,
   snoozeWake,
+  stripeWebhookReceived,
   styleBackfill,
   styleIngestSent,
   styleProfileRegenerate,
@@ -39,5 +43,9 @@ export const { GET, POST, PUT } = serve({
     styleBackfill,
     styleProfileRegenerate,
     ruleSuggestionsCron,
+    clerkOrgSync,
+    clerkMembershipSync,
+    stripeWebhookReceived,
+    billingSeatsSync,
   ],
 });

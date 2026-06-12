@@ -1,6 +1,7 @@
 import { inngest } from "../client";
 import { db } from "@/server/db";
 import { embedText, toVectorLiteral } from "@/server/embeddings";
+import { parseTenantId } from "@/server/corsair";
 import { scoreThread } from "./shared";
 
 /**
@@ -30,8 +31,15 @@ interface CalendarEntityData {
   start?: { dateTime?: string; date?: string };
 }
 
+interface SlackEntityData {
+  text?: string;
+  user?: string;
+  channel?: string;
+  ts?: string;
+}
+
 interface DerivedMeta {
-  type: "email" | "event";
+  type: "email" | "event" | "slack";
   title: string;
   snippet: string;
   sender: string;
@@ -66,6 +74,19 @@ function deriveMeta(
     };
   }
 
+  if (plugin === "slack") {
+    const msg = data as SlackEntityData;
+    const text = msg.text ?? "";
+    return {
+      type: "slack",
+      title: msg.channel ? `#${msg.channel}` : "Slack message",
+      snippet: text.slice(0, 200),
+      sender: msg.user ?? "",
+      threadId: msg.ts ?? entityId,
+      timestamp: msg.ts ? safeDate(Number(msg.ts) * 1000) : new Date(),
+    };
+  }
+
   const m = data as GmailEntityData;
   const header = (name: string) =>
     m.payload?.headers?.find((h) => h.name?.toLowerCase() === name)?.value ?? "";
@@ -89,8 +110,10 @@ export const corsairWebhookReceived = inngest.createFunction(
   async ({ event, step }) => {
     const { tenantId, plugin, corsairEntityId } =
       event.data as WebhookReceivedData;
-    // The Corsair tenant id is the Clerk user id in our setup.
+    // The Corsair tenant id is either the Clerk user id or `org:{orgId}`.
+    const ref = parseTenantId(tenantId);
     const userId = tenantId;
+    const orgId = ref.kind === "org" ? ref.orgId : null;
 
     const entity = await step.run("load-entity", async () => {
       const row = await db.corsairEntity.findUnique({
@@ -123,6 +146,7 @@ export const corsairWebhookReceived = inngest.createFunction(
         where: { userId_corsairEntityId: { userId, corsairEntityId } },
         create: {
           userId,
+          orgId,
           corsairEntityId,
           type: meta.type,
           title: meta.title,
@@ -130,6 +154,7 @@ export const corsairWebhookReceived = inngest.createFunction(
           timestamp: meta.timestamp,
         },
         update: {
+          orgId,
           type: meta.type,
           title: meta.title,
           snippet: meta.snippet,

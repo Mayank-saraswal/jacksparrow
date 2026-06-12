@@ -118,6 +118,56 @@ export type SenderAffinity = $Result.DefaultSelection<Prisma.$SenderAffinityPayl
  * 
  */
 export type RuleSuggestion = $Result.DefaultSelection<Prisma.$RuleSuggestionPayload>
+/**
+ * Model Organization
+ * 
+ */
+export type Organization = $Result.DefaultSelection<Prisma.$OrganizationPayload>
+/**
+ * Model Membership
+ * 
+ */
+export type Membership = $Result.DefaultSelection<Prisma.$MembershipPayload>
+/**
+ * Model SharedInbox
+ * 
+ */
+export type SharedInbox = $Result.DefaultSelection<Prisma.$SharedInboxPayload>
+/**
+ * Model ThreadAssignment
+ * 
+ */
+export type ThreadAssignment = $Result.DefaultSelection<Prisma.$ThreadAssignmentPayload>
+/**
+ * Model ThreadComment
+ * 
+ */
+export type ThreadComment = $Result.DefaultSelection<Prisma.$ThreadCommentPayload>
+/**
+ * Model AssignmentEvent
+ * 
+ */
+export type AssignmentEvent = $Result.DefaultSelection<Prisma.$AssignmentEventPayload>
+/**
+ * Model BillingCustomer
+ * 
+ */
+export type BillingCustomer = $Result.DefaultSelection<Prisma.$BillingCustomerPayload>
+/**
+ * Model Subscription
+ * 
+ */
+export type Subscription = $Result.DefaultSelection<Prisma.$SubscriptionPayload>
+/**
+ * Model UsageRecord
+ * 
+ */
+export type UsageRecord = $Result.DefaultSelection<Prisma.$UsageRecordPayload>
+/**
+ * Model StripeEvent
+ * 
+ */
+export type StripeEvent = $Result.DefaultSelection<Prisma.$StripeEventPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -446,6 +496,106 @@ export class PrismaClient<
     * ```
     */
   get ruleSuggestion(): Prisma.RuleSuggestionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.organization`: Exposes CRUD operations for the **Organization** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Organizations
+    * const organizations = await prisma.organization.findMany()
+    * ```
+    */
+  get organization(): Prisma.OrganizationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.membership`: Exposes CRUD operations for the **Membership** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Memberships
+    * const memberships = await prisma.membership.findMany()
+    * ```
+    */
+  get membership(): Prisma.MembershipDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sharedInbox`: Exposes CRUD operations for the **SharedInbox** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SharedInboxes
+    * const sharedInboxes = await prisma.sharedInbox.findMany()
+    * ```
+    */
+  get sharedInbox(): Prisma.SharedInboxDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.threadAssignment`: Exposes CRUD operations for the **ThreadAssignment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ThreadAssignments
+    * const threadAssignments = await prisma.threadAssignment.findMany()
+    * ```
+    */
+  get threadAssignment(): Prisma.ThreadAssignmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.threadComment`: Exposes CRUD operations for the **ThreadComment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ThreadComments
+    * const threadComments = await prisma.threadComment.findMany()
+    * ```
+    */
+  get threadComment(): Prisma.ThreadCommentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.assignmentEvent`: Exposes CRUD operations for the **AssignmentEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AssignmentEvents
+    * const assignmentEvents = await prisma.assignmentEvent.findMany()
+    * ```
+    */
+  get assignmentEvent(): Prisma.AssignmentEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.billingCustomer`: Exposes CRUD operations for the **BillingCustomer** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BillingCustomers
+    * const billingCustomers = await prisma.billingCustomer.findMany()
+    * ```
+    */
+  get billingCustomer(): Prisma.BillingCustomerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.subscription`: Exposes CRUD operations for the **Subscription** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Subscriptions
+    * const subscriptions = await prisma.subscription.findMany()
+    * ```
+    */
+  get subscription(): Prisma.SubscriptionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.usageRecord`: Exposes CRUD operations for the **UsageRecord** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UsageRecords
+    * const usageRecords = await prisma.usageRecord.findMany()
+    * ```
+    */
+  get usageRecord(): Prisma.UsageRecordDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.stripeEvent`: Exposes CRUD operations for the **StripeEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StripeEvents
+    * const stripeEvents = await prisma.stripeEvent.findMany()
+    * ```
+    */
+  get stripeEvent(): Prisma.StripeEventDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -907,7 +1057,17 @@ export namespace Prisma {
     ThreadSummary: 'ThreadSummary',
     TriageFeedback: 'TriageFeedback',
     SenderAffinity: 'SenderAffinity',
-    RuleSuggestion: 'RuleSuggestion'
+    RuleSuggestion: 'RuleSuggestion',
+    Organization: 'Organization',
+    Membership: 'Membership',
+    SharedInbox: 'SharedInbox',
+    ThreadAssignment: 'ThreadAssignment',
+    ThreadComment: 'ThreadComment',
+    AssignmentEvent: 'AssignmentEvent',
+    BillingCustomer: 'BillingCustomer',
+    Subscription: 'Subscription',
+    UsageRecord: 'UsageRecord',
+    StripeEvent: 'StripeEvent'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -926,7 +1086,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent" | "user" | "channelLink" | "emailEmbedding" | "priorityScore" | "pendingAction" | "userPreference" | "snoozedThread" | "scheduledEmail" | "followUp" | "syncItem" | "linkCode" | "sentMessageSample" | "styleProfile" | "threadSummary" | "triageFeedback" | "senderAffinity" | "ruleSuggestion"
+      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent" | "user" | "channelLink" | "emailEmbedding" | "priorityScore" | "pendingAction" | "userPreference" | "snoozedThread" | "scheduledEmail" | "followUp" | "syncItem" | "linkCode" | "sentMessageSample" | "styleProfile" | "threadSummary" | "triageFeedback" | "senderAffinity" | "ruleSuggestion" | "organization" | "membership" | "sharedInbox" | "threadAssignment" | "threadComment" | "assignmentEvent" | "billingCustomer" | "subscription" | "usageRecord" | "stripeEvent"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2484,6 +2644,746 @@ export namespace Prisma {
           }
         }
       }
+      Organization: {
+        payload: Prisma.$OrganizationPayload<ExtArgs>
+        fields: Prisma.OrganizationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OrganizationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganizationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OrganizationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganizationPayload>
+          }
+          findFirst: {
+            args: Prisma.OrganizationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganizationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OrganizationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganizationPayload>
+          }
+          findMany: {
+            args: Prisma.OrganizationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganizationPayload>[]
+          }
+          create: {
+            args: Prisma.OrganizationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganizationPayload>
+          }
+          createMany: {
+            args: Prisma.OrganizationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.OrganizationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganizationPayload>[]
+          }
+          delete: {
+            args: Prisma.OrganizationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganizationPayload>
+          }
+          update: {
+            args: Prisma.OrganizationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganizationPayload>
+          }
+          deleteMany: {
+            args: Prisma.OrganizationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OrganizationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OrganizationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganizationPayload>[]
+          }
+          upsert: {
+            args: Prisma.OrganizationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganizationPayload>
+          }
+          aggregate: {
+            args: Prisma.OrganizationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOrganization>
+          }
+          groupBy: {
+            args: Prisma.OrganizationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OrganizationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OrganizationCountArgs<ExtArgs>
+            result: $Utils.Optional<OrganizationCountAggregateOutputType> | number
+          }
+        }
+      }
+      Membership: {
+        payload: Prisma.$MembershipPayload<ExtArgs>
+        fields: Prisma.MembershipFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MembershipFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MembershipPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MembershipFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MembershipPayload>
+          }
+          findFirst: {
+            args: Prisma.MembershipFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MembershipPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MembershipFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MembershipPayload>
+          }
+          findMany: {
+            args: Prisma.MembershipFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MembershipPayload>[]
+          }
+          create: {
+            args: Prisma.MembershipCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MembershipPayload>
+          }
+          createMany: {
+            args: Prisma.MembershipCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MembershipCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MembershipPayload>[]
+          }
+          delete: {
+            args: Prisma.MembershipDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MembershipPayload>
+          }
+          update: {
+            args: Prisma.MembershipUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MembershipPayload>
+          }
+          deleteMany: {
+            args: Prisma.MembershipDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MembershipUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MembershipUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MembershipPayload>[]
+          }
+          upsert: {
+            args: Prisma.MembershipUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MembershipPayload>
+          }
+          aggregate: {
+            args: Prisma.MembershipAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMembership>
+          }
+          groupBy: {
+            args: Prisma.MembershipGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MembershipGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MembershipCountArgs<ExtArgs>
+            result: $Utils.Optional<MembershipCountAggregateOutputType> | number
+          }
+        }
+      }
+      SharedInbox: {
+        payload: Prisma.$SharedInboxPayload<ExtArgs>
+        fields: Prisma.SharedInboxFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SharedInboxFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedInboxPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SharedInboxFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedInboxPayload>
+          }
+          findFirst: {
+            args: Prisma.SharedInboxFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedInboxPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SharedInboxFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedInboxPayload>
+          }
+          findMany: {
+            args: Prisma.SharedInboxFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedInboxPayload>[]
+          }
+          create: {
+            args: Prisma.SharedInboxCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedInboxPayload>
+          }
+          createMany: {
+            args: Prisma.SharedInboxCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SharedInboxCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedInboxPayload>[]
+          }
+          delete: {
+            args: Prisma.SharedInboxDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedInboxPayload>
+          }
+          update: {
+            args: Prisma.SharedInboxUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedInboxPayload>
+          }
+          deleteMany: {
+            args: Prisma.SharedInboxDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SharedInboxUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SharedInboxUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedInboxPayload>[]
+          }
+          upsert: {
+            args: Prisma.SharedInboxUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedInboxPayload>
+          }
+          aggregate: {
+            args: Prisma.SharedInboxAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSharedInbox>
+          }
+          groupBy: {
+            args: Prisma.SharedInboxGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SharedInboxGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SharedInboxCountArgs<ExtArgs>
+            result: $Utils.Optional<SharedInboxCountAggregateOutputType> | number
+          }
+        }
+      }
+      ThreadAssignment: {
+        payload: Prisma.$ThreadAssignmentPayload<ExtArgs>
+        fields: Prisma.ThreadAssignmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ThreadAssignmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadAssignmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ThreadAssignmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadAssignmentPayload>
+          }
+          findFirst: {
+            args: Prisma.ThreadAssignmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadAssignmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ThreadAssignmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadAssignmentPayload>
+          }
+          findMany: {
+            args: Prisma.ThreadAssignmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadAssignmentPayload>[]
+          }
+          create: {
+            args: Prisma.ThreadAssignmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadAssignmentPayload>
+          }
+          createMany: {
+            args: Prisma.ThreadAssignmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ThreadAssignmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadAssignmentPayload>[]
+          }
+          delete: {
+            args: Prisma.ThreadAssignmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadAssignmentPayload>
+          }
+          update: {
+            args: Prisma.ThreadAssignmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadAssignmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.ThreadAssignmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ThreadAssignmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ThreadAssignmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadAssignmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.ThreadAssignmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadAssignmentPayload>
+          }
+          aggregate: {
+            args: Prisma.ThreadAssignmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateThreadAssignment>
+          }
+          groupBy: {
+            args: Prisma.ThreadAssignmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ThreadAssignmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ThreadAssignmentCountArgs<ExtArgs>
+            result: $Utils.Optional<ThreadAssignmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      ThreadComment: {
+        payload: Prisma.$ThreadCommentPayload<ExtArgs>
+        fields: Prisma.ThreadCommentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ThreadCommentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadCommentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ThreadCommentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadCommentPayload>
+          }
+          findFirst: {
+            args: Prisma.ThreadCommentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadCommentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ThreadCommentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadCommentPayload>
+          }
+          findMany: {
+            args: Prisma.ThreadCommentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadCommentPayload>[]
+          }
+          create: {
+            args: Prisma.ThreadCommentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadCommentPayload>
+          }
+          createMany: {
+            args: Prisma.ThreadCommentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ThreadCommentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadCommentPayload>[]
+          }
+          delete: {
+            args: Prisma.ThreadCommentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadCommentPayload>
+          }
+          update: {
+            args: Prisma.ThreadCommentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadCommentPayload>
+          }
+          deleteMany: {
+            args: Prisma.ThreadCommentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ThreadCommentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ThreadCommentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadCommentPayload>[]
+          }
+          upsert: {
+            args: Prisma.ThreadCommentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadCommentPayload>
+          }
+          aggregate: {
+            args: Prisma.ThreadCommentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateThreadComment>
+          }
+          groupBy: {
+            args: Prisma.ThreadCommentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ThreadCommentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ThreadCommentCountArgs<ExtArgs>
+            result: $Utils.Optional<ThreadCommentCountAggregateOutputType> | number
+          }
+        }
+      }
+      AssignmentEvent: {
+        payload: Prisma.$AssignmentEventPayload<ExtArgs>
+        fields: Prisma.AssignmentEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AssignmentEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AssignmentEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentEventPayload>
+          }
+          findFirst: {
+            args: Prisma.AssignmentEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AssignmentEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentEventPayload>
+          }
+          findMany: {
+            args: Prisma.AssignmentEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentEventPayload>[]
+          }
+          create: {
+            args: Prisma.AssignmentEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentEventPayload>
+          }
+          createMany: {
+            args: Prisma.AssignmentEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AssignmentEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentEventPayload>[]
+          }
+          delete: {
+            args: Prisma.AssignmentEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentEventPayload>
+          }
+          update: {
+            args: Prisma.AssignmentEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.AssignmentEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AssignmentEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AssignmentEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.AssignmentEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentEventPayload>
+          }
+          aggregate: {
+            args: Prisma.AssignmentEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAssignmentEvent>
+          }
+          groupBy: {
+            args: Prisma.AssignmentEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AssignmentEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AssignmentEventCountArgs<ExtArgs>
+            result: $Utils.Optional<AssignmentEventCountAggregateOutputType> | number
+          }
+        }
+      }
+      BillingCustomer: {
+        payload: Prisma.$BillingCustomerPayload<ExtArgs>
+        fields: Prisma.BillingCustomerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BillingCustomerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingCustomerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BillingCustomerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingCustomerPayload>
+          }
+          findFirst: {
+            args: Prisma.BillingCustomerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingCustomerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BillingCustomerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingCustomerPayload>
+          }
+          findMany: {
+            args: Prisma.BillingCustomerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingCustomerPayload>[]
+          }
+          create: {
+            args: Prisma.BillingCustomerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingCustomerPayload>
+          }
+          createMany: {
+            args: Prisma.BillingCustomerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BillingCustomerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingCustomerPayload>[]
+          }
+          delete: {
+            args: Prisma.BillingCustomerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingCustomerPayload>
+          }
+          update: {
+            args: Prisma.BillingCustomerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingCustomerPayload>
+          }
+          deleteMany: {
+            args: Prisma.BillingCustomerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BillingCustomerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BillingCustomerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingCustomerPayload>[]
+          }
+          upsert: {
+            args: Prisma.BillingCustomerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillingCustomerPayload>
+          }
+          aggregate: {
+            args: Prisma.BillingCustomerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBillingCustomer>
+          }
+          groupBy: {
+            args: Prisma.BillingCustomerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BillingCustomerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BillingCustomerCountArgs<ExtArgs>
+            result: $Utils.Optional<BillingCustomerCountAggregateOutputType> | number
+          }
+        }
+      }
+      Subscription: {
+        payload: Prisma.$SubscriptionPayload<ExtArgs>
+        fields: Prisma.SubscriptionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SubscriptionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SubscriptionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          findFirst: {
+            args: Prisma.SubscriptionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SubscriptionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          findMany: {
+            args: Prisma.SubscriptionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>[]
+          }
+          create: {
+            args: Prisma.SubscriptionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          createMany: {
+            args: Prisma.SubscriptionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SubscriptionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>[]
+          }
+          delete: {
+            args: Prisma.SubscriptionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          update: {
+            args: Prisma.SubscriptionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          deleteMany: {
+            args: Prisma.SubscriptionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SubscriptionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SubscriptionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>[]
+          }
+          upsert: {
+            args: Prisma.SubscriptionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          aggregate: {
+            args: Prisma.SubscriptionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSubscription>
+          }
+          groupBy: {
+            args: Prisma.SubscriptionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SubscriptionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SubscriptionCountArgs<ExtArgs>
+            result: $Utils.Optional<SubscriptionCountAggregateOutputType> | number
+          }
+        }
+      }
+      UsageRecord: {
+        payload: Prisma.$UsageRecordPayload<ExtArgs>
+        fields: Prisma.UsageRecordFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UsageRecordFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageRecordPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UsageRecordFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageRecordPayload>
+          }
+          findFirst: {
+            args: Prisma.UsageRecordFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageRecordPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UsageRecordFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageRecordPayload>
+          }
+          findMany: {
+            args: Prisma.UsageRecordFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageRecordPayload>[]
+          }
+          create: {
+            args: Prisma.UsageRecordCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageRecordPayload>
+          }
+          createMany: {
+            args: Prisma.UsageRecordCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UsageRecordCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageRecordPayload>[]
+          }
+          delete: {
+            args: Prisma.UsageRecordDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageRecordPayload>
+          }
+          update: {
+            args: Prisma.UsageRecordUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageRecordPayload>
+          }
+          deleteMany: {
+            args: Prisma.UsageRecordDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UsageRecordUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UsageRecordUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageRecordPayload>[]
+          }
+          upsert: {
+            args: Prisma.UsageRecordUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageRecordPayload>
+          }
+          aggregate: {
+            args: Prisma.UsageRecordAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUsageRecord>
+          }
+          groupBy: {
+            args: Prisma.UsageRecordGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UsageRecordGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UsageRecordCountArgs<ExtArgs>
+            result: $Utils.Optional<UsageRecordCountAggregateOutputType> | number
+          }
+        }
+      }
+      StripeEvent: {
+        payload: Prisma.$StripeEventPayload<ExtArgs>
+        fields: Prisma.StripeEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StripeEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StripeEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StripeEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StripeEventPayload>
+          }
+          findFirst: {
+            args: Prisma.StripeEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StripeEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StripeEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StripeEventPayload>
+          }
+          findMany: {
+            args: Prisma.StripeEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StripeEventPayload>[]
+          }
+          create: {
+            args: Prisma.StripeEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StripeEventPayload>
+          }
+          createMany: {
+            args: Prisma.StripeEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StripeEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StripeEventPayload>[]
+          }
+          delete: {
+            args: Prisma.StripeEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StripeEventPayload>
+          }
+          update: {
+            args: Prisma.StripeEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StripeEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.StripeEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StripeEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StripeEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StripeEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.StripeEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StripeEventPayload>
+          }
+          aggregate: {
+            args: Prisma.StripeEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStripeEvent>
+          }
+          groupBy: {
+            args: Prisma.StripeEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StripeEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StripeEventCountArgs<ExtArgs>
+            result: $Utils.Optional<StripeEventCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2601,6 +3501,16 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackOmit
     senderAffinity?: SenderAffinityOmit
     ruleSuggestion?: RuleSuggestionOmit
+    organization?: OrganizationOmit
+    membership?: MembershipOmit
+    sharedInbox?: SharedInboxOmit
+    threadAssignment?: ThreadAssignmentOmit
+    threadComment?: ThreadCommentOmit
+    assignmentEvent?: AssignmentEventOmit
+    billingCustomer?: BillingCustomerOmit
+    subscription?: SubscriptionOmit
+    usageRecord?: UsageRecordOmit
+    stripeEvent?: StripeEventOmit
   }
 
   /* Types for Logging */
@@ -2874,6 +3784,126 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountRuleSuggestionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RuleSuggestionWhereInput
+  }
+
+
+  /**
+   * Count Type OrganizationCountOutputType
+   */
+
+  export type OrganizationCountOutputType = {
+    memberships: number
+    sharedInboxes: number
+  }
+
+  export type OrganizationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    memberships?: boolean | OrganizationCountOutputTypeCountMembershipsArgs
+    sharedInboxes?: boolean | OrganizationCountOutputTypeCountSharedInboxesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * OrganizationCountOutputType without action
+   */
+  export type OrganizationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganizationCountOutputType
+     */
+    select?: OrganizationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * OrganizationCountOutputType without action
+   */
+  export type OrganizationCountOutputTypeCountMembershipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MembershipWhereInput
+  }
+
+  /**
+   * OrganizationCountOutputType without action
+   */
+  export type OrganizationCountOutputTypeCountSharedInboxesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SharedInboxWhereInput
+  }
+
+
+  /**
+   * Count Type SharedInboxCountOutputType
+   */
+
+  export type SharedInboxCountOutputType = {
+    assignments: number
+    comments: number
+    events: number
+  }
+
+  export type SharedInboxCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    assignments?: boolean | SharedInboxCountOutputTypeCountAssignmentsArgs
+    comments?: boolean | SharedInboxCountOutputTypeCountCommentsArgs
+    events?: boolean | SharedInboxCountOutputTypeCountEventsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SharedInboxCountOutputType without action
+   */
+  export type SharedInboxCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInboxCountOutputType
+     */
+    select?: SharedInboxCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SharedInboxCountOutputType without action
+   */
+  export type SharedInboxCountOutputTypeCountAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ThreadAssignmentWhereInput
+  }
+
+  /**
+   * SharedInboxCountOutputType without action
+   */
+  export type SharedInboxCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ThreadCommentWhereInput
+  }
+
+  /**
+   * SharedInboxCountOutputType without action
+   */
+  export type SharedInboxCountOutputTypeCountEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AssignmentEventWhereInput
+  }
+
+
+  /**
+   * Count Type BillingCustomerCountOutputType
+   */
+
+  export type BillingCustomerCountOutputType = {
+    subscriptions: number
+  }
+
+  export type BillingCustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    subscriptions?: boolean | BillingCustomerCountOutputTypeCountSubscriptionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BillingCustomerCountOutputType without action
+   */
+  export type BillingCustomerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomerCountOutputType
+     */
+    select?: BillingCustomerCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BillingCustomerCountOutputType without action
+   */
+  export type BillingCustomerCountOutputTypeCountSubscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubscriptionWhereInput
   }
 
 
@@ -7287,6 +8317,7 @@ export namespace Prisma {
     updatedAt: Date | null
     gmailBackfilledAt: Date | null
     calendarBackfilledAt: Date | null
+    outlookBackfilledAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -7295,6 +8326,7 @@ export namespace Prisma {
     updatedAt: Date | null
     gmailBackfilledAt: Date | null
     calendarBackfilledAt: Date | null
+    outlookBackfilledAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -7303,6 +8335,7 @@ export namespace Prisma {
     updatedAt: number
     gmailBackfilledAt: number
     calendarBackfilledAt: number
+    outlookBackfilledAt: number
     _all: number
   }
 
@@ -7313,6 +8346,7 @@ export namespace Prisma {
     updatedAt?: true
     gmailBackfilledAt?: true
     calendarBackfilledAt?: true
+    outlookBackfilledAt?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -7321,6 +8355,7 @@ export namespace Prisma {
     updatedAt?: true
     gmailBackfilledAt?: true
     calendarBackfilledAt?: true
+    outlookBackfilledAt?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -7329,6 +8364,7 @@ export namespace Prisma {
     updatedAt?: true
     gmailBackfilledAt?: true
     calendarBackfilledAt?: true
+    outlookBackfilledAt?: true
     _all?: true
   }
 
@@ -7410,6 +8446,7 @@ export namespace Prisma {
     updatedAt: Date
     gmailBackfilledAt: Date | null
     calendarBackfilledAt: Date | null
+    outlookBackfilledAt: Date | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -7435,6 +8472,7 @@ export namespace Prisma {
     updatedAt?: boolean
     gmailBackfilledAt?: boolean
     calendarBackfilledAt?: boolean
+    outlookBackfilledAt?: boolean
     channelLinks?: boolean | User$channelLinksArgs<ExtArgs>
     emailEmbeddings?: boolean | User$emailEmbeddingsArgs<ExtArgs>
     priorityScores?: boolean | User$priorityScoresArgs<ExtArgs>
@@ -7458,6 +8496,7 @@ export namespace Prisma {
     updatedAt?: boolean
     gmailBackfilledAt?: boolean
     calendarBackfilledAt?: boolean
+    outlookBackfilledAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7466,6 +8505,7 @@ export namespace Prisma {
     updatedAt?: boolean
     gmailBackfilledAt?: boolean
     calendarBackfilledAt?: boolean
+    outlookBackfilledAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -7474,9 +8514,10 @@ export namespace Prisma {
     updatedAt?: boolean
     gmailBackfilledAt?: boolean
     calendarBackfilledAt?: boolean
+    outlookBackfilledAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "gmailBackfilledAt" | "calendarBackfilledAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "gmailBackfilledAt" | "calendarBackfilledAt" | "outlookBackfilledAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     channelLinks?: boolean | User$channelLinksArgs<ExtArgs>
     emailEmbeddings?: boolean | User$emailEmbeddingsArgs<ExtArgs>
@@ -7521,6 +8562,7 @@ export namespace Prisma {
       updatedAt: Date
       gmailBackfilledAt: Date | null
       calendarBackfilledAt: Date | null
+      outlookBackfilledAt: Date | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -7963,6 +9005,7 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly gmailBackfilledAt: FieldRef<"User", 'DateTime'>
     readonly calendarBackfilledAt: FieldRef<"User", 'DateTime'>
+    readonly outlookBackfilledAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -17454,6 +18497,8 @@ export namespace Prisma {
   export type SyncItemMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    orgId: string | null
+    sharedInboxId: string | null
     corsairEntityId: string | null
     type: string | null
     title: string | null
@@ -17466,6 +18511,8 @@ export namespace Prisma {
   export type SyncItemMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    orgId: string | null
+    sharedInboxId: string | null
     corsairEntityId: string | null
     type: string | null
     title: string | null
@@ -17478,6 +18525,8 @@ export namespace Prisma {
   export type SyncItemCountAggregateOutputType = {
     id: number
     userId: number
+    orgId: number
+    sharedInboxId: number
     corsairEntityId: number
     type: number
     title: number
@@ -17492,6 +18541,8 @@ export namespace Prisma {
   export type SyncItemMinAggregateInputType = {
     id?: true
     userId?: true
+    orgId?: true
+    sharedInboxId?: true
     corsairEntityId?: true
     type?: true
     title?: true
@@ -17504,6 +18555,8 @@ export namespace Prisma {
   export type SyncItemMaxAggregateInputType = {
     id?: true
     userId?: true
+    orgId?: true
+    sharedInboxId?: true
     corsairEntityId?: true
     type?: true
     title?: true
@@ -17516,6 +18569,8 @@ export namespace Prisma {
   export type SyncItemCountAggregateInputType = {
     id?: true
     userId?: true
+    orgId?: true
+    sharedInboxId?: true
     corsairEntityId?: true
     type?: true
     title?: true
@@ -17601,6 +18656,8 @@ export namespace Prisma {
   export type SyncItemGroupByOutputType = {
     id: string
     userId: string
+    orgId: string | null
+    sharedInboxId: string | null
     corsairEntityId: string
     type: string
     title: string
@@ -17630,6 +18687,8 @@ export namespace Prisma {
   export type SyncItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    orgId?: boolean
+    sharedInboxId?: boolean
     corsairEntityId?: boolean
     type?: boolean
     title?: boolean
@@ -17642,6 +18701,8 @@ export namespace Prisma {
   export type SyncItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    orgId?: boolean
+    sharedInboxId?: boolean
     corsairEntityId?: boolean
     type?: boolean
     title?: boolean
@@ -17654,6 +18715,8 @@ export namespace Prisma {
   export type SyncItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    orgId?: boolean
+    sharedInboxId?: boolean
     corsairEntityId?: boolean
     type?: boolean
     title?: boolean
@@ -17666,6 +18729,8 @@ export namespace Prisma {
   export type SyncItemSelectScalar = {
     id?: boolean
     userId?: boolean
+    orgId?: boolean
+    sharedInboxId?: boolean
     corsairEntityId?: boolean
     type?: boolean
     title?: boolean
@@ -17675,7 +18740,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type SyncItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "corsairEntityId" | "type" | "title" | "snippet" | "timestamp" | "createdAt" | "updatedAt", ExtArgs["result"]["syncItem"]>
+  export type SyncItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "orgId" | "sharedInboxId" | "corsairEntityId" | "type" | "title" | "snippet" | "timestamp" | "createdAt" | "updatedAt", ExtArgs["result"]["syncItem"]>
 
   export type $SyncItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "SyncItem"
@@ -17683,6 +18748,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
+      orgId: string | null
+      sharedInboxId: string | null
       corsairEntityId: string
       type: string
       title: string
@@ -18115,6 +19182,8 @@ export namespace Prisma {
   interface SyncItemFieldRefs {
     readonly id: FieldRef<"SyncItem", 'String'>
     readonly userId: FieldRef<"SyncItem", 'String'>
+    readonly orgId: FieldRef<"SyncItem", 'String'>
+    readonly sharedInboxId: FieldRef<"SyncItem", 'String'>
     readonly corsairEntityId: FieldRef<"SyncItem", 'String'>
     readonly type: FieldRef<"SyncItem", 'String'>
     readonly title: FieldRef<"SyncItem", 'String'>
@@ -26134,6 +27203,10818 @@ export namespace Prisma {
 
 
   /**
+   * Model Organization
+   */
+
+  export type AggregateOrganization = {
+    _count: OrganizationCountAggregateOutputType | null
+    _min: OrganizationMinAggregateOutputType | null
+    _max: OrganizationMaxAggregateOutputType | null
+  }
+
+  export type OrganizationMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type OrganizationMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type OrganizationCountAggregateOutputType = {
+    id: number
+    name: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type OrganizationMinAggregateInputType = {
+    id?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type OrganizationMaxAggregateInputType = {
+    id?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type OrganizationCountAggregateInputType = {
+    id?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type OrganizationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Organization to aggregate.
+     */
+    where?: OrganizationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Organizations to fetch.
+     */
+    orderBy?: OrganizationOrderByWithRelationInput | OrganizationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OrganizationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Organizations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Organizations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Organizations
+    **/
+    _count?: true | OrganizationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OrganizationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OrganizationMaxAggregateInputType
+  }
+
+  export type GetOrganizationAggregateType<T extends OrganizationAggregateArgs> = {
+        [P in keyof T & keyof AggregateOrganization]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOrganization[P]>
+      : GetScalarType<T[P], AggregateOrganization[P]>
+  }
+
+
+
+
+  export type OrganizationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrganizationWhereInput
+    orderBy?: OrganizationOrderByWithAggregationInput | OrganizationOrderByWithAggregationInput[]
+    by: OrganizationScalarFieldEnum[] | OrganizationScalarFieldEnum
+    having?: OrganizationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OrganizationCountAggregateInputType | true
+    _min?: OrganizationMinAggregateInputType
+    _max?: OrganizationMaxAggregateInputType
+  }
+
+  export type OrganizationGroupByOutputType = {
+    id: string
+    name: string
+    createdAt: Date
+    updatedAt: Date
+    _count: OrganizationCountAggregateOutputType | null
+    _min: OrganizationMinAggregateOutputType | null
+    _max: OrganizationMaxAggregateOutputType | null
+  }
+
+  type GetOrganizationGroupByPayload<T extends OrganizationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OrganizationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OrganizationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OrganizationGroupByOutputType[P]>
+            : GetScalarType<T[P], OrganizationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OrganizationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    memberships?: boolean | Organization$membershipsArgs<ExtArgs>
+    sharedInboxes?: boolean | Organization$sharedInboxesArgs<ExtArgs>
+    _count?: boolean | OrganizationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["organization"]>
+
+  export type OrganizationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["organization"]>
+
+  export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["organization"]>
+
+  export type OrganizationSelectScalar = {
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type OrganizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["organization"]>
+  export type OrganizationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    memberships?: boolean | Organization$membershipsArgs<ExtArgs>
+    sharedInboxes?: boolean | Organization$sharedInboxesArgs<ExtArgs>
+    _count?: boolean | OrganizationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type OrganizationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $OrganizationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Organization"
+    objects: {
+      memberships: Prisma.$MembershipPayload<ExtArgs>[]
+      sharedInboxes: Prisma.$SharedInboxPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["organization"]>
+    composites: {}
+  }
+
+  type OrganizationGetPayload<S extends boolean | null | undefined | OrganizationDefaultArgs> = $Result.GetResult<Prisma.$OrganizationPayload, S>
+
+  type OrganizationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OrganizationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OrganizationCountAggregateInputType | true
+    }
+
+  export interface OrganizationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Organization'], meta: { name: 'Organization' } }
+    /**
+     * Find zero or one Organization that matches the filter.
+     * @param {OrganizationFindUniqueArgs} args - Arguments to find a Organization
+     * @example
+     * // Get one Organization
+     * const organization = await prisma.organization.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OrganizationFindUniqueArgs>(args: SelectSubset<T, OrganizationFindUniqueArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Organization that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OrganizationFindUniqueOrThrowArgs} args - Arguments to find a Organization
+     * @example
+     * // Get one Organization
+     * const organization = await prisma.organization.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OrganizationFindUniqueOrThrowArgs>(args: SelectSubset<T, OrganizationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Organization that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganizationFindFirstArgs} args - Arguments to find a Organization
+     * @example
+     * // Get one Organization
+     * const organization = await prisma.organization.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OrganizationFindFirstArgs>(args?: SelectSubset<T, OrganizationFindFirstArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Organization that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganizationFindFirstOrThrowArgs} args - Arguments to find a Organization
+     * @example
+     * // Get one Organization
+     * const organization = await prisma.organization.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OrganizationFindFirstOrThrowArgs>(args?: SelectSubset<T, OrganizationFindFirstOrThrowArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Organizations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganizationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Organizations
+     * const organizations = await prisma.organization.findMany()
+     * 
+     * // Get first 10 Organizations
+     * const organizations = await prisma.organization.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const organizationWithIdOnly = await prisma.organization.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OrganizationFindManyArgs>(args?: SelectSubset<T, OrganizationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Organization.
+     * @param {OrganizationCreateArgs} args - Arguments to create a Organization.
+     * @example
+     * // Create one Organization
+     * const Organization = await prisma.organization.create({
+     *   data: {
+     *     // ... data to create a Organization
+     *   }
+     * })
+     * 
+     */
+    create<T extends OrganizationCreateArgs>(args: SelectSubset<T, OrganizationCreateArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Organizations.
+     * @param {OrganizationCreateManyArgs} args - Arguments to create many Organizations.
+     * @example
+     * // Create many Organizations
+     * const organization = await prisma.organization.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OrganizationCreateManyArgs>(args?: SelectSubset<T, OrganizationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Organizations and returns the data saved in the database.
+     * @param {OrganizationCreateManyAndReturnArgs} args - Arguments to create many Organizations.
+     * @example
+     * // Create many Organizations
+     * const organization = await prisma.organization.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Organizations and only return the `id`
+     * const organizationWithIdOnly = await prisma.organization.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OrganizationCreateManyAndReturnArgs>(args?: SelectSubset<T, OrganizationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Organization.
+     * @param {OrganizationDeleteArgs} args - Arguments to delete one Organization.
+     * @example
+     * // Delete one Organization
+     * const Organization = await prisma.organization.delete({
+     *   where: {
+     *     // ... filter to delete one Organization
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OrganizationDeleteArgs>(args: SelectSubset<T, OrganizationDeleteArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Organization.
+     * @param {OrganizationUpdateArgs} args - Arguments to update one Organization.
+     * @example
+     * // Update one Organization
+     * const organization = await prisma.organization.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OrganizationUpdateArgs>(args: SelectSubset<T, OrganizationUpdateArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Organizations.
+     * @param {OrganizationDeleteManyArgs} args - Arguments to filter Organizations to delete.
+     * @example
+     * // Delete a few Organizations
+     * const { count } = await prisma.organization.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OrganizationDeleteManyArgs>(args?: SelectSubset<T, OrganizationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Organizations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganizationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Organizations
+     * const organization = await prisma.organization.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OrganizationUpdateManyArgs>(args: SelectSubset<T, OrganizationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Organizations and returns the data updated in the database.
+     * @param {OrganizationUpdateManyAndReturnArgs} args - Arguments to update many Organizations.
+     * @example
+     * // Update many Organizations
+     * const organization = await prisma.organization.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Organizations and only return the `id`
+     * const organizationWithIdOnly = await prisma.organization.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OrganizationUpdateManyAndReturnArgs>(args: SelectSubset<T, OrganizationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Organization.
+     * @param {OrganizationUpsertArgs} args - Arguments to update or create a Organization.
+     * @example
+     * // Update or create a Organization
+     * const organization = await prisma.organization.upsert({
+     *   create: {
+     *     // ... data to create a Organization
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Organization we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OrganizationUpsertArgs>(args: SelectSubset<T, OrganizationUpsertArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Organizations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganizationCountArgs} args - Arguments to filter Organizations to count.
+     * @example
+     * // Count the number of Organizations
+     * const count = await prisma.organization.count({
+     *   where: {
+     *     // ... the filter for the Organizations we want to count
+     *   }
+     * })
+    **/
+    count<T extends OrganizationCountArgs>(
+      args?: Subset<T, OrganizationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OrganizationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Organization.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganizationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OrganizationAggregateArgs>(args: Subset<T, OrganizationAggregateArgs>): Prisma.PrismaPromise<GetOrganizationAggregateType<T>>
+
+    /**
+     * Group by Organization.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganizationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OrganizationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OrganizationGroupByArgs['orderBy'] }
+        : { orderBy?: OrganizationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OrganizationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrganizationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Organization model
+   */
+  readonly fields: OrganizationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Organization.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    memberships<T extends Organization$membershipsArgs<ExtArgs> = {}>(args?: Subset<T, Organization$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sharedInboxes<T extends Organization$sharedInboxesArgs<ExtArgs> = {}>(args?: Subset<T, Organization$sharedInboxesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Organization model
+   */
+  interface OrganizationFieldRefs {
+    readonly id: FieldRef<"Organization", 'String'>
+    readonly name: FieldRef<"Organization", 'String'>
+    readonly createdAt: FieldRef<"Organization", 'DateTime'>
+    readonly updatedAt: FieldRef<"Organization", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Organization findUnique
+   */
+  export type OrganizationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganizationInclude<ExtArgs> | null
+    /**
+     * Filter, which Organization to fetch.
+     */
+    where: OrganizationWhereUniqueInput
+  }
+
+  /**
+   * Organization findUniqueOrThrow
+   */
+  export type OrganizationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganizationInclude<ExtArgs> | null
+    /**
+     * Filter, which Organization to fetch.
+     */
+    where: OrganizationWhereUniqueInput
+  }
+
+  /**
+   * Organization findFirst
+   */
+  export type OrganizationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganizationInclude<ExtArgs> | null
+    /**
+     * Filter, which Organization to fetch.
+     */
+    where?: OrganizationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Organizations to fetch.
+     */
+    orderBy?: OrganizationOrderByWithRelationInput | OrganizationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Organizations.
+     */
+    cursor?: OrganizationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Organizations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Organizations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Organizations.
+     */
+    distinct?: OrganizationScalarFieldEnum | OrganizationScalarFieldEnum[]
+  }
+
+  /**
+   * Organization findFirstOrThrow
+   */
+  export type OrganizationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganizationInclude<ExtArgs> | null
+    /**
+     * Filter, which Organization to fetch.
+     */
+    where?: OrganizationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Organizations to fetch.
+     */
+    orderBy?: OrganizationOrderByWithRelationInput | OrganizationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Organizations.
+     */
+    cursor?: OrganizationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Organizations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Organizations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Organizations.
+     */
+    distinct?: OrganizationScalarFieldEnum | OrganizationScalarFieldEnum[]
+  }
+
+  /**
+   * Organization findMany
+   */
+  export type OrganizationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganizationInclude<ExtArgs> | null
+    /**
+     * Filter, which Organizations to fetch.
+     */
+    where?: OrganizationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Organizations to fetch.
+     */
+    orderBy?: OrganizationOrderByWithRelationInput | OrganizationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Organizations.
+     */
+    cursor?: OrganizationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Organizations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Organizations.
+     */
+    skip?: number
+    distinct?: OrganizationScalarFieldEnum | OrganizationScalarFieldEnum[]
+  }
+
+  /**
+   * Organization create
+   */
+  export type OrganizationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganizationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Organization.
+     */
+    data: XOR<OrganizationCreateInput, OrganizationUncheckedCreateInput>
+  }
+
+  /**
+   * Organization createMany
+   */
+  export type OrganizationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Organizations.
+     */
+    data: OrganizationCreateManyInput | OrganizationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Organization createManyAndReturn
+   */
+  export type OrganizationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Organizations.
+     */
+    data: OrganizationCreateManyInput | OrganizationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Organization update
+   */
+  export type OrganizationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganizationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Organization.
+     */
+    data: XOR<OrganizationUpdateInput, OrganizationUncheckedUpdateInput>
+    /**
+     * Choose, which Organization to update.
+     */
+    where: OrganizationWhereUniqueInput
+  }
+
+  /**
+   * Organization updateMany
+   */
+  export type OrganizationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Organizations.
+     */
+    data: XOR<OrganizationUpdateManyMutationInput, OrganizationUncheckedUpdateManyInput>
+    /**
+     * Filter which Organizations to update
+     */
+    where?: OrganizationWhereInput
+    /**
+     * Limit how many Organizations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Organization updateManyAndReturn
+   */
+  export type OrganizationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * The data used to update Organizations.
+     */
+    data: XOR<OrganizationUpdateManyMutationInput, OrganizationUncheckedUpdateManyInput>
+    /**
+     * Filter which Organizations to update
+     */
+    where?: OrganizationWhereInput
+    /**
+     * Limit how many Organizations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Organization upsert
+   */
+  export type OrganizationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganizationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Organization to update in case it exists.
+     */
+    where: OrganizationWhereUniqueInput
+    /**
+     * In case the Organization found by the `where` argument doesn't exist, create a new Organization with this data.
+     */
+    create: XOR<OrganizationCreateInput, OrganizationUncheckedCreateInput>
+    /**
+     * In case the Organization was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OrganizationUpdateInput, OrganizationUncheckedUpdateInput>
+  }
+
+  /**
+   * Organization delete
+   */
+  export type OrganizationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganizationInclude<ExtArgs> | null
+    /**
+     * Filter which Organization to delete.
+     */
+    where: OrganizationWhereUniqueInput
+  }
+
+  /**
+   * Organization deleteMany
+   */
+  export type OrganizationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Organizations to delete
+     */
+    where?: OrganizationWhereInput
+    /**
+     * Limit how many Organizations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Organization.memberships
+   */
+  export type Organization$membershipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipInclude<ExtArgs> | null
+    where?: MembershipWhereInput
+    orderBy?: MembershipOrderByWithRelationInput | MembershipOrderByWithRelationInput[]
+    cursor?: MembershipWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MembershipScalarFieldEnum | MembershipScalarFieldEnum[]
+  }
+
+  /**
+   * Organization.sharedInboxes
+   */
+  export type Organization$sharedInboxesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxInclude<ExtArgs> | null
+    where?: SharedInboxWhereInput
+    orderBy?: SharedInboxOrderByWithRelationInput | SharedInboxOrderByWithRelationInput[]
+    cursor?: SharedInboxWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SharedInboxScalarFieldEnum | SharedInboxScalarFieldEnum[]
+  }
+
+  /**
+   * Organization without action
+   */
+  export type OrganizationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Organization
+     */
+    select?: OrganizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Organization
+     */
+    omit?: OrganizationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganizationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Membership
+   */
+
+  export type AggregateMembership = {
+    _count: MembershipCountAggregateOutputType | null
+    _min: MembershipMinAggregateOutputType | null
+    _max: MembershipMaxAggregateOutputType | null
+  }
+
+  export type MembershipMinAggregateOutputType = {
+    id: string | null
+    orgId: string | null
+    userId: string | null
+    role: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MembershipMaxAggregateOutputType = {
+    id: string | null
+    orgId: string | null
+    userId: string | null
+    role: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MembershipCountAggregateOutputType = {
+    id: number
+    orgId: number
+    userId: number
+    role: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MembershipMinAggregateInputType = {
+    id?: true
+    orgId?: true
+    userId?: true
+    role?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MembershipMaxAggregateInputType = {
+    id?: true
+    orgId?: true
+    userId?: true
+    role?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MembershipCountAggregateInputType = {
+    id?: true
+    orgId?: true
+    userId?: true
+    role?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MembershipAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Membership to aggregate.
+     */
+    where?: MembershipWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Memberships to fetch.
+     */
+    orderBy?: MembershipOrderByWithRelationInput | MembershipOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MembershipWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Memberships from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Memberships.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Memberships
+    **/
+    _count?: true | MembershipCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MembershipMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MembershipMaxAggregateInputType
+  }
+
+  export type GetMembershipAggregateType<T extends MembershipAggregateArgs> = {
+        [P in keyof T & keyof AggregateMembership]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMembership[P]>
+      : GetScalarType<T[P], AggregateMembership[P]>
+  }
+
+
+
+
+  export type MembershipGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MembershipWhereInput
+    orderBy?: MembershipOrderByWithAggregationInput | MembershipOrderByWithAggregationInput[]
+    by: MembershipScalarFieldEnum[] | MembershipScalarFieldEnum
+    having?: MembershipScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MembershipCountAggregateInputType | true
+    _min?: MembershipMinAggregateInputType
+    _max?: MembershipMaxAggregateInputType
+  }
+
+  export type MembershipGroupByOutputType = {
+    id: string
+    orgId: string
+    userId: string
+    role: string
+    createdAt: Date
+    updatedAt: Date
+    _count: MembershipCountAggregateOutputType | null
+    _min: MembershipMinAggregateOutputType | null
+    _max: MembershipMaxAggregateOutputType | null
+  }
+
+  type GetMembershipGroupByPayload<T extends MembershipGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MembershipGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MembershipGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MembershipGroupByOutputType[P]>
+            : GetScalarType<T[P], MembershipGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MembershipSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orgId?: boolean
+    userId?: boolean
+    role?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["membership"]>
+
+  export type MembershipSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orgId?: boolean
+    userId?: boolean
+    role?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["membership"]>
+
+  export type MembershipSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orgId?: boolean
+    userId?: boolean
+    role?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["membership"]>
+
+  export type MembershipSelectScalar = {
+    id?: boolean
+    orgId?: boolean
+    userId?: boolean
+    role?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MembershipOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orgId" | "userId" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["membership"]>
+  export type MembershipInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }
+  export type MembershipIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }
+  export type MembershipIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }
+
+  export type $MembershipPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Membership"
+    objects: {
+      organization: Prisma.$OrganizationPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      orgId: string
+      userId: string
+      role: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["membership"]>
+    composites: {}
+  }
+
+  type MembershipGetPayload<S extends boolean | null | undefined | MembershipDefaultArgs> = $Result.GetResult<Prisma.$MembershipPayload, S>
+
+  type MembershipCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MembershipFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MembershipCountAggregateInputType | true
+    }
+
+  export interface MembershipDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Membership'], meta: { name: 'Membership' } }
+    /**
+     * Find zero or one Membership that matches the filter.
+     * @param {MembershipFindUniqueArgs} args - Arguments to find a Membership
+     * @example
+     * // Get one Membership
+     * const membership = await prisma.membership.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MembershipFindUniqueArgs>(args: SelectSubset<T, MembershipFindUniqueArgs<ExtArgs>>): Prisma__MembershipClient<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Membership that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MembershipFindUniqueOrThrowArgs} args - Arguments to find a Membership
+     * @example
+     * // Get one Membership
+     * const membership = await prisma.membership.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MembershipFindUniqueOrThrowArgs>(args: SelectSubset<T, MembershipFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MembershipClient<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Membership that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MembershipFindFirstArgs} args - Arguments to find a Membership
+     * @example
+     * // Get one Membership
+     * const membership = await prisma.membership.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MembershipFindFirstArgs>(args?: SelectSubset<T, MembershipFindFirstArgs<ExtArgs>>): Prisma__MembershipClient<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Membership that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MembershipFindFirstOrThrowArgs} args - Arguments to find a Membership
+     * @example
+     * // Get one Membership
+     * const membership = await prisma.membership.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MembershipFindFirstOrThrowArgs>(args?: SelectSubset<T, MembershipFindFirstOrThrowArgs<ExtArgs>>): Prisma__MembershipClient<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Memberships that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MembershipFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Memberships
+     * const memberships = await prisma.membership.findMany()
+     * 
+     * // Get first 10 Memberships
+     * const memberships = await prisma.membership.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const membershipWithIdOnly = await prisma.membership.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MembershipFindManyArgs>(args?: SelectSubset<T, MembershipFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Membership.
+     * @param {MembershipCreateArgs} args - Arguments to create a Membership.
+     * @example
+     * // Create one Membership
+     * const Membership = await prisma.membership.create({
+     *   data: {
+     *     // ... data to create a Membership
+     *   }
+     * })
+     * 
+     */
+    create<T extends MembershipCreateArgs>(args: SelectSubset<T, MembershipCreateArgs<ExtArgs>>): Prisma__MembershipClient<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Memberships.
+     * @param {MembershipCreateManyArgs} args - Arguments to create many Memberships.
+     * @example
+     * // Create many Memberships
+     * const membership = await prisma.membership.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MembershipCreateManyArgs>(args?: SelectSubset<T, MembershipCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Memberships and returns the data saved in the database.
+     * @param {MembershipCreateManyAndReturnArgs} args - Arguments to create many Memberships.
+     * @example
+     * // Create many Memberships
+     * const membership = await prisma.membership.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Memberships and only return the `id`
+     * const membershipWithIdOnly = await prisma.membership.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MembershipCreateManyAndReturnArgs>(args?: SelectSubset<T, MembershipCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Membership.
+     * @param {MembershipDeleteArgs} args - Arguments to delete one Membership.
+     * @example
+     * // Delete one Membership
+     * const Membership = await prisma.membership.delete({
+     *   where: {
+     *     // ... filter to delete one Membership
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MembershipDeleteArgs>(args: SelectSubset<T, MembershipDeleteArgs<ExtArgs>>): Prisma__MembershipClient<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Membership.
+     * @param {MembershipUpdateArgs} args - Arguments to update one Membership.
+     * @example
+     * // Update one Membership
+     * const membership = await prisma.membership.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MembershipUpdateArgs>(args: SelectSubset<T, MembershipUpdateArgs<ExtArgs>>): Prisma__MembershipClient<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Memberships.
+     * @param {MembershipDeleteManyArgs} args - Arguments to filter Memberships to delete.
+     * @example
+     * // Delete a few Memberships
+     * const { count } = await prisma.membership.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MembershipDeleteManyArgs>(args?: SelectSubset<T, MembershipDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Memberships.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MembershipUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Memberships
+     * const membership = await prisma.membership.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MembershipUpdateManyArgs>(args: SelectSubset<T, MembershipUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Memberships and returns the data updated in the database.
+     * @param {MembershipUpdateManyAndReturnArgs} args - Arguments to update many Memberships.
+     * @example
+     * // Update many Memberships
+     * const membership = await prisma.membership.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Memberships and only return the `id`
+     * const membershipWithIdOnly = await prisma.membership.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MembershipUpdateManyAndReturnArgs>(args: SelectSubset<T, MembershipUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Membership.
+     * @param {MembershipUpsertArgs} args - Arguments to update or create a Membership.
+     * @example
+     * // Update or create a Membership
+     * const membership = await prisma.membership.upsert({
+     *   create: {
+     *     // ... data to create a Membership
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Membership we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MembershipUpsertArgs>(args: SelectSubset<T, MembershipUpsertArgs<ExtArgs>>): Prisma__MembershipClient<$Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Memberships.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MembershipCountArgs} args - Arguments to filter Memberships to count.
+     * @example
+     * // Count the number of Memberships
+     * const count = await prisma.membership.count({
+     *   where: {
+     *     // ... the filter for the Memberships we want to count
+     *   }
+     * })
+    **/
+    count<T extends MembershipCountArgs>(
+      args?: Subset<T, MembershipCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MembershipCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Membership.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MembershipAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MembershipAggregateArgs>(args: Subset<T, MembershipAggregateArgs>): Prisma.PrismaPromise<GetMembershipAggregateType<T>>
+
+    /**
+     * Group by Membership.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MembershipGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MembershipGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MembershipGroupByArgs['orderBy'] }
+        : { orderBy?: MembershipGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MembershipGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMembershipGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Membership model
+   */
+  readonly fields: MembershipFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Membership.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MembershipClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    organization<T extends OrganizationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrganizationDefaultArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Membership model
+   */
+  interface MembershipFieldRefs {
+    readonly id: FieldRef<"Membership", 'String'>
+    readonly orgId: FieldRef<"Membership", 'String'>
+    readonly userId: FieldRef<"Membership", 'String'>
+    readonly role: FieldRef<"Membership", 'String'>
+    readonly createdAt: FieldRef<"Membership", 'DateTime'>
+    readonly updatedAt: FieldRef<"Membership", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Membership findUnique
+   */
+  export type MembershipFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipInclude<ExtArgs> | null
+    /**
+     * Filter, which Membership to fetch.
+     */
+    where: MembershipWhereUniqueInput
+  }
+
+  /**
+   * Membership findUniqueOrThrow
+   */
+  export type MembershipFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipInclude<ExtArgs> | null
+    /**
+     * Filter, which Membership to fetch.
+     */
+    where: MembershipWhereUniqueInput
+  }
+
+  /**
+   * Membership findFirst
+   */
+  export type MembershipFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipInclude<ExtArgs> | null
+    /**
+     * Filter, which Membership to fetch.
+     */
+    where?: MembershipWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Memberships to fetch.
+     */
+    orderBy?: MembershipOrderByWithRelationInput | MembershipOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Memberships.
+     */
+    cursor?: MembershipWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Memberships from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Memberships.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Memberships.
+     */
+    distinct?: MembershipScalarFieldEnum | MembershipScalarFieldEnum[]
+  }
+
+  /**
+   * Membership findFirstOrThrow
+   */
+  export type MembershipFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipInclude<ExtArgs> | null
+    /**
+     * Filter, which Membership to fetch.
+     */
+    where?: MembershipWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Memberships to fetch.
+     */
+    orderBy?: MembershipOrderByWithRelationInput | MembershipOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Memberships.
+     */
+    cursor?: MembershipWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Memberships from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Memberships.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Memberships.
+     */
+    distinct?: MembershipScalarFieldEnum | MembershipScalarFieldEnum[]
+  }
+
+  /**
+   * Membership findMany
+   */
+  export type MembershipFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipInclude<ExtArgs> | null
+    /**
+     * Filter, which Memberships to fetch.
+     */
+    where?: MembershipWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Memberships to fetch.
+     */
+    orderBy?: MembershipOrderByWithRelationInput | MembershipOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Memberships.
+     */
+    cursor?: MembershipWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Memberships from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Memberships.
+     */
+    skip?: number
+    distinct?: MembershipScalarFieldEnum | MembershipScalarFieldEnum[]
+  }
+
+  /**
+   * Membership create
+   */
+  export type MembershipCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Membership.
+     */
+    data: XOR<MembershipCreateInput, MembershipUncheckedCreateInput>
+  }
+
+  /**
+   * Membership createMany
+   */
+  export type MembershipCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Memberships.
+     */
+    data: MembershipCreateManyInput | MembershipCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Membership createManyAndReturn
+   */
+  export type MembershipCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * The data used to create many Memberships.
+     */
+    data: MembershipCreateManyInput | MembershipCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Membership update
+   */
+  export type MembershipUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Membership.
+     */
+    data: XOR<MembershipUpdateInput, MembershipUncheckedUpdateInput>
+    /**
+     * Choose, which Membership to update.
+     */
+    where: MembershipWhereUniqueInput
+  }
+
+  /**
+   * Membership updateMany
+   */
+  export type MembershipUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Memberships.
+     */
+    data: XOR<MembershipUpdateManyMutationInput, MembershipUncheckedUpdateManyInput>
+    /**
+     * Filter which Memberships to update
+     */
+    where?: MembershipWhereInput
+    /**
+     * Limit how many Memberships to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Membership updateManyAndReturn
+   */
+  export type MembershipUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * The data used to update Memberships.
+     */
+    data: XOR<MembershipUpdateManyMutationInput, MembershipUncheckedUpdateManyInput>
+    /**
+     * Filter which Memberships to update
+     */
+    where?: MembershipWhereInput
+    /**
+     * Limit how many Memberships to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Membership upsert
+   */
+  export type MembershipUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Membership to update in case it exists.
+     */
+    where: MembershipWhereUniqueInput
+    /**
+     * In case the Membership found by the `where` argument doesn't exist, create a new Membership with this data.
+     */
+    create: XOR<MembershipCreateInput, MembershipUncheckedCreateInput>
+    /**
+     * In case the Membership was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MembershipUpdateInput, MembershipUncheckedUpdateInput>
+  }
+
+  /**
+   * Membership delete
+   */
+  export type MembershipDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipInclude<ExtArgs> | null
+    /**
+     * Filter which Membership to delete.
+     */
+    where: MembershipWhereUniqueInput
+  }
+
+  /**
+   * Membership deleteMany
+   */
+  export type MembershipDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Memberships to delete
+     */
+    where?: MembershipWhereInput
+    /**
+     * Limit how many Memberships to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Membership without action
+   */
+  export type MembershipDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Membership
+     */
+    select?: MembershipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Membership
+     */
+    omit?: MembershipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MembershipInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SharedInbox
+   */
+
+  export type AggregateSharedInbox = {
+    _count: SharedInboxCountAggregateOutputType | null
+    _min: SharedInboxMinAggregateOutputType | null
+    _max: SharedInboxMaxAggregateOutputType | null
+  }
+
+  export type SharedInboxMinAggregateOutputType = {
+    id: string | null
+    orgId: string | null
+    name: string | null
+    plugin: string | null
+    corsairAccountId: string | null
+    connectedByUserId: string | null
+    createdAt: Date | null
+  }
+
+  export type SharedInboxMaxAggregateOutputType = {
+    id: string | null
+    orgId: string | null
+    name: string | null
+    plugin: string | null
+    corsairAccountId: string | null
+    connectedByUserId: string | null
+    createdAt: Date | null
+  }
+
+  export type SharedInboxCountAggregateOutputType = {
+    id: number
+    orgId: number
+    name: number
+    plugin: number
+    corsairAccountId: number
+    connectedByUserId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type SharedInboxMinAggregateInputType = {
+    id?: true
+    orgId?: true
+    name?: true
+    plugin?: true
+    corsairAccountId?: true
+    connectedByUserId?: true
+    createdAt?: true
+  }
+
+  export type SharedInboxMaxAggregateInputType = {
+    id?: true
+    orgId?: true
+    name?: true
+    plugin?: true
+    corsairAccountId?: true
+    connectedByUserId?: true
+    createdAt?: true
+  }
+
+  export type SharedInboxCountAggregateInputType = {
+    id?: true
+    orgId?: true
+    name?: true
+    plugin?: true
+    corsairAccountId?: true
+    connectedByUserId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type SharedInboxAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SharedInbox to aggregate.
+     */
+    where?: SharedInboxWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedInboxes to fetch.
+     */
+    orderBy?: SharedInboxOrderByWithRelationInput | SharedInboxOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SharedInboxWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedInboxes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedInboxes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SharedInboxes
+    **/
+    _count?: true | SharedInboxCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SharedInboxMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SharedInboxMaxAggregateInputType
+  }
+
+  export type GetSharedInboxAggregateType<T extends SharedInboxAggregateArgs> = {
+        [P in keyof T & keyof AggregateSharedInbox]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSharedInbox[P]>
+      : GetScalarType<T[P], AggregateSharedInbox[P]>
+  }
+
+
+
+
+  export type SharedInboxGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SharedInboxWhereInput
+    orderBy?: SharedInboxOrderByWithAggregationInput | SharedInboxOrderByWithAggregationInput[]
+    by: SharedInboxScalarFieldEnum[] | SharedInboxScalarFieldEnum
+    having?: SharedInboxScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SharedInboxCountAggregateInputType | true
+    _min?: SharedInboxMinAggregateInputType
+    _max?: SharedInboxMaxAggregateInputType
+  }
+
+  export type SharedInboxGroupByOutputType = {
+    id: string
+    orgId: string
+    name: string
+    plugin: string
+    corsairAccountId: string | null
+    connectedByUserId: string
+    createdAt: Date
+    _count: SharedInboxCountAggregateOutputType | null
+    _min: SharedInboxMinAggregateOutputType | null
+    _max: SharedInboxMaxAggregateOutputType | null
+  }
+
+  type GetSharedInboxGroupByPayload<T extends SharedInboxGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SharedInboxGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SharedInboxGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SharedInboxGroupByOutputType[P]>
+            : GetScalarType<T[P], SharedInboxGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SharedInboxSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orgId?: boolean
+    name?: boolean
+    plugin?: boolean
+    corsairAccountId?: boolean
+    connectedByUserId?: boolean
+    createdAt?: boolean
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+    assignments?: boolean | SharedInbox$assignmentsArgs<ExtArgs>
+    comments?: boolean | SharedInbox$commentsArgs<ExtArgs>
+    events?: boolean | SharedInbox$eventsArgs<ExtArgs>
+    _count?: boolean | SharedInboxCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sharedInbox"]>
+
+  export type SharedInboxSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orgId?: boolean
+    name?: boolean
+    plugin?: boolean
+    corsairAccountId?: boolean
+    connectedByUserId?: boolean
+    createdAt?: boolean
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sharedInbox"]>
+
+  export type SharedInboxSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orgId?: boolean
+    name?: boolean
+    plugin?: boolean
+    corsairAccountId?: boolean
+    connectedByUserId?: boolean
+    createdAt?: boolean
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sharedInbox"]>
+
+  export type SharedInboxSelectScalar = {
+    id?: boolean
+    orgId?: boolean
+    name?: boolean
+    plugin?: boolean
+    corsairAccountId?: boolean
+    connectedByUserId?: boolean
+    createdAt?: boolean
+  }
+
+  export type SharedInboxOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orgId" | "name" | "plugin" | "corsairAccountId" | "connectedByUserId" | "createdAt", ExtArgs["result"]["sharedInbox"]>
+  export type SharedInboxInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+    assignments?: boolean | SharedInbox$assignmentsArgs<ExtArgs>
+    comments?: boolean | SharedInbox$commentsArgs<ExtArgs>
+    events?: boolean | SharedInbox$eventsArgs<ExtArgs>
+    _count?: boolean | SharedInboxCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SharedInboxIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }
+  export type SharedInboxIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
+  }
+
+  export type $SharedInboxPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SharedInbox"
+    objects: {
+      organization: Prisma.$OrganizationPayload<ExtArgs>
+      assignments: Prisma.$ThreadAssignmentPayload<ExtArgs>[]
+      comments: Prisma.$ThreadCommentPayload<ExtArgs>[]
+      events: Prisma.$AssignmentEventPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      orgId: string
+      name: string
+      plugin: string
+      corsairAccountId: string | null
+      connectedByUserId: string
+      createdAt: Date
+    }, ExtArgs["result"]["sharedInbox"]>
+    composites: {}
+  }
+
+  type SharedInboxGetPayload<S extends boolean | null | undefined | SharedInboxDefaultArgs> = $Result.GetResult<Prisma.$SharedInboxPayload, S>
+
+  type SharedInboxCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SharedInboxFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SharedInboxCountAggregateInputType | true
+    }
+
+  export interface SharedInboxDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SharedInbox'], meta: { name: 'SharedInbox' } }
+    /**
+     * Find zero or one SharedInbox that matches the filter.
+     * @param {SharedInboxFindUniqueArgs} args - Arguments to find a SharedInbox
+     * @example
+     * // Get one SharedInbox
+     * const sharedInbox = await prisma.sharedInbox.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SharedInboxFindUniqueArgs>(args: SelectSubset<T, SharedInboxFindUniqueArgs<ExtArgs>>): Prisma__SharedInboxClient<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SharedInbox that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SharedInboxFindUniqueOrThrowArgs} args - Arguments to find a SharedInbox
+     * @example
+     * // Get one SharedInbox
+     * const sharedInbox = await prisma.sharedInbox.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SharedInboxFindUniqueOrThrowArgs>(args: SelectSubset<T, SharedInboxFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SharedInboxClient<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SharedInbox that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedInboxFindFirstArgs} args - Arguments to find a SharedInbox
+     * @example
+     * // Get one SharedInbox
+     * const sharedInbox = await prisma.sharedInbox.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SharedInboxFindFirstArgs>(args?: SelectSubset<T, SharedInboxFindFirstArgs<ExtArgs>>): Prisma__SharedInboxClient<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SharedInbox that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedInboxFindFirstOrThrowArgs} args - Arguments to find a SharedInbox
+     * @example
+     * // Get one SharedInbox
+     * const sharedInbox = await prisma.sharedInbox.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SharedInboxFindFirstOrThrowArgs>(args?: SelectSubset<T, SharedInboxFindFirstOrThrowArgs<ExtArgs>>): Prisma__SharedInboxClient<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SharedInboxes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedInboxFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SharedInboxes
+     * const sharedInboxes = await prisma.sharedInbox.findMany()
+     * 
+     * // Get first 10 SharedInboxes
+     * const sharedInboxes = await prisma.sharedInbox.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sharedInboxWithIdOnly = await prisma.sharedInbox.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SharedInboxFindManyArgs>(args?: SelectSubset<T, SharedInboxFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SharedInbox.
+     * @param {SharedInboxCreateArgs} args - Arguments to create a SharedInbox.
+     * @example
+     * // Create one SharedInbox
+     * const SharedInbox = await prisma.sharedInbox.create({
+     *   data: {
+     *     // ... data to create a SharedInbox
+     *   }
+     * })
+     * 
+     */
+    create<T extends SharedInboxCreateArgs>(args: SelectSubset<T, SharedInboxCreateArgs<ExtArgs>>): Prisma__SharedInboxClient<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SharedInboxes.
+     * @param {SharedInboxCreateManyArgs} args - Arguments to create many SharedInboxes.
+     * @example
+     * // Create many SharedInboxes
+     * const sharedInbox = await prisma.sharedInbox.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SharedInboxCreateManyArgs>(args?: SelectSubset<T, SharedInboxCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SharedInboxes and returns the data saved in the database.
+     * @param {SharedInboxCreateManyAndReturnArgs} args - Arguments to create many SharedInboxes.
+     * @example
+     * // Create many SharedInboxes
+     * const sharedInbox = await prisma.sharedInbox.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SharedInboxes and only return the `id`
+     * const sharedInboxWithIdOnly = await prisma.sharedInbox.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SharedInboxCreateManyAndReturnArgs>(args?: SelectSubset<T, SharedInboxCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SharedInbox.
+     * @param {SharedInboxDeleteArgs} args - Arguments to delete one SharedInbox.
+     * @example
+     * // Delete one SharedInbox
+     * const SharedInbox = await prisma.sharedInbox.delete({
+     *   where: {
+     *     // ... filter to delete one SharedInbox
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SharedInboxDeleteArgs>(args: SelectSubset<T, SharedInboxDeleteArgs<ExtArgs>>): Prisma__SharedInboxClient<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SharedInbox.
+     * @param {SharedInboxUpdateArgs} args - Arguments to update one SharedInbox.
+     * @example
+     * // Update one SharedInbox
+     * const sharedInbox = await prisma.sharedInbox.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SharedInboxUpdateArgs>(args: SelectSubset<T, SharedInboxUpdateArgs<ExtArgs>>): Prisma__SharedInboxClient<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SharedInboxes.
+     * @param {SharedInboxDeleteManyArgs} args - Arguments to filter SharedInboxes to delete.
+     * @example
+     * // Delete a few SharedInboxes
+     * const { count } = await prisma.sharedInbox.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SharedInboxDeleteManyArgs>(args?: SelectSubset<T, SharedInboxDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SharedInboxes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedInboxUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SharedInboxes
+     * const sharedInbox = await prisma.sharedInbox.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SharedInboxUpdateManyArgs>(args: SelectSubset<T, SharedInboxUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SharedInboxes and returns the data updated in the database.
+     * @param {SharedInboxUpdateManyAndReturnArgs} args - Arguments to update many SharedInboxes.
+     * @example
+     * // Update many SharedInboxes
+     * const sharedInbox = await prisma.sharedInbox.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SharedInboxes and only return the `id`
+     * const sharedInboxWithIdOnly = await prisma.sharedInbox.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SharedInboxUpdateManyAndReturnArgs>(args: SelectSubset<T, SharedInboxUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SharedInbox.
+     * @param {SharedInboxUpsertArgs} args - Arguments to update or create a SharedInbox.
+     * @example
+     * // Update or create a SharedInbox
+     * const sharedInbox = await prisma.sharedInbox.upsert({
+     *   create: {
+     *     // ... data to create a SharedInbox
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SharedInbox we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SharedInboxUpsertArgs>(args: SelectSubset<T, SharedInboxUpsertArgs<ExtArgs>>): Prisma__SharedInboxClient<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SharedInboxes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedInboxCountArgs} args - Arguments to filter SharedInboxes to count.
+     * @example
+     * // Count the number of SharedInboxes
+     * const count = await prisma.sharedInbox.count({
+     *   where: {
+     *     // ... the filter for the SharedInboxes we want to count
+     *   }
+     * })
+    **/
+    count<T extends SharedInboxCountArgs>(
+      args?: Subset<T, SharedInboxCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SharedInboxCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SharedInbox.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedInboxAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SharedInboxAggregateArgs>(args: Subset<T, SharedInboxAggregateArgs>): Prisma.PrismaPromise<GetSharedInboxAggregateType<T>>
+
+    /**
+     * Group by SharedInbox.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedInboxGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SharedInboxGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SharedInboxGroupByArgs['orderBy'] }
+        : { orderBy?: SharedInboxGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SharedInboxGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSharedInboxGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SharedInbox model
+   */
+  readonly fields: SharedInboxFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SharedInbox.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SharedInboxClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    organization<T extends OrganizationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrganizationDefaultArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    assignments<T extends SharedInbox$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, SharedInbox$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comments<T extends SharedInbox$commentsArgs<ExtArgs> = {}>(args?: Subset<T, SharedInbox$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    events<T extends SharedInbox$eventsArgs<ExtArgs> = {}>(args?: Subset<T, SharedInbox$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SharedInbox model
+   */
+  interface SharedInboxFieldRefs {
+    readonly id: FieldRef<"SharedInbox", 'String'>
+    readonly orgId: FieldRef<"SharedInbox", 'String'>
+    readonly name: FieldRef<"SharedInbox", 'String'>
+    readonly plugin: FieldRef<"SharedInbox", 'String'>
+    readonly corsairAccountId: FieldRef<"SharedInbox", 'String'>
+    readonly connectedByUserId: FieldRef<"SharedInbox", 'String'>
+    readonly createdAt: FieldRef<"SharedInbox", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SharedInbox findUnique
+   */
+  export type SharedInboxFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedInbox to fetch.
+     */
+    where: SharedInboxWhereUniqueInput
+  }
+
+  /**
+   * SharedInbox findUniqueOrThrow
+   */
+  export type SharedInboxFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedInbox to fetch.
+     */
+    where: SharedInboxWhereUniqueInput
+  }
+
+  /**
+   * SharedInbox findFirst
+   */
+  export type SharedInboxFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedInbox to fetch.
+     */
+    where?: SharedInboxWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedInboxes to fetch.
+     */
+    orderBy?: SharedInboxOrderByWithRelationInput | SharedInboxOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SharedInboxes.
+     */
+    cursor?: SharedInboxWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedInboxes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedInboxes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SharedInboxes.
+     */
+    distinct?: SharedInboxScalarFieldEnum | SharedInboxScalarFieldEnum[]
+  }
+
+  /**
+   * SharedInbox findFirstOrThrow
+   */
+  export type SharedInboxFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedInbox to fetch.
+     */
+    where?: SharedInboxWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedInboxes to fetch.
+     */
+    orderBy?: SharedInboxOrderByWithRelationInput | SharedInboxOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SharedInboxes.
+     */
+    cursor?: SharedInboxWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedInboxes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedInboxes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SharedInboxes.
+     */
+    distinct?: SharedInboxScalarFieldEnum | SharedInboxScalarFieldEnum[]
+  }
+
+  /**
+   * SharedInbox findMany
+   */
+  export type SharedInboxFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedInboxes to fetch.
+     */
+    where?: SharedInboxWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedInboxes to fetch.
+     */
+    orderBy?: SharedInboxOrderByWithRelationInput | SharedInboxOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SharedInboxes.
+     */
+    cursor?: SharedInboxWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedInboxes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedInboxes.
+     */
+    skip?: number
+    distinct?: SharedInboxScalarFieldEnum | SharedInboxScalarFieldEnum[]
+  }
+
+  /**
+   * SharedInbox create
+   */
+  export type SharedInboxCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SharedInbox.
+     */
+    data: XOR<SharedInboxCreateInput, SharedInboxUncheckedCreateInput>
+  }
+
+  /**
+   * SharedInbox createMany
+   */
+  export type SharedInboxCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SharedInboxes.
+     */
+    data: SharedInboxCreateManyInput | SharedInboxCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SharedInbox createManyAndReturn
+   */
+  export type SharedInboxCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * The data used to create many SharedInboxes.
+     */
+    data: SharedInboxCreateManyInput | SharedInboxCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SharedInbox update
+   */
+  export type SharedInboxUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SharedInbox.
+     */
+    data: XOR<SharedInboxUpdateInput, SharedInboxUncheckedUpdateInput>
+    /**
+     * Choose, which SharedInbox to update.
+     */
+    where: SharedInboxWhereUniqueInput
+  }
+
+  /**
+   * SharedInbox updateMany
+   */
+  export type SharedInboxUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SharedInboxes.
+     */
+    data: XOR<SharedInboxUpdateManyMutationInput, SharedInboxUncheckedUpdateManyInput>
+    /**
+     * Filter which SharedInboxes to update
+     */
+    where?: SharedInboxWhereInput
+    /**
+     * Limit how many SharedInboxes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SharedInbox updateManyAndReturn
+   */
+  export type SharedInboxUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * The data used to update SharedInboxes.
+     */
+    data: XOR<SharedInboxUpdateManyMutationInput, SharedInboxUncheckedUpdateManyInput>
+    /**
+     * Filter which SharedInboxes to update
+     */
+    where?: SharedInboxWhereInput
+    /**
+     * Limit how many SharedInboxes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SharedInbox upsert
+   */
+  export type SharedInboxUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SharedInbox to update in case it exists.
+     */
+    where: SharedInboxWhereUniqueInput
+    /**
+     * In case the SharedInbox found by the `where` argument doesn't exist, create a new SharedInbox with this data.
+     */
+    create: XOR<SharedInboxCreateInput, SharedInboxUncheckedCreateInput>
+    /**
+     * In case the SharedInbox was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SharedInboxUpdateInput, SharedInboxUncheckedUpdateInput>
+  }
+
+  /**
+   * SharedInbox delete
+   */
+  export type SharedInboxDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxInclude<ExtArgs> | null
+    /**
+     * Filter which SharedInbox to delete.
+     */
+    where: SharedInboxWhereUniqueInput
+  }
+
+  /**
+   * SharedInbox deleteMany
+   */
+  export type SharedInboxDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SharedInboxes to delete
+     */
+    where?: SharedInboxWhereInput
+    /**
+     * Limit how many SharedInboxes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SharedInbox.assignments
+   */
+  export type SharedInbox$assignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentInclude<ExtArgs> | null
+    where?: ThreadAssignmentWhereInput
+    orderBy?: ThreadAssignmentOrderByWithRelationInput | ThreadAssignmentOrderByWithRelationInput[]
+    cursor?: ThreadAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ThreadAssignmentScalarFieldEnum | ThreadAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * SharedInbox.comments
+   */
+  export type SharedInbox$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentInclude<ExtArgs> | null
+    where?: ThreadCommentWhereInput
+    orderBy?: ThreadCommentOrderByWithRelationInput | ThreadCommentOrderByWithRelationInput[]
+    cursor?: ThreadCommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ThreadCommentScalarFieldEnum | ThreadCommentScalarFieldEnum[]
+  }
+
+  /**
+   * SharedInbox.events
+   */
+  export type SharedInbox$eventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventInclude<ExtArgs> | null
+    where?: AssignmentEventWhereInput
+    orderBy?: AssignmentEventOrderByWithRelationInput | AssignmentEventOrderByWithRelationInput[]
+    cursor?: AssignmentEventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AssignmentEventScalarFieldEnum | AssignmentEventScalarFieldEnum[]
+  }
+
+  /**
+   * SharedInbox without action
+   */
+  export type SharedInboxDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedInbox
+     */
+    select?: SharedInboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SharedInbox
+     */
+    omit?: SharedInboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedInboxInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ThreadAssignment
+   */
+
+  export type AggregateThreadAssignment = {
+    _count: ThreadAssignmentCountAggregateOutputType | null
+    _min: ThreadAssignmentMinAggregateOutputType | null
+    _max: ThreadAssignmentMaxAggregateOutputType | null
+  }
+
+  export type ThreadAssignmentMinAggregateOutputType = {
+    id: string | null
+    sharedInboxId: string | null
+    threadId: string | null
+    assigneeUserId: string | null
+    status: string | null
+    updatedByUserId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ThreadAssignmentMaxAggregateOutputType = {
+    id: string | null
+    sharedInboxId: string | null
+    threadId: string | null
+    assigneeUserId: string | null
+    status: string | null
+    updatedByUserId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ThreadAssignmentCountAggregateOutputType = {
+    id: number
+    sharedInboxId: number
+    threadId: number
+    assigneeUserId: number
+    status: number
+    updatedByUserId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ThreadAssignmentMinAggregateInputType = {
+    id?: true
+    sharedInboxId?: true
+    threadId?: true
+    assigneeUserId?: true
+    status?: true
+    updatedByUserId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ThreadAssignmentMaxAggregateInputType = {
+    id?: true
+    sharedInboxId?: true
+    threadId?: true
+    assigneeUserId?: true
+    status?: true
+    updatedByUserId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ThreadAssignmentCountAggregateInputType = {
+    id?: true
+    sharedInboxId?: true
+    threadId?: true
+    assigneeUserId?: true
+    status?: true
+    updatedByUserId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ThreadAssignmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ThreadAssignment to aggregate.
+     */
+    where?: ThreadAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadAssignments to fetch.
+     */
+    orderBy?: ThreadAssignmentOrderByWithRelationInput | ThreadAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ThreadAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ThreadAssignments
+    **/
+    _count?: true | ThreadAssignmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ThreadAssignmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ThreadAssignmentMaxAggregateInputType
+  }
+
+  export type GetThreadAssignmentAggregateType<T extends ThreadAssignmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateThreadAssignment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateThreadAssignment[P]>
+      : GetScalarType<T[P], AggregateThreadAssignment[P]>
+  }
+
+
+
+
+  export type ThreadAssignmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ThreadAssignmentWhereInput
+    orderBy?: ThreadAssignmentOrderByWithAggregationInput | ThreadAssignmentOrderByWithAggregationInput[]
+    by: ThreadAssignmentScalarFieldEnum[] | ThreadAssignmentScalarFieldEnum
+    having?: ThreadAssignmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ThreadAssignmentCountAggregateInputType | true
+    _min?: ThreadAssignmentMinAggregateInputType
+    _max?: ThreadAssignmentMaxAggregateInputType
+  }
+
+  export type ThreadAssignmentGroupByOutputType = {
+    id: string
+    sharedInboxId: string
+    threadId: string
+    assigneeUserId: string | null
+    status: string
+    updatedByUserId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ThreadAssignmentCountAggregateOutputType | null
+    _min: ThreadAssignmentMinAggregateOutputType | null
+    _max: ThreadAssignmentMaxAggregateOutputType | null
+  }
+
+  type GetThreadAssignmentGroupByPayload<T extends ThreadAssignmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ThreadAssignmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ThreadAssignmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ThreadAssignmentGroupByOutputType[P]>
+            : GetScalarType<T[P], ThreadAssignmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ThreadAssignmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    assigneeUserId?: boolean
+    status?: boolean
+    updatedByUserId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["threadAssignment"]>
+
+  export type ThreadAssignmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    assigneeUserId?: boolean
+    status?: boolean
+    updatedByUserId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["threadAssignment"]>
+
+  export type ThreadAssignmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    assigneeUserId?: boolean
+    status?: boolean
+    updatedByUserId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["threadAssignment"]>
+
+  export type ThreadAssignmentSelectScalar = {
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    assigneeUserId?: boolean
+    status?: boolean
+    updatedByUserId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ThreadAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sharedInboxId" | "threadId" | "assigneeUserId" | "status" | "updatedByUserId" | "createdAt" | "updatedAt", ExtArgs["result"]["threadAssignment"]>
+  export type ThreadAssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }
+  export type ThreadAssignmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }
+  export type ThreadAssignmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }
+
+  export type $ThreadAssignmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ThreadAssignment"
+    objects: {
+      sharedInbox: Prisma.$SharedInboxPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sharedInboxId: string
+      threadId: string
+      assigneeUserId: string | null
+      status: string
+      updatedByUserId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["threadAssignment"]>
+    composites: {}
+  }
+
+  type ThreadAssignmentGetPayload<S extends boolean | null | undefined | ThreadAssignmentDefaultArgs> = $Result.GetResult<Prisma.$ThreadAssignmentPayload, S>
+
+  type ThreadAssignmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ThreadAssignmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ThreadAssignmentCountAggregateInputType | true
+    }
+
+  export interface ThreadAssignmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ThreadAssignment'], meta: { name: 'ThreadAssignment' } }
+    /**
+     * Find zero or one ThreadAssignment that matches the filter.
+     * @param {ThreadAssignmentFindUniqueArgs} args - Arguments to find a ThreadAssignment
+     * @example
+     * // Get one ThreadAssignment
+     * const threadAssignment = await prisma.threadAssignment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ThreadAssignmentFindUniqueArgs>(args: SelectSubset<T, ThreadAssignmentFindUniqueArgs<ExtArgs>>): Prisma__ThreadAssignmentClient<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ThreadAssignment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ThreadAssignmentFindUniqueOrThrowArgs} args - Arguments to find a ThreadAssignment
+     * @example
+     * // Get one ThreadAssignment
+     * const threadAssignment = await prisma.threadAssignment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ThreadAssignmentFindUniqueOrThrowArgs>(args: SelectSubset<T, ThreadAssignmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ThreadAssignmentClient<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ThreadAssignment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadAssignmentFindFirstArgs} args - Arguments to find a ThreadAssignment
+     * @example
+     * // Get one ThreadAssignment
+     * const threadAssignment = await prisma.threadAssignment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ThreadAssignmentFindFirstArgs>(args?: SelectSubset<T, ThreadAssignmentFindFirstArgs<ExtArgs>>): Prisma__ThreadAssignmentClient<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ThreadAssignment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadAssignmentFindFirstOrThrowArgs} args - Arguments to find a ThreadAssignment
+     * @example
+     * // Get one ThreadAssignment
+     * const threadAssignment = await prisma.threadAssignment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ThreadAssignmentFindFirstOrThrowArgs>(args?: SelectSubset<T, ThreadAssignmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__ThreadAssignmentClient<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ThreadAssignments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadAssignmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ThreadAssignments
+     * const threadAssignments = await prisma.threadAssignment.findMany()
+     * 
+     * // Get first 10 ThreadAssignments
+     * const threadAssignments = await prisma.threadAssignment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const threadAssignmentWithIdOnly = await prisma.threadAssignment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ThreadAssignmentFindManyArgs>(args?: SelectSubset<T, ThreadAssignmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ThreadAssignment.
+     * @param {ThreadAssignmentCreateArgs} args - Arguments to create a ThreadAssignment.
+     * @example
+     * // Create one ThreadAssignment
+     * const ThreadAssignment = await prisma.threadAssignment.create({
+     *   data: {
+     *     // ... data to create a ThreadAssignment
+     *   }
+     * })
+     * 
+     */
+    create<T extends ThreadAssignmentCreateArgs>(args: SelectSubset<T, ThreadAssignmentCreateArgs<ExtArgs>>): Prisma__ThreadAssignmentClient<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ThreadAssignments.
+     * @param {ThreadAssignmentCreateManyArgs} args - Arguments to create many ThreadAssignments.
+     * @example
+     * // Create many ThreadAssignments
+     * const threadAssignment = await prisma.threadAssignment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ThreadAssignmentCreateManyArgs>(args?: SelectSubset<T, ThreadAssignmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ThreadAssignments and returns the data saved in the database.
+     * @param {ThreadAssignmentCreateManyAndReturnArgs} args - Arguments to create many ThreadAssignments.
+     * @example
+     * // Create many ThreadAssignments
+     * const threadAssignment = await prisma.threadAssignment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ThreadAssignments and only return the `id`
+     * const threadAssignmentWithIdOnly = await prisma.threadAssignment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ThreadAssignmentCreateManyAndReturnArgs>(args?: SelectSubset<T, ThreadAssignmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ThreadAssignment.
+     * @param {ThreadAssignmentDeleteArgs} args - Arguments to delete one ThreadAssignment.
+     * @example
+     * // Delete one ThreadAssignment
+     * const ThreadAssignment = await prisma.threadAssignment.delete({
+     *   where: {
+     *     // ... filter to delete one ThreadAssignment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ThreadAssignmentDeleteArgs>(args: SelectSubset<T, ThreadAssignmentDeleteArgs<ExtArgs>>): Prisma__ThreadAssignmentClient<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ThreadAssignment.
+     * @param {ThreadAssignmentUpdateArgs} args - Arguments to update one ThreadAssignment.
+     * @example
+     * // Update one ThreadAssignment
+     * const threadAssignment = await prisma.threadAssignment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ThreadAssignmentUpdateArgs>(args: SelectSubset<T, ThreadAssignmentUpdateArgs<ExtArgs>>): Prisma__ThreadAssignmentClient<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ThreadAssignments.
+     * @param {ThreadAssignmentDeleteManyArgs} args - Arguments to filter ThreadAssignments to delete.
+     * @example
+     * // Delete a few ThreadAssignments
+     * const { count } = await prisma.threadAssignment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ThreadAssignmentDeleteManyArgs>(args?: SelectSubset<T, ThreadAssignmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ThreadAssignments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadAssignmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ThreadAssignments
+     * const threadAssignment = await prisma.threadAssignment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ThreadAssignmentUpdateManyArgs>(args: SelectSubset<T, ThreadAssignmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ThreadAssignments and returns the data updated in the database.
+     * @param {ThreadAssignmentUpdateManyAndReturnArgs} args - Arguments to update many ThreadAssignments.
+     * @example
+     * // Update many ThreadAssignments
+     * const threadAssignment = await prisma.threadAssignment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ThreadAssignments and only return the `id`
+     * const threadAssignmentWithIdOnly = await prisma.threadAssignment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ThreadAssignmentUpdateManyAndReturnArgs>(args: SelectSubset<T, ThreadAssignmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ThreadAssignment.
+     * @param {ThreadAssignmentUpsertArgs} args - Arguments to update or create a ThreadAssignment.
+     * @example
+     * // Update or create a ThreadAssignment
+     * const threadAssignment = await prisma.threadAssignment.upsert({
+     *   create: {
+     *     // ... data to create a ThreadAssignment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ThreadAssignment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ThreadAssignmentUpsertArgs>(args: SelectSubset<T, ThreadAssignmentUpsertArgs<ExtArgs>>): Prisma__ThreadAssignmentClient<$Result.GetResult<Prisma.$ThreadAssignmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ThreadAssignments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadAssignmentCountArgs} args - Arguments to filter ThreadAssignments to count.
+     * @example
+     * // Count the number of ThreadAssignments
+     * const count = await prisma.threadAssignment.count({
+     *   where: {
+     *     // ... the filter for the ThreadAssignments we want to count
+     *   }
+     * })
+    **/
+    count<T extends ThreadAssignmentCountArgs>(
+      args?: Subset<T, ThreadAssignmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ThreadAssignmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ThreadAssignment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadAssignmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ThreadAssignmentAggregateArgs>(args: Subset<T, ThreadAssignmentAggregateArgs>): Prisma.PrismaPromise<GetThreadAssignmentAggregateType<T>>
+
+    /**
+     * Group by ThreadAssignment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadAssignmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ThreadAssignmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ThreadAssignmentGroupByArgs['orderBy'] }
+        : { orderBy?: ThreadAssignmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ThreadAssignmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetThreadAssignmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ThreadAssignment model
+   */
+  readonly fields: ThreadAssignmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ThreadAssignment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ThreadAssignmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    sharedInbox<T extends SharedInboxDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SharedInboxDefaultArgs<ExtArgs>>): Prisma__SharedInboxClient<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ThreadAssignment model
+   */
+  interface ThreadAssignmentFieldRefs {
+    readonly id: FieldRef<"ThreadAssignment", 'String'>
+    readonly sharedInboxId: FieldRef<"ThreadAssignment", 'String'>
+    readonly threadId: FieldRef<"ThreadAssignment", 'String'>
+    readonly assigneeUserId: FieldRef<"ThreadAssignment", 'String'>
+    readonly status: FieldRef<"ThreadAssignment", 'String'>
+    readonly updatedByUserId: FieldRef<"ThreadAssignment", 'String'>
+    readonly createdAt: FieldRef<"ThreadAssignment", 'DateTime'>
+    readonly updatedAt: FieldRef<"ThreadAssignment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ThreadAssignment findUnique
+   */
+  export type ThreadAssignmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadAssignment to fetch.
+     */
+    where: ThreadAssignmentWhereUniqueInput
+  }
+
+  /**
+   * ThreadAssignment findUniqueOrThrow
+   */
+  export type ThreadAssignmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadAssignment to fetch.
+     */
+    where: ThreadAssignmentWhereUniqueInput
+  }
+
+  /**
+   * ThreadAssignment findFirst
+   */
+  export type ThreadAssignmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadAssignment to fetch.
+     */
+    where?: ThreadAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadAssignments to fetch.
+     */
+    orderBy?: ThreadAssignmentOrderByWithRelationInput | ThreadAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ThreadAssignments.
+     */
+    cursor?: ThreadAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ThreadAssignments.
+     */
+    distinct?: ThreadAssignmentScalarFieldEnum | ThreadAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * ThreadAssignment findFirstOrThrow
+   */
+  export type ThreadAssignmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadAssignment to fetch.
+     */
+    where?: ThreadAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadAssignments to fetch.
+     */
+    orderBy?: ThreadAssignmentOrderByWithRelationInput | ThreadAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ThreadAssignments.
+     */
+    cursor?: ThreadAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ThreadAssignments.
+     */
+    distinct?: ThreadAssignmentScalarFieldEnum | ThreadAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * ThreadAssignment findMany
+   */
+  export type ThreadAssignmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadAssignments to fetch.
+     */
+    where?: ThreadAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadAssignments to fetch.
+     */
+    orderBy?: ThreadAssignmentOrderByWithRelationInput | ThreadAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ThreadAssignments.
+     */
+    cursor?: ThreadAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadAssignments.
+     */
+    skip?: number
+    distinct?: ThreadAssignmentScalarFieldEnum | ThreadAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * ThreadAssignment create
+   */
+  export type ThreadAssignmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ThreadAssignment.
+     */
+    data: XOR<ThreadAssignmentCreateInput, ThreadAssignmentUncheckedCreateInput>
+  }
+
+  /**
+   * ThreadAssignment createMany
+   */
+  export type ThreadAssignmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ThreadAssignments.
+     */
+    data: ThreadAssignmentCreateManyInput | ThreadAssignmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ThreadAssignment createManyAndReturn
+   */
+  export type ThreadAssignmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many ThreadAssignments.
+     */
+    data: ThreadAssignmentCreateManyInput | ThreadAssignmentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ThreadAssignment update
+   */
+  export type ThreadAssignmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ThreadAssignment.
+     */
+    data: XOR<ThreadAssignmentUpdateInput, ThreadAssignmentUncheckedUpdateInput>
+    /**
+     * Choose, which ThreadAssignment to update.
+     */
+    where: ThreadAssignmentWhereUniqueInput
+  }
+
+  /**
+   * ThreadAssignment updateMany
+   */
+  export type ThreadAssignmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ThreadAssignments.
+     */
+    data: XOR<ThreadAssignmentUpdateManyMutationInput, ThreadAssignmentUncheckedUpdateManyInput>
+    /**
+     * Filter which ThreadAssignments to update
+     */
+    where?: ThreadAssignmentWhereInput
+    /**
+     * Limit how many ThreadAssignments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ThreadAssignment updateManyAndReturn
+   */
+  export type ThreadAssignmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * The data used to update ThreadAssignments.
+     */
+    data: XOR<ThreadAssignmentUpdateManyMutationInput, ThreadAssignmentUncheckedUpdateManyInput>
+    /**
+     * Filter which ThreadAssignments to update
+     */
+    where?: ThreadAssignmentWhereInput
+    /**
+     * Limit how many ThreadAssignments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ThreadAssignment upsert
+   */
+  export type ThreadAssignmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ThreadAssignment to update in case it exists.
+     */
+    where: ThreadAssignmentWhereUniqueInput
+    /**
+     * In case the ThreadAssignment found by the `where` argument doesn't exist, create a new ThreadAssignment with this data.
+     */
+    create: XOR<ThreadAssignmentCreateInput, ThreadAssignmentUncheckedCreateInput>
+    /**
+     * In case the ThreadAssignment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ThreadAssignmentUpdateInput, ThreadAssignmentUncheckedUpdateInput>
+  }
+
+  /**
+   * ThreadAssignment delete
+   */
+  export type ThreadAssignmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter which ThreadAssignment to delete.
+     */
+    where: ThreadAssignmentWhereUniqueInput
+  }
+
+  /**
+   * ThreadAssignment deleteMany
+   */
+  export type ThreadAssignmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ThreadAssignments to delete
+     */
+    where?: ThreadAssignmentWhereInput
+    /**
+     * Limit how many ThreadAssignments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ThreadAssignment without action
+   */
+  export type ThreadAssignmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadAssignment
+     */
+    select?: ThreadAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadAssignment
+     */
+    omit?: ThreadAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadAssignmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ThreadComment
+   */
+
+  export type AggregateThreadComment = {
+    _count: ThreadCommentCountAggregateOutputType | null
+    _min: ThreadCommentMinAggregateOutputType | null
+    _max: ThreadCommentMaxAggregateOutputType | null
+  }
+
+  export type ThreadCommentMinAggregateOutputType = {
+    id: string | null
+    sharedInboxId: string | null
+    threadId: string | null
+    authorUserId: string | null
+    body: string | null
+    createdAt: Date | null
+  }
+
+  export type ThreadCommentMaxAggregateOutputType = {
+    id: string | null
+    sharedInboxId: string | null
+    threadId: string | null
+    authorUserId: string | null
+    body: string | null
+    createdAt: Date | null
+  }
+
+  export type ThreadCommentCountAggregateOutputType = {
+    id: number
+    sharedInboxId: number
+    threadId: number
+    authorUserId: number
+    body: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ThreadCommentMinAggregateInputType = {
+    id?: true
+    sharedInboxId?: true
+    threadId?: true
+    authorUserId?: true
+    body?: true
+    createdAt?: true
+  }
+
+  export type ThreadCommentMaxAggregateInputType = {
+    id?: true
+    sharedInboxId?: true
+    threadId?: true
+    authorUserId?: true
+    body?: true
+    createdAt?: true
+  }
+
+  export type ThreadCommentCountAggregateInputType = {
+    id?: true
+    sharedInboxId?: true
+    threadId?: true
+    authorUserId?: true
+    body?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ThreadCommentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ThreadComment to aggregate.
+     */
+    where?: ThreadCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadComments to fetch.
+     */
+    orderBy?: ThreadCommentOrderByWithRelationInput | ThreadCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ThreadCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadComments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ThreadComments
+    **/
+    _count?: true | ThreadCommentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ThreadCommentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ThreadCommentMaxAggregateInputType
+  }
+
+  export type GetThreadCommentAggregateType<T extends ThreadCommentAggregateArgs> = {
+        [P in keyof T & keyof AggregateThreadComment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateThreadComment[P]>
+      : GetScalarType<T[P], AggregateThreadComment[P]>
+  }
+
+
+
+
+  export type ThreadCommentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ThreadCommentWhereInput
+    orderBy?: ThreadCommentOrderByWithAggregationInput | ThreadCommentOrderByWithAggregationInput[]
+    by: ThreadCommentScalarFieldEnum[] | ThreadCommentScalarFieldEnum
+    having?: ThreadCommentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ThreadCommentCountAggregateInputType | true
+    _min?: ThreadCommentMinAggregateInputType
+    _max?: ThreadCommentMaxAggregateInputType
+  }
+
+  export type ThreadCommentGroupByOutputType = {
+    id: string
+    sharedInboxId: string
+    threadId: string
+    authorUserId: string
+    body: string
+    createdAt: Date
+    _count: ThreadCommentCountAggregateOutputType | null
+    _min: ThreadCommentMinAggregateOutputType | null
+    _max: ThreadCommentMaxAggregateOutputType | null
+  }
+
+  type GetThreadCommentGroupByPayload<T extends ThreadCommentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ThreadCommentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ThreadCommentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ThreadCommentGroupByOutputType[P]>
+            : GetScalarType<T[P], ThreadCommentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ThreadCommentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    authorUserId?: boolean
+    body?: boolean
+    createdAt?: boolean
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["threadComment"]>
+
+  export type ThreadCommentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    authorUserId?: boolean
+    body?: boolean
+    createdAt?: boolean
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["threadComment"]>
+
+  export type ThreadCommentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    authorUserId?: boolean
+    body?: boolean
+    createdAt?: boolean
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["threadComment"]>
+
+  export type ThreadCommentSelectScalar = {
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    authorUserId?: boolean
+    body?: boolean
+    createdAt?: boolean
+  }
+
+  export type ThreadCommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sharedInboxId" | "threadId" | "authorUserId" | "body" | "createdAt", ExtArgs["result"]["threadComment"]>
+  export type ThreadCommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }
+  export type ThreadCommentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }
+  export type ThreadCommentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }
+
+  export type $ThreadCommentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ThreadComment"
+    objects: {
+      sharedInbox: Prisma.$SharedInboxPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sharedInboxId: string
+      threadId: string
+      authorUserId: string
+      body: string
+      createdAt: Date
+    }, ExtArgs["result"]["threadComment"]>
+    composites: {}
+  }
+
+  type ThreadCommentGetPayload<S extends boolean | null | undefined | ThreadCommentDefaultArgs> = $Result.GetResult<Prisma.$ThreadCommentPayload, S>
+
+  type ThreadCommentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ThreadCommentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ThreadCommentCountAggregateInputType | true
+    }
+
+  export interface ThreadCommentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ThreadComment'], meta: { name: 'ThreadComment' } }
+    /**
+     * Find zero or one ThreadComment that matches the filter.
+     * @param {ThreadCommentFindUniqueArgs} args - Arguments to find a ThreadComment
+     * @example
+     * // Get one ThreadComment
+     * const threadComment = await prisma.threadComment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ThreadCommentFindUniqueArgs>(args: SelectSubset<T, ThreadCommentFindUniqueArgs<ExtArgs>>): Prisma__ThreadCommentClient<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ThreadComment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ThreadCommentFindUniqueOrThrowArgs} args - Arguments to find a ThreadComment
+     * @example
+     * // Get one ThreadComment
+     * const threadComment = await prisma.threadComment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ThreadCommentFindUniqueOrThrowArgs>(args: SelectSubset<T, ThreadCommentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ThreadCommentClient<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ThreadComment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadCommentFindFirstArgs} args - Arguments to find a ThreadComment
+     * @example
+     * // Get one ThreadComment
+     * const threadComment = await prisma.threadComment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ThreadCommentFindFirstArgs>(args?: SelectSubset<T, ThreadCommentFindFirstArgs<ExtArgs>>): Prisma__ThreadCommentClient<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ThreadComment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadCommentFindFirstOrThrowArgs} args - Arguments to find a ThreadComment
+     * @example
+     * // Get one ThreadComment
+     * const threadComment = await prisma.threadComment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ThreadCommentFindFirstOrThrowArgs>(args?: SelectSubset<T, ThreadCommentFindFirstOrThrowArgs<ExtArgs>>): Prisma__ThreadCommentClient<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ThreadComments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadCommentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ThreadComments
+     * const threadComments = await prisma.threadComment.findMany()
+     * 
+     * // Get first 10 ThreadComments
+     * const threadComments = await prisma.threadComment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const threadCommentWithIdOnly = await prisma.threadComment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ThreadCommentFindManyArgs>(args?: SelectSubset<T, ThreadCommentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ThreadComment.
+     * @param {ThreadCommentCreateArgs} args - Arguments to create a ThreadComment.
+     * @example
+     * // Create one ThreadComment
+     * const ThreadComment = await prisma.threadComment.create({
+     *   data: {
+     *     // ... data to create a ThreadComment
+     *   }
+     * })
+     * 
+     */
+    create<T extends ThreadCommentCreateArgs>(args: SelectSubset<T, ThreadCommentCreateArgs<ExtArgs>>): Prisma__ThreadCommentClient<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ThreadComments.
+     * @param {ThreadCommentCreateManyArgs} args - Arguments to create many ThreadComments.
+     * @example
+     * // Create many ThreadComments
+     * const threadComment = await prisma.threadComment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ThreadCommentCreateManyArgs>(args?: SelectSubset<T, ThreadCommentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ThreadComments and returns the data saved in the database.
+     * @param {ThreadCommentCreateManyAndReturnArgs} args - Arguments to create many ThreadComments.
+     * @example
+     * // Create many ThreadComments
+     * const threadComment = await prisma.threadComment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ThreadComments and only return the `id`
+     * const threadCommentWithIdOnly = await prisma.threadComment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ThreadCommentCreateManyAndReturnArgs>(args?: SelectSubset<T, ThreadCommentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ThreadComment.
+     * @param {ThreadCommentDeleteArgs} args - Arguments to delete one ThreadComment.
+     * @example
+     * // Delete one ThreadComment
+     * const ThreadComment = await prisma.threadComment.delete({
+     *   where: {
+     *     // ... filter to delete one ThreadComment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ThreadCommentDeleteArgs>(args: SelectSubset<T, ThreadCommentDeleteArgs<ExtArgs>>): Prisma__ThreadCommentClient<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ThreadComment.
+     * @param {ThreadCommentUpdateArgs} args - Arguments to update one ThreadComment.
+     * @example
+     * // Update one ThreadComment
+     * const threadComment = await prisma.threadComment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ThreadCommentUpdateArgs>(args: SelectSubset<T, ThreadCommentUpdateArgs<ExtArgs>>): Prisma__ThreadCommentClient<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ThreadComments.
+     * @param {ThreadCommentDeleteManyArgs} args - Arguments to filter ThreadComments to delete.
+     * @example
+     * // Delete a few ThreadComments
+     * const { count } = await prisma.threadComment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ThreadCommentDeleteManyArgs>(args?: SelectSubset<T, ThreadCommentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ThreadComments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadCommentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ThreadComments
+     * const threadComment = await prisma.threadComment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ThreadCommentUpdateManyArgs>(args: SelectSubset<T, ThreadCommentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ThreadComments and returns the data updated in the database.
+     * @param {ThreadCommentUpdateManyAndReturnArgs} args - Arguments to update many ThreadComments.
+     * @example
+     * // Update many ThreadComments
+     * const threadComment = await prisma.threadComment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ThreadComments and only return the `id`
+     * const threadCommentWithIdOnly = await prisma.threadComment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ThreadCommentUpdateManyAndReturnArgs>(args: SelectSubset<T, ThreadCommentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ThreadComment.
+     * @param {ThreadCommentUpsertArgs} args - Arguments to update or create a ThreadComment.
+     * @example
+     * // Update or create a ThreadComment
+     * const threadComment = await prisma.threadComment.upsert({
+     *   create: {
+     *     // ... data to create a ThreadComment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ThreadComment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ThreadCommentUpsertArgs>(args: SelectSubset<T, ThreadCommentUpsertArgs<ExtArgs>>): Prisma__ThreadCommentClient<$Result.GetResult<Prisma.$ThreadCommentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ThreadComments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadCommentCountArgs} args - Arguments to filter ThreadComments to count.
+     * @example
+     * // Count the number of ThreadComments
+     * const count = await prisma.threadComment.count({
+     *   where: {
+     *     // ... the filter for the ThreadComments we want to count
+     *   }
+     * })
+    **/
+    count<T extends ThreadCommentCountArgs>(
+      args?: Subset<T, ThreadCommentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ThreadCommentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ThreadComment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadCommentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ThreadCommentAggregateArgs>(args: Subset<T, ThreadCommentAggregateArgs>): Prisma.PrismaPromise<GetThreadCommentAggregateType<T>>
+
+    /**
+     * Group by ThreadComment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadCommentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ThreadCommentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ThreadCommentGroupByArgs['orderBy'] }
+        : { orderBy?: ThreadCommentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ThreadCommentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetThreadCommentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ThreadComment model
+   */
+  readonly fields: ThreadCommentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ThreadComment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ThreadCommentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    sharedInbox<T extends SharedInboxDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SharedInboxDefaultArgs<ExtArgs>>): Prisma__SharedInboxClient<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ThreadComment model
+   */
+  interface ThreadCommentFieldRefs {
+    readonly id: FieldRef<"ThreadComment", 'String'>
+    readonly sharedInboxId: FieldRef<"ThreadComment", 'String'>
+    readonly threadId: FieldRef<"ThreadComment", 'String'>
+    readonly authorUserId: FieldRef<"ThreadComment", 'String'>
+    readonly body: FieldRef<"ThreadComment", 'String'>
+    readonly createdAt: FieldRef<"ThreadComment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ThreadComment findUnique
+   */
+  export type ThreadCommentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadComment to fetch.
+     */
+    where: ThreadCommentWhereUniqueInput
+  }
+
+  /**
+   * ThreadComment findUniqueOrThrow
+   */
+  export type ThreadCommentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadComment to fetch.
+     */
+    where: ThreadCommentWhereUniqueInput
+  }
+
+  /**
+   * ThreadComment findFirst
+   */
+  export type ThreadCommentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadComment to fetch.
+     */
+    where?: ThreadCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadComments to fetch.
+     */
+    orderBy?: ThreadCommentOrderByWithRelationInput | ThreadCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ThreadComments.
+     */
+    cursor?: ThreadCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadComments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ThreadComments.
+     */
+    distinct?: ThreadCommentScalarFieldEnum | ThreadCommentScalarFieldEnum[]
+  }
+
+  /**
+   * ThreadComment findFirstOrThrow
+   */
+  export type ThreadCommentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadComment to fetch.
+     */
+    where?: ThreadCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadComments to fetch.
+     */
+    orderBy?: ThreadCommentOrderByWithRelationInput | ThreadCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ThreadComments.
+     */
+    cursor?: ThreadCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadComments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ThreadComments.
+     */
+    distinct?: ThreadCommentScalarFieldEnum | ThreadCommentScalarFieldEnum[]
+  }
+
+  /**
+   * ThreadComment findMany
+   */
+  export type ThreadCommentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadComments to fetch.
+     */
+    where?: ThreadCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadComments to fetch.
+     */
+    orderBy?: ThreadCommentOrderByWithRelationInput | ThreadCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ThreadComments.
+     */
+    cursor?: ThreadCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadComments.
+     */
+    skip?: number
+    distinct?: ThreadCommentScalarFieldEnum | ThreadCommentScalarFieldEnum[]
+  }
+
+  /**
+   * ThreadComment create
+   */
+  export type ThreadCommentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ThreadComment.
+     */
+    data: XOR<ThreadCommentCreateInput, ThreadCommentUncheckedCreateInput>
+  }
+
+  /**
+   * ThreadComment createMany
+   */
+  export type ThreadCommentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ThreadComments.
+     */
+    data: ThreadCommentCreateManyInput | ThreadCommentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ThreadComment createManyAndReturn
+   */
+  export type ThreadCommentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * The data used to create many ThreadComments.
+     */
+    data: ThreadCommentCreateManyInput | ThreadCommentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ThreadComment update
+   */
+  export type ThreadCommentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ThreadComment.
+     */
+    data: XOR<ThreadCommentUpdateInput, ThreadCommentUncheckedUpdateInput>
+    /**
+     * Choose, which ThreadComment to update.
+     */
+    where: ThreadCommentWhereUniqueInput
+  }
+
+  /**
+   * ThreadComment updateMany
+   */
+  export type ThreadCommentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ThreadComments.
+     */
+    data: XOR<ThreadCommentUpdateManyMutationInput, ThreadCommentUncheckedUpdateManyInput>
+    /**
+     * Filter which ThreadComments to update
+     */
+    where?: ThreadCommentWhereInput
+    /**
+     * Limit how many ThreadComments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ThreadComment updateManyAndReturn
+   */
+  export type ThreadCommentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * The data used to update ThreadComments.
+     */
+    data: XOR<ThreadCommentUpdateManyMutationInput, ThreadCommentUncheckedUpdateManyInput>
+    /**
+     * Filter which ThreadComments to update
+     */
+    where?: ThreadCommentWhereInput
+    /**
+     * Limit how many ThreadComments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ThreadComment upsert
+   */
+  export type ThreadCommentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ThreadComment to update in case it exists.
+     */
+    where: ThreadCommentWhereUniqueInput
+    /**
+     * In case the ThreadComment found by the `where` argument doesn't exist, create a new ThreadComment with this data.
+     */
+    create: XOR<ThreadCommentCreateInput, ThreadCommentUncheckedCreateInput>
+    /**
+     * In case the ThreadComment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ThreadCommentUpdateInput, ThreadCommentUncheckedUpdateInput>
+  }
+
+  /**
+   * ThreadComment delete
+   */
+  export type ThreadCommentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentInclude<ExtArgs> | null
+    /**
+     * Filter which ThreadComment to delete.
+     */
+    where: ThreadCommentWhereUniqueInput
+  }
+
+  /**
+   * ThreadComment deleteMany
+   */
+  export type ThreadCommentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ThreadComments to delete
+     */
+    where?: ThreadCommentWhereInput
+    /**
+     * Limit how many ThreadComments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ThreadComment without action
+   */
+  export type ThreadCommentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadComment
+     */
+    select?: ThreadCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadComment
+     */
+    omit?: ThreadCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadCommentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AssignmentEvent
+   */
+
+  export type AggregateAssignmentEvent = {
+    _count: AssignmentEventCountAggregateOutputType | null
+    _min: AssignmentEventMinAggregateOutputType | null
+    _max: AssignmentEventMaxAggregateOutputType | null
+  }
+
+  export type AssignmentEventMinAggregateOutputType = {
+    id: string | null
+    sharedInboxId: string | null
+    threadId: string | null
+    actorUserId: string | null
+    kind: string | null
+    createdAt: Date | null
+  }
+
+  export type AssignmentEventMaxAggregateOutputType = {
+    id: string | null
+    sharedInboxId: string | null
+    threadId: string | null
+    actorUserId: string | null
+    kind: string | null
+    createdAt: Date | null
+  }
+
+  export type AssignmentEventCountAggregateOutputType = {
+    id: number
+    sharedInboxId: number
+    threadId: number
+    actorUserId: number
+    kind: number
+    meta: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AssignmentEventMinAggregateInputType = {
+    id?: true
+    sharedInboxId?: true
+    threadId?: true
+    actorUserId?: true
+    kind?: true
+    createdAt?: true
+  }
+
+  export type AssignmentEventMaxAggregateInputType = {
+    id?: true
+    sharedInboxId?: true
+    threadId?: true
+    actorUserId?: true
+    kind?: true
+    createdAt?: true
+  }
+
+  export type AssignmentEventCountAggregateInputType = {
+    id?: true
+    sharedInboxId?: true
+    threadId?: true
+    actorUserId?: true
+    kind?: true
+    meta?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AssignmentEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AssignmentEvent to aggregate.
+     */
+    where?: AssignmentEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AssignmentEvents to fetch.
+     */
+    orderBy?: AssignmentEventOrderByWithRelationInput | AssignmentEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AssignmentEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AssignmentEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AssignmentEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AssignmentEvents
+    **/
+    _count?: true | AssignmentEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AssignmentEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AssignmentEventMaxAggregateInputType
+  }
+
+  export type GetAssignmentEventAggregateType<T extends AssignmentEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateAssignmentEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAssignmentEvent[P]>
+      : GetScalarType<T[P], AggregateAssignmentEvent[P]>
+  }
+
+
+
+
+  export type AssignmentEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AssignmentEventWhereInput
+    orderBy?: AssignmentEventOrderByWithAggregationInput | AssignmentEventOrderByWithAggregationInput[]
+    by: AssignmentEventScalarFieldEnum[] | AssignmentEventScalarFieldEnum
+    having?: AssignmentEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AssignmentEventCountAggregateInputType | true
+    _min?: AssignmentEventMinAggregateInputType
+    _max?: AssignmentEventMaxAggregateInputType
+  }
+
+  export type AssignmentEventGroupByOutputType = {
+    id: string
+    sharedInboxId: string
+    threadId: string
+    actorUserId: string
+    kind: string
+    meta: JsonValue
+    createdAt: Date
+    _count: AssignmentEventCountAggregateOutputType | null
+    _min: AssignmentEventMinAggregateOutputType | null
+    _max: AssignmentEventMaxAggregateOutputType | null
+  }
+
+  type GetAssignmentEventGroupByPayload<T extends AssignmentEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AssignmentEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AssignmentEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AssignmentEventGroupByOutputType[P]>
+            : GetScalarType<T[P], AssignmentEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AssignmentEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    actorUserId?: boolean
+    kind?: boolean
+    meta?: boolean
+    createdAt?: boolean
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["assignmentEvent"]>
+
+  export type AssignmentEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    actorUserId?: boolean
+    kind?: boolean
+    meta?: boolean
+    createdAt?: boolean
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["assignmentEvent"]>
+
+  export type AssignmentEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    actorUserId?: boolean
+    kind?: boolean
+    meta?: boolean
+    createdAt?: boolean
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["assignmentEvent"]>
+
+  export type AssignmentEventSelectScalar = {
+    id?: boolean
+    sharedInboxId?: boolean
+    threadId?: boolean
+    actorUserId?: boolean
+    kind?: boolean
+    meta?: boolean
+    createdAt?: boolean
+  }
+
+  export type AssignmentEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sharedInboxId" | "threadId" | "actorUserId" | "kind" | "meta" | "createdAt", ExtArgs["result"]["assignmentEvent"]>
+  export type AssignmentEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }
+  export type AssignmentEventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }
+  export type AssignmentEventIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
+  }
+
+  export type $AssignmentEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AssignmentEvent"
+    objects: {
+      sharedInbox: Prisma.$SharedInboxPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sharedInboxId: string
+      threadId: string
+      actorUserId: string
+      kind: string
+      meta: Prisma.JsonValue
+      createdAt: Date
+    }, ExtArgs["result"]["assignmentEvent"]>
+    composites: {}
+  }
+
+  type AssignmentEventGetPayload<S extends boolean | null | undefined | AssignmentEventDefaultArgs> = $Result.GetResult<Prisma.$AssignmentEventPayload, S>
+
+  type AssignmentEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AssignmentEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AssignmentEventCountAggregateInputType | true
+    }
+
+  export interface AssignmentEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AssignmentEvent'], meta: { name: 'AssignmentEvent' } }
+    /**
+     * Find zero or one AssignmentEvent that matches the filter.
+     * @param {AssignmentEventFindUniqueArgs} args - Arguments to find a AssignmentEvent
+     * @example
+     * // Get one AssignmentEvent
+     * const assignmentEvent = await prisma.assignmentEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AssignmentEventFindUniqueArgs>(args: SelectSubset<T, AssignmentEventFindUniqueArgs<ExtArgs>>): Prisma__AssignmentEventClient<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AssignmentEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AssignmentEventFindUniqueOrThrowArgs} args - Arguments to find a AssignmentEvent
+     * @example
+     * // Get one AssignmentEvent
+     * const assignmentEvent = await prisma.assignmentEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AssignmentEventFindUniqueOrThrowArgs>(args: SelectSubset<T, AssignmentEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AssignmentEventClient<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AssignmentEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentEventFindFirstArgs} args - Arguments to find a AssignmentEvent
+     * @example
+     * // Get one AssignmentEvent
+     * const assignmentEvent = await prisma.assignmentEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AssignmentEventFindFirstArgs>(args?: SelectSubset<T, AssignmentEventFindFirstArgs<ExtArgs>>): Prisma__AssignmentEventClient<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AssignmentEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentEventFindFirstOrThrowArgs} args - Arguments to find a AssignmentEvent
+     * @example
+     * // Get one AssignmentEvent
+     * const assignmentEvent = await prisma.assignmentEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AssignmentEventFindFirstOrThrowArgs>(args?: SelectSubset<T, AssignmentEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__AssignmentEventClient<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AssignmentEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AssignmentEvents
+     * const assignmentEvents = await prisma.assignmentEvent.findMany()
+     * 
+     * // Get first 10 AssignmentEvents
+     * const assignmentEvents = await prisma.assignmentEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const assignmentEventWithIdOnly = await prisma.assignmentEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AssignmentEventFindManyArgs>(args?: SelectSubset<T, AssignmentEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AssignmentEvent.
+     * @param {AssignmentEventCreateArgs} args - Arguments to create a AssignmentEvent.
+     * @example
+     * // Create one AssignmentEvent
+     * const AssignmentEvent = await prisma.assignmentEvent.create({
+     *   data: {
+     *     // ... data to create a AssignmentEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends AssignmentEventCreateArgs>(args: SelectSubset<T, AssignmentEventCreateArgs<ExtArgs>>): Prisma__AssignmentEventClient<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AssignmentEvents.
+     * @param {AssignmentEventCreateManyArgs} args - Arguments to create many AssignmentEvents.
+     * @example
+     * // Create many AssignmentEvents
+     * const assignmentEvent = await prisma.assignmentEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AssignmentEventCreateManyArgs>(args?: SelectSubset<T, AssignmentEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AssignmentEvents and returns the data saved in the database.
+     * @param {AssignmentEventCreateManyAndReturnArgs} args - Arguments to create many AssignmentEvents.
+     * @example
+     * // Create many AssignmentEvents
+     * const assignmentEvent = await prisma.assignmentEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AssignmentEvents and only return the `id`
+     * const assignmentEventWithIdOnly = await prisma.assignmentEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AssignmentEventCreateManyAndReturnArgs>(args?: SelectSubset<T, AssignmentEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AssignmentEvent.
+     * @param {AssignmentEventDeleteArgs} args - Arguments to delete one AssignmentEvent.
+     * @example
+     * // Delete one AssignmentEvent
+     * const AssignmentEvent = await prisma.assignmentEvent.delete({
+     *   where: {
+     *     // ... filter to delete one AssignmentEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AssignmentEventDeleteArgs>(args: SelectSubset<T, AssignmentEventDeleteArgs<ExtArgs>>): Prisma__AssignmentEventClient<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AssignmentEvent.
+     * @param {AssignmentEventUpdateArgs} args - Arguments to update one AssignmentEvent.
+     * @example
+     * // Update one AssignmentEvent
+     * const assignmentEvent = await prisma.assignmentEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AssignmentEventUpdateArgs>(args: SelectSubset<T, AssignmentEventUpdateArgs<ExtArgs>>): Prisma__AssignmentEventClient<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AssignmentEvents.
+     * @param {AssignmentEventDeleteManyArgs} args - Arguments to filter AssignmentEvents to delete.
+     * @example
+     * // Delete a few AssignmentEvents
+     * const { count } = await prisma.assignmentEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AssignmentEventDeleteManyArgs>(args?: SelectSubset<T, AssignmentEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AssignmentEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AssignmentEvents
+     * const assignmentEvent = await prisma.assignmentEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AssignmentEventUpdateManyArgs>(args: SelectSubset<T, AssignmentEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AssignmentEvents and returns the data updated in the database.
+     * @param {AssignmentEventUpdateManyAndReturnArgs} args - Arguments to update many AssignmentEvents.
+     * @example
+     * // Update many AssignmentEvents
+     * const assignmentEvent = await prisma.assignmentEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AssignmentEvents and only return the `id`
+     * const assignmentEventWithIdOnly = await prisma.assignmentEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AssignmentEventUpdateManyAndReturnArgs>(args: SelectSubset<T, AssignmentEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AssignmentEvent.
+     * @param {AssignmentEventUpsertArgs} args - Arguments to update or create a AssignmentEvent.
+     * @example
+     * // Update or create a AssignmentEvent
+     * const assignmentEvent = await prisma.assignmentEvent.upsert({
+     *   create: {
+     *     // ... data to create a AssignmentEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AssignmentEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AssignmentEventUpsertArgs>(args: SelectSubset<T, AssignmentEventUpsertArgs<ExtArgs>>): Prisma__AssignmentEventClient<$Result.GetResult<Prisma.$AssignmentEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AssignmentEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentEventCountArgs} args - Arguments to filter AssignmentEvents to count.
+     * @example
+     * // Count the number of AssignmentEvents
+     * const count = await prisma.assignmentEvent.count({
+     *   where: {
+     *     // ... the filter for the AssignmentEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends AssignmentEventCountArgs>(
+      args?: Subset<T, AssignmentEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AssignmentEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AssignmentEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AssignmentEventAggregateArgs>(args: Subset<T, AssignmentEventAggregateArgs>): Prisma.PrismaPromise<GetAssignmentEventAggregateType<T>>
+
+    /**
+     * Group by AssignmentEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AssignmentEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AssignmentEventGroupByArgs['orderBy'] }
+        : { orderBy?: AssignmentEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AssignmentEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAssignmentEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AssignmentEvent model
+   */
+  readonly fields: AssignmentEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AssignmentEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AssignmentEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    sharedInbox<T extends SharedInboxDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SharedInboxDefaultArgs<ExtArgs>>): Prisma__SharedInboxClient<$Result.GetResult<Prisma.$SharedInboxPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AssignmentEvent model
+   */
+  interface AssignmentEventFieldRefs {
+    readonly id: FieldRef<"AssignmentEvent", 'String'>
+    readonly sharedInboxId: FieldRef<"AssignmentEvent", 'String'>
+    readonly threadId: FieldRef<"AssignmentEvent", 'String'>
+    readonly actorUserId: FieldRef<"AssignmentEvent", 'String'>
+    readonly kind: FieldRef<"AssignmentEvent", 'String'>
+    readonly meta: FieldRef<"AssignmentEvent", 'Json'>
+    readonly createdAt: FieldRef<"AssignmentEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AssignmentEvent findUnique
+   */
+  export type AssignmentEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventInclude<ExtArgs> | null
+    /**
+     * Filter, which AssignmentEvent to fetch.
+     */
+    where: AssignmentEventWhereUniqueInput
+  }
+
+  /**
+   * AssignmentEvent findUniqueOrThrow
+   */
+  export type AssignmentEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventInclude<ExtArgs> | null
+    /**
+     * Filter, which AssignmentEvent to fetch.
+     */
+    where: AssignmentEventWhereUniqueInput
+  }
+
+  /**
+   * AssignmentEvent findFirst
+   */
+  export type AssignmentEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventInclude<ExtArgs> | null
+    /**
+     * Filter, which AssignmentEvent to fetch.
+     */
+    where?: AssignmentEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AssignmentEvents to fetch.
+     */
+    orderBy?: AssignmentEventOrderByWithRelationInput | AssignmentEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AssignmentEvents.
+     */
+    cursor?: AssignmentEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AssignmentEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AssignmentEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AssignmentEvents.
+     */
+    distinct?: AssignmentEventScalarFieldEnum | AssignmentEventScalarFieldEnum[]
+  }
+
+  /**
+   * AssignmentEvent findFirstOrThrow
+   */
+  export type AssignmentEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventInclude<ExtArgs> | null
+    /**
+     * Filter, which AssignmentEvent to fetch.
+     */
+    where?: AssignmentEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AssignmentEvents to fetch.
+     */
+    orderBy?: AssignmentEventOrderByWithRelationInput | AssignmentEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AssignmentEvents.
+     */
+    cursor?: AssignmentEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AssignmentEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AssignmentEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AssignmentEvents.
+     */
+    distinct?: AssignmentEventScalarFieldEnum | AssignmentEventScalarFieldEnum[]
+  }
+
+  /**
+   * AssignmentEvent findMany
+   */
+  export type AssignmentEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventInclude<ExtArgs> | null
+    /**
+     * Filter, which AssignmentEvents to fetch.
+     */
+    where?: AssignmentEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AssignmentEvents to fetch.
+     */
+    orderBy?: AssignmentEventOrderByWithRelationInput | AssignmentEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AssignmentEvents.
+     */
+    cursor?: AssignmentEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AssignmentEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AssignmentEvents.
+     */
+    skip?: number
+    distinct?: AssignmentEventScalarFieldEnum | AssignmentEventScalarFieldEnum[]
+  }
+
+  /**
+   * AssignmentEvent create
+   */
+  export type AssignmentEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AssignmentEvent.
+     */
+    data: XOR<AssignmentEventCreateInput, AssignmentEventUncheckedCreateInput>
+  }
+
+  /**
+   * AssignmentEvent createMany
+   */
+  export type AssignmentEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AssignmentEvents.
+     */
+    data: AssignmentEventCreateManyInput | AssignmentEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AssignmentEvent createManyAndReturn
+   */
+  export type AssignmentEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many AssignmentEvents.
+     */
+    data: AssignmentEventCreateManyInput | AssignmentEventCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AssignmentEvent update
+   */
+  export type AssignmentEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AssignmentEvent.
+     */
+    data: XOR<AssignmentEventUpdateInput, AssignmentEventUncheckedUpdateInput>
+    /**
+     * Choose, which AssignmentEvent to update.
+     */
+    where: AssignmentEventWhereUniqueInput
+  }
+
+  /**
+   * AssignmentEvent updateMany
+   */
+  export type AssignmentEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AssignmentEvents.
+     */
+    data: XOR<AssignmentEventUpdateManyMutationInput, AssignmentEventUncheckedUpdateManyInput>
+    /**
+     * Filter which AssignmentEvents to update
+     */
+    where?: AssignmentEventWhereInput
+    /**
+     * Limit how many AssignmentEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AssignmentEvent updateManyAndReturn
+   */
+  export type AssignmentEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * The data used to update AssignmentEvents.
+     */
+    data: XOR<AssignmentEventUpdateManyMutationInput, AssignmentEventUncheckedUpdateManyInput>
+    /**
+     * Filter which AssignmentEvents to update
+     */
+    where?: AssignmentEventWhereInput
+    /**
+     * Limit how many AssignmentEvents to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AssignmentEvent upsert
+   */
+  export type AssignmentEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AssignmentEvent to update in case it exists.
+     */
+    where: AssignmentEventWhereUniqueInput
+    /**
+     * In case the AssignmentEvent found by the `where` argument doesn't exist, create a new AssignmentEvent with this data.
+     */
+    create: XOR<AssignmentEventCreateInput, AssignmentEventUncheckedCreateInput>
+    /**
+     * In case the AssignmentEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AssignmentEventUpdateInput, AssignmentEventUncheckedUpdateInput>
+  }
+
+  /**
+   * AssignmentEvent delete
+   */
+  export type AssignmentEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventInclude<ExtArgs> | null
+    /**
+     * Filter which AssignmentEvent to delete.
+     */
+    where: AssignmentEventWhereUniqueInput
+  }
+
+  /**
+   * AssignmentEvent deleteMany
+   */
+  export type AssignmentEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AssignmentEvents to delete
+     */
+    where?: AssignmentEventWhereInput
+    /**
+     * Limit how many AssignmentEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AssignmentEvent without action
+   */
+  export type AssignmentEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentEvent
+     */
+    select?: AssignmentEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentEvent
+     */
+    omit?: AssignmentEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentEventInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BillingCustomer
+   */
+
+  export type AggregateBillingCustomer = {
+    _count: BillingCustomerCountAggregateOutputType | null
+    _min: BillingCustomerMinAggregateOutputType | null
+    _max: BillingCustomerMaxAggregateOutputType | null
+  }
+
+  export type BillingCustomerMinAggregateOutputType = {
+    id: string | null
+    ownerType: string | null
+    ownerId: string | null
+    stripeCustomerId: string | null
+    createdAt: Date | null
+  }
+
+  export type BillingCustomerMaxAggregateOutputType = {
+    id: string | null
+    ownerType: string | null
+    ownerId: string | null
+    stripeCustomerId: string | null
+    createdAt: Date | null
+  }
+
+  export type BillingCustomerCountAggregateOutputType = {
+    id: number
+    ownerType: number
+    ownerId: number
+    stripeCustomerId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type BillingCustomerMinAggregateInputType = {
+    id?: true
+    ownerType?: true
+    ownerId?: true
+    stripeCustomerId?: true
+    createdAt?: true
+  }
+
+  export type BillingCustomerMaxAggregateInputType = {
+    id?: true
+    ownerType?: true
+    ownerId?: true
+    stripeCustomerId?: true
+    createdAt?: true
+  }
+
+  export type BillingCustomerCountAggregateInputType = {
+    id?: true
+    ownerType?: true
+    ownerId?: true
+    stripeCustomerId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type BillingCustomerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BillingCustomer to aggregate.
+     */
+    where?: BillingCustomerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillingCustomers to fetch.
+     */
+    orderBy?: BillingCustomerOrderByWithRelationInput | BillingCustomerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BillingCustomerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillingCustomers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillingCustomers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BillingCustomers
+    **/
+    _count?: true | BillingCustomerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BillingCustomerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BillingCustomerMaxAggregateInputType
+  }
+
+  export type GetBillingCustomerAggregateType<T extends BillingCustomerAggregateArgs> = {
+        [P in keyof T & keyof AggregateBillingCustomer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBillingCustomer[P]>
+      : GetScalarType<T[P], AggregateBillingCustomer[P]>
+  }
+
+
+
+
+  export type BillingCustomerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BillingCustomerWhereInput
+    orderBy?: BillingCustomerOrderByWithAggregationInput | BillingCustomerOrderByWithAggregationInput[]
+    by: BillingCustomerScalarFieldEnum[] | BillingCustomerScalarFieldEnum
+    having?: BillingCustomerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BillingCustomerCountAggregateInputType | true
+    _min?: BillingCustomerMinAggregateInputType
+    _max?: BillingCustomerMaxAggregateInputType
+  }
+
+  export type BillingCustomerGroupByOutputType = {
+    id: string
+    ownerType: string
+    ownerId: string
+    stripeCustomerId: string
+    createdAt: Date
+    _count: BillingCustomerCountAggregateOutputType | null
+    _min: BillingCustomerMinAggregateOutputType | null
+    _max: BillingCustomerMaxAggregateOutputType | null
+  }
+
+  type GetBillingCustomerGroupByPayload<T extends BillingCustomerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BillingCustomerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BillingCustomerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BillingCustomerGroupByOutputType[P]>
+            : GetScalarType<T[P], BillingCustomerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BillingCustomerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ownerType?: boolean
+    ownerId?: boolean
+    stripeCustomerId?: boolean
+    createdAt?: boolean
+    subscriptions?: boolean | BillingCustomer$subscriptionsArgs<ExtArgs>
+    _count?: boolean | BillingCustomerCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["billingCustomer"]>
+
+  export type BillingCustomerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ownerType?: boolean
+    ownerId?: boolean
+    stripeCustomerId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["billingCustomer"]>
+
+  export type BillingCustomerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ownerType?: boolean
+    ownerId?: boolean
+    stripeCustomerId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["billingCustomer"]>
+
+  export type BillingCustomerSelectScalar = {
+    id?: boolean
+    ownerType?: boolean
+    ownerId?: boolean
+    stripeCustomerId?: boolean
+    createdAt?: boolean
+  }
+
+  export type BillingCustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ownerType" | "ownerId" | "stripeCustomerId" | "createdAt", ExtArgs["result"]["billingCustomer"]>
+  export type BillingCustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    subscriptions?: boolean | BillingCustomer$subscriptionsArgs<ExtArgs>
+    _count?: boolean | BillingCustomerCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type BillingCustomerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type BillingCustomerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $BillingCustomerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BillingCustomer"
+    objects: {
+      subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      ownerType: string
+      ownerId: string
+      stripeCustomerId: string
+      createdAt: Date
+    }, ExtArgs["result"]["billingCustomer"]>
+    composites: {}
+  }
+
+  type BillingCustomerGetPayload<S extends boolean | null | undefined | BillingCustomerDefaultArgs> = $Result.GetResult<Prisma.$BillingCustomerPayload, S>
+
+  type BillingCustomerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BillingCustomerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BillingCustomerCountAggregateInputType | true
+    }
+
+  export interface BillingCustomerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BillingCustomer'], meta: { name: 'BillingCustomer' } }
+    /**
+     * Find zero or one BillingCustomer that matches the filter.
+     * @param {BillingCustomerFindUniqueArgs} args - Arguments to find a BillingCustomer
+     * @example
+     * // Get one BillingCustomer
+     * const billingCustomer = await prisma.billingCustomer.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BillingCustomerFindUniqueArgs>(args: SelectSubset<T, BillingCustomerFindUniqueArgs<ExtArgs>>): Prisma__BillingCustomerClient<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BillingCustomer that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BillingCustomerFindUniqueOrThrowArgs} args - Arguments to find a BillingCustomer
+     * @example
+     * // Get one BillingCustomer
+     * const billingCustomer = await prisma.billingCustomer.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BillingCustomerFindUniqueOrThrowArgs>(args: SelectSubset<T, BillingCustomerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BillingCustomerClient<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BillingCustomer that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingCustomerFindFirstArgs} args - Arguments to find a BillingCustomer
+     * @example
+     * // Get one BillingCustomer
+     * const billingCustomer = await prisma.billingCustomer.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BillingCustomerFindFirstArgs>(args?: SelectSubset<T, BillingCustomerFindFirstArgs<ExtArgs>>): Prisma__BillingCustomerClient<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BillingCustomer that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingCustomerFindFirstOrThrowArgs} args - Arguments to find a BillingCustomer
+     * @example
+     * // Get one BillingCustomer
+     * const billingCustomer = await prisma.billingCustomer.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BillingCustomerFindFirstOrThrowArgs>(args?: SelectSubset<T, BillingCustomerFindFirstOrThrowArgs<ExtArgs>>): Prisma__BillingCustomerClient<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BillingCustomers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingCustomerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BillingCustomers
+     * const billingCustomers = await prisma.billingCustomer.findMany()
+     * 
+     * // Get first 10 BillingCustomers
+     * const billingCustomers = await prisma.billingCustomer.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const billingCustomerWithIdOnly = await prisma.billingCustomer.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BillingCustomerFindManyArgs>(args?: SelectSubset<T, BillingCustomerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BillingCustomer.
+     * @param {BillingCustomerCreateArgs} args - Arguments to create a BillingCustomer.
+     * @example
+     * // Create one BillingCustomer
+     * const BillingCustomer = await prisma.billingCustomer.create({
+     *   data: {
+     *     // ... data to create a BillingCustomer
+     *   }
+     * })
+     * 
+     */
+    create<T extends BillingCustomerCreateArgs>(args: SelectSubset<T, BillingCustomerCreateArgs<ExtArgs>>): Prisma__BillingCustomerClient<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BillingCustomers.
+     * @param {BillingCustomerCreateManyArgs} args - Arguments to create many BillingCustomers.
+     * @example
+     * // Create many BillingCustomers
+     * const billingCustomer = await prisma.billingCustomer.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BillingCustomerCreateManyArgs>(args?: SelectSubset<T, BillingCustomerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BillingCustomers and returns the data saved in the database.
+     * @param {BillingCustomerCreateManyAndReturnArgs} args - Arguments to create many BillingCustomers.
+     * @example
+     * // Create many BillingCustomers
+     * const billingCustomer = await prisma.billingCustomer.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BillingCustomers and only return the `id`
+     * const billingCustomerWithIdOnly = await prisma.billingCustomer.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BillingCustomerCreateManyAndReturnArgs>(args?: SelectSubset<T, BillingCustomerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BillingCustomer.
+     * @param {BillingCustomerDeleteArgs} args - Arguments to delete one BillingCustomer.
+     * @example
+     * // Delete one BillingCustomer
+     * const BillingCustomer = await prisma.billingCustomer.delete({
+     *   where: {
+     *     // ... filter to delete one BillingCustomer
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BillingCustomerDeleteArgs>(args: SelectSubset<T, BillingCustomerDeleteArgs<ExtArgs>>): Prisma__BillingCustomerClient<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BillingCustomer.
+     * @param {BillingCustomerUpdateArgs} args - Arguments to update one BillingCustomer.
+     * @example
+     * // Update one BillingCustomer
+     * const billingCustomer = await prisma.billingCustomer.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BillingCustomerUpdateArgs>(args: SelectSubset<T, BillingCustomerUpdateArgs<ExtArgs>>): Prisma__BillingCustomerClient<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BillingCustomers.
+     * @param {BillingCustomerDeleteManyArgs} args - Arguments to filter BillingCustomers to delete.
+     * @example
+     * // Delete a few BillingCustomers
+     * const { count } = await prisma.billingCustomer.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BillingCustomerDeleteManyArgs>(args?: SelectSubset<T, BillingCustomerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BillingCustomers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingCustomerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BillingCustomers
+     * const billingCustomer = await prisma.billingCustomer.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BillingCustomerUpdateManyArgs>(args: SelectSubset<T, BillingCustomerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BillingCustomers and returns the data updated in the database.
+     * @param {BillingCustomerUpdateManyAndReturnArgs} args - Arguments to update many BillingCustomers.
+     * @example
+     * // Update many BillingCustomers
+     * const billingCustomer = await prisma.billingCustomer.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BillingCustomers and only return the `id`
+     * const billingCustomerWithIdOnly = await prisma.billingCustomer.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BillingCustomerUpdateManyAndReturnArgs>(args: SelectSubset<T, BillingCustomerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BillingCustomer.
+     * @param {BillingCustomerUpsertArgs} args - Arguments to update or create a BillingCustomer.
+     * @example
+     * // Update or create a BillingCustomer
+     * const billingCustomer = await prisma.billingCustomer.upsert({
+     *   create: {
+     *     // ... data to create a BillingCustomer
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BillingCustomer we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BillingCustomerUpsertArgs>(args: SelectSubset<T, BillingCustomerUpsertArgs<ExtArgs>>): Prisma__BillingCustomerClient<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BillingCustomers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingCustomerCountArgs} args - Arguments to filter BillingCustomers to count.
+     * @example
+     * // Count the number of BillingCustomers
+     * const count = await prisma.billingCustomer.count({
+     *   where: {
+     *     // ... the filter for the BillingCustomers we want to count
+     *   }
+     * })
+    **/
+    count<T extends BillingCustomerCountArgs>(
+      args?: Subset<T, BillingCustomerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BillingCustomerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BillingCustomer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingCustomerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BillingCustomerAggregateArgs>(args: Subset<T, BillingCustomerAggregateArgs>): Prisma.PrismaPromise<GetBillingCustomerAggregateType<T>>
+
+    /**
+     * Group by BillingCustomer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillingCustomerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BillingCustomerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BillingCustomerGroupByArgs['orderBy'] }
+        : { orderBy?: BillingCustomerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BillingCustomerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBillingCustomerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BillingCustomer model
+   */
+  readonly fields: BillingCustomerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BillingCustomer.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BillingCustomerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    subscriptions<T extends BillingCustomer$subscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, BillingCustomer$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BillingCustomer model
+   */
+  interface BillingCustomerFieldRefs {
+    readonly id: FieldRef<"BillingCustomer", 'String'>
+    readonly ownerType: FieldRef<"BillingCustomer", 'String'>
+    readonly ownerId: FieldRef<"BillingCustomer", 'String'>
+    readonly stripeCustomerId: FieldRef<"BillingCustomer", 'String'>
+    readonly createdAt: FieldRef<"BillingCustomer", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BillingCustomer findUnique
+   */
+  export type BillingCustomerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingCustomerInclude<ExtArgs> | null
+    /**
+     * Filter, which BillingCustomer to fetch.
+     */
+    where: BillingCustomerWhereUniqueInput
+  }
+
+  /**
+   * BillingCustomer findUniqueOrThrow
+   */
+  export type BillingCustomerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingCustomerInclude<ExtArgs> | null
+    /**
+     * Filter, which BillingCustomer to fetch.
+     */
+    where: BillingCustomerWhereUniqueInput
+  }
+
+  /**
+   * BillingCustomer findFirst
+   */
+  export type BillingCustomerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingCustomerInclude<ExtArgs> | null
+    /**
+     * Filter, which BillingCustomer to fetch.
+     */
+    where?: BillingCustomerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillingCustomers to fetch.
+     */
+    orderBy?: BillingCustomerOrderByWithRelationInput | BillingCustomerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BillingCustomers.
+     */
+    cursor?: BillingCustomerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillingCustomers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillingCustomers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BillingCustomers.
+     */
+    distinct?: BillingCustomerScalarFieldEnum | BillingCustomerScalarFieldEnum[]
+  }
+
+  /**
+   * BillingCustomer findFirstOrThrow
+   */
+  export type BillingCustomerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingCustomerInclude<ExtArgs> | null
+    /**
+     * Filter, which BillingCustomer to fetch.
+     */
+    where?: BillingCustomerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillingCustomers to fetch.
+     */
+    orderBy?: BillingCustomerOrderByWithRelationInput | BillingCustomerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BillingCustomers.
+     */
+    cursor?: BillingCustomerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillingCustomers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillingCustomers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BillingCustomers.
+     */
+    distinct?: BillingCustomerScalarFieldEnum | BillingCustomerScalarFieldEnum[]
+  }
+
+  /**
+   * BillingCustomer findMany
+   */
+  export type BillingCustomerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingCustomerInclude<ExtArgs> | null
+    /**
+     * Filter, which BillingCustomers to fetch.
+     */
+    where?: BillingCustomerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillingCustomers to fetch.
+     */
+    orderBy?: BillingCustomerOrderByWithRelationInput | BillingCustomerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BillingCustomers.
+     */
+    cursor?: BillingCustomerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillingCustomers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillingCustomers.
+     */
+    skip?: number
+    distinct?: BillingCustomerScalarFieldEnum | BillingCustomerScalarFieldEnum[]
+  }
+
+  /**
+   * BillingCustomer create
+   */
+  export type BillingCustomerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingCustomerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BillingCustomer.
+     */
+    data: XOR<BillingCustomerCreateInput, BillingCustomerUncheckedCreateInput>
+  }
+
+  /**
+   * BillingCustomer createMany
+   */
+  export type BillingCustomerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BillingCustomers.
+     */
+    data: BillingCustomerCreateManyInput | BillingCustomerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BillingCustomer createManyAndReturn
+   */
+  export type BillingCustomerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * The data used to create many BillingCustomers.
+     */
+    data: BillingCustomerCreateManyInput | BillingCustomerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BillingCustomer update
+   */
+  export type BillingCustomerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingCustomerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BillingCustomer.
+     */
+    data: XOR<BillingCustomerUpdateInput, BillingCustomerUncheckedUpdateInput>
+    /**
+     * Choose, which BillingCustomer to update.
+     */
+    where: BillingCustomerWhereUniqueInput
+  }
+
+  /**
+   * BillingCustomer updateMany
+   */
+  export type BillingCustomerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BillingCustomers.
+     */
+    data: XOR<BillingCustomerUpdateManyMutationInput, BillingCustomerUncheckedUpdateManyInput>
+    /**
+     * Filter which BillingCustomers to update
+     */
+    where?: BillingCustomerWhereInput
+    /**
+     * Limit how many BillingCustomers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BillingCustomer updateManyAndReturn
+   */
+  export type BillingCustomerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * The data used to update BillingCustomers.
+     */
+    data: XOR<BillingCustomerUpdateManyMutationInput, BillingCustomerUncheckedUpdateManyInput>
+    /**
+     * Filter which BillingCustomers to update
+     */
+    where?: BillingCustomerWhereInput
+    /**
+     * Limit how many BillingCustomers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BillingCustomer upsert
+   */
+  export type BillingCustomerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingCustomerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BillingCustomer to update in case it exists.
+     */
+    where: BillingCustomerWhereUniqueInput
+    /**
+     * In case the BillingCustomer found by the `where` argument doesn't exist, create a new BillingCustomer with this data.
+     */
+    create: XOR<BillingCustomerCreateInput, BillingCustomerUncheckedCreateInput>
+    /**
+     * In case the BillingCustomer was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BillingCustomerUpdateInput, BillingCustomerUncheckedUpdateInput>
+  }
+
+  /**
+   * BillingCustomer delete
+   */
+  export type BillingCustomerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingCustomerInclude<ExtArgs> | null
+    /**
+     * Filter which BillingCustomer to delete.
+     */
+    where: BillingCustomerWhereUniqueInput
+  }
+
+  /**
+   * BillingCustomer deleteMany
+   */
+  export type BillingCustomerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BillingCustomers to delete
+     */
+    where?: BillingCustomerWhereInput
+    /**
+     * Limit how many BillingCustomers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BillingCustomer.subscriptions
+   */
+  export type BillingCustomer$subscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    where?: SubscriptionWhereInput
+    orderBy?: SubscriptionOrderByWithRelationInput | SubscriptionOrderByWithRelationInput[]
+    cursor?: SubscriptionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SubscriptionScalarFieldEnum | SubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * BillingCustomer without action
+   */
+  export type BillingCustomerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingCustomer
+     */
+    select?: BillingCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingCustomer
+     */
+    omit?: BillingCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingCustomerInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Subscription
+   */
+
+  export type AggregateSubscription = {
+    _count: SubscriptionCountAggregateOutputType | null
+    _avg: SubscriptionAvgAggregateOutputType | null
+    _sum: SubscriptionSumAggregateOutputType | null
+    _min: SubscriptionMinAggregateOutputType | null
+    _max: SubscriptionMaxAggregateOutputType | null
+  }
+
+  export type SubscriptionAvgAggregateOutputType = {
+    seats: number | null
+  }
+
+  export type SubscriptionSumAggregateOutputType = {
+    seats: number | null
+  }
+
+  export type SubscriptionMinAggregateOutputType = {
+    id: string | null
+    billingCustomerId: string | null
+    stripeSubscriptionId: string | null
+    plan: string | null
+    status: string | null
+    seats: number | null
+    currentPeriodEnd: Date | null
+    cancelAtPeriodEnd: boolean | null
+    updatedAt: Date | null
+  }
+
+  export type SubscriptionMaxAggregateOutputType = {
+    id: string | null
+    billingCustomerId: string | null
+    stripeSubscriptionId: string | null
+    plan: string | null
+    status: string | null
+    seats: number | null
+    currentPeriodEnd: Date | null
+    cancelAtPeriodEnd: boolean | null
+    updatedAt: Date | null
+  }
+
+  export type SubscriptionCountAggregateOutputType = {
+    id: number
+    billingCustomerId: number
+    stripeSubscriptionId: number
+    plan: number
+    status: number
+    seats: number
+    currentPeriodEnd: number
+    cancelAtPeriodEnd: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SubscriptionAvgAggregateInputType = {
+    seats?: true
+  }
+
+  export type SubscriptionSumAggregateInputType = {
+    seats?: true
+  }
+
+  export type SubscriptionMinAggregateInputType = {
+    id?: true
+    billingCustomerId?: true
+    stripeSubscriptionId?: true
+    plan?: true
+    status?: true
+    seats?: true
+    currentPeriodEnd?: true
+    cancelAtPeriodEnd?: true
+    updatedAt?: true
+  }
+
+  export type SubscriptionMaxAggregateInputType = {
+    id?: true
+    billingCustomerId?: true
+    stripeSubscriptionId?: true
+    plan?: true
+    status?: true
+    seats?: true
+    currentPeriodEnd?: true
+    cancelAtPeriodEnd?: true
+    updatedAt?: true
+  }
+
+  export type SubscriptionCountAggregateInputType = {
+    id?: true
+    billingCustomerId?: true
+    stripeSubscriptionId?: true
+    plan?: true
+    status?: true
+    seats?: true
+    currentPeriodEnd?: true
+    cancelAtPeriodEnd?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SubscriptionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Subscription to aggregate.
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscriptions to fetch.
+     */
+    orderBy?: SubscriptionOrderByWithRelationInput | SubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Subscriptions
+    **/
+    _count?: true | SubscriptionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SubscriptionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SubscriptionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SubscriptionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SubscriptionMaxAggregateInputType
+  }
+
+  export type GetSubscriptionAggregateType<T extends SubscriptionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSubscription]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSubscription[P]>
+      : GetScalarType<T[P], AggregateSubscription[P]>
+  }
+
+
+
+
+  export type SubscriptionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubscriptionWhereInput
+    orderBy?: SubscriptionOrderByWithAggregationInput | SubscriptionOrderByWithAggregationInput[]
+    by: SubscriptionScalarFieldEnum[] | SubscriptionScalarFieldEnum
+    having?: SubscriptionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SubscriptionCountAggregateInputType | true
+    _avg?: SubscriptionAvgAggregateInputType
+    _sum?: SubscriptionSumAggregateInputType
+    _min?: SubscriptionMinAggregateInputType
+    _max?: SubscriptionMaxAggregateInputType
+  }
+
+  export type SubscriptionGroupByOutputType = {
+    id: string
+    billingCustomerId: string
+    stripeSubscriptionId: string
+    plan: string
+    status: string
+    seats: number
+    currentPeriodEnd: Date | null
+    cancelAtPeriodEnd: boolean
+    updatedAt: Date
+    _count: SubscriptionCountAggregateOutputType | null
+    _avg: SubscriptionAvgAggregateOutputType | null
+    _sum: SubscriptionSumAggregateOutputType | null
+    _min: SubscriptionMinAggregateOutputType | null
+    _max: SubscriptionMaxAggregateOutputType | null
+  }
+
+  type GetSubscriptionGroupByPayload<T extends SubscriptionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SubscriptionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SubscriptionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SubscriptionGroupByOutputType[P]>
+            : GetScalarType<T[P], SubscriptionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SubscriptionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    billingCustomerId?: boolean
+    stripeSubscriptionId?: boolean
+    plan?: boolean
+    status?: boolean
+    seats?: boolean
+    currentPeriodEnd?: boolean
+    cancelAtPeriodEnd?: boolean
+    updatedAt?: boolean
+    billingCustomer?: boolean | BillingCustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["subscription"]>
+
+  export type SubscriptionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    billingCustomerId?: boolean
+    stripeSubscriptionId?: boolean
+    plan?: boolean
+    status?: boolean
+    seats?: boolean
+    currentPeriodEnd?: boolean
+    cancelAtPeriodEnd?: boolean
+    updatedAt?: boolean
+    billingCustomer?: boolean | BillingCustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["subscription"]>
+
+  export type SubscriptionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    billingCustomerId?: boolean
+    stripeSubscriptionId?: boolean
+    plan?: boolean
+    status?: boolean
+    seats?: boolean
+    currentPeriodEnd?: boolean
+    cancelAtPeriodEnd?: boolean
+    updatedAt?: boolean
+    billingCustomer?: boolean | BillingCustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["subscription"]>
+
+  export type SubscriptionSelectScalar = {
+    id?: boolean
+    billingCustomerId?: boolean
+    stripeSubscriptionId?: boolean
+    plan?: boolean
+    status?: boolean
+    seats?: boolean
+    currentPeriodEnd?: boolean
+    cancelAtPeriodEnd?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SubscriptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "billingCustomerId" | "stripeSubscriptionId" | "plan" | "status" | "seats" | "currentPeriodEnd" | "cancelAtPeriodEnd" | "updatedAt", ExtArgs["result"]["subscription"]>
+  export type SubscriptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    billingCustomer?: boolean | BillingCustomerDefaultArgs<ExtArgs>
+  }
+  export type SubscriptionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    billingCustomer?: boolean | BillingCustomerDefaultArgs<ExtArgs>
+  }
+  export type SubscriptionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    billingCustomer?: boolean | BillingCustomerDefaultArgs<ExtArgs>
+  }
+
+  export type $SubscriptionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Subscription"
+    objects: {
+      billingCustomer: Prisma.$BillingCustomerPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      billingCustomerId: string
+      stripeSubscriptionId: string
+      plan: string
+      status: string
+      seats: number
+      currentPeriodEnd: Date | null
+      cancelAtPeriodEnd: boolean
+      updatedAt: Date
+    }, ExtArgs["result"]["subscription"]>
+    composites: {}
+  }
+
+  type SubscriptionGetPayload<S extends boolean | null | undefined | SubscriptionDefaultArgs> = $Result.GetResult<Prisma.$SubscriptionPayload, S>
+
+  type SubscriptionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SubscriptionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SubscriptionCountAggregateInputType | true
+    }
+
+  export interface SubscriptionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Subscription'], meta: { name: 'Subscription' } }
+    /**
+     * Find zero or one Subscription that matches the filter.
+     * @param {SubscriptionFindUniqueArgs} args - Arguments to find a Subscription
+     * @example
+     * // Get one Subscription
+     * const subscription = await prisma.subscription.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SubscriptionFindUniqueArgs>(args: SelectSubset<T, SubscriptionFindUniqueArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Subscription that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SubscriptionFindUniqueOrThrowArgs} args - Arguments to find a Subscription
+     * @example
+     * // Get one Subscription
+     * const subscription = await prisma.subscription.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SubscriptionFindUniqueOrThrowArgs>(args: SelectSubset<T, SubscriptionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Subscription that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionFindFirstArgs} args - Arguments to find a Subscription
+     * @example
+     * // Get one Subscription
+     * const subscription = await prisma.subscription.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SubscriptionFindFirstArgs>(args?: SelectSubset<T, SubscriptionFindFirstArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Subscription that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionFindFirstOrThrowArgs} args - Arguments to find a Subscription
+     * @example
+     * // Get one Subscription
+     * const subscription = await prisma.subscription.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SubscriptionFindFirstOrThrowArgs>(args?: SelectSubset<T, SubscriptionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Subscriptions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Subscriptions
+     * const subscriptions = await prisma.subscription.findMany()
+     * 
+     * // Get first 10 Subscriptions
+     * const subscriptions = await prisma.subscription.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const subscriptionWithIdOnly = await prisma.subscription.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SubscriptionFindManyArgs>(args?: SelectSubset<T, SubscriptionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Subscription.
+     * @param {SubscriptionCreateArgs} args - Arguments to create a Subscription.
+     * @example
+     * // Create one Subscription
+     * const Subscription = await prisma.subscription.create({
+     *   data: {
+     *     // ... data to create a Subscription
+     *   }
+     * })
+     * 
+     */
+    create<T extends SubscriptionCreateArgs>(args: SelectSubset<T, SubscriptionCreateArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Subscriptions.
+     * @param {SubscriptionCreateManyArgs} args - Arguments to create many Subscriptions.
+     * @example
+     * // Create many Subscriptions
+     * const subscription = await prisma.subscription.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SubscriptionCreateManyArgs>(args?: SelectSubset<T, SubscriptionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Subscriptions and returns the data saved in the database.
+     * @param {SubscriptionCreateManyAndReturnArgs} args - Arguments to create many Subscriptions.
+     * @example
+     * // Create many Subscriptions
+     * const subscription = await prisma.subscription.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Subscriptions and only return the `id`
+     * const subscriptionWithIdOnly = await prisma.subscription.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SubscriptionCreateManyAndReturnArgs>(args?: SelectSubset<T, SubscriptionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Subscription.
+     * @param {SubscriptionDeleteArgs} args - Arguments to delete one Subscription.
+     * @example
+     * // Delete one Subscription
+     * const Subscription = await prisma.subscription.delete({
+     *   where: {
+     *     // ... filter to delete one Subscription
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SubscriptionDeleteArgs>(args: SelectSubset<T, SubscriptionDeleteArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Subscription.
+     * @param {SubscriptionUpdateArgs} args - Arguments to update one Subscription.
+     * @example
+     * // Update one Subscription
+     * const subscription = await prisma.subscription.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SubscriptionUpdateArgs>(args: SelectSubset<T, SubscriptionUpdateArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Subscriptions.
+     * @param {SubscriptionDeleteManyArgs} args - Arguments to filter Subscriptions to delete.
+     * @example
+     * // Delete a few Subscriptions
+     * const { count } = await prisma.subscription.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SubscriptionDeleteManyArgs>(args?: SelectSubset<T, SubscriptionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Subscriptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Subscriptions
+     * const subscription = await prisma.subscription.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SubscriptionUpdateManyArgs>(args: SelectSubset<T, SubscriptionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Subscriptions and returns the data updated in the database.
+     * @param {SubscriptionUpdateManyAndReturnArgs} args - Arguments to update many Subscriptions.
+     * @example
+     * // Update many Subscriptions
+     * const subscription = await prisma.subscription.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Subscriptions and only return the `id`
+     * const subscriptionWithIdOnly = await prisma.subscription.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SubscriptionUpdateManyAndReturnArgs>(args: SelectSubset<T, SubscriptionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Subscription.
+     * @param {SubscriptionUpsertArgs} args - Arguments to update or create a Subscription.
+     * @example
+     * // Update or create a Subscription
+     * const subscription = await prisma.subscription.upsert({
+     *   create: {
+     *     // ... data to create a Subscription
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Subscription we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SubscriptionUpsertArgs>(args: SelectSubset<T, SubscriptionUpsertArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Subscriptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionCountArgs} args - Arguments to filter Subscriptions to count.
+     * @example
+     * // Count the number of Subscriptions
+     * const count = await prisma.subscription.count({
+     *   where: {
+     *     // ... the filter for the Subscriptions we want to count
+     *   }
+     * })
+    **/
+    count<T extends SubscriptionCountArgs>(
+      args?: Subset<T, SubscriptionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SubscriptionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Subscription.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SubscriptionAggregateArgs>(args: Subset<T, SubscriptionAggregateArgs>): Prisma.PrismaPromise<GetSubscriptionAggregateType<T>>
+
+    /**
+     * Group by Subscription.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SubscriptionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SubscriptionGroupByArgs['orderBy'] }
+        : { orderBy?: SubscriptionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SubscriptionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSubscriptionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Subscription model
+   */
+  readonly fields: SubscriptionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Subscription.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SubscriptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    billingCustomer<T extends BillingCustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BillingCustomerDefaultArgs<ExtArgs>>): Prisma__BillingCustomerClient<$Result.GetResult<Prisma.$BillingCustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Subscription model
+   */
+  interface SubscriptionFieldRefs {
+    readonly id: FieldRef<"Subscription", 'String'>
+    readonly billingCustomerId: FieldRef<"Subscription", 'String'>
+    readonly stripeSubscriptionId: FieldRef<"Subscription", 'String'>
+    readonly plan: FieldRef<"Subscription", 'String'>
+    readonly status: FieldRef<"Subscription", 'String'>
+    readonly seats: FieldRef<"Subscription", 'Int'>
+    readonly currentPeriodEnd: FieldRef<"Subscription", 'DateTime'>
+    readonly cancelAtPeriodEnd: FieldRef<"Subscription", 'Boolean'>
+    readonly updatedAt: FieldRef<"Subscription", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Subscription findUnique
+   */
+  export type SubscriptionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscription to fetch.
+     */
+    where: SubscriptionWhereUniqueInput
+  }
+
+  /**
+   * Subscription findUniqueOrThrow
+   */
+  export type SubscriptionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscription to fetch.
+     */
+    where: SubscriptionWhereUniqueInput
+  }
+
+  /**
+   * Subscription findFirst
+   */
+  export type SubscriptionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscription to fetch.
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscriptions to fetch.
+     */
+    orderBy?: SubscriptionOrderByWithRelationInput | SubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Subscriptions.
+     */
+    cursor?: SubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Subscriptions.
+     */
+    distinct?: SubscriptionScalarFieldEnum | SubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * Subscription findFirstOrThrow
+   */
+  export type SubscriptionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscription to fetch.
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscriptions to fetch.
+     */
+    orderBy?: SubscriptionOrderByWithRelationInput | SubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Subscriptions.
+     */
+    cursor?: SubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Subscriptions.
+     */
+    distinct?: SubscriptionScalarFieldEnum | SubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * Subscription findMany
+   */
+  export type SubscriptionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscriptions to fetch.
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscriptions to fetch.
+     */
+    orderBy?: SubscriptionOrderByWithRelationInput | SubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Subscriptions.
+     */
+    cursor?: SubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscriptions.
+     */
+    skip?: number
+    distinct?: SubscriptionScalarFieldEnum | SubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * Subscription create
+   */
+  export type SubscriptionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Subscription.
+     */
+    data: XOR<SubscriptionCreateInput, SubscriptionUncheckedCreateInput>
+  }
+
+  /**
+   * Subscription createMany
+   */
+  export type SubscriptionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Subscriptions.
+     */
+    data: SubscriptionCreateManyInput | SubscriptionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Subscription createManyAndReturn
+   */
+  export type SubscriptionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * The data used to create many Subscriptions.
+     */
+    data: SubscriptionCreateManyInput | SubscriptionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Subscription update
+   */
+  export type SubscriptionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Subscription.
+     */
+    data: XOR<SubscriptionUpdateInput, SubscriptionUncheckedUpdateInput>
+    /**
+     * Choose, which Subscription to update.
+     */
+    where: SubscriptionWhereUniqueInput
+  }
+
+  /**
+   * Subscription updateMany
+   */
+  export type SubscriptionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Subscriptions.
+     */
+    data: XOR<SubscriptionUpdateManyMutationInput, SubscriptionUncheckedUpdateManyInput>
+    /**
+     * Filter which Subscriptions to update
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * Limit how many Subscriptions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Subscription updateManyAndReturn
+   */
+  export type SubscriptionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * The data used to update Subscriptions.
+     */
+    data: XOR<SubscriptionUpdateManyMutationInput, SubscriptionUncheckedUpdateManyInput>
+    /**
+     * Filter which Subscriptions to update
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * Limit how many Subscriptions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Subscription upsert
+   */
+  export type SubscriptionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Subscription to update in case it exists.
+     */
+    where: SubscriptionWhereUniqueInput
+    /**
+     * In case the Subscription found by the `where` argument doesn't exist, create a new Subscription with this data.
+     */
+    create: XOR<SubscriptionCreateInput, SubscriptionUncheckedCreateInput>
+    /**
+     * In case the Subscription was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SubscriptionUpdateInput, SubscriptionUncheckedUpdateInput>
+  }
+
+  /**
+   * Subscription delete
+   */
+  export type SubscriptionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter which Subscription to delete.
+     */
+    where: SubscriptionWhereUniqueInput
+  }
+
+  /**
+   * Subscription deleteMany
+   */
+  export type SubscriptionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Subscriptions to delete
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * Limit how many Subscriptions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Subscription without action
+   */
+  export type SubscriptionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UsageRecord
+   */
+
+  export type AggregateUsageRecord = {
+    _count: UsageRecordCountAggregateOutputType | null
+    _avg: UsageRecordAvgAggregateOutputType | null
+    _sum: UsageRecordSumAggregateOutputType | null
+    _min: UsageRecordMinAggregateOutputType | null
+    _max: UsageRecordMaxAggregateOutputType | null
+  }
+
+  export type UsageRecordAvgAggregateOutputType = {
+    count: number | null
+  }
+
+  export type UsageRecordSumAggregateOutputType = {
+    count: number | null
+  }
+
+  export type UsageRecordMinAggregateOutputType = {
+    id: string | null
+    ownerType: string | null
+    ownerId: string | null
+    userId: string | null
+    metric: string | null
+    count: number | null
+    periodStart: Date | null
+  }
+
+  export type UsageRecordMaxAggregateOutputType = {
+    id: string | null
+    ownerType: string | null
+    ownerId: string | null
+    userId: string | null
+    metric: string | null
+    count: number | null
+    periodStart: Date | null
+  }
+
+  export type UsageRecordCountAggregateOutputType = {
+    id: number
+    ownerType: number
+    ownerId: number
+    userId: number
+    metric: number
+    count: number
+    periodStart: number
+    _all: number
+  }
+
+
+  export type UsageRecordAvgAggregateInputType = {
+    count?: true
+  }
+
+  export type UsageRecordSumAggregateInputType = {
+    count?: true
+  }
+
+  export type UsageRecordMinAggregateInputType = {
+    id?: true
+    ownerType?: true
+    ownerId?: true
+    userId?: true
+    metric?: true
+    count?: true
+    periodStart?: true
+  }
+
+  export type UsageRecordMaxAggregateInputType = {
+    id?: true
+    ownerType?: true
+    ownerId?: true
+    userId?: true
+    metric?: true
+    count?: true
+    periodStart?: true
+  }
+
+  export type UsageRecordCountAggregateInputType = {
+    id?: true
+    ownerType?: true
+    ownerId?: true
+    userId?: true
+    metric?: true
+    count?: true
+    periodStart?: true
+    _all?: true
+  }
+
+  export type UsageRecordAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UsageRecord to aggregate.
+     */
+    where?: UsageRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UsageRecords to fetch.
+     */
+    orderBy?: UsageRecordOrderByWithRelationInput | UsageRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UsageRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UsageRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UsageRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UsageRecords
+    **/
+    _count?: true | UsageRecordCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UsageRecordAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UsageRecordSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UsageRecordMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UsageRecordMaxAggregateInputType
+  }
+
+  export type GetUsageRecordAggregateType<T extends UsageRecordAggregateArgs> = {
+        [P in keyof T & keyof AggregateUsageRecord]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUsageRecord[P]>
+      : GetScalarType<T[P], AggregateUsageRecord[P]>
+  }
+
+
+
+
+  export type UsageRecordGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UsageRecordWhereInput
+    orderBy?: UsageRecordOrderByWithAggregationInput | UsageRecordOrderByWithAggregationInput[]
+    by: UsageRecordScalarFieldEnum[] | UsageRecordScalarFieldEnum
+    having?: UsageRecordScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UsageRecordCountAggregateInputType | true
+    _avg?: UsageRecordAvgAggregateInputType
+    _sum?: UsageRecordSumAggregateInputType
+    _min?: UsageRecordMinAggregateInputType
+    _max?: UsageRecordMaxAggregateInputType
+  }
+
+  export type UsageRecordGroupByOutputType = {
+    id: string
+    ownerType: string
+    ownerId: string
+    userId: string
+    metric: string
+    count: number
+    periodStart: Date
+    _count: UsageRecordCountAggregateOutputType | null
+    _avg: UsageRecordAvgAggregateOutputType | null
+    _sum: UsageRecordSumAggregateOutputType | null
+    _min: UsageRecordMinAggregateOutputType | null
+    _max: UsageRecordMaxAggregateOutputType | null
+  }
+
+  type GetUsageRecordGroupByPayload<T extends UsageRecordGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UsageRecordGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UsageRecordGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UsageRecordGroupByOutputType[P]>
+            : GetScalarType<T[P], UsageRecordGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UsageRecordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ownerType?: boolean
+    ownerId?: boolean
+    userId?: boolean
+    metric?: boolean
+    count?: boolean
+    periodStart?: boolean
+  }, ExtArgs["result"]["usageRecord"]>
+
+  export type UsageRecordSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ownerType?: boolean
+    ownerId?: boolean
+    userId?: boolean
+    metric?: boolean
+    count?: boolean
+    periodStart?: boolean
+  }, ExtArgs["result"]["usageRecord"]>
+
+  export type UsageRecordSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ownerType?: boolean
+    ownerId?: boolean
+    userId?: boolean
+    metric?: boolean
+    count?: boolean
+    periodStart?: boolean
+  }, ExtArgs["result"]["usageRecord"]>
+
+  export type UsageRecordSelectScalar = {
+    id?: boolean
+    ownerType?: boolean
+    ownerId?: boolean
+    userId?: boolean
+    metric?: boolean
+    count?: boolean
+    periodStart?: boolean
+  }
+
+  export type UsageRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ownerType" | "ownerId" | "userId" | "metric" | "count" | "periodStart", ExtArgs["result"]["usageRecord"]>
+
+  export type $UsageRecordPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UsageRecord"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      ownerType: string
+      ownerId: string
+      userId: string
+      metric: string
+      count: number
+      periodStart: Date
+    }, ExtArgs["result"]["usageRecord"]>
+    composites: {}
+  }
+
+  type UsageRecordGetPayload<S extends boolean | null | undefined | UsageRecordDefaultArgs> = $Result.GetResult<Prisma.$UsageRecordPayload, S>
+
+  type UsageRecordCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UsageRecordFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UsageRecordCountAggregateInputType | true
+    }
+
+  export interface UsageRecordDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UsageRecord'], meta: { name: 'UsageRecord' } }
+    /**
+     * Find zero or one UsageRecord that matches the filter.
+     * @param {UsageRecordFindUniqueArgs} args - Arguments to find a UsageRecord
+     * @example
+     * // Get one UsageRecord
+     * const usageRecord = await prisma.usageRecord.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UsageRecordFindUniqueArgs>(args: SelectSubset<T, UsageRecordFindUniqueArgs<ExtArgs>>): Prisma__UsageRecordClient<$Result.GetResult<Prisma.$UsageRecordPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UsageRecord that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UsageRecordFindUniqueOrThrowArgs} args - Arguments to find a UsageRecord
+     * @example
+     * // Get one UsageRecord
+     * const usageRecord = await prisma.usageRecord.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UsageRecordFindUniqueOrThrowArgs>(args: SelectSubset<T, UsageRecordFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UsageRecordClient<$Result.GetResult<Prisma.$UsageRecordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UsageRecord that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageRecordFindFirstArgs} args - Arguments to find a UsageRecord
+     * @example
+     * // Get one UsageRecord
+     * const usageRecord = await prisma.usageRecord.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UsageRecordFindFirstArgs>(args?: SelectSubset<T, UsageRecordFindFirstArgs<ExtArgs>>): Prisma__UsageRecordClient<$Result.GetResult<Prisma.$UsageRecordPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UsageRecord that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageRecordFindFirstOrThrowArgs} args - Arguments to find a UsageRecord
+     * @example
+     * // Get one UsageRecord
+     * const usageRecord = await prisma.usageRecord.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UsageRecordFindFirstOrThrowArgs>(args?: SelectSubset<T, UsageRecordFindFirstOrThrowArgs<ExtArgs>>): Prisma__UsageRecordClient<$Result.GetResult<Prisma.$UsageRecordPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UsageRecords that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageRecordFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UsageRecords
+     * const usageRecords = await prisma.usageRecord.findMany()
+     * 
+     * // Get first 10 UsageRecords
+     * const usageRecords = await prisma.usageRecord.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const usageRecordWithIdOnly = await prisma.usageRecord.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UsageRecordFindManyArgs>(args?: SelectSubset<T, UsageRecordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsageRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UsageRecord.
+     * @param {UsageRecordCreateArgs} args - Arguments to create a UsageRecord.
+     * @example
+     * // Create one UsageRecord
+     * const UsageRecord = await prisma.usageRecord.create({
+     *   data: {
+     *     // ... data to create a UsageRecord
+     *   }
+     * })
+     * 
+     */
+    create<T extends UsageRecordCreateArgs>(args: SelectSubset<T, UsageRecordCreateArgs<ExtArgs>>): Prisma__UsageRecordClient<$Result.GetResult<Prisma.$UsageRecordPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UsageRecords.
+     * @param {UsageRecordCreateManyArgs} args - Arguments to create many UsageRecords.
+     * @example
+     * // Create many UsageRecords
+     * const usageRecord = await prisma.usageRecord.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UsageRecordCreateManyArgs>(args?: SelectSubset<T, UsageRecordCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UsageRecords and returns the data saved in the database.
+     * @param {UsageRecordCreateManyAndReturnArgs} args - Arguments to create many UsageRecords.
+     * @example
+     * // Create many UsageRecords
+     * const usageRecord = await prisma.usageRecord.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UsageRecords and only return the `id`
+     * const usageRecordWithIdOnly = await prisma.usageRecord.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UsageRecordCreateManyAndReturnArgs>(args?: SelectSubset<T, UsageRecordCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsageRecordPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UsageRecord.
+     * @param {UsageRecordDeleteArgs} args - Arguments to delete one UsageRecord.
+     * @example
+     * // Delete one UsageRecord
+     * const UsageRecord = await prisma.usageRecord.delete({
+     *   where: {
+     *     // ... filter to delete one UsageRecord
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UsageRecordDeleteArgs>(args: SelectSubset<T, UsageRecordDeleteArgs<ExtArgs>>): Prisma__UsageRecordClient<$Result.GetResult<Prisma.$UsageRecordPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UsageRecord.
+     * @param {UsageRecordUpdateArgs} args - Arguments to update one UsageRecord.
+     * @example
+     * // Update one UsageRecord
+     * const usageRecord = await prisma.usageRecord.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UsageRecordUpdateArgs>(args: SelectSubset<T, UsageRecordUpdateArgs<ExtArgs>>): Prisma__UsageRecordClient<$Result.GetResult<Prisma.$UsageRecordPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UsageRecords.
+     * @param {UsageRecordDeleteManyArgs} args - Arguments to filter UsageRecords to delete.
+     * @example
+     * // Delete a few UsageRecords
+     * const { count } = await prisma.usageRecord.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UsageRecordDeleteManyArgs>(args?: SelectSubset<T, UsageRecordDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UsageRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageRecordUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UsageRecords
+     * const usageRecord = await prisma.usageRecord.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UsageRecordUpdateManyArgs>(args: SelectSubset<T, UsageRecordUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UsageRecords and returns the data updated in the database.
+     * @param {UsageRecordUpdateManyAndReturnArgs} args - Arguments to update many UsageRecords.
+     * @example
+     * // Update many UsageRecords
+     * const usageRecord = await prisma.usageRecord.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UsageRecords and only return the `id`
+     * const usageRecordWithIdOnly = await prisma.usageRecord.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UsageRecordUpdateManyAndReturnArgs>(args: SelectSubset<T, UsageRecordUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsageRecordPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UsageRecord.
+     * @param {UsageRecordUpsertArgs} args - Arguments to update or create a UsageRecord.
+     * @example
+     * // Update or create a UsageRecord
+     * const usageRecord = await prisma.usageRecord.upsert({
+     *   create: {
+     *     // ... data to create a UsageRecord
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UsageRecord we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UsageRecordUpsertArgs>(args: SelectSubset<T, UsageRecordUpsertArgs<ExtArgs>>): Prisma__UsageRecordClient<$Result.GetResult<Prisma.$UsageRecordPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UsageRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageRecordCountArgs} args - Arguments to filter UsageRecords to count.
+     * @example
+     * // Count the number of UsageRecords
+     * const count = await prisma.usageRecord.count({
+     *   where: {
+     *     // ... the filter for the UsageRecords we want to count
+     *   }
+     * })
+    **/
+    count<T extends UsageRecordCountArgs>(
+      args?: Subset<T, UsageRecordCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UsageRecordCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UsageRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageRecordAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UsageRecordAggregateArgs>(args: Subset<T, UsageRecordAggregateArgs>): Prisma.PrismaPromise<GetUsageRecordAggregateType<T>>
+
+    /**
+     * Group by UsageRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsageRecordGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UsageRecordGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UsageRecordGroupByArgs['orderBy'] }
+        : { orderBy?: UsageRecordGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UsageRecordGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUsageRecordGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UsageRecord model
+   */
+  readonly fields: UsageRecordFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UsageRecord.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UsageRecordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UsageRecord model
+   */
+  interface UsageRecordFieldRefs {
+    readonly id: FieldRef<"UsageRecord", 'String'>
+    readonly ownerType: FieldRef<"UsageRecord", 'String'>
+    readonly ownerId: FieldRef<"UsageRecord", 'String'>
+    readonly userId: FieldRef<"UsageRecord", 'String'>
+    readonly metric: FieldRef<"UsageRecord", 'String'>
+    readonly count: FieldRef<"UsageRecord", 'Int'>
+    readonly periodStart: FieldRef<"UsageRecord", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UsageRecord findUnique
+   */
+  export type UsageRecordFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+    /**
+     * Filter, which UsageRecord to fetch.
+     */
+    where: UsageRecordWhereUniqueInput
+  }
+
+  /**
+   * UsageRecord findUniqueOrThrow
+   */
+  export type UsageRecordFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+    /**
+     * Filter, which UsageRecord to fetch.
+     */
+    where: UsageRecordWhereUniqueInput
+  }
+
+  /**
+   * UsageRecord findFirst
+   */
+  export type UsageRecordFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+    /**
+     * Filter, which UsageRecord to fetch.
+     */
+    where?: UsageRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UsageRecords to fetch.
+     */
+    orderBy?: UsageRecordOrderByWithRelationInput | UsageRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UsageRecords.
+     */
+    cursor?: UsageRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UsageRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UsageRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UsageRecords.
+     */
+    distinct?: UsageRecordScalarFieldEnum | UsageRecordScalarFieldEnum[]
+  }
+
+  /**
+   * UsageRecord findFirstOrThrow
+   */
+  export type UsageRecordFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+    /**
+     * Filter, which UsageRecord to fetch.
+     */
+    where?: UsageRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UsageRecords to fetch.
+     */
+    orderBy?: UsageRecordOrderByWithRelationInput | UsageRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UsageRecords.
+     */
+    cursor?: UsageRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UsageRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UsageRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UsageRecords.
+     */
+    distinct?: UsageRecordScalarFieldEnum | UsageRecordScalarFieldEnum[]
+  }
+
+  /**
+   * UsageRecord findMany
+   */
+  export type UsageRecordFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+    /**
+     * Filter, which UsageRecords to fetch.
+     */
+    where?: UsageRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UsageRecords to fetch.
+     */
+    orderBy?: UsageRecordOrderByWithRelationInput | UsageRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UsageRecords.
+     */
+    cursor?: UsageRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UsageRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UsageRecords.
+     */
+    skip?: number
+    distinct?: UsageRecordScalarFieldEnum | UsageRecordScalarFieldEnum[]
+  }
+
+  /**
+   * UsageRecord create
+   */
+  export type UsageRecordCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+    /**
+     * The data needed to create a UsageRecord.
+     */
+    data: XOR<UsageRecordCreateInput, UsageRecordUncheckedCreateInput>
+  }
+
+  /**
+   * UsageRecord createMany
+   */
+  export type UsageRecordCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UsageRecords.
+     */
+    data: UsageRecordCreateManyInput | UsageRecordCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UsageRecord createManyAndReturn
+   */
+  export type UsageRecordCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+    /**
+     * The data used to create many UsageRecords.
+     */
+    data: UsageRecordCreateManyInput | UsageRecordCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UsageRecord update
+   */
+  export type UsageRecordUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+    /**
+     * The data needed to update a UsageRecord.
+     */
+    data: XOR<UsageRecordUpdateInput, UsageRecordUncheckedUpdateInput>
+    /**
+     * Choose, which UsageRecord to update.
+     */
+    where: UsageRecordWhereUniqueInput
+  }
+
+  /**
+   * UsageRecord updateMany
+   */
+  export type UsageRecordUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UsageRecords.
+     */
+    data: XOR<UsageRecordUpdateManyMutationInput, UsageRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which UsageRecords to update
+     */
+    where?: UsageRecordWhereInput
+    /**
+     * Limit how many UsageRecords to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UsageRecord updateManyAndReturn
+   */
+  export type UsageRecordUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+    /**
+     * The data used to update UsageRecords.
+     */
+    data: XOR<UsageRecordUpdateManyMutationInput, UsageRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which UsageRecords to update
+     */
+    where?: UsageRecordWhereInput
+    /**
+     * Limit how many UsageRecords to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UsageRecord upsert
+   */
+  export type UsageRecordUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+    /**
+     * The filter to search for the UsageRecord to update in case it exists.
+     */
+    where: UsageRecordWhereUniqueInput
+    /**
+     * In case the UsageRecord found by the `where` argument doesn't exist, create a new UsageRecord with this data.
+     */
+    create: XOR<UsageRecordCreateInput, UsageRecordUncheckedCreateInput>
+    /**
+     * In case the UsageRecord was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UsageRecordUpdateInput, UsageRecordUncheckedUpdateInput>
+  }
+
+  /**
+   * UsageRecord delete
+   */
+  export type UsageRecordDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+    /**
+     * Filter which UsageRecord to delete.
+     */
+    where: UsageRecordWhereUniqueInput
+  }
+
+  /**
+   * UsageRecord deleteMany
+   */
+  export type UsageRecordDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UsageRecords to delete
+     */
+    where?: UsageRecordWhereInput
+    /**
+     * Limit how many UsageRecords to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UsageRecord without action
+   */
+  export type UsageRecordDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageRecord
+     */
+    select?: UsageRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageRecord
+     */
+    omit?: UsageRecordOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model StripeEvent
+   */
+
+  export type AggregateStripeEvent = {
+    _count: StripeEventCountAggregateOutputType | null
+    _min: StripeEventMinAggregateOutputType | null
+    _max: StripeEventMaxAggregateOutputType | null
+  }
+
+  export type StripeEventMinAggregateOutputType = {
+    id: string | null
+    type: string | null
+    processedAt: Date | null
+  }
+
+  export type StripeEventMaxAggregateOutputType = {
+    id: string | null
+    type: string | null
+    processedAt: Date | null
+  }
+
+  export type StripeEventCountAggregateOutputType = {
+    id: number
+    type: number
+    processedAt: number
+    _all: number
+  }
+
+
+  export type StripeEventMinAggregateInputType = {
+    id?: true
+    type?: true
+    processedAt?: true
+  }
+
+  export type StripeEventMaxAggregateInputType = {
+    id?: true
+    type?: true
+    processedAt?: true
+  }
+
+  export type StripeEventCountAggregateInputType = {
+    id?: true
+    type?: true
+    processedAt?: true
+    _all?: true
+  }
+
+  export type StripeEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StripeEvent to aggregate.
+     */
+    where?: StripeEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StripeEvents to fetch.
+     */
+    orderBy?: StripeEventOrderByWithRelationInput | StripeEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StripeEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StripeEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StripeEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StripeEvents
+    **/
+    _count?: true | StripeEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StripeEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StripeEventMaxAggregateInputType
+  }
+
+  export type GetStripeEventAggregateType<T extends StripeEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateStripeEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStripeEvent[P]>
+      : GetScalarType<T[P], AggregateStripeEvent[P]>
+  }
+
+
+
+
+  export type StripeEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StripeEventWhereInput
+    orderBy?: StripeEventOrderByWithAggregationInput | StripeEventOrderByWithAggregationInput[]
+    by: StripeEventScalarFieldEnum[] | StripeEventScalarFieldEnum
+    having?: StripeEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StripeEventCountAggregateInputType | true
+    _min?: StripeEventMinAggregateInputType
+    _max?: StripeEventMaxAggregateInputType
+  }
+
+  export type StripeEventGroupByOutputType = {
+    id: string
+    type: string
+    processedAt: Date
+    _count: StripeEventCountAggregateOutputType | null
+    _min: StripeEventMinAggregateOutputType | null
+    _max: StripeEventMaxAggregateOutputType | null
+  }
+
+  type GetStripeEventGroupByPayload<T extends StripeEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StripeEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StripeEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StripeEventGroupByOutputType[P]>
+            : GetScalarType<T[P], StripeEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StripeEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    processedAt?: boolean
+  }, ExtArgs["result"]["stripeEvent"]>
+
+  export type StripeEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    processedAt?: boolean
+  }, ExtArgs["result"]["stripeEvent"]>
+
+  export type StripeEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    processedAt?: boolean
+  }, ExtArgs["result"]["stripeEvent"]>
+
+  export type StripeEventSelectScalar = {
+    id?: boolean
+    type?: boolean
+    processedAt?: boolean
+  }
+
+  export type StripeEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "processedAt", ExtArgs["result"]["stripeEvent"]>
+
+  export type $StripeEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StripeEvent"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      type: string
+      processedAt: Date
+    }, ExtArgs["result"]["stripeEvent"]>
+    composites: {}
+  }
+
+  type StripeEventGetPayload<S extends boolean | null | undefined | StripeEventDefaultArgs> = $Result.GetResult<Prisma.$StripeEventPayload, S>
+
+  type StripeEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StripeEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StripeEventCountAggregateInputType | true
+    }
+
+  export interface StripeEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StripeEvent'], meta: { name: 'StripeEvent' } }
+    /**
+     * Find zero or one StripeEvent that matches the filter.
+     * @param {StripeEventFindUniqueArgs} args - Arguments to find a StripeEvent
+     * @example
+     * // Get one StripeEvent
+     * const stripeEvent = await prisma.stripeEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StripeEventFindUniqueArgs>(args: SelectSubset<T, StripeEventFindUniqueArgs<ExtArgs>>): Prisma__StripeEventClient<$Result.GetResult<Prisma.$StripeEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StripeEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StripeEventFindUniqueOrThrowArgs} args - Arguments to find a StripeEvent
+     * @example
+     * // Get one StripeEvent
+     * const stripeEvent = await prisma.stripeEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StripeEventFindUniqueOrThrowArgs>(args: SelectSubset<T, StripeEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StripeEventClient<$Result.GetResult<Prisma.$StripeEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StripeEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StripeEventFindFirstArgs} args - Arguments to find a StripeEvent
+     * @example
+     * // Get one StripeEvent
+     * const stripeEvent = await prisma.stripeEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StripeEventFindFirstArgs>(args?: SelectSubset<T, StripeEventFindFirstArgs<ExtArgs>>): Prisma__StripeEventClient<$Result.GetResult<Prisma.$StripeEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StripeEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StripeEventFindFirstOrThrowArgs} args - Arguments to find a StripeEvent
+     * @example
+     * // Get one StripeEvent
+     * const stripeEvent = await prisma.stripeEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StripeEventFindFirstOrThrowArgs>(args?: SelectSubset<T, StripeEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__StripeEventClient<$Result.GetResult<Prisma.$StripeEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StripeEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StripeEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StripeEvents
+     * const stripeEvents = await prisma.stripeEvent.findMany()
+     * 
+     * // Get first 10 StripeEvents
+     * const stripeEvents = await prisma.stripeEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const stripeEventWithIdOnly = await prisma.stripeEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StripeEventFindManyArgs>(args?: SelectSubset<T, StripeEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StripeEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StripeEvent.
+     * @param {StripeEventCreateArgs} args - Arguments to create a StripeEvent.
+     * @example
+     * // Create one StripeEvent
+     * const StripeEvent = await prisma.stripeEvent.create({
+     *   data: {
+     *     // ... data to create a StripeEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends StripeEventCreateArgs>(args: SelectSubset<T, StripeEventCreateArgs<ExtArgs>>): Prisma__StripeEventClient<$Result.GetResult<Prisma.$StripeEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StripeEvents.
+     * @param {StripeEventCreateManyArgs} args - Arguments to create many StripeEvents.
+     * @example
+     * // Create many StripeEvents
+     * const stripeEvent = await prisma.stripeEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StripeEventCreateManyArgs>(args?: SelectSubset<T, StripeEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StripeEvents and returns the data saved in the database.
+     * @param {StripeEventCreateManyAndReturnArgs} args - Arguments to create many StripeEvents.
+     * @example
+     * // Create many StripeEvents
+     * const stripeEvent = await prisma.stripeEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StripeEvents and only return the `id`
+     * const stripeEventWithIdOnly = await prisma.stripeEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StripeEventCreateManyAndReturnArgs>(args?: SelectSubset<T, StripeEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StripeEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StripeEvent.
+     * @param {StripeEventDeleteArgs} args - Arguments to delete one StripeEvent.
+     * @example
+     * // Delete one StripeEvent
+     * const StripeEvent = await prisma.stripeEvent.delete({
+     *   where: {
+     *     // ... filter to delete one StripeEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StripeEventDeleteArgs>(args: SelectSubset<T, StripeEventDeleteArgs<ExtArgs>>): Prisma__StripeEventClient<$Result.GetResult<Prisma.$StripeEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StripeEvent.
+     * @param {StripeEventUpdateArgs} args - Arguments to update one StripeEvent.
+     * @example
+     * // Update one StripeEvent
+     * const stripeEvent = await prisma.stripeEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StripeEventUpdateArgs>(args: SelectSubset<T, StripeEventUpdateArgs<ExtArgs>>): Prisma__StripeEventClient<$Result.GetResult<Prisma.$StripeEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StripeEvents.
+     * @param {StripeEventDeleteManyArgs} args - Arguments to filter StripeEvents to delete.
+     * @example
+     * // Delete a few StripeEvents
+     * const { count } = await prisma.stripeEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StripeEventDeleteManyArgs>(args?: SelectSubset<T, StripeEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StripeEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StripeEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StripeEvents
+     * const stripeEvent = await prisma.stripeEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StripeEventUpdateManyArgs>(args: SelectSubset<T, StripeEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StripeEvents and returns the data updated in the database.
+     * @param {StripeEventUpdateManyAndReturnArgs} args - Arguments to update many StripeEvents.
+     * @example
+     * // Update many StripeEvents
+     * const stripeEvent = await prisma.stripeEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StripeEvents and only return the `id`
+     * const stripeEventWithIdOnly = await prisma.stripeEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StripeEventUpdateManyAndReturnArgs>(args: SelectSubset<T, StripeEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StripeEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StripeEvent.
+     * @param {StripeEventUpsertArgs} args - Arguments to update or create a StripeEvent.
+     * @example
+     * // Update or create a StripeEvent
+     * const stripeEvent = await prisma.stripeEvent.upsert({
+     *   create: {
+     *     // ... data to create a StripeEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StripeEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StripeEventUpsertArgs>(args: SelectSubset<T, StripeEventUpsertArgs<ExtArgs>>): Prisma__StripeEventClient<$Result.GetResult<Prisma.$StripeEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StripeEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StripeEventCountArgs} args - Arguments to filter StripeEvents to count.
+     * @example
+     * // Count the number of StripeEvents
+     * const count = await prisma.stripeEvent.count({
+     *   where: {
+     *     // ... the filter for the StripeEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends StripeEventCountArgs>(
+      args?: Subset<T, StripeEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StripeEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StripeEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StripeEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StripeEventAggregateArgs>(args: Subset<T, StripeEventAggregateArgs>): Prisma.PrismaPromise<GetStripeEventAggregateType<T>>
+
+    /**
+     * Group by StripeEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StripeEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StripeEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StripeEventGroupByArgs['orderBy'] }
+        : { orderBy?: StripeEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StripeEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStripeEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StripeEvent model
+   */
+  readonly fields: StripeEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StripeEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StripeEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StripeEvent model
+   */
+  interface StripeEventFieldRefs {
+    readonly id: FieldRef<"StripeEvent", 'String'>
+    readonly type: FieldRef<"StripeEvent", 'String'>
+    readonly processedAt: FieldRef<"StripeEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StripeEvent findUnique
+   */
+  export type StripeEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+    /**
+     * Filter, which StripeEvent to fetch.
+     */
+    where: StripeEventWhereUniqueInput
+  }
+
+  /**
+   * StripeEvent findUniqueOrThrow
+   */
+  export type StripeEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+    /**
+     * Filter, which StripeEvent to fetch.
+     */
+    where: StripeEventWhereUniqueInput
+  }
+
+  /**
+   * StripeEvent findFirst
+   */
+  export type StripeEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+    /**
+     * Filter, which StripeEvent to fetch.
+     */
+    where?: StripeEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StripeEvents to fetch.
+     */
+    orderBy?: StripeEventOrderByWithRelationInput | StripeEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StripeEvents.
+     */
+    cursor?: StripeEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StripeEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StripeEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StripeEvents.
+     */
+    distinct?: StripeEventScalarFieldEnum | StripeEventScalarFieldEnum[]
+  }
+
+  /**
+   * StripeEvent findFirstOrThrow
+   */
+  export type StripeEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+    /**
+     * Filter, which StripeEvent to fetch.
+     */
+    where?: StripeEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StripeEvents to fetch.
+     */
+    orderBy?: StripeEventOrderByWithRelationInput | StripeEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StripeEvents.
+     */
+    cursor?: StripeEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StripeEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StripeEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StripeEvents.
+     */
+    distinct?: StripeEventScalarFieldEnum | StripeEventScalarFieldEnum[]
+  }
+
+  /**
+   * StripeEvent findMany
+   */
+  export type StripeEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+    /**
+     * Filter, which StripeEvents to fetch.
+     */
+    where?: StripeEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StripeEvents to fetch.
+     */
+    orderBy?: StripeEventOrderByWithRelationInput | StripeEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StripeEvents.
+     */
+    cursor?: StripeEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StripeEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StripeEvents.
+     */
+    skip?: number
+    distinct?: StripeEventScalarFieldEnum | StripeEventScalarFieldEnum[]
+  }
+
+  /**
+   * StripeEvent create
+   */
+  export type StripeEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+    /**
+     * The data needed to create a StripeEvent.
+     */
+    data: XOR<StripeEventCreateInput, StripeEventUncheckedCreateInput>
+  }
+
+  /**
+   * StripeEvent createMany
+   */
+  export type StripeEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StripeEvents.
+     */
+    data: StripeEventCreateManyInput | StripeEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StripeEvent createManyAndReturn
+   */
+  export type StripeEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many StripeEvents.
+     */
+    data: StripeEventCreateManyInput | StripeEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StripeEvent update
+   */
+  export type StripeEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+    /**
+     * The data needed to update a StripeEvent.
+     */
+    data: XOR<StripeEventUpdateInput, StripeEventUncheckedUpdateInput>
+    /**
+     * Choose, which StripeEvent to update.
+     */
+    where: StripeEventWhereUniqueInput
+  }
+
+  /**
+   * StripeEvent updateMany
+   */
+  export type StripeEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StripeEvents.
+     */
+    data: XOR<StripeEventUpdateManyMutationInput, StripeEventUncheckedUpdateManyInput>
+    /**
+     * Filter which StripeEvents to update
+     */
+    where?: StripeEventWhereInput
+    /**
+     * Limit how many StripeEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StripeEvent updateManyAndReturn
+   */
+  export type StripeEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+    /**
+     * The data used to update StripeEvents.
+     */
+    data: XOR<StripeEventUpdateManyMutationInput, StripeEventUncheckedUpdateManyInput>
+    /**
+     * Filter which StripeEvents to update
+     */
+    where?: StripeEventWhereInput
+    /**
+     * Limit how many StripeEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StripeEvent upsert
+   */
+  export type StripeEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+    /**
+     * The filter to search for the StripeEvent to update in case it exists.
+     */
+    where: StripeEventWhereUniqueInput
+    /**
+     * In case the StripeEvent found by the `where` argument doesn't exist, create a new StripeEvent with this data.
+     */
+    create: XOR<StripeEventCreateInput, StripeEventUncheckedCreateInput>
+    /**
+     * In case the StripeEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StripeEventUpdateInput, StripeEventUncheckedUpdateInput>
+  }
+
+  /**
+   * StripeEvent delete
+   */
+  export type StripeEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+    /**
+     * Filter which StripeEvent to delete.
+     */
+    where: StripeEventWhereUniqueInput
+  }
+
+  /**
+   * StripeEvent deleteMany
+   */
+  export type StripeEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StripeEvents to delete
+     */
+    where?: StripeEventWhereInput
+    /**
+     * Limit how many StripeEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StripeEvent without action
+   */
+  export type StripeEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StripeEvent
+     */
+    select?: StripeEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StripeEvent
+     */
+    omit?: StripeEventOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -26204,7 +38085,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     gmailBackfilledAt: 'gmailBackfilledAt',
-    calendarBackfilledAt: 'calendarBackfilledAt'
+    calendarBackfilledAt: 'calendarBackfilledAt',
+    outlookBackfilledAt: 'outlookBackfilledAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -26321,6 +38203,8 @@ export namespace Prisma {
   export const SyncItemScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    orgId: 'orgId',
+    sharedInboxId: 'sharedInboxId',
     corsairEntityId: 'corsairEntityId',
     type: 'type',
     title: 'title',
@@ -26422,6 +38306,128 @@ export namespace Prisma {
   };
 
   export type RuleSuggestionScalarFieldEnum = (typeof RuleSuggestionScalarFieldEnum)[keyof typeof RuleSuggestionScalarFieldEnum]
+
+
+  export const OrganizationScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
+
+
+  export const MembershipScalarFieldEnum: {
+    id: 'id',
+    orgId: 'orgId',
+    userId: 'userId',
+    role: 'role',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MembershipScalarFieldEnum = (typeof MembershipScalarFieldEnum)[keyof typeof MembershipScalarFieldEnum]
+
+
+  export const SharedInboxScalarFieldEnum: {
+    id: 'id',
+    orgId: 'orgId',
+    name: 'name',
+    plugin: 'plugin',
+    corsairAccountId: 'corsairAccountId',
+    connectedByUserId: 'connectedByUserId',
+    createdAt: 'createdAt'
+  };
+
+  export type SharedInboxScalarFieldEnum = (typeof SharedInboxScalarFieldEnum)[keyof typeof SharedInboxScalarFieldEnum]
+
+
+  export const ThreadAssignmentScalarFieldEnum: {
+    id: 'id',
+    sharedInboxId: 'sharedInboxId',
+    threadId: 'threadId',
+    assigneeUserId: 'assigneeUserId',
+    status: 'status',
+    updatedByUserId: 'updatedByUserId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ThreadAssignmentScalarFieldEnum = (typeof ThreadAssignmentScalarFieldEnum)[keyof typeof ThreadAssignmentScalarFieldEnum]
+
+
+  export const ThreadCommentScalarFieldEnum: {
+    id: 'id',
+    sharedInboxId: 'sharedInboxId',
+    threadId: 'threadId',
+    authorUserId: 'authorUserId',
+    body: 'body',
+    createdAt: 'createdAt'
+  };
+
+  export type ThreadCommentScalarFieldEnum = (typeof ThreadCommentScalarFieldEnum)[keyof typeof ThreadCommentScalarFieldEnum]
+
+
+  export const AssignmentEventScalarFieldEnum: {
+    id: 'id',
+    sharedInboxId: 'sharedInboxId',
+    threadId: 'threadId',
+    actorUserId: 'actorUserId',
+    kind: 'kind',
+    meta: 'meta',
+    createdAt: 'createdAt'
+  };
+
+  export type AssignmentEventScalarFieldEnum = (typeof AssignmentEventScalarFieldEnum)[keyof typeof AssignmentEventScalarFieldEnum]
+
+
+  export const BillingCustomerScalarFieldEnum: {
+    id: 'id',
+    ownerType: 'ownerType',
+    ownerId: 'ownerId',
+    stripeCustomerId: 'stripeCustomerId',
+    createdAt: 'createdAt'
+  };
+
+  export type BillingCustomerScalarFieldEnum = (typeof BillingCustomerScalarFieldEnum)[keyof typeof BillingCustomerScalarFieldEnum]
+
+
+  export const SubscriptionScalarFieldEnum: {
+    id: 'id',
+    billingCustomerId: 'billingCustomerId',
+    stripeSubscriptionId: 'stripeSubscriptionId',
+    plan: 'plan',
+    status: 'status',
+    seats: 'seats',
+    currentPeriodEnd: 'currentPeriodEnd',
+    cancelAtPeriodEnd: 'cancelAtPeriodEnd',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
+
+
+  export const UsageRecordScalarFieldEnum: {
+    id: 'id',
+    ownerType: 'ownerType',
+    ownerId: 'ownerId',
+    userId: 'userId',
+    metric: 'metric',
+    count: 'count',
+    periodStart: 'periodStart'
+  };
+
+  export type UsageRecordScalarFieldEnum = (typeof UsageRecordScalarFieldEnum)[keyof typeof UsageRecordScalarFieldEnum]
+
+
+  export const StripeEventScalarFieldEnum: {
+    id: 'id',
+    type: 'type',
+    processedAt: 'processedAt'
+  };
+
+  export type StripeEventScalarFieldEnum = (typeof StripeEventScalarFieldEnum)[keyof typeof StripeEventScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -26536,6 +38542,13 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -26817,6 +38830,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     gmailBackfilledAt?: DateTimeNullableFilter<"User"> | Date | string | null
     calendarBackfilledAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    outlookBackfilledAt?: DateTimeNullableFilter<"User"> | Date | string | null
     channelLinks?: ChannelLinkListRelationFilter
     emailEmbeddings?: EmailEmbeddingListRelationFilter
     priorityScores?: PriorityScoreListRelationFilter
@@ -26839,6 +38853,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     gmailBackfilledAt?: SortOrderInput | SortOrder
     calendarBackfilledAt?: SortOrderInput | SortOrder
+    outlookBackfilledAt?: SortOrderInput | SortOrder
     channelLinks?: ChannelLinkOrderByRelationAggregateInput
     emailEmbeddings?: EmailEmbeddingOrderByRelationAggregateInput
     priorityScores?: PriorityScoreOrderByRelationAggregateInput
@@ -26864,6 +38879,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     gmailBackfilledAt?: DateTimeNullableFilter<"User"> | Date | string | null
     calendarBackfilledAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    outlookBackfilledAt?: DateTimeNullableFilter<"User"> | Date | string | null
     channelLinks?: ChannelLinkListRelationFilter
     emailEmbeddings?: EmailEmbeddingListRelationFilter
     priorityScores?: PriorityScoreListRelationFilter
@@ -26886,6 +38902,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     gmailBackfilledAt?: SortOrderInput | SortOrder
     calendarBackfilledAt?: SortOrderInput | SortOrder
+    outlookBackfilledAt?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -26900,6 +38917,7 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     gmailBackfilledAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     calendarBackfilledAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    outlookBackfilledAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
 
   export type ChannelLinkWhereInput = {
@@ -27455,6 +39473,8 @@ export namespace Prisma {
     NOT?: SyncItemWhereInput | SyncItemWhereInput[]
     id?: StringFilter<"SyncItem"> | string
     userId?: StringFilter<"SyncItem"> | string
+    orgId?: StringNullableFilter<"SyncItem"> | string | null
+    sharedInboxId?: StringNullableFilter<"SyncItem"> | string | null
     corsairEntityId?: StringFilter<"SyncItem"> | string
     type?: StringFilter<"SyncItem"> | string
     title?: StringFilter<"SyncItem"> | string
@@ -27467,6 +39487,8 @@ export namespace Prisma {
   export type SyncItemOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    orgId?: SortOrderInput | SortOrder
+    sharedInboxId?: SortOrderInput | SortOrder
     corsairEntityId?: SortOrder
     type?: SortOrder
     title?: SortOrder
@@ -27483,6 +39505,8 @@ export namespace Prisma {
     OR?: SyncItemWhereInput[]
     NOT?: SyncItemWhereInput | SyncItemWhereInput[]
     userId?: StringFilter<"SyncItem"> | string
+    orgId?: StringNullableFilter<"SyncItem"> | string | null
+    sharedInboxId?: StringNullableFilter<"SyncItem"> | string | null
     corsairEntityId?: StringFilter<"SyncItem"> | string
     type?: StringFilter<"SyncItem"> | string
     title?: StringFilter<"SyncItem"> | string
@@ -27495,6 +39519,8 @@ export namespace Prisma {
   export type SyncItemOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    orgId?: SortOrderInput | SortOrder
+    sharedInboxId?: SortOrderInput | SortOrder
     corsairEntityId?: SortOrder
     type?: SortOrder
     title?: SortOrder
@@ -27513,6 +39539,8 @@ export namespace Prisma {
     NOT?: SyncItemScalarWhereWithAggregatesInput | SyncItemScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"SyncItem"> | string
     userId?: StringWithAggregatesFilter<"SyncItem"> | string
+    orgId?: StringNullableWithAggregatesFilter<"SyncItem"> | string | null
+    sharedInboxId?: StringNullableWithAggregatesFilter<"SyncItem"> | string | null
     corsairEntityId?: StringWithAggregatesFilter<"SyncItem"> | string
     type?: StringWithAggregatesFilter<"SyncItem"> | string
     title?: StringWithAggregatesFilter<"SyncItem"> | string
@@ -27985,6 +40013,630 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"RuleSuggestion"> | Date | string
   }
 
+  export type OrganizationWhereInput = {
+    AND?: OrganizationWhereInput | OrganizationWhereInput[]
+    OR?: OrganizationWhereInput[]
+    NOT?: OrganizationWhereInput | OrganizationWhereInput[]
+    id?: StringFilter<"Organization"> | string
+    name?: StringFilter<"Organization"> | string
+    createdAt?: DateTimeFilter<"Organization"> | Date | string
+    updatedAt?: DateTimeFilter<"Organization"> | Date | string
+    memberships?: MembershipListRelationFilter
+    sharedInboxes?: SharedInboxListRelationFilter
+  }
+
+  export type OrganizationOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    memberships?: MembershipOrderByRelationAggregateInput
+    sharedInboxes?: SharedInboxOrderByRelationAggregateInput
+  }
+
+  export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: OrganizationWhereInput | OrganizationWhereInput[]
+    OR?: OrganizationWhereInput[]
+    NOT?: OrganizationWhereInput | OrganizationWhereInput[]
+    name?: StringFilter<"Organization"> | string
+    createdAt?: DateTimeFilter<"Organization"> | Date | string
+    updatedAt?: DateTimeFilter<"Organization"> | Date | string
+    memberships?: MembershipListRelationFilter
+    sharedInboxes?: SharedInboxListRelationFilter
+  }, "id">
+
+  export type OrganizationOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: OrganizationCountOrderByAggregateInput
+    _max?: OrganizationMaxOrderByAggregateInput
+    _min?: OrganizationMinOrderByAggregateInput
+  }
+
+  export type OrganizationScalarWhereWithAggregatesInput = {
+    AND?: OrganizationScalarWhereWithAggregatesInput | OrganizationScalarWhereWithAggregatesInput[]
+    OR?: OrganizationScalarWhereWithAggregatesInput[]
+    NOT?: OrganizationScalarWhereWithAggregatesInput | OrganizationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Organization"> | string
+    name?: StringWithAggregatesFilter<"Organization"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Organization"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Organization"> | Date | string
+  }
+
+  export type MembershipWhereInput = {
+    AND?: MembershipWhereInput | MembershipWhereInput[]
+    OR?: MembershipWhereInput[]
+    NOT?: MembershipWhereInput | MembershipWhereInput[]
+    id?: StringFilter<"Membership"> | string
+    orgId?: StringFilter<"Membership"> | string
+    userId?: StringFilter<"Membership"> | string
+    role?: StringFilter<"Membership"> | string
+    createdAt?: DateTimeFilter<"Membership"> | Date | string
+    updatedAt?: DateTimeFilter<"Membership"> | Date | string
+    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
+  }
+
+  export type MembershipOrderByWithRelationInput = {
+    id?: SortOrder
+    orgId?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    organization?: OrganizationOrderByWithRelationInput
+  }
+
+  export type MembershipWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    orgId_userId?: MembershipOrgIdUserIdCompoundUniqueInput
+    AND?: MembershipWhereInput | MembershipWhereInput[]
+    OR?: MembershipWhereInput[]
+    NOT?: MembershipWhereInput | MembershipWhereInput[]
+    orgId?: StringFilter<"Membership"> | string
+    userId?: StringFilter<"Membership"> | string
+    role?: StringFilter<"Membership"> | string
+    createdAt?: DateTimeFilter<"Membership"> | Date | string
+    updatedAt?: DateTimeFilter<"Membership"> | Date | string
+    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
+  }, "id" | "orgId_userId">
+
+  export type MembershipOrderByWithAggregationInput = {
+    id?: SortOrder
+    orgId?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MembershipCountOrderByAggregateInput
+    _max?: MembershipMaxOrderByAggregateInput
+    _min?: MembershipMinOrderByAggregateInput
+  }
+
+  export type MembershipScalarWhereWithAggregatesInput = {
+    AND?: MembershipScalarWhereWithAggregatesInput | MembershipScalarWhereWithAggregatesInput[]
+    OR?: MembershipScalarWhereWithAggregatesInput[]
+    NOT?: MembershipScalarWhereWithAggregatesInput | MembershipScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Membership"> | string
+    orgId?: StringWithAggregatesFilter<"Membership"> | string
+    userId?: StringWithAggregatesFilter<"Membership"> | string
+    role?: StringWithAggregatesFilter<"Membership"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Membership"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Membership"> | Date | string
+  }
+
+  export type SharedInboxWhereInput = {
+    AND?: SharedInboxWhereInput | SharedInboxWhereInput[]
+    OR?: SharedInboxWhereInput[]
+    NOT?: SharedInboxWhereInput | SharedInboxWhereInput[]
+    id?: StringFilter<"SharedInbox"> | string
+    orgId?: StringFilter<"SharedInbox"> | string
+    name?: StringFilter<"SharedInbox"> | string
+    plugin?: StringFilter<"SharedInbox"> | string
+    corsairAccountId?: StringNullableFilter<"SharedInbox"> | string | null
+    connectedByUserId?: StringFilter<"SharedInbox"> | string
+    createdAt?: DateTimeFilter<"SharedInbox"> | Date | string
+    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
+    assignments?: ThreadAssignmentListRelationFilter
+    comments?: ThreadCommentListRelationFilter
+    events?: AssignmentEventListRelationFilter
+  }
+
+  export type SharedInboxOrderByWithRelationInput = {
+    id?: SortOrder
+    orgId?: SortOrder
+    name?: SortOrder
+    plugin?: SortOrder
+    corsairAccountId?: SortOrderInput | SortOrder
+    connectedByUserId?: SortOrder
+    createdAt?: SortOrder
+    organization?: OrganizationOrderByWithRelationInput
+    assignments?: ThreadAssignmentOrderByRelationAggregateInput
+    comments?: ThreadCommentOrderByRelationAggregateInput
+    events?: AssignmentEventOrderByRelationAggregateInput
+  }
+
+  export type SharedInboxWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SharedInboxWhereInput | SharedInboxWhereInput[]
+    OR?: SharedInboxWhereInput[]
+    NOT?: SharedInboxWhereInput | SharedInboxWhereInput[]
+    orgId?: StringFilter<"SharedInbox"> | string
+    name?: StringFilter<"SharedInbox"> | string
+    plugin?: StringFilter<"SharedInbox"> | string
+    corsairAccountId?: StringNullableFilter<"SharedInbox"> | string | null
+    connectedByUserId?: StringFilter<"SharedInbox"> | string
+    createdAt?: DateTimeFilter<"SharedInbox"> | Date | string
+    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
+    assignments?: ThreadAssignmentListRelationFilter
+    comments?: ThreadCommentListRelationFilter
+    events?: AssignmentEventListRelationFilter
+  }, "id">
+
+  export type SharedInboxOrderByWithAggregationInput = {
+    id?: SortOrder
+    orgId?: SortOrder
+    name?: SortOrder
+    plugin?: SortOrder
+    corsairAccountId?: SortOrderInput | SortOrder
+    connectedByUserId?: SortOrder
+    createdAt?: SortOrder
+    _count?: SharedInboxCountOrderByAggregateInput
+    _max?: SharedInboxMaxOrderByAggregateInput
+    _min?: SharedInboxMinOrderByAggregateInput
+  }
+
+  export type SharedInboxScalarWhereWithAggregatesInput = {
+    AND?: SharedInboxScalarWhereWithAggregatesInput | SharedInboxScalarWhereWithAggregatesInput[]
+    OR?: SharedInboxScalarWhereWithAggregatesInput[]
+    NOT?: SharedInboxScalarWhereWithAggregatesInput | SharedInboxScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SharedInbox"> | string
+    orgId?: StringWithAggregatesFilter<"SharedInbox"> | string
+    name?: StringWithAggregatesFilter<"SharedInbox"> | string
+    plugin?: StringWithAggregatesFilter<"SharedInbox"> | string
+    corsairAccountId?: StringNullableWithAggregatesFilter<"SharedInbox"> | string | null
+    connectedByUserId?: StringWithAggregatesFilter<"SharedInbox"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"SharedInbox"> | Date | string
+  }
+
+  export type ThreadAssignmentWhereInput = {
+    AND?: ThreadAssignmentWhereInput | ThreadAssignmentWhereInput[]
+    OR?: ThreadAssignmentWhereInput[]
+    NOT?: ThreadAssignmentWhereInput | ThreadAssignmentWhereInput[]
+    id?: StringFilter<"ThreadAssignment"> | string
+    sharedInboxId?: StringFilter<"ThreadAssignment"> | string
+    threadId?: StringFilter<"ThreadAssignment"> | string
+    assigneeUserId?: StringNullableFilter<"ThreadAssignment"> | string | null
+    status?: StringFilter<"ThreadAssignment"> | string
+    updatedByUserId?: StringFilter<"ThreadAssignment"> | string
+    createdAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
+    updatedAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
+    sharedInbox?: XOR<SharedInboxScalarRelationFilter, SharedInboxWhereInput>
+  }
+
+  export type ThreadAssignmentOrderByWithRelationInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    assigneeUserId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    updatedByUserId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    sharedInbox?: SharedInboxOrderByWithRelationInput
+  }
+
+  export type ThreadAssignmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    sharedInboxId_threadId?: ThreadAssignmentSharedInboxIdThreadIdCompoundUniqueInput
+    AND?: ThreadAssignmentWhereInput | ThreadAssignmentWhereInput[]
+    OR?: ThreadAssignmentWhereInput[]
+    NOT?: ThreadAssignmentWhereInput | ThreadAssignmentWhereInput[]
+    sharedInboxId?: StringFilter<"ThreadAssignment"> | string
+    threadId?: StringFilter<"ThreadAssignment"> | string
+    assigneeUserId?: StringNullableFilter<"ThreadAssignment"> | string | null
+    status?: StringFilter<"ThreadAssignment"> | string
+    updatedByUserId?: StringFilter<"ThreadAssignment"> | string
+    createdAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
+    updatedAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
+    sharedInbox?: XOR<SharedInboxScalarRelationFilter, SharedInboxWhereInput>
+  }, "id" | "sharedInboxId_threadId">
+
+  export type ThreadAssignmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    assigneeUserId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    updatedByUserId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ThreadAssignmentCountOrderByAggregateInput
+    _max?: ThreadAssignmentMaxOrderByAggregateInput
+    _min?: ThreadAssignmentMinOrderByAggregateInput
+  }
+
+  export type ThreadAssignmentScalarWhereWithAggregatesInput = {
+    AND?: ThreadAssignmentScalarWhereWithAggregatesInput | ThreadAssignmentScalarWhereWithAggregatesInput[]
+    OR?: ThreadAssignmentScalarWhereWithAggregatesInput[]
+    NOT?: ThreadAssignmentScalarWhereWithAggregatesInput | ThreadAssignmentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ThreadAssignment"> | string
+    sharedInboxId?: StringWithAggregatesFilter<"ThreadAssignment"> | string
+    threadId?: StringWithAggregatesFilter<"ThreadAssignment"> | string
+    assigneeUserId?: StringNullableWithAggregatesFilter<"ThreadAssignment"> | string | null
+    status?: StringWithAggregatesFilter<"ThreadAssignment"> | string
+    updatedByUserId?: StringWithAggregatesFilter<"ThreadAssignment"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ThreadAssignment"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ThreadAssignment"> | Date | string
+  }
+
+  export type ThreadCommentWhereInput = {
+    AND?: ThreadCommentWhereInput | ThreadCommentWhereInput[]
+    OR?: ThreadCommentWhereInput[]
+    NOT?: ThreadCommentWhereInput | ThreadCommentWhereInput[]
+    id?: StringFilter<"ThreadComment"> | string
+    sharedInboxId?: StringFilter<"ThreadComment"> | string
+    threadId?: StringFilter<"ThreadComment"> | string
+    authorUserId?: StringFilter<"ThreadComment"> | string
+    body?: StringFilter<"ThreadComment"> | string
+    createdAt?: DateTimeFilter<"ThreadComment"> | Date | string
+    sharedInbox?: XOR<SharedInboxScalarRelationFilter, SharedInboxWhereInput>
+  }
+
+  export type ThreadCommentOrderByWithRelationInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    authorUserId?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+    sharedInbox?: SharedInboxOrderByWithRelationInput
+  }
+
+  export type ThreadCommentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ThreadCommentWhereInput | ThreadCommentWhereInput[]
+    OR?: ThreadCommentWhereInput[]
+    NOT?: ThreadCommentWhereInput | ThreadCommentWhereInput[]
+    sharedInboxId?: StringFilter<"ThreadComment"> | string
+    threadId?: StringFilter<"ThreadComment"> | string
+    authorUserId?: StringFilter<"ThreadComment"> | string
+    body?: StringFilter<"ThreadComment"> | string
+    createdAt?: DateTimeFilter<"ThreadComment"> | Date | string
+    sharedInbox?: XOR<SharedInboxScalarRelationFilter, SharedInboxWhereInput>
+  }, "id">
+
+  export type ThreadCommentOrderByWithAggregationInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    authorUserId?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+    _count?: ThreadCommentCountOrderByAggregateInput
+    _max?: ThreadCommentMaxOrderByAggregateInput
+    _min?: ThreadCommentMinOrderByAggregateInput
+  }
+
+  export type ThreadCommentScalarWhereWithAggregatesInput = {
+    AND?: ThreadCommentScalarWhereWithAggregatesInput | ThreadCommentScalarWhereWithAggregatesInput[]
+    OR?: ThreadCommentScalarWhereWithAggregatesInput[]
+    NOT?: ThreadCommentScalarWhereWithAggregatesInput | ThreadCommentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ThreadComment"> | string
+    sharedInboxId?: StringWithAggregatesFilter<"ThreadComment"> | string
+    threadId?: StringWithAggregatesFilter<"ThreadComment"> | string
+    authorUserId?: StringWithAggregatesFilter<"ThreadComment"> | string
+    body?: StringWithAggregatesFilter<"ThreadComment"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ThreadComment"> | Date | string
+  }
+
+  export type AssignmentEventWhereInput = {
+    AND?: AssignmentEventWhereInput | AssignmentEventWhereInput[]
+    OR?: AssignmentEventWhereInput[]
+    NOT?: AssignmentEventWhereInput | AssignmentEventWhereInput[]
+    id?: StringFilter<"AssignmentEvent"> | string
+    sharedInboxId?: StringFilter<"AssignmentEvent"> | string
+    threadId?: StringFilter<"AssignmentEvent"> | string
+    actorUserId?: StringFilter<"AssignmentEvent"> | string
+    kind?: StringFilter<"AssignmentEvent"> | string
+    meta?: JsonFilter<"AssignmentEvent">
+    createdAt?: DateTimeFilter<"AssignmentEvent"> | Date | string
+    sharedInbox?: XOR<SharedInboxScalarRelationFilter, SharedInboxWhereInput>
+  }
+
+  export type AssignmentEventOrderByWithRelationInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    actorUserId?: SortOrder
+    kind?: SortOrder
+    meta?: SortOrder
+    createdAt?: SortOrder
+    sharedInbox?: SharedInboxOrderByWithRelationInput
+  }
+
+  export type AssignmentEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AssignmentEventWhereInput | AssignmentEventWhereInput[]
+    OR?: AssignmentEventWhereInput[]
+    NOT?: AssignmentEventWhereInput | AssignmentEventWhereInput[]
+    sharedInboxId?: StringFilter<"AssignmentEvent"> | string
+    threadId?: StringFilter<"AssignmentEvent"> | string
+    actorUserId?: StringFilter<"AssignmentEvent"> | string
+    kind?: StringFilter<"AssignmentEvent"> | string
+    meta?: JsonFilter<"AssignmentEvent">
+    createdAt?: DateTimeFilter<"AssignmentEvent"> | Date | string
+    sharedInbox?: XOR<SharedInboxScalarRelationFilter, SharedInboxWhereInput>
+  }, "id">
+
+  export type AssignmentEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    actorUserId?: SortOrder
+    kind?: SortOrder
+    meta?: SortOrder
+    createdAt?: SortOrder
+    _count?: AssignmentEventCountOrderByAggregateInput
+    _max?: AssignmentEventMaxOrderByAggregateInput
+    _min?: AssignmentEventMinOrderByAggregateInput
+  }
+
+  export type AssignmentEventScalarWhereWithAggregatesInput = {
+    AND?: AssignmentEventScalarWhereWithAggregatesInput | AssignmentEventScalarWhereWithAggregatesInput[]
+    OR?: AssignmentEventScalarWhereWithAggregatesInput[]
+    NOT?: AssignmentEventScalarWhereWithAggregatesInput | AssignmentEventScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AssignmentEvent"> | string
+    sharedInboxId?: StringWithAggregatesFilter<"AssignmentEvent"> | string
+    threadId?: StringWithAggregatesFilter<"AssignmentEvent"> | string
+    actorUserId?: StringWithAggregatesFilter<"AssignmentEvent"> | string
+    kind?: StringWithAggregatesFilter<"AssignmentEvent"> | string
+    meta?: JsonWithAggregatesFilter<"AssignmentEvent">
+    createdAt?: DateTimeWithAggregatesFilter<"AssignmentEvent"> | Date | string
+  }
+
+  export type BillingCustomerWhereInput = {
+    AND?: BillingCustomerWhereInput | BillingCustomerWhereInput[]
+    OR?: BillingCustomerWhereInput[]
+    NOT?: BillingCustomerWhereInput | BillingCustomerWhereInput[]
+    id?: StringFilter<"BillingCustomer"> | string
+    ownerType?: StringFilter<"BillingCustomer"> | string
+    ownerId?: StringFilter<"BillingCustomer"> | string
+    stripeCustomerId?: StringFilter<"BillingCustomer"> | string
+    createdAt?: DateTimeFilter<"BillingCustomer"> | Date | string
+    subscriptions?: SubscriptionListRelationFilter
+  }
+
+  export type BillingCustomerOrderByWithRelationInput = {
+    id?: SortOrder
+    ownerType?: SortOrder
+    ownerId?: SortOrder
+    stripeCustomerId?: SortOrder
+    createdAt?: SortOrder
+    subscriptions?: SubscriptionOrderByRelationAggregateInput
+  }
+
+  export type BillingCustomerWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    stripeCustomerId?: string
+    ownerType_ownerId?: BillingCustomerOwnerTypeOwnerIdCompoundUniqueInput
+    AND?: BillingCustomerWhereInput | BillingCustomerWhereInput[]
+    OR?: BillingCustomerWhereInput[]
+    NOT?: BillingCustomerWhereInput | BillingCustomerWhereInput[]
+    ownerType?: StringFilter<"BillingCustomer"> | string
+    ownerId?: StringFilter<"BillingCustomer"> | string
+    createdAt?: DateTimeFilter<"BillingCustomer"> | Date | string
+    subscriptions?: SubscriptionListRelationFilter
+  }, "id" | "stripeCustomerId" | "ownerType_ownerId">
+
+  export type BillingCustomerOrderByWithAggregationInput = {
+    id?: SortOrder
+    ownerType?: SortOrder
+    ownerId?: SortOrder
+    stripeCustomerId?: SortOrder
+    createdAt?: SortOrder
+    _count?: BillingCustomerCountOrderByAggregateInput
+    _max?: BillingCustomerMaxOrderByAggregateInput
+    _min?: BillingCustomerMinOrderByAggregateInput
+  }
+
+  export type BillingCustomerScalarWhereWithAggregatesInput = {
+    AND?: BillingCustomerScalarWhereWithAggregatesInput | BillingCustomerScalarWhereWithAggregatesInput[]
+    OR?: BillingCustomerScalarWhereWithAggregatesInput[]
+    NOT?: BillingCustomerScalarWhereWithAggregatesInput | BillingCustomerScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BillingCustomer"> | string
+    ownerType?: StringWithAggregatesFilter<"BillingCustomer"> | string
+    ownerId?: StringWithAggregatesFilter<"BillingCustomer"> | string
+    stripeCustomerId?: StringWithAggregatesFilter<"BillingCustomer"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"BillingCustomer"> | Date | string
+  }
+
+  export type SubscriptionWhereInput = {
+    AND?: SubscriptionWhereInput | SubscriptionWhereInput[]
+    OR?: SubscriptionWhereInput[]
+    NOT?: SubscriptionWhereInput | SubscriptionWhereInput[]
+    id?: StringFilter<"Subscription"> | string
+    billingCustomerId?: StringFilter<"Subscription"> | string
+    stripeSubscriptionId?: StringFilter<"Subscription"> | string
+    plan?: StringFilter<"Subscription"> | string
+    status?: StringFilter<"Subscription"> | string
+    seats?: IntFilter<"Subscription"> | number
+    currentPeriodEnd?: DateTimeNullableFilter<"Subscription"> | Date | string | null
+    cancelAtPeriodEnd?: BoolFilter<"Subscription"> | boolean
+    updatedAt?: DateTimeFilter<"Subscription"> | Date | string
+    billingCustomer?: XOR<BillingCustomerScalarRelationFilter, BillingCustomerWhereInput>
+  }
+
+  export type SubscriptionOrderByWithRelationInput = {
+    id?: SortOrder
+    billingCustomerId?: SortOrder
+    stripeSubscriptionId?: SortOrder
+    plan?: SortOrder
+    status?: SortOrder
+    seats?: SortOrder
+    currentPeriodEnd?: SortOrderInput | SortOrder
+    cancelAtPeriodEnd?: SortOrder
+    updatedAt?: SortOrder
+    billingCustomer?: BillingCustomerOrderByWithRelationInput
+  }
+
+  export type SubscriptionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    stripeSubscriptionId?: string
+    AND?: SubscriptionWhereInput | SubscriptionWhereInput[]
+    OR?: SubscriptionWhereInput[]
+    NOT?: SubscriptionWhereInput | SubscriptionWhereInput[]
+    billingCustomerId?: StringFilter<"Subscription"> | string
+    plan?: StringFilter<"Subscription"> | string
+    status?: StringFilter<"Subscription"> | string
+    seats?: IntFilter<"Subscription"> | number
+    currentPeriodEnd?: DateTimeNullableFilter<"Subscription"> | Date | string | null
+    cancelAtPeriodEnd?: BoolFilter<"Subscription"> | boolean
+    updatedAt?: DateTimeFilter<"Subscription"> | Date | string
+    billingCustomer?: XOR<BillingCustomerScalarRelationFilter, BillingCustomerWhereInput>
+  }, "id" | "stripeSubscriptionId">
+
+  export type SubscriptionOrderByWithAggregationInput = {
+    id?: SortOrder
+    billingCustomerId?: SortOrder
+    stripeSubscriptionId?: SortOrder
+    plan?: SortOrder
+    status?: SortOrder
+    seats?: SortOrder
+    currentPeriodEnd?: SortOrderInput | SortOrder
+    cancelAtPeriodEnd?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SubscriptionCountOrderByAggregateInput
+    _avg?: SubscriptionAvgOrderByAggregateInput
+    _max?: SubscriptionMaxOrderByAggregateInput
+    _min?: SubscriptionMinOrderByAggregateInput
+    _sum?: SubscriptionSumOrderByAggregateInput
+  }
+
+  export type SubscriptionScalarWhereWithAggregatesInput = {
+    AND?: SubscriptionScalarWhereWithAggregatesInput | SubscriptionScalarWhereWithAggregatesInput[]
+    OR?: SubscriptionScalarWhereWithAggregatesInput[]
+    NOT?: SubscriptionScalarWhereWithAggregatesInput | SubscriptionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Subscription"> | string
+    billingCustomerId?: StringWithAggregatesFilter<"Subscription"> | string
+    stripeSubscriptionId?: StringWithAggregatesFilter<"Subscription"> | string
+    plan?: StringWithAggregatesFilter<"Subscription"> | string
+    status?: StringWithAggregatesFilter<"Subscription"> | string
+    seats?: IntWithAggregatesFilter<"Subscription"> | number
+    currentPeriodEnd?: DateTimeNullableWithAggregatesFilter<"Subscription"> | Date | string | null
+    cancelAtPeriodEnd?: BoolWithAggregatesFilter<"Subscription"> | boolean
+    updatedAt?: DateTimeWithAggregatesFilter<"Subscription"> | Date | string
+  }
+
+  export type UsageRecordWhereInput = {
+    AND?: UsageRecordWhereInput | UsageRecordWhereInput[]
+    OR?: UsageRecordWhereInput[]
+    NOT?: UsageRecordWhereInput | UsageRecordWhereInput[]
+    id?: StringFilter<"UsageRecord"> | string
+    ownerType?: StringFilter<"UsageRecord"> | string
+    ownerId?: StringFilter<"UsageRecord"> | string
+    userId?: StringFilter<"UsageRecord"> | string
+    metric?: StringFilter<"UsageRecord"> | string
+    count?: IntFilter<"UsageRecord"> | number
+    periodStart?: DateTimeFilter<"UsageRecord"> | Date | string
+  }
+
+  export type UsageRecordOrderByWithRelationInput = {
+    id?: SortOrder
+    ownerType?: SortOrder
+    ownerId?: SortOrder
+    userId?: SortOrder
+    metric?: SortOrder
+    count?: SortOrder
+    periodStart?: SortOrder
+  }
+
+  export type UsageRecordWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    ownerType_ownerId_userId_metric_periodStart?: UsageRecordOwnerTypeOwnerIdUserIdMetricPeriodStartCompoundUniqueInput
+    AND?: UsageRecordWhereInput | UsageRecordWhereInput[]
+    OR?: UsageRecordWhereInput[]
+    NOT?: UsageRecordWhereInput | UsageRecordWhereInput[]
+    ownerType?: StringFilter<"UsageRecord"> | string
+    ownerId?: StringFilter<"UsageRecord"> | string
+    userId?: StringFilter<"UsageRecord"> | string
+    metric?: StringFilter<"UsageRecord"> | string
+    count?: IntFilter<"UsageRecord"> | number
+    periodStart?: DateTimeFilter<"UsageRecord"> | Date | string
+  }, "id" | "ownerType_ownerId_userId_metric_periodStart">
+
+  export type UsageRecordOrderByWithAggregationInput = {
+    id?: SortOrder
+    ownerType?: SortOrder
+    ownerId?: SortOrder
+    userId?: SortOrder
+    metric?: SortOrder
+    count?: SortOrder
+    periodStart?: SortOrder
+    _count?: UsageRecordCountOrderByAggregateInput
+    _avg?: UsageRecordAvgOrderByAggregateInput
+    _max?: UsageRecordMaxOrderByAggregateInput
+    _min?: UsageRecordMinOrderByAggregateInput
+    _sum?: UsageRecordSumOrderByAggregateInput
+  }
+
+  export type UsageRecordScalarWhereWithAggregatesInput = {
+    AND?: UsageRecordScalarWhereWithAggregatesInput | UsageRecordScalarWhereWithAggregatesInput[]
+    OR?: UsageRecordScalarWhereWithAggregatesInput[]
+    NOT?: UsageRecordScalarWhereWithAggregatesInput | UsageRecordScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UsageRecord"> | string
+    ownerType?: StringWithAggregatesFilter<"UsageRecord"> | string
+    ownerId?: StringWithAggregatesFilter<"UsageRecord"> | string
+    userId?: StringWithAggregatesFilter<"UsageRecord"> | string
+    metric?: StringWithAggregatesFilter<"UsageRecord"> | string
+    count?: IntWithAggregatesFilter<"UsageRecord"> | number
+    periodStart?: DateTimeWithAggregatesFilter<"UsageRecord"> | Date | string
+  }
+
+  export type StripeEventWhereInput = {
+    AND?: StripeEventWhereInput | StripeEventWhereInput[]
+    OR?: StripeEventWhereInput[]
+    NOT?: StripeEventWhereInput | StripeEventWhereInput[]
+    id?: StringFilter<"StripeEvent"> | string
+    type?: StringFilter<"StripeEvent"> | string
+    processedAt?: DateTimeFilter<"StripeEvent"> | Date | string
+  }
+
+  export type StripeEventOrderByWithRelationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    processedAt?: SortOrder
+  }
+
+  export type StripeEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: StripeEventWhereInput | StripeEventWhereInput[]
+    OR?: StripeEventWhereInput[]
+    NOT?: StripeEventWhereInput | StripeEventWhereInput[]
+    type?: StringFilter<"StripeEvent"> | string
+    processedAt?: DateTimeFilter<"StripeEvent"> | Date | string
+  }, "id">
+
+  export type StripeEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    processedAt?: SortOrder
+    _count?: StripeEventCountOrderByAggregateInput
+    _max?: StripeEventMaxOrderByAggregateInput
+    _min?: StripeEventMinOrderByAggregateInput
+  }
+
+  export type StripeEventScalarWhereWithAggregatesInput = {
+    AND?: StripeEventScalarWhereWithAggregatesInput | StripeEventScalarWhereWithAggregatesInput[]
+    OR?: StripeEventScalarWhereWithAggregatesInput[]
+    NOT?: StripeEventScalarWhereWithAggregatesInput | StripeEventScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"StripeEvent"> | string
+    type?: StringWithAggregatesFilter<"StripeEvent"> | string
+    processedAt?: DateTimeWithAggregatesFilter<"StripeEvent"> | Date | string
+  }
+
   export type CorsairIntegrationCreateInput = {
     id: string
     createdAt?: Date | string
@@ -28280,6 +40932,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -28302,6 +40955,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -28324,6 +40978,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -28346,6 +41001,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -28368,6 +41024,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -28376,6 +41033,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -28384,6 +41042,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ChannelLinkCreateInput = {
@@ -28969,6 +41628,8 @@ export namespace Prisma {
   export type SyncItemCreateInput = {
     id?: string
     userId: string
+    orgId?: string | null
+    sharedInboxId?: string | null
     corsairEntityId: string
     type: string
     title: string
@@ -28981,6 +41642,8 @@ export namespace Prisma {
   export type SyncItemUncheckedCreateInput = {
     id?: string
     userId: string
+    orgId?: string | null
+    sharedInboxId?: string | null
     corsairEntityId: string
     type: string
     title: string
@@ -28993,6 +41656,8 @@ export namespace Prisma {
   export type SyncItemUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    orgId?: NullableStringFieldUpdateOperationsInput | string | null
+    sharedInboxId?: NullableStringFieldUpdateOperationsInput | string | null
     corsairEntityId?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -29005,6 +41670,8 @@ export namespace Prisma {
   export type SyncItemUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    orgId?: NullableStringFieldUpdateOperationsInput | string | null
+    sharedInboxId?: NullableStringFieldUpdateOperationsInput | string | null
     corsairEntityId?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -29017,6 +41684,8 @@ export namespace Prisma {
   export type SyncItemCreateManyInput = {
     id?: string
     userId: string
+    orgId?: string | null
+    sharedInboxId?: string | null
     corsairEntityId: string
     type: string
     title: string
@@ -29029,6 +41698,8 @@ export namespace Prisma {
   export type SyncItemUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    orgId?: NullableStringFieldUpdateOperationsInput | string | null
+    sharedInboxId?: NullableStringFieldUpdateOperationsInput | string | null
     corsairEntityId?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -29041,6 +41712,8 @@ export namespace Prisma {
   export type SyncItemUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    orgId?: NullableStringFieldUpdateOperationsInput | string | null
+    sharedInboxId?: NullableStringFieldUpdateOperationsInput | string | null
     corsairEntityId?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -29534,6 +42207,668 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type OrganizationCreateInput = {
+    id: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    memberships?: MembershipCreateNestedManyWithoutOrganizationInput
+    sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationUncheckedCreateInput = {
+    id: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+    sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
+    sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
+  }
+
+  export type OrganizationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+    sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  }
+
+  export type OrganizationCreateManyInput = {
+    id: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OrganizationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrganizationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MembershipCreateInput = {
+    id?: string
+    userId: string
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    organization: OrganizationCreateNestedOneWithoutMembershipsInput
+  }
+
+  export type MembershipUncheckedCreateInput = {
+    id?: string
+    orgId: string
+    userId: string
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MembershipUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organization?: OrganizationUpdateOneRequiredWithoutMembershipsNestedInput
+  }
+
+  export type MembershipUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MembershipCreateManyInput = {
+    id?: string
+    orgId: string
+    userId: string
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MembershipUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MembershipUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SharedInboxCreateInput = {
+    id?: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+    organization: OrganizationCreateNestedOneWithoutSharedInboxesInput
+    assignments?: ThreadAssignmentCreateNestedManyWithoutSharedInboxInput
+    comments?: ThreadCommentCreateNestedManyWithoutSharedInboxInput
+    events?: AssignmentEventCreateNestedManyWithoutSharedInboxInput
+  }
+
+  export type SharedInboxUncheckedCreateInput = {
+    id?: string
+    orgId: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+    assignments?: ThreadAssignmentUncheckedCreateNestedManyWithoutSharedInboxInput
+    comments?: ThreadCommentUncheckedCreateNestedManyWithoutSharedInboxInput
+    events?: AssignmentEventUncheckedCreateNestedManyWithoutSharedInboxInput
+  }
+
+  export type SharedInboxUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organization?: OrganizationUpdateOneRequiredWithoutSharedInboxesNestedInput
+    assignments?: ThreadAssignmentUpdateManyWithoutSharedInboxNestedInput
+    comments?: ThreadCommentUpdateManyWithoutSharedInboxNestedInput
+    events?: AssignmentEventUpdateManyWithoutSharedInboxNestedInput
+  }
+
+  export type SharedInboxUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: ThreadAssignmentUncheckedUpdateManyWithoutSharedInboxNestedInput
+    comments?: ThreadCommentUncheckedUpdateManyWithoutSharedInboxNestedInput
+    events?: AssignmentEventUncheckedUpdateManyWithoutSharedInboxNestedInput
+  }
+
+  export type SharedInboxCreateManyInput = {
+    id?: string
+    orgId: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+  }
+
+  export type SharedInboxUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SharedInboxUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadAssignmentCreateInput = {
+    id?: string
+    threadId: string
+    assigneeUserId?: string | null
+    status?: string
+    updatedByUserId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sharedInbox: SharedInboxCreateNestedOneWithoutAssignmentsInput
+  }
+
+  export type ThreadAssignmentUncheckedCreateInput = {
+    id?: string
+    sharedInboxId: string
+    threadId: string
+    assigneeUserId?: string | null
+    status?: string
+    updatedByUserId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ThreadAssignmentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    updatedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sharedInbox?: SharedInboxUpdateOneRequiredWithoutAssignmentsNestedInput
+  }
+
+  export type ThreadAssignmentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sharedInboxId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    updatedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadAssignmentCreateManyInput = {
+    id?: string
+    sharedInboxId: string
+    threadId: string
+    assigneeUserId?: string | null
+    status?: string
+    updatedByUserId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ThreadAssignmentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    updatedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadAssignmentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sharedInboxId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    updatedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadCommentCreateInput = {
+    id?: string
+    threadId: string
+    authorUserId: string
+    body: string
+    createdAt?: Date | string
+    sharedInbox: SharedInboxCreateNestedOneWithoutCommentsInput
+  }
+
+  export type ThreadCommentUncheckedCreateInput = {
+    id?: string
+    sharedInboxId: string
+    threadId: string
+    authorUserId: string
+    body: string
+    createdAt?: Date | string
+  }
+
+  export type ThreadCommentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    authorUserId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sharedInbox?: SharedInboxUpdateOneRequiredWithoutCommentsNestedInput
+  }
+
+  export type ThreadCommentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sharedInboxId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    authorUserId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadCommentCreateManyInput = {
+    id?: string
+    sharedInboxId: string
+    threadId: string
+    authorUserId: string
+    body: string
+    createdAt?: Date | string
+  }
+
+  export type ThreadCommentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    authorUserId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadCommentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sharedInboxId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    authorUserId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssignmentEventCreateInput = {
+    id?: string
+    threadId: string
+    actorUserId: string
+    kind: string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    sharedInbox: SharedInboxCreateNestedOneWithoutEventsInput
+  }
+
+  export type AssignmentEventUncheckedCreateInput = {
+    id?: string
+    sharedInboxId: string
+    threadId: string
+    actorUserId: string
+    kind: string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AssignmentEventUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    actorUserId?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sharedInbox?: SharedInboxUpdateOneRequiredWithoutEventsNestedInput
+  }
+
+  export type AssignmentEventUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sharedInboxId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    actorUserId?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssignmentEventCreateManyInput = {
+    id?: string
+    sharedInboxId: string
+    threadId: string
+    actorUserId: string
+    kind: string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AssignmentEventUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    actorUserId?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssignmentEventUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sharedInboxId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    actorUserId?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillingCustomerCreateInput = {
+    id?: string
+    ownerType: string
+    ownerId: string
+    stripeCustomerId: string
+    createdAt?: Date | string
+    subscriptions?: SubscriptionCreateNestedManyWithoutBillingCustomerInput
+  }
+
+  export type BillingCustomerUncheckedCreateInput = {
+    id?: string
+    ownerType: string
+    ownerId: string
+    stripeCustomerId: string
+    createdAt?: Date | string
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutBillingCustomerInput
+  }
+
+  export type BillingCustomerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerType?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subscriptions?: SubscriptionUpdateManyWithoutBillingCustomerNestedInput
+  }
+
+  export type BillingCustomerUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerType?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutBillingCustomerNestedInput
+  }
+
+  export type BillingCustomerCreateManyInput = {
+    id?: string
+    ownerType: string
+    ownerId: string
+    stripeCustomerId: string
+    createdAt?: Date | string
+  }
+
+  export type BillingCustomerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerType?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillingCustomerUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerType?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionCreateInput = {
+    id?: string
+    stripeSubscriptionId: string
+    plan: string
+    status: string
+    seats?: number
+    currentPeriodEnd?: Date | string | null
+    cancelAtPeriodEnd?: boolean
+    updatedAt?: Date | string
+    billingCustomer: BillingCustomerCreateNestedOneWithoutSubscriptionsInput
+  }
+
+  export type SubscriptionUncheckedCreateInput = {
+    id?: string
+    billingCustomerId: string
+    stripeSubscriptionId: string
+    plan: string
+    status: string
+    seats?: number
+    currentPeriodEnd?: Date | string | null
+    cancelAtPeriodEnd?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    seats?: IntFieldUpdateOperationsInput | number
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelAtPeriodEnd?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    billingCustomer?: BillingCustomerUpdateOneRequiredWithoutSubscriptionsNestedInput
+  }
+
+  export type SubscriptionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    billingCustomerId?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    seats?: IntFieldUpdateOperationsInput | number
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelAtPeriodEnd?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionCreateManyInput = {
+    id?: string
+    billingCustomerId: string
+    stripeSubscriptionId: string
+    plan: string
+    status: string
+    seats?: number
+    currentPeriodEnd?: Date | string | null
+    cancelAtPeriodEnd?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    seats?: IntFieldUpdateOperationsInput | number
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelAtPeriodEnd?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    billingCustomerId?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    seats?: IntFieldUpdateOperationsInput | number
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelAtPeriodEnd?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UsageRecordCreateInput = {
+    id?: string
+    ownerType: string
+    ownerId: string
+    userId: string
+    metric: string
+    count?: number
+    periodStart: Date | string
+  }
+
+  export type UsageRecordUncheckedCreateInput = {
+    id?: string
+    ownerType: string
+    ownerId: string
+    userId: string
+    metric: string
+    count?: number
+    periodStart: Date | string
+  }
+
+  export type UsageRecordUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerType?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    periodStart?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UsageRecordUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerType?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    periodStart?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UsageRecordCreateManyInput = {
+    id?: string
+    ownerType: string
+    ownerId: string
+    userId: string
+    metric: string
+    count?: number
+    periodStart: Date | string
+  }
+
+  export type UsageRecordUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerType?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    periodStart?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UsageRecordUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerType?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    periodStart?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StripeEventCreateInput = {
+    id: string
+    type: string
+    processedAt?: Date | string
+  }
+
+  export type StripeEventUncheckedCreateInput = {
+    id: string
+    type: string
+    processedAt?: Date | string
+  }
+
+  export type StripeEventUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    processedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StripeEventUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    processedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StripeEventCreateManyInput = {
+    id: string
+    type: string
+    processedAt?: Date | string
+  }
+
+  export type StripeEventUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    processedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StripeEventUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    processedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -29978,6 +43313,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     gmailBackfilledAt?: SortOrder
     calendarBackfilledAt?: SortOrder
+    outlookBackfilledAt?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -29986,6 +43322,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     gmailBackfilledAt?: SortOrder
     calendarBackfilledAt?: SortOrder
+    outlookBackfilledAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -29994,6 +43331,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     gmailBackfilledAt?: SortOrder
     calendarBackfilledAt?: SortOrder
+    outlookBackfilledAt?: SortOrder
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -30329,6 +43667,8 @@ export namespace Prisma {
   export type SyncItemCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    orgId?: SortOrder
+    sharedInboxId?: SortOrder
     corsairEntityId?: SortOrder
     type?: SortOrder
     title?: SortOrder
@@ -30341,6 +43681,8 @@ export namespace Prisma {
   export type SyncItemMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    orgId?: SortOrder
+    sharedInboxId?: SortOrder
     corsairEntityId?: SortOrder
     type?: SortOrder
     title?: SortOrder
@@ -30353,6 +43695,8 @@ export namespace Prisma {
   export type SyncItemMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    orgId?: SortOrder
+    sharedInboxId?: SortOrder
     corsairEntityId?: SortOrder
     type?: SortOrder
     title?: SortOrder
@@ -30637,6 +43981,407 @@ export namespace Prisma {
     kind?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type MembershipListRelationFilter = {
+    every?: MembershipWhereInput
+    some?: MembershipWhereInput
+    none?: MembershipWhereInput
+  }
+
+  export type SharedInboxListRelationFilter = {
+    every?: SharedInboxWhereInput
+    some?: SharedInboxWhereInput
+    none?: SharedInboxWhereInput
+  }
+
+  export type MembershipOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SharedInboxOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type OrganizationCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OrganizationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OrganizationMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OrganizationScalarRelationFilter = {
+    is?: OrganizationWhereInput
+    isNot?: OrganizationWhereInput
+  }
+
+  export type MembershipOrgIdUserIdCompoundUniqueInput = {
+    orgId: string
+    userId: string
+  }
+
+  export type MembershipCountOrderByAggregateInput = {
+    id?: SortOrder
+    orgId?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MembershipMaxOrderByAggregateInput = {
+    id?: SortOrder
+    orgId?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MembershipMinOrderByAggregateInput = {
+    id?: SortOrder
+    orgId?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ThreadAssignmentListRelationFilter = {
+    every?: ThreadAssignmentWhereInput
+    some?: ThreadAssignmentWhereInput
+    none?: ThreadAssignmentWhereInput
+  }
+
+  export type ThreadCommentListRelationFilter = {
+    every?: ThreadCommentWhereInput
+    some?: ThreadCommentWhereInput
+    none?: ThreadCommentWhereInput
+  }
+
+  export type AssignmentEventListRelationFilter = {
+    every?: AssignmentEventWhereInput
+    some?: AssignmentEventWhereInput
+    none?: AssignmentEventWhereInput
+  }
+
+  export type ThreadAssignmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ThreadCommentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AssignmentEventOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SharedInboxCountOrderByAggregateInput = {
+    id?: SortOrder
+    orgId?: SortOrder
+    name?: SortOrder
+    plugin?: SortOrder
+    corsairAccountId?: SortOrder
+    connectedByUserId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SharedInboxMaxOrderByAggregateInput = {
+    id?: SortOrder
+    orgId?: SortOrder
+    name?: SortOrder
+    plugin?: SortOrder
+    corsairAccountId?: SortOrder
+    connectedByUserId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SharedInboxMinOrderByAggregateInput = {
+    id?: SortOrder
+    orgId?: SortOrder
+    name?: SortOrder
+    plugin?: SortOrder
+    corsairAccountId?: SortOrder
+    connectedByUserId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SharedInboxScalarRelationFilter = {
+    is?: SharedInboxWhereInput
+    isNot?: SharedInboxWhereInput
+  }
+
+  export type ThreadAssignmentSharedInboxIdThreadIdCompoundUniqueInput = {
+    sharedInboxId: string
+    threadId: string
+  }
+
+  export type ThreadAssignmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    assigneeUserId?: SortOrder
+    status?: SortOrder
+    updatedByUserId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ThreadAssignmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    assigneeUserId?: SortOrder
+    status?: SortOrder
+    updatedByUserId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ThreadAssignmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    assigneeUserId?: SortOrder
+    status?: SortOrder
+    updatedByUserId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ThreadCommentCountOrderByAggregateInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    authorUserId?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ThreadCommentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    authorUserId?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ThreadCommentMinOrderByAggregateInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    authorUserId?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AssignmentEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    actorUserId?: SortOrder
+    kind?: SortOrder
+    meta?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AssignmentEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    actorUserId?: SortOrder
+    kind?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AssignmentEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    sharedInboxId?: SortOrder
+    threadId?: SortOrder
+    actorUserId?: SortOrder
+    kind?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SubscriptionListRelationFilter = {
+    every?: SubscriptionWhereInput
+    some?: SubscriptionWhereInput
+    none?: SubscriptionWhereInput
+  }
+
+  export type SubscriptionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BillingCustomerOwnerTypeOwnerIdCompoundUniqueInput = {
+    ownerType: string
+    ownerId: string
+  }
+
+  export type BillingCustomerCountOrderByAggregateInput = {
+    id?: SortOrder
+    ownerType?: SortOrder
+    ownerId?: SortOrder
+    stripeCustomerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BillingCustomerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ownerType?: SortOrder
+    ownerId?: SortOrder
+    stripeCustomerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BillingCustomerMinOrderByAggregateInput = {
+    id?: SortOrder
+    ownerType?: SortOrder
+    ownerId?: SortOrder
+    stripeCustomerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type BillingCustomerScalarRelationFilter = {
+    is?: BillingCustomerWhereInput
+    isNot?: BillingCustomerWhereInput
+  }
+
+  export type SubscriptionCountOrderByAggregateInput = {
+    id?: SortOrder
+    billingCustomerId?: SortOrder
+    stripeSubscriptionId?: SortOrder
+    plan?: SortOrder
+    status?: SortOrder
+    seats?: SortOrder
+    currentPeriodEnd?: SortOrder
+    cancelAtPeriodEnd?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SubscriptionAvgOrderByAggregateInput = {
+    seats?: SortOrder
+  }
+
+  export type SubscriptionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    billingCustomerId?: SortOrder
+    stripeSubscriptionId?: SortOrder
+    plan?: SortOrder
+    status?: SortOrder
+    seats?: SortOrder
+    currentPeriodEnd?: SortOrder
+    cancelAtPeriodEnd?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SubscriptionMinOrderByAggregateInput = {
+    id?: SortOrder
+    billingCustomerId?: SortOrder
+    stripeSubscriptionId?: SortOrder
+    plan?: SortOrder
+    status?: SortOrder
+    seats?: SortOrder
+    currentPeriodEnd?: SortOrder
+    cancelAtPeriodEnd?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SubscriptionSumOrderByAggregateInput = {
+    seats?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type UsageRecordOwnerTypeOwnerIdUserIdMetricPeriodStartCompoundUniqueInput = {
+    ownerType: string
+    ownerId: string
+    userId: string
+    metric: string
+    periodStart: Date | string
+  }
+
+  export type UsageRecordCountOrderByAggregateInput = {
+    id?: SortOrder
+    ownerType?: SortOrder
+    ownerId?: SortOrder
+    userId?: SortOrder
+    metric?: SortOrder
+    count?: SortOrder
+    periodStart?: SortOrder
+  }
+
+  export type UsageRecordAvgOrderByAggregateInput = {
+    count?: SortOrder
+  }
+
+  export type UsageRecordMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ownerType?: SortOrder
+    ownerId?: SortOrder
+    userId?: SortOrder
+    metric?: SortOrder
+    count?: SortOrder
+    periodStart?: SortOrder
+  }
+
+  export type UsageRecordMinOrderByAggregateInput = {
+    id?: SortOrder
+    ownerType?: SortOrder
+    ownerId?: SortOrder
+    userId?: SortOrder
+    metric?: SortOrder
+    count?: SortOrder
+    periodStart?: SortOrder
+  }
+
+  export type UsageRecordSumOrderByAggregateInput = {
+    count?: SortOrder
+  }
+
+  export type StripeEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    processedAt?: SortOrder
+  }
+
+  export type StripeEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    processedAt?: SortOrder
+  }
+
+  export type StripeEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    processedAt?: SortOrder
   }
 
   export type CorsairAccountCreateNestedManyWithoutIntegrationInput = {
@@ -31603,6 +45348,346 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRuleSuggestionsInput, UserUpdateWithoutRuleSuggestionsInput>, UserUncheckedUpdateWithoutRuleSuggestionsInput>
   }
 
+  export type MembershipCreateNestedManyWithoutOrganizationInput = {
+    create?: XOR<MembershipCreateWithoutOrganizationInput, MembershipUncheckedCreateWithoutOrganizationInput> | MembershipCreateWithoutOrganizationInput[] | MembershipUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: MembershipCreateOrConnectWithoutOrganizationInput | MembershipCreateOrConnectWithoutOrganizationInput[]
+    createMany?: MembershipCreateManyOrganizationInputEnvelope
+    connect?: MembershipWhereUniqueInput | MembershipWhereUniqueInput[]
+  }
+
+  export type SharedInboxCreateNestedManyWithoutOrganizationInput = {
+    create?: XOR<SharedInboxCreateWithoutOrganizationInput, SharedInboxUncheckedCreateWithoutOrganizationInput> | SharedInboxCreateWithoutOrganizationInput[] | SharedInboxUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: SharedInboxCreateOrConnectWithoutOrganizationInput | SharedInboxCreateOrConnectWithoutOrganizationInput[]
+    createMany?: SharedInboxCreateManyOrganizationInputEnvelope
+    connect?: SharedInboxWhereUniqueInput | SharedInboxWhereUniqueInput[]
+  }
+
+  export type MembershipUncheckedCreateNestedManyWithoutOrganizationInput = {
+    create?: XOR<MembershipCreateWithoutOrganizationInput, MembershipUncheckedCreateWithoutOrganizationInput> | MembershipCreateWithoutOrganizationInput[] | MembershipUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: MembershipCreateOrConnectWithoutOrganizationInput | MembershipCreateOrConnectWithoutOrganizationInput[]
+    createMany?: MembershipCreateManyOrganizationInputEnvelope
+    connect?: MembershipWhereUniqueInput | MembershipWhereUniqueInput[]
+  }
+
+  export type SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput = {
+    create?: XOR<SharedInboxCreateWithoutOrganizationInput, SharedInboxUncheckedCreateWithoutOrganizationInput> | SharedInboxCreateWithoutOrganizationInput[] | SharedInboxUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: SharedInboxCreateOrConnectWithoutOrganizationInput | SharedInboxCreateOrConnectWithoutOrganizationInput[]
+    createMany?: SharedInboxCreateManyOrganizationInputEnvelope
+    connect?: SharedInboxWhereUniqueInput | SharedInboxWhereUniqueInput[]
+  }
+
+  export type MembershipUpdateManyWithoutOrganizationNestedInput = {
+    create?: XOR<MembershipCreateWithoutOrganizationInput, MembershipUncheckedCreateWithoutOrganizationInput> | MembershipCreateWithoutOrganizationInput[] | MembershipUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: MembershipCreateOrConnectWithoutOrganizationInput | MembershipCreateOrConnectWithoutOrganizationInput[]
+    upsert?: MembershipUpsertWithWhereUniqueWithoutOrganizationInput | MembershipUpsertWithWhereUniqueWithoutOrganizationInput[]
+    createMany?: MembershipCreateManyOrganizationInputEnvelope
+    set?: MembershipWhereUniqueInput | MembershipWhereUniqueInput[]
+    disconnect?: MembershipWhereUniqueInput | MembershipWhereUniqueInput[]
+    delete?: MembershipWhereUniqueInput | MembershipWhereUniqueInput[]
+    connect?: MembershipWhereUniqueInput | MembershipWhereUniqueInput[]
+    update?: MembershipUpdateWithWhereUniqueWithoutOrganizationInput | MembershipUpdateWithWhereUniqueWithoutOrganizationInput[]
+    updateMany?: MembershipUpdateManyWithWhereWithoutOrganizationInput | MembershipUpdateManyWithWhereWithoutOrganizationInput[]
+    deleteMany?: MembershipScalarWhereInput | MembershipScalarWhereInput[]
+  }
+
+  export type SharedInboxUpdateManyWithoutOrganizationNestedInput = {
+    create?: XOR<SharedInboxCreateWithoutOrganizationInput, SharedInboxUncheckedCreateWithoutOrganizationInput> | SharedInboxCreateWithoutOrganizationInput[] | SharedInboxUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: SharedInboxCreateOrConnectWithoutOrganizationInput | SharedInboxCreateOrConnectWithoutOrganizationInput[]
+    upsert?: SharedInboxUpsertWithWhereUniqueWithoutOrganizationInput | SharedInboxUpsertWithWhereUniqueWithoutOrganizationInput[]
+    createMany?: SharedInboxCreateManyOrganizationInputEnvelope
+    set?: SharedInboxWhereUniqueInput | SharedInboxWhereUniqueInput[]
+    disconnect?: SharedInboxWhereUniqueInput | SharedInboxWhereUniqueInput[]
+    delete?: SharedInboxWhereUniqueInput | SharedInboxWhereUniqueInput[]
+    connect?: SharedInboxWhereUniqueInput | SharedInboxWhereUniqueInput[]
+    update?: SharedInboxUpdateWithWhereUniqueWithoutOrganizationInput | SharedInboxUpdateWithWhereUniqueWithoutOrganizationInput[]
+    updateMany?: SharedInboxUpdateManyWithWhereWithoutOrganizationInput | SharedInboxUpdateManyWithWhereWithoutOrganizationInput[]
+    deleteMany?: SharedInboxScalarWhereInput | SharedInboxScalarWhereInput[]
+  }
+
+  export type MembershipUncheckedUpdateManyWithoutOrganizationNestedInput = {
+    create?: XOR<MembershipCreateWithoutOrganizationInput, MembershipUncheckedCreateWithoutOrganizationInput> | MembershipCreateWithoutOrganizationInput[] | MembershipUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: MembershipCreateOrConnectWithoutOrganizationInput | MembershipCreateOrConnectWithoutOrganizationInput[]
+    upsert?: MembershipUpsertWithWhereUniqueWithoutOrganizationInput | MembershipUpsertWithWhereUniqueWithoutOrganizationInput[]
+    createMany?: MembershipCreateManyOrganizationInputEnvelope
+    set?: MembershipWhereUniqueInput | MembershipWhereUniqueInput[]
+    disconnect?: MembershipWhereUniqueInput | MembershipWhereUniqueInput[]
+    delete?: MembershipWhereUniqueInput | MembershipWhereUniqueInput[]
+    connect?: MembershipWhereUniqueInput | MembershipWhereUniqueInput[]
+    update?: MembershipUpdateWithWhereUniqueWithoutOrganizationInput | MembershipUpdateWithWhereUniqueWithoutOrganizationInput[]
+    updateMany?: MembershipUpdateManyWithWhereWithoutOrganizationInput | MembershipUpdateManyWithWhereWithoutOrganizationInput[]
+    deleteMany?: MembershipScalarWhereInput | MembershipScalarWhereInput[]
+  }
+
+  export type SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput = {
+    create?: XOR<SharedInboxCreateWithoutOrganizationInput, SharedInboxUncheckedCreateWithoutOrganizationInput> | SharedInboxCreateWithoutOrganizationInput[] | SharedInboxUncheckedCreateWithoutOrganizationInput[]
+    connectOrCreate?: SharedInboxCreateOrConnectWithoutOrganizationInput | SharedInboxCreateOrConnectWithoutOrganizationInput[]
+    upsert?: SharedInboxUpsertWithWhereUniqueWithoutOrganizationInput | SharedInboxUpsertWithWhereUniqueWithoutOrganizationInput[]
+    createMany?: SharedInboxCreateManyOrganizationInputEnvelope
+    set?: SharedInboxWhereUniqueInput | SharedInboxWhereUniqueInput[]
+    disconnect?: SharedInboxWhereUniqueInput | SharedInboxWhereUniqueInput[]
+    delete?: SharedInboxWhereUniqueInput | SharedInboxWhereUniqueInput[]
+    connect?: SharedInboxWhereUniqueInput | SharedInboxWhereUniqueInput[]
+    update?: SharedInboxUpdateWithWhereUniqueWithoutOrganizationInput | SharedInboxUpdateWithWhereUniqueWithoutOrganizationInput[]
+    updateMany?: SharedInboxUpdateManyWithWhereWithoutOrganizationInput | SharedInboxUpdateManyWithWhereWithoutOrganizationInput[]
+    deleteMany?: SharedInboxScalarWhereInput | SharedInboxScalarWhereInput[]
+  }
+
+  export type OrganizationCreateNestedOneWithoutMembershipsInput = {
+    create?: XOR<OrganizationCreateWithoutMembershipsInput, OrganizationUncheckedCreateWithoutMembershipsInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutMembershipsInput
+    connect?: OrganizationWhereUniqueInput
+  }
+
+  export type OrganizationUpdateOneRequiredWithoutMembershipsNestedInput = {
+    create?: XOR<OrganizationCreateWithoutMembershipsInput, OrganizationUncheckedCreateWithoutMembershipsInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutMembershipsInput
+    upsert?: OrganizationUpsertWithoutMembershipsInput
+    connect?: OrganizationWhereUniqueInput
+    update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutMembershipsInput, OrganizationUpdateWithoutMembershipsInput>, OrganizationUncheckedUpdateWithoutMembershipsInput>
+  }
+
+  export type OrganizationCreateNestedOneWithoutSharedInboxesInput = {
+    create?: XOR<OrganizationCreateWithoutSharedInboxesInput, OrganizationUncheckedCreateWithoutSharedInboxesInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutSharedInboxesInput
+    connect?: OrganizationWhereUniqueInput
+  }
+
+  export type ThreadAssignmentCreateNestedManyWithoutSharedInboxInput = {
+    create?: XOR<ThreadAssignmentCreateWithoutSharedInboxInput, ThreadAssignmentUncheckedCreateWithoutSharedInboxInput> | ThreadAssignmentCreateWithoutSharedInboxInput[] | ThreadAssignmentUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: ThreadAssignmentCreateOrConnectWithoutSharedInboxInput | ThreadAssignmentCreateOrConnectWithoutSharedInboxInput[]
+    createMany?: ThreadAssignmentCreateManySharedInboxInputEnvelope
+    connect?: ThreadAssignmentWhereUniqueInput | ThreadAssignmentWhereUniqueInput[]
+  }
+
+  export type ThreadCommentCreateNestedManyWithoutSharedInboxInput = {
+    create?: XOR<ThreadCommentCreateWithoutSharedInboxInput, ThreadCommentUncheckedCreateWithoutSharedInboxInput> | ThreadCommentCreateWithoutSharedInboxInput[] | ThreadCommentUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: ThreadCommentCreateOrConnectWithoutSharedInboxInput | ThreadCommentCreateOrConnectWithoutSharedInboxInput[]
+    createMany?: ThreadCommentCreateManySharedInboxInputEnvelope
+    connect?: ThreadCommentWhereUniqueInput | ThreadCommentWhereUniqueInput[]
+  }
+
+  export type AssignmentEventCreateNestedManyWithoutSharedInboxInput = {
+    create?: XOR<AssignmentEventCreateWithoutSharedInboxInput, AssignmentEventUncheckedCreateWithoutSharedInboxInput> | AssignmentEventCreateWithoutSharedInboxInput[] | AssignmentEventUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: AssignmentEventCreateOrConnectWithoutSharedInboxInput | AssignmentEventCreateOrConnectWithoutSharedInboxInput[]
+    createMany?: AssignmentEventCreateManySharedInboxInputEnvelope
+    connect?: AssignmentEventWhereUniqueInput | AssignmentEventWhereUniqueInput[]
+  }
+
+  export type ThreadAssignmentUncheckedCreateNestedManyWithoutSharedInboxInput = {
+    create?: XOR<ThreadAssignmentCreateWithoutSharedInboxInput, ThreadAssignmentUncheckedCreateWithoutSharedInboxInput> | ThreadAssignmentCreateWithoutSharedInboxInput[] | ThreadAssignmentUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: ThreadAssignmentCreateOrConnectWithoutSharedInboxInput | ThreadAssignmentCreateOrConnectWithoutSharedInboxInput[]
+    createMany?: ThreadAssignmentCreateManySharedInboxInputEnvelope
+    connect?: ThreadAssignmentWhereUniqueInput | ThreadAssignmentWhereUniqueInput[]
+  }
+
+  export type ThreadCommentUncheckedCreateNestedManyWithoutSharedInboxInput = {
+    create?: XOR<ThreadCommentCreateWithoutSharedInboxInput, ThreadCommentUncheckedCreateWithoutSharedInboxInput> | ThreadCommentCreateWithoutSharedInboxInput[] | ThreadCommentUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: ThreadCommentCreateOrConnectWithoutSharedInboxInput | ThreadCommentCreateOrConnectWithoutSharedInboxInput[]
+    createMany?: ThreadCommentCreateManySharedInboxInputEnvelope
+    connect?: ThreadCommentWhereUniqueInput | ThreadCommentWhereUniqueInput[]
+  }
+
+  export type AssignmentEventUncheckedCreateNestedManyWithoutSharedInboxInput = {
+    create?: XOR<AssignmentEventCreateWithoutSharedInboxInput, AssignmentEventUncheckedCreateWithoutSharedInboxInput> | AssignmentEventCreateWithoutSharedInboxInput[] | AssignmentEventUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: AssignmentEventCreateOrConnectWithoutSharedInboxInput | AssignmentEventCreateOrConnectWithoutSharedInboxInput[]
+    createMany?: AssignmentEventCreateManySharedInboxInputEnvelope
+    connect?: AssignmentEventWhereUniqueInput | AssignmentEventWhereUniqueInput[]
+  }
+
+  export type OrganizationUpdateOneRequiredWithoutSharedInboxesNestedInput = {
+    create?: XOR<OrganizationCreateWithoutSharedInboxesInput, OrganizationUncheckedCreateWithoutSharedInboxesInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutSharedInboxesInput
+    upsert?: OrganizationUpsertWithoutSharedInboxesInput
+    connect?: OrganizationWhereUniqueInput
+    update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutSharedInboxesInput, OrganizationUpdateWithoutSharedInboxesInput>, OrganizationUncheckedUpdateWithoutSharedInboxesInput>
+  }
+
+  export type ThreadAssignmentUpdateManyWithoutSharedInboxNestedInput = {
+    create?: XOR<ThreadAssignmentCreateWithoutSharedInboxInput, ThreadAssignmentUncheckedCreateWithoutSharedInboxInput> | ThreadAssignmentCreateWithoutSharedInboxInput[] | ThreadAssignmentUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: ThreadAssignmentCreateOrConnectWithoutSharedInboxInput | ThreadAssignmentCreateOrConnectWithoutSharedInboxInput[]
+    upsert?: ThreadAssignmentUpsertWithWhereUniqueWithoutSharedInboxInput | ThreadAssignmentUpsertWithWhereUniqueWithoutSharedInboxInput[]
+    createMany?: ThreadAssignmentCreateManySharedInboxInputEnvelope
+    set?: ThreadAssignmentWhereUniqueInput | ThreadAssignmentWhereUniqueInput[]
+    disconnect?: ThreadAssignmentWhereUniqueInput | ThreadAssignmentWhereUniqueInput[]
+    delete?: ThreadAssignmentWhereUniqueInput | ThreadAssignmentWhereUniqueInput[]
+    connect?: ThreadAssignmentWhereUniqueInput | ThreadAssignmentWhereUniqueInput[]
+    update?: ThreadAssignmentUpdateWithWhereUniqueWithoutSharedInboxInput | ThreadAssignmentUpdateWithWhereUniqueWithoutSharedInboxInput[]
+    updateMany?: ThreadAssignmentUpdateManyWithWhereWithoutSharedInboxInput | ThreadAssignmentUpdateManyWithWhereWithoutSharedInboxInput[]
+    deleteMany?: ThreadAssignmentScalarWhereInput | ThreadAssignmentScalarWhereInput[]
+  }
+
+  export type ThreadCommentUpdateManyWithoutSharedInboxNestedInput = {
+    create?: XOR<ThreadCommentCreateWithoutSharedInboxInput, ThreadCommentUncheckedCreateWithoutSharedInboxInput> | ThreadCommentCreateWithoutSharedInboxInput[] | ThreadCommentUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: ThreadCommentCreateOrConnectWithoutSharedInboxInput | ThreadCommentCreateOrConnectWithoutSharedInboxInput[]
+    upsert?: ThreadCommentUpsertWithWhereUniqueWithoutSharedInboxInput | ThreadCommentUpsertWithWhereUniqueWithoutSharedInboxInput[]
+    createMany?: ThreadCommentCreateManySharedInboxInputEnvelope
+    set?: ThreadCommentWhereUniqueInput | ThreadCommentWhereUniqueInput[]
+    disconnect?: ThreadCommentWhereUniqueInput | ThreadCommentWhereUniqueInput[]
+    delete?: ThreadCommentWhereUniqueInput | ThreadCommentWhereUniqueInput[]
+    connect?: ThreadCommentWhereUniqueInput | ThreadCommentWhereUniqueInput[]
+    update?: ThreadCommentUpdateWithWhereUniqueWithoutSharedInboxInput | ThreadCommentUpdateWithWhereUniqueWithoutSharedInboxInput[]
+    updateMany?: ThreadCommentUpdateManyWithWhereWithoutSharedInboxInput | ThreadCommentUpdateManyWithWhereWithoutSharedInboxInput[]
+    deleteMany?: ThreadCommentScalarWhereInput | ThreadCommentScalarWhereInput[]
+  }
+
+  export type AssignmentEventUpdateManyWithoutSharedInboxNestedInput = {
+    create?: XOR<AssignmentEventCreateWithoutSharedInboxInput, AssignmentEventUncheckedCreateWithoutSharedInboxInput> | AssignmentEventCreateWithoutSharedInboxInput[] | AssignmentEventUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: AssignmentEventCreateOrConnectWithoutSharedInboxInput | AssignmentEventCreateOrConnectWithoutSharedInboxInput[]
+    upsert?: AssignmentEventUpsertWithWhereUniqueWithoutSharedInboxInput | AssignmentEventUpsertWithWhereUniqueWithoutSharedInboxInput[]
+    createMany?: AssignmentEventCreateManySharedInboxInputEnvelope
+    set?: AssignmentEventWhereUniqueInput | AssignmentEventWhereUniqueInput[]
+    disconnect?: AssignmentEventWhereUniqueInput | AssignmentEventWhereUniqueInput[]
+    delete?: AssignmentEventWhereUniqueInput | AssignmentEventWhereUniqueInput[]
+    connect?: AssignmentEventWhereUniqueInput | AssignmentEventWhereUniqueInput[]
+    update?: AssignmentEventUpdateWithWhereUniqueWithoutSharedInboxInput | AssignmentEventUpdateWithWhereUniqueWithoutSharedInboxInput[]
+    updateMany?: AssignmentEventUpdateManyWithWhereWithoutSharedInboxInput | AssignmentEventUpdateManyWithWhereWithoutSharedInboxInput[]
+    deleteMany?: AssignmentEventScalarWhereInput | AssignmentEventScalarWhereInput[]
+  }
+
+  export type ThreadAssignmentUncheckedUpdateManyWithoutSharedInboxNestedInput = {
+    create?: XOR<ThreadAssignmentCreateWithoutSharedInboxInput, ThreadAssignmentUncheckedCreateWithoutSharedInboxInput> | ThreadAssignmentCreateWithoutSharedInboxInput[] | ThreadAssignmentUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: ThreadAssignmentCreateOrConnectWithoutSharedInboxInput | ThreadAssignmentCreateOrConnectWithoutSharedInboxInput[]
+    upsert?: ThreadAssignmentUpsertWithWhereUniqueWithoutSharedInboxInput | ThreadAssignmentUpsertWithWhereUniqueWithoutSharedInboxInput[]
+    createMany?: ThreadAssignmentCreateManySharedInboxInputEnvelope
+    set?: ThreadAssignmentWhereUniqueInput | ThreadAssignmentWhereUniqueInput[]
+    disconnect?: ThreadAssignmentWhereUniqueInput | ThreadAssignmentWhereUniqueInput[]
+    delete?: ThreadAssignmentWhereUniqueInput | ThreadAssignmentWhereUniqueInput[]
+    connect?: ThreadAssignmentWhereUniqueInput | ThreadAssignmentWhereUniqueInput[]
+    update?: ThreadAssignmentUpdateWithWhereUniqueWithoutSharedInboxInput | ThreadAssignmentUpdateWithWhereUniqueWithoutSharedInboxInput[]
+    updateMany?: ThreadAssignmentUpdateManyWithWhereWithoutSharedInboxInput | ThreadAssignmentUpdateManyWithWhereWithoutSharedInboxInput[]
+    deleteMany?: ThreadAssignmentScalarWhereInput | ThreadAssignmentScalarWhereInput[]
+  }
+
+  export type ThreadCommentUncheckedUpdateManyWithoutSharedInboxNestedInput = {
+    create?: XOR<ThreadCommentCreateWithoutSharedInboxInput, ThreadCommentUncheckedCreateWithoutSharedInboxInput> | ThreadCommentCreateWithoutSharedInboxInput[] | ThreadCommentUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: ThreadCommentCreateOrConnectWithoutSharedInboxInput | ThreadCommentCreateOrConnectWithoutSharedInboxInput[]
+    upsert?: ThreadCommentUpsertWithWhereUniqueWithoutSharedInboxInput | ThreadCommentUpsertWithWhereUniqueWithoutSharedInboxInput[]
+    createMany?: ThreadCommentCreateManySharedInboxInputEnvelope
+    set?: ThreadCommentWhereUniqueInput | ThreadCommentWhereUniqueInput[]
+    disconnect?: ThreadCommentWhereUniqueInput | ThreadCommentWhereUniqueInput[]
+    delete?: ThreadCommentWhereUniqueInput | ThreadCommentWhereUniqueInput[]
+    connect?: ThreadCommentWhereUniqueInput | ThreadCommentWhereUniqueInput[]
+    update?: ThreadCommentUpdateWithWhereUniqueWithoutSharedInboxInput | ThreadCommentUpdateWithWhereUniqueWithoutSharedInboxInput[]
+    updateMany?: ThreadCommentUpdateManyWithWhereWithoutSharedInboxInput | ThreadCommentUpdateManyWithWhereWithoutSharedInboxInput[]
+    deleteMany?: ThreadCommentScalarWhereInput | ThreadCommentScalarWhereInput[]
+  }
+
+  export type AssignmentEventUncheckedUpdateManyWithoutSharedInboxNestedInput = {
+    create?: XOR<AssignmentEventCreateWithoutSharedInboxInput, AssignmentEventUncheckedCreateWithoutSharedInboxInput> | AssignmentEventCreateWithoutSharedInboxInput[] | AssignmentEventUncheckedCreateWithoutSharedInboxInput[]
+    connectOrCreate?: AssignmentEventCreateOrConnectWithoutSharedInboxInput | AssignmentEventCreateOrConnectWithoutSharedInboxInput[]
+    upsert?: AssignmentEventUpsertWithWhereUniqueWithoutSharedInboxInput | AssignmentEventUpsertWithWhereUniqueWithoutSharedInboxInput[]
+    createMany?: AssignmentEventCreateManySharedInboxInputEnvelope
+    set?: AssignmentEventWhereUniqueInput | AssignmentEventWhereUniqueInput[]
+    disconnect?: AssignmentEventWhereUniqueInput | AssignmentEventWhereUniqueInput[]
+    delete?: AssignmentEventWhereUniqueInput | AssignmentEventWhereUniqueInput[]
+    connect?: AssignmentEventWhereUniqueInput | AssignmentEventWhereUniqueInput[]
+    update?: AssignmentEventUpdateWithWhereUniqueWithoutSharedInboxInput | AssignmentEventUpdateWithWhereUniqueWithoutSharedInboxInput[]
+    updateMany?: AssignmentEventUpdateManyWithWhereWithoutSharedInboxInput | AssignmentEventUpdateManyWithWhereWithoutSharedInboxInput[]
+    deleteMany?: AssignmentEventScalarWhereInput | AssignmentEventScalarWhereInput[]
+  }
+
+  export type SharedInboxCreateNestedOneWithoutAssignmentsInput = {
+    create?: XOR<SharedInboxCreateWithoutAssignmentsInput, SharedInboxUncheckedCreateWithoutAssignmentsInput>
+    connectOrCreate?: SharedInboxCreateOrConnectWithoutAssignmentsInput
+    connect?: SharedInboxWhereUniqueInput
+  }
+
+  export type SharedInboxUpdateOneRequiredWithoutAssignmentsNestedInput = {
+    create?: XOR<SharedInboxCreateWithoutAssignmentsInput, SharedInboxUncheckedCreateWithoutAssignmentsInput>
+    connectOrCreate?: SharedInboxCreateOrConnectWithoutAssignmentsInput
+    upsert?: SharedInboxUpsertWithoutAssignmentsInput
+    connect?: SharedInboxWhereUniqueInput
+    update?: XOR<XOR<SharedInboxUpdateToOneWithWhereWithoutAssignmentsInput, SharedInboxUpdateWithoutAssignmentsInput>, SharedInboxUncheckedUpdateWithoutAssignmentsInput>
+  }
+
+  export type SharedInboxCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<SharedInboxCreateWithoutCommentsInput, SharedInboxUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: SharedInboxCreateOrConnectWithoutCommentsInput
+    connect?: SharedInboxWhereUniqueInput
+  }
+
+  export type SharedInboxUpdateOneRequiredWithoutCommentsNestedInput = {
+    create?: XOR<SharedInboxCreateWithoutCommentsInput, SharedInboxUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: SharedInboxCreateOrConnectWithoutCommentsInput
+    upsert?: SharedInboxUpsertWithoutCommentsInput
+    connect?: SharedInboxWhereUniqueInput
+    update?: XOR<XOR<SharedInboxUpdateToOneWithWhereWithoutCommentsInput, SharedInboxUpdateWithoutCommentsInput>, SharedInboxUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type SharedInboxCreateNestedOneWithoutEventsInput = {
+    create?: XOR<SharedInboxCreateWithoutEventsInput, SharedInboxUncheckedCreateWithoutEventsInput>
+    connectOrCreate?: SharedInboxCreateOrConnectWithoutEventsInput
+    connect?: SharedInboxWhereUniqueInput
+  }
+
+  export type SharedInboxUpdateOneRequiredWithoutEventsNestedInput = {
+    create?: XOR<SharedInboxCreateWithoutEventsInput, SharedInboxUncheckedCreateWithoutEventsInput>
+    connectOrCreate?: SharedInboxCreateOrConnectWithoutEventsInput
+    upsert?: SharedInboxUpsertWithoutEventsInput
+    connect?: SharedInboxWhereUniqueInput
+    update?: XOR<XOR<SharedInboxUpdateToOneWithWhereWithoutEventsInput, SharedInboxUpdateWithoutEventsInput>, SharedInboxUncheckedUpdateWithoutEventsInput>
+  }
+
+  export type SubscriptionCreateNestedManyWithoutBillingCustomerInput = {
+    create?: XOR<SubscriptionCreateWithoutBillingCustomerInput, SubscriptionUncheckedCreateWithoutBillingCustomerInput> | SubscriptionCreateWithoutBillingCustomerInput[] | SubscriptionUncheckedCreateWithoutBillingCustomerInput[]
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutBillingCustomerInput | SubscriptionCreateOrConnectWithoutBillingCustomerInput[]
+    createMany?: SubscriptionCreateManyBillingCustomerInputEnvelope
+    connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+  }
+
+  export type SubscriptionUncheckedCreateNestedManyWithoutBillingCustomerInput = {
+    create?: XOR<SubscriptionCreateWithoutBillingCustomerInput, SubscriptionUncheckedCreateWithoutBillingCustomerInput> | SubscriptionCreateWithoutBillingCustomerInput[] | SubscriptionUncheckedCreateWithoutBillingCustomerInput[]
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutBillingCustomerInput | SubscriptionCreateOrConnectWithoutBillingCustomerInput[]
+    createMany?: SubscriptionCreateManyBillingCustomerInputEnvelope
+    connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+  }
+
+  export type SubscriptionUpdateManyWithoutBillingCustomerNestedInput = {
+    create?: XOR<SubscriptionCreateWithoutBillingCustomerInput, SubscriptionUncheckedCreateWithoutBillingCustomerInput> | SubscriptionCreateWithoutBillingCustomerInput[] | SubscriptionUncheckedCreateWithoutBillingCustomerInput[]
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutBillingCustomerInput | SubscriptionCreateOrConnectWithoutBillingCustomerInput[]
+    upsert?: SubscriptionUpsertWithWhereUniqueWithoutBillingCustomerInput | SubscriptionUpsertWithWhereUniqueWithoutBillingCustomerInput[]
+    createMany?: SubscriptionCreateManyBillingCustomerInputEnvelope
+    set?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+    disconnect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+    delete?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+    connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+    update?: SubscriptionUpdateWithWhereUniqueWithoutBillingCustomerInput | SubscriptionUpdateWithWhereUniqueWithoutBillingCustomerInput[]
+    updateMany?: SubscriptionUpdateManyWithWhereWithoutBillingCustomerInput | SubscriptionUpdateManyWithWhereWithoutBillingCustomerInput[]
+    deleteMany?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
+  }
+
+  export type SubscriptionUncheckedUpdateManyWithoutBillingCustomerNestedInput = {
+    create?: XOR<SubscriptionCreateWithoutBillingCustomerInput, SubscriptionUncheckedCreateWithoutBillingCustomerInput> | SubscriptionCreateWithoutBillingCustomerInput[] | SubscriptionUncheckedCreateWithoutBillingCustomerInput[]
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutBillingCustomerInput | SubscriptionCreateOrConnectWithoutBillingCustomerInput[]
+    upsert?: SubscriptionUpsertWithWhereUniqueWithoutBillingCustomerInput | SubscriptionUpsertWithWhereUniqueWithoutBillingCustomerInput[]
+    createMany?: SubscriptionCreateManyBillingCustomerInputEnvelope
+    set?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+    disconnect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+    delete?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+    connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+    update?: SubscriptionUpdateWithWhereUniqueWithoutBillingCustomerInput | SubscriptionUpdateWithWhereUniqueWithoutBillingCustomerInput[]
+    updateMany?: SubscriptionUpdateManyWithWhereWithoutBillingCustomerInput | SubscriptionUpdateManyWithWhereWithoutBillingCustomerInput[]
+    deleteMany?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
+  }
+
+  export type BillingCustomerCreateNestedOneWithoutSubscriptionsInput = {
+    create?: XOR<BillingCustomerCreateWithoutSubscriptionsInput, BillingCustomerUncheckedCreateWithoutSubscriptionsInput>
+    connectOrCreate?: BillingCustomerCreateOrConnectWithoutSubscriptionsInput
+    connect?: BillingCustomerWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type BillingCustomerUpdateOneRequiredWithoutSubscriptionsNestedInput = {
+    create?: XOR<BillingCustomerCreateWithoutSubscriptionsInput, BillingCustomerUncheckedCreateWithoutSubscriptionsInput>
+    connectOrCreate?: BillingCustomerCreateOrConnectWithoutSubscriptionsInput
+    upsert?: BillingCustomerUpsertWithoutSubscriptionsInput
+    connect?: BillingCustomerWhereUniqueInput
+    update?: XOR<XOR<BillingCustomerUpdateToOneWithWhereWithoutSubscriptionsInput, BillingCustomerUpdateWithoutSubscriptionsInput>, BillingCustomerUncheckedUpdateWithoutSubscriptionsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -31801,6 +45886,19 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type CorsairAccountCreateWithoutIntegrationInput = {
@@ -32959,6 +47057,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
     pendingActions?: PendingActionCreateNestedManyWithoutUserInput
@@ -32980,6 +47079,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
     pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
@@ -33017,6 +47117,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
     pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
@@ -33038,6 +47139,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
     pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
@@ -33059,6 +47161,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
     pendingActions?: PendingActionCreateNestedManyWithoutUserInput
@@ -33080,6 +47183,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
     pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
@@ -33117,6 +47221,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
     pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
@@ -33138,6 +47243,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
     pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
@@ -33159,6 +47265,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     pendingActions?: PendingActionCreateNestedManyWithoutUserInput
@@ -33180,6 +47287,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
@@ -33217,6 +47325,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
@@ -33238,6 +47347,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
@@ -33259,6 +47369,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -33280,6 +47391,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -33317,6 +47429,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -33338,6 +47451,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -33359,6 +47473,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -33380,6 +47495,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -33417,6 +47533,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -33438,6 +47555,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -33459,6 +47577,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -33480,6 +47599,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -33517,6 +47637,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -33538,6 +47659,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -33559,6 +47681,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -33580,6 +47703,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -33617,6 +47741,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -33638,6 +47763,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -33659,6 +47785,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -33680,6 +47807,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -33717,6 +47845,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -33738,6 +47867,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -33759,6 +47889,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -33780,6 +47911,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -33817,6 +47949,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -33838,6 +47971,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -33859,6 +47993,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -33880,6 +48015,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -33917,6 +48053,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -33938,6 +48075,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -33959,6 +48097,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -33980,6 +48119,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -34017,6 +48157,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -34038,6 +48179,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -34059,6 +48201,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -34080,6 +48223,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -34117,6 +48261,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -34138,6 +48283,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -34159,6 +48305,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -34180,6 +48327,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -34217,6 +48365,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -34238,6 +48387,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -34259,6 +48409,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
@@ -34280,6 +48431,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     gmailBackfilledAt?: Date | string | null
     calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
     emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
     priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
@@ -34317,6 +48469,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
@@ -34338,6 +48491,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
     emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
     priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
@@ -34351,6 +48505,693 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type MembershipCreateWithoutOrganizationInput = {
+    id?: string
+    userId: string
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MembershipUncheckedCreateWithoutOrganizationInput = {
+    id?: string
+    userId: string
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MembershipCreateOrConnectWithoutOrganizationInput = {
+    where: MembershipWhereUniqueInput
+    create: XOR<MembershipCreateWithoutOrganizationInput, MembershipUncheckedCreateWithoutOrganizationInput>
+  }
+
+  export type MembershipCreateManyOrganizationInputEnvelope = {
+    data: MembershipCreateManyOrganizationInput | MembershipCreateManyOrganizationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SharedInboxCreateWithoutOrganizationInput = {
+    id?: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+    assignments?: ThreadAssignmentCreateNestedManyWithoutSharedInboxInput
+    comments?: ThreadCommentCreateNestedManyWithoutSharedInboxInput
+    events?: AssignmentEventCreateNestedManyWithoutSharedInboxInput
+  }
+
+  export type SharedInboxUncheckedCreateWithoutOrganizationInput = {
+    id?: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+    assignments?: ThreadAssignmentUncheckedCreateNestedManyWithoutSharedInboxInput
+    comments?: ThreadCommentUncheckedCreateNestedManyWithoutSharedInboxInput
+    events?: AssignmentEventUncheckedCreateNestedManyWithoutSharedInboxInput
+  }
+
+  export type SharedInboxCreateOrConnectWithoutOrganizationInput = {
+    where: SharedInboxWhereUniqueInput
+    create: XOR<SharedInboxCreateWithoutOrganizationInput, SharedInboxUncheckedCreateWithoutOrganizationInput>
+  }
+
+  export type SharedInboxCreateManyOrganizationInputEnvelope = {
+    data: SharedInboxCreateManyOrganizationInput | SharedInboxCreateManyOrganizationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MembershipUpsertWithWhereUniqueWithoutOrganizationInput = {
+    where: MembershipWhereUniqueInput
+    update: XOR<MembershipUpdateWithoutOrganizationInput, MembershipUncheckedUpdateWithoutOrganizationInput>
+    create: XOR<MembershipCreateWithoutOrganizationInput, MembershipUncheckedCreateWithoutOrganizationInput>
+  }
+
+  export type MembershipUpdateWithWhereUniqueWithoutOrganizationInput = {
+    where: MembershipWhereUniqueInput
+    data: XOR<MembershipUpdateWithoutOrganizationInput, MembershipUncheckedUpdateWithoutOrganizationInput>
+  }
+
+  export type MembershipUpdateManyWithWhereWithoutOrganizationInput = {
+    where: MembershipScalarWhereInput
+    data: XOR<MembershipUpdateManyMutationInput, MembershipUncheckedUpdateManyWithoutOrganizationInput>
+  }
+
+  export type MembershipScalarWhereInput = {
+    AND?: MembershipScalarWhereInput | MembershipScalarWhereInput[]
+    OR?: MembershipScalarWhereInput[]
+    NOT?: MembershipScalarWhereInput | MembershipScalarWhereInput[]
+    id?: StringFilter<"Membership"> | string
+    orgId?: StringFilter<"Membership"> | string
+    userId?: StringFilter<"Membership"> | string
+    role?: StringFilter<"Membership"> | string
+    createdAt?: DateTimeFilter<"Membership"> | Date | string
+    updatedAt?: DateTimeFilter<"Membership"> | Date | string
+  }
+
+  export type SharedInboxUpsertWithWhereUniqueWithoutOrganizationInput = {
+    where: SharedInboxWhereUniqueInput
+    update: XOR<SharedInboxUpdateWithoutOrganizationInput, SharedInboxUncheckedUpdateWithoutOrganizationInput>
+    create: XOR<SharedInboxCreateWithoutOrganizationInput, SharedInboxUncheckedCreateWithoutOrganizationInput>
+  }
+
+  export type SharedInboxUpdateWithWhereUniqueWithoutOrganizationInput = {
+    where: SharedInboxWhereUniqueInput
+    data: XOR<SharedInboxUpdateWithoutOrganizationInput, SharedInboxUncheckedUpdateWithoutOrganizationInput>
+  }
+
+  export type SharedInboxUpdateManyWithWhereWithoutOrganizationInput = {
+    where: SharedInboxScalarWhereInput
+    data: XOR<SharedInboxUpdateManyMutationInput, SharedInboxUncheckedUpdateManyWithoutOrganizationInput>
+  }
+
+  export type SharedInboxScalarWhereInput = {
+    AND?: SharedInboxScalarWhereInput | SharedInboxScalarWhereInput[]
+    OR?: SharedInboxScalarWhereInput[]
+    NOT?: SharedInboxScalarWhereInput | SharedInboxScalarWhereInput[]
+    id?: StringFilter<"SharedInbox"> | string
+    orgId?: StringFilter<"SharedInbox"> | string
+    name?: StringFilter<"SharedInbox"> | string
+    plugin?: StringFilter<"SharedInbox"> | string
+    corsairAccountId?: StringNullableFilter<"SharedInbox"> | string | null
+    connectedByUserId?: StringFilter<"SharedInbox"> | string
+    createdAt?: DateTimeFilter<"SharedInbox"> | Date | string
+  }
+
+  export type OrganizationCreateWithoutMembershipsInput = {
+    id: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationUncheckedCreateWithoutMembershipsInput = {
+    id: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationCreateOrConnectWithoutMembershipsInput = {
+    where: OrganizationWhereUniqueInput
+    create: XOR<OrganizationCreateWithoutMembershipsInput, OrganizationUncheckedCreateWithoutMembershipsInput>
+  }
+
+  export type OrganizationUpsertWithoutMembershipsInput = {
+    update: XOR<OrganizationUpdateWithoutMembershipsInput, OrganizationUncheckedUpdateWithoutMembershipsInput>
+    create: XOR<OrganizationCreateWithoutMembershipsInput, OrganizationUncheckedCreateWithoutMembershipsInput>
+    where?: OrganizationWhereInput
+  }
+
+  export type OrganizationUpdateToOneWithWhereWithoutMembershipsInput = {
+    where?: OrganizationWhereInput
+    data: XOR<OrganizationUpdateWithoutMembershipsInput, OrganizationUncheckedUpdateWithoutMembershipsInput>
+  }
+
+  export type OrganizationUpdateWithoutMembershipsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
+  }
+
+  export type OrganizationUncheckedUpdateWithoutMembershipsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  }
+
+  export type OrganizationCreateWithoutSharedInboxesInput = {
+    id: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    memberships?: MembershipCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationUncheckedCreateWithoutSharedInboxesInput = {
+    id: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  }
+
+  export type OrganizationCreateOrConnectWithoutSharedInboxesInput = {
+    where: OrganizationWhereUniqueInput
+    create: XOR<OrganizationCreateWithoutSharedInboxesInput, OrganizationUncheckedCreateWithoutSharedInboxesInput>
+  }
+
+  export type ThreadAssignmentCreateWithoutSharedInboxInput = {
+    id?: string
+    threadId: string
+    assigneeUserId?: string | null
+    status?: string
+    updatedByUserId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ThreadAssignmentUncheckedCreateWithoutSharedInboxInput = {
+    id?: string
+    threadId: string
+    assigneeUserId?: string | null
+    status?: string
+    updatedByUserId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ThreadAssignmentCreateOrConnectWithoutSharedInboxInput = {
+    where: ThreadAssignmentWhereUniqueInput
+    create: XOR<ThreadAssignmentCreateWithoutSharedInboxInput, ThreadAssignmentUncheckedCreateWithoutSharedInboxInput>
+  }
+
+  export type ThreadAssignmentCreateManySharedInboxInputEnvelope = {
+    data: ThreadAssignmentCreateManySharedInboxInput | ThreadAssignmentCreateManySharedInboxInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ThreadCommentCreateWithoutSharedInboxInput = {
+    id?: string
+    threadId: string
+    authorUserId: string
+    body: string
+    createdAt?: Date | string
+  }
+
+  export type ThreadCommentUncheckedCreateWithoutSharedInboxInput = {
+    id?: string
+    threadId: string
+    authorUserId: string
+    body: string
+    createdAt?: Date | string
+  }
+
+  export type ThreadCommentCreateOrConnectWithoutSharedInboxInput = {
+    where: ThreadCommentWhereUniqueInput
+    create: XOR<ThreadCommentCreateWithoutSharedInboxInput, ThreadCommentUncheckedCreateWithoutSharedInboxInput>
+  }
+
+  export type ThreadCommentCreateManySharedInboxInputEnvelope = {
+    data: ThreadCommentCreateManySharedInboxInput | ThreadCommentCreateManySharedInboxInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AssignmentEventCreateWithoutSharedInboxInput = {
+    id?: string
+    threadId: string
+    actorUserId: string
+    kind: string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AssignmentEventUncheckedCreateWithoutSharedInboxInput = {
+    id?: string
+    threadId: string
+    actorUserId: string
+    kind: string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AssignmentEventCreateOrConnectWithoutSharedInboxInput = {
+    where: AssignmentEventWhereUniqueInput
+    create: XOR<AssignmentEventCreateWithoutSharedInboxInput, AssignmentEventUncheckedCreateWithoutSharedInboxInput>
+  }
+
+  export type AssignmentEventCreateManySharedInboxInputEnvelope = {
+    data: AssignmentEventCreateManySharedInboxInput | AssignmentEventCreateManySharedInboxInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type OrganizationUpsertWithoutSharedInboxesInput = {
+    update: XOR<OrganizationUpdateWithoutSharedInboxesInput, OrganizationUncheckedUpdateWithoutSharedInboxesInput>
+    create: XOR<OrganizationCreateWithoutSharedInboxesInput, OrganizationUncheckedCreateWithoutSharedInboxesInput>
+    where?: OrganizationWhereInput
+  }
+
+  export type OrganizationUpdateToOneWithWhereWithoutSharedInboxesInput = {
+    where?: OrganizationWhereInput
+    data: XOR<OrganizationUpdateWithoutSharedInboxesInput, OrganizationUncheckedUpdateWithoutSharedInboxesInput>
+  }
+
+  export type OrganizationUpdateWithoutSharedInboxesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
+  }
+
+  export type OrganizationUncheckedUpdateWithoutSharedInboxesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  }
+
+  export type ThreadAssignmentUpsertWithWhereUniqueWithoutSharedInboxInput = {
+    where: ThreadAssignmentWhereUniqueInput
+    update: XOR<ThreadAssignmentUpdateWithoutSharedInboxInput, ThreadAssignmentUncheckedUpdateWithoutSharedInboxInput>
+    create: XOR<ThreadAssignmentCreateWithoutSharedInboxInput, ThreadAssignmentUncheckedCreateWithoutSharedInboxInput>
+  }
+
+  export type ThreadAssignmentUpdateWithWhereUniqueWithoutSharedInboxInput = {
+    where: ThreadAssignmentWhereUniqueInput
+    data: XOR<ThreadAssignmentUpdateWithoutSharedInboxInput, ThreadAssignmentUncheckedUpdateWithoutSharedInboxInput>
+  }
+
+  export type ThreadAssignmentUpdateManyWithWhereWithoutSharedInboxInput = {
+    where: ThreadAssignmentScalarWhereInput
+    data: XOR<ThreadAssignmentUpdateManyMutationInput, ThreadAssignmentUncheckedUpdateManyWithoutSharedInboxInput>
+  }
+
+  export type ThreadAssignmentScalarWhereInput = {
+    AND?: ThreadAssignmentScalarWhereInput | ThreadAssignmentScalarWhereInput[]
+    OR?: ThreadAssignmentScalarWhereInput[]
+    NOT?: ThreadAssignmentScalarWhereInput | ThreadAssignmentScalarWhereInput[]
+    id?: StringFilter<"ThreadAssignment"> | string
+    sharedInboxId?: StringFilter<"ThreadAssignment"> | string
+    threadId?: StringFilter<"ThreadAssignment"> | string
+    assigneeUserId?: StringNullableFilter<"ThreadAssignment"> | string | null
+    status?: StringFilter<"ThreadAssignment"> | string
+    updatedByUserId?: StringFilter<"ThreadAssignment"> | string
+    createdAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
+    updatedAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
+  }
+
+  export type ThreadCommentUpsertWithWhereUniqueWithoutSharedInboxInput = {
+    where: ThreadCommentWhereUniqueInput
+    update: XOR<ThreadCommentUpdateWithoutSharedInboxInput, ThreadCommentUncheckedUpdateWithoutSharedInboxInput>
+    create: XOR<ThreadCommentCreateWithoutSharedInboxInput, ThreadCommentUncheckedCreateWithoutSharedInboxInput>
+  }
+
+  export type ThreadCommentUpdateWithWhereUniqueWithoutSharedInboxInput = {
+    where: ThreadCommentWhereUniqueInput
+    data: XOR<ThreadCommentUpdateWithoutSharedInboxInput, ThreadCommentUncheckedUpdateWithoutSharedInboxInput>
+  }
+
+  export type ThreadCommentUpdateManyWithWhereWithoutSharedInboxInput = {
+    where: ThreadCommentScalarWhereInput
+    data: XOR<ThreadCommentUpdateManyMutationInput, ThreadCommentUncheckedUpdateManyWithoutSharedInboxInput>
+  }
+
+  export type ThreadCommentScalarWhereInput = {
+    AND?: ThreadCommentScalarWhereInput | ThreadCommentScalarWhereInput[]
+    OR?: ThreadCommentScalarWhereInput[]
+    NOT?: ThreadCommentScalarWhereInput | ThreadCommentScalarWhereInput[]
+    id?: StringFilter<"ThreadComment"> | string
+    sharedInboxId?: StringFilter<"ThreadComment"> | string
+    threadId?: StringFilter<"ThreadComment"> | string
+    authorUserId?: StringFilter<"ThreadComment"> | string
+    body?: StringFilter<"ThreadComment"> | string
+    createdAt?: DateTimeFilter<"ThreadComment"> | Date | string
+  }
+
+  export type AssignmentEventUpsertWithWhereUniqueWithoutSharedInboxInput = {
+    where: AssignmentEventWhereUniqueInput
+    update: XOR<AssignmentEventUpdateWithoutSharedInboxInput, AssignmentEventUncheckedUpdateWithoutSharedInboxInput>
+    create: XOR<AssignmentEventCreateWithoutSharedInboxInput, AssignmentEventUncheckedCreateWithoutSharedInboxInput>
+  }
+
+  export type AssignmentEventUpdateWithWhereUniqueWithoutSharedInboxInput = {
+    where: AssignmentEventWhereUniqueInput
+    data: XOR<AssignmentEventUpdateWithoutSharedInboxInput, AssignmentEventUncheckedUpdateWithoutSharedInboxInput>
+  }
+
+  export type AssignmentEventUpdateManyWithWhereWithoutSharedInboxInput = {
+    where: AssignmentEventScalarWhereInput
+    data: XOR<AssignmentEventUpdateManyMutationInput, AssignmentEventUncheckedUpdateManyWithoutSharedInboxInput>
+  }
+
+  export type AssignmentEventScalarWhereInput = {
+    AND?: AssignmentEventScalarWhereInput | AssignmentEventScalarWhereInput[]
+    OR?: AssignmentEventScalarWhereInput[]
+    NOT?: AssignmentEventScalarWhereInput | AssignmentEventScalarWhereInput[]
+    id?: StringFilter<"AssignmentEvent"> | string
+    sharedInboxId?: StringFilter<"AssignmentEvent"> | string
+    threadId?: StringFilter<"AssignmentEvent"> | string
+    actorUserId?: StringFilter<"AssignmentEvent"> | string
+    kind?: StringFilter<"AssignmentEvent"> | string
+    meta?: JsonFilter<"AssignmentEvent">
+    createdAt?: DateTimeFilter<"AssignmentEvent"> | Date | string
+  }
+
+  export type SharedInboxCreateWithoutAssignmentsInput = {
+    id?: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+    organization: OrganizationCreateNestedOneWithoutSharedInboxesInput
+    comments?: ThreadCommentCreateNestedManyWithoutSharedInboxInput
+    events?: AssignmentEventCreateNestedManyWithoutSharedInboxInput
+  }
+
+  export type SharedInboxUncheckedCreateWithoutAssignmentsInput = {
+    id?: string
+    orgId: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+    comments?: ThreadCommentUncheckedCreateNestedManyWithoutSharedInboxInput
+    events?: AssignmentEventUncheckedCreateNestedManyWithoutSharedInboxInput
+  }
+
+  export type SharedInboxCreateOrConnectWithoutAssignmentsInput = {
+    where: SharedInboxWhereUniqueInput
+    create: XOR<SharedInboxCreateWithoutAssignmentsInput, SharedInboxUncheckedCreateWithoutAssignmentsInput>
+  }
+
+  export type SharedInboxUpsertWithoutAssignmentsInput = {
+    update: XOR<SharedInboxUpdateWithoutAssignmentsInput, SharedInboxUncheckedUpdateWithoutAssignmentsInput>
+    create: XOR<SharedInboxCreateWithoutAssignmentsInput, SharedInboxUncheckedCreateWithoutAssignmentsInput>
+    where?: SharedInboxWhereInput
+  }
+
+  export type SharedInboxUpdateToOneWithWhereWithoutAssignmentsInput = {
+    where?: SharedInboxWhereInput
+    data: XOR<SharedInboxUpdateWithoutAssignmentsInput, SharedInboxUncheckedUpdateWithoutAssignmentsInput>
+  }
+
+  export type SharedInboxUpdateWithoutAssignmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organization?: OrganizationUpdateOneRequiredWithoutSharedInboxesNestedInput
+    comments?: ThreadCommentUpdateManyWithoutSharedInboxNestedInput
+    events?: AssignmentEventUpdateManyWithoutSharedInboxNestedInput
+  }
+
+  export type SharedInboxUncheckedUpdateWithoutAssignmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: ThreadCommentUncheckedUpdateManyWithoutSharedInboxNestedInput
+    events?: AssignmentEventUncheckedUpdateManyWithoutSharedInboxNestedInput
+  }
+
+  export type SharedInboxCreateWithoutCommentsInput = {
+    id?: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+    organization: OrganizationCreateNestedOneWithoutSharedInboxesInput
+    assignments?: ThreadAssignmentCreateNestedManyWithoutSharedInboxInput
+    events?: AssignmentEventCreateNestedManyWithoutSharedInboxInput
+  }
+
+  export type SharedInboxUncheckedCreateWithoutCommentsInput = {
+    id?: string
+    orgId: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+    assignments?: ThreadAssignmentUncheckedCreateNestedManyWithoutSharedInboxInput
+    events?: AssignmentEventUncheckedCreateNestedManyWithoutSharedInboxInput
+  }
+
+  export type SharedInboxCreateOrConnectWithoutCommentsInput = {
+    where: SharedInboxWhereUniqueInput
+    create: XOR<SharedInboxCreateWithoutCommentsInput, SharedInboxUncheckedCreateWithoutCommentsInput>
+  }
+
+  export type SharedInboxUpsertWithoutCommentsInput = {
+    update: XOR<SharedInboxUpdateWithoutCommentsInput, SharedInboxUncheckedUpdateWithoutCommentsInput>
+    create: XOR<SharedInboxCreateWithoutCommentsInput, SharedInboxUncheckedCreateWithoutCommentsInput>
+    where?: SharedInboxWhereInput
+  }
+
+  export type SharedInboxUpdateToOneWithWhereWithoutCommentsInput = {
+    where?: SharedInboxWhereInput
+    data: XOR<SharedInboxUpdateWithoutCommentsInput, SharedInboxUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type SharedInboxUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organization?: OrganizationUpdateOneRequiredWithoutSharedInboxesNestedInput
+    assignments?: ThreadAssignmentUpdateManyWithoutSharedInboxNestedInput
+    events?: AssignmentEventUpdateManyWithoutSharedInboxNestedInput
+  }
+
+  export type SharedInboxUncheckedUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: ThreadAssignmentUncheckedUpdateManyWithoutSharedInboxNestedInput
+    events?: AssignmentEventUncheckedUpdateManyWithoutSharedInboxNestedInput
+  }
+
+  export type SharedInboxCreateWithoutEventsInput = {
+    id?: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+    organization: OrganizationCreateNestedOneWithoutSharedInboxesInput
+    assignments?: ThreadAssignmentCreateNestedManyWithoutSharedInboxInput
+    comments?: ThreadCommentCreateNestedManyWithoutSharedInboxInput
+  }
+
+  export type SharedInboxUncheckedCreateWithoutEventsInput = {
+    id?: string
+    orgId: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+    assignments?: ThreadAssignmentUncheckedCreateNestedManyWithoutSharedInboxInput
+    comments?: ThreadCommentUncheckedCreateNestedManyWithoutSharedInboxInput
+  }
+
+  export type SharedInboxCreateOrConnectWithoutEventsInput = {
+    where: SharedInboxWhereUniqueInput
+    create: XOR<SharedInboxCreateWithoutEventsInput, SharedInboxUncheckedCreateWithoutEventsInput>
+  }
+
+  export type SharedInboxUpsertWithoutEventsInput = {
+    update: XOR<SharedInboxUpdateWithoutEventsInput, SharedInboxUncheckedUpdateWithoutEventsInput>
+    create: XOR<SharedInboxCreateWithoutEventsInput, SharedInboxUncheckedCreateWithoutEventsInput>
+    where?: SharedInboxWhereInput
+  }
+
+  export type SharedInboxUpdateToOneWithWhereWithoutEventsInput = {
+    where?: SharedInboxWhereInput
+    data: XOR<SharedInboxUpdateWithoutEventsInput, SharedInboxUncheckedUpdateWithoutEventsInput>
+  }
+
+  export type SharedInboxUpdateWithoutEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organization?: OrganizationUpdateOneRequiredWithoutSharedInboxesNestedInput
+    assignments?: ThreadAssignmentUpdateManyWithoutSharedInboxNestedInput
+    comments?: ThreadCommentUpdateManyWithoutSharedInboxNestedInput
+  }
+
+  export type SharedInboxUncheckedUpdateWithoutEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: ThreadAssignmentUncheckedUpdateManyWithoutSharedInboxNestedInput
+    comments?: ThreadCommentUncheckedUpdateManyWithoutSharedInboxNestedInput
+  }
+
+  export type SubscriptionCreateWithoutBillingCustomerInput = {
+    id?: string
+    stripeSubscriptionId: string
+    plan: string
+    status: string
+    seats?: number
+    currentPeriodEnd?: Date | string | null
+    cancelAtPeriodEnd?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionUncheckedCreateWithoutBillingCustomerInput = {
+    id?: string
+    stripeSubscriptionId: string
+    plan: string
+    status: string
+    seats?: number
+    currentPeriodEnd?: Date | string | null
+    cancelAtPeriodEnd?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionCreateOrConnectWithoutBillingCustomerInput = {
+    where: SubscriptionWhereUniqueInput
+    create: XOR<SubscriptionCreateWithoutBillingCustomerInput, SubscriptionUncheckedCreateWithoutBillingCustomerInput>
+  }
+
+  export type SubscriptionCreateManyBillingCustomerInputEnvelope = {
+    data: SubscriptionCreateManyBillingCustomerInput | SubscriptionCreateManyBillingCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SubscriptionUpsertWithWhereUniqueWithoutBillingCustomerInput = {
+    where: SubscriptionWhereUniqueInput
+    update: XOR<SubscriptionUpdateWithoutBillingCustomerInput, SubscriptionUncheckedUpdateWithoutBillingCustomerInput>
+    create: XOR<SubscriptionCreateWithoutBillingCustomerInput, SubscriptionUncheckedCreateWithoutBillingCustomerInput>
+  }
+
+  export type SubscriptionUpdateWithWhereUniqueWithoutBillingCustomerInput = {
+    where: SubscriptionWhereUniqueInput
+    data: XOR<SubscriptionUpdateWithoutBillingCustomerInput, SubscriptionUncheckedUpdateWithoutBillingCustomerInput>
+  }
+
+  export type SubscriptionUpdateManyWithWhereWithoutBillingCustomerInput = {
+    where: SubscriptionScalarWhereInput
+    data: XOR<SubscriptionUpdateManyMutationInput, SubscriptionUncheckedUpdateManyWithoutBillingCustomerInput>
+  }
+
+  export type SubscriptionScalarWhereInput = {
+    AND?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
+    OR?: SubscriptionScalarWhereInput[]
+    NOT?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
+    id?: StringFilter<"Subscription"> | string
+    billingCustomerId?: StringFilter<"Subscription"> | string
+    stripeSubscriptionId?: StringFilter<"Subscription"> | string
+    plan?: StringFilter<"Subscription"> | string
+    status?: StringFilter<"Subscription"> | string
+    seats?: IntFilter<"Subscription"> | number
+    currentPeriodEnd?: DateTimeNullableFilter<"Subscription"> | Date | string | null
+    cancelAtPeriodEnd?: BoolFilter<"Subscription"> | boolean
+    updatedAt?: DateTimeFilter<"Subscription"> | Date | string
+  }
+
+  export type BillingCustomerCreateWithoutSubscriptionsInput = {
+    id?: string
+    ownerType: string
+    ownerId: string
+    stripeCustomerId: string
+    createdAt?: Date | string
+  }
+
+  export type BillingCustomerUncheckedCreateWithoutSubscriptionsInput = {
+    id?: string
+    ownerType: string
+    ownerId: string
+    stripeCustomerId: string
+    createdAt?: Date | string
+  }
+
+  export type BillingCustomerCreateOrConnectWithoutSubscriptionsInput = {
+    where: BillingCustomerWhereUniqueInput
+    create: XOR<BillingCustomerCreateWithoutSubscriptionsInput, BillingCustomerUncheckedCreateWithoutSubscriptionsInput>
+  }
+
+  export type BillingCustomerUpsertWithoutSubscriptionsInput = {
+    update: XOR<BillingCustomerUpdateWithoutSubscriptionsInput, BillingCustomerUncheckedUpdateWithoutSubscriptionsInput>
+    create: XOR<BillingCustomerCreateWithoutSubscriptionsInput, BillingCustomerUncheckedCreateWithoutSubscriptionsInput>
+    where?: BillingCustomerWhereInput
+  }
+
+  export type BillingCustomerUpdateToOneWithWhereWithoutSubscriptionsInput = {
+    where?: BillingCustomerWhereInput
+    data: XOR<BillingCustomerUpdateWithoutSubscriptionsInput, BillingCustomerUncheckedUpdateWithoutSubscriptionsInput>
+  }
+
+  export type BillingCustomerUpdateWithoutSubscriptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerType?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillingCustomerUncheckedUpdateWithoutSubscriptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerType?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CorsairAccountCreateManyIntegrationInput = {
@@ -34931,6 +49772,232 @@ export namespace Prisma {
     payload?: JsonNullValueInput | InputJsonValue
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MembershipCreateManyOrganizationInput = {
+    id?: string
+    userId: string
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SharedInboxCreateManyOrganizationInput = {
+    id?: string
+    name: string
+    plugin: string
+    corsairAccountId?: string | null
+    connectedByUserId: string
+    createdAt?: Date | string
+  }
+
+  export type MembershipUpdateWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MembershipUncheckedUpdateWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MembershipUncheckedUpdateManyWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SharedInboxUpdateWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: ThreadAssignmentUpdateManyWithoutSharedInboxNestedInput
+    comments?: ThreadCommentUpdateManyWithoutSharedInboxNestedInput
+    events?: AssignmentEventUpdateManyWithoutSharedInboxNestedInput
+  }
+
+  export type SharedInboxUncheckedUpdateWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: ThreadAssignmentUncheckedUpdateManyWithoutSharedInboxNestedInput
+    comments?: ThreadCommentUncheckedUpdateManyWithoutSharedInboxNestedInput
+    events?: AssignmentEventUncheckedUpdateManyWithoutSharedInboxNestedInput
+  }
+
+  export type SharedInboxUncheckedUpdateManyWithoutOrganizationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    plugin?: StringFieldUpdateOperationsInput | string
+    corsairAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    connectedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadAssignmentCreateManySharedInboxInput = {
+    id?: string
+    threadId: string
+    assigneeUserId?: string | null
+    status?: string
+    updatedByUserId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ThreadCommentCreateManySharedInboxInput = {
+    id?: string
+    threadId: string
+    authorUserId: string
+    body: string
+    createdAt?: Date | string
+  }
+
+  export type AssignmentEventCreateManySharedInboxInput = {
+    id?: string
+    threadId: string
+    actorUserId: string
+    kind: string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type ThreadAssignmentUpdateWithoutSharedInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    updatedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadAssignmentUncheckedUpdateWithoutSharedInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    updatedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadAssignmentUncheckedUpdateManyWithoutSharedInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    updatedByUserId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadCommentUpdateWithoutSharedInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    authorUserId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadCommentUncheckedUpdateWithoutSharedInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    authorUserId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadCommentUncheckedUpdateManyWithoutSharedInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    authorUserId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssignmentEventUpdateWithoutSharedInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    actorUserId?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssignmentEventUncheckedUpdateWithoutSharedInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    actorUserId?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssignmentEventUncheckedUpdateManyWithoutSharedInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    actorUserId?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    meta?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionCreateManyBillingCustomerInput = {
+    id?: string
+    stripeSubscriptionId: string
+    plan: string
+    status: string
+    seats?: number
+    currentPeriodEnd?: Date | string | null
+    cancelAtPeriodEnd?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionUpdateWithoutBillingCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    seats?: IntFieldUpdateOperationsInput | number
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelAtPeriodEnd?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionUncheckedUpdateWithoutBillingCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    seats?: IntFieldUpdateOperationsInput | number
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelAtPeriodEnd?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionUncheckedUpdateManyWithoutBillingCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    seats?: IntFieldUpdateOperationsInput | number
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelAtPeriodEnd?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

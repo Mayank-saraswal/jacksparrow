@@ -23,6 +23,11 @@ import {
   type ThreadSummaryResult,
 } from "@/server/summary";
 import { summaryCacheDecision } from "@/lib/summary-cache";
+import {
+  assertWithinLimit,
+  incrementUsage,
+  ownerForContext,
+} from "@/server/billing/entitlements";
 
 const METADATA_HEADERS = ["Subject", "From", "To", "Date"];
 
@@ -438,11 +443,16 @@ export const inboxRouter = createTRPCRouter({
       if (state === "stale" && cached && !input.refresh)
         return toResult(cached, true);
 
+      // Generating a fresh summary is a paid AI action — enforce the budget.
+      const owner = ownerForContext(ctx.userId, ctx.orgId);
+      await assertWithinLimit(owner, ctx.userId, "summary");
+
       const generated = await generateThreadSummary(detail);
       if (!generated) {
         if (cached) return toResult(cached, state === "stale");
         return null;
       }
+      void incrementUsage(owner, ctx.userId, "summary");
 
       const saved = await ctx.db.threadSummary.upsert({
         where: {

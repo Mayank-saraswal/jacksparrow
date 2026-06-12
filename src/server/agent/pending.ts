@@ -2,8 +2,10 @@ import "server-only";
 
 import { z } from "zod";
 
-import { getTenant } from "@/server/corsair";
+import { getTenant, getOrgTenant } from "@/server/corsair";
 import { sendEmail, sendEmailSchema } from "@/server/agent/execute";
+import { getMailProvider } from "@/server/mail/provider";
+import { db } from "@/server/db";
 
 /**
  * Shared draft-summary + execution logic for PendingActions, used by both the
@@ -12,6 +14,23 @@ import { sendEmail, sendEmailSchema } from "@/server/agent/execute";
  */
 
 export { sendEmailSchema };
+
+export const sharedReplySchema = z.object({
+  sharedInboxId: z.string().min(1),
+  threadId: z.string().min(1),
+  to: z.array(z.email()).min(1),
+  cc: z.array(z.email()).optional(),
+  subject: z.string().default(""),
+  body: z.string().default(""),
+  inReplyTo: z.string().optional(),
+});
+
+export const slackReplySchema = z.object({
+  orgId: z.string().min(1),
+  channel: z.string().min(1),
+  text: z.string().min(1),
+  threadTs: z.string().optional(),
+});
 
 export const createEventSchema = z.object({
   summary: z.string(),
@@ -41,6 +60,8 @@ export const PENDING_KINDS = [
   "create_event",
   "delete_event",
   "respond_invite",
+  "shared_reply",
+  "slack_reply",
 ] as const;
 export type PendingKind = (typeof PENDING_KINDS)[number];
 
@@ -49,6 +70,8 @@ export const OPERATION_PATH: Record<PendingKind, string> = {
   create_event: "googlecalendar.api.events.create",
   delete_event: "googlecalendar.api.events.delete",
   respond_invite: "googlecalendar.api.events.update",
+  shared_reply: "mail.send",
+  slack_reply: "slack.api.messages.post",
 };
 
 function fmtTime(iso: string) {
@@ -85,6 +108,15 @@ export function summarizePendingAction(
       const p = respondInviteSchema.parse(payload);
       return `RSVP "${p.response}" to the invite`;
     }
+    case "shared_reply": {
+      const p = sharedReplySchema.parse(payload);
+      const preview = p.subject || p.body.slice(0, 50);
+      return `Reply from shared inbox to ${p.to.join(", ")}: "${preview}"`;
+    }
+    case "slack_reply": {
+      const p = slackReplySchema.parse(payload);
+      return `Send Slack message: "${p.text.slice(0, 60)}"`;
+    }
     default:
       return `Unknown action: ${kind}`;
   }
@@ -101,6 +133,10 @@ export function confirmationCopy(kind: string): string {
       return "Event deleted ✅";
     case "respond_invite":
       return "RSVP sent ✅";
+    case "shared_reply":
+      return "Reply sent ✅";
+    case "slack_reply":
+      return "Slack message sent ✅";
     default:
       return "Done ✅";
   }
@@ -178,6 +214,59 @@ export async function executePendingAction(
         },
       });
       return { summary: `RSVP "${p.response}" sent` };
+    }
+    case "shared_reply": {
+      const p = sharedReplySchema.parse(payload);
+      const inbox = await db.sharedInbox.findUnique({
+        where: { id: p.sharedInboxId },
+        select: { orgId: true, plugin: true },
+      });
+      if (!inbox) throw new Error("Shared inbox not found");
+      // Verify the acting user belongs to the inbox's org before sending.
+      const member = await db.membership.findUnique({
+        where: { orgId_userId: { orgId: inbox.orgId, userId } },
+        select: { id: true },
+      });
+      if (!member) throw new Error("Not a member of this organization");
+
+      const provider = getMailProvider(
+        inbox.plugin === "outlook" ? "outlook" : "gmail",
+        { kind: "org", orgId: inbox.orgId },
+      );
+      await provider.send({
+        to: p.to,
+        cc: p.cc,
+        subject: p.subject,
+        body: p.body,
+        threadId: p.threadId,
+        inReplyTo: p.inReplyTo,
+      });
+
+      await db.assignmentEvent.create({
+        data: {
+          sharedInboxId: p.sharedInboxId,
+          threadId: p.threadId,
+          actorUserId: userId,
+          kind: "replied",
+          meta: { to: p.to },
+        },
+      });
+      return { summary: `Replied from shared inbox to ${p.to.join(", ")}` };
+    }
+    case "slack_reply": {
+      const p = slackReplySchema.parse(payload);
+      const member = await db.membership.findUnique({
+        where: { orgId_userId: { orgId: p.orgId, userId } },
+        select: { id: true },
+      });
+      if (!member) throw new Error("Not a member of this organization");
+      const orgTenant = getOrgTenant(p.orgId);
+      await orgTenant.slack.api.messages.post({
+        channel: p.channel,
+        text: p.text,
+        ...(p.threadTs ? { thread_ts: p.threadTs } : {}),
+      });
+      return { summary: "Slack message sent" };
     }
     default:
       throw new Error(`Unknown pending action kind: ${kind}`);

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
-import { corsair, SUPPORTED_PLUGINS } from "@/server/corsair";
+import { corsair, USER_PLUGINS } from "@/server/corsair";
 import { inngest } from "@/inngest/client";
 
 export type PluginConnectionState =
@@ -10,24 +10,20 @@ export type PluginConnectionState =
   | "not_connected";
 
 const pluginInput = z.object({
-  plugin: z.enum(["gmail", "googlecalendar"]),
+  plugin: z.enum(["gmail", "googlecalendar", "outlook"]),
 });
 
 export const integrationsRouter = createTRPCRouter({
   /**
-   * Connection status for each supported integration, scoped to the signed-in
-   * user (tenant). Uses Corsair's management namespace:
-   *   - "connected"           the user has authorized this integration
-   *   - "not_connected"       the user has not connected yet
-   *   - "missing_credentials" the app's OAuth client_id/secret are not set up
-   *                           (run `bun run corsair:setup`)
+   * Connection status for each personal (user-level) integration, scoped to the
+   * signed-in user. Slack is org-level and surfaced on the org settings page.
    */
   status: protectedProcedure.query(async ({ ctx }) => {
     const status = await corsair.manage.connectionStatus.get({
       tenantId: ctx.userId,
     });
 
-    return SUPPORTED_PLUGINS.map((plugin) => ({
+    return USER_PLUGINS.map((plugin) => ({
       plugin,
       state: status[plugin] ?? "not_connected",
     }));
@@ -41,12 +37,17 @@ export const integrationsRouter = createTRPCRouter({
   getSyncStatus: protectedProcedure.query(async ({ ctx }) => {
     const user = await ctx.db.user.findUnique({
       where: { id: ctx.userId },
-      select: { gmailBackfilledAt: true, calendarBackfilledAt: true },
+      select: {
+        gmailBackfilledAt: true,
+        calendarBackfilledAt: true,
+        outlookBackfilledAt: true,
+      },
     });
 
     return {
       gmail: { backfilledAt: user?.gmailBackfilledAt ?? null },
       googlecalendar: { backfilledAt: user?.calendarBackfilledAt ?? null },
+      outlook: { backfilledAt: user?.outlookBackfilledAt ?? null },
     };
   }),
 
@@ -60,7 +61,9 @@ export const integrationsRouter = createTRPCRouter({
       const data =
         input.plugin === "gmail"
           ? { gmailBackfilledAt: null }
-          : { calendarBackfilledAt: null };
+          : input.plugin === "outlook"
+            ? { outlookBackfilledAt: null }
+            : { calendarBackfilledAt: null };
 
       await ctx.db.user.upsert({
         where: { id: ctx.userId },

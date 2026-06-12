@@ -1,13 +1,16 @@
+  import { billingRouter } from "@/server/api/routers/billing";
 import { calendarRouter } from "@/server/api/routers/calendar";
 import { channelsRouter } from "@/server/api/routers/channels";
 import { draftsRouter } from "@/server/api/routers/drafts";
 import { followupsRouter } from "@/server/api/routers/followups";
 import { inboxRouter } from "@/server/api/routers/inbox";
 import { integrationsRouter } from "@/server/api/routers/integrations";
+import { organizationRouter } from "@/server/api/routers/organization";
 import { pendingRouter } from "@/server/api/routers/pending";
 import { preferencesRouter } from "@/server/api/routers/preferences";
 import { schedulingRouter } from "@/server/api/routers/scheduling";
 import { searchRouter } from "@/server/api/routers/search";
+import { sharedInboxRouter } from "@/server/api/routers/sharedInbox";
 import { triageRouter } from "@/server/api/routers/triage";
 import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
 
@@ -28,6 +31,9 @@ export const appRouter = createTRPCRouter({
   scheduling: schedulingRouter,
   followups: followupsRouter,
   drafts: draftsRouter,
+  organization: organizationRouter,
+  billing: billingRouter,
+  sharedInbox: sharedInboxRouter,
 });
 
 // export type definition of API
