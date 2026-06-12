@@ -190,6 +190,7 @@ exports.Prisma.PriorityScoreScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   corsairEntityId: 'corsairEntityId',
+  threadId: 'threadId',
   label: 'label',
   reason: 'reason',
   model: 'model',

@@ -6,6 +6,13 @@ import type { ThreadPreview } from "@/server/gmail";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 
+const PRIORITY_DOT: Record<string, string> = {
+  urgent: "bg-red-500",
+  important: "bg-amber-500",
+  normal: "bg-muted-foreground/40",
+  low: "bg-muted-foreground/20",
+};
+
 function formatDate(iso: string | null): string {
   if (!iso) return "";
   const d = new Date(iso);
@@ -87,6 +94,15 @@ export function ThreadList({
                     t.unread ? "bg-primary" : "bg-transparent",
                   )}
                 />
+                {t.priority && (
+                  <span
+                    title={t.priority.reason}
+                    className={cn(
+                      "size-1.5 shrink-0 rounded-full",
+                      PRIORITY_DOT[t.priority.label] ?? "bg-transparent",
+                    )}
+                  />
+                )}
                 <span
                   className={cn(
                     "flex-1 truncate text-xs",

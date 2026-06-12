@@ -9609,6 +9609,7 @@ export namespace Prisma {
     id: string | null
     userId: string | null
     corsairEntityId: string | null
+    threadId: string | null
     label: string | null
     reason: string | null
     model: string | null
@@ -9619,6 +9620,7 @@ export namespace Prisma {
     id: string | null
     userId: string | null
     corsairEntityId: string | null
+    threadId: string | null
     label: string | null
     reason: string | null
     model: string | null
@@ -9629,6 +9631,7 @@ export namespace Prisma {
     id: number
     userId: number
     corsairEntityId: number
+    threadId: number
     label: number
     reason: number
     model: number
@@ -9641,6 +9644,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     corsairEntityId?: true
+    threadId?: true
     label?: true
     reason?: true
     model?: true
@@ -9651,6 +9655,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     corsairEntityId?: true
+    threadId?: true
     label?: true
     reason?: true
     model?: true
@@ -9661,6 +9666,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     corsairEntityId?: true
+    threadId?: true
     label?: true
     reason?: true
     model?: true
@@ -9744,6 +9750,7 @@ export namespace Prisma {
     id: string
     userId: string
     corsairEntityId: string
+    threadId: string
     label: string
     reason: string | null
     model: string | null
@@ -9771,6 +9778,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     corsairEntityId?: boolean
+    threadId?: boolean
     label?: boolean
     reason?: boolean
     model?: boolean
@@ -9782,6 +9790,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     corsairEntityId?: boolean
+    threadId?: boolean
     label?: boolean
     reason?: boolean
     model?: boolean
@@ -9793,6 +9802,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     corsairEntityId?: boolean
+    threadId?: boolean
     label?: boolean
     reason?: boolean
     model?: boolean
@@ -9804,13 +9814,14 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     corsairEntityId?: boolean
+    threadId?: boolean
     label?: boolean
     reason?: boolean
     model?: boolean
     createdAt?: boolean
   }
 
-  export type PriorityScoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "corsairEntityId" | "label" | "reason" | "model" | "createdAt", ExtArgs["result"]["priorityScore"]>
+  export type PriorityScoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "corsairEntityId" | "threadId" | "label" | "reason" | "model" | "createdAt", ExtArgs["result"]["priorityScore"]>
   export type PriorityScoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -9830,6 +9841,7 @@ export namespace Prisma {
       id: string
       userId: string
       corsairEntityId: string
+      threadId: string
       label: string
       reason: string | null
       model: string | null
@@ -10261,6 +10273,7 @@ export namespace Prisma {
     readonly id: FieldRef<"PriorityScore", 'String'>
     readonly userId: FieldRef<"PriorityScore", 'String'>
     readonly corsairEntityId: FieldRef<"PriorityScore", 'String'>
+    readonly threadId: FieldRef<"PriorityScore", 'String'>
     readonly label: FieldRef<"PriorityScore", 'String'>
     readonly reason: FieldRef<"PriorityScore", 'String'>
     readonly model: FieldRef<"PriorityScore", 'String'>
@@ -13973,6 +13986,7 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     corsairEntityId: 'corsairEntityId',
+    threadId: 'threadId',
     label: 'label',
     reason: 'reason',
     model: 'model',
@@ -14583,6 +14597,7 @@ export namespace Prisma {
     id?: StringFilter<"PriorityScore"> | string
     userId?: StringFilter<"PriorityScore"> | string
     corsairEntityId?: StringFilter<"PriorityScore"> | string
+    threadId?: StringFilter<"PriorityScore"> | string
     label?: StringFilter<"PriorityScore"> | string
     reason?: StringNullableFilter<"PriorityScore"> | string | null
     model?: StringNullableFilter<"PriorityScore"> | string | null
@@ -14594,6 +14609,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     corsairEntityId?: SortOrder
+    threadId?: SortOrder
     label?: SortOrder
     reason?: SortOrderInput | SortOrder
     model?: SortOrderInput | SortOrder
@@ -14603,22 +14619,25 @@ export namespace Prisma {
 
   export type PriorityScoreWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    userId_threadId?: PriorityScoreUserIdThreadIdCompoundUniqueInput
     AND?: PriorityScoreWhereInput | PriorityScoreWhereInput[]
     OR?: PriorityScoreWhereInput[]
     NOT?: PriorityScoreWhereInput | PriorityScoreWhereInput[]
     userId?: StringFilter<"PriorityScore"> | string
     corsairEntityId?: StringFilter<"PriorityScore"> | string
+    threadId?: StringFilter<"PriorityScore"> | string
     label?: StringFilter<"PriorityScore"> | string
     reason?: StringNullableFilter<"PriorityScore"> | string | null
     model?: StringNullableFilter<"PriorityScore"> | string | null
     createdAt?: DateTimeFilter<"PriorityScore"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
+  }, "id" | "userId_threadId">
 
   export type PriorityScoreOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
     corsairEntityId?: SortOrder
+    threadId?: SortOrder
     label?: SortOrder
     reason?: SortOrderInput | SortOrder
     model?: SortOrderInput | SortOrder
@@ -14635,6 +14654,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"PriorityScore"> | string
     userId?: StringWithAggregatesFilter<"PriorityScore"> | string
     corsairEntityId?: StringWithAggregatesFilter<"PriorityScore"> | string
+    threadId?: StringWithAggregatesFilter<"PriorityScore"> | string
     label?: StringWithAggregatesFilter<"PriorityScore"> | string
     reason?: StringNullableWithAggregatesFilter<"PriorityScore"> | string | null
     model?: StringNullableWithAggregatesFilter<"PriorityScore"> | string | null
@@ -15324,6 +15344,7 @@ export namespace Prisma {
   export type PriorityScoreCreateInput = {
     id?: string
     corsairEntityId: string
+    threadId: string
     label: string
     reason?: string | null
     model?: string | null
@@ -15335,6 +15356,7 @@ export namespace Prisma {
     id?: string
     userId: string
     corsairEntityId: string
+    threadId: string
     label: string
     reason?: string | null
     model?: string | null
@@ -15344,6 +15366,7 @@ export namespace Prisma {
   export type PriorityScoreUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15355,6 +15378,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15365,6 +15389,7 @@ export namespace Prisma {
     id?: string
     userId: string
     corsairEntityId: string
+    threadId: string
     label: string
     reason?: string | null
     model?: string | null
@@ -15374,6 +15399,7 @@ export namespace Prisma {
   export type PriorityScoreUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15384,6 +15410,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16062,10 +16089,16 @@ export namespace Prisma {
     indexedAt?: SortOrder
   }
 
+  export type PriorityScoreUserIdThreadIdCompoundUniqueInput = {
+    userId: string
+    threadId: string
+  }
+
   export type PriorityScoreCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     corsairEntityId?: SortOrder
+    threadId?: SortOrder
     label?: SortOrder
     reason?: SortOrder
     model?: SortOrder
@@ -16076,6 +16109,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     corsairEntityId?: SortOrder
+    threadId?: SortOrder
     label?: SortOrder
     reason?: SortOrder
     model?: SortOrder
@@ -16086,6 +16120,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     corsairEntityId?: SortOrder
+    threadId?: SortOrder
     label?: SortOrder
     reason?: SortOrder
     model?: SortOrder
@@ -17198,6 +17233,7 @@ export namespace Prisma {
   export type PriorityScoreCreateWithoutUserInput = {
     id?: string
     corsairEntityId: string
+    threadId: string
     label: string
     reason?: string | null
     model?: string | null
@@ -17207,6 +17243,7 @@ export namespace Prisma {
   export type PriorityScoreUncheckedCreateWithoutUserInput = {
     id?: string
     corsairEntityId: string
+    threadId: string
     label: string
     reason?: string | null
     model?: string | null
@@ -17350,6 +17387,7 @@ export namespace Prisma {
     id?: StringFilter<"PriorityScore"> | string
     userId?: StringFilter<"PriorityScore"> | string
     corsairEntityId?: StringFilter<"PriorityScore"> | string
+    threadId?: StringFilter<"PriorityScore"> | string
     label?: StringFilter<"PriorityScore"> | string
     reason?: StringNullableFilter<"PriorityScore"> | string | null
     model?: StringNullableFilter<"PriorityScore"> | string | null
@@ -17864,6 +17902,7 @@ export namespace Prisma {
   export type PriorityScoreCreateManyUserInput = {
     id?: string
     corsairEntityId: string
+    threadId: string
     label: string
     reason?: string | null
     model?: string | null
@@ -17929,6 +17968,7 @@ export namespace Prisma {
   export type PriorityScoreUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17938,6 +17978,7 @@ export namespace Prisma {
   export type PriorityScoreUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17947,6 +17988,7 @@ export namespace Prisma {
   export type PriorityScoreUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null

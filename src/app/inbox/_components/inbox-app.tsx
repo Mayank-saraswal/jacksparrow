@@ -85,9 +85,13 @@ export function InboxApp() {
   };
 
   const allThreads = threadsQuery.data?.threads ?? [];
-  // Phase 6 will populate PriorityScore; until then everything is "Other".
-  const importantThreads: ThreadPreview[] = [];
-  const otherThreads = allThreads;
+  // Important = threads scored urgent/important; everything else is Other.
+  const importantThreads = allThreads.filter(
+    (t) => t.priority?.label === "urgent" || t.priority?.label === "important",
+  );
+  const otherThreads = allThreads.filter(
+    (t) => !(t.priority?.label === "urgent" || t.priority?.label === "important"),
+  );
   const visible = tab === "important" ? importantThreads : otherThreads;
 
   const gmailSynced = syncStatus.data?.gmail.backfilledAt != null;
@@ -136,7 +140,7 @@ export function InboxApp() {
             </div>
           ) : tab === "important" && importantThreads.length === 0 ? (
             <div className="p-6 text-center text-xs text-muted-foreground">
-              Nothing important yet — priority triage arrives in a later update.
+              Nothing urgent or important right now.
             </div>
           ) : (
             <ThreadList

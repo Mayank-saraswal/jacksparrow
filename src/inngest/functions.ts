@@ -4,6 +4,9 @@ import { db } from "@/server/db";
 import { getTenant, type SupportedPlugin } from "@/server/corsair";
 import { embedText, toVectorLiteral } from "@/server/embeddings";
 import { startGmailWatch } from "@/server/gmail-watch";
+import { classifyEmail, TRIAGE_MODEL } from "@/server/triage";
+import { threadPreview } from "@/server/gmail";
+import { parseAddress } from "@/lib/email";
 
 export const processTask = inngest.createFunction(
   { id: "process-task", triggers: { event: "app/task.created" } },
@@ -173,6 +176,7 @@ interface DerivedMeta {
   type: "email" | "event";
   title: string;
   snippet: string;
+  sender: string;
   threadId: string;
   timestamp: Date;
 }
@@ -185,8 +189,73 @@ function safeDate(value: string | number | undefined): Date {
   return Number.isNaN(numeric) ? new Date() : new Date(numeric);
 }
 
+/** Best-effort: has the user previously emailed this sender? */
+async function isKnownSender(
+  userId: string,
+  fromHeader: string,
+): Promise<boolean> {
+  const { email } = parseAddress(fromHeader);
+  if (!email) return false;
+  try {
+    const tenant = getTenant(userId);
+    const res = await tenant.gmail.api.messages.list({
+      q: `to:${email}`,
+      maxResults: 1,
+    });
+    return (res.messages?.length ?? 0) > 0;
+  } catch {
+    return false;
+  }
+}
+
+/** Scores one email thread and upserts a PriorityScore (skips manual overrides). */
+async function scoreThread(args: {
+  userId: string;
+  threadId: string;
+  corsairEntityId: string;
+  subject: string;
+  sender: string;
+  snippet: string;
+}): Promise<{ label: string } | { skipped: string }> {
+  const existing = await db.priorityScore.findUnique({
+    where: { userId_threadId: { userId: args.userId, threadId: args.threadId } },
+    select: { model: true },
+  });
+  if (existing?.model === "user") return { skipped: "user-override" };
+
+  const knownSender = await isKnownSender(args.userId, args.sender);
+  const result = await classifyEmail({
+    subject: args.subject,
+    sender: args.sender,
+    snippet: args.snippet,
+    knownSender,
+  });
+  if (!result) return { skipped: "no-llm" };
+
+  await db.priorityScore.upsert({
+    where: { userId_threadId: { userId: args.userId, threadId: args.threadId } },
+    create: {
+      userId: args.userId,
+      threadId: args.threadId,
+      corsairEntityId: args.corsairEntityId,
+      label: result.label,
+      reason: result.reason,
+      model: TRIAGE_MODEL,
+    },
+    update: {
+      corsairEntityId: args.corsairEntityId,
+      label: result.label,
+      reason: result.reason,
+      model: TRIAGE_MODEL,
+    },
+  });
+  return { label: result.label };
+}
+
 function deriveMeta(
   plugin: string,
+  entityType: string,
+  entityId: string,
   data: Record<string, unknown>,
 ): DerivedMeta {
   if (plugin === "googlecalendar") {
@@ -196,21 +265,22 @@ function deriveMeta(
       type: "event",
       title: ev.summary ?? "(event)",
       snippet: ev.location ?? "",
+      sender: "",
       threadId: "",
       timestamp: startIso ? safeDate(startIso) : new Date(),
     };
   }
 
   const m = data as GmailEntityData;
-  const subject = m.payload?.headers?.find(
-    (h) => h.name?.toLowerCase() === "subject",
-  )?.value;
+  const header = (name: string) =>
+    m.payload?.headers?.find((h) => h.name?.toLowerCase() === name)?.value ?? "";
   const snippet = m.snippet ?? "";
   return {
     type: "email",
-    title: subject ?? (snippet ? snippet.slice(0, 80) : "Email"),
+    title: header("subject") || (snippet ? snippet.slice(0, 80) : "Email"),
     snippet,
-    threadId: m.threadId ?? "",
+    sender: header("from"),
+    threadId: m.threadId ?? (entityType === "threads" ? entityId : ""),
     timestamp: safeDate(m.internalDate),
   };
 }
@@ -234,13 +304,19 @@ export const corsairWebhookReceived = inngest.createFunction(
       if (!row) return null;
       return {
         entityType: row.entityType,
+        entityId: row.entityId,
         data: row.data as Record<string, unknown>,
       };
     });
 
     if (!entity) return { skipped: "entity-not-found" };
 
-    const meta = deriveMeta(plugin, entity.data);
+    const meta = deriveMeta(
+      plugin,
+      entity.entityType,
+      entity.entityId,
+      entity.data,
+    );
 
     await step.run("upsert-sync-item", async () => {
       await db.user.upsert({
@@ -283,6 +359,19 @@ export const corsairWebhookReceived = inngest.createFunction(
         `;
         return { embedded: true };
       });
+
+      if (meta.threadId) {
+        await step.run("triage-email", () =>
+          scoreThread({
+            userId,
+            threadId: meta.threadId,
+            corsairEntityId,
+            subject: meta.title,
+            sender: meta.sender,
+            snippet: meta.snippet,
+          }),
+        );
+      }
     }
 
     return { plugin, type: meta.type, corsairEntityId };
@@ -333,5 +422,52 @@ export const gmailWatchRenew = inngest.createFunction(
       results.push({ userId, ok: r.ok, error: r.error });
     }
     return { count: tenantIds.length, results };
+  },
+);
+
+// One-time "Score my inbox": classify the last ~30 days of threads. Triggered
+// from /integrations for users who connected before triage shipped.
+export const scoreInboxBackfill = inngest.createFunction(
+  {
+    id: "score-inbox-backfill",
+    retries: 2,
+    triggers: { event: "triage/backfill.requested" },
+  },
+  async ({ event, step }) => {
+    const { clerkUserId } = event.data as { clerkUserId: string };
+    const tenant = getTenant(clerkUserId);
+
+    const threadIds = await step.run("list-recent-threads", async () => {
+      const list = await tenant.gmail.api.threads.list({
+        q: "newer_than:30d",
+        maxResults: 50,
+      });
+      return (list.threads ?? [])
+        .map((t) => t.id)
+        .filter((id): id is string => typeof id === "string");
+    });
+
+    let scored = 0;
+    for (const threadId of threadIds) {
+      const r = await step.run(`score-${threadId}`, async () => {
+        const thread = await tenant.gmail.api.threads.get({
+          id: threadId,
+          format: "metadata",
+          metadataHeaders: ["Subject", "From"],
+        });
+        const preview = threadPreview(thread);
+        return scoreThread({
+          userId: clerkUserId,
+          threadId,
+          corsairEntityId: threadId,
+          subject: preview.subject,
+          sender: `${preview.fromName} <${preview.fromEmail}>`,
+          snippet: preview.snippet,
+        });
+      });
+      if ("label" in r) scored += 1;
+    }
+
+    return { threads: threadIds.length, scored };
   },
 );

@@ -129,12 +129,14 @@ model PriorityScore {
   id              String   @id @default(cuid())
   userId          String   @map("user_id")
   corsairEntityId String   @map("corsair_entity_id")
+  threadId        String   @map("thread_id")
   label           String // "urgent" | "important" | "normal" | "low"
   reason          String?
   model           String?
   createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz
   user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([userId, threadId])
   @@index([userId])
   @@index([corsairEntityId])
   @@map("priority_scores")

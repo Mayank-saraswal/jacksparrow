@@ -58,6 +58,10 @@ export function ThreadView({
     { threadId: threadId ?? "" },
     { enabled: !!threadId },
   );
+  const utils = api.useUtils();
+  const setPriority = api.triage.setPriority.useMutation({
+    onSuccess: () => void utils.inbox.listThreads.invalidate(),
+  });
 
   if (!threadId) {
     return (
@@ -133,6 +137,22 @@ export function ThreadView({
           >
             <ArrowBendUpRight /> Forward
           </Button>
+        </div>
+
+        <div className="mt-2 flex items-center gap-1.5">
+          <span className="text-[11px] text-muted-foreground">Priority:</span>
+          {(["urgent", "important", "normal", "low"] as const).map((label) => (
+            <button
+              key={label}
+              onClick={() =>
+                setPriority.mutate({ threadId: thread.data.threadId, label })
+              }
+              disabled={setPriority.isPending}
+              className="rounded-full border border-border px-2 py-0.5 text-[10px] capitalize text-muted-foreground hover:bg-muted hover:text-foreground"
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </div>
 

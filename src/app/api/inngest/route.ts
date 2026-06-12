@@ -7,6 +7,7 @@ import {
   gmailWatchOnConnect,
   gmailWatchRenew,
   processTask,
+  scoreInboxBackfill,
 } from "../../../inngest/functions";
 
 export const { GET, POST, PUT } = serve({
@@ -17,5 +18,6 @@ export const { GET, POST, PUT } = serve({
     corsairWebhookReceived,
     gmailWatchOnConnect,
     gmailWatchRenew,
+    scoreInboxBackfill,
   ],
 });

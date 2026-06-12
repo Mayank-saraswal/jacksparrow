@@ -9,6 +9,7 @@ import Link from "next/link";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
+import { AgentDock } from "@/app/_components/agent-dock";
 import { cn } from "@/lib/utils";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -82,6 +83,7 @@ export default async function RootLayout({
               </nav>
             </header>
             {children}
+            {userId && <AgentDock />}
           </TRPCReactProvider>
         </body>
       </html>

@@ -52,6 +52,7 @@ export interface ThreadPreview {
   starred: boolean;
   labelIds: string[];
   messageCount: number;
+  priority: { label: string; reason: string } | null;
 }
 
 export interface MessageDetail {
@@ -144,6 +145,7 @@ export function threadPreview(thread: GmailThread): ThreadPreview {
     starred: labelIds.includes("STARRED"),
     labelIds,
     messageCount: messages.length,
+    priority: null,
   };
 }
 

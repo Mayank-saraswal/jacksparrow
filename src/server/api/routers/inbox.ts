@@ -48,8 +48,26 @@ export const inboxRouter = createTRPCRouter({
         ),
       );
 
+      const previews = threads.map((t) =>
+        threadPreview(t as unknown as GmailThread),
+      );
+
+      // Attach priority labels (Phase 6) by thread id.
+      const scores = await ctx.db.priorityScore.findMany({
+        where: {
+          userId: ctx.userId,
+          threadId: { in: previews.map((p) => p.threadId) },
+        },
+        select: { threadId: true, label: true, reason: true },
+      });
+      const scoreByThread = new Map(scores.map((s) => [s.threadId, s]));
+      for (const preview of previews) {
+        const s = scoreByThread.get(preview.threadId);
+        preview.priority = s ? { label: s.label, reason: s.reason ?? "" } : null;
+      }
+
       return {
-        threads: threads.map((t) => threadPreview(t as unknown as GmailThread)),
+        threads: previews,
         nextPageToken: list.nextPageToken ?? null,
       };
     }),
