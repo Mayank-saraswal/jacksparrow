@@ -194,6 +194,7 @@ exports.Prisma.PriorityScoreScalarFieldEnum = {
   label: 'label',
   reason: 'reason',
   model: 'model',
+  source: 'source',
   createdAt: 'createdAt'
 };
 
@@ -273,6 +274,67 @@ exports.Prisma.LinkCodeScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.SentMessageSampleScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  corsairEntityId: 'corsairEntityId',
+  threadId: 'threadId',
+  toDomain: 'toDomain',
+  bodyText: 'bodyText',
+  wordCount: 'wordCount',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.StyleProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  summary: 'summary',
+  sampleCount: 'sampleCount',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ThreadSummaryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  threadId: 'threadId',
+  entityVersion: 'entityVersion',
+  summary: 'summary',
+  keyPoints: 'keyPoints',
+  actionItems: 'actionItems',
+  unansweredQuestions: 'unansweredQuestions',
+  model: 'model',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.TriageFeedbackScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  threadId: 'threadId',
+  fromEmail: 'fromEmail',
+  fromDomain: 'fromDomain',
+  signal: 'signal',
+  weight: 'weight',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SenderAffinityScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  key: 'key',
+  score: 'score',
+  signalCount: 'signalCount',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RuleSuggestionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  kind: 'kind',
+  payload: 'payload',
+  status: 'status',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -314,7 +376,13 @@ exports.Prisma.ModelName = {
   ScheduledEmail: 'ScheduledEmail',
   FollowUp: 'FollowUp',
   SyncItem: 'SyncItem',
-  LinkCode: 'LinkCode'
+  LinkCode: 'LinkCode',
+  SentMessageSample: 'SentMessageSample',
+  StyleProfile: 'StyleProfile',
+  ThreadSummary: 'ThreadSummary',
+  TriageFeedback: 'TriageFeedback',
+  SenderAffinity: 'SenderAffinity',
+  RuleSuggestion: 'RuleSuggestion'
 };
 
 /**

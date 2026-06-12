@@ -88,6 +88,36 @@ export type SyncItem = $Result.DefaultSelection<Prisma.$SyncItemPayload>
  * 
  */
 export type LinkCode = $Result.DefaultSelection<Prisma.$LinkCodePayload>
+/**
+ * Model SentMessageSample
+ * 
+ */
+export type SentMessageSample = $Result.DefaultSelection<Prisma.$SentMessageSamplePayload>
+/**
+ * Model StyleProfile
+ * 
+ */
+export type StyleProfile = $Result.DefaultSelection<Prisma.$StyleProfilePayload>
+/**
+ * Model ThreadSummary
+ * 
+ */
+export type ThreadSummary = $Result.DefaultSelection<Prisma.$ThreadSummaryPayload>
+/**
+ * Model TriageFeedback
+ * 
+ */
+export type TriageFeedback = $Result.DefaultSelection<Prisma.$TriageFeedbackPayload>
+/**
+ * Model SenderAffinity
+ * 
+ */
+export type SenderAffinity = $Result.DefaultSelection<Prisma.$SenderAffinityPayload>
+/**
+ * Model RuleSuggestion
+ * 
+ */
+export type RuleSuggestion = $Result.DefaultSelection<Prisma.$RuleSuggestionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -356,6 +386,66 @@ export class PrismaClient<
     * ```
     */
   get linkCode(): Prisma.LinkCodeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sentMessageSample`: Exposes CRUD operations for the **SentMessageSample** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SentMessageSamples
+    * const sentMessageSamples = await prisma.sentMessageSample.findMany()
+    * ```
+    */
+  get sentMessageSample(): Prisma.SentMessageSampleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.styleProfile`: Exposes CRUD operations for the **StyleProfile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StyleProfiles
+    * const styleProfiles = await prisma.styleProfile.findMany()
+    * ```
+    */
+  get styleProfile(): Prisma.StyleProfileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.threadSummary`: Exposes CRUD operations for the **ThreadSummary** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ThreadSummaries
+    * const threadSummaries = await prisma.threadSummary.findMany()
+    * ```
+    */
+  get threadSummary(): Prisma.ThreadSummaryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.triageFeedback`: Exposes CRUD operations for the **TriageFeedback** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TriageFeedbacks
+    * const triageFeedbacks = await prisma.triageFeedback.findMany()
+    * ```
+    */
+  get triageFeedback(): Prisma.TriageFeedbackDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.senderAffinity`: Exposes CRUD operations for the **SenderAffinity** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SenderAffinities
+    * const senderAffinities = await prisma.senderAffinity.findMany()
+    * ```
+    */
+  get senderAffinity(): Prisma.SenderAffinityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.ruleSuggestion`: Exposes CRUD operations for the **RuleSuggestion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RuleSuggestions
+    * const ruleSuggestions = await prisma.ruleSuggestion.findMany()
+    * ```
+    */
+  get ruleSuggestion(): Prisma.RuleSuggestionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -811,7 +901,13 @@ export namespace Prisma {
     ScheduledEmail: 'ScheduledEmail',
     FollowUp: 'FollowUp',
     SyncItem: 'SyncItem',
-    LinkCode: 'LinkCode'
+    LinkCode: 'LinkCode',
+    SentMessageSample: 'SentMessageSample',
+    StyleProfile: 'StyleProfile',
+    ThreadSummary: 'ThreadSummary',
+    TriageFeedback: 'TriageFeedback',
+    SenderAffinity: 'SenderAffinity',
+    RuleSuggestion: 'RuleSuggestion'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -830,7 +926,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent" | "user" | "channelLink" | "emailEmbedding" | "priorityScore" | "pendingAction" | "userPreference" | "snoozedThread" | "scheduledEmail" | "followUp" | "syncItem" | "linkCode"
+      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent" | "user" | "channelLink" | "emailEmbedding" | "priorityScore" | "pendingAction" | "userPreference" | "snoozedThread" | "scheduledEmail" | "followUp" | "syncItem" | "linkCode" | "sentMessageSample" | "styleProfile" | "threadSummary" | "triageFeedback" | "senderAffinity" | "ruleSuggestion"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1944,6 +2040,450 @@ export namespace Prisma {
           }
         }
       }
+      SentMessageSample: {
+        payload: Prisma.$SentMessageSamplePayload<ExtArgs>
+        fields: Prisma.SentMessageSampleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SentMessageSampleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SentMessageSamplePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SentMessageSampleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SentMessageSamplePayload>
+          }
+          findFirst: {
+            args: Prisma.SentMessageSampleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SentMessageSamplePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SentMessageSampleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SentMessageSamplePayload>
+          }
+          findMany: {
+            args: Prisma.SentMessageSampleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SentMessageSamplePayload>[]
+          }
+          create: {
+            args: Prisma.SentMessageSampleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SentMessageSamplePayload>
+          }
+          createMany: {
+            args: Prisma.SentMessageSampleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SentMessageSampleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SentMessageSamplePayload>[]
+          }
+          delete: {
+            args: Prisma.SentMessageSampleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SentMessageSamplePayload>
+          }
+          update: {
+            args: Prisma.SentMessageSampleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SentMessageSamplePayload>
+          }
+          deleteMany: {
+            args: Prisma.SentMessageSampleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SentMessageSampleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SentMessageSampleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SentMessageSamplePayload>[]
+          }
+          upsert: {
+            args: Prisma.SentMessageSampleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SentMessageSamplePayload>
+          }
+          aggregate: {
+            args: Prisma.SentMessageSampleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSentMessageSample>
+          }
+          groupBy: {
+            args: Prisma.SentMessageSampleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SentMessageSampleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SentMessageSampleCountArgs<ExtArgs>
+            result: $Utils.Optional<SentMessageSampleCountAggregateOutputType> | number
+          }
+        }
+      }
+      StyleProfile: {
+        payload: Prisma.$StyleProfilePayload<ExtArgs>
+        fields: Prisma.StyleProfileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StyleProfileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StyleProfilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StyleProfileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StyleProfilePayload>
+          }
+          findFirst: {
+            args: Prisma.StyleProfileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StyleProfilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StyleProfileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StyleProfilePayload>
+          }
+          findMany: {
+            args: Prisma.StyleProfileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StyleProfilePayload>[]
+          }
+          create: {
+            args: Prisma.StyleProfileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StyleProfilePayload>
+          }
+          createMany: {
+            args: Prisma.StyleProfileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StyleProfileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StyleProfilePayload>[]
+          }
+          delete: {
+            args: Prisma.StyleProfileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StyleProfilePayload>
+          }
+          update: {
+            args: Prisma.StyleProfileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StyleProfilePayload>
+          }
+          deleteMany: {
+            args: Prisma.StyleProfileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StyleProfileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StyleProfileUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StyleProfilePayload>[]
+          }
+          upsert: {
+            args: Prisma.StyleProfileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StyleProfilePayload>
+          }
+          aggregate: {
+            args: Prisma.StyleProfileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStyleProfile>
+          }
+          groupBy: {
+            args: Prisma.StyleProfileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StyleProfileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StyleProfileCountArgs<ExtArgs>
+            result: $Utils.Optional<StyleProfileCountAggregateOutputType> | number
+          }
+        }
+      }
+      ThreadSummary: {
+        payload: Prisma.$ThreadSummaryPayload<ExtArgs>
+        fields: Prisma.ThreadSummaryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ThreadSummaryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadSummaryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ThreadSummaryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadSummaryPayload>
+          }
+          findFirst: {
+            args: Prisma.ThreadSummaryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadSummaryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ThreadSummaryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadSummaryPayload>
+          }
+          findMany: {
+            args: Prisma.ThreadSummaryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadSummaryPayload>[]
+          }
+          create: {
+            args: Prisma.ThreadSummaryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadSummaryPayload>
+          }
+          createMany: {
+            args: Prisma.ThreadSummaryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ThreadSummaryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadSummaryPayload>[]
+          }
+          delete: {
+            args: Prisma.ThreadSummaryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadSummaryPayload>
+          }
+          update: {
+            args: Prisma.ThreadSummaryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadSummaryPayload>
+          }
+          deleteMany: {
+            args: Prisma.ThreadSummaryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ThreadSummaryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ThreadSummaryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadSummaryPayload>[]
+          }
+          upsert: {
+            args: Prisma.ThreadSummaryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThreadSummaryPayload>
+          }
+          aggregate: {
+            args: Prisma.ThreadSummaryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateThreadSummary>
+          }
+          groupBy: {
+            args: Prisma.ThreadSummaryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ThreadSummaryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ThreadSummaryCountArgs<ExtArgs>
+            result: $Utils.Optional<ThreadSummaryCountAggregateOutputType> | number
+          }
+        }
+      }
+      TriageFeedback: {
+        payload: Prisma.$TriageFeedbackPayload<ExtArgs>
+        fields: Prisma.TriageFeedbackFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TriageFeedbackFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TriageFeedbackPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TriageFeedbackFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TriageFeedbackPayload>
+          }
+          findFirst: {
+            args: Prisma.TriageFeedbackFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TriageFeedbackPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TriageFeedbackFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TriageFeedbackPayload>
+          }
+          findMany: {
+            args: Prisma.TriageFeedbackFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TriageFeedbackPayload>[]
+          }
+          create: {
+            args: Prisma.TriageFeedbackCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TriageFeedbackPayload>
+          }
+          createMany: {
+            args: Prisma.TriageFeedbackCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TriageFeedbackCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TriageFeedbackPayload>[]
+          }
+          delete: {
+            args: Prisma.TriageFeedbackDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TriageFeedbackPayload>
+          }
+          update: {
+            args: Prisma.TriageFeedbackUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TriageFeedbackPayload>
+          }
+          deleteMany: {
+            args: Prisma.TriageFeedbackDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TriageFeedbackUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TriageFeedbackUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TriageFeedbackPayload>[]
+          }
+          upsert: {
+            args: Prisma.TriageFeedbackUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TriageFeedbackPayload>
+          }
+          aggregate: {
+            args: Prisma.TriageFeedbackAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTriageFeedback>
+          }
+          groupBy: {
+            args: Prisma.TriageFeedbackGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TriageFeedbackGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TriageFeedbackCountArgs<ExtArgs>
+            result: $Utils.Optional<TriageFeedbackCountAggregateOutputType> | number
+          }
+        }
+      }
+      SenderAffinity: {
+        payload: Prisma.$SenderAffinityPayload<ExtArgs>
+        fields: Prisma.SenderAffinityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SenderAffinityFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SenderAffinityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SenderAffinityFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SenderAffinityPayload>
+          }
+          findFirst: {
+            args: Prisma.SenderAffinityFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SenderAffinityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SenderAffinityFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SenderAffinityPayload>
+          }
+          findMany: {
+            args: Prisma.SenderAffinityFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SenderAffinityPayload>[]
+          }
+          create: {
+            args: Prisma.SenderAffinityCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SenderAffinityPayload>
+          }
+          createMany: {
+            args: Prisma.SenderAffinityCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SenderAffinityCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SenderAffinityPayload>[]
+          }
+          delete: {
+            args: Prisma.SenderAffinityDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SenderAffinityPayload>
+          }
+          update: {
+            args: Prisma.SenderAffinityUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SenderAffinityPayload>
+          }
+          deleteMany: {
+            args: Prisma.SenderAffinityDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SenderAffinityUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SenderAffinityUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SenderAffinityPayload>[]
+          }
+          upsert: {
+            args: Prisma.SenderAffinityUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SenderAffinityPayload>
+          }
+          aggregate: {
+            args: Prisma.SenderAffinityAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSenderAffinity>
+          }
+          groupBy: {
+            args: Prisma.SenderAffinityGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SenderAffinityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SenderAffinityCountArgs<ExtArgs>
+            result: $Utils.Optional<SenderAffinityCountAggregateOutputType> | number
+          }
+        }
+      }
+      RuleSuggestion: {
+        payload: Prisma.$RuleSuggestionPayload<ExtArgs>
+        fields: Prisma.RuleSuggestionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RuleSuggestionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RuleSuggestionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RuleSuggestionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RuleSuggestionPayload>
+          }
+          findFirst: {
+            args: Prisma.RuleSuggestionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RuleSuggestionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RuleSuggestionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RuleSuggestionPayload>
+          }
+          findMany: {
+            args: Prisma.RuleSuggestionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RuleSuggestionPayload>[]
+          }
+          create: {
+            args: Prisma.RuleSuggestionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RuleSuggestionPayload>
+          }
+          createMany: {
+            args: Prisma.RuleSuggestionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RuleSuggestionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RuleSuggestionPayload>[]
+          }
+          delete: {
+            args: Prisma.RuleSuggestionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RuleSuggestionPayload>
+          }
+          update: {
+            args: Prisma.RuleSuggestionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RuleSuggestionPayload>
+          }
+          deleteMany: {
+            args: Prisma.RuleSuggestionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RuleSuggestionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RuleSuggestionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RuleSuggestionPayload>[]
+          }
+          upsert: {
+            args: Prisma.RuleSuggestionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RuleSuggestionPayload>
+          }
+          aggregate: {
+            args: Prisma.RuleSuggestionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRuleSuggestion>
+          }
+          groupBy: {
+            args: Prisma.RuleSuggestionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RuleSuggestionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RuleSuggestionCountArgs<ExtArgs>
+            result: $Utils.Optional<RuleSuggestionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2055,6 +2595,12 @@ export namespace Prisma {
     followUp?: FollowUpOmit
     syncItem?: SyncItemOmit
     linkCode?: LinkCodeOmit
+    sentMessageSample?: SentMessageSampleOmit
+    styleProfile?: StyleProfileOmit
+    threadSummary?: ThreadSummaryOmit
+    triageFeedback?: TriageFeedbackOmit
+    senderAffinity?: SenderAffinityOmit
+    ruleSuggestion?: RuleSuggestionOmit
   }
 
   /* Types for Logging */
@@ -2213,6 +2759,11 @@ export namespace Prisma {
     snoozedThreads: number
     scheduledEmails: number
     followUps: number
+    sentSamples: number
+    threadSummaries: number
+    triageFeedback: number
+    senderAffinities: number
+    ruleSuggestions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2223,6 +2774,11 @@ export namespace Prisma {
     snoozedThreads?: boolean | UserCountOutputTypeCountSnoozedThreadsArgs
     scheduledEmails?: boolean | UserCountOutputTypeCountScheduledEmailsArgs
     followUps?: boolean | UserCountOutputTypeCountFollowUpsArgs
+    sentSamples?: boolean | UserCountOutputTypeCountSentSamplesArgs
+    threadSummaries?: boolean | UserCountOutputTypeCountThreadSummariesArgs
+    triageFeedback?: boolean | UserCountOutputTypeCountTriageFeedbackArgs
+    senderAffinities?: boolean | UserCountOutputTypeCountSenderAffinitiesArgs
+    ruleSuggestions?: boolean | UserCountOutputTypeCountRuleSuggestionsArgs
   }
 
   // Custom InputTypes
@@ -2283,6 +2839,41 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountFollowUpsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FollowUpWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSentSamplesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SentMessageSampleWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountThreadSummariesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ThreadSummaryWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTriageFeedbackArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TriageFeedbackWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSenderAffinitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SenderAffinityWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRuleSuggestionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RuleSuggestionWhereInput
   }
 
 
@@ -6852,6 +7443,12 @@ export namespace Prisma {
     snoozedThreads?: boolean | User$snoozedThreadsArgs<ExtArgs>
     scheduledEmails?: boolean | User$scheduledEmailsArgs<ExtArgs>
     followUps?: boolean | User$followUpsArgs<ExtArgs>
+    sentSamples?: boolean | User$sentSamplesArgs<ExtArgs>
+    styleProfile?: boolean | User$styleProfileArgs<ExtArgs>
+    threadSummaries?: boolean | User$threadSummariesArgs<ExtArgs>
+    triageFeedback?: boolean | User$triageFeedbackArgs<ExtArgs>
+    senderAffinities?: boolean | User$senderAffinitiesArgs<ExtArgs>
+    ruleSuggestions?: boolean | User$ruleSuggestionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -6889,6 +7486,12 @@ export namespace Prisma {
     snoozedThreads?: boolean | User$snoozedThreadsArgs<ExtArgs>
     scheduledEmails?: boolean | User$scheduledEmailsArgs<ExtArgs>
     followUps?: boolean | User$followUpsArgs<ExtArgs>
+    sentSamples?: boolean | User$sentSamplesArgs<ExtArgs>
+    styleProfile?: boolean | User$styleProfileArgs<ExtArgs>
+    threadSummaries?: boolean | User$threadSummariesArgs<ExtArgs>
+    triageFeedback?: boolean | User$triageFeedbackArgs<ExtArgs>
+    senderAffinities?: boolean | User$senderAffinitiesArgs<ExtArgs>
+    ruleSuggestions?: boolean | User$ruleSuggestionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6905,6 +7508,12 @@ export namespace Prisma {
       snoozedThreads: Prisma.$SnoozedThreadPayload<ExtArgs>[]
       scheduledEmails: Prisma.$ScheduledEmailPayload<ExtArgs>[]
       followUps: Prisma.$FollowUpPayload<ExtArgs>[]
+      sentSamples: Prisma.$SentMessageSamplePayload<ExtArgs>[]
+      styleProfile: Prisma.$StyleProfilePayload<ExtArgs> | null
+      threadSummaries: Prisma.$ThreadSummaryPayload<ExtArgs>[]
+      triageFeedback: Prisma.$TriageFeedbackPayload<ExtArgs>[]
+      senderAffinities: Prisma.$SenderAffinityPayload<ExtArgs>[]
+      ruleSuggestions: Prisma.$RuleSuggestionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7314,6 +7923,12 @@ export namespace Prisma {
     snoozedThreads<T extends User$snoozedThreadsArgs<ExtArgs> = {}>(args?: Subset<T, User$snoozedThreadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SnoozedThreadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     scheduledEmails<T extends User$scheduledEmailsArgs<ExtArgs> = {}>(args?: Subset<T, User$scheduledEmailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScheduledEmailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     followUps<T extends User$followUpsArgs<ExtArgs> = {}>(args?: Subset<T, User$followUpsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowUpPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sentSamples<T extends User$sentSamplesArgs<ExtArgs> = {}>(args?: Subset<T, User$sentSamplesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    styleProfile<T extends User$styleProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$styleProfileArgs<ExtArgs>>): Prisma__StyleProfileClient<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    threadSummaries<T extends User$threadSummariesArgs<ExtArgs> = {}>(args?: Subset<T, User$threadSummariesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    triageFeedback<T extends User$triageFeedbackArgs<ExtArgs> = {}>(args?: Subset<T, User$triageFeedbackArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    senderAffinities<T extends User$senderAffinitiesArgs<ExtArgs> = {}>(args?: Subset<T, User$senderAffinitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ruleSuggestions<T extends User$ruleSuggestionsArgs<ExtArgs> = {}>(args?: Subset<T, User$ruleSuggestionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7920,6 +8535,145 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FollowUpScalarFieldEnum | FollowUpScalarFieldEnum[]
+  }
+
+  /**
+   * User.sentSamples
+   */
+  export type User$sentSamplesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleInclude<ExtArgs> | null
+    where?: SentMessageSampleWhereInput
+    orderBy?: SentMessageSampleOrderByWithRelationInput | SentMessageSampleOrderByWithRelationInput[]
+    cursor?: SentMessageSampleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SentMessageSampleScalarFieldEnum | SentMessageSampleScalarFieldEnum[]
+  }
+
+  /**
+   * User.styleProfile
+   */
+  export type User$styleProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileInclude<ExtArgs> | null
+    where?: StyleProfileWhereInput
+  }
+
+  /**
+   * User.threadSummaries
+   */
+  export type User$threadSummariesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryInclude<ExtArgs> | null
+    where?: ThreadSummaryWhereInput
+    orderBy?: ThreadSummaryOrderByWithRelationInput | ThreadSummaryOrderByWithRelationInput[]
+    cursor?: ThreadSummaryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ThreadSummaryScalarFieldEnum | ThreadSummaryScalarFieldEnum[]
+  }
+
+  /**
+   * User.triageFeedback
+   */
+  export type User$triageFeedbackArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackInclude<ExtArgs> | null
+    where?: TriageFeedbackWhereInput
+    orderBy?: TriageFeedbackOrderByWithRelationInput | TriageFeedbackOrderByWithRelationInput[]
+    cursor?: TriageFeedbackWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TriageFeedbackScalarFieldEnum | TriageFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * User.senderAffinities
+   */
+  export type User$senderAffinitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityInclude<ExtArgs> | null
+    where?: SenderAffinityWhereInput
+    orderBy?: SenderAffinityOrderByWithRelationInput | SenderAffinityOrderByWithRelationInput[]
+    cursor?: SenderAffinityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SenderAffinityScalarFieldEnum | SenderAffinityScalarFieldEnum[]
+  }
+
+  /**
+   * User.ruleSuggestions
+   */
+  export type User$ruleSuggestionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionInclude<ExtArgs> | null
+    where?: RuleSuggestionWhereInput
+    orderBy?: RuleSuggestionOrderByWithRelationInput | RuleSuggestionOrderByWithRelationInput[]
+    cursor?: RuleSuggestionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RuleSuggestionScalarFieldEnum | RuleSuggestionScalarFieldEnum[]
   }
 
   /**
@@ -10088,6 +10842,7 @@ export namespace Prisma {
     label: string | null
     reason: string | null
     model: string | null
+    source: string | null
     createdAt: Date | null
   }
 
@@ -10099,6 +10854,7 @@ export namespace Prisma {
     label: string | null
     reason: string | null
     model: string | null
+    source: string | null
     createdAt: Date | null
   }
 
@@ -10110,6 +10866,7 @@ export namespace Prisma {
     label: number
     reason: number
     model: number
+    source: number
     createdAt: number
     _all: number
   }
@@ -10123,6 +10880,7 @@ export namespace Prisma {
     label?: true
     reason?: true
     model?: true
+    source?: true
     createdAt?: true
   }
 
@@ -10134,6 +10892,7 @@ export namespace Prisma {
     label?: true
     reason?: true
     model?: true
+    source?: true
     createdAt?: true
   }
 
@@ -10145,6 +10904,7 @@ export namespace Prisma {
     label?: true
     reason?: true
     model?: true
+    source?: true
     createdAt?: true
     _all?: true
   }
@@ -10229,6 +10989,7 @@ export namespace Prisma {
     label: string
     reason: string | null
     model: string | null
+    source: string
     createdAt: Date
     _count: PriorityScoreCountAggregateOutputType | null
     _min: PriorityScoreMinAggregateOutputType | null
@@ -10257,6 +11018,7 @@ export namespace Prisma {
     label?: boolean
     reason?: boolean
     model?: boolean
+    source?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["priorityScore"]>
@@ -10269,6 +11031,7 @@ export namespace Prisma {
     label?: boolean
     reason?: boolean
     model?: boolean
+    source?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["priorityScore"]>
@@ -10281,6 +11044,7 @@ export namespace Prisma {
     label?: boolean
     reason?: boolean
     model?: boolean
+    source?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["priorityScore"]>
@@ -10293,10 +11057,11 @@ export namespace Prisma {
     label?: boolean
     reason?: boolean
     model?: boolean
+    source?: boolean
     createdAt?: boolean
   }
 
-  export type PriorityScoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "corsairEntityId" | "threadId" | "label" | "reason" | "model" | "createdAt", ExtArgs["result"]["priorityScore"]>
+  export type PriorityScoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "corsairEntityId" | "threadId" | "label" | "reason" | "model" | "source" | "createdAt", ExtArgs["result"]["priorityScore"]>
   export type PriorityScoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -10320,6 +11085,7 @@ export namespace Prisma {
       label: string
       reason: string | null
       model: string | null
+      source: string
       createdAt: Date
     }, ExtArgs["result"]["priorityScore"]>
     composites: {}
@@ -10752,6 +11518,7 @@ export namespace Prisma {
     readonly label: FieldRef<"PriorityScore", 'String'>
     readonly reason: FieldRef<"PriorityScore", 'String'>
     readonly model: FieldRef<"PriorityScore", 'String'>
+    readonly source: FieldRef<"PriorityScore", 'String'>
     readonly createdAt: FieldRef<"PriorityScore", 'DateTime'>
   }
     
@@ -18730,6 +19497,6643 @@ export namespace Prisma {
 
 
   /**
+   * Model SentMessageSample
+   */
+
+  export type AggregateSentMessageSample = {
+    _count: SentMessageSampleCountAggregateOutputType | null
+    _avg: SentMessageSampleAvgAggregateOutputType | null
+    _sum: SentMessageSampleSumAggregateOutputType | null
+    _min: SentMessageSampleMinAggregateOutputType | null
+    _max: SentMessageSampleMaxAggregateOutputType | null
+  }
+
+  export type SentMessageSampleAvgAggregateOutputType = {
+    wordCount: number | null
+  }
+
+  export type SentMessageSampleSumAggregateOutputType = {
+    wordCount: number | null
+  }
+
+  export type SentMessageSampleMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    corsairEntityId: string | null
+    threadId: string | null
+    toDomain: string | null
+    bodyText: string | null
+    wordCount: number | null
+    createdAt: Date | null
+  }
+
+  export type SentMessageSampleMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    corsairEntityId: string | null
+    threadId: string | null
+    toDomain: string | null
+    bodyText: string | null
+    wordCount: number | null
+    createdAt: Date | null
+  }
+
+  export type SentMessageSampleCountAggregateOutputType = {
+    id: number
+    userId: number
+    corsairEntityId: number
+    threadId: number
+    toDomain: number
+    bodyText: number
+    wordCount: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type SentMessageSampleAvgAggregateInputType = {
+    wordCount?: true
+  }
+
+  export type SentMessageSampleSumAggregateInputType = {
+    wordCount?: true
+  }
+
+  export type SentMessageSampleMinAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    threadId?: true
+    toDomain?: true
+    bodyText?: true
+    wordCount?: true
+    createdAt?: true
+  }
+
+  export type SentMessageSampleMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    threadId?: true
+    toDomain?: true
+    bodyText?: true
+    wordCount?: true
+    createdAt?: true
+  }
+
+  export type SentMessageSampleCountAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    threadId?: true
+    toDomain?: true
+    bodyText?: true
+    wordCount?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type SentMessageSampleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SentMessageSample to aggregate.
+     */
+    where?: SentMessageSampleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SentMessageSamples to fetch.
+     */
+    orderBy?: SentMessageSampleOrderByWithRelationInput | SentMessageSampleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SentMessageSampleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SentMessageSamples from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SentMessageSamples.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SentMessageSamples
+    **/
+    _count?: true | SentMessageSampleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SentMessageSampleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SentMessageSampleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SentMessageSampleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SentMessageSampleMaxAggregateInputType
+  }
+
+  export type GetSentMessageSampleAggregateType<T extends SentMessageSampleAggregateArgs> = {
+        [P in keyof T & keyof AggregateSentMessageSample]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSentMessageSample[P]>
+      : GetScalarType<T[P], AggregateSentMessageSample[P]>
+  }
+
+
+
+
+  export type SentMessageSampleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SentMessageSampleWhereInput
+    orderBy?: SentMessageSampleOrderByWithAggregationInput | SentMessageSampleOrderByWithAggregationInput[]
+    by: SentMessageSampleScalarFieldEnum[] | SentMessageSampleScalarFieldEnum
+    having?: SentMessageSampleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SentMessageSampleCountAggregateInputType | true
+    _avg?: SentMessageSampleAvgAggregateInputType
+    _sum?: SentMessageSampleSumAggregateInputType
+    _min?: SentMessageSampleMinAggregateInputType
+    _max?: SentMessageSampleMaxAggregateInputType
+  }
+
+  export type SentMessageSampleGroupByOutputType = {
+    id: string
+    userId: string
+    corsairEntityId: string
+    threadId: string
+    toDomain: string
+    bodyText: string
+    wordCount: number
+    createdAt: Date
+    _count: SentMessageSampleCountAggregateOutputType | null
+    _avg: SentMessageSampleAvgAggregateOutputType | null
+    _sum: SentMessageSampleSumAggregateOutputType | null
+    _min: SentMessageSampleMinAggregateOutputType | null
+    _max: SentMessageSampleMaxAggregateOutputType | null
+  }
+
+  type GetSentMessageSampleGroupByPayload<T extends SentMessageSampleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SentMessageSampleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SentMessageSampleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SentMessageSampleGroupByOutputType[P]>
+            : GetScalarType<T[P], SentMessageSampleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SentMessageSampleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    threadId?: boolean
+    toDomain?: boolean
+    bodyText?: boolean
+    wordCount?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sentMessageSample"]>
+
+  export type SentMessageSampleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    threadId?: boolean
+    toDomain?: boolean
+    bodyText?: boolean
+    wordCount?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sentMessageSample"]>
+
+  export type SentMessageSampleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    threadId?: boolean
+    toDomain?: boolean
+    bodyText?: boolean
+    wordCount?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sentMessageSample"]>
+
+  export type SentMessageSampleSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    threadId?: boolean
+    toDomain?: boolean
+    bodyText?: boolean
+    wordCount?: boolean
+    createdAt?: boolean
+  }
+
+  export type SentMessageSampleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "corsairEntityId" | "threadId" | "toDomain" | "bodyText" | "wordCount" | "createdAt", ExtArgs["result"]["sentMessageSample"]>
+  export type SentMessageSampleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SentMessageSampleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SentMessageSampleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $SentMessageSamplePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SentMessageSample"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      corsairEntityId: string
+      threadId: string
+      toDomain: string
+      bodyText: string
+      wordCount: number
+      createdAt: Date
+    }, ExtArgs["result"]["sentMessageSample"]>
+    composites: {}
+  }
+
+  type SentMessageSampleGetPayload<S extends boolean | null | undefined | SentMessageSampleDefaultArgs> = $Result.GetResult<Prisma.$SentMessageSamplePayload, S>
+
+  type SentMessageSampleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SentMessageSampleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SentMessageSampleCountAggregateInputType | true
+    }
+
+  export interface SentMessageSampleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SentMessageSample'], meta: { name: 'SentMessageSample' } }
+    /**
+     * Find zero or one SentMessageSample that matches the filter.
+     * @param {SentMessageSampleFindUniqueArgs} args - Arguments to find a SentMessageSample
+     * @example
+     * // Get one SentMessageSample
+     * const sentMessageSample = await prisma.sentMessageSample.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SentMessageSampleFindUniqueArgs>(args: SelectSubset<T, SentMessageSampleFindUniqueArgs<ExtArgs>>): Prisma__SentMessageSampleClient<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SentMessageSample that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SentMessageSampleFindUniqueOrThrowArgs} args - Arguments to find a SentMessageSample
+     * @example
+     * // Get one SentMessageSample
+     * const sentMessageSample = await prisma.sentMessageSample.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SentMessageSampleFindUniqueOrThrowArgs>(args: SelectSubset<T, SentMessageSampleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SentMessageSampleClient<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SentMessageSample that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SentMessageSampleFindFirstArgs} args - Arguments to find a SentMessageSample
+     * @example
+     * // Get one SentMessageSample
+     * const sentMessageSample = await prisma.sentMessageSample.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SentMessageSampleFindFirstArgs>(args?: SelectSubset<T, SentMessageSampleFindFirstArgs<ExtArgs>>): Prisma__SentMessageSampleClient<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SentMessageSample that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SentMessageSampleFindFirstOrThrowArgs} args - Arguments to find a SentMessageSample
+     * @example
+     * // Get one SentMessageSample
+     * const sentMessageSample = await prisma.sentMessageSample.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SentMessageSampleFindFirstOrThrowArgs>(args?: SelectSubset<T, SentMessageSampleFindFirstOrThrowArgs<ExtArgs>>): Prisma__SentMessageSampleClient<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SentMessageSamples that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SentMessageSampleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SentMessageSamples
+     * const sentMessageSamples = await prisma.sentMessageSample.findMany()
+     * 
+     * // Get first 10 SentMessageSamples
+     * const sentMessageSamples = await prisma.sentMessageSample.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sentMessageSampleWithIdOnly = await prisma.sentMessageSample.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SentMessageSampleFindManyArgs>(args?: SelectSubset<T, SentMessageSampleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SentMessageSample.
+     * @param {SentMessageSampleCreateArgs} args - Arguments to create a SentMessageSample.
+     * @example
+     * // Create one SentMessageSample
+     * const SentMessageSample = await prisma.sentMessageSample.create({
+     *   data: {
+     *     // ... data to create a SentMessageSample
+     *   }
+     * })
+     * 
+     */
+    create<T extends SentMessageSampleCreateArgs>(args: SelectSubset<T, SentMessageSampleCreateArgs<ExtArgs>>): Prisma__SentMessageSampleClient<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SentMessageSamples.
+     * @param {SentMessageSampleCreateManyArgs} args - Arguments to create many SentMessageSamples.
+     * @example
+     * // Create many SentMessageSamples
+     * const sentMessageSample = await prisma.sentMessageSample.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SentMessageSampleCreateManyArgs>(args?: SelectSubset<T, SentMessageSampleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SentMessageSamples and returns the data saved in the database.
+     * @param {SentMessageSampleCreateManyAndReturnArgs} args - Arguments to create many SentMessageSamples.
+     * @example
+     * // Create many SentMessageSamples
+     * const sentMessageSample = await prisma.sentMessageSample.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SentMessageSamples and only return the `id`
+     * const sentMessageSampleWithIdOnly = await prisma.sentMessageSample.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SentMessageSampleCreateManyAndReturnArgs>(args?: SelectSubset<T, SentMessageSampleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SentMessageSample.
+     * @param {SentMessageSampleDeleteArgs} args - Arguments to delete one SentMessageSample.
+     * @example
+     * // Delete one SentMessageSample
+     * const SentMessageSample = await prisma.sentMessageSample.delete({
+     *   where: {
+     *     // ... filter to delete one SentMessageSample
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SentMessageSampleDeleteArgs>(args: SelectSubset<T, SentMessageSampleDeleteArgs<ExtArgs>>): Prisma__SentMessageSampleClient<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SentMessageSample.
+     * @param {SentMessageSampleUpdateArgs} args - Arguments to update one SentMessageSample.
+     * @example
+     * // Update one SentMessageSample
+     * const sentMessageSample = await prisma.sentMessageSample.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SentMessageSampleUpdateArgs>(args: SelectSubset<T, SentMessageSampleUpdateArgs<ExtArgs>>): Prisma__SentMessageSampleClient<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SentMessageSamples.
+     * @param {SentMessageSampleDeleteManyArgs} args - Arguments to filter SentMessageSamples to delete.
+     * @example
+     * // Delete a few SentMessageSamples
+     * const { count } = await prisma.sentMessageSample.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SentMessageSampleDeleteManyArgs>(args?: SelectSubset<T, SentMessageSampleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SentMessageSamples.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SentMessageSampleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SentMessageSamples
+     * const sentMessageSample = await prisma.sentMessageSample.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SentMessageSampleUpdateManyArgs>(args: SelectSubset<T, SentMessageSampleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SentMessageSamples and returns the data updated in the database.
+     * @param {SentMessageSampleUpdateManyAndReturnArgs} args - Arguments to update many SentMessageSamples.
+     * @example
+     * // Update many SentMessageSamples
+     * const sentMessageSample = await prisma.sentMessageSample.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SentMessageSamples and only return the `id`
+     * const sentMessageSampleWithIdOnly = await prisma.sentMessageSample.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SentMessageSampleUpdateManyAndReturnArgs>(args: SelectSubset<T, SentMessageSampleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SentMessageSample.
+     * @param {SentMessageSampleUpsertArgs} args - Arguments to update or create a SentMessageSample.
+     * @example
+     * // Update or create a SentMessageSample
+     * const sentMessageSample = await prisma.sentMessageSample.upsert({
+     *   create: {
+     *     // ... data to create a SentMessageSample
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SentMessageSample we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SentMessageSampleUpsertArgs>(args: SelectSubset<T, SentMessageSampleUpsertArgs<ExtArgs>>): Prisma__SentMessageSampleClient<$Result.GetResult<Prisma.$SentMessageSamplePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SentMessageSamples.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SentMessageSampleCountArgs} args - Arguments to filter SentMessageSamples to count.
+     * @example
+     * // Count the number of SentMessageSamples
+     * const count = await prisma.sentMessageSample.count({
+     *   where: {
+     *     // ... the filter for the SentMessageSamples we want to count
+     *   }
+     * })
+    **/
+    count<T extends SentMessageSampleCountArgs>(
+      args?: Subset<T, SentMessageSampleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SentMessageSampleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SentMessageSample.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SentMessageSampleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SentMessageSampleAggregateArgs>(args: Subset<T, SentMessageSampleAggregateArgs>): Prisma.PrismaPromise<GetSentMessageSampleAggregateType<T>>
+
+    /**
+     * Group by SentMessageSample.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SentMessageSampleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SentMessageSampleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SentMessageSampleGroupByArgs['orderBy'] }
+        : { orderBy?: SentMessageSampleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SentMessageSampleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSentMessageSampleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SentMessageSample model
+   */
+  readonly fields: SentMessageSampleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SentMessageSample.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SentMessageSampleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SentMessageSample model
+   */
+  interface SentMessageSampleFieldRefs {
+    readonly id: FieldRef<"SentMessageSample", 'String'>
+    readonly userId: FieldRef<"SentMessageSample", 'String'>
+    readonly corsairEntityId: FieldRef<"SentMessageSample", 'String'>
+    readonly threadId: FieldRef<"SentMessageSample", 'String'>
+    readonly toDomain: FieldRef<"SentMessageSample", 'String'>
+    readonly bodyText: FieldRef<"SentMessageSample", 'String'>
+    readonly wordCount: FieldRef<"SentMessageSample", 'Int'>
+    readonly createdAt: FieldRef<"SentMessageSample", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SentMessageSample findUnique
+   */
+  export type SentMessageSampleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleInclude<ExtArgs> | null
+    /**
+     * Filter, which SentMessageSample to fetch.
+     */
+    where: SentMessageSampleWhereUniqueInput
+  }
+
+  /**
+   * SentMessageSample findUniqueOrThrow
+   */
+  export type SentMessageSampleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleInclude<ExtArgs> | null
+    /**
+     * Filter, which SentMessageSample to fetch.
+     */
+    where: SentMessageSampleWhereUniqueInput
+  }
+
+  /**
+   * SentMessageSample findFirst
+   */
+  export type SentMessageSampleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleInclude<ExtArgs> | null
+    /**
+     * Filter, which SentMessageSample to fetch.
+     */
+    where?: SentMessageSampleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SentMessageSamples to fetch.
+     */
+    orderBy?: SentMessageSampleOrderByWithRelationInput | SentMessageSampleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SentMessageSamples.
+     */
+    cursor?: SentMessageSampleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SentMessageSamples from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SentMessageSamples.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SentMessageSamples.
+     */
+    distinct?: SentMessageSampleScalarFieldEnum | SentMessageSampleScalarFieldEnum[]
+  }
+
+  /**
+   * SentMessageSample findFirstOrThrow
+   */
+  export type SentMessageSampleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleInclude<ExtArgs> | null
+    /**
+     * Filter, which SentMessageSample to fetch.
+     */
+    where?: SentMessageSampleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SentMessageSamples to fetch.
+     */
+    orderBy?: SentMessageSampleOrderByWithRelationInput | SentMessageSampleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SentMessageSamples.
+     */
+    cursor?: SentMessageSampleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SentMessageSamples from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SentMessageSamples.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SentMessageSamples.
+     */
+    distinct?: SentMessageSampleScalarFieldEnum | SentMessageSampleScalarFieldEnum[]
+  }
+
+  /**
+   * SentMessageSample findMany
+   */
+  export type SentMessageSampleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleInclude<ExtArgs> | null
+    /**
+     * Filter, which SentMessageSamples to fetch.
+     */
+    where?: SentMessageSampleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SentMessageSamples to fetch.
+     */
+    orderBy?: SentMessageSampleOrderByWithRelationInput | SentMessageSampleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SentMessageSamples.
+     */
+    cursor?: SentMessageSampleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SentMessageSamples from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SentMessageSamples.
+     */
+    skip?: number
+    distinct?: SentMessageSampleScalarFieldEnum | SentMessageSampleScalarFieldEnum[]
+  }
+
+  /**
+   * SentMessageSample create
+   */
+  export type SentMessageSampleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SentMessageSample.
+     */
+    data: XOR<SentMessageSampleCreateInput, SentMessageSampleUncheckedCreateInput>
+  }
+
+  /**
+   * SentMessageSample createMany
+   */
+  export type SentMessageSampleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SentMessageSamples.
+     */
+    data: SentMessageSampleCreateManyInput | SentMessageSampleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SentMessageSample createManyAndReturn
+   */
+  export type SentMessageSampleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * The data used to create many SentMessageSamples.
+     */
+    data: SentMessageSampleCreateManyInput | SentMessageSampleCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SentMessageSample update
+   */
+  export type SentMessageSampleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SentMessageSample.
+     */
+    data: XOR<SentMessageSampleUpdateInput, SentMessageSampleUncheckedUpdateInput>
+    /**
+     * Choose, which SentMessageSample to update.
+     */
+    where: SentMessageSampleWhereUniqueInput
+  }
+
+  /**
+   * SentMessageSample updateMany
+   */
+  export type SentMessageSampleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SentMessageSamples.
+     */
+    data: XOR<SentMessageSampleUpdateManyMutationInput, SentMessageSampleUncheckedUpdateManyInput>
+    /**
+     * Filter which SentMessageSamples to update
+     */
+    where?: SentMessageSampleWhereInput
+    /**
+     * Limit how many SentMessageSamples to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SentMessageSample updateManyAndReturn
+   */
+  export type SentMessageSampleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * The data used to update SentMessageSamples.
+     */
+    data: XOR<SentMessageSampleUpdateManyMutationInput, SentMessageSampleUncheckedUpdateManyInput>
+    /**
+     * Filter which SentMessageSamples to update
+     */
+    where?: SentMessageSampleWhereInput
+    /**
+     * Limit how many SentMessageSamples to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SentMessageSample upsert
+   */
+  export type SentMessageSampleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SentMessageSample to update in case it exists.
+     */
+    where: SentMessageSampleWhereUniqueInput
+    /**
+     * In case the SentMessageSample found by the `where` argument doesn't exist, create a new SentMessageSample with this data.
+     */
+    create: XOR<SentMessageSampleCreateInput, SentMessageSampleUncheckedCreateInput>
+    /**
+     * In case the SentMessageSample was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SentMessageSampleUpdateInput, SentMessageSampleUncheckedUpdateInput>
+  }
+
+  /**
+   * SentMessageSample delete
+   */
+  export type SentMessageSampleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleInclude<ExtArgs> | null
+    /**
+     * Filter which SentMessageSample to delete.
+     */
+    where: SentMessageSampleWhereUniqueInput
+  }
+
+  /**
+   * SentMessageSample deleteMany
+   */
+  export type SentMessageSampleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SentMessageSamples to delete
+     */
+    where?: SentMessageSampleWhereInput
+    /**
+     * Limit how many SentMessageSamples to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SentMessageSample without action
+   */
+  export type SentMessageSampleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SentMessageSample
+     */
+    select?: SentMessageSampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SentMessageSample
+     */
+    omit?: SentMessageSampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SentMessageSampleInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model StyleProfile
+   */
+
+  export type AggregateStyleProfile = {
+    _count: StyleProfileCountAggregateOutputType | null
+    _avg: StyleProfileAvgAggregateOutputType | null
+    _sum: StyleProfileSumAggregateOutputType | null
+    _min: StyleProfileMinAggregateOutputType | null
+    _max: StyleProfileMaxAggregateOutputType | null
+  }
+
+  export type StyleProfileAvgAggregateOutputType = {
+    sampleCount: number | null
+  }
+
+  export type StyleProfileSumAggregateOutputType = {
+    sampleCount: number | null
+  }
+
+  export type StyleProfileMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    sampleCount: number | null
+    updatedAt: Date | null
+  }
+
+  export type StyleProfileMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    sampleCount: number | null
+    updatedAt: Date | null
+  }
+
+  export type StyleProfileCountAggregateOutputType = {
+    id: number
+    userId: number
+    summary: number
+    sampleCount: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type StyleProfileAvgAggregateInputType = {
+    sampleCount?: true
+  }
+
+  export type StyleProfileSumAggregateInputType = {
+    sampleCount?: true
+  }
+
+  export type StyleProfileMinAggregateInputType = {
+    id?: true
+    userId?: true
+    sampleCount?: true
+    updatedAt?: true
+  }
+
+  export type StyleProfileMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    sampleCount?: true
+    updatedAt?: true
+  }
+
+  export type StyleProfileCountAggregateInputType = {
+    id?: true
+    userId?: true
+    summary?: true
+    sampleCount?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type StyleProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StyleProfile to aggregate.
+     */
+    where?: StyleProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StyleProfiles to fetch.
+     */
+    orderBy?: StyleProfileOrderByWithRelationInput | StyleProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StyleProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StyleProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StyleProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StyleProfiles
+    **/
+    _count?: true | StyleProfileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StyleProfileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StyleProfileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StyleProfileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StyleProfileMaxAggregateInputType
+  }
+
+  export type GetStyleProfileAggregateType<T extends StyleProfileAggregateArgs> = {
+        [P in keyof T & keyof AggregateStyleProfile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStyleProfile[P]>
+      : GetScalarType<T[P], AggregateStyleProfile[P]>
+  }
+
+
+
+
+  export type StyleProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StyleProfileWhereInput
+    orderBy?: StyleProfileOrderByWithAggregationInput | StyleProfileOrderByWithAggregationInput[]
+    by: StyleProfileScalarFieldEnum[] | StyleProfileScalarFieldEnum
+    having?: StyleProfileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StyleProfileCountAggregateInputType | true
+    _avg?: StyleProfileAvgAggregateInputType
+    _sum?: StyleProfileSumAggregateInputType
+    _min?: StyleProfileMinAggregateInputType
+    _max?: StyleProfileMaxAggregateInputType
+  }
+
+  export type StyleProfileGroupByOutputType = {
+    id: string
+    userId: string
+    summary: JsonValue
+    sampleCount: number
+    updatedAt: Date
+    _count: StyleProfileCountAggregateOutputType | null
+    _avg: StyleProfileAvgAggregateOutputType | null
+    _sum: StyleProfileSumAggregateOutputType | null
+    _min: StyleProfileMinAggregateOutputType | null
+    _max: StyleProfileMaxAggregateOutputType | null
+  }
+
+  type GetStyleProfileGroupByPayload<T extends StyleProfileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StyleProfileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StyleProfileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StyleProfileGroupByOutputType[P]>
+            : GetScalarType<T[P], StyleProfileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StyleProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    summary?: boolean
+    sampleCount?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["styleProfile"]>
+
+  export type StyleProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    summary?: boolean
+    sampleCount?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["styleProfile"]>
+
+  export type StyleProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    summary?: boolean
+    sampleCount?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["styleProfile"]>
+
+  export type StyleProfileSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    summary?: boolean
+    sampleCount?: boolean
+    updatedAt?: boolean
+  }
+
+  export type StyleProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "summary" | "sampleCount" | "updatedAt", ExtArgs["result"]["styleProfile"]>
+  export type StyleProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type StyleProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type StyleProfileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $StyleProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StyleProfile"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      summary: Prisma.JsonValue
+      sampleCount: number
+      updatedAt: Date
+    }, ExtArgs["result"]["styleProfile"]>
+    composites: {}
+  }
+
+  type StyleProfileGetPayload<S extends boolean | null | undefined | StyleProfileDefaultArgs> = $Result.GetResult<Prisma.$StyleProfilePayload, S>
+
+  type StyleProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StyleProfileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StyleProfileCountAggregateInputType | true
+    }
+
+  export interface StyleProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StyleProfile'], meta: { name: 'StyleProfile' } }
+    /**
+     * Find zero or one StyleProfile that matches the filter.
+     * @param {StyleProfileFindUniqueArgs} args - Arguments to find a StyleProfile
+     * @example
+     * // Get one StyleProfile
+     * const styleProfile = await prisma.styleProfile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StyleProfileFindUniqueArgs>(args: SelectSubset<T, StyleProfileFindUniqueArgs<ExtArgs>>): Prisma__StyleProfileClient<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StyleProfile that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StyleProfileFindUniqueOrThrowArgs} args - Arguments to find a StyleProfile
+     * @example
+     * // Get one StyleProfile
+     * const styleProfile = await prisma.styleProfile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StyleProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, StyleProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StyleProfileClient<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StyleProfile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StyleProfileFindFirstArgs} args - Arguments to find a StyleProfile
+     * @example
+     * // Get one StyleProfile
+     * const styleProfile = await prisma.styleProfile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StyleProfileFindFirstArgs>(args?: SelectSubset<T, StyleProfileFindFirstArgs<ExtArgs>>): Prisma__StyleProfileClient<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StyleProfile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StyleProfileFindFirstOrThrowArgs} args - Arguments to find a StyleProfile
+     * @example
+     * // Get one StyleProfile
+     * const styleProfile = await prisma.styleProfile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StyleProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, StyleProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__StyleProfileClient<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StyleProfiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StyleProfileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StyleProfiles
+     * const styleProfiles = await prisma.styleProfile.findMany()
+     * 
+     * // Get first 10 StyleProfiles
+     * const styleProfiles = await prisma.styleProfile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const styleProfileWithIdOnly = await prisma.styleProfile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StyleProfileFindManyArgs>(args?: SelectSubset<T, StyleProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StyleProfile.
+     * @param {StyleProfileCreateArgs} args - Arguments to create a StyleProfile.
+     * @example
+     * // Create one StyleProfile
+     * const StyleProfile = await prisma.styleProfile.create({
+     *   data: {
+     *     // ... data to create a StyleProfile
+     *   }
+     * })
+     * 
+     */
+    create<T extends StyleProfileCreateArgs>(args: SelectSubset<T, StyleProfileCreateArgs<ExtArgs>>): Prisma__StyleProfileClient<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StyleProfiles.
+     * @param {StyleProfileCreateManyArgs} args - Arguments to create many StyleProfiles.
+     * @example
+     * // Create many StyleProfiles
+     * const styleProfile = await prisma.styleProfile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StyleProfileCreateManyArgs>(args?: SelectSubset<T, StyleProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StyleProfiles and returns the data saved in the database.
+     * @param {StyleProfileCreateManyAndReturnArgs} args - Arguments to create many StyleProfiles.
+     * @example
+     * // Create many StyleProfiles
+     * const styleProfile = await prisma.styleProfile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StyleProfiles and only return the `id`
+     * const styleProfileWithIdOnly = await prisma.styleProfile.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StyleProfileCreateManyAndReturnArgs>(args?: SelectSubset<T, StyleProfileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StyleProfile.
+     * @param {StyleProfileDeleteArgs} args - Arguments to delete one StyleProfile.
+     * @example
+     * // Delete one StyleProfile
+     * const StyleProfile = await prisma.styleProfile.delete({
+     *   where: {
+     *     // ... filter to delete one StyleProfile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StyleProfileDeleteArgs>(args: SelectSubset<T, StyleProfileDeleteArgs<ExtArgs>>): Prisma__StyleProfileClient<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StyleProfile.
+     * @param {StyleProfileUpdateArgs} args - Arguments to update one StyleProfile.
+     * @example
+     * // Update one StyleProfile
+     * const styleProfile = await prisma.styleProfile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StyleProfileUpdateArgs>(args: SelectSubset<T, StyleProfileUpdateArgs<ExtArgs>>): Prisma__StyleProfileClient<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StyleProfiles.
+     * @param {StyleProfileDeleteManyArgs} args - Arguments to filter StyleProfiles to delete.
+     * @example
+     * // Delete a few StyleProfiles
+     * const { count } = await prisma.styleProfile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StyleProfileDeleteManyArgs>(args?: SelectSubset<T, StyleProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StyleProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StyleProfileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StyleProfiles
+     * const styleProfile = await prisma.styleProfile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StyleProfileUpdateManyArgs>(args: SelectSubset<T, StyleProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StyleProfiles and returns the data updated in the database.
+     * @param {StyleProfileUpdateManyAndReturnArgs} args - Arguments to update many StyleProfiles.
+     * @example
+     * // Update many StyleProfiles
+     * const styleProfile = await prisma.styleProfile.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StyleProfiles and only return the `id`
+     * const styleProfileWithIdOnly = await prisma.styleProfile.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StyleProfileUpdateManyAndReturnArgs>(args: SelectSubset<T, StyleProfileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StyleProfile.
+     * @param {StyleProfileUpsertArgs} args - Arguments to update or create a StyleProfile.
+     * @example
+     * // Update or create a StyleProfile
+     * const styleProfile = await prisma.styleProfile.upsert({
+     *   create: {
+     *     // ... data to create a StyleProfile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StyleProfile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StyleProfileUpsertArgs>(args: SelectSubset<T, StyleProfileUpsertArgs<ExtArgs>>): Prisma__StyleProfileClient<$Result.GetResult<Prisma.$StyleProfilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StyleProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StyleProfileCountArgs} args - Arguments to filter StyleProfiles to count.
+     * @example
+     * // Count the number of StyleProfiles
+     * const count = await prisma.styleProfile.count({
+     *   where: {
+     *     // ... the filter for the StyleProfiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends StyleProfileCountArgs>(
+      args?: Subset<T, StyleProfileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StyleProfileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StyleProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StyleProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StyleProfileAggregateArgs>(args: Subset<T, StyleProfileAggregateArgs>): Prisma.PrismaPromise<GetStyleProfileAggregateType<T>>
+
+    /**
+     * Group by StyleProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StyleProfileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StyleProfileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StyleProfileGroupByArgs['orderBy'] }
+        : { orderBy?: StyleProfileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StyleProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStyleProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StyleProfile model
+   */
+  readonly fields: StyleProfileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StyleProfile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StyleProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StyleProfile model
+   */
+  interface StyleProfileFieldRefs {
+    readonly id: FieldRef<"StyleProfile", 'String'>
+    readonly userId: FieldRef<"StyleProfile", 'String'>
+    readonly summary: FieldRef<"StyleProfile", 'Json'>
+    readonly sampleCount: FieldRef<"StyleProfile", 'Int'>
+    readonly updatedAt: FieldRef<"StyleProfile", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StyleProfile findUnique
+   */
+  export type StyleProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which StyleProfile to fetch.
+     */
+    where: StyleProfileWhereUniqueInput
+  }
+
+  /**
+   * StyleProfile findUniqueOrThrow
+   */
+  export type StyleProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which StyleProfile to fetch.
+     */
+    where: StyleProfileWhereUniqueInput
+  }
+
+  /**
+   * StyleProfile findFirst
+   */
+  export type StyleProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which StyleProfile to fetch.
+     */
+    where?: StyleProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StyleProfiles to fetch.
+     */
+    orderBy?: StyleProfileOrderByWithRelationInput | StyleProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StyleProfiles.
+     */
+    cursor?: StyleProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StyleProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StyleProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StyleProfiles.
+     */
+    distinct?: StyleProfileScalarFieldEnum | StyleProfileScalarFieldEnum[]
+  }
+
+  /**
+   * StyleProfile findFirstOrThrow
+   */
+  export type StyleProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which StyleProfile to fetch.
+     */
+    where?: StyleProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StyleProfiles to fetch.
+     */
+    orderBy?: StyleProfileOrderByWithRelationInput | StyleProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StyleProfiles.
+     */
+    cursor?: StyleProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StyleProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StyleProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StyleProfiles.
+     */
+    distinct?: StyleProfileScalarFieldEnum | StyleProfileScalarFieldEnum[]
+  }
+
+  /**
+   * StyleProfile findMany
+   */
+  export type StyleProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which StyleProfiles to fetch.
+     */
+    where?: StyleProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StyleProfiles to fetch.
+     */
+    orderBy?: StyleProfileOrderByWithRelationInput | StyleProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StyleProfiles.
+     */
+    cursor?: StyleProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StyleProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StyleProfiles.
+     */
+    skip?: number
+    distinct?: StyleProfileScalarFieldEnum | StyleProfileScalarFieldEnum[]
+  }
+
+  /**
+   * StyleProfile create
+   */
+  export type StyleProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a StyleProfile.
+     */
+    data: XOR<StyleProfileCreateInput, StyleProfileUncheckedCreateInput>
+  }
+
+  /**
+   * StyleProfile createMany
+   */
+  export type StyleProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StyleProfiles.
+     */
+    data: StyleProfileCreateManyInput | StyleProfileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StyleProfile createManyAndReturn
+   */
+  export type StyleProfileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * The data used to create many StyleProfiles.
+     */
+    data: StyleProfileCreateManyInput | StyleProfileCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StyleProfile update
+   */
+  export type StyleProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a StyleProfile.
+     */
+    data: XOR<StyleProfileUpdateInput, StyleProfileUncheckedUpdateInput>
+    /**
+     * Choose, which StyleProfile to update.
+     */
+    where: StyleProfileWhereUniqueInput
+  }
+
+  /**
+   * StyleProfile updateMany
+   */
+  export type StyleProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StyleProfiles.
+     */
+    data: XOR<StyleProfileUpdateManyMutationInput, StyleProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which StyleProfiles to update
+     */
+    where?: StyleProfileWhereInput
+    /**
+     * Limit how many StyleProfiles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StyleProfile updateManyAndReturn
+   */
+  export type StyleProfileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * The data used to update StyleProfiles.
+     */
+    data: XOR<StyleProfileUpdateManyMutationInput, StyleProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which StyleProfiles to update
+     */
+    where?: StyleProfileWhereInput
+    /**
+     * Limit how many StyleProfiles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StyleProfile upsert
+   */
+  export type StyleProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the StyleProfile to update in case it exists.
+     */
+    where: StyleProfileWhereUniqueInput
+    /**
+     * In case the StyleProfile found by the `where` argument doesn't exist, create a new StyleProfile with this data.
+     */
+    create: XOR<StyleProfileCreateInput, StyleProfileUncheckedCreateInput>
+    /**
+     * In case the StyleProfile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StyleProfileUpdateInput, StyleProfileUncheckedUpdateInput>
+  }
+
+  /**
+   * StyleProfile delete
+   */
+  export type StyleProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileInclude<ExtArgs> | null
+    /**
+     * Filter which StyleProfile to delete.
+     */
+    where: StyleProfileWhereUniqueInput
+  }
+
+  /**
+   * StyleProfile deleteMany
+   */
+  export type StyleProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StyleProfiles to delete
+     */
+    where?: StyleProfileWhereInput
+    /**
+     * Limit how many StyleProfiles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StyleProfile without action
+   */
+  export type StyleProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StyleProfile
+     */
+    select?: StyleProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StyleProfile
+     */
+    omit?: StyleProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StyleProfileInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ThreadSummary
+   */
+
+  export type AggregateThreadSummary = {
+    _count: ThreadSummaryCountAggregateOutputType | null
+    _min: ThreadSummaryMinAggregateOutputType | null
+    _max: ThreadSummaryMaxAggregateOutputType | null
+  }
+
+  export type ThreadSummaryMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    threadId: string | null
+    entityVersion: string | null
+    summary: string | null
+    model: string | null
+    createdAt: Date | null
+  }
+
+  export type ThreadSummaryMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    threadId: string | null
+    entityVersion: string | null
+    summary: string | null
+    model: string | null
+    createdAt: Date | null
+  }
+
+  export type ThreadSummaryCountAggregateOutputType = {
+    id: number
+    userId: number
+    threadId: number
+    entityVersion: number
+    summary: number
+    keyPoints: number
+    actionItems: number
+    unansweredQuestions: number
+    model: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ThreadSummaryMinAggregateInputType = {
+    id?: true
+    userId?: true
+    threadId?: true
+    entityVersion?: true
+    summary?: true
+    model?: true
+    createdAt?: true
+  }
+
+  export type ThreadSummaryMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    threadId?: true
+    entityVersion?: true
+    summary?: true
+    model?: true
+    createdAt?: true
+  }
+
+  export type ThreadSummaryCountAggregateInputType = {
+    id?: true
+    userId?: true
+    threadId?: true
+    entityVersion?: true
+    summary?: true
+    keyPoints?: true
+    actionItems?: true
+    unansweredQuestions?: true
+    model?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ThreadSummaryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ThreadSummary to aggregate.
+     */
+    where?: ThreadSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadSummaries to fetch.
+     */
+    orderBy?: ThreadSummaryOrderByWithRelationInput | ThreadSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ThreadSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadSummaries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ThreadSummaries
+    **/
+    _count?: true | ThreadSummaryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ThreadSummaryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ThreadSummaryMaxAggregateInputType
+  }
+
+  export type GetThreadSummaryAggregateType<T extends ThreadSummaryAggregateArgs> = {
+        [P in keyof T & keyof AggregateThreadSummary]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateThreadSummary[P]>
+      : GetScalarType<T[P], AggregateThreadSummary[P]>
+  }
+
+
+
+
+  export type ThreadSummaryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ThreadSummaryWhereInput
+    orderBy?: ThreadSummaryOrderByWithAggregationInput | ThreadSummaryOrderByWithAggregationInput[]
+    by: ThreadSummaryScalarFieldEnum[] | ThreadSummaryScalarFieldEnum
+    having?: ThreadSummaryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ThreadSummaryCountAggregateInputType | true
+    _min?: ThreadSummaryMinAggregateInputType
+    _max?: ThreadSummaryMaxAggregateInputType
+  }
+
+  export type ThreadSummaryGroupByOutputType = {
+    id: string
+    userId: string
+    threadId: string
+    entityVersion: string
+    summary: string
+    keyPoints: JsonValue
+    actionItems: JsonValue
+    unansweredQuestions: JsonValue
+    model: string | null
+    createdAt: Date
+    _count: ThreadSummaryCountAggregateOutputType | null
+    _min: ThreadSummaryMinAggregateOutputType | null
+    _max: ThreadSummaryMaxAggregateOutputType | null
+  }
+
+  type GetThreadSummaryGroupByPayload<T extends ThreadSummaryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ThreadSummaryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ThreadSummaryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ThreadSummaryGroupByOutputType[P]>
+            : GetScalarType<T[P], ThreadSummaryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ThreadSummarySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    threadId?: boolean
+    entityVersion?: boolean
+    summary?: boolean
+    keyPoints?: boolean
+    actionItems?: boolean
+    unansweredQuestions?: boolean
+    model?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["threadSummary"]>
+
+  export type ThreadSummarySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    threadId?: boolean
+    entityVersion?: boolean
+    summary?: boolean
+    keyPoints?: boolean
+    actionItems?: boolean
+    unansweredQuestions?: boolean
+    model?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["threadSummary"]>
+
+  export type ThreadSummarySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    threadId?: boolean
+    entityVersion?: boolean
+    summary?: boolean
+    keyPoints?: boolean
+    actionItems?: boolean
+    unansweredQuestions?: boolean
+    model?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["threadSummary"]>
+
+  export type ThreadSummarySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    threadId?: boolean
+    entityVersion?: boolean
+    summary?: boolean
+    keyPoints?: boolean
+    actionItems?: boolean
+    unansweredQuestions?: boolean
+    model?: boolean
+    createdAt?: boolean
+  }
+
+  export type ThreadSummaryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "threadId" | "entityVersion" | "summary" | "keyPoints" | "actionItems" | "unansweredQuestions" | "model" | "createdAt", ExtArgs["result"]["threadSummary"]>
+  export type ThreadSummaryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ThreadSummaryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ThreadSummaryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ThreadSummaryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ThreadSummary"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      threadId: string
+      entityVersion: string
+      summary: string
+      keyPoints: Prisma.JsonValue
+      actionItems: Prisma.JsonValue
+      unansweredQuestions: Prisma.JsonValue
+      model: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["threadSummary"]>
+    composites: {}
+  }
+
+  type ThreadSummaryGetPayload<S extends boolean | null | undefined | ThreadSummaryDefaultArgs> = $Result.GetResult<Prisma.$ThreadSummaryPayload, S>
+
+  type ThreadSummaryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ThreadSummaryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ThreadSummaryCountAggregateInputType | true
+    }
+
+  export interface ThreadSummaryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ThreadSummary'], meta: { name: 'ThreadSummary' } }
+    /**
+     * Find zero or one ThreadSummary that matches the filter.
+     * @param {ThreadSummaryFindUniqueArgs} args - Arguments to find a ThreadSummary
+     * @example
+     * // Get one ThreadSummary
+     * const threadSummary = await prisma.threadSummary.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ThreadSummaryFindUniqueArgs>(args: SelectSubset<T, ThreadSummaryFindUniqueArgs<ExtArgs>>): Prisma__ThreadSummaryClient<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ThreadSummary that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ThreadSummaryFindUniqueOrThrowArgs} args - Arguments to find a ThreadSummary
+     * @example
+     * // Get one ThreadSummary
+     * const threadSummary = await prisma.threadSummary.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ThreadSummaryFindUniqueOrThrowArgs>(args: SelectSubset<T, ThreadSummaryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ThreadSummaryClient<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ThreadSummary that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadSummaryFindFirstArgs} args - Arguments to find a ThreadSummary
+     * @example
+     * // Get one ThreadSummary
+     * const threadSummary = await prisma.threadSummary.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ThreadSummaryFindFirstArgs>(args?: SelectSubset<T, ThreadSummaryFindFirstArgs<ExtArgs>>): Prisma__ThreadSummaryClient<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ThreadSummary that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadSummaryFindFirstOrThrowArgs} args - Arguments to find a ThreadSummary
+     * @example
+     * // Get one ThreadSummary
+     * const threadSummary = await prisma.threadSummary.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ThreadSummaryFindFirstOrThrowArgs>(args?: SelectSubset<T, ThreadSummaryFindFirstOrThrowArgs<ExtArgs>>): Prisma__ThreadSummaryClient<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ThreadSummaries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadSummaryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ThreadSummaries
+     * const threadSummaries = await prisma.threadSummary.findMany()
+     * 
+     * // Get first 10 ThreadSummaries
+     * const threadSummaries = await prisma.threadSummary.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const threadSummaryWithIdOnly = await prisma.threadSummary.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ThreadSummaryFindManyArgs>(args?: SelectSubset<T, ThreadSummaryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ThreadSummary.
+     * @param {ThreadSummaryCreateArgs} args - Arguments to create a ThreadSummary.
+     * @example
+     * // Create one ThreadSummary
+     * const ThreadSummary = await prisma.threadSummary.create({
+     *   data: {
+     *     // ... data to create a ThreadSummary
+     *   }
+     * })
+     * 
+     */
+    create<T extends ThreadSummaryCreateArgs>(args: SelectSubset<T, ThreadSummaryCreateArgs<ExtArgs>>): Prisma__ThreadSummaryClient<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ThreadSummaries.
+     * @param {ThreadSummaryCreateManyArgs} args - Arguments to create many ThreadSummaries.
+     * @example
+     * // Create many ThreadSummaries
+     * const threadSummary = await prisma.threadSummary.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ThreadSummaryCreateManyArgs>(args?: SelectSubset<T, ThreadSummaryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ThreadSummaries and returns the data saved in the database.
+     * @param {ThreadSummaryCreateManyAndReturnArgs} args - Arguments to create many ThreadSummaries.
+     * @example
+     * // Create many ThreadSummaries
+     * const threadSummary = await prisma.threadSummary.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ThreadSummaries and only return the `id`
+     * const threadSummaryWithIdOnly = await prisma.threadSummary.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ThreadSummaryCreateManyAndReturnArgs>(args?: SelectSubset<T, ThreadSummaryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ThreadSummary.
+     * @param {ThreadSummaryDeleteArgs} args - Arguments to delete one ThreadSummary.
+     * @example
+     * // Delete one ThreadSummary
+     * const ThreadSummary = await prisma.threadSummary.delete({
+     *   where: {
+     *     // ... filter to delete one ThreadSummary
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ThreadSummaryDeleteArgs>(args: SelectSubset<T, ThreadSummaryDeleteArgs<ExtArgs>>): Prisma__ThreadSummaryClient<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ThreadSummary.
+     * @param {ThreadSummaryUpdateArgs} args - Arguments to update one ThreadSummary.
+     * @example
+     * // Update one ThreadSummary
+     * const threadSummary = await prisma.threadSummary.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ThreadSummaryUpdateArgs>(args: SelectSubset<T, ThreadSummaryUpdateArgs<ExtArgs>>): Prisma__ThreadSummaryClient<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ThreadSummaries.
+     * @param {ThreadSummaryDeleteManyArgs} args - Arguments to filter ThreadSummaries to delete.
+     * @example
+     * // Delete a few ThreadSummaries
+     * const { count } = await prisma.threadSummary.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ThreadSummaryDeleteManyArgs>(args?: SelectSubset<T, ThreadSummaryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ThreadSummaries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadSummaryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ThreadSummaries
+     * const threadSummary = await prisma.threadSummary.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ThreadSummaryUpdateManyArgs>(args: SelectSubset<T, ThreadSummaryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ThreadSummaries and returns the data updated in the database.
+     * @param {ThreadSummaryUpdateManyAndReturnArgs} args - Arguments to update many ThreadSummaries.
+     * @example
+     * // Update many ThreadSummaries
+     * const threadSummary = await prisma.threadSummary.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ThreadSummaries and only return the `id`
+     * const threadSummaryWithIdOnly = await prisma.threadSummary.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ThreadSummaryUpdateManyAndReturnArgs>(args: SelectSubset<T, ThreadSummaryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ThreadSummary.
+     * @param {ThreadSummaryUpsertArgs} args - Arguments to update or create a ThreadSummary.
+     * @example
+     * // Update or create a ThreadSummary
+     * const threadSummary = await prisma.threadSummary.upsert({
+     *   create: {
+     *     // ... data to create a ThreadSummary
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ThreadSummary we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ThreadSummaryUpsertArgs>(args: SelectSubset<T, ThreadSummaryUpsertArgs<ExtArgs>>): Prisma__ThreadSummaryClient<$Result.GetResult<Prisma.$ThreadSummaryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ThreadSummaries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadSummaryCountArgs} args - Arguments to filter ThreadSummaries to count.
+     * @example
+     * // Count the number of ThreadSummaries
+     * const count = await prisma.threadSummary.count({
+     *   where: {
+     *     // ... the filter for the ThreadSummaries we want to count
+     *   }
+     * })
+    **/
+    count<T extends ThreadSummaryCountArgs>(
+      args?: Subset<T, ThreadSummaryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ThreadSummaryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ThreadSummary.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadSummaryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ThreadSummaryAggregateArgs>(args: Subset<T, ThreadSummaryAggregateArgs>): Prisma.PrismaPromise<GetThreadSummaryAggregateType<T>>
+
+    /**
+     * Group by ThreadSummary.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThreadSummaryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ThreadSummaryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ThreadSummaryGroupByArgs['orderBy'] }
+        : { orderBy?: ThreadSummaryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ThreadSummaryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetThreadSummaryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ThreadSummary model
+   */
+  readonly fields: ThreadSummaryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ThreadSummary.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ThreadSummaryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ThreadSummary model
+   */
+  interface ThreadSummaryFieldRefs {
+    readonly id: FieldRef<"ThreadSummary", 'String'>
+    readonly userId: FieldRef<"ThreadSummary", 'String'>
+    readonly threadId: FieldRef<"ThreadSummary", 'String'>
+    readonly entityVersion: FieldRef<"ThreadSummary", 'String'>
+    readonly summary: FieldRef<"ThreadSummary", 'String'>
+    readonly keyPoints: FieldRef<"ThreadSummary", 'Json'>
+    readonly actionItems: FieldRef<"ThreadSummary", 'Json'>
+    readonly unansweredQuestions: FieldRef<"ThreadSummary", 'Json'>
+    readonly model: FieldRef<"ThreadSummary", 'String'>
+    readonly createdAt: FieldRef<"ThreadSummary", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ThreadSummary findUnique
+   */
+  export type ThreadSummaryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadSummary to fetch.
+     */
+    where: ThreadSummaryWhereUniqueInput
+  }
+
+  /**
+   * ThreadSummary findUniqueOrThrow
+   */
+  export type ThreadSummaryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadSummary to fetch.
+     */
+    where: ThreadSummaryWhereUniqueInput
+  }
+
+  /**
+   * ThreadSummary findFirst
+   */
+  export type ThreadSummaryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadSummary to fetch.
+     */
+    where?: ThreadSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadSummaries to fetch.
+     */
+    orderBy?: ThreadSummaryOrderByWithRelationInput | ThreadSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ThreadSummaries.
+     */
+    cursor?: ThreadSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadSummaries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ThreadSummaries.
+     */
+    distinct?: ThreadSummaryScalarFieldEnum | ThreadSummaryScalarFieldEnum[]
+  }
+
+  /**
+   * ThreadSummary findFirstOrThrow
+   */
+  export type ThreadSummaryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadSummary to fetch.
+     */
+    where?: ThreadSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadSummaries to fetch.
+     */
+    orderBy?: ThreadSummaryOrderByWithRelationInput | ThreadSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ThreadSummaries.
+     */
+    cursor?: ThreadSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadSummaries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ThreadSummaries.
+     */
+    distinct?: ThreadSummaryScalarFieldEnum | ThreadSummaryScalarFieldEnum[]
+  }
+
+  /**
+   * ThreadSummary findMany
+   */
+  export type ThreadSummaryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which ThreadSummaries to fetch.
+     */
+    where?: ThreadSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThreadSummaries to fetch.
+     */
+    orderBy?: ThreadSummaryOrderByWithRelationInput | ThreadSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ThreadSummaries.
+     */
+    cursor?: ThreadSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThreadSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThreadSummaries.
+     */
+    skip?: number
+    distinct?: ThreadSummaryScalarFieldEnum | ThreadSummaryScalarFieldEnum[]
+  }
+
+  /**
+   * ThreadSummary create
+   */
+  export type ThreadSummaryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ThreadSummary.
+     */
+    data: XOR<ThreadSummaryCreateInput, ThreadSummaryUncheckedCreateInput>
+  }
+
+  /**
+   * ThreadSummary createMany
+   */
+  export type ThreadSummaryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ThreadSummaries.
+     */
+    data: ThreadSummaryCreateManyInput | ThreadSummaryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ThreadSummary createManyAndReturn
+   */
+  export type ThreadSummaryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * The data used to create many ThreadSummaries.
+     */
+    data: ThreadSummaryCreateManyInput | ThreadSummaryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ThreadSummary update
+   */
+  export type ThreadSummaryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ThreadSummary.
+     */
+    data: XOR<ThreadSummaryUpdateInput, ThreadSummaryUncheckedUpdateInput>
+    /**
+     * Choose, which ThreadSummary to update.
+     */
+    where: ThreadSummaryWhereUniqueInput
+  }
+
+  /**
+   * ThreadSummary updateMany
+   */
+  export type ThreadSummaryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ThreadSummaries.
+     */
+    data: XOR<ThreadSummaryUpdateManyMutationInput, ThreadSummaryUncheckedUpdateManyInput>
+    /**
+     * Filter which ThreadSummaries to update
+     */
+    where?: ThreadSummaryWhereInput
+    /**
+     * Limit how many ThreadSummaries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ThreadSummary updateManyAndReturn
+   */
+  export type ThreadSummaryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * The data used to update ThreadSummaries.
+     */
+    data: XOR<ThreadSummaryUpdateManyMutationInput, ThreadSummaryUncheckedUpdateManyInput>
+    /**
+     * Filter which ThreadSummaries to update
+     */
+    where?: ThreadSummaryWhereInput
+    /**
+     * Limit how many ThreadSummaries to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ThreadSummary upsert
+   */
+  export type ThreadSummaryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ThreadSummary to update in case it exists.
+     */
+    where: ThreadSummaryWhereUniqueInput
+    /**
+     * In case the ThreadSummary found by the `where` argument doesn't exist, create a new ThreadSummary with this data.
+     */
+    create: XOR<ThreadSummaryCreateInput, ThreadSummaryUncheckedCreateInput>
+    /**
+     * In case the ThreadSummary was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ThreadSummaryUpdateInput, ThreadSummaryUncheckedUpdateInput>
+  }
+
+  /**
+   * ThreadSummary delete
+   */
+  export type ThreadSummaryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryInclude<ExtArgs> | null
+    /**
+     * Filter which ThreadSummary to delete.
+     */
+    where: ThreadSummaryWhereUniqueInput
+  }
+
+  /**
+   * ThreadSummary deleteMany
+   */
+  export type ThreadSummaryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ThreadSummaries to delete
+     */
+    where?: ThreadSummaryWhereInput
+    /**
+     * Limit how many ThreadSummaries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ThreadSummary without action
+   */
+  export type ThreadSummaryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThreadSummary
+     */
+    select?: ThreadSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThreadSummary
+     */
+    omit?: ThreadSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThreadSummaryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TriageFeedback
+   */
+
+  export type AggregateTriageFeedback = {
+    _count: TriageFeedbackCountAggregateOutputType | null
+    _avg: TriageFeedbackAvgAggregateOutputType | null
+    _sum: TriageFeedbackSumAggregateOutputType | null
+    _min: TriageFeedbackMinAggregateOutputType | null
+    _max: TriageFeedbackMaxAggregateOutputType | null
+  }
+
+  export type TriageFeedbackAvgAggregateOutputType = {
+    weight: number | null
+  }
+
+  export type TriageFeedbackSumAggregateOutputType = {
+    weight: number | null
+  }
+
+  export type TriageFeedbackMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    threadId: string | null
+    fromEmail: string | null
+    fromDomain: string | null
+    signal: string | null
+    weight: number | null
+    createdAt: Date | null
+  }
+
+  export type TriageFeedbackMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    threadId: string | null
+    fromEmail: string | null
+    fromDomain: string | null
+    signal: string | null
+    weight: number | null
+    createdAt: Date | null
+  }
+
+  export type TriageFeedbackCountAggregateOutputType = {
+    id: number
+    userId: number
+    threadId: number
+    fromEmail: number
+    fromDomain: number
+    signal: number
+    weight: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type TriageFeedbackAvgAggregateInputType = {
+    weight?: true
+  }
+
+  export type TriageFeedbackSumAggregateInputType = {
+    weight?: true
+  }
+
+  export type TriageFeedbackMinAggregateInputType = {
+    id?: true
+    userId?: true
+    threadId?: true
+    fromEmail?: true
+    fromDomain?: true
+    signal?: true
+    weight?: true
+    createdAt?: true
+  }
+
+  export type TriageFeedbackMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    threadId?: true
+    fromEmail?: true
+    fromDomain?: true
+    signal?: true
+    weight?: true
+    createdAt?: true
+  }
+
+  export type TriageFeedbackCountAggregateInputType = {
+    id?: true
+    userId?: true
+    threadId?: true
+    fromEmail?: true
+    fromDomain?: true
+    signal?: true
+    weight?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type TriageFeedbackAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TriageFeedback to aggregate.
+     */
+    where?: TriageFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TriageFeedbacks to fetch.
+     */
+    orderBy?: TriageFeedbackOrderByWithRelationInput | TriageFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TriageFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TriageFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TriageFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TriageFeedbacks
+    **/
+    _count?: true | TriageFeedbackCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TriageFeedbackAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TriageFeedbackSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TriageFeedbackMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TriageFeedbackMaxAggregateInputType
+  }
+
+  export type GetTriageFeedbackAggregateType<T extends TriageFeedbackAggregateArgs> = {
+        [P in keyof T & keyof AggregateTriageFeedback]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTriageFeedback[P]>
+      : GetScalarType<T[P], AggregateTriageFeedback[P]>
+  }
+
+
+
+
+  export type TriageFeedbackGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TriageFeedbackWhereInput
+    orderBy?: TriageFeedbackOrderByWithAggregationInput | TriageFeedbackOrderByWithAggregationInput[]
+    by: TriageFeedbackScalarFieldEnum[] | TriageFeedbackScalarFieldEnum
+    having?: TriageFeedbackScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TriageFeedbackCountAggregateInputType | true
+    _avg?: TriageFeedbackAvgAggregateInputType
+    _sum?: TriageFeedbackSumAggregateInputType
+    _min?: TriageFeedbackMinAggregateInputType
+    _max?: TriageFeedbackMaxAggregateInputType
+  }
+
+  export type TriageFeedbackGroupByOutputType = {
+    id: string
+    userId: string
+    threadId: string
+    fromEmail: string
+    fromDomain: string
+    signal: string
+    weight: number
+    createdAt: Date
+    _count: TriageFeedbackCountAggregateOutputType | null
+    _avg: TriageFeedbackAvgAggregateOutputType | null
+    _sum: TriageFeedbackSumAggregateOutputType | null
+    _min: TriageFeedbackMinAggregateOutputType | null
+    _max: TriageFeedbackMaxAggregateOutputType | null
+  }
+
+  type GetTriageFeedbackGroupByPayload<T extends TriageFeedbackGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TriageFeedbackGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TriageFeedbackGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TriageFeedbackGroupByOutputType[P]>
+            : GetScalarType<T[P], TriageFeedbackGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TriageFeedbackSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    threadId?: boolean
+    fromEmail?: boolean
+    fromDomain?: boolean
+    signal?: boolean
+    weight?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["triageFeedback"]>
+
+  export type TriageFeedbackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    threadId?: boolean
+    fromEmail?: boolean
+    fromDomain?: boolean
+    signal?: boolean
+    weight?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["triageFeedback"]>
+
+  export type TriageFeedbackSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    threadId?: boolean
+    fromEmail?: boolean
+    fromDomain?: boolean
+    signal?: boolean
+    weight?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["triageFeedback"]>
+
+  export type TriageFeedbackSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    threadId?: boolean
+    fromEmail?: boolean
+    fromDomain?: boolean
+    signal?: boolean
+    weight?: boolean
+    createdAt?: boolean
+  }
+
+  export type TriageFeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "threadId" | "fromEmail" | "fromDomain" | "signal" | "weight" | "createdAt", ExtArgs["result"]["triageFeedback"]>
+  export type TriageFeedbackInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TriageFeedbackIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TriageFeedbackIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $TriageFeedbackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TriageFeedback"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      threadId: string
+      fromEmail: string
+      fromDomain: string
+      signal: string
+      weight: number
+      createdAt: Date
+    }, ExtArgs["result"]["triageFeedback"]>
+    composites: {}
+  }
+
+  type TriageFeedbackGetPayload<S extends boolean | null | undefined | TriageFeedbackDefaultArgs> = $Result.GetResult<Prisma.$TriageFeedbackPayload, S>
+
+  type TriageFeedbackCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TriageFeedbackFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TriageFeedbackCountAggregateInputType | true
+    }
+
+  export interface TriageFeedbackDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TriageFeedback'], meta: { name: 'TriageFeedback' } }
+    /**
+     * Find zero or one TriageFeedback that matches the filter.
+     * @param {TriageFeedbackFindUniqueArgs} args - Arguments to find a TriageFeedback
+     * @example
+     * // Get one TriageFeedback
+     * const triageFeedback = await prisma.triageFeedback.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TriageFeedbackFindUniqueArgs>(args: SelectSubset<T, TriageFeedbackFindUniqueArgs<ExtArgs>>): Prisma__TriageFeedbackClient<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TriageFeedback that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TriageFeedbackFindUniqueOrThrowArgs} args - Arguments to find a TriageFeedback
+     * @example
+     * // Get one TriageFeedback
+     * const triageFeedback = await prisma.triageFeedback.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TriageFeedbackFindUniqueOrThrowArgs>(args: SelectSubset<T, TriageFeedbackFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TriageFeedbackClient<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TriageFeedback that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TriageFeedbackFindFirstArgs} args - Arguments to find a TriageFeedback
+     * @example
+     * // Get one TriageFeedback
+     * const triageFeedback = await prisma.triageFeedback.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TriageFeedbackFindFirstArgs>(args?: SelectSubset<T, TriageFeedbackFindFirstArgs<ExtArgs>>): Prisma__TriageFeedbackClient<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TriageFeedback that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TriageFeedbackFindFirstOrThrowArgs} args - Arguments to find a TriageFeedback
+     * @example
+     * // Get one TriageFeedback
+     * const triageFeedback = await prisma.triageFeedback.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TriageFeedbackFindFirstOrThrowArgs>(args?: SelectSubset<T, TriageFeedbackFindFirstOrThrowArgs<ExtArgs>>): Prisma__TriageFeedbackClient<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TriageFeedbacks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TriageFeedbackFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TriageFeedbacks
+     * const triageFeedbacks = await prisma.triageFeedback.findMany()
+     * 
+     * // Get first 10 TriageFeedbacks
+     * const triageFeedbacks = await prisma.triageFeedback.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const triageFeedbackWithIdOnly = await prisma.triageFeedback.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TriageFeedbackFindManyArgs>(args?: SelectSubset<T, TriageFeedbackFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TriageFeedback.
+     * @param {TriageFeedbackCreateArgs} args - Arguments to create a TriageFeedback.
+     * @example
+     * // Create one TriageFeedback
+     * const TriageFeedback = await prisma.triageFeedback.create({
+     *   data: {
+     *     // ... data to create a TriageFeedback
+     *   }
+     * })
+     * 
+     */
+    create<T extends TriageFeedbackCreateArgs>(args: SelectSubset<T, TriageFeedbackCreateArgs<ExtArgs>>): Prisma__TriageFeedbackClient<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TriageFeedbacks.
+     * @param {TriageFeedbackCreateManyArgs} args - Arguments to create many TriageFeedbacks.
+     * @example
+     * // Create many TriageFeedbacks
+     * const triageFeedback = await prisma.triageFeedback.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TriageFeedbackCreateManyArgs>(args?: SelectSubset<T, TriageFeedbackCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TriageFeedbacks and returns the data saved in the database.
+     * @param {TriageFeedbackCreateManyAndReturnArgs} args - Arguments to create many TriageFeedbacks.
+     * @example
+     * // Create many TriageFeedbacks
+     * const triageFeedback = await prisma.triageFeedback.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TriageFeedbacks and only return the `id`
+     * const triageFeedbackWithIdOnly = await prisma.triageFeedback.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TriageFeedbackCreateManyAndReturnArgs>(args?: SelectSubset<T, TriageFeedbackCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TriageFeedback.
+     * @param {TriageFeedbackDeleteArgs} args - Arguments to delete one TriageFeedback.
+     * @example
+     * // Delete one TriageFeedback
+     * const TriageFeedback = await prisma.triageFeedback.delete({
+     *   where: {
+     *     // ... filter to delete one TriageFeedback
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TriageFeedbackDeleteArgs>(args: SelectSubset<T, TriageFeedbackDeleteArgs<ExtArgs>>): Prisma__TriageFeedbackClient<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TriageFeedback.
+     * @param {TriageFeedbackUpdateArgs} args - Arguments to update one TriageFeedback.
+     * @example
+     * // Update one TriageFeedback
+     * const triageFeedback = await prisma.triageFeedback.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TriageFeedbackUpdateArgs>(args: SelectSubset<T, TriageFeedbackUpdateArgs<ExtArgs>>): Prisma__TriageFeedbackClient<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TriageFeedbacks.
+     * @param {TriageFeedbackDeleteManyArgs} args - Arguments to filter TriageFeedbacks to delete.
+     * @example
+     * // Delete a few TriageFeedbacks
+     * const { count } = await prisma.triageFeedback.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TriageFeedbackDeleteManyArgs>(args?: SelectSubset<T, TriageFeedbackDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TriageFeedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TriageFeedbackUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TriageFeedbacks
+     * const triageFeedback = await prisma.triageFeedback.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TriageFeedbackUpdateManyArgs>(args: SelectSubset<T, TriageFeedbackUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TriageFeedbacks and returns the data updated in the database.
+     * @param {TriageFeedbackUpdateManyAndReturnArgs} args - Arguments to update many TriageFeedbacks.
+     * @example
+     * // Update many TriageFeedbacks
+     * const triageFeedback = await prisma.triageFeedback.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TriageFeedbacks and only return the `id`
+     * const triageFeedbackWithIdOnly = await prisma.triageFeedback.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TriageFeedbackUpdateManyAndReturnArgs>(args: SelectSubset<T, TriageFeedbackUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TriageFeedback.
+     * @param {TriageFeedbackUpsertArgs} args - Arguments to update or create a TriageFeedback.
+     * @example
+     * // Update or create a TriageFeedback
+     * const triageFeedback = await prisma.triageFeedback.upsert({
+     *   create: {
+     *     // ... data to create a TriageFeedback
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TriageFeedback we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TriageFeedbackUpsertArgs>(args: SelectSubset<T, TriageFeedbackUpsertArgs<ExtArgs>>): Prisma__TriageFeedbackClient<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TriageFeedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TriageFeedbackCountArgs} args - Arguments to filter TriageFeedbacks to count.
+     * @example
+     * // Count the number of TriageFeedbacks
+     * const count = await prisma.triageFeedback.count({
+     *   where: {
+     *     // ... the filter for the TriageFeedbacks we want to count
+     *   }
+     * })
+    **/
+    count<T extends TriageFeedbackCountArgs>(
+      args?: Subset<T, TriageFeedbackCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TriageFeedbackCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TriageFeedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TriageFeedbackAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TriageFeedbackAggregateArgs>(args: Subset<T, TriageFeedbackAggregateArgs>): Prisma.PrismaPromise<GetTriageFeedbackAggregateType<T>>
+
+    /**
+     * Group by TriageFeedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TriageFeedbackGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TriageFeedbackGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TriageFeedbackGroupByArgs['orderBy'] }
+        : { orderBy?: TriageFeedbackGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TriageFeedbackGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTriageFeedbackGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TriageFeedback model
+   */
+  readonly fields: TriageFeedbackFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TriageFeedback.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TriageFeedbackClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TriageFeedback model
+   */
+  interface TriageFeedbackFieldRefs {
+    readonly id: FieldRef<"TriageFeedback", 'String'>
+    readonly userId: FieldRef<"TriageFeedback", 'String'>
+    readonly threadId: FieldRef<"TriageFeedback", 'String'>
+    readonly fromEmail: FieldRef<"TriageFeedback", 'String'>
+    readonly fromDomain: FieldRef<"TriageFeedback", 'String'>
+    readonly signal: FieldRef<"TriageFeedback", 'String'>
+    readonly weight: FieldRef<"TriageFeedback", 'Float'>
+    readonly createdAt: FieldRef<"TriageFeedback", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TriageFeedback findUnique
+   */
+  export type TriageFeedbackFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which TriageFeedback to fetch.
+     */
+    where: TriageFeedbackWhereUniqueInput
+  }
+
+  /**
+   * TriageFeedback findUniqueOrThrow
+   */
+  export type TriageFeedbackFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which TriageFeedback to fetch.
+     */
+    where: TriageFeedbackWhereUniqueInput
+  }
+
+  /**
+   * TriageFeedback findFirst
+   */
+  export type TriageFeedbackFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which TriageFeedback to fetch.
+     */
+    where?: TriageFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TriageFeedbacks to fetch.
+     */
+    orderBy?: TriageFeedbackOrderByWithRelationInput | TriageFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TriageFeedbacks.
+     */
+    cursor?: TriageFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TriageFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TriageFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TriageFeedbacks.
+     */
+    distinct?: TriageFeedbackScalarFieldEnum | TriageFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * TriageFeedback findFirstOrThrow
+   */
+  export type TriageFeedbackFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which TriageFeedback to fetch.
+     */
+    where?: TriageFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TriageFeedbacks to fetch.
+     */
+    orderBy?: TriageFeedbackOrderByWithRelationInput | TriageFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TriageFeedbacks.
+     */
+    cursor?: TriageFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TriageFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TriageFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TriageFeedbacks.
+     */
+    distinct?: TriageFeedbackScalarFieldEnum | TriageFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * TriageFeedback findMany
+   */
+  export type TriageFeedbackFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which TriageFeedbacks to fetch.
+     */
+    where?: TriageFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TriageFeedbacks to fetch.
+     */
+    orderBy?: TriageFeedbackOrderByWithRelationInput | TriageFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TriageFeedbacks.
+     */
+    cursor?: TriageFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TriageFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TriageFeedbacks.
+     */
+    skip?: number
+    distinct?: TriageFeedbackScalarFieldEnum | TriageFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * TriageFeedback create
+   */
+  export type TriageFeedbackCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TriageFeedback.
+     */
+    data: XOR<TriageFeedbackCreateInput, TriageFeedbackUncheckedCreateInput>
+  }
+
+  /**
+   * TriageFeedback createMany
+   */
+  export type TriageFeedbackCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TriageFeedbacks.
+     */
+    data: TriageFeedbackCreateManyInput | TriageFeedbackCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TriageFeedback createManyAndReturn
+   */
+  export type TriageFeedbackCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * The data used to create many TriageFeedbacks.
+     */
+    data: TriageFeedbackCreateManyInput | TriageFeedbackCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TriageFeedback update
+   */
+  export type TriageFeedbackUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TriageFeedback.
+     */
+    data: XOR<TriageFeedbackUpdateInput, TriageFeedbackUncheckedUpdateInput>
+    /**
+     * Choose, which TriageFeedback to update.
+     */
+    where: TriageFeedbackWhereUniqueInput
+  }
+
+  /**
+   * TriageFeedback updateMany
+   */
+  export type TriageFeedbackUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TriageFeedbacks.
+     */
+    data: XOR<TriageFeedbackUpdateManyMutationInput, TriageFeedbackUncheckedUpdateManyInput>
+    /**
+     * Filter which TriageFeedbacks to update
+     */
+    where?: TriageFeedbackWhereInput
+    /**
+     * Limit how many TriageFeedbacks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TriageFeedback updateManyAndReturn
+   */
+  export type TriageFeedbackUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * The data used to update TriageFeedbacks.
+     */
+    data: XOR<TriageFeedbackUpdateManyMutationInput, TriageFeedbackUncheckedUpdateManyInput>
+    /**
+     * Filter which TriageFeedbacks to update
+     */
+    where?: TriageFeedbackWhereInput
+    /**
+     * Limit how many TriageFeedbacks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TriageFeedback upsert
+   */
+  export type TriageFeedbackUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TriageFeedback to update in case it exists.
+     */
+    where: TriageFeedbackWhereUniqueInput
+    /**
+     * In case the TriageFeedback found by the `where` argument doesn't exist, create a new TriageFeedback with this data.
+     */
+    create: XOR<TriageFeedbackCreateInput, TriageFeedbackUncheckedCreateInput>
+    /**
+     * In case the TriageFeedback was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TriageFeedbackUpdateInput, TriageFeedbackUncheckedUpdateInput>
+  }
+
+  /**
+   * TriageFeedback delete
+   */
+  export type TriageFeedbackDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter which TriageFeedback to delete.
+     */
+    where: TriageFeedbackWhereUniqueInput
+  }
+
+  /**
+   * TriageFeedback deleteMany
+   */
+  export type TriageFeedbackDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TriageFeedbacks to delete
+     */
+    where?: TriageFeedbackWhereInput
+    /**
+     * Limit how many TriageFeedbacks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TriageFeedback without action
+   */
+  export type TriageFeedbackDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TriageFeedback
+     */
+    select?: TriageFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TriageFeedback
+     */
+    omit?: TriageFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageFeedbackInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SenderAffinity
+   */
+
+  export type AggregateSenderAffinity = {
+    _count: SenderAffinityCountAggregateOutputType | null
+    _avg: SenderAffinityAvgAggregateOutputType | null
+    _sum: SenderAffinitySumAggregateOutputType | null
+    _min: SenderAffinityMinAggregateOutputType | null
+    _max: SenderAffinityMaxAggregateOutputType | null
+  }
+
+  export type SenderAffinityAvgAggregateOutputType = {
+    score: number | null
+    signalCount: number | null
+  }
+
+  export type SenderAffinitySumAggregateOutputType = {
+    score: number | null
+    signalCount: number | null
+  }
+
+  export type SenderAffinityMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    key: string | null
+    score: number | null
+    signalCount: number | null
+    updatedAt: Date | null
+  }
+
+  export type SenderAffinityMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    key: string | null
+    score: number | null
+    signalCount: number | null
+    updatedAt: Date | null
+  }
+
+  export type SenderAffinityCountAggregateOutputType = {
+    id: number
+    userId: number
+    key: number
+    score: number
+    signalCount: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SenderAffinityAvgAggregateInputType = {
+    score?: true
+    signalCount?: true
+  }
+
+  export type SenderAffinitySumAggregateInputType = {
+    score?: true
+    signalCount?: true
+  }
+
+  export type SenderAffinityMinAggregateInputType = {
+    id?: true
+    userId?: true
+    key?: true
+    score?: true
+    signalCount?: true
+    updatedAt?: true
+  }
+
+  export type SenderAffinityMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    key?: true
+    score?: true
+    signalCount?: true
+    updatedAt?: true
+  }
+
+  export type SenderAffinityCountAggregateInputType = {
+    id?: true
+    userId?: true
+    key?: true
+    score?: true
+    signalCount?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SenderAffinityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SenderAffinity to aggregate.
+     */
+    where?: SenderAffinityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SenderAffinities to fetch.
+     */
+    orderBy?: SenderAffinityOrderByWithRelationInput | SenderAffinityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SenderAffinityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SenderAffinities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SenderAffinities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SenderAffinities
+    **/
+    _count?: true | SenderAffinityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SenderAffinityAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SenderAffinitySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SenderAffinityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SenderAffinityMaxAggregateInputType
+  }
+
+  export type GetSenderAffinityAggregateType<T extends SenderAffinityAggregateArgs> = {
+        [P in keyof T & keyof AggregateSenderAffinity]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSenderAffinity[P]>
+      : GetScalarType<T[P], AggregateSenderAffinity[P]>
+  }
+
+
+
+
+  export type SenderAffinityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SenderAffinityWhereInput
+    orderBy?: SenderAffinityOrderByWithAggregationInput | SenderAffinityOrderByWithAggregationInput[]
+    by: SenderAffinityScalarFieldEnum[] | SenderAffinityScalarFieldEnum
+    having?: SenderAffinityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SenderAffinityCountAggregateInputType | true
+    _avg?: SenderAffinityAvgAggregateInputType
+    _sum?: SenderAffinitySumAggregateInputType
+    _min?: SenderAffinityMinAggregateInputType
+    _max?: SenderAffinityMaxAggregateInputType
+  }
+
+  export type SenderAffinityGroupByOutputType = {
+    id: string
+    userId: string
+    key: string
+    score: number
+    signalCount: number
+    updatedAt: Date
+    _count: SenderAffinityCountAggregateOutputType | null
+    _avg: SenderAffinityAvgAggregateOutputType | null
+    _sum: SenderAffinitySumAggregateOutputType | null
+    _min: SenderAffinityMinAggregateOutputType | null
+    _max: SenderAffinityMaxAggregateOutputType | null
+  }
+
+  type GetSenderAffinityGroupByPayload<T extends SenderAffinityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SenderAffinityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SenderAffinityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SenderAffinityGroupByOutputType[P]>
+            : GetScalarType<T[P], SenderAffinityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SenderAffinitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    key?: boolean
+    score?: boolean
+    signalCount?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["senderAffinity"]>
+
+  export type SenderAffinitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    key?: boolean
+    score?: boolean
+    signalCount?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["senderAffinity"]>
+
+  export type SenderAffinitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    key?: boolean
+    score?: boolean
+    signalCount?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["senderAffinity"]>
+
+  export type SenderAffinitySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    key?: boolean
+    score?: boolean
+    signalCount?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SenderAffinityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "key" | "score" | "signalCount" | "updatedAt", ExtArgs["result"]["senderAffinity"]>
+  export type SenderAffinityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SenderAffinityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SenderAffinityIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $SenderAffinityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SenderAffinity"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      key: string
+      score: number
+      signalCount: number
+      updatedAt: Date
+    }, ExtArgs["result"]["senderAffinity"]>
+    composites: {}
+  }
+
+  type SenderAffinityGetPayload<S extends boolean | null | undefined | SenderAffinityDefaultArgs> = $Result.GetResult<Prisma.$SenderAffinityPayload, S>
+
+  type SenderAffinityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SenderAffinityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SenderAffinityCountAggregateInputType | true
+    }
+
+  export interface SenderAffinityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SenderAffinity'], meta: { name: 'SenderAffinity' } }
+    /**
+     * Find zero or one SenderAffinity that matches the filter.
+     * @param {SenderAffinityFindUniqueArgs} args - Arguments to find a SenderAffinity
+     * @example
+     * // Get one SenderAffinity
+     * const senderAffinity = await prisma.senderAffinity.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SenderAffinityFindUniqueArgs>(args: SelectSubset<T, SenderAffinityFindUniqueArgs<ExtArgs>>): Prisma__SenderAffinityClient<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SenderAffinity that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SenderAffinityFindUniqueOrThrowArgs} args - Arguments to find a SenderAffinity
+     * @example
+     * // Get one SenderAffinity
+     * const senderAffinity = await prisma.senderAffinity.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SenderAffinityFindUniqueOrThrowArgs>(args: SelectSubset<T, SenderAffinityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SenderAffinityClient<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SenderAffinity that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SenderAffinityFindFirstArgs} args - Arguments to find a SenderAffinity
+     * @example
+     * // Get one SenderAffinity
+     * const senderAffinity = await prisma.senderAffinity.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SenderAffinityFindFirstArgs>(args?: SelectSubset<T, SenderAffinityFindFirstArgs<ExtArgs>>): Prisma__SenderAffinityClient<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SenderAffinity that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SenderAffinityFindFirstOrThrowArgs} args - Arguments to find a SenderAffinity
+     * @example
+     * // Get one SenderAffinity
+     * const senderAffinity = await prisma.senderAffinity.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SenderAffinityFindFirstOrThrowArgs>(args?: SelectSubset<T, SenderAffinityFindFirstOrThrowArgs<ExtArgs>>): Prisma__SenderAffinityClient<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SenderAffinities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SenderAffinityFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SenderAffinities
+     * const senderAffinities = await prisma.senderAffinity.findMany()
+     * 
+     * // Get first 10 SenderAffinities
+     * const senderAffinities = await prisma.senderAffinity.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const senderAffinityWithIdOnly = await prisma.senderAffinity.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SenderAffinityFindManyArgs>(args?: SelectSubset<T, SenderAffinityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SenderAffinity.
+     * @param {SenderAffinityCreateArgs} args - Arguments to create a SenderAffinity.
+     * @example
+     * // Create one SenderAffinity
+     * const SenderAffinity = await prisma.senderAffinity.create({
+     *   data: {
+     *     // ... data to create a SenderAffinity
+     *   }
+     * })
+     * 
+     */
+    create<T extends SenderAffinityCreateArgs>(args: SelectSubset<T, SenderAffinityCreateArgs<ExtArgs>>): Prisma__SenderAffinityClient<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SenderAffinities.
+     * @param {SenderAffinityCreateManyArgs} args - Arguments to create many SenderAffinities.
+     * @example
+     * // Create many SenderAffinities
+     * const senderAffinity = await prisma.senderAffinity.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SenderAffinityCreateManyArgs>(args?: SelectSubset<T, SenderAffinityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SenderAffinities and returns the data saved in the database.
+     * @param {SenderAffinityCreateManyAndReturnArgs} args - Arguments to create many SenderAffinities.
+     * @example
+     * // Create many SenderAffinities
+     * const senderAffinity = await prisma.senderAffinity.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SenderAffinities and only return the `id`
+     * const senderAffinityWithIdOnly = await prisma.senderAffinity.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SenderAffinityCreateManyAndReturnArgs>(args?: SelectSubset<T, SenderAffinityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SenderAffinity.
+     * @param {SenderAffinityDeleteArgs} args - Arguments to delete one SenderAffinity.
+     * @example
+     * // Delete one SenderAffinity
+     * const SenderAffinity = await prisma.senderAffinity.delete({
+     *   where: {
+     *     // ... filter to delete one SenderAffinity
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SenderAffinityDeleteArgs>(args: SelectSubset<T, SenderAffinityDeleteArgs<ExtArgs>>): Prisma__SenderAffinityClient<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SenderAffinity.
+     * @param {SenderAffinityUpdateArgs} args - Arguments to update one SenderAffinity.
+     * @example
+     * // Update one SenderAffinity
+     * const senderAffinity = await prisma.senderAffinity.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SenderAffinityUpdateArgs>(args: SelectSubset<T, SenderAffinityUpdateArgs<ExtArgs>>): Prisma__SenderAffinityClient<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SenderAffinities.
+     * @param {SenderAffinityDeleteManyArgs} args - Arguments to filter SenderAffinities to delete.
+     * @example
+     * // Delete a few SenderAffinities
+     * const { count } = await prisma.senderAffinity.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SenderAffinityDeleteManyArgs>(args?: SelectSubset<T, SenderAffinityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SenderAffinities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SenderAffinityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SenderAffinities
+     * const senderAffinity = await prisma.senderAffinity.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SenderAffinityUpdateManyArgs>(args: SelectSubset<T, SenderAffinityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SenderAffinities and returns the data updated in the database.
+     * @param {SenderAffinityUpdateManyAndReturnArgs} args - Arguments to update many SenderAffinities.
+     * @example
+     * // Update many SenderAffinities
+     * const senderAffinity = await prisma.senderAffinity.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SenderAffinities and only return the `id`
+     * const senderAffinityWithIdOnly = await prisma.senderAffinity.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SenderAffinityUpdateManyAndReturnArgs>(args: SelectSubset<T, SenderAffinityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SenderAffinity.
+     * @param {SenderAffinityUpsertArgs} args - Arguments to update or create a SenderAffinity.
+     * @example
+     * // Update or create a SenderAffinity
+     * const senderAffinity = await prisma.senderAffinity.upsert({
+     *   create: {
+     *     // ... data to create a SenderAffinity
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SenderAffinity we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SenderAffinityUpsertArgs>(args: SelectSubset<T, SenderAffinityUpsertArgs<ExtArgs>>): Prisma__SenderAffinityClient<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SenderAffinities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SenderAffinityCountArgs} args - Arguments to filter SenderAffinities to count.
+     * @example
+     * // Count the number of SenderAffinities
+     * const count = await prisma.senderAffinity.count({
+     *   where: {
+     *     // ... the filter for the SenderAffinities we want to count
+     *   }
+     * })
+    **/
+    count<T extends SenderAffinityCountArgs>(
+      args?: Subset<T, SenderAffinityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SenderAffinityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SenderAffinity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SenderAffinityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SenderAffinityAggregateArgs>(args: Subset<T, SenderAffinityAggregateArgs>): Prisma.PrismaPromise<GetSenderAffinityAggregateType<T>>
+
+    /**
+     * Group by SenderAffinity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SenderAffinityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SenderAffinityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SenderAffinityGroupByArgs['orderBy'] }
+        : { orderBy?: SenderAffinityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SenderAffinityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSenderAffinityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SenderAffinity model
+   */
+  readonly fields: SenderAffinityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SenderAffinity.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SenderAffinityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SenderAffinity model
+   */
+  interface SenderAffinityFieldRefs {
+    readonly id: FieldRef<"SenderAffinity", 'String'>
+    readonly userId: FieldRef<"SenderAffinity", 'String'>
+    readonly key: FieldRef<"SenderAffinity", 'String'>
+    readonly score: FieldRef<"SenderAffinity", 'Float'>
+    readonly signalCount: FieldRef<"SenderAffinity", 'Int'>
+    readonly updatedAt: FieldRef<"SenderAffinity", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SenderAffinity findUnique
+   */
+  export type SenderAffinityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityInclude<ExtArgs> | null
+    /**
+     * Filter, which SenderAffinity to fetch.
+     */
+    where: SenderAffinityWhereUniqueInput
+  }
+
+  /**
+   * SenderAffinity findUniqueOrThrow
+   */
+  export type SenderAffinityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityInclude<ExtArgs> | null
+    /**
+     * Filter, which SenderAffinity to fetch.
+     */
+    where: SenderAffinityWhereUniqueInput
+  }
+
+  /**
+   * SenderAffinity findFirst
+   */
+  export type SenderAffinityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityInclude<ExtArgs> | null
+    /**
+     * Filter, which SenderAffinity to fetch.
+     */
+    where?: SenderAffinityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SenderAffinities to fetch.
+     */
+    orderBy?: SenderAffinityOrderByWithRelationInput | SenderAffinityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SenderAffinities.
+     */
+    cursor?: SenderAffinityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SenderAffinities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SenderAffinities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SenderAffinities.
+     */
+    distinct?: SenderAffinityScalarFieldEnum | SenderAffinityScalarFieldEnum[]
+  }
+
+  /**
+   * SenderAffinity findFirstOrThrow
+   */
+  export type SenderAffinityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityInclude<ExtArgs> | null
+    /**
+     * Filter, which SenderAffinity to fetch.
+     */
+    where?: SenderAffinityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SenderAffinities to fetch.
+     */
+    orderBy?: SenderAffinityOrderByWithRelationInput | SenderAffinityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SenderAffinities.
+     */
+    cursor?: SenderAffinityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SenderAffinities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SenderAffinities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SenderAffinities.
+     */
+    distinct?: SenderAffinityScalarFieldEnum | SenderAffinityScalarFieldEnum[]
+  }
+
+  /**
+   * SenderAffinity findMany
+   */
+  export type SenderAffinityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityInclude<ExtArgs> | null
+    /**
+     * Filter, which SenderAffinities to fetch.
+     */
+    where?: SenderAffinityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SenderAffinities to fetch.
+     */
+    orderBy?: SenderAffinityOrderByWithRelationInput | SenderAffinityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SenderAffinities.
+     */
+    cursor?: SenderAffinityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SenderAffinities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SenderAffinities.
+     */
+    skip?: number
+    distinct?: SenderAffinityScalarFieldEnum | SenderAffinityScalarFieldEnum[]
+  }
+
+  /**
+   * SenderAffinity create
+   */
+  export type SenderAffinityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SenderAffinity.
+     */
+    data: XOR<SenderAffinityCreateInput, SenderAffinityUncheckedCreateInput>
+  }
+
+  /**
+   * SenderAffinity createMany
+   */
+  export type SenderAffinityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SenderAffinities.
+     */
+    data: SenderAffinityCreateManyInput | SenderAffinityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SenderAffinity createManyAndReturn
+   */
+  export type SenderAffinityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * The data used to create many SenderAffinities.
+     */
+    data: SenderAffinityCreateManyInput | SenderAffinityCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SenderAffinity update
+   */
+  export type SenderAffinityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SenderAffinity.
+     */
+    data: XOR<SenderAffinityUpdateInput, SenderAffinityUncheckedUpdateInput>
+    /**
+     * Choose, which SenderAffinity to update.
+     */
+    where: SenderAffinityWhereUniqueInput
+  }
+
+  /**
+   * SenderAffinity updateMany
+   */
+  export type SenderAffinityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SenderAffinities.
+     */
+    data: XOR<SenderAffinityUpdateManyMutationInput, SenderAffinityUncheckedUpdateManyInput>
+    /**
+     * Filter which SenderAffinities to update
+     */
+    where?: SenderAffinityWhereInput
+    /**
+     * Limit how many SenderAffinities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SenderAffinity updateManyAndReturn
+   */
+  export type SenderAffinityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * The data used to update SenderAffinities.
+     */
+    data: XOR<SenderAffinityUpdateManyMutationInput, SenderAffinityUncheckedUpdateManyInput>
+    /**
+     * Filter which SenderAffinities to update
+     */
+    where?: SenderAffinityWhereInput
+    /**
+     * Limit how many SenderAffinities to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SenderAffinity upsert
+   */
+  export type SenderAffinityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SenderAffinity to update in case it exists.
+     */
+    where: SenderAffinityWhereUniqueInput
+    /**
+     * In case the SenderAffinity found by the `where` argument doesn't exist, create a new SenderAffinity with this data.
+     */
+    create: XOR<SenderAffinityCreateInput, SenderAffinityUncheckedCreateInput>
+    /**
+     * In case the SenderAffinity was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SenderAffinityUpdateInput, SenderAffinityUncheckedUpdateInput>
+  }
+
+  /**
+   * SenderAffinity delete
+   */
+  export type SenderAffinityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityInclude<ExtArgs> | null
+    /**
+     * Filter which SenderAffinity to delete.
+     */
+    where: SenderAffinityWhereUniqueInput
+  }
+
+  /**
+   * SenderAffinity deleteMany
+   */
+  export type SenderAffinityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SenderAffinities to delete
+     */
+    where?: SenderAffinityWhereInput
+    /**
+     * Limit how many SenderAffinities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SenderAffinity without action
+   */
+  export type SenderAffinityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SenderAffinity
+     */
+    select?: SenderAffinitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SenderAffinity
+     */
+    omit?: SenderAffinityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SenderAffinityInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RuleSuggestion
+   */
+
+  export type AggregateRuleSuggestion = {
+    _count: RuleSuggestionCountAggregateOutputType | null
+    _min: RuleSuggestionMinAggregateOutputType | null
+    _max: RuleSuggestionMaxAggregateOutputType | null
+  }
+
+  export type RuleSuggestionMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    kind: string | null
+    status: string | null
+    createdAt: Date | null
+  }
+
+  export type RuleSuggestionMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    kind: string | null
+    status: string | null
+    createdAt: Date | null
+  }
+
+  export type RuleSuggestionCountAggregateOutputType = {
+    id: number
+    userId: number
+    kind: number
+    payload: number
+    status: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type RuleSuggestionMinAggregateInputType = {
+    id?: true
+    userId?: true
+    kind?: true
+    status?: true
+    createdAt?: true
+  }
+
+  export type RuleSuggestionMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    kind?: true
+    status?: true
+    createdAt?: true
+  }
+
+  export type RuleSuggestionCountAggregateInputType = {
+    id?: true
+    userId?: true
+    kind?: true
+    payload?: true
+    status?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type RuleSuggestionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RuleSuggestion to aggregate.
+     */
+    where?: RuleSuggestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RuleSuggestions to fetch.
+     */
+    orderBy?: RuleSuggestionOrderByWithRelationInput | RuleSuggestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RuleSuggestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RuleSuggestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RuleSuggestions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RuleSuggestions
+    **/
+    _count?: true | RuleSuggestionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RuleSuggestionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RuleSuggestionMaxAggregateInputType
+  }
+
+  export type GetRuleSuggestionAggregateType<T extends RuleSuggestionAggregateArgs> = {
+        [P in keyof T & keyof AggregateRuleSuggestion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRuleSuggestion[P]>
+      : GetScalarType<T[P], AggregateRuleSuggestion[P]>
+  }
+
+
+
+
+  export type RuleSuggestionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RuleSuggestionWhereInput
+    orderBy?: RuleSuggestionOrderByWithAggregationInput | RuleSuggestionOrderByWithAggregationInput[]
+    by: RuleSuggestionScalarFieldEnum[] | RuleSuggestionScalarFieldEnum
+    having?: RuleSuggestionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RuleSuggestionCountAggregateInputType | true
+    _min?: RuleSuggestionMinAggregateInputType
+    _max?: RuleSuggestionMaxAggregateInputType
+  }
+
+  export type RuleSuggestionGroupByOutputType = {
+    id: string
+    userId: string
+    kind: string
+    payload: JsonValue
+    status: string
+    createdAt: Date
+    _count: RuleSuggestionCountAggregateOutputType | null
+    _min: RuleSuggestionMinAggregateOutputType | null
+    _max: RuleSuggestionMaxAggregateOutputType | null
+  }
+
+  type GetRuleSuggestionGroupByPayload<T extends RuleSuggestionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RuleSuggestionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RuleSuggestionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RuleSuggestionGroupByOutputType[P]>
+            : GetScalarType<T[P], RuleSuggestionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RuleSuggestionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    kind?: boolean
+    payload?: boolean
+    status?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["ruleSuggestion"]>
+
+  export type RuleSuggestionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    kind?: boolean
+    payload?: boolean
+    status?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["ruleSuggestion"]>
+
+  export type RuleSuggestionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    kind?: boolean
+    payload?: boolean
+    status?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["ruleSuggestion"]>
+
+  export type RuleSuggestionSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    kind?: boolean
+    payload?: boolean
+    status?: boolean
+    createdAt?: boolean
+  }
+
+  export type RuleSuggestionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "kind" | "payload" | "status" | "createdAt", ExtArgs["result"]["ruleSuggestion"]>
+  export type RuleSuggestionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RuleSuggestionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RuleSuggestionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $RuleSuggestionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RuleSuggestion"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      kind: string
+      payload: Prisma.JsonValue
+      status: string
+      createdAt: Date
+    }, ExtArgs["result"]["ruleSuggestion"]>
+    composites: {}
+  }
+
+  type RuleSuggestionGetPayload<S extends boolean | null | undefined | RuleSuggestionDefaultArgs> = $Result.GetResult<Prisma.$RuleSuggestionPayload, S>
+
+  type RuleSuggestionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RuleSuggestionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RuleSuggestionCountAggregateInputType | true
+    }
+
+  export interface RuleSuggestionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RuleSuggestion'], meta: { name: 'RuleSuggestion' } }
+    /**
+     * Find zero or one RuleSuggestion that matches the filter.
+     * @param {RuleSuggestionFindUniqueArgs} args - Arguments to find a RuleSuggestion
+     * @example
+     * // Get one RuleSuggestion
+     * const ruleSuggestion = await prisma.ruleSuggestion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RuleSuggestionFindUniqueArgs>(args: SelectSubset<T, RuleSuggestionFindUniqueArgs<ExtArgs>>): Prisma__RuleSuggestionClient<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RuleSuggestion that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RuleSuggestionFindUniqueOrThrowArgs} args - Arguments to find a RuleSuggestion
+     * @example
+     * // Get one RuleSuggestion
+     * const ruleSuggestion = await prisma.ruleSuggestion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RuleSuggestionFindUniqueOrThrowArgs>(args: SelectSubset<T, RuleSuggestionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RuleSuggestionClient<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RuleSuggestion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RuleSuggestionFindFirstArgs} args - Arguments to find a RuleSuggestion
+     * @example
+     * // Get one RuleSuggestion
+     * const ruleSuggestion = await prisma.ruleSuggestion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RuleSuggestionFindFirstArgs>(args?: SelectSubset<T, RuleSuggestionFindFirstArgs<ExtArgs>>): Prisma__RuleSuggestionClient<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RuleSuggestion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RuleSuggestionFindFirstOrThrowArgs} args - Arguments to find a RuleSuggestion
+     * @example
+     * // Get one RuleSuggestion
+     * const ruleSuggestion = await prisma.ruleSuggestion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RuleSuggestionFindFirstOrThrowArgs>(args?: SelectSubset<T, RuleSuggestionFindFirstOrThrowArgs<ExtArgs>>): Prisma__RuleSuggestionClient<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RuleSuggestions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RuleSuggestionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RuleSuggestions
+     * const ruleSuggestions = await prisma.ruleSuggestion.findMany()
+     * 
+     * // Get first 10 RuleSuggestions
+     * const ruleSuggestions = await prisma.ruleSuggestion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const ruleSuggestionWithIdOnly = await prisma.ruleSuggestion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RuleSuggestionFindManyArgs>(args?: SelectSubset<T, RuleSuggestionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RuleSuggestion.
+     * @param {RuleSuggestionCreateArgs} args - Arguments to create a RuleSuggestion.
+     * @example
+     * // Create one RuleSuggestion
+     * const RuleSuggestion = await prisma.ruleSuggestion.create({
+     *   data: {
+     *     // ... data to create a RuleSuggestion
+     *   }
+     * })
+     * 
+     */
+    create<T extends RuleSuggestionCreateArgs>(args: SelectSubset<T, RuleSuggestionCreateArgs<ExtArgs>>): Prisma__RuleSuggestionClient<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RuleSuggestions.
+     * @param {RuleSuggestionCreateManyArgs} args - Arguments to create many RuleSuggestions.
+     * @example
+     * // Create many RuleSuggestions
+     * const ruleSuggestion = await prisma.ruleSuggestion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RuleSuggestionCreateManyArgs>(args?: SelectSubset<T, RuleSuggestionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RuleSuggestions and returns the data saved in the database.
+     * @param {RuleSuggestionCreateManyAndReturnArgs} args - Arguments to create many RuleSuggestions.
+     * @example
+     * // Create many RuleSuggestions
+     * const ruleSuggestion = await prisma.ruleSuggestion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RuleSuggestions and only return the `id`
+     * const ruleSuggestionWithIdOnly = await prisma.ruleSuggestion.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RuleSuggestionCreateManyAndReturnArgs>(args?: SelectSubset<T, RuleSuggestionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RuleSuggestion.
+     * @param {RuleSuggestionDeleteArgs} args - Arguments to delete one RuleSuggestion.
+     * @example
+     * // Delete one RuleSuggestion
+     * const RuleSuggestion = await prisma.ruleSuggestion.delete({
+     *   where: {
+     *     // ... filter to delete one RuleSuggestion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RuleSuggestionDeleteArgs>(args: SelectSubset<T, RuleSuggestionDeleteArgs<ExtArgs>>): Prisma__RuleSuggestionClient<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RuleSuggestion.
+     * @param {RuleSuggestionUpdateArgs} args - Arguments to update one RuleSuggestion.
+     * @example
+     * // Update one RuleSuggestion
+     * const ruleSuggestion = await prisma.ruleSuggestion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RuleSuggestionUpdateArgs>(args: SelectSubset<T, RuleSuggestionUpdateArgs<ExtArgs>>): Prisma__RuleSuggestionClient<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RuleSuggestions.
+     * @param {RuleSuggestionDeleteManyArgs} args - Arguments to filter RuleSuggestions to delete.
+     * @example
+     * // Delete a few RuleSuggestions
+     * const { count } = await prisma.ruleSuggestion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RuleSuggestionDeleteManyArgs>(args?: SelectSubset<T, RuleSuggestionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RuleSuggestions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RuleSuggestionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RuleSuggestions
+     * const ruleSuggestion = await prisma.ruleSuggestion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RuleSuggestionUpdateManyArgs>(args: SelectSubset<T, RuleSuggestionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RuleSuggestions and returns the data updated in the database.
+     * @param {RuleSuggestionUpdateManyAndReturnArgs} args - Arguments to update many RuleSuggestions.
+     * @example
+     * // Update many RuleSuggestions
+     * const ruleSuggestion = await prisma.ruleSuggestion.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RuleSuggestions and only return the `id`
+     * const ruleSuggestionWithIdOnly = await prisma.ruleSuggestion.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RuleSuggestionUpdateManyAndReturnArgs>(args: SelectSubset<T, RuleSuggestionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RuleSuggestion.
+     * @param {RuleSuggestionUpsertArgs} args - Arguments to update or create a RuleSuggestion.
+     * @example
+     * // Update or create a RuleSuggestion
+     * const ruleSuggestion = await prisma.ruleSuggestion.upsert({
+     *   create: {
+     *     // ... data to create a RuleSuggestion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RuleSuggestion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RuleSuggestionUpsertArgs>(args: SelectSubset<T, RuleSuggestionUpsertArgs<ExtArgs>>): Prisma__RuleSuggestionClient<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RuleSuggestions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RuleSuggestionCountArgs} args - Arguments to filter RuleSuggestions to count.
+     * @example
+     * // Count the number of RuleSuggestions
+     * const count = await prisma.ruleSuggestion.count({
+     *   where: {
+     *     // ... the filter for the RuleSuggestions we want to count
+     *   }
+     * })
+    **/
+    count<T extends RuleSuggestionCountArgs>(
+      args?: Subset<T, RuleSuggestionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RuleSuggestionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RuleSuggestion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RuleSuggestionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RuleSuggestionAggregateArgs>(args: Subset<T, RuleSuggestionAggregateArgs>): Prisma.PrismaPromise<GetRuleSuggestionAggregateType<T>>
+
+    /**
+     * Group by RuleSuggestion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RuleSuggestionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RuleSuggestionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RuleSuggestionGroupByArgs['orderBy'] }
+        : { orderBy?: RuleSuggestionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RuleSuggestionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRuleSuggestionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RuleSuggestion model
+   */
+  readonly fields: RuleSuggestionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RuleSuggestion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RuleSuggestionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RuleSuggestion model
+   */
+  interface RuleSuggestionFieldRefs {
+    readonly id: FieldRef<"RuleSuggestion", 'String'>
+    readonly userId: FieldRef<"RuleSuggestion", 'String'>
+    readonly kind: FieldRef<"RuleSuggestion", 'String'>
+    readonly payload: FieldRef<"RuleSuggestion", 'Json'>
+    readonly status: FieldRef<"RuleSuggestion", 'String'>
+    readonly createdAt: FieldRef<"RuleSuggestion", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RuleSuggestion findUnique
+   */
+  export type RuleSuggestionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionInclude<ExtArgs> | null
+    /**
+     * Filter, which RuleSuggestion to fetch.
+     */
+    where: RuleSuggestionWhereUniqueInput
+  }
+
+  /**
+   * RuleSuggestion findUniqueOrThrow
+   */
+  export type RuleSuggestionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionInclude<ExtArgs> | null
+    /**
+     * Filter, which RuleSuggestion to fetch.
+     */
+    where: RuleSuggestionWhereUniqueInput
+  }
+
+  /**
+   * RuleSuggestion findFirst
+   */
+  export type RuleSuggestionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionInclude<ExtArgs> | null
+    /**
+     * Filter, which RuleSuggestion to fetch.
+     */
+    where?: RuleSuggestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RuleSuggestions to fetch.
+     */
+    orderBy?: RuleSuggestionOrderByWithRelationInput | RuleSuggestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RuleSuggestions.
+     */
+    cursor?: RuleSuggestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RuleSuggestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RuleSuggestions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RuleSuggestions.
+     */
+    distinct?: RuleSuggestionScalarFieldEnum | RuleSuggestionScalarFieldEnum[]
+  }
+
+  /**
+   * RuleSuggestion findFirstOrThrow
+   */
+  export type RuleSuggestionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionInclude<ExtArgs> | null
+    /**
+     * Filter, which RuleSuggestion to fetch.
+     */
+    where?: RuleSuggestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RuleSuggestions to fetch.
+     */
+    orderBy?: RuleSuggestionOrderByWithRelationInput | RuleSuggestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RuleSuggestions.
+     */
+    cursor?: RuleSuggestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RuleSuggestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RuleSuggestions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RuleSuggestions.
+     */
+    distinct?: RuleSuggestionScalarFieldEnum | RuleSuggestionScalarFieldEnum[]
+  }
+
+  /**
+   * RuleSuggestion findMany
+   */
+  export type RuleSuggestionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionInclude<ExtArgs> | null
+    /**
+     * Filter, which RuleSuggestions to fetch.
+     */
+    where?: RuleSuggestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RuleSuggestions to fetch.
+     */
+    orderBy?: RuleSuggestionOrderByWithRelationInput | RuleSuggestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RuleSuggestions.
+     */
+    cursor?: RuleSuggestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RuleSuggestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RuleSuggestions.
+     */
+    skip?: number
+    distinct?: RuleSuggestionScalarFieldEnum | RuleSuggestionScalarFieldEnum[]
+  }
+
+  /**
+   * RuleSuggestion create
+   */
+  export type RuleSuggestionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RuleSuggestion.
+     */
+    data: XOR<RuleSuggestionCreateInput, RuleSuggestionUncheckedCreateInput>
+  }
+
+  /**
+   * RuleSuggestion createMany
+   */
+  export type RuleSuggestionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RuleSuggestions.
+     */
+    data: RuleSuggestionCreateManyInput | RuleSuggestionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RuleSuggestion createManyAndReturn
+   */
+  export type RuleSuggestionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * The data used to create many RuleSuggestions.
+     */
+    data: RuleSuggestionCreateManyInput | RuleSuggestionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RuleSuggestion update
+   */
+  export type RuleSuggestionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RuleSuggestion.
+     */
+    data: XOR<RuleSuggestionUpdateInput, RuleSuggestionUncheckedUpdateInput>
+    /**
+     * Choose, which RuleSuggestion to update.
+     */
+    where: RuleSuggestionWhereUniqueInput
+  }
+
+  /**
+   * RuleSuggestion updateMany
+   */
+  export type RuleSuggestionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RuleSuggestions.
+     */
+    data: XOR<RuleSuggestionUpdateManyMutationInput, RuleSuggestionUncheckedUpdateManyInput>
+    /**
+     * Filter which RuleSuggestions to update
+     */
+    where?: RuleSuggestionWhereInput
+    /**
+     * Limit how many RuleSuggestions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RuleSuggestion updateManyAndReturn
+   */
+  export type RuleSuggestionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * The data used to update RuleSuggestions.
+     */
+    data: XOR<RuleSuggestionUpdateManyMutationInput, RuleSuggestionUncheckedUpdateManyInput>
+    /**
+     * Filter which RuleSuggestions to update
+     */
+    where?: RuleSuggestionWhereInput
+    /**
+     * Limit how many RuleSuggestions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RuleSuggestion upsert
+   */
+  export type RuleSuggestionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RuleSuggestion to update in case it exists.
+     */
+    where: RuleSuggestionWhereUniqueInput
+    /**
+     * In case the RuleSuggestion found by the `where` argument doesn't exist, create a new RuleSuggestion with this data.
+     */
+    create: XOR<RuleSuggestionCreateInput, RuleSuggestionUncheckedCreateInput>
+    /**
+     * In case the RuleSuggestion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RuleSuggestionUpdateInput, RuleSuggestionUncheckedUpdateInput>
+  }
+
+  /**
+   * RuleSuggestion delete
+   */
+  export type RuleSuggestionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionInclude<ExtArgs> | null
+    /**
+     * Filter which RuleSuggestion to delete.
+     */
+    where: RuleSuggestionWhereUniqueInput
+  }
+
+  /**
+   * RuleSuggestion deleteMany
+   */
+  export type RuleSuggestionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RuleSuggestions to delete
+     */
+    where?: RuleSuggestionWhereInput
+    /**
+     * Limit how many RuleSuggestions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RuleSuggestion without action
+   */
+  export type RuleSuggestionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RuleSuggestion
+     */
+    select?: RuleSuggestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RuleSuggestion
+     */
+    omit?: RuleSuggestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RuleSuggestionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -18837,6 +26241,7 @@ export namespace Prisma {
     label: 'label',
     reason: 'reason',
     model: 'model',
+    source: 'source',
     createdAt: 'createdAt'
   };
 
@@ -18938,6 +26343,85 @@ export namespace Prisma {
   };
 
   export type LinkCodeScalarFieldEnum = (typeof LinkCodeScalarFieldEnum)[keyof typeof LinkCodeScalarFieldEnum]
+
+
+  export const SentMessageSampleScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    corsairEntityId: 'corsairEntityId',
+    threadId: 'threadId',
+    toDomain: 'toDomain',
+    bodyText: 'bodyText',
+    wordCount: 'wordCount',
+    createdAt: 'createdAt'
+  };
+
+  export type SentMessageSampleScalarFieldEnum = (typeof SentMessageSampleScalarFieldEnum)[keyof typeof SentMessageSampleScalarFieldEnum]
+
+
+  export const StyleProfileScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    summary: 'summary',
+    sampleCount: 'sampleCount',
+    updatedAt: 'updatedAt'
+  };
+
+  export type StyleProfileScalarFieldEnum = (typeof StyleProfileScalarFieldEnum)[keyof typeof StyleProfileScalarFieldEnum]
+
+
+  export const ThreadSummaryScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    threadId: 'threadId',
+    entityVersion: 'entityVersion',
+    summary: 'summary',
+    keyPoints: 'keyPoints',
+    actionItems: 'actionItems',
+    unansweredQuestions: 'unansweredQuestions',
+    model: 'model',
+    createdAt: 'createdAt'
+  };
+
+  export type ThreadSummaryScalarFieldEnum = (typeof ThreadSummaryScalarFieldEnum)[keyof typeof ThreadSummaryScalarFieldEnum]
+
+
+  export const TriageFeedbackScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    threadId: 'threadId',
+    fromEmail: 'fromEmail',
+    fromDomain: 'fromDomain',
+    signal: 'signal',
+    weight: 'weight',
+    createdAt: 'createdAt'
+  };
+
+  export type TriageFeedbackScalarFieldEnum = (typeof TriageFeedbackScalarFieldEnum)[keyof typeof TriageFeedbackScalarFieldEnum]
+
+
+  export const SenderAffinityScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    key: 'key',
+    score: 'score',
+    signalCount: 'signalCount',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SenderAffinityScalarFieldEnum = (typeof SenderAffinityScalarFieldEnum)[keyof typeof SenderAffinityScalarFieldEnum]
+
+
+  export const RuleSuggestionScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    kind: 'kind',
+    payload: 'payload',
+    status: 'status',
+    createdAt: 'createdAt'
+  };
+
+  export type RuleSuggestionScalarFieldEnum = (typeof RuleSuggestionScalarFieldEnum)[keyof typeof RuleSuggestionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -19341,6 +26825,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadListRelationFilter
     scheduledEmails?: ScheduledEmailListRelationFilter
     followUps?: FollowUpListRelationFilter
+    sentSamples?: SentMessageSampleListRelationFilter
+    styleProfile?: XOR<StyleProfileNullableScalarRelationFilter, StyleProfileWhereInput> | null
+    threadSummaries?: ThreadSummaryListRelationFilter
+    triageFeedback?: TriageFeedbackListRelationFilter
+    senderAffinities?: SenderAffinityListRelationFilter
+    ruleSuggestions?: RuleSuggestionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -19357,6 +26847,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadOrderByRelationAggregateInput
     scheduledEmails?: ScheduledEmailOrderByRelationAggregateInput
     followUps?: FollowUpOrderByRelationAggregateInput
+    sentSamples?: SentMessageSampleOrderByRelationAggregateInput
+    styleProfile?: StyleProfileOrderByWithRelationInput
+    threadSummaries?: ThreadSummaryOrderByRelationAggregateInput
+    triageFeedback?: TriageFeedbackOrderByRelationAggregateInput
+    senderAffinities?: SenderAffinityOrderByRelationAggregateInput
+    ruleSuggestions?: RuleSuggestionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -19376,6 +26872,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadListRelationFilter
     scheduledEmails?: ScheduledEmailListRelationFilter
     followUps?: FollowUpListRelationFilter
+    sentSamples?: SentMessageSampleListRelationFilter
+    styleProfile?: XOR<StyleProfileNullableScalarRelationFilter, StyleProfileWhereInput> | null
+    threadSummaries?: ThreadSummaryListRelationFilter
+    triageFeedback?: TriageFeedbackListRelationFilter
+    senderAffinities?: SenderAffinityListRelationFilter
+    ruleSuggestions?: RuleSuggestionListRelationFilter
   }, "id">
 
   export type UserOrderByWithAggregationInput = {
@@ -19528,6 +27030,7 @@ export namespace Prisma {
     label?: StringFilter<"PriorityScore"> | string
     reason?: StringNullableFilter<"PriorityScore"> | string | null
     model?: StringNullableFilter<"PriorityScore"> | string | null
+    source?: StringFilter<"PriorityScore"> | string
     createdAt?: DateTimeFilter<"PriorityScore"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -19540,6 +27043,7 @@ export namespace Prisma {
     label?: SortOrder
     reason?: SortOrderInput | SortOrder
     model?: SortOrderInput | SortOrder
+    source?: SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
   }
@@ -19556,6 +27060,7 @@ export namespace Prisma {
     label?: StringFilter<"PriorityScore"> | string
     reason?: StringNullableFilter<"PriorityScore"> | string | null
     model?: StringNullableFilter<"PriorityScore"> | string | null
+    source?: StringFilter<"PriorityScore"> | string
     createdAt?: DateTimeFilter<"PriorityScore"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId_threadId">
@@ -19568,6 +27073,7 @@ export namespace Prisma {
     label?: SortOrder
     reason?: SortOrderInput | SortOrder
     model?: SortOrderInput | SortOrder
+    source?: SortOrder
     createdAt?: SortOrder
     _count?: PriorityScoreCountOrderByAggregateInput
     _max?: PriorityScoreMaxOrderByAggregateInput
@@ -19585,6 +27091,7 @@ export namespace Prisma {
     label?: StringWithAggregatesFilter<"PriorityScore"> | string
     reason?: StringNullableWithAggregatesFilter<"PriorityScore"> | string | null
     model?: StringNullableWithAggregatesFilter<"PriorityScore"> | string | null
+    source?: StringWithAggregatesFilter<"PriorityScore"> | string
     createdAt?: DateTimeWithAggregatesFilter<"PriorityScore"> | Date | string
   }
 
@@ -20072,6 +27579,412 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"LinkCode"> | Date | string
   }
 
+  export type SentMessageSampleWhereInput = {
+    AND?: SentMessageSampleWhereInput | SentMessageSampleWhereInput[]
+    OR?: SentMessageSampleWhereInput[]
+    NOT?: SentMessageSampleWhereInput | SentMessageSampleWhereInput[]
+    id?: StringFilter<"SentMessageSample"> | string
+    userId?: StringFilter<"SentMessageSample"> | string
+    corsairEntityId?: StringFilter<"SentMessageSample"> | string
+    threadId?: StringFilter<"SentMessageSample"> | string
+    toDomain?: StringFilter<"SentMessageSample"> | string
+    bodyText?: StringFilter<"SentMessageSample"> | string
+    wordCount?: IntFilter<"SentMessageSample"> | number
+    createdAt?: DateTimeFilter<"SentMessageSample"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type SentMessageSampleOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    threadId?: SortOrder
+    toDomain?: SortOrder
+    bodyText?: SortOrder
+    wordCount?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type SentMessageSampleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_corsairEntityId?: SentMessageSampleUserIdCorsairEntityIdCompoundUniqueInput
+    AND?: SentMessageSampleWhereInput | SentMessageSampleWhereInput[]
+    OR?: SentMessageSampleWhereInput[]
+    NOT?: SentMessageSampleWhereInput | SentMessageSampleWhereInput[]
+    userId?: StringFilter<"SentMessageSample"> | string
+    corsairEntityId?: StringFilter<"SentMessageSample"> | string
+    threadId?: StringFilter<"SentMessageSample"> | string
+    toDomain?: StringFilter<"SentMessageSample"> | string
+    bodyText?: StringFilter<"SentMessageSample"> | string
+    wordCount?: IntFilter<"SentMessageSample"> | number
+    createdAt?: DateTimeFilter<"SentMessageSample"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId_corsairEntityId">
+
+  export type SentMessageSampleOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    threadId?: SortOrder
+    toDomain?: SortOrder
+    bodyText?: SortOrder
+    wordCount?: SortOrder
+    createdAt?: SortOrder
+    _count?: SentMessageSampleCountOrderByAggregateInput
+    _avg?: SentMessageSampleAvgOrderByAggregateInput
+    _max?: SentMessageSampleMaxOrderByAggregateInput
+    _min?: SentMessageSampleMinOrderByAggregateInput
+    _sum?: SentMessageSampleSumOrderByAggregateInput
+  }
+
+  export type SentMessageSampleScalarWhereWithAggregatesInput = {
+    AND?: SentMessageSampleScalarWhereWithAggregatesInput | SentMessageSampleScalarWhereWithAggregatesInput[]
+    OR?: SentMessageSampleScalarWhereWithAggregatesInput[]
+    NOT?: SentMessageSampleScalarWhereWithAggregatesInput | SentMessageSampleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SentMessageSample"> | string
+    userId?: StringWithAggregatesFilter<"SentMessageSample"> | string
+    corsairEntityId?: StringWithAggregatesFilter<"SentMessageSample"> | string
+    threadId?: StringWithAggregatesFilter<"SentMessageSample"> | string
+    toDomain?: StringWithAggregatesFilter<"SentMessageSample"> | string
+    bodyText?: StringWithAggregatesFilter<"SentMessageSample"> | string
+    wordCount?: IntWithAggregatesFilter<"SentMessageSample"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"SentMessageSample"> | Date | string
+  }
+
+  export type StyleProfileWhereInput = {
+    AND?: StyleProfileWhereInput | StyleProfileWhereInput[]
+    OR?: StyleProfileWhereInput[]
+    NOT?: StyleProfileWhereInput | StyleProfileWhereInput[]
+    id?: StringFilter<"StyleProfile"> | string
+    userId?: StringFilter<"StyleProfile"> | string
+    summary?: JsonFilter<"StyleProfile">
+    sampleCount?: IntFilter<"StyleProfile"> | number
+    updatedAt?: DateTimeFilter<"StyleProfile"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type StyleProfileOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    summary?: SortOrder
+    sampleCount?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type StyleProfileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: StyleProfileWhereInput | StyleProfileWhereInput[]
+    OR?: StyleProfileWhereInput[]
+    NOT?: StyleProfileWhereInput | StyleProfileWhereInput[]
+    summary?: JsonFilter<"StyleProfile">
+    sampleCount?: IntFilter<"StyleProfile"> | number
+    updatedAt?: DateTimeFilter<"StyleProfile"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type StyleProfileOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    summary?: SortOrder
+    sampleCount?: SortOrder
+    updatedAt?: SortOrder
+    _count?: StyleProfileCountOrderByAggregateInput
+    _avg?: StyleProfileAvgOrderByAggregateInput
+    _max?: StyleProfileMaxOrderByAggregateInput
+    _min?: StyleProfileMinOrderByAggregateInput
+    _sum?: StyleProfileSumOrderByAggregateInput
+  }
+
+  export type StyleProfileScalarWhereWithAggregatesInput = {
+    AND?: StyleProfileScalarWhereWithAggregatesInput | StyleProfileScalarWhereWithAggregatesInput[]
+    OR?: StyleProfileScalarWhereWithAggregatesInput[]
+    NOT?: StyleProfileScalarWhereWithAggregatesInput | StyleProfileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"StyleProfile"> | string
+    userId?: StringWithAggregatesFilter<"StyleProfile"> | string
+    summary?: JsonWithAggregatesFilter<"StyleProfile">
+    sampleCount?: IntWithAggregatesFilter<"StyleProfile"> | number
+    updatedAt?: DateTimeWithAggregatesFilter<"StyleProfile"> | Date | string
+  }
+
+  export type ThreadSummaryWhereInput = {
+    AND?: ThreadSummaryWhereInput | ThreadSummaryWhereInput[]
+    OR?: ThreadSummaryWhereInput[]
+    NOT?: ThreadSummaryWhereInput | ThreadSummaryWhereInput[]
+    id?: StringFilter<"ThreadSummary"> | string
+    userId?: StringFilter<"ThreadSummary"> | string
+    threadId?: StringFilter<"ThreadSummary"> | string
+    entityVersion?: StringFilter<"ThreadSummary"> | string
+    summary?: StringFilter<"ThreadSummary"> | string
+    keyPoints?: JsonFilter<"ThreadSummary">
+    actionItems?: JsonFilter<"ThreadSummary">
+    unansweredQuestions?: JsonFilter<"ThreadSummary">
+    model?: StringNullableFilter<"ThreadSummary"> | string | null
+    createdAt?: DateTimeFilter<"ThreadSummary"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ThreadSummaryOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    threadId?: SortOrder
+    entityVersion?: SortOrder
+    summary?: SortOrder
+    keyPoints?: SortOrder
+    actionItems?: SortOrder
+    unansweredQuestions?: SortOrder
+    model?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ThreadSummaryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_threadId_entityVersion?: ThreadSummaryUserIdThreadIdEntityVersionCompoundUniqueInput
+    AND?: ThreadSummaryWhereInput | ThreadSummaryWhereInput[]
+    OR?: ThreadSummaryWhereInput[]
+    NOT?: ThreadSummaryWhereInput | ThreadSummaryWhereInput[]
+    userId?: StringFilter<"ThreadSummary"> | string
+    threadId?: StringFilter<"ThreadSummary"> | string
+    entityVersion?: StringFilter<"ThreadSummary"> | string
+    summary?: StringFilter<"ThreadSummary"> | string
+    keyPoints?: JsonFilter<"ThreadSummary">
+    actionItems?: JsonFilter<"ThreadSummary">
+    unansweredQuestions?: JsonFilter<"ThreadSummary">
+    model?: StringNullableFilter<"ThreadSummary"> | string | null
+    createdAt?: DateTimeFilter<"ThreadSummary"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId_threadId_entityVersion">
+
+  export type ThreadSummaryOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    threadId?: SortOrder
+    entityVersion?: SortOrder
+    summary?: SortOrder
+    keyPoints?: SortOrder
+    actionItems?: SortOrder
+    unansweredQuestions?: SortOrder
+    model?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ThreadSummaryCountOrderByAggregateInput
+    _max?: ThreadSummaryMaxOrderByAggregateInput
+    _min?: ThreadSummaryMinOrderByAggregateInput
+  }
+
+  export type ThreadSummaryScalarWhereWithAggregatesInput = {
+    AND?: ThreadSummaryScalarWhereWithAggregatesInput | ThreadSummaryScalarWhereWithAggregatesInput[]
+    OR?: ThreadSummaryScalarWhereWithAggregatesInput[]
+    NOT?: ThreadSummaryScalarWhereWithAggregatesInput | ThreadSummaryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ThreadSummary"> | string
+    userId?: StringWithAggregatesFilter<"ThreadSummary"> | string
+    threadId?: StringWithAggregatesFilter<"ThreadSummary"> | string
+    entityVersion?: StringWithAggregatesFilter<"ThreadSummary"> | string
+    summary?: StringWithAggregatesFilter<"ThreadSummary"> | string
+    keyPoints?: JsonWithAggregatesFilter<"ThreadSummary">
+    actionItems?: JsonWithAggregatesFilter<"ThreadSummary">
+    unansweredQuestions?: JsonWithAggregatesFilter<"ThreadSummary">
+    model?: StringNullableWithAggregatesFilter<"ThreadSummary"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ThreadSummary"> | Date | string
+  }
+
+  export type TriageFeedbackWhereInput = {
+    AND?: TriageFeedbackWhereInput | TriageFeedbackWhereInput[]
+    OR?: TriageFeedbackWhereInput[]
+    NOT?: TriageFeedbackWhereInput | TriageFeedbackWhereInput[]
+    id?: StringFilter<"TriageFeedback"> | string
+    userId?: StringFilter<"TriageFeedback"> | string
+    threadId?: StringFilter<"TriageFeedback"> | string
+    fromEmail?: StringFilter<"TriageFeedback"> | string
+    fromDomain?: StringFilter<"TriageFeedback"> | string
+    signal?: StringFilter<"TriageFeedback"> | string
+    weight?: FloatFilter<"TriageFeedback"> | number
+    createdAt?: DateTimeFilter<"TriageFeedback"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type TriageFeedbackOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    threadId?: SortOrder
+    fromEmail?: SortOrder
+    fromDomain?: SortOrder
+    signal?: SortOrder
+    weight?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type TriageFeedbackWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TriageFeedbackWhereInput | TriageFeedbackWhereInput[]
+    OR?: TriageFeedbackWhereInput[]
+    NOT?: TriageFeedbackWhereInput | TriageFeedbackWhereInput[]
+    userId?: StringFilter<"TriageFeedback"> | string
+    threadId?: StringFilter<"TriageFeedback"> | string
+    fromEmail?: StringFilter<"TriageFeedback"> | string
+    fromDomain?: StringFilter<"TriageFeedback"> | string
+    signal?: StringFilter<"TriageFeedback"> | string
+    weight?: FloatFilter<"TriageFeedback"> | number
+    createdAt?: DateTimeFilter<"TriageFeedback"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type TriageFeedbackOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    threadId?: SortOrder
+    fromEmail?: SortOrder
+    fromDomain?: SortOrder
+    signal?: SortOrder
+    weight?: SortOrder
+    createdAt?: SortOrder
+    _count?: TriageFeedbackCountOrderByAggregateInput
+    _avg?: TriageFeedbackAvgOrderByAggregateInput
+    _max?: TriageFeedbackMaxOrderByAggregateInput
+    _min?: TriageFeedbackMinOrderByAggregateInput
+    _sum?: TriageFeedbackSumOrderByAggregateInput
+  }
+
+  export type TriageFeedbackScalarWhereWithAggregatesInput = {
+    AND?: TriageFeedbackScalarWhereWithAggregatesInput | TriageFeedbackScalarWhereWithAggregatesInput[]
+    OR?: TriageFeedbackScalarWhereWithAggregatesInput[]
+    NOT?: TriageFeedbackScalarWhereWithAggregatesInput | TriageFeedbackScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TriageFeedback"> | string
+    userId?: StringWithAggregatesFilter<"TriageFeedback"> | string
+    threadId?: StringWithAggregatesFilter<"TriageFeedback"> | string
+    fromEmail?: StringWithAggregatesFilter<"TriageFeedback"> | string
+    fromDomain?: StringWithAggregatesFilter<"TriageFeedback"> | string
+    signal?: StringWithAggregatesFilter<"TriageFeedback"> | string
+    weight?: FloatWithAggregatesFilter<"TriageFeedback"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"TriageFeedback"> | Date | string
+  }
+
+  export type SenderAffinityWhereInput = {
+    AND?: SenderAffinityWhereInput | SenderAffinityWhereInput[]
+    OR?: SenderAffinityWhereInput[]
+    NOT?: SenderAffinityWhereInput | SenderAffinityWhereInput[]
+    id?: StringFilter<"SenderAffinity"> | string
+    userId?: StringFilter<"SenderAffinity"> | string
+    key?: StringFilter<"SenderAffinity"> | string
+    score?: FloatFilter<"SenderAffinity"> | number
+    signalCount?: IntFilter<"SenderAffinity"> | number
+    updatedAt?: DateTimeFilter<"SenderAffinity"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type SenderAffinityOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    key?: SortOrder
+    score?: SortOrder
+    signalCount?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type SenderAffinityWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_key?: SenderAffinityUserIdKeyCompoundUniqueInput
+    AND?: SenderAffinityWhereInput | SenderAffinityWhereInput[]
+    OR?: SenderAffinityWhereInput[]
+    NOT?: SenderAffinityWhereInput | SenderAffinityWhereInput[]
+    userId?: StringFilter<"SenderAffinity"> | string
+    key?: StringFilter<"SenderAffinity"> | string
+    score?: FloatFilter<"SenderAffinity"> | number
+    signalCount?: IntFilter<"SenderAffinity"> | number
+    updatedAt?: DateTimeFilter<"SenderAffinity"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId_key">
+
+  export type SenderAffinityOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    key?: SortOrder
+    score?: SortOrder
+    signalCount?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SenderAffinityCountOrderByAggregateInput
+    _avg?: SenderAffinityAvgOrderByAggregateInput
+    _max?: SenderAffinityMaxOrderByAggregateInput
+    _min?: SenderAffinityMinOrderByAggregateInput
+    _sum?: SenderAffinitySumOrderByAggregateInput
+  }
+
+  export type SenderAffinityScalarWhereWithAggregatesInput = {
+    AND?: SenderAffinityScalarWhereWithAggregatesInput | SenderAffinityScalarWhereWithAggregatesInput[]
+    OR?: SenderAffinityScalarWhereWithAggregatesInput[]
+    NOT?: SenderAffinityScalarWhereWithAggregatesInput | SenderAffinityScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SenderAffinity"> | string
+    userId?: StringWithAggregatesFilter<"SenderAffinity"> | string
+    key?: StringWithAggregatesFilter<"SenderAffinity"> | string
+    score?: FloatWithAggregatesFilter<"SenderAffinity"> | number
+    signalCount?: IntWithAggregatesFilter<"SenderAffinity"> | number
+    updatedAt?: DateTimeWithAggregatesFilter<"SenderAffinity"> | Date | string
+  }
+
+  export type RuleSuggestionWhereInput = {
+    AND?: RuleSuggestionWhereInput | RuleSuggestionWhereInput[]
+    OR?: RuleSuggestionWhereInput[]
+    NOT?: RuleSuggestionWhereInput | RuleSuggestionWhereInput[]
+    id?: StringFilter<"RuleSuggestion"> | string
+    userId?: StringFilter<"RuleSuggestion"> | string
+    kind?: StringFilter<"RuleSuggestion"> | string
+    payload?: JsonFilter<"RuleSuggestion">
+    status?: StringFilter<"RuleSuggestion"> | string
+    createdAt?: DateTimeFilter<"RuleSuggestion"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type RuleSuggestionOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    kind?: SortOrder
+    payload?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type RuleSuggestionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RuleSuggestionWhereInput | RuleSuggestionWhereInput[]
+    OR?: RuleSuggestionWhereInput[]
+    NOT?: RuleSuggestionWhereInput | RuleSuggestionWhereInput[]
+    userId?: StringFilter<"RuleSuggestion"> | string
+    kind?: StringFilter<"RuleSuggestion"> | string
+    payload?: JsonFilter<"RuleSuggestion">
+    status?: StringFilter<"RuleSuggestion"> | string
+    createdAt?: DateTimeFilter<"RuleSuggestion"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type RuleSuggestionOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    kind?: SortOrder
+    payload?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    _count?: RuleSuggestionCountOrderByAggregateInput
+    _max?: RuleSuggestionMaxOrderByAggregateInput
+    _min?: RuleSuggestionMinOrderByAggregateInput
+  }
+
+  export type RuleSuggestionScalarWhereWithAggregatesInput = {
+    AND?: RuleSuggestionScalarWhereWithAggregatesInput | RuleSuggestionScalarWhereWithAggregatesInput[]
+    OR?: RuleSuggestionScalarWhereWithAggregatesInput[]
+    NOT?: RuleSuggestionScalarWhereWithAggregatesInput | RuleSuggestionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RuleSuggestion"> | string
+    userId?: StringWithAggregatesFilter<"RuleSuggestion"> | string
+    kind?: StringWithAggregatesFilter<"RuleSuggestion"> | string
+    payload?: JsonWithAggregatesFilter<"RuleSuggestion">
+    status?: StringWithAggregatesFilter<"RuleSuggestion"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"RuleSuggestion"> | Date | string
+  }
+
   export type CorsairIntegrationCreateInput = {
     id: string
     createdAt?: Date | string
@@ -20375,6 +28288,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
     followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -20391,6 +28310,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
     followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -20407,6 +28332,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -20423,6 +28354,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -20573,6 +28510,7 @@ export namespace Prisma {
     label: string
     reason?: string | null
     model?: string | null
+    source?: string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutPriorityScoresInput
   }
@@ -20585,6 +28523,7 @@ export namespace Prisma {
     label: string
     reason?: string | null
     model?: string | null
+    source?: string
     createdAt?: Date | string
   }
 
@@ -20595,6 +28534,7 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPriorityScoresNestedInput
   }
@@ -20607,6 +28547,7 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -20618,6 +28559,7 @@ export namespace Prisma {
     label: string
     reason?: string | null
     model?: string | null
+    source?: string
     createdAt?: Date | string
   }
 
@@ -20628,6 +28570,7 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -20639,6 +28582,7 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -21169,6 +29113,427 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SentMessageSampleCreateInput = {
+    id?: string
+    corsairEntityId: string
+    threadId: string
+    toDomain: string
+    bodyText: string
+    wordCount: number
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutSentSamplesInput
+  }
+
+  export type SentMessageSampleUncheckedCreateInput = {
+    id?: string
+    userId: string
+    corsairEntityId: string
+    threadId: string
+    toDomain: string
+    bodyText: string
+    wordCount: number
+    createdAt?: Date | string
+  }
+
+  export type SentMessageSampleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    toDomain?: StringFieldUpdateOperationsInput | string
+    bodyText?: StringFieldUpdateOperationsInput | string
+    wordCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSentSamplesNestedInput
+  }
+
+  export type SentMessageSampleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    toDomain?: StringFieldUpdateOperationsInput | string
+    bodyText?: StringFieldUpdateOperationsInput | string
+    wordCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SentMessageSampleCreateManyInput = {
+    id?: string
+    userId: string
+    corsairEntityId: string
+    threadId: string
+    toDomain: string
+    bodyText: string
+    wordCount: number
+    createdAt?: Date | string
+  }
+
+  export type SentMessageSampleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    toDomain?: StringFieldUpdateOperationsInput | string
+    bodyText?: StringFieldUpdateOperationsInput | string
+    wordCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SentMessageSampleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    toDomain?: StringFieldUpdateOperationsInput | string
+    bodyText?: StringFieldUpdateOperationsInput | string
+    wordCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StyleProfileCreateInput = {
+    id?: string
+    summary?: JsonNullValueInput | InputJsonValue
+    sampleCount?: number
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutStyleProfileInput
+  }
+
+  export type StyleProfileUncheckedCreateInput = {
+    id?: string
+    userId: string
+    summary?: JsonNullValueInput | InputJsonValue
+    sampleCount?: number
+    updatedAt?: Date | string
+  }
+
+  export type StyleProfileUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    summary?: JsonNullValueInput | InputJsonValue
+    sampleCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutStyleProfileNestedInput
+  }
+
+  export type StyleProfileUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    summary?: JsonNullValueInput | InputJsonValue
+    sampleCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StyleProfileCreateManyInput = {
+    id?: string
+    userId: string
+    summary?: JsonNullValueInput | InputJsonValue
+    sampleCount?: number
+    updatedAt?: Date | string
+  }
+
+  export type StyleProfileUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    summary?: JsonNullValueInput | InputJsonValue
+    sampleCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StyleProfileUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    summary?: JsonNullValueInput | InputJsonValue
+    sampleCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadSummaryCreateInput = {
+    id?: string
+    threadId: string
+    entityVersion: string
+    summary: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: string | null
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutThreadSummariesInput
+  }
+
+  export type ThreadSummaryUncheckedCreateInput = {
+    id?: string
+    userId: string
+    threadId: string
+    entityVersion: string
+    summary: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ThreadSummaryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    entityVersion?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutThreadSummariesNestedInput
+  }
+
+  export type ThreadSummaryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    entityVersion?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadSummaryCreateManyInput = {
+    id?: string
+    userId: string
+    threadId: string
+    entityVersion: string
+    summary: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ThreadSummaryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    entityVersion?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadSummaryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    entityVersion?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TriageFeedbackCreateInput = {
+    id?: string
+    threadId: string
+    fromEmail: string
+    fromDomain: string
+    signal: string
+    weight: number
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutTriageFeedbackInput
+  }
+
+  export type TriageFeedbackUncheckedCreateInput = {
+    id?: string
+    userId: string
+    threadId: string
+    fromEmail: string
+    fromDomain: string
+    signal: string
+    weight: number
+    createdAt?: Date | string
+  }
+
+  export type TriageFeedbackUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    fromEmail?: StringFieldUpdateOperationsInput | string
+    fromDomain?: StringFieldUpdateOperationsInput | string
+    signal?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTriageFeedbackNestedInput
+  }
+
+  export type TriageFeedbackUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    fromEmail?: StringFieldUpdateOperationsInput | string
+    fromDomain?: StringFieldUpdateOperationsInput | string
+    signal?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TriageFeedbackCreateManyInput = {
+    id?: string
+    userId: string
+    threadId: string
+    fromEmail: string
+    fromDomain: string
+    signal: string
+    weight: number
+    createdAt?: Date | string
+  }
+
+  export type TriageFeedbackUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    fromEmail?: StringFieldUpdateOperationsInput | string
+    fromDomain?: StringFieldUpdateOperationsInput | string
+    signal?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TriageFeedbackUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    fromEmail?: StringFieldUpdateOperationsInput | string
+    fromDomain?: StringFieldUpdateOperationsInput | string
+    signal?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SenderAffinityCreateInput = {
+    id?: string
+    key: string
+    score?: number
+    signalCount?: number
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSenderAffinitiesInput
+  }
+
+  export type SenderAffinityUncheckedCreateInput = {
+    id?: string
+    userId: string
+    key: string
+    score?: number
+    signalCount?: number
+    updatedAt?: Date | string
+  }
+
+  export type SenderAffinityUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    signalCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSenderAffinitiesNestedInput
+  }
+
+  export type SenderAffinityUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    signalCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SenderAffinityCreateManyInput = {
+    id?: string
+    userId: string
+    key: string
+    score?: number
+    signalCount?: number
+    updatedAt?: Date | string
+  }
+
+  export type SenderAffinityUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    signalCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SenderAffinityUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    signalCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RuleSuggestionCreateInput = {
+    id?: string
+    kind: string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutRuleSuggestionsInput
+  }
+
+  export type RuleSuggestionUncheckedCreateInput = {
+    id?: string
+    userId: string
+    kind: string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: string
+    createdAt?: Date | string
+  }
+
+  export type RuleSuggestionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutRuleSuggestionsNestedInput
+  }
+
+  export type RuleSuggestionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RuleSuggestionCreateManyInput = {
+    id?: string
+    userId: string
+    kind: string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: string
+    createdAt?: Date | string
+  }
+
+  export type RuleSuggestionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RuleSuggestionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -21524,6 +29889,41 @@ export namespace Prisma {
     none?: FollowUpWhereInput
   }
 
+  export type SentMessageSampleListRelationFilter = {
+    every?: SentMessageSampleWhereInput
+    some?: SentMessageSampleWhereInput
+    none?: SentMessageSampleWhereInput
+  }
+
+  export type StyleProfileNullableScalarRelationFilter = {
+    is?: StyleProfileWhereInput | null
+    isNot?: StyleProfileWhereInput | null
+  }
+
+  export type ThreadSummaryListRelationFilter = {
+    every?: ThreadSummaryWhereInput
+    some?: ThreadSummaryWhereInput
+    none?: ThreadSummaryWhereInput
+  }
+
+  export type TriageFeedbackListRelationFilter = {
+    every?: TriageFeedbackWhereInput
+    some?: TriageFeedbackWhereInput
+    none?: TriageFeedbackWhereInput
+  }
+
+  export type SenderAffinityListRelationFilter = {
+    every?: SenderAffinityWhereInput
+    some?: SenderAffinityWhereInput
+    none?: SenderAffinityWhereInput
+  }
+
+  export type RuleSuggestionListRelationFilter = {
+    every?: RuleSuggestionWhereInput
+    some?: RuleSuggestionWhereInput
+    none?: RuleSuggestionWhereInput
+  }
+
   export type ChannelLinkOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -21549,6 +29949,26 @@ export namespace Prisma {
   }
 
   export type FollowUpOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SentMessageSampleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ThreadSummaryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TriageFeedbackOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SenderAffinityOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RuleSuggestionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -21669,6 +30089,7 @@ export namespace Prisma {
     label?: SortOrder
     reason?: SortOrder
     model?: SortOrder
+    source?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -21680,6 +30101,7 @@ export namespace Prisma {
     label?: SortOrder
     reason?: SortOrder
     model?: SortOrder
+    source?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -21691,6 +30113,7 @@ export namespace Prisma {
     label?: SortOrder
     reason?: SortOrder
     model?: SortOrder
+    source?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -21966,6 +30389,256 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type SentMessageSampleUserIdCorsairEntityIdCompoundUniqueInput = {
+    userId: string
+    corsairEntityId: string
+  }
+
+  export type SentMessageSampleCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    threadId?: SortOrder
+    toDomain?: SortOrder
+    bodyText?: SortOrder
+    wordCount?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SentMessageSampleAvgOrderByAggregateInput = {
+    wordCount?: SortOrder
+  }
+
+  export type SentMessageSampleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    threadId?: SortOrder
+    toDomain?: SortOrder
+    bodyText?: SortOrder
+    wordCount?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SentMessageSampleMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    threadId?: SortOrder
+    toDomain?: SortOrder
+    bodyText?: SortOrder
+    wordCount?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SentMessageSampleSumOrderByAggregateInput = {
+    wordCount?: SortOrder
+  }
+
+  export type StyleProfileCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    summary?: SortOrder
+    sampleCount?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StyleProfileAvgOrderByAggregateInput = {
+    sampleCount?: SortOrder
+  }
+
+  export type StyleProfileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    sampleCount?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StyleProfileMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    sampleCount?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StyleProfileSumOrderByAggregateInput = {
+    sampleCount?: SortOrder
+  }
+
+  export type ThreadSummaryUserIdThreadIdEntityVersionCompoundUniqueInput = {
+    userId: string
+    threadId: string
+    entityVersion: string
+  }
+
+  export type ThreadSummaryCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    threadId?: SortOrder
+    entityVersion?: SortOrder
+    summary?: SortOrder
+    keyPoints?: SortOrder
+    actionItems?: SortOrder
+    unansweredQuestions?: SortOrder
+    model?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ThreadSummaryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    threadId?: SortOrder
+    entityVersion?: SortOrder
+    summary?: SortOrder
+    model?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ThreadSummaryMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    threadId?: SortOrder
+    entityVersion?: SortOrder
+    summary?: SortOrder
+    model?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type TriageFeedbackCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    threadId?: SortOrder
+    fromEmail?: SortOrder
+    fromDomain?: SortOrder
+    signal?: SortOrder
+    weight?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TriageFeedbackAvgOrderByAggregateInput = {
+    weight?: SortOrder
+  }
+
+  export type TriageFeedbackMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    threadId?: SortOrder
+    fromEmail?: SortOrder
+    fromDomain?: SortOrder
+    signal?: SortOrder
+    weight?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TriageFeedbackMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    threadId?: SortOrder
+    fromEmail?: SortOrder
+    fromDomain?: SortOrder
+    signal?: SortOrder
+    weight?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TriageFeedbackSumOrderByAggregateInput = {
+    weight?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type SenderAffinityUserIdKeyCompoundUniqueInput = {
+    userId: string
+    key: string
+  }
+
+  export type SenderAffinityCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    key?: SortOrder
+    score?: SortOrder
+    signalCount?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SenderAffinityAvgOrderByAggregateInput = {
+    score?: SortOrder
+    signalCount?: SortOrder
+  }
+
+  export type SenderAffinityMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    key?: SortOrder
+    score?: SortOrder
+    signalCount?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SenderAffinityMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    key?: SortOrder
+    score?: SortOrder
+    signalCount?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SenderAffinitySumOrderByAggregateInput = {
+    score?: SortOrder
+    signalCount?: SortOrder
+  }
+
+  export type RuleSuggestionCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    kind?: SortOrder
+    payload?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RuleSuggestionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    kind?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RuleSuggestionMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    kind?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type CorsairAccountCreateNestedManyWithoutIntegrationInput = {
     create?: XOR<CorsairAccountCreateWithoutIntegrationInput, CorsairAccountUncheckedCreateWithoutIntegrationInput> | CorsairAccountCreateWithoutIntegrationInput[] | CorsairAccountUncheckedCreateWithoutIntegrationInput[]
     connectOrCreate?: CorsairAccountCreateOrConnectWithoutIntegrationInput | CorsairAccountCreateOrConnectWithoutIntegrationInput[]
@@ -22201,6 +30874,47 @@ export namespace Prisma {
     connect?: FollowUpWhereUniqueInput | FollowUpWhereUniqueInput[]
   }
 
+  export type SentMessageSampleCreateNestedManyWithoutUserInput = {
+    create?: XOR<SentMessageSampleCreateWithoutUserInput, SentMessageSampleUncheckedCreateWithoutUserInput> | SentMessageSampleCreateWithoutUserInput[] | SentMessageSampleUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SentMessageSampleCreateOrConnectWithoutUserInput | SentMessageSampleCreateOrConnectWithoutUserInput[]
+    createMany?: SentMessageSampleCreateManyUserInputEnvelope
+    connect?: SentMessageSampleWhereUniqueInput | SentMessageSampleWhereUniqueInput[]
+  }
+
+  export type StyleProfileCreateNestedOneWithoutUserInput = {
+    create?: XOR<StyleProfileCreateWithoutUserInput, StyleProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: StyleProfileCreateOrConnectWithoutUserInput
+    connect?: StyleProfileWhereUniqueInput
+  }
+
+  export type ThreadSummaryCreateNestedManyWithoutUserInput = {
+    create?: XOR<ThreadSummaryCreateWithoutUserInput, ThreadSummaryUncheckedCreateWithoutUserInput> | ThreadSummaryCreateWithoutUserInput[] | ThreadSummaryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ThreadSummaryCreateOrConnectWithoutUserInput | ThreadSummaryCreateOrConnectWithoutUserInput[]
+    createMany?: ThreadSummaryCreateManyUserInputEnvelope
+    connect?: ThreadSummaryWhereUniqueInput | ThreadSummaryWhereUniqueInput[]
+  }
+
+  export type TriageFeedbackCreateNestedManyWithoutUserInput = {
+    create?: XOR<TriageFeedbackCreateWithoutUserInput, TriageFeedbackUncheckedCreateWithoutUserInput> | TriageFeedbackCreateWithoutUserInput[] | TriageFeedbackUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TriageFeedbackCreateOrConnectWithoutUserInput | TriageFeedbackCreateOrConnectWithoutUserInput[]
+    createMany?: TriageFeedbackCreateManyUserInputEnvelope
+    connect?: TriageFeedbackWhereUniqueInput | TriageFeedbackWhereUniqueInput[]
+  }
+
+  export type SenderAffinityCreateNestedManyWithoutUserInput = {
+    create?: XOR<SenderAffinityCreateWithoutUserInput, SenderAffinityUncheckedCreateWithoutUserInput> | SenderAffinityCreateWithoutUserInput[] | SenderAffinityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SenderAffinityCreateOrConnectWithoutUserInput | SenderAffinityCreateOrConnectWithoutUserInput[]
+    createMany?: SenderAffinityCreateManyUserInputEnvelope
+    connect?: SenderAffinityWhereUniqueInput | SenderAffinityWhereUniqueInput[]
+  }
+
+  export type RuleSuggestionCreateNestedManyWithoutUserInput = {
+    create?: XOR<RuleSuggestionCreateWithoutUserInput, RuleSuggestionUncheckedCreateWithoutUserInput> | RuleSuggestionCreateWithoutUserInput[] | RuleSuggestionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RuleSuggestionCreateOrConnectWithoutUserInput | RuleSuggestionCreateOrConnectWithoutUserInput[]
+    createMany?: RuleSuggestionCreateManyUserInputEnvelope
+    connect?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
+  }
+
   export type ChannelLinkUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ChannelLinkCreateWithoutUserInput, ChannelLinkUncheckedCreateWithoutUserInput> | ChannelLinkCreateWithoutUserInput[] | ChannelLinkUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ChannelLinkCreateOrConnectWithoutUserInput | ChannelLinkCreateOrConnectWithoutUserInput[]
@@ -22254,6 +30968,47 @@ export namespace Prisma {
     connectOrCreate?: FollowUpCreateOrConnectWithoutUserInput | FollowUpCreateOrConnectWithoutUserInput[]
     createMany?: FollowUpCreateManyUserInputEnvelope
     connect?: FollowUpWhereUniqueInput | FollowUpWhereUniqueInput[]
+  }
+
+  export type SentMessageSampleUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SentMessageSampleCreateWithoutUserInput, SentMessageSampleUncheckedCreateWithoutUserInput> | SentMessageSampleCreateWithoutUserInput[] | SentMessageSampleUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SentMessageSampleCreateOrConnectWithoutUserInput | SentMessageSampleCreateOrConnectWithoutUserInput[]
+    createMany?: SentMessageSampleCreateManyUserInputEnvelope
+    connect?: SentMessageSampleWhereUniqueInput | SentMessageSampleWhereUniqueInput[]
+  }
+
+  export type StyleProfileUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<StyleProfileCreateWithoutUserInput, StyleProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: StyleProfileCreateOrConnectWithoutUserInput
+    connect?: StyleProfileWhereUniqueInput
+  }
+
+  export type ThreadSummaryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ThreadSummaryCreateWithoutUserInput, ThreadSummaryUncheckedCreateWithoutUserInput> | ThreadSummaryCreateWithoutUserInput[] | ThreadSummaryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ThreadSummaryCreateOrConnectWithoutUserInput | ThreadSummaryCreateOrConnectWithoutUserInput[]
+    createMany?: ThreadSummaryCreateManyUserInputEnvelope
+    connect?: ThreadSummaryWhereUniqueInput | ThreadSummaryWhereUniqueInput[]
+  }
+
+  export type TriageFeedbackUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<TriageFeedbackCreateWithoutUserInput, TriageFeedbackUncheckedCreateWithoutUserInput> | TriageFeedbackCreateWithoutUserInput[] | TriageFeedbackUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TriageFeedbackCreateOrConnectWithoutUserInput | TriageFeedbackCreateOrConnectWithoutUserInput[]
+    createMany?: TriageFeedbackCreateManyUserInputEnvelope
+    connect?: TriageFeedbackWhereUniqueInput | TriageFeedbackWhereUniqueInput[]
+  }
+
+  export type SenderAffinityUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SenderAffinityCreateWithoutUserInput, SenderAffinityUncheckedCreateWithoutUserInput> | SenderAffinityCreateWithoutUserInput[] | SenderAffinityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SenderAffinityCreateOrConnectWithoutUserInput | SenderAffinityCreateOrConnectWithoutUserInput[]
+    createMany?: SenderAffinityCreateManyUserInputEnvelope
+    connect?: SenderAffinityWhereUniqueInput | SenderAffinityWhereUniqueInput[]
+  }
+
+  export type RuleSuggestionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<RuleSuggestionCreateWithoutUserInput, RuleSuggestionUncheckedCreateWithoutUserInput> | RuleSuggestionCreateWithoutUserInput[] | RuleSuggestionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RuleSuggestionCreateOrConnectWithoutUserInput | RuleSuggestionCreateOrConnectWithoutUserInput[]
+    createMany?: RuleSuggestionCreateManyUserInputEnvelope
+    connect?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -22368,6 +31123,86 @@ export namespace Prisma {
     deleteMany?: FollowUpScalarWhereInput | FollowUpScalarWhereInput[]
   }
 
+  export type SentMessageSampleUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SentMessageSampleCreateWithoutUserInput, SentMessageSampleUncheckedCreateWithoutUserInput> | SentMessageSampleCreateWithoutUserInput[] | SentMessageSampleUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SentMessageSampleCreateOrConnectWithoutUserInput | SentMessageSampleCreateOrConnectWithoutUserInput[]
+    upsert?: SentMessageSampleUpsertWithWhereUniqueWithoutUserInput | SentMessageSampleUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SentMessageSampleCreateManyUserInputEnvelope
+    set?: SentMessageSampleWhereUniqueInput | SentMessageSampleWhereUniqueInput[]
+    disconnect?: SentMessageSampleWhereUniqueInput | SentMessageSampleWhereUniqueInput[]
+    delete?: SentMessageSampleWhereUniqueInput | SentMessageSampleWhereUniqueInput[]
+    connect?: SentMessageSampleWhereUniqueInput | SentMessageSampleWhereUniqueInput[]
+    update?: SentMessageSampleUpdateWithWhereUniqueWithoutUserInput | SentMessageSampleUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SentMessageSampleUpdateManyWithWhereWithoutUserInput | SentMessageSampleUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SentMessageSampleScalarWhereInput | SentMessageSampleScalarWhereInput[]
+  }
+
+  export type StyleProfileUpdateOneWithoutUserNestedInput = {
+    create?: XOR<StyleProfileCreateWithoutUserInput, StyleProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: StyleProfileCreateOrConnectWithoutUserInput
+    upsert?: StyleProfileUpsertWithoutUserInput
+    disconnect?: StyleProfileWhereInput | boolean
+    delete?: StyleProfileWhereInput | boolean
+    connect?: StyleProfileWhereUniqueInput
+    update?: XOR<XOR<StyleProfileUpdateToOneWithWhereWithoutUserInput, StyleProfileUpdateWithoutUserInput>, StyleProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ThreadSummaryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ThreadSummaryCreateWithoutUserInput, ThreadSummaryUncheckedCreateWithoutUserInput> | ThreadSummaryCreateWithoutUserInput[] | ThreadSummaryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ThreadSummaryCreateOrConnectWithoutUserInput | ThreadSummaryCreateOrConnectWithoutUserInput[]
+    upsert?: ThreadSummaryUpsertWithWhereUniqueWithoutUserInput | ThreadSummaryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ThreadSummaryCreateManyUserInputEnvelope
+    set?: ThreadSummaryWhereUniqueInput | ThreadSummaryWhereUniqueInput[]
+    disconnect?: ThreadSummaryWhereUniqueInput | ThreadSummaryWhereUniqueInput[]
+    delete?: ThreadSummaryWhereUniqueInput | ThreadSummaryWhereUniqueInput[]
+    connect?: ThreadSummaryWhereUniqueInput | ThreadSummaryWhereUniqueInput[]
+    update?: ThreadSummaryUpdateWithWhereUniqueWithoutUserInput | ThreadSummaryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ThreadSummaryUpdateManyWithWhereWithoutUserInput | ThreadSummaryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ThreadSummaryScalarWhereInput | ThreadSummaryScalarWhereInput[]
+  }
+
+  export type TriageFeedbackUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TriageFeedbackCreateWithoutUserInput, TriageFeedbackUncheckedCreateWithoutUserInput> | TriageFeedbackCreateWithoutUserInput[] | TriageFeedbackUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TriageFeedbackCreateOrConnectWithoutUserInput | TriageFeedbackCreateOrConnectWithoutUserInput[]
+    upsert?: TriageFeedbackUpsertWithWhereUniqueWithoutUserInput | TriageFeedbackUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TriageFeedbackCreateManyUserInputEnvelope
+    set?: TriageFeedbackWhereUniqueInput | TriageFeedbackWhereUniqueInput[]
+    disconnect?: TriageFeedbackWhereUniqueInput | TriageFeedbackWhereUniqueInput[]
+    delete?: TriageFeedbackWhereUniqueInput | TriageFeedbackWhereUniqueInput[]
+    connect?: TriageFeedbackWhereUniqueInput | TriageFeedbackWhereUniqueInput[]
+    update?: TriageFeedbackUpdateWithWhereUniqueWithoutUserInput | TriageFeedbackUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TriageFeedbackUpdateManyWithWhereWithoutUserInput | TriageFeedbackUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TriageFeedbackScalarWhereInput | TriageFeedbackScalarWhereInput[]
+  }
+
+  export type SenderAffinityUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SenderAffinityCreateWithoutUserInput, SenderAffinityUncheckedCreateWithoutUserInput> | SenderAffinityCreateWithoutUserInput[] | SenderAffinityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SenderAffinityCreateOrConnectWithoutUserInput | SenderAffinityCreateOrConnectWithoutUserInput[]
+    upsert?: SenderAffinityUpsertWithWhereUniqueWithoutUserInput | SenderAffinityUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SenderAffinityCreateManyUserInputEnvelope
+    set?: SenderAffinityWhereUniqueInput | SenderAffinityWhereUniqueInput[]
+    disconnect?: SenderAffinityWhereUniqueInput | SenderAffinityWhereUniqueInput[]
+    delete?: SenderAffinityWhereUniqueInput | SenderAffinityWhereUniqueInput[]
+    connect?: SenderAffinityWhereUniqueInput | SenderAffinityWhereUniqueInput[]
+    update?: SenderAffinityUpdateWithWhereUniqueWithoutUserInput | SenderAffinityUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SenderAffinityUpdateManyWithWhereWithoutUserInput | SenderAffinityUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SenderAffinityScalarWhereInput | SenderAffinityScalarWhereInput[]
+  }
+
+  export type RuleSuggestionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RuleSuggestionCreateWithoutUserInput, RuleSuggestionUncheckedCreateWithoutUserInput> | RuleSuggestionCreateWithoutUserInput[] | RuleSuggestionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RuleSuggestionCreateOrConnectWithoutUserInput | RuleSuggestionCreateOrConnectWithoutUserInput[]
+    upsert?: RuleSuggestionUpsertWithWhereUniqueWithoutUserInput | RuleSuggestionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RuleSuggestionCreateManyUserInputEnvelope
+    set?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
+    disconnect?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
+    delete?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
+    connect?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
+    update?: RuleSuggestionUpdateWithWhereUniqueWithoutUserInput | RuleSuggestionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RuleSuggestionUpdateManyWithWhereWithoutUserInput | RuleSuggestionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RuleSuggestionScalarWhereInput | RuleSuggestionScalarWhereInput[]
+  }
+
   export type ChannelLinkUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ChannelLinkCreateWithoutUserInput, ChannelLinkUncheckedCreateWithoutUserInput> | ChannelLinkCreateWithoutUserInput[] | ChannelLinkUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ChannelLinkCreateOrConnectWithoutUserInput | ChannelLinkCreateOrConnectWithoutUserInput[]
@@ -22474,6 +31309,86 @@ export namespace Prisma {
     update?: FollowUpUpdateWithWhereUniqueWithoutUserInput | FollowUpUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: FollowUpUpdateManyWithWhereWithoutUserInput | FollowUpUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: FollowUpScalarWhereInput | FollowUpScalarWhereInput[]
+  }
+
+  export type SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SentMessageSampleCreateWithoutUserInput, SentMessageSampleUncheckedCreateWithoutUserInput> | SentMessageSampleCreateWithoutUserInput[] | SentMessageSampleUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SentMessageSampleCreateOrConnectWithoutUserInput | SentMessageSampleCreateOrConnectWithoutUserInput[]
+    upsert?: SentMessageSampleUpsertWithWhereUniqueWithoutUserInput | SentMessageSampleUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SentMessageSampleCreateManyUserInputEnvelope
+    set?: SentMessageSampleWhereUniqueInput | SentMessageSampleWhereUniqueInput[]
+    disconnect?: SentMessageSampleWhereUniqueInput | SentMessageSampleWhereUniqueInput[]
+    delete?: SentMessageSampleWhereUniqueInput | SentMessageSampleWhereUniqueInput[]
+    connect?: SentMessageSampleWhereUniqueInput | SentMessageSampleWhereUniqueInput[]
+    update?: SentMessageSampleUpdateWithWhereUniqueWithoutUserInput | SentMessageSampleUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SentMessageSampleUpdateManyWithWhereWithoutUserInput | SentMessageSampleUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SentMessageSampleScalarWhereInput | SentMessageSampleScalarWhereInput[]
+  }
+
+  export type StyleProfileUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<StyleProfileCreateWithoutUserInput, StyleProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: StyleProfileCreateOrConnectWithoutUserInput
+    upsert?: StyleProfileUpsertWithoutUserInput
+    disconnect?: StyleProfileWhereInput | boolean
+    delete?: StyleProfileWhereInput | boolean
+    connect?: StyleProfileWhereUniqueInput
+    update?: XOR<XOR<StyleProfileUpdateToOneWithWhereWithoutUserInput, StyleProfileUpdateWithoutUserInput>, StyleProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ThreadSummaryCreateWithoutUserInput, ThreadSummaryUncheckedCreateWithoutUserInput> | ThreadSummaryCreateWithoutUserInput[] | ThreadSummaryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ThreadSummaryCreateOrConnectWithoutUserInput | ThreadSummaryCreateOrConnectWithoutUserInput[]
+    upsert?: ThreadSummaryUpsertWithWhereUniqueWithoutUserInput | ThreadSummaryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ThreadSummaryCreateManyUserInputEnvelope
+    set?: ThreadSummaryWhereUniqueInput | ThreadSummaryWhereUniqueInput[]
+    disconnect?: ThreadSummaryWhereUniqueInput | ThreadSummaryWhereUniqueInput[]
+    delete?: ThreadSummaryWhereUniqueInput | ThreadSummaryWhereUniqueInput[]
+    connect?: ThreadSummaryWhereUniqueInput | ThreadSummaryWhereUniqueInput[]
+    update?: ThreadSummaryUpdateWithWhereUniqueWithoutUserInput | ThreadSummaryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ThreadSummaryUpdateManyWithWhereWithoutUserInput | ThreadSummaryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ThreadSummaryScalarWhereInput | ThreadSummaryScalarWhereInput[]
+  }
+
+  export type TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TriageFeedbackCreateWithoutUserInput, TriageFeedbackUncheckedCreateWithoutUserInput> | TriageFeedbackCreateWithoutUserInput[] | TriageFeedbackUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TriageFeedbackCreateOrConnectWithoutUserInput | TriageFeedbackCreateOrConnectWithoutUserInput[]
+    upsert?: TriageFeedbackUpsertWithWhereUniqueWithoutUserInput | TriageFeedbackUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TriageFeedbackCreateManyUserInputEnvelope
+    set?: TriageFeedbackWhereUniqueInput | TriageFeedbackWhereUniqueInput[]
+    disconnect?: TriageFeedbackWhereUniqueInput | TriageFeedbackWhereUniqueInput[]
+    delete?: TriageFeedbackWhereUniqueInput | TriageFeedbackWhereUniqueInput[]
+    connect?: TriageFeedbackWhereUniqueInput | TriageFeedbackWhereUniqueInput[]
+    update?: TriageFeedbackUpdateWithWhereUniqueWithoutUserInput | TriageFeedbackUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TriageFeedbackUpdateManyWithWhereWithoutUserInput | TriageFeedbackUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TriageFeedbackScalarWhereInput | TriageFeedbackScalarWhereInput[]
+  }
+
+  export type SenderAffinityUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SenderAffinityCreateWithoutUserInput, SenderAffinityUncheckedCreateWithoutUserInput> | SenderAffinityCreateWithoutUserInput[] | SenderAffinityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SenderAffinityCreateOrConnectWithoutUserInput | SenderAffinityCreateOrConnectWithoutUserInput[]
+    upsert?: SenderAffinityUpsertWithWhereUniqueWithoutUserInput | SenderAffinityUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SenderAffinityCreateManyUserInputEnvelope
+    set?: SenderAffinityWhereUniqueInput | SenderAffinityWhereUniqueInput[]
+    disconnect?: SenderAffinityWhereUniqueInput | SenderAffinityWhereUniqueInput[]
+    delete?: SenderAffinityWhereUniqueInput | SenderAffinityWhereUniqueInput[]
+    connect?: SenderAffinityWhereUniqueInput | SenderAffinityWhereUniqueInput[]
+    update?: SenderAffinityUpdateWithWhereUniqueWithoutUserInput | SenderAffinityUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SenderAffinityUpdateManyWithWhereWithoutUserInput | SenderAffinityUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SenderAffinityScalarWhereInput | SenderAffinityScalarWhereInput[]
+  }
+
+  export type RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RuleSuggestionCreateWithoutUserInput, RuleSuggestionUncheckedCreateWithoutUserInput> | RuleSuggestionCreateWithoutUserInput[] | RuleSuggestionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RuleSuggestionCreateOrConnectWithoutUserInput | RuleSuggestionCreateOrConnectWithoutUserInput[]
+    upsert?: RuleSuggestionUpsertWithWhereUniqueWithoutUserInput | RuleSuggestionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RuleSuggestionCreateManyUserInputEnvelope
+    set?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
+    disconnect?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
+    delete?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
+    connect?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
+    update?: RuleSuggestionUpdateWithWhereUniqueWithoutUserInput | RuleSuggestionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RuleSuggestionUpdateManyWithWhereWithoutUserInput | RuleSuggestionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RuleSuggestionScalarWhereInput | RuleSuggestionScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutChannelLinksInput = {
@@ -22594,6 +31509,98 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutFollowUpsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFollowUpsInput, UserUpdateWithoutFollowUpsInput>, UserUncheckedUpdateWithoutFollowUpsInput>
+  }
+
+  export type UserCreateNestedOneWithoutSentSamplesInput = {
+    create?: XOR<UserCreateWithoutSentSamplesInput, UserUncheckedCreateWithoutSentSamplesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSentSamplesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutSentSamplesNestedInput = {
+    create?: XOR<UserCreateWithoutSentSamplesInput, UserUncheckedCreateWithoutSentSamplesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSentSamplesInput
+    upsert?: UserUpsertWithoutSentSamplesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSentSamplesInput, UserUpdateWithoutSentSamplesInput>, UserUncheckedUpdateWithoutSentSamplesInput>
+  }
+
+  export type UserCreateNestedOneWithoutStyleProfileInput = {
+    create?: XOR<UserCreateWithoutStyleProfileInput, UserUncheckedCreateWithoutStyleProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStyleProfileInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutStyleProfileNestedInput = {
+    create?: XOR<UserCreateWithoutStyleProfileInput, UserUncheckedCreateWithoutStyleProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStyleProfileInput
+    upsert?: UserUpsertWithoutStyleProfileInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStyleProfileInput, UserUpdateWithoutStyleProfileInput>, UserUncheckedUpdateWithoutStyleProfileInput>
+  }
+
+  export type UserCreateNestedOneWithoutThreadSummariesInput = {
+    create?: XOR<UserCreateWithoutThreadSummariesInput, UserUncheckedCreateWithoutThreadSummariesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutThreadSummariesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutThreadSummariesNestedInput = {
+    create?: XOR<UserCreateWithoutThreadSummariesInput, UserUncheckedCreateWithoutThreadSummariesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutThreadSummariesInput
+    upsert?: UserUpsertWithoutThreadSummariesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutThreadSummariesInput, UserUpdateWithoutThreadSummariesInput>, UserUncheckedUpdateWithoutThreadSummariesInput>
+  }
+
+  export type UserCreateNestedOneWithoutTriageFeedbackInput = {
+    create?: XOR<UserCreateWithoutTriageFeedbackInput, UserUncheckedCreateWithoutTriageFeedbackInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTriageFeedbackInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutTriageFeedbackNestedInput = {
+    create?: XOR<UserCreateWithoutTriageFeedbackInput, UserUncheckedCreateWithoutTriageFeedbackInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTriageFeedbackInput
+    upsert?: UserUpsertWithoutTriageFeedbackInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTriageFeedbackInput, UserUpdateWithoutTriageFeedbackInput>, UserUncheckedUpdateWithoutTriageFeedbackInput>
+  }
+
+  export type UserCreateNestedOneWithoutSenderAffinitiesInput = {
+    create?: XOR<UserCreateWithoutSenderAffinitiesInput, UserUncheckedCreateWithoutSenderAffinitiesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSenderAffinitiesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutSenderAffinitiesNestedInput = {
+    create?: XOR<UserCreateWithoutSenderAffinitiesInput, UserUncheckedCreateWithoutSenderAffinitiesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSenderAffinitiesInput
+    upsert?: UserUpsertWithoutSenderAffinitiesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSenderAffinitiesInput, UserUpdateWithoutSenderAffinitiesInput>, UserUncheckedUpdateWithoutSenderAffinitiesInput>
+  }
+
+  export type UserCreateNestedOneWithoutRuleSuggestionsInput = {
+    create?: XOR<UserCreateWithoutRuleSuggestionsInput, UserUncheckedCreateWithoutRuleSuggestionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRuleSuggestionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutRuleSuggestionsNestedInput = {
+    create?: XOR<UserCreateWithoutRuleSuggestionsInput, UserUncheckedCreateWithoutRuleSuggestionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRuleSuggestionsInput
+    upsert?: UserUpsertWithoutRuleSuggestionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRuleSuggestionsInput, UserUpdateWithoutRuleSuggestionsInput>, UserUncheckedUpdateWithoutRuleSuggestionsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -22778,6 +31785,22 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type CorsairAccountCreateWithoutIntegrationInput = {
@@ -23187,6 +32210,7 @@ export namespace Prisma {
     label: string
     reason?: string | null
     model?: string | null
+    source?: string
     createdAt?: Date | string
   }
 
@@ -23197,6 +32221,7 @@ export namespace Prisma {
     label: string
     reason?: string | null
     model?: string | null
+    source?: string
     createdAt?: Date | string
   }
 
@@ -23355,6 +32380,171 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SentMessageSampleCreateWithoutUserInput = {
+    id?: string
+    corsairEntityId: string
+    threadId: string
+    toDomain: string
+    bodyText: string
+    wordCount: number
+    createdAt?: Date | string
+  }
+
+  export type SentMessageSampleUncheckedCreateWithoutUserInput = {
+    id?: string
+    corsairEntityId: string
+    threadId: string
+    toDomain: string
+    bodyText: string
+    wordCount: number
+    createdAt?: Date | string
+  }
+
+  export type SentMessageSampleCreateOrConnectWithoutUserInput = {
+    where: SentMessageSampleWhereUniqueInput
+    create: XOR<SentMessageSampleCreateWithoutUserInput, SentMessageSampleUncheckedCreateWithoutUserInput>
+  }
+
+  export type SentMessageSampleCreateManyUserInputEnvelope = {
+    data: SentMessageSampleCreateManyUserInput | SentMessageSampleCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StyleProfileCreateWithoutUserInput = {
+    id?: string
+    summary?: JsonNullValueInput | InputJsonValue
+    sampleCount?: number
+    updatedAt?: Date | string
+  }
+
+  export type StyleProfileUncheckedCreateWithoutUserInput = {
+    id?: string
+    summary?: JsonNullValueInput | InputJsonValue
+    sampleCount?: number
+    updatedAt?: Date | string
+  }
+
+  export type StyleProfileCreateOrConnectWithoutUserInput = {
+    where: StyleProfileWhereUniqueInput
+    create: XOR<StyleProfileCreateWithoutUserInput, StyleProfileUncheckedCreateWithoutUserInput>
+  }
+
+  export type ThreadSummaryCreateWithoutUserInput = {
+    id?: string
+    threadId: string
+    entityVersion: string
+    summary: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ThreadSummaryUncheckedCreateWithoutUserInput = {
+    id?: string
+    threadId: string
+    entityVersion: string
+    summary: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ThreadSummaryCreateOrConnectWithoutUserInput = {
+    where: ThreadSummaryWhereUniqueInput
+    create: XOR<ThreadSummaryCreateWithoutUserInput, ThreadSummaryUncheckedCreateWithoutUserInput>
+  }
+
+  export type ThreadSummaryCreateManyUserInputEnvelope = {
+    data: ThreadSummaryCreateManyUserInput | ThreadSummaryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TriageFeedbackCreateWithoutUserInput = {
+    id?: string
+    threadId: string
+    fromEmail: string
+    fromDomain: string
+    signal: string
+    weight: number
+    createdAt?: Date | string
+  }
+
+  export type TriageFeedbackUncheckedCreateWithoutUserInput = {
+    id?: string
+    threadId: string
+    fromEmail: string
+    fromDomain: string
+    signal: string
+    weight: number
+    createdAt?: Date | string
+  }
+
+  export type TriageFeedbackCreateOrConnectWithoutUserInput = {
+    where: TriageFeedbackWhereUniqueInput
+    create: XOR<TriageFeedbackCreateWithoutUserInput, TriageFeedbackUncheckedCreateWithoutUserInput>
+  }
+
+  export type TriageFeedbackCreateManyUserInputEnvelope = {
+    data: TriageFeedbackCreateManyUserInput | TriageFeedbackCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SenderAffinityCreateWithoutUserInput = {
+    id?: string
+    key: string
+    score?: number
+    signalCount?: number
+    updatedAt?: Date | string
+  }
+
+  export type SenderAffinityUncheckedCreateWithoutUserInput = {
+    id?: string
+    key: string
+    score?: number
+    signalCount?: number
+    updatedAt?: Date | string
+  }
+
+  export type SenderAffinityCreateOrConnectWithoutUserInput = {
+    where: SenderAffinityWhereUniqueInput
+    create: XOR<SenderAffinityCreateWithoutUserInput, SenderAffinityUncheckedCreateWithoutUserInput>
+  }
+
+  export type SenderAffinityCreateManyUserInputEnvelope = {
+    data: SenderAffinityCreateManyUserInput | SenderAffinityCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RuleSuggestionCreateWithoutUserInput = {
+    id?: string
+    kind: string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: string
+    createdAt?: Date | string
+  }
+
+  export type RuleSuggestionUncheckedCreateWithoutUserInput = {
+    id?: string
+    kind: string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: string
+    createdAt?: Date | string
+  }
+
+  export type RuleSuggestionCreateOrConnectWithoutUserInput = {
+    where: RuleSuggestionWhereUniqueInput
+    create: XOR<RuleSuggestionCreateWithoutUserInput, RuleSuggestionUncheckedCreateWithoutUserInput>
+  }
+
+  export type RuleSuggestionCreateManyUserInputEnvelope = {
+    data: RuleSuggestionCreateManyUserInput | RuleSuggestionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ChannelLinkUpsertWithWhereUniqueWithoutUserInput = {
     where: ChannelLinkWhereUniqueInput
     update: XOR<ChannelLinkUpdateWithoutUserInput, ChannelLinkUncheckedUpdateWithoutUserInput>
@@ -23437,6 +32627,7 @@ export namespace Prisma {
     label?: StringFilter<"PriorityScore"> | string
     reason?: StringNullableFilter<"PriorityScore"> | string | null
     model?: StringNullableFilter<"PriorityScore"> | string | null
+    source?: StringFilter<"PriorityScore"> | string
     createdAt?: DateTimeFilter<"PriorityScore"> | Date | string
   }
 
@@ -23589,6 +32780,179 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"FollowUp"> | Date | string
   }
 
+  export type SentMessageSampleUpsertWithWhereUniqueWithoutUserInput = {
+    where: SentMessageSampleWhereUniqueInput
+    update: XOR<SentMessageSampleUpdateWithoutUserInput, SentMessageSampleUncheckedUpdateWithoutUserInput>
+    create: XOR<SentMessageSampleCreateWithoutUserInput, SentMessageSampleUncheckedCreateWithoutUserInput>
+  }
+
+  export type SentMessageSampleUpdateWithWhereUniqueWithoutUserInput = {
+    where: SentMessageSampleWhereUniqueInput
+    data: XOR<SentMessageSampleUpdateWithoutUserInput, SentMessageSampleUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SentMessageSampleUpdateManyWithWhereWithoutUserInput = {
+    where: SentMessageSampleScalarWhereInput
+    data: XOR<SentMessageSampleUpdateManyMutationInput, SentMessageSampleUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SentMessageSampleScalarWhereInput = {
+    AND?: SentMessageSampleScalarWhereInput | SentMessageSampleScalarWhereInput[]
+    OR?: SentMessageSampleScalarWhereInput[]
+    NOT?: SentMessageSampleScalarWhereInput | SentMessageSampleScalarWhereInput[]
+    id?: StringFilter<"SentMessageSample"> | string
+    userId?: StringFilter<"SentMessageSample"> | string
+    corsairEntityId?: StringFilter<"SentMessageSample"> | string
+    threadId?: StringFilter<"SentMessageSample"> | string
+    toDomain?: StringFilter<"SentMessageSample"> | string
+    bodyText?: StringFilter<"SentMessageSample"> | string
+    wordCount?: IntFilter<"SentMessageSample"> | number
+    createdAt?: DateTimeFilter<"SentMessageSample"> | Date | string
+  }
+
+  export type StyleProfileUpsertWithoutUserInput = {
+    update: XOR<StyleProfileUpdateWithoutUserInput, StyleProfileUncheckedUpdateWithoutUserInput>
+    create: XOR<StyleProfileCreateWithoutUserInput, StyleProfileUncheckedCreateWithoutUserInput>
+    where?: StyleProfileWhereInput
+  }
+
+  export type StyleProfileUpdateToOneWithWhereWithoutUserInput = {
+    where?: StyleProfileWhereInput
+    data: XOR<StyleProfileUpdateWithoutUserInput, StyleProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type StyleProfileUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    summary?: JsonNullValueInput | InputJsonValue
+    sampleCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StyleProfileUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    summary?: JsonNullValueInput | InputJsonValue
+    sampleCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadSummaryUpsertWithWhereUniqueWithoutUserInput = {
+    where: ThreadSummaryWhereUniqueInput
+    update: XOR<ThreadSummaryUpdateWithoutUserInput, ThreadSummaryUncheckedUpdateWithoutUserInput>
+    create: XOR<ThreadSummaryCreateWithoutUserInput, ThreadSummaryUncheckedCreateWithoutUserInput>
+  }
+
+  export type ThreadSummaryUpdateWithWhereUniqueWithoutUserInput = {
+    where: ThreadSummaryWhereUniqueInput
+    data: XOR<ThreadSummaryUpdateWithoutUserInput, ThreadSummaryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ThreadSummaryUpdateManyWithWhereWithoutUserInput = {
+    where: ThreadSummaryScalarWhereInput
+    data: XOR<ThreadSummaryUpdateManyMutationInput, ThreadSummaryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ThreadSummaryScalarWhereInput = {
+    AND?: ThreadSummaryScalarWhereInput | ThreadSummaryScalarWhereInput[]
+    OR?: ThreadSummaryScalarWhereInput[]
+    NOT?: ThreadSummaryScalarWhereInput | ThreadSummaryScalarWhereInput[]
+    id?: StringFilter<"ThreadSummary"> | string
+    userId?: StringFilter<"ThreadSummary"> | string
+    threadId?: StringFilter<"ThreadSummary"> | string
+    entityVersion?: StringFilter<"ThreadSummary"> | string
+    summary?: StringFilter<"ThreadSummary"> | string
+    keyPoints?: JsonFilter<"ThreadSummary">
+    actionItems?: JsonFilter<"ThreadSummary">
+    unansweredQuestions?: JsonFilter<"ThreadSummary">
+    model?: StringNullableFilter<"ThreadSummary"> | string | null
+    createdAt?: DateTimeFilter<"ThreadSummary"> | Date | string
+  }
+
+  export type TriageFeedbackUpsertWithWhereUniqueWithoutUserInput = {
+    where: TriageFeedbackWhereUniqueInput
+    update: XOR<TriageFeedbackUpdateWithoutUserInput, TriageFeedbackUncheckedUpdateWithoutUserInput>
+    create: XOR<TriageFeedbackCreateWithoutUserInput, TriageFeedbackUncheckedCreateWithoutUserInput>
+  }
+
+  export type TriageFeedbackUpdateWithWhereUniqueWithoutUserInput = {
+    where: TriageFeedbackWhereUniqueInput
+    data: XOR<TriageFeedbackUpdateWithoutUserInput, TriageFeedbackUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TriageFeedbackUpdateManyWithWhereWithoutUserInput = {
+    where: TriageFeedbackScalarWhereInput
+    data: XOR<TriageFeedbackUpdateManyMutationInput, TriageFeedbackUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type TriageFeedbackScalarWhereInput = {
+    AND?: TriageFeedbackScalarWhereInput | TriageFeedbackScalarWhereInput[]
+    OR?: TriageFeedbackScalarWhereInput[]
+    NOT?: TriageFeedbackScalarWhereInput | TriageFeedbackScalarWhereInput[]
+    id?: StringFilter<"TriageFeedback"> | string
+    userId?: StringFilter<"TriageFeedback"> | string
+    threadId?: StringFilter<"TriageFeedback"> | string
+    fromEmail?: StringFilter<"TriageFeedback"> | string
+    fromDomain?: StringFilter<"TriageFeedback"> | string
+    signal?: StringFilter<"TriageFeedback"> | string
+    weight?: FloatFilter<"TriageFeedback"> | number
+    createdAt?: DateTimeFilter<"TriageFeedback"> | Date | string
+  }
+
+  export type SenderAffinityUpsertWithWhereUniqueWithoutUserInput = {
+    where: SenderAffinityWhereUniqueInput
+    update: XOR<SenderAffinityUpdateWithoutUserInput, SenderAffinityUncheckedUpdateWithoutUserInput>
+    create: XOR<SenderAffinityCreateWithoutUserInput, SenderAffinityUncheckedCreateWithoutUserInput>
+  }
+
+  export type SenderAffinityUpdateWithWhereUniqueWithoutUserInput = {
+    where: SenderAffinityWhereUniqueInput
+    data: XOR<SenderAffinityUpdateWithoutUserInput, SenderAffinityUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SenderAffinityUpdateManyWithWhereWithoutUserInput = {
+    where: SenderAffinityScalarWhereInput
+    data: XOR<SenderAffinityUpdateManyMutationInput, SenderAffinityUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SenderAffinityScalarWhereInput = {
+    AND?: SenderAffinityScalarWhereInput | SenderAffinityScalarWhereInput[]
+    OR?: SenderAffinityScalarWhereInput[]
+    NOT?: SenderAffinityScalarWhereInput | SenderAffinityScalarWhereInput[]
+    id?: StringFilter<"SenderAffinity"> | string
+    userId?: StringFilter<"SenderAffinity"> | string
+    key?: StringFilter<"SenderAffinity"> | string
+    score?: FloatFilter<"SenderAffinity"> | number
+    signalCount?: IntFilter<"SenderAffinity"> | number
+    updatedAt?: DateTimeFilter<"SenderAffinity"> | Date | string
+  }
+
+  export type RuleSuggestionUpsertWithWhereUniqueWithoutUserInput = {
+    where: RuleSuggestionWhereUniqueInput
+    update: XOR<RuleSuggestionUpdateWithoutUserInput, RuleSuggestionUncheckedUpdateWithoutUserInput>
+    create: XOR<RuleSuggestionCreateWithoutUserInput, RuleSuggestionUncheckedCreateWithoutUserInput>
+  }
+
+  export type RuleSuggestionUpdateWithWhereUniqueWithoutUserInput = {
+    where: RuleSuggestionWhereUniqueInput
+    data: XOR<RuleSuggestionUpdateWithoutUserInput, RuleSuggestionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type RuleSuggestionUpdateManyWithWhereWithoutUserInput = {
+    where: RuleSuggestionScalarWhereInput
+    data: XOR<RuleSuggestionUpdateManyMutationInput, RuleSuggestionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type RuleSuggestionScalarWhereInput = {
+    AND?: RuleSuggestionScalarWhereInput | RuleSuggestionScalarWhereInput[]
+    OR?: RuleSuggestionScalarWhereInput[]
+    NOT?: RuleSuggestionScalarWhereInput | RuleSuggestionScalarWhereInput[]
+    id?: StringFilter<"RuleSuggestion"> | string
+    userId?: StringFilter<"RuleSuggestion"> | string
+    kind?: StringFilter<"RuleSuggestion"> | string
+    payload?: JsonFilter<"RuleSuggestion">
+    status?: StringFilter<"RuleSuggestion"> | string
+    createdAt?: DateTimeFilter<"RuleSuggestion"> | Date | string
+  }
+
   export type UserCreateWithoutChannelLinksInput = {
     id: string
     createdAt?: Date | string
@@ -23602,6 +32966,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
     followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutChannelLinksInput = {
@@ -23617,6 +32987,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
     followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutChannelLinksInput = {
@@ -23648,6 +33024,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChannelLinksInput = {
@@ -23663,6 +33045,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEmailEmbeddingsInput = {
@@ -23678,6 +33066,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
     followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmailEmbeddingsInput = {
@@ -23693,6 +33087,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
     followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmailEmbeddingsInput = {
@@ -23724,6 +33124,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmailEmbeddingsInput = {
@@ -23739,6 +33145,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPriorityScoresInput = {
@@ -23754,6 +33166,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
     followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPriorityScoresInput = {
@@ -23769,6 +33187,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
     followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPriorityScoresInput = {
@@ -23800,6 +33224,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPriorityScoresInput = {
@@ -23815,6 +33245,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPendingActionsInput = {
@@ -23830,6 +33266,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
     followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPendingActionsInput = {
@@ -23845,6 +33287,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
     followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPendingActionsInput = {
@@ -23876,6 +33324,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPendingActionsInput = {
@@ -23891,6 +33345,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPreferenceInput = {
@@ -23906,6 +33366,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
     followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPreferenceInput = {
@@ -23921,6 +33387,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
     followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPreferenceInput = {
@@ -23952,6 +33424,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPreferenceInput = {
@@ -23967,6 +33445,12 @@ export namespace Prisma {
     snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSnoozedThreadsInput = {
@@ -23982,6 +33466,12 @@ export namespace Prisma {
     preference?: UserPreferenceCreateNestedOneWithoutUserInput
     scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
     followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSnoozedThreadsInput = {
@@ -23997,6 +33487,12 @@ export namespace Prisma {
     preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
     scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
     followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSnoozedThreadsInput = {
@@ -24028,6 +33524,12 @@ export namespace Prisma {
     preference?: UserPreferenceUpdateOneWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSnoozedThreadsInput = {
@@ -24043,6 +33545,12 @@ export namespace Prisma {
     preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutScheduledEmailsInput = {
@@ -24058,6 +33566,12 @@ export namespace Prisma {
     preference?: UserPreferenceCreateNestedOneWithoutUserInput
     snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
     followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutScheduledEmailsInput = {
@@ -24073,6 +33587,12 @@ export namespace Prisma {
     preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
     snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
     followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutScheduledEmailsInput = {
@@ -24104,6 +33624,12 @@ export namespace Prisma {
     preference?: UserPreferenceUpdateOneWithoutUserNestedInput
     snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutScheduledEmailsInput = {
@@ -24119,6 +33645,12 @@ export namespace Prisma {
     preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
     snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
     followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutFollowUpsInput = {
@@ -24134,6 +33666,12 @@ export namespace Prisma {
     preference?: UserPreferenceCreateNestedOneWithoutUserInput
     snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFollowUpsInput = {
@@ -24149,6 +33687,12 @@ export namespace Prisma {
     preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
     snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
     scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFollowUpsInput = {
@@ -24180,6 +33724,12 @@ export namespace Prisma {
     preference?: UserPreferenceUpdateOneWithoutUserNestedInput
     snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFollowUpsInput = {
@@ -24195,6 +33745,612 @@ export namespace Prisma {
     preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
     snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
     scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutSentSamplesInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
+    followUps?: FollowUpCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSentSamplesInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
+    followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSentSamplesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSentSamplesInput, UserUncheckedCreateWithoutSentSamplesInput>
+  }
+
+  export type UserUpsertWithoutSentSamplesInput = {
+    update: XOR<UserUpdateWithoutSentSamplesInput, UserUncheckedUpdateWithoutSentSamplesInput>
+    create: XOR<UserCreateWithoutSentSamplesInput, UserUncheckedCreateWithoutSentSamplesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSentSamplesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSentSamplesInput, UserUncheckedUpdateWithoutSentSamplesInput>
+  }
+
+  export type UserUpdateWithoutSentSamplesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSentSamplesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutStyleProfileInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
+    followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutStyleProfileInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
+    followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutStyleProfileInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutStyleProfileInput, UserUncheckedCreateWithoutStyleProfileInput>
+  }
+
+  export type UserUpsertWithoutStyleProfileInput = {
+    update: XOR<UserUpdateWithoutStyleProfileInput, UserUncheckedUpdateWithoutStyleProfileInput>
+    create: XOR<UserCreateWithoutStyleProfileInput, UserUncheckedCreateWithoutStyleProfileInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutStyleProfileInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutStyleProfileInput, UserUncheckedUpdateWithoutStyleProfileInput>
+  }
+
+  export type UserUpdateWithoutStyleProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutStyleProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutThreadSummariesInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
+    followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutThreadSummariesInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
+    followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutThreadSummariesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutThreadSummariesInput, UserUncheckedCreateWithoutThreadSummariesInput>
+  }
+
+  export type UserUpsertWithoutThreadSummariesInput = {
+    update: XOR<UserUpdateWithoutThreadSummariesInput, UserUncheckedUpdateWithoutThreadSummariesInput>
+    create: XOR<UserCreateWithoutThreadSummariesInput, UserUncheckedCreateWithoutThreadSummariesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutThreadSummariesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutThreadSummariesInput, UserUncheckedUpdateWithoutThreadSummariesInput>
+  }
+
+  export type UserUpdateWithoutThreadSummariesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutThreadSummariesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutTriageFeedbackInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
+    followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTriageFeedbackInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
+    followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTriageFeedbackInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTriageFeedbackInput, UserUncheckedCreateWithoutTriageFeedbackInput>
+  }
+
+  export type UserUpsertWithoutTriageFeedbackInput = {
+    update: XOR<UserUpdateWithoutTriageFeedbackInput, UserUncheckedUpdateWithoutTriageFeedbackInput>
+    create: XOR<UserCreateWithoutTriageFeedbackInput, UserUncheckedCreateWithoutTriageFeedbackInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTriageFeedbackInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTriageFeedbackInput, UserUncheckedUpdateWithoutTriageFeedbackInput>
+  }
+
+  export type UserUpdateWithoutTriageFeedbackInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTriageFeedbackInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutSenderAffinitiesInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
+    followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSenderAffinitiesInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
+    followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSenderAffinitiesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSenderAffinitiesInput, UserUncheckedCreateWithoutSenderAffinitiesInput>
+  }
+
+  export type UserUpsertWithoutSenderAffinitiesInput = {
+    update: XOR<UserUpdateWithoutSenderAffinitiesInput, UserUncheckedUpdateWithoutSenderAffinitiesInput>
+    create: XOR<UserCreateWithoutSenderAffinitiesInput, UserUncheckedCreateWithoutSenderAffinitiesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSenderAffinitiesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSenderAffinitiesInput, UserUncheckedUpdateWithoutSenderAffinitiesInput>
+  }
+
+  export type UserUpdateWithoutSenderAffinitiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSenderAffinitiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutRuleSuggestionsInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
+    followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutRuleSuggestionsInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
+    followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutRuleSuggestionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRuleSuggestionsInput, UserUncheckedCreateWithoutRuleSuggestionsInput>
+  }
+
+  export type UserUpsertWithoutRuleSuggestionsInput = {
+    update: XOR<UserUpdateWithoutRuleSuggestionsInput, UserUncheckedUpdateWithoutRuleSuggestionsInput>
+    create: XOR<UserCreateWithoutRuleSuggestionsInput, UserUncheckedCreateWithoutRuleSuggestionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutRuleSuggestionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutRuleSuggestionsInput, UserUncheckedUpdateWithoutRuleSuggestionsInput>
+  }
+
+  export type UserUpdateWithoutRuleSuggestionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutRuleSuggestionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CorsairAccountCreateManyIntegrationInput = {
@@ -24335,6 +34491,7 @@ export namespace Prisma {
     label: string
     reason?: string | null
     model?: string | null
+    source?: string
     createdAt?: Date | string
   }
 
@@ -24378,6 +34535,54 @@ export namespace Prisma {
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type SentMessageSampleCreateManyUserInput = {
+    id?: string
+    corsairEntityId: string
+    threadId: string
+    toDomain: string
+    bodyText: string
+    wordCount: number
+    createdAt?: Date | string
+  }
+
+  export type ThreadSummaryCreateManyUserInput = {
+    id?: string
+    threadId: string
+    entityVersion: string
+    summary: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TriageFeedbackCreateManyUserInput = {
+    id?: string
+    threadId: string
+    fromEmail: string
+    fromDomain: string
+    signal: string
+    weight: number
+    createdAt?: Date | string
+  }
+
+  export type SenderAffinityCreateManyUserInput = {
+    id?: string
+    key: string
+    score?: number
+    signalCount?: number
+    updatedAt?: Date | string
+  }
+
+  export type RuleSuggestionCreateManyUserInput = {
+    id?: string
+    kind: string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: string
+    createdAt?: Date | string
   }
 
   export type ChannelLinkUpdateWithoutUserInput = {
@@ -24432,6 +34637,7 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -24442,6 +34648,7 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -24452,6 +34659,7 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     model?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -24579,6 +34787,150 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SentMessageSampleUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    toDomain?: StringFieldUpdateOperationsInput | string
+    bodyText?: StringFieldUpdateOperationsInput | string
+    wordCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SentMessageSampleUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    toDomain?: StringFieldUpdateOperationsInput | string
+    bodyText?: StringFieldUpdateOperationsInput | string
+    wordCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SentMessageSampleUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    toDomain?: StringFieldUpdateOperationsInput | string
+    bodyText?: StringFieldUpdateOperationsInput | string
+    wordCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadSummaryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    entityVersion?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadSummaryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    entityVersion?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThreadSummaryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    entityVersion?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    unansweredQuestions?: JsonNullValueInput | InputJsonValue
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TriageFeedbackUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    fromEmail?: StringFieldUpdateOperationsInput | string
+    fromDomain?: StringFieldUpdateOperationsInput | string
+    signal?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TriageFeedbackUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    fromEmail?: StringFieldUpdateOperationsInput | string
+    fromDomain?: StringFieldUpdateOperationsInput | string
+    signal?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TriageFeedbackUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    threadId?: StringFieldUpdateOperationsInput | string
+    fromEmail?: StringFieldUpdateOperationsInput | string
+    fromDomain?: StringFieldUpdateOperationsInput | string
+    signal?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SenderAffinityUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    signalCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SenderAffinityUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    signalCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SenderAffinityUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    signalCount?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RuleSuggestionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RuleSuggestionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RuleSuggestionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    kind?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

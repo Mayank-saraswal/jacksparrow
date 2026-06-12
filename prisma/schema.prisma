@@ -94,6 +94,12 @@ model User {
   snoozedThreads  SnoozedThread[]
   scheduledEmails ScheduledEmail[]
   followUps       FollowUp[]
+  sentSamples      SentMessageSample[]
+  styleProfile     StyleProfile?
+  threadSummaries  ThreadSummary[]
+  triageFeedback   TriageFeedback[]
+  senderAffinities SenderAffinity[]
+  ruleSuggestions  RuleSuggestion[]
 
   @@map("users")
 }
@@ -136,6 +142,7 @@ model PriorityScore {
   label           String // "urgent" | "important" | "normal" | "low"
   reason          String?
   model           String?
+  source          String   @default("llm") // "llm" | "manual"
   createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz
   user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -255,4 +262,111 @@ model LinkCode {
 
   @@index([userId])
   @@map("link_codes")
+}
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Phase 2 — AI Moat
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Plain-text samples of the user's own sent mail, used as few-shot style
+// references for voice-matched drafts. Embedded for nearest-neighbour retrieval.
+model SentMessageSample {
+  id              String                       @id @default(cuid())
+  userId          String                       @map("user_id")
+  corsairEntityId String                       @map("corsair_entity_id")
+  threadId        String                       @map("thread_id")
+  toDomain        String                       @map("to_domain")
+  bodyText        String                       @map("body_text")
+  wordCount       Int                          @map("word_count")
+  embedding       Unsupported("vector(1536)")?
+  createdAt       DateTime                     @default(now()) @map("created_at") @db.Timestamptz
+  user            User                         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, corsairEntityId])
+  @@index([userId])
+  @@index([userId, toDomain])
+  @@map("sent_message_samples")
+}
+
+// A structured, LLM-derived description of how the user writes. Regenerated as
+// the sample count crosses thresholds.
+model StyleProfile {
+  id          String   @id @default(cuid())
+  userId      String   @unique @map("user_id")
+  summary     Json     @default("{}")
+  sampleCount Int      @default(0) @map("sample_count")
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("style_profiles")
+}
+
+// Cached per-thread summaries, keyed by the thread's corsair entity version so
+// stale summaries are detectable without re-summarizing.
+model ThreadSummary {
+  id                  String   @id @default(cuid())
+  userId              String   @map("user_id")
+  threadId            String   @map("thread_id")
+  entityVersion       String   @map("entity_version")
+  summary             String
+  keyPoints           Json     @default("[]") @map("key_points")
+  actionItems         Json     @default("[]") @map("action_items")
+  unansweredQuestions Json     @default("[]") @map("unanswered_questions")
+  model               String?
+  createdAt           DateTime @default(now()) @map("created_at") @db.Timestamptz
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, threadId, entityVersion])
+  @@index([userId, threadId])
+  @@map("thread_summaries")
+}
+
+// Raw behavioral signals feeding learned triage. Append-only; aggregated into
+// SenderAffinity.
+model TriageFeedback {
+  id         String   @id @default(cuid())
+  userId     String   @map("user_id")
+  threadId   String   @map("thread_id")
+  fromEmail  String   @map("from_email")
+  fromDomain String   @map("from_domain")
+  signal     String
+  weight     Float
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, fromDomain])
+  @@index([userId, fromEmail])
+  @@map("triage_feedback")
+}
+
+// Decayed affinity score per sender (email or domain). key is prefixed
+// "email:" or "domain:".
+model SenderAffinity {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  key         String
+  score       Float    @default(0)
+  signalCount Int      @default(0) @map("signal_count")
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, key])
+  @@index([userId])
+  @@map("sender_affinities")
+}
+
+// Proposed automation rules surfaced to the user (human-in-the-loop). Never
+// auto-applied.
+model RuleSuggestion {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  kind      String // "mute" | "vip" | "split"
+  payload   Json     @default("{}")
+  status    String   @default("proposed") // proposed | accepted | dismissed
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, status])
+  @@map("rule_suggestions")
 }

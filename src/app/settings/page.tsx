@@ -6,6 +6,8 @@ import { ShortcutSettings } from "./_components/shortcut-settings";
 import { ChannelLinks } from "./_components/channel-links";
 import { GeneralSettings } from "./_components/general-settings";
 import { SplitSettings } from "./_components/split-settings";
+import { WritingStyleSettings } from "./_components/writing-style-settings";
+import { TriageSettings } from "./_components/triage-settings";
 
 export default async function SettingsPage() {
   const { userId } = await auth();
@@ -14,7 +16,7 @@ export default async function SettingsPage() {
   return (
     <main className="mx-auto w-full max-w-2xl px-6 py-12">
       <header className="mb-6">
-        <SectionLabel index={1} total={4}>
+        <SectionLabel index={1} total={6}>
           Settings
         </SectionLabel>
         <h1 className="mt-3 text-2xl font-bold tracking-tight">
@@ -26,8 +28,32 @@ export default async function SettingsPage() {
       </header>
       <ChannelLinks />
 
+      <header id="writing-style" className="mt-10 mb-6 scroll-mt-16">
+        <SectionLabel index={2} total={6}>
+          Settings
+        </SectionLabel>
+        <h2 className="mt-3 text-2xl font-bold tracking-tight">Writing style</h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          AI drafts mimic your voice using samples from your sent mail.
+        </p>
+      </header>
+      <WritingStyleSettings />
+
+      <header id="triage" className="mt-10 mb-6 scroll-mt-16">
+        <SectionLabel index={3} total={6}>
+          Settings
+        </SectionLabel>
+        <h2 className="mt-3 text-2xl font-bold tracking-tight">
+          Learned triage
+        </h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Senders Jack Sparrow has learned to prioritise or mute for you.
+        </p>
+      </header>
+      <TriageSettings />
+
       <header id="general" className="mt-10 mb-6 scroll-mt-16">
-        <SectionLabel index={2} total={4}>
+        <SectionLabel index={4} total={6}>
           Settings
         </SectionLabel>
         <h2 className="mt-3 text-2xl font-bold tracking-tight">
@@ -37,7 +63,7 @@ export default async function SettingsPage() {
       <GeneralSettings />
 
       <header id="splits" className="mt-10 mb-6 scroll-mt-16">
-        <SectionLabel index={3} total={4}>
+        <SectionLabel index={5} total={6}>
           Settings
         </SectionLabel>
         <h2 className="mt-3 text-2xl font-bold tracking-tight">Split inbox</h2>
@@ -45,7 +71,7 @@ export default async function SettingsPage() {
       <SplitSettings />
 
       <header className="mt-10 mb-6">
-        <SectionLabel index={4} total={4}>
+        <SectionLabel index={6} total={6}>
           Settings
         </SectionLabel>
         <h2 className="mt-3 text-2xl font-bold tracking-tight">

@@ -20,6 +20,7 @@ import { ThreadList } from "./thread-list";
 import { ThreadView } from "./thread-view";
 import { ComposeSheet, type ComposeInitial } from "./compose-sheet";
 import { SnoozePopover } from "./snooze-popover";
+import { SuggestionBanner } from "./suggestion-banner";
 import { useToast } from "@/app/_components/toast";
 
 type InboxThread = RouterOutputs["inbox"]["listThreads"]["threads"][number];
@@ -33,12 +34,15 @@ export function InboxApp() {
   const { toast } = useToast();
   const [activeSplit, setActiveSplit] = React.useState<string>(ALL_SPLIT_ID);
 
-  // Live updates: when a new email arrives, refresh the thread list.
+  // Live updates: when a new email arrives, refresh the thread list + summaries.
   useRealtimeSync(
     userId,
     React.useCallback(
       (row) => {
-        if (row.type === "email") void utils.inbox.listThreads.invalidate();
+        if (row.type === "email") {
+          void utils.inbox.listThreads.invalidate();
+          void utils.inbox.summary.invalidate();
+        }
       },
       [utils],
     ),
@@ -114,6 +118,26 @@ export function InboxApp() {
   const overrides = React.useMemo(() => shortcuts.data ?? {}, [shortcuts.data]);
   const undoStack = React.useRef<{ run: () => void }[]>([]);
 
+  // ── Learned-triage signal capture (fire-and-forget) ────────────────────────
+  const recordSignal = api.triage.recordSignal.useMutation();
+  const openedRef = React.useRef<Set<string>>(new Set());
+  const signal = React.useCallback(
+    (
+      threadId: string,
+      sig:
+        | "archive_unopened"
+        | "archive_after_open"
+        | "open_no_action"
+        | "snooze"
+        | "star",
+      fromEmail: string,
+    ) => {
+      if (!fromEmail) return;
+      recordSignal.mutate({ threadId, fromEmail, signal: sig });
+    },
+    [recordSignal],
+  );
+
   // Deep-link from the command palette: /inbox?thread=<id>.
   const searchParams = useSearchParams();
   React.useEffect(() => {
@@ -135,6 +159,10 @@ export function InboxApp() {
   const handleSelect = (threadId: string) => {
     setSelectedId(threadId);
     const target = allThreads.find((t) => t.threadId === threadId);
+    if (target) {
+      openedRef.current.add(threadId);
+      signal(threadId, "open_no_action", target.fromEmail);
+    }
     if (target?.unread) {
       patchList((threads) =>
         threads.map((t) =>
@@ -145,8 +173,39 @@ export function InboxApp() {
     }
   };
 
-  const doSnooze = (threadId: string, iso: string) =>
+  const doArchive = (threadId: string) => {
+    const t = allThreads.find((x) => x.threadId === threadId);
+    if (t)
+      signal(
+        threadId,
+        openedRef.current.has(threadId)
+          ? "archive_after_open"
+          : "archive_unopened",
+        t.fromEmail,
+      );
+    archive.mutate({ threadId });
+    undoStack.current.push({ run: () => unarchive.mutate({ threadId }) });
+  };
+
+  const doTrash = (threadId: string) => {
+    const t = allThreads.find((x) => x.threadId === threadId);
+    if (t)
+      signal(
+        threadId,
+        openedRef.current.has(threadId)
+          ? "archive_after_open"
+          : "archive_unopened",
+        t.fromEmail,
+      );
+    trash.mutate({ threadId });
+    undoStack.current.push({ run: () => untrash.mutate({ threadId }) });
+  };
+
+  const doSnooze = (threadId: string, iso: string) => {
+    const t = allThreads.find((x) => x.threadId === threadId);
+    if (t) signal(threadId, "snooze", t.fromEmail);
     snooze.mutate({ threadId, snoozeUntil: iso });
+  };
 
   // Keyboard shortcuts. Single keys only fire outside text fields; navigation
   // sequences + help are handled globally by ShortcutProvider.
@@ -177,16 +236,13 @@ export function InboxApp() {
         setCompose({ open: true });
       } else if (sel && k("archive")) {
         e.preventDefault();
-        const id = sel.threadId;
-        archive.mutate({ threadId: id });
-        undoStack.current.push({ run: () => unarchive.mutate({ threadId: id }) });
+        doArchive(sel.threadId);
       } else if (sel && k("trash")) {
         e.preventDefault();
-        const id = sel.threadId;
-        trash.mutate({ threadId: id });
-        undoStack.current.push({ run: () => untrash.mutate({ threadId: id }) });
+        doTrash(sel.threadId);
       } else if (sel && k("star")) {
         e.preventDefault();
+        if (!sel.starred) signal(sel.threadId, "star", sel.fromEmail);
         toggleStar.mutate({ threadId: sel.threadId, starred: !sel.starred });
       } else if (sel && k("mark_unread")) {
         e.preventDefault();
@@ -249,6 +305,7 @@ export function InboxApp() {
 
   return (
     <div className="flex h-[calc(100vh-3rem)] flex-col">
+      <SuggestionBanner />
       {/* Toolbar */}
       <div className="flex items-center justify-between border-b border-border px-4 py-2">
         <div className="inline-flex h-8 items-center gap-0.5 overflow-x-auto">
@@ -327,14 +384,15 @@ export function InboxApp() {
               selectedId={selectedId}
               isLoading={threadsQuery.isLoading}
               onSelect={handleSelect}
-              onToggleStar={(t) =>
+              onToggleStar={(t) => {
+                if (!t.starred) signal(t.threadId, "star", t.fromEmail);
                 toggleStar.mutate({
                   threadId: t.threadId,
                   starred: !t.starred,
-                })
-              }
-              onArchive={(threadId) => archive.mutate({ threadId })}
-              onTrash={(threadId) => trash.mutate({ threadId })}
+                });
+              }}
+              onArchive={(threadId) => doArchive(threadId)}
+              onTrash={(threadId) => doTrash(threadId)}
             />
           )}
         </div>

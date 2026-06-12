@@ -16,6 +16,13 @@ import {
   parseSplitRules,
   type MatchableThread,
 } from "@/lib/split-rules";
+import {
+  generateThreadSummary,
+  getThreadEntityVersion,
+  shouldAutoSummarize,
+  type ThreadSummaryResult,
+} from "@/server/summary";
+import { summaryCacheDecision } from "@/lib/summary-cache";
 
 const METADATA_HEADERS = ["Subject", "From", "To", "Date"];
 
@@ -381,4 +388,87 @@ export const inboxRouter = createTRPCRouter({
       snoozeUntil: r.snoozeUntil.toISOString(),
     }));
   }),
+
+  /**
+   * Lazy, cached thread summary. Returns a cached summary when the thread's
+   * entity version is unchanged; generates on first view; surfaces a stale flag
+   * (instead of regenerating) when the thread changed, unless `refresh` is set.
+   */
+  summary: protectedProcedure
+    .input(z.object({ threadId: z.string().min(1), refresh: z.boolean().default(false) }))
+    .query(async ({ ctx, input }) => {
+      const tenant = getTenant(ctx.userId);
+      const raw = await tenant.gmail.api.threads.get({
+        id: input.threadId,
+        format: "full",
+      });
+      const detail = threadDetail(raw);
+      const currentVersion = await getThreadEntityVersion(
+        ctx.userId,
+        input.threadId,
+        detail,
+      );
+
+      const wordCount = detail.messages.reduce(
+        (n, m) => n + (m.bodyText ?? m.snippet ?? "").split(/\s+/).length,
+        0,
+      );
+
+      const cached = await ctx.db.threadSummary.findFirst({
+        where: { userId: ctx.userId, threadId: input.threadId },
+        orderBy: { createdAt: "desc" },
+      });
+
+      const state = summaryCacheDecision(currentVersion, cached?.entityVersion);
+
+      const toResult = (
+        row: NonNullable<typeof cached>,
+        stale: boolean,
+      ) => ({
+        tldr: row.summary,
+        keyPoints: row.keyPoints as string[],
+        actionItems: row.actionItems as ThreadSummaryResult["actionItems"],
+        unansweredQuestions: row.unansweredQuestions as string[],
+        stale,
+        generatedAt: row.createdAt.toISOString(),
+        autoRender: shouldAutoSummarize(detail.messages.length, wordCount),
+      });
+
+      if (state === "fresh" && cached) return toResult(cached, false);
+      if (state === "stale" && cached && !input.refresh)
+        return toResult(cached, true);
+
+      const generated = await generateThreadSummary(detail);
+      if (!generated) {
+        if (cached) return toResult(cached, state === "stale");
+        return null;
+      }
+
+      const saved = await ctx.db.threadSummary.upsert({
+        where: {
+          userId_threadId_entityVersion: {
+            userId: ctx.userId,
+            threadId: input.threadId,
+            entityVersion: currentVersion,
+          },
+        },
+        create: {
+          userId: ctx.userId,
+          threadId: input.threadId,
+          entityVersion: currentVersion,
+          summary: generated.tldr,
+          keyPoints: generated.keyPoints,
+          actionItems: generated.actionItems,
+          unansweredQuestions: generated.unansweredQuestions,
+          model: "gpt-4o-mini",
+        },
+        update: {
+          summary: generated.tldr,
+          keyPoints: generated.keyPoints,
+          actionItems: generated.actionItems,
+          unansweredQuestions: generated.unansweredQuestions,
+        },
+      });
+      return toResult(saved, false);
+    }),
 });

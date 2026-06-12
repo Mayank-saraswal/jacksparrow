@@ -1,5 +1,6 @@
 import { calendarRouter } from "@/server/api/routers/calendar";
 import { channelsRouter } from "@/server/api/routers/channels";
+import { draftsRouter } from "@/server/api/routers/drafts";
 import { followupsRouter } from "@/server/api/routers/followups";
 import { inboxRouter } from "@/server/api/routers/inbox";
 import { integrationsRouter } from "@/server/api/routers/integrations";
@@ -26,6 +27,7 @@ export const appRouter = createTRPCRouter({
   channels: channelsRouter,
   scheduling: schedulingRouter,
   followups: followupsRouter,
+  drafts: draftsRouter,
 });
 
 // export type definition of API

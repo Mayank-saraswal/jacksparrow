@@ -10,10 +10,14 @@ import {
   gmailWatchOnConnect,
   gmailWatchRenew,
   processTask,
+  ruleSuggestionsCron,
   scheduledSend,
   scoreInboxBackfill,
   searchEmbeddingsBackfill,
   snoozeWake,
+  styleBackfill,
+  styleIngestSent,
+  styleProfileRegenerate,
 } from "../../../inngest/functions";
 
 export const { GET, POST, PUT } = serve({
@@ -31,5 +35,9 @@ export const { GET, POST, PUT } = serve({
     snoozeWake,
     scheduledSend,
     followUpReminders,
+    styleIngestSent,
+    styleBackfill,
+    styleProfileRegenerate,
+    ruleSuggestionsCron,
   ],
 });

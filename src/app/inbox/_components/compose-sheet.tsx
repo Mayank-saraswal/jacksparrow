@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { PaperPlaneTilt, FloppyDisk, Clock } from "@phosphor-icons/react";
+import { PaperPlaneTilt, FloppyDisk, Clock, Sparkle } from "@phosphor-icons/react";
+import Link from "next/link";
 
 import { api } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
@@ -43,6 +44,45 @@ export function ComposeSheet({
   const general = api.preferences.getGeneral.useQuery();
   const undoSeconds = general.data?.undoSendSeconds ?? 10;
 
+  // ── Voice-matched AI draft ─────────────────────────────────────────────────
+  const [instruction, setInstruction] = React.useState("");
+  const [drafting, setDrafting] = React.useState(false);
+  const styleHint = api.drafts.styleHint.useQuery(undefined, {
+    enabled: open && !!initial?.threadId,
+  });
+
+  const generateDraft = React.useCallback(async () => {
+    if (!initial?.threadId || drafting) return;
+    setDrafting(true);
+    setError(null);
+    setBody("");
+    try {
+      const res = await fetch("/api/draft", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          threadId: initial.threadId,
+          instruction: instruction.trim() || undefined,
+          mode: "reply",
+        }),
+      });
+      if (!res.ok || !res.body) throw new Error(await res.text());
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let acc = "";
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        acc += decoder.decode(value, { stream: true });
+        setBody(acc);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setDrafting(false);
+    }
+  }, [initial?.threadId, instruction, drafting]);
+
   // Reset fields whenever the panel opens with new initial values.
   React.useEffect(() => {
     if (open) {
@@ -60,11 +100,20 @@ export function ComposeSheet({
       .filter(Boolean);
 
   const cancel = api.scheduling.cancel.useMutation();
+  const recordSignal = api.triage.recordSignal.useMutation();
 
   // Every send is queued with the Undo-Send delay, then shows an undo toast.
   const send = api.scheduling.schedule.useMutation({
     onSuccess: (res) => {
       onOpenChange(false);
+      // Replying is a strong positive triage signal for the recipient.
+      if (initial?.threadId && recipients[0]) {
+        recordSignal.mutate({
+          threadId: initial.threadId,
+          fromEmail: recipients[0],
+          signal: "reply",
+        });
+      }
       toast({
         title: undoSeconds > 0 ? "Sending…" : "Sent",
         description: subject || "Your message",
@@ -147,10 +196,56 @@ export function ComposeSheet({
               placeholder="Subject"
             />
           </div>
+          {initial?.threadId && (
+            <div className="flex flex-col gap-1.5 rounded-md border border-border bg-muted/40 p-2">
+              <div className="flex items-center gap-2">
+                <Input
+                  value={instruction}
+                  onChange={(e) => setInstruction(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      void generateDraft();
+                    }
+                  }}
+                  placeholder="Optional instruction: shorter, decline politely…"
+                  className="h-8 flex-1 text-xs"
+                />
+                <Button
+                  size="sm"
+                  variant="outline"
+                  disabled={drafting}
+                  onClick={() => void generateDraft()}
+                >
+                  <Sparkle weight="fill" />
+                  {drafting ? "Writing…" : "AI draft"}
+                  <kbd className="ml-1 rounded border border-border px-1 text-[9px]">
+                    ⌘J
+                  </kbd>
+                </Button>
+              </div>
+              {styleHint.data ? (
+                <Link
+                  href="/settings#writing-style"
+                  className="text-[10px] text-muted-foreground hover:text-foreground"
+                >
+                  {styleHint.data.sampleCount > 0
+                    ? `Style: based on ${styleHint.data.sampleCount} of your sent emails`
+                    : "Style: no samples yet — run backfill in Settings"}
+                </Link>
+              ) : null}
+            </div>
+          )}
+
           <Textarea
             value={body}
             onChange={(e) => setBody(e.target.value)}
             onKeyDown={(e) => {
+              if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "j") {
+                e.preventDefault();
+                void generateDraft();
+                return;
+              }
               if ((e.metaKey || e.ctrlKey) && e.key === "Enter" && canSend) {
                 e.preventDefault();
                 send.mutate({ draft: draftFor(), useUndoDelay: true });

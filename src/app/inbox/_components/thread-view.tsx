@@ -18,6 +18,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
 import { InviteCard } from "./invite-card";
 import { SnoozePopover } from "./snooze-popover";
+import { SummaryCard } from "./summary-card";
 import { useToast } from "@/app/_components/toast";
 import type { ComposeInitial } from "./compose-sheet";
 
@@ -122,6 +123,12 @@ export function ThreadView({
 
   const { subject, messages } = thread.data;
   const last = messages[messages.length - 1];
+  const counterpartEmail = last?.fromEmail ?? "";
+  const wordCount = messages.reduce(
+    (n, m) => n + (m.bodyText ?? m.snippet ?? "").split(/\s+/).length,
+    0,
+  );
+  const autoRender = messages.length >= 3 || wordCount > 600;
 
   const replyTo = (mode: "reply" | "replyAll" | "forward") => {
     if (!last) return;
@@ -216,7 +223,11 @@ export function ThreadView({
             <button
               key={label}
               onClick={() =>
-                setPriority.mutate({ threadId: thread.data.threadId, label })
+                setPriority.mutate({
+                  threadId: thread.data.threadId,
+                  fromEmail: counterpartEmail,
+                  label,
+                })
               }
               disabled={setPriority.isPending}
               className="rounded-full border border-border px-2 py-0.5 text-[10px] capitalize text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -228,6 +239,9 @@ export function ThreadView({
       </div>
 
       <div className="flex-1 overflow-y-auto">
+        <div className="p-4 pb-0">
+          <SummaryCard threadId={thread.data.threadId} autoRender={autoRender} />
+        </div>
         {thread.data.invite && (
           <div className="p-4 pb-0">
             <InviteCard invite={thread.data.invite} />
