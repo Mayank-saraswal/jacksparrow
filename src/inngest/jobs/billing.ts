@@ -2,6 +2,7 @@ import type Stripe from "stripe";
 
 import { inngest } from "../client";
 import { db } from "@/server/db";
+import { auditSystem } from "@/server/audit";
 import { getStripe, planForPriceId } from "@/server/billing/stripe";
 
 /**
@@ -51,6 +52,19 @@ async function upsertSubscription(sub: Stripe.Subscription): Promise<void> {
       currentPeriodEnd: periodEnd ? new Date(periodEnd * 1000) : null,
       cancelAtPeriodEnd: sub.cancel_at_period_end,
     },
+  });
+
+  // Compliance audit for plan changes (owner resolved from the customer).
+  const owner = await db.billingCustomer.findUnique({
+    where: { id: customer.id },
+    select: { ownerType: true, ownerId: true },
+  });
+  auditSystem("billing.plan_changed", {
+    orgId: owner?.ownerType === "org" ? owner.ownerId : null,
+    actorUserId: owner?.ownerType === "user" ? owner.ownerId : null,
+    targetType: "subscription",
+    targetId: sub.id,
+    meta: { plan, status: sub.status, seats },
   });
 }
 

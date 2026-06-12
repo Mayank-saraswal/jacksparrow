@@ -12,6 +12,11 @@ import { schedulingRouter } from "@/server/api/routers/scheduling";
 import { searchRouter } from "@/server/api/routers/search";
 import { sharedInboxRouter } from "@/server/api/routers/sharedInbox";
 import { triageRouter } from "@/server/api/routers/triage";
+import { accountRouter } from "@/server/api/routers/account";
+import { analyticsRouter } from "@/server/api/routers/analytics";
+import { auditLogRouter } from "@/server/api/routers/auditLog";
+import { retentionRouter } from "@/server/api/routers/retention";
+import { ssoRouter } from "@/server/api/routers/sso";
 import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
 
 /**
@@ -34,6 +39,11 @@ export const appRouter = createTRPCRouter({
   organization: organizationRouter,
   billing: billingRouter,
   sharedInbox: sharedInboxRouter,
+  account: accountRouter,
+  analytics: analyticsRouter,
+  auditLog: auditLogRouter,
+  retention: retentionRouter,
+  sso: ssoRouter,
 });
 
 // export type definition of API

@@ -167,7 +167,8 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt',
   gmailBackfilledAt: 'gmailBackfilledAt',
   calendarBackfilledAt: 'calendarBackfilledAt',
-  outlookBackfilledAt: 'outlookBackfilledAt'
+  outlookBackfilledAt: 'outlookBackfilledAt',
+  deletionScheduledAt: 'deletionScheduledAt'
 };
 
 exports.Prisma.ChannelLinkScalarFieldEnum = {
@@ -342,7 +343,8 @@ exports.Prisma.OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  memberLevelAnalytics: 'memberLevelAnalytics'
 };
 
 exports.Prisma.MembershipScalarFieldEnum = {
@@ -430,6 +432,64 @@ exports.Prisma.StripeEventScalarFieldEnum = {
   processedAt: 'processedAt'
 };
 
+exports.Prisma.AuditLogScalarFieldEnum = {
+  id: 'id',
+  orgId: 'orgId',
+  actorUserId: 'actorUserId',
+  actorType: 'actorType',
+  action: 'action',
+  targetType: 'targetType',
+  targetId: 'targetId',
+  ip: 'ip',
+  userAgent: 'userAgent',
+  meta: 'meta',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SsoConnectionScalarFieldEnum = {
+  id: 'id',
+  orgId: 'orgId',
+  clerkConnectionId: 'clerkConnectionId',
+  domain: 'domain',
+  protocol: 'protocol',
+  status: 'status',
+  enforceSso: 'enforceSso',
+  breakGlassUserIds: 'breakGlassUserIds',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RetentionPolicyScalarFieldEnum = {
+  id: 'id',
+  orgId: 'orgId',
+  emailDays: 'emailDays',
+  slackDays: 'slackDays',
+  auditDays: 'auditDays',
+  derivedFollowsSource: 'derivedFollowsSource',
+  effectiveAt: 'effectiveAt',
+  updatedByUserId: 'updatedByUserId',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LegalHoldScalarFieldEnum = {
+  id: 'id',
+  orgId: 'orgId',
+  name: 'name',
+  createdByUserId: 'createdByUserId',
+  active: 'active',
+  scope: 'scope',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.DailyOrgStatScalarFieldEnum = {
+  id: 'id',
+  orgId: 'orgId',
+  date: 'date',
+  metric: 'metric',
+  value: 'value',
+  dims: 'dims'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -487,7 +547,12 @@ exports.Prisma.ModelName = {
   BillingCustomer: 'BillingCustomer',
   Subscription: 'Subscription',
   UsageRecord: 'UsageRecord',
-  StripeEvent: 'StripeEvent'
+  StripeEvent: 'StripeEvent',
+  AuditLog: 'AuditLog',
+  SsoConnection: 'SsoConnection',
+  RetentionPolicy: 'RetentionPolicy',
+  LegalHold: 'LegalHold',
+  DailyOrgStat: 'DailyOrgStat'
 };
 
 /**

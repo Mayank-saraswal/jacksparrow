@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 import { inngest } from "@/inngest/client";
+import { audit } from "@/server/audit";
 import { sendEmailSchema } from "@/server/agent/execute";
 
 /**
@@ -63,6 +64,15 @@ export const schedulingRouter = createTRPCRouter({
         data: { scheduledId: row.id, userId: ctx.userId },
       });
 
+      // Send-Later (not the undo-send window) is an auditable scheduling action.
+      if (!input.useUndoDelay && input.sendAt) {
+        audit(ctx, "email.scheduled", {
+          targetType: "scheduled_email",
+          targetId: row.id,
+          meta: { sendAt: sendAt.toISOString() },
+        });
+      }
+
       return {
         id: row.id,
         sendAt: sendAt.toISOString(),
@@ -88,6 +98,11 @@ export const schedulingRouter = createTRPCRouter({
       await ctx.db.scheduledEmail.update({
         where: { id: input.id },
         data: { status: "canceled" },
+      });
+      audit(ctx, "email.canceled", {
+        targetType: "scheduled_email",
+        targetId: input.id,
+        meta: {},
       });
       return { ok: true };
     }),

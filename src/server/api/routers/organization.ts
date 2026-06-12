@@ -6,6 +6,7 @@ import {
   orgProcedure,
   orgAdminProcedure,
 } from "@/server/api/trpc";
+import { audit } from "@/server/audit";
 
 /**
  * Organization management. Reads come from our mirrored Membership table
@@ -82,6 +83,11 @@ export const organizationRouter = createTRPCRouter({
         where: { orgId_userId: { orgId: ctx.orgId, userId: input.userId } },
         data: { role: input.role },
       });
+      audit(ctx, "member.role_changed", {
+        targetType: "membership",
+        targetId: input.userId,
+        meta: { role: input.role },
+      });
       return { ok: true };
     }),
 
@@ -97,6 +103,11 @@ export const organizationRouter = createTRPCRouter({
       });
       await ctx.db.membership.deleteMany({
         where: { orgId: ctx.orgId, userId: input.userId },
+      });
+      audit(ctx, "member.removed", {
+        targetType: "membership",
+        targetId: input.userId,
+        meta: { source: "admin_action" },
       });
       return { ok: true };
     }),

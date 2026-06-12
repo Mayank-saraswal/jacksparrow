@@ -7,6 +7,7 @@ import {
   type Plan,
   type PlanLimits,
   type UsageMetric,
+  type EnterpriseFeature,
   type SubscriptionSnapshot,
   effectivePlan,
   isInGrace,
@@ -179,6 +180,28 @@ export async function assertCanConnectAccount(
 ): Promise<void> {
   const { limits } = await getEntitlements(owner);
   if (currentAccountCount >= limits.maxAccounts) {
+    throw new TRPCError({ code: "FORBIDDEN", message: "limit_exceeded" });
+  }
+}
+
+/** True when the owner is on a plan that includes the given Enterprise feature. */
+export async function hasFeature(
+  owner: OwnerRef,
+  feature: EnterpriseFeature,
+): Promise<boolean> {
+  const { limits } = await getEntitlements(owner);
+  return limits[feature];
+}
+
+/**
+ * Throws limit_exceeded unless the owner's plan includes `feature`. The single
+ * gate every Phase 4 (Enterprise) entry point calls.
+ */
+export async function assertFeature(
+  owner: OwnerRef,
+  feature: EnterpriseFeature,
+): Promise<void> {
+  if (!(await hasFeature(owner, feature))) {
     throw new TRPCError({ code: "FORBIDDEN", message: "limit_exceeded" });
   }
 }

@@ -3,6 +3,7 @@ import { TRPCError } from "@trpc/server";
 
 import type { Prisma } from "../../../../generated/prisma";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
+import { audit } from "@/server/audit";
 import {
   executePendingAction,
   summarizePendingAction,
@@ -52,6 +53,23 @@ export const pendingRouter = createTRPCRouter({
         where: { id: action.id },
         data: { status: "executed", resolvedAt: new Date() },
       });
+      audit(ctx, "agent.action_approved", {
+        targetType: "pending_action",
+        targetId: action.id,
+        meta: { kind: action.kind },
+      });
+      audit(ctx, "agent.action_executed", {
+        targetType: "pending_action",
+        targetId: action.id,
+        meta: { kind: action.kind },
+      });
+      if (action.kind === "send_email" || action.kind === "shared_reply") {
+        audit(ctx, "email.sent", {
+          targetType: "email",
+          targetId: action.id,
+          meta: { kind: action.kind },
+        });
+      }
       return { ok: true, summary: result.summary };
     }),
 
@@ -66,6 +84,11 @@ export const pendingRouter = createTRPCRouter({
       await ctx.db.pendingAction.update({
         where: { id: action.id },
         data: { status: "rejected", resolvedAt: new Date() },
+      });
+      audit(ctx, "agent.action_rejected", {
+        targetType: "pending_action",
+        targetId: action.id,
+        meta: { kind: action.kind },
       });
       return { ok: true };
     }),

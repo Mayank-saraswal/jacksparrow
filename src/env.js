@@ -24,6 +24,9 @@ export const env = createEnv({
     // disabled when absent.
     MICROSOFT_CLIENT_ID: z.string().optional(),
     MICROSOFT_CLIENT_SECRET: z.string().optional(),
+    // Supabase Realtime (browser). Project URL + a publishable/anon key.
+    // (client section below) and the service-role key for server-side Storage.
+    SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
     // Slack OAuth credentials (org-level). Optional.
     SLACK_CLIENT_ID: z.string().optional(),
     SLACK_CLIENT_SECRET: z.string().optional(),
@@ -39,6 +42,8 @@ export const env = createEnv({
     STRIPE_PRICE_PRO_YEARLY: z.string().optional(),
     STRIPE_PRICE_BUSINESS_MONTHLY: z.string().optional(),
     STRIPE_PRICE_BUSINESS_YEARLY: z.string().optional(),
+    STRIPE_PRICE_ENTERPRISE_MONTHLY: z.string().optional(),
+    STRIPE_PRICE_ENTERPRISE_YEARLY: z.string().optional(),
     // OpenAI (Vercel AI SDK provider) — embeddings/LLM. Optional: features that
     // need it are skipped when absent.
     OPENAI_API_KEY: z.string().optional(),
@@ -79,6 +84,7 @@ export const env = createEnv({
     MICROSOFT_CLIENT_SECRET: process.env.MICROSOFT_CLIENT_SECRET,
     SLACK_CLIENT_ID: process.env.SLACK_CLIENT_ID,
     SLACK_CLIENT_SECRET: process.env.SLACK_CLIENT_SECRET,
+    SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
     CLERK_WEBHOOK_SECRET: process.env.CLERK_WEBHOOK_SECRET,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
@@ -87,6 +93,8 @@ export const env = createEnv({
     STRIPE_PRICE_PRO_YEARLY: process.env.STRIPE_PRICE_PRO_YEARLY,
     STRIPE_PRICE_BUSINESS_MONTHLY: process.env.STRIPE_PRICE_BUSINESS_MONTHLY,
     STRIPE_PRICE_BUSINESS_YEARLY: process.env.STRIPE_PRICE_BUSINESS_YEARLY,
+    STRIPE_PRICE_ENTERPRISE_MONTHLY: process.env.STRIPE_PRICE_ENTERPRISE_MONTHLY,
+    STRIPE_PRICE_ENTERPRISE_YEARLY: process.env.STRIPE_PRICE_ENTERPRISE_YEARLY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
     TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
     TELEGRAM_WEBHOOK_SECRET: process.env.TELEGRAM_WEBHOOK_SECRET,

@@ -37,6 +37,8 @@ export function configuredPrices(): PlanPrice[] {
   add("pro", "year", env.STRIPE_PRICE_PRO_YEARLY);
   add("business", "month", env.STRIPE_PRICE_BUSINESS_MONTHLY);
   add("business", "year", env.STRIPE_PRICE_BUSINESS_YEARLY);
+  add("enterprise", "month", env.STRIPE_PRICE_ENTERPRISE_MONTHLY);
+  add("enterprise", "year", env.STRIPE_PRICE_ENTERPRISE_YEARLY);
   return out;
 }
 

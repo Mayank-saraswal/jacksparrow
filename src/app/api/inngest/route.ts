@@ -2,6 +2,12 @@
 import { serve } from "inngest/next";
 import { inngest } from "../../../inngest/client";
 import {
+  accountDelete,
+  accountDeletionSweep,
+  accountExport,
+  analyticsBackfill,
+  analyticsCron,
+  auditExport,
   backfillIntegration,
   billingSeatsSync,
   channelCallbackReceived,
@@ -12,7 +18,10 @@ import {
   followUpReminders,
   gmailWatchOnConnect,
   gmailWatchRenew,
+  memberOffboarding,
   processTask,
+  retentionPurge,
+  retentionPurgeCron,
   ruleSuggestionsCron,
   scheduledSend,
   scoreInboxBackfill,
@@ -47,5 +56,14 @@ export const { GET, POST, PUT } = serve({
     clerkMembershipSync,
     stripeWebhookReceived,
     billingSeatsSync,
+    memberOffboarding,
+    retentionPurgeCron,
+    retentionPurge,
+    analyticsCron,
+    analyticsBackfill,
+    accountExport,
+    accountDeletionSweep,
+    accountDelete,
+    auditExport,
   ],
 });

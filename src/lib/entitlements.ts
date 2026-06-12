@@ -4,7 +4,7 @@
  * fail-open/fail-closed decision. No I/O so it's fully unit-testable.
  */
 
-export type Plan = "free" | "pro" | "business";
+export type Plan = "free" | "pro" | "business" | "enterprise";
 export type UsageMetric = "ai_action" | "embedding" | "summary";
 
 export interface PlanLimits {
@@ -14,6 +14,11 @@ export interface PlanLimits {
   aiActionsPerMonth: number;
   sharedInboxes: boolean;
   slack: boolean;
+  // Phase 4 — Enterprise-only capabilities.
+  sso: boolean;
+  auditLogs: boolean;
+  retention: boolean;
+  analytics: boolean;
 }
 
 export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
@@ -22,20 +27,45 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
     aiActionsPerMonth: 100,
     sharedInboxes: false,
     slack: false,
+    sso: false,
+    auditLogs: false,
+    retention: false,
+    analytics: false,
   },
   pro: {
     maxAccounts: Number.POSITIVE_INFINITY,
     aiActionsPerMonth: 2000,
     sharedInboxes: true,
     slack: false,
+    sso: false,
+    auditLogs: false,
+    retention: false,
+    analytics: false,
   },
   business: {
     maxAccounts: Number.POSITIVE_INFINITY,
     aiActionsPerMonth: 2000,
     sharedInboxes: true,
     slack: true,
+    sso: false,
+    auditLogs: false,
+    retention: false,
+    analytics: false,
+  },
+  enterprise: {
+    maxAccounts: Number.POSITIVE_INFINITY,
+    aiActionsPerMonth: 10000,
+    sharedInboxes: true,
+    slack: true,
+    sso: true,
+    auditLogs: true,
+    retention: true,
+    analytics: true,
   },
 };
+
+/** Enterprise-gated feature flags, keyed off PlanLimits. */
+export type EnterpriseFeature = "sso" | "auditLogs" | "retention" | "analytics";
 
 export function planLimits(plan: Plan): PlanLimits {
   return PLAN_LIMITS[plan];

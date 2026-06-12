@@ -85,6 +85,7 @@ model User {
   gmailBackfilledAt    DateTime? @map("gmail_backfilled_at") @db.Timestamptz
   calendarBackfilledAt DateTime? @map("calendar_backfilled_at") @db.Timestamptz
   outlookBackfilledAt  DateTime? @map("outlook_backfilled_at") @db.Timestamptz
+  deletionScheduledAt  DateTime? @map("deletion_scheduled_at") @db.Timestamptz
 
   channelLinks     ChannelLink[]
   emailEmbeddings  EmailEmbedding[]
@@ -388,8 +389,15 @@ model Organization {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
 
-  memberships   Membership[]
-  sharedInboxes SharedInbox[]
+  // Org toggle: when off, analytics show org totals only (no per-member rows).
+  memberLevelAnalytics Boolean @default(true) @map("member_level_analytics")
+
+  memberships     Membership[]
+  sharedInboxes   SharedInbox[]
+  ssoConnections  SsoConnection[]
+  retentionPolicy RetentionPolicy?
+  legalHolds      LegalHold[]
+  dailyStats      DailyOrgStat[]
 
   @@map("organizations")
 }
@@ -531,4 +539,100 @@ model StripeEvent {
   processedAt DateTime @default(now()) @map("processed_at") @db.Timestamptz
 
   @@map("stripe_events")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Phase 4 — Enterprise: audit logs, SSO, retention, analytics
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Append-only, queryable trail of security-relevant actions. A Postgres trigger
+// (shipped in the same migration) raises on UPDATE/DELETE as defense-in-depth;
+// no app code ever mutates this table.
+model AuditLog {
+  id          String   @id @default(cuid())
+  orgId       String?  @map("org_id")
+  actorUserId String?  @map("actor_user_id")
+  actorType   String   @default("user") // "user" | "system" | "agent"
+  action      String
+  targetType  String   @map("target_type")
+  targetId    String?  @map("target_id")
+  ip          String?
+  userAgent   String?  @map("user_agent")
+  meta        Json     @default("{}")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  @@index([orgId, createdAt])
+  @@index([actorUserId, createdAt])
+  @@index([orgId, action, createdAt])
+  @@map("audit_logs")
+}
+
+// A verified email domain claims one org for SSO (SAML/OIDC via Clerk).
+model SsoConnection {
+  id                String   @id @default(cuid())
+  orgId             String   @map("org_id")
+  clerkConnectionId String   @map("clerk_connection_id")
+  domain            String
+  protocol          String // "saml" | "oidc"
+  status            String   @default("pending") // pending | active | disabled
+  enforceSso        Boolean  @default(false) @map("enforce_sso")
+  breakGlassUserIds String[] @default([]) @map("break_glass_user_ids")
+  createdAt         DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt         DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@unique([domain])
+  @@index([orgId])
+  @@map("sso_connections")
+}
+
+// Org-controlled lifecycle for synced + derived data. null = keep forever.
+model RetentionPolicy {
+  id                   String    @id @default(cuid())
+  orgId                String    @unique @map("org_id")
+  emailDays            Int?      @map("email_days")
+  slackDays            Int?      @map("slack_days")
+  auditDays            Int       @default(365) @map("audit_days")
+  derivedFollowsSource Boolean   @default(true) @map("derived_follows_source")
+  // Set to updatedAt + 72h when a policy is first tightened (grace period).
+  effectiveAt          DateTime? @map("effective_at") @db.Timestamptz
+  updatedByUserId      String    @map("updated_by_user_id")
+  updatedAt            DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@map("retention_policies")
+}
+
+// Rows matching an active hold are never purged.
+model LegalHold {
+  id              String   @id @default(cuid())
+  orgId           String   @map("org_id")
+  name            String
+  createdByUserId String   @map("created_by_user_id")
+  active          Boolean  @default(true)
+  scope           Json     @default("{}") // { userIds?, sharedInboxIds?, before?, after? }
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@index([orgId, active])
+  @@map("legal_holds")
+}
+
+// Pre-aggregated daily org metrics for the analytics dashboard.
+model DailyOrgStat {
+  id     String   @id @default(cuid())
+  orgId  String   @map("org_id")
+  date   DateTime @db.Date
+  metric String
+  value  Int      @default(0)
+  dims   Json     @default("{}")
+
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@unique([orgId, date, metric, dims])
+  @@index([orgId, metric, date])
+  @@map("daily_org_stats")
 }

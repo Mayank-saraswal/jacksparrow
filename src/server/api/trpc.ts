@@ -13,6 +13,7 @@ import { ZodError } from "zod";
 
 import { db } from "@/server/db";
 import { assertMember, assertAdmin } from "@/server/authz";
+import { enforceSsoForOrg } from "@/server/sso/enforce";
 
 /**
  * 1. CONTEXT
@@ -27,7 +28,19 @@ import { assertMember, assertAdmin } from "@/server/authz";
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
-  const { userId, orgId, orgRole } = await auth();
+  const { userId, orgId, orgRole, sessionClaims } = await auth();
+
+  // Extract request metadata once for audit logging (never per call site).
+  const ip =
+    opts.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    opts.headers.get("x-real-ip") ??
+    null;
+  const userAgent = opts.headers.get("user-agent") ?? null;
+
+  // Best-effort sign-in strategy for SSO enforcement. Orgs that enforce SSO
+  // configure a Clerk custom session claim `strategy` (see SECURITY.md).
+  const strategy =
+    (sessionClaims as { strategy?: string } | null)?.strategy ?? null;
 
   return {
     db,
@@ -36,6 +49,9 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
     // authoritative role check happens against our mirrored Membership table.
     orgId: orgId ?? null,
     orgRole: orgRole ?? null,
+    strategy,
+    ip,
+    userAgent,
     ...opts,
   };
 };
@@ -144,6 +160,13 @@ export const orgProcedure = protectedProcedure.use(async ({ ctx, next }) => {
     });
   }
   const membership = await assertMember(ctx.orgId, ctx.userId);
+  await enforceSsoForOrg({
+    orgId: ctx.orgId,
+    userId: ctx.userId,
+    strategy: ctx.strategy,
+    ip: ctx.ip,
+    userAgent: ctx.userAgent,
+  });
   return next({ ctx: { ...ctx, orgId: ctx.orgId, role: membership.role } });
 });
 
@@ -159,6 +182,13 @@ export const orgAdminProcedure = protectedProcedure.use(
       });
     }
     const membership = await assertAdmin(ctx.orgId, ctx.userId);
+    await enforceSsoForOrg({
+      orgId: ctx.orgId,
+      userId: ctx.userId,
+      strategy: ctx.strategy,
+      ip: ctx.ip,
+      userAgent: ctx.userAgent,
+    });
     return next({ ctx: { ...ctx, orgId: ctx.orgId, role: membership.role } });
   },
 );

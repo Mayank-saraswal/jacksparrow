@@ -4,6 +4,7 @@ import { TRPCError } from "@trpc/server";
 import type { Prisma } from "../../../../generated/prisma";
 import { createTRPCRouter, orgProcedure } from "@/server/api/trpc";
 import { assertSharedInboxAccess } from "@/server/authz";
+import { audit } from "@/server/audit";
 import { getMailProvider } from "@/server/mail/provider";
 import { OPERATION_PATH } from "@/server/agent/pending";
 import { sendChannelText } from "@/server/channels/dispatch";
@@ -290,6 +291,21 @@ export const sharedInboxRouter = createTRPCRouter({
           meta: { assigneeUserId: result.next.assigneeUserId },
         },
       });
+
+      // Compliance audit (alongside the AssignmentEvent feature row).
+      if (action.type === "assign") {
+        audit(ctx, "thread.assigned", {
+          targetType: "thread",
+          targetId: input.threadId,
+          meta: { sharedInboxId: input.sharedInboxId, assignee: result.next.assigneeUserId },
+        });
+      } else if (action.type === "close") {
+        audit(ctx, "thread.closed", {
+          targetType: "thread",
+          targetId: input.threadId,
+          meta: { sharedInboxId: input.sharedInboxId },
+        });
+      }
 
       // Notify a newly-assigned member (unless they assigned themselves).
       if (
