@@ -228,6 +228,15 @@ exports.Prisma.SyncItemScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.LinkCodeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  userId: 'userId',
+  channel: 'channel',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -265,7 +274,8 @@ exports.Prisma.ModelName = {
   PriorityScore: 'PriorityScore',
   PendingAction: 'PendingAction',
   UserPreference: 'UserPreference',
-  SyncItem: 'SyncItem'
+  SyncItem: 'SyncItem',
+  LinkCode: 'LinkCode'
 };
 
 /**

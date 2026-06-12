@@ -186,3 +186,16 @@ model SyncItem {
   @@index([userId, timestamp])
   @@map("sync_items")
 }
+
+// Short-lived code used to link a Telegram/WhatsApp chat to a user account.
+model LinkCode {
+  id        String   @id @default(cuid())
+  code      String   @unique
+  userId    String   @map("user_id")
+  channel   String // "telegram" | "whatsapp"
+  expiresAt DateTime @map("expires_at") @db.Timestamptz
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  @@index([userId])
+  @@map("link_codes")
+}

@@ -10,6 +10,7 @@ import Link from "next/link";
 import { TRPCReactProvider } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
 import { AgentDock } from "@/app/_components/agent-dock";
+import { CommandMenu } from "@/app/_components/command-menu";
 import { cn } from "@/lib/utils";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -73,6 +74,12 @@ export default async function RootLayout({
                     >
                       Integrations
                     </Link>
+                    <Link
+                      href="/settings"
+                      className="text-xs text-muted-foreground hover:text-foreground"
+                    >
+                      Settings
+                    </Link>
                     <UserButton />
                   </>
                 ) : (
@@ -84,6 +91,7 @@ export default async function RootLayout({
             </header>
             {children}
             {userId && <AgentDock />}
+            {userId && <CommandMenu />}
           </TRPCReactProvider>
         </body>
       </html>

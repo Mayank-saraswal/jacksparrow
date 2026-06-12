@@ -97,6 +97,22 @@ export function summarizePendingAction(
   }
 }
 
+/** Confirmation copy shown after an action executes (web tray + channels). */
+export function confirmationCopy(kind: string): string {
+  switch (kind) {
+    case "send_email":
+      return "Sent ✅";
+    case "create_event":
+      return "Event created ✅";
+    case "delete_event":
+      return "Event deleted ✅";
+    case "respond_invite":
+      return "RSVP sent ✅";
+    default:
+      return "Done ✅";
+  }
+}
+
 /** Executes an approved pending action against Corsair. */
 export async function executePendingAction(
   userId: string,

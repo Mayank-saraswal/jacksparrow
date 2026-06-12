@@ -3,11 +3,14 @@ import { serve } from "inngest/next";
 import { inngest } from "../../../inngest/client";
 import {
   backfillIntegration,
+  channelCallbackReceived,
+  channelMessageReceived,
   corsairWebhookReceived,
   gmailWatchOnConnect,
   gmailWatchRenew,
   processTask,
   scoreInboxBackfill,
+  searchEmbeddingsBackfill,
 } from "../../../inngest/functions";
 
 export const { GET, POST, PUT } = serve({
@@ -19,5 +22,8 @@ export const { GET, POST, PUT } = serve({
     gmailWatchOnConnect,
     gmailWatchRenew,
     scoreInboxBackfill,
+    searchEmbeddingsBackfill,
+    channelMessageReceived,
+    channelCallbackReceived,
   ],
 });

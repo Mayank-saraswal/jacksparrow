@@ -2,14 +2,20 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { PencilSimple, ArrowClockwise } from "@phosphor-icons/react";
 
 import { api } from "@/trpc/react";
 import type { ThreadPreview } from "@/server/gmail";
 import { useRealtimeSync } from "@/hooks/use-realtime-sync";
+import { cn } from "@/lib/utils";
+import {
+  matchesKey,
+  resolveKey,
+  isEditableTarget,
+} from "@/lib/shortcuts";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ThreadList } from "./thread-list";
 import { ThreadView } from "./thread-view";
 import { ComposeSheet, type ComposeInitial } from "./compose-sheet";
@@ -68,6 +74,26 @@ export function InboxApp() {
     },
     onSettled: () => void utils.inbox.listThreads.invalidate(),
   });
+  const markUnread = api.inbox.markUnread.useMutation({
+    onSettled: () => void utils.inbox.listThreads.invalidate(),
+  });
+  const unarchive = api.inbox.unarchiveThread.useMutation({
+    onSettled: () => void utils.inbox.listThreads.invalidate(),
+  });
+  const untrash = api.inbox.untrashThread.useMutation({
+    onSettled: () => void utils.inbox.listThreads.invalidate(),
+  });
+
+  const shortcuts = api.preferences.getShortcuts.useQuery();
+  const overrides = React.useMemo(() => shortcuts.data ?? {}, [shortcuts.data]);
+  const undoStack = React.useRef<{ run: () => void }[]>([]);
+
+  // Deep-link from the command palette: /inbox?thread=<id>.
+  const searchParams = useSearchParams();
+  React.useEffect(() => {
+    const t = searchParams.get("thread");
+    if (t) setSelectedId(t);
+  }, [searchParams]);
 
   const handleSelect = (threadId: string) => {
     setSelectedId(threadId);
@@ -94,6 +120,72 @@ export function InboxApp() {
   );
   const visible = tab === "important" ? importantThreads : otherThreads;
 
+  // Keyboard shortcuts (Phase 8). Single keys only fire outside text fields.
+  React.useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (isEditableTarget(e.target)) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const k = (id: string) => matchesKey(e, resolveKey(id, overrides));
+      const idx = visible.findIndex((t) => t.threadId === selectedId);
+      const sel = idx >= 0 ? visible[idx] : undefined;
+
+      if (k("next_thread")) {
+        e.preventDefault();
+        const target = visible[Math.min(idx + 1, visible.length - 1)] ?? visible[0];
+        if (target) handleSelect(target.threadId);
+      } else if (k("prev_thread")) {
+        e.preventDefault();
+        const target = idx <= 0 ? visible[0] : visible[idx - 1];
+        if (target) handleSelect(target.threadId);
+      } else if (k("compose")) {
+        e.preventDefault();
+        setCompose({ open: true });
+      } else if (sel && k("archive")) {
+        e.preventDefault();
+        const id = sel.threadId;
+        archive.mutate({ threadId: id });
+        undoStack.current.push({ run: () => unarchive.mutate({ threadId: id }) });
+      } else if (sel && k("trash")) {
+        e.preventDefault();
+        const id = sel.threadId;
+        trash.mutate({ threadId: id });
+        undoStack.current.push({ run: () => untrash.mutate({ threadId: id }) });
+      } else if (sel && k("star")) {
+        e.preventDefault();
+        toggleStar.mutate({ threadId: sel.threadId, starred: !sel.starred });
+      } else if (sel && k("mark_unread")) {
+        e.preventDefault();
+        markUnread.mutate({ threadId: sel.threadId });
+      } else if (sel && k("reply")) {
+        e.preventDefault();
+        setCompose({
+          open: true,
+          initial: {
+            to: sel.fromEmail,
+            subject: `Re: ${sel.subject}`,
+            threadId: sel.threadId,
+          },
+        });
+      } else if (k("undo")) {
+        e.preventDefault();
+        undoStack.current.pop()?.run();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [
+    visible,
+    selectedId,
+    overrides,
+    handleSelect,
+    archive,
+    trash,
+    toggleStar,
+    markUnread,
+    unarchive,
+    untrash,
+  ]);
+
   const gmailSynced = syncStatus.data?.gmail.backfilledAt != null;
   const showBackfillNotice =
     !threadsQuery.isLoading && allThreads.length === 0 && !gmailSynced;
@@ -102,12 +194,22 @@ export function InboxApp() {
     <div className="flex h-[calc(100vh-3rem)] flex-col">
       {/* Toolbar */}
       <div className="flex items-center justify-between border-b border-border px-4 py-2">
-        <Tabs value={tab} onValueChange={(v) => setTab(v as typeof tab)}>
-          <TabsList>
-            <TabsTrigger value="important">Important</TabsTrigger>
-            <TabsTrigger value="other">Other</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <div className="inline-flex h-8 items-center border-b border-border">
+          {(["important", "other"] as const).map((t) => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              className={cn(
+                "inline-flex h-8 items-center border-b-2 px-2.5 text-xs font-medium capitalize transition-colors",
+                tab === t
+                  ? "border-primary text-foreground"
+                  : "border-transparent text-muted-foreground hover:text-foreground",
+              )}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
         <div className="flex items-center gap-1.5">
           <Button
             size="sm"

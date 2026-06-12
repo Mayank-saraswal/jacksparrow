@@ -25,6 +25,13 @@ export const env = createEnv({
     // OpenAI (Vercel AI SDK provider) — embeddings/LLM. Optional: features that
     // need it are skipped when absent.
     OPENAI_API_KEY: z.string().optional(),
+    // Telegram + WhatsApp command channels (Phase 10). All optional.
+    TELEGRAM_BOT_TOKEN: z.string().optional(),
+    TELEGRAM_WEBHOOK_SECRET: z.string().optional(),
+    WHATSAPP_TOKEN: z.string().optional(),
+    WHATSAPP_PHONE_NUMBER_ID: z.string().optional(),
+    WHATSAPP_VERIFY_TOKEN: z.string().optional(),
+    WHATSAPP_APP_SECRET: z.string().optional(),
   },
 
   /**
@@ -53,6 +60,12 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
+    TELEGRAM_WEBHOOK_SECRET: process.env.TELEGRAM_WEBHOOK_SECRET,
+    WHATSAPP_TOKEN: process.env.WHATSAPP_TOKEN,
+    WHATSAPP_PHONE_NUMBER_ID: process.env.WHATSAPP_PHONE_NUMBER_ID,
+    WHATSAPP_VERIFY_TOKEN: process.env.WHATSAPP_VERIFY_TOKEN,
+    WHATSAPP_APP_SECRET: process.env.WHATSAPP_APP_SECRET,
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
       process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,

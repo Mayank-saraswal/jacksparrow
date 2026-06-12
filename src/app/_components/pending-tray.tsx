@@ -34,6 +34,7 @@ export function PendingTray({
   });
   const [editingId, setEditingId] = React.useState<string | null>(null);
   const [draft, setDraft] = React.useState<EmailDraft>({});
+  const [error, setError] = React.useState<string | null>(null);
 
   const refresh = async () => {
     await Promise.all([
@@ -42,7 +43,10 @@ export function PendingTray({
     ]);
   };
 
-  const approve = api.pending.approve.useMutation({ onSuccess: refresh });
+  const approve = api.pending.approve.useMutation({
+    onSuccess: refresh,
+    onError: (e) => setError(e.message),
+  });
   const reject = api.pending.reject.useMutation({ onSuccess: refresh });
   const update = api.pending.updateDraft.useMutation({
     onSuccess: async () => {
@@ -61,6 +65,11 @@ export function PendingTray({
         </SheetHeader>
 
         <div className="flex-1 space-y-3 overflow-y-auto p-4">
+          {error && (
+            <div className="rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+              {error}
+            </div>
+          )}
           {items.length === 0 && (
             <p className="text-xs text-muted-foreground">
               Nothing awaiting approval. Ask the AI to draft an email or event.

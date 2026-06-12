@@ -12,10 +12,22 @@ export function AgentDock() {
   const utils = api.useUtils();
   const [chatOpen, setChatOpen] = React.useState(false);
   const [trayOpen, setTrayOpen] = React.useState(false);
+  const [prompt, setPrompt] = React.useState("");
   const count = api.pending.count.useQuery(undefined, {
     refetchInterval: 8000,
   });
   const n = count.data ?? 0;
+
+  // Opened from the command palette's "Ask AI" entry.
+  React.useEffect(() => {
+    const onAsk = (e: Event) => {
+      const detail = (e as CustomEvent<{ prompt?: string }>).detail;
+      setPrompt(detail?.prompt ?? "");
+      setChatOpen(true);
+    };
+    window.addEventListener("jacksparrow:ask-ai", onAsk);
+    return () => window.removeEventListener("jacksparrow:ask-ai", onAsk);
+  }, []);
 
   return (
     <>
@@ -41,6 +53,7 @@ export function AgentDock() {
       <ChatPanel
         open={chatOpen}
         onOpenChange={setChatOpen}
+        initialPrompt={prompt}
         onActivity={() => void utils.pending.count.invalidate()}
       />
       <PendingTray open={trayOpen} onOpenChange={setTrayOpen} />

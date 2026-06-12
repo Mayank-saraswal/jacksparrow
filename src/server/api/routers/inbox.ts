@@ -94,6 +94,25 @@ export const inboxRouter = createTRPCRouter({
       return { ok: true };
     }),
 
+  unarchiveThread: protectedProcedure
+    .input(z.object({ threadId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const tenant = getTenant(ctx.userId);
+      await tenant.gmail.api.threads.modify({
+        id: input.threadId,
+        addLabelIds: ["INBOX"],
+      });
+      return { ok: true };
+    }),
+
+  untrashThread: protectedProcedure
+    .input(z.object({ threadId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const tenant = getTenant(ctx.userId);
+      await tenant.gmail.api.threads.untrash({ id: input.threadId });
+      return { ok: true };
+    }),
+
   markRead: protectedProcedure
     .input(z.object({ threadId: z.string() }))
     .mutation(async ({ ctx, input }) => {

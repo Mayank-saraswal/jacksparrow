@@ -68,6 +68,11 @@ export type UserPreference = $Result.DefaultSelection<Prisma.$UserPreferencePayl
  * 
  */
 export type SyncItem = $Result.DefaultSelection<Prisma.$SyncItemPayload>
+/**
+ * Model LinkCode
+ * 
+ */
+export type LinkCode = $Result.DefaultSelection<Prisma.$LinkCodePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -296,6 +301,16 @@ export class PrismaClient<
     * ```
     */
   get syncItem(): Prisma.SyncItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.linkCode`: Exposes CRUD operations for the **LinkCode** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LinkCodes
+    * const linkCodes = await prisma.linkCode.findMany()
+    * ```
+    */
+  get linkCode(): Prisma.LinkCodeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -747,7 +762,8 @@ export namespace Prisma {
     PriorityScore: 'PriorityScore',
     PendingAction: 'PendingAction',
     UserPreference: 'UserPreference',
-    SyncItem: 'SyncItem'
+    SyncItem: 'SyncItem',
+    LinkCode: 'LinkCode'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -766,7 +782,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent" | "user" | "channelLink" | "emailEmbedding" | "priorityScore" | "pendingAction" | "userPreference" | "syncItem"
+      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent" | "user" | "channelLink" | "emailEmbedding" | "priorityScore" | "pendingAction" | "userPreference" | "syncItem" | "linkCode"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1584,6 +1600,80 @@ export namespace Prisma {
           }
         }
       }
+      LinkCode: {
+        payload: Prisma.$LinkCodePayload<ExtArgs>
+        fields: Prisma.LinkCodeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LinkCodeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkCodePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LinkCodeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkCodePayload>
+          }
+          findFirst: {
+            args: Prisma.LinkCodeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkCodePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LinkCodeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkCodePayload>
+          }
+          findMany: {
+            args: Prisma.LinkCodeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkCodePayload>[]
+          }
+          create: {
+            args: Prisma.LinkCodeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkCodePayload>
+          }
+          createMany: {
+            args: Prisma.LinkCodeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LinkCodeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkCodePayload>[]
+          }
+          delete: {
+            args: Prisma.LinkCodeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkCodePayload>
+          }
+          update: {
+            args: Prisma.LinkCodeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkCodePayload>
+          }
+          deleteMany: {
+            args: Prisma.LinkCodeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LinkCodeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LinkCodeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkCodePayload>[]
+          }
+          upsert: {
+            args: Prisma.LinkCodeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkCodePayload>
+          }
+          aggregate: {
+            args: Prisma.LinkCodeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLinkCode>
+          }
+          groupBy: {
+            args: Prisma.LinkCodeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LinkCodeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LinkCodeCountArgs<ExtArgs>
+            result: $Utils.Optional<LinkCodeCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1691,6 +1781,7 @@ export namespace Prisma {
     pendingAction?: PendingActionOmit
     userPreference?: UserPreferenceOmit
     syncItem?: SyncItemOmit
+    linkCode?: LinkCodeOmit
   }
 
   /* Types for Logging */
@@ -13883,6 +13974,1014 @@ export namespace Prisma {
 
 
   /**
+   * Model LinkCode
+   */
+
+  export type AggregateLinkCode = {
+    _count: LinkCodeCountAggregateOutputType | null
+    _min: LinkCodeMinAggregateOutputType | null
+    _max: LinkCodeMaxAggregateOutputType | null
+  }
+
+  export type LinkCodeMinAggregateOutputType = {
+    id: string | null
+    code: string | null
+    userId: string | null
+    channel: string | null
+    expiresAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type LinkCodeMaxAggregateOutputType = {
+    id: string | null
+    code: string | null
+    userId: string | null
+    channel: string | null
+    expiresAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type LinkCodeCountAggregateOutputType = {
+    id: number
+    code: number
+    userId: number
+    channel: number
+    expiresAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type LinkCodeMinAggregateInputType = {
+    id?: true
+    code?: true
+    userId?: true
+    channel?: true
+    expiresAt?: true
+    createdAt?: true
+  }
+
+  export type LinkCodeMaxAggregateInputType = {
+    id?: true
+    code?: true
+    userId?: true
+    channel?: true
+    expiresAt?: true
+    createdAt?: true
+  }
+
+  export type LinkCodeCountAggregateInputType = {
+    id?: true
+    code?: true
+    userId?: true
+    channel?: true
+    expiresAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type LinkCodeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LinkCode to aggregate.
+     */
+    where?: LinkCodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LinkCodes to fetch.
+     */
+    orderBy?: LinkCodeOrderByWithRelationInput | LinkCodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LinkCodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LinkCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LinkCodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LinkCodes
+    **/
+    _count?: true | LinkCodeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LinkCodeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LinkCodeMaxAggregateInputType
+  }
+
+  export type GetLinkCodeAggregateType<T extends LinkCodeAggregateArgs> = {
+        [P in keyof T & keyof AggregateLinkCode]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLinkCode[P]>
+      : GetScalarType<T[P], AggregateLinkCode[P]>
+  }
+
+
+
+
+  export type LinkCodeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LinkCodeWhereInput
+    orderBy?: LinkCodeOrderByWithAggregationInput | LinkCodeOrderByWithAggregationInput[]
+    by: LinkCodeScalarFieldEnum[] | LinkCodeScalarFieldEnum
+    having?: LinkCodeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LinkCodeCountAggregateInputType | true
+    _min?: LinkCodeMinAggregateInputType
+    _max?: LinkCodeMaxAggregateInputType
+  }
+
+  export type LinkCodeGroupByOutputType = {
+    id: string
+    code: string
+    userId: string
+    channel: string
+    expiresAt: Date
+    createdAt: Date
+    _count: LinkCodeCountAggregateOutputType | null
+    _min: LinkCodeMinAggregateOutputType | null
+    _max: LinkCodeMaxAggregateOutputType | null
+  }
+
+  type GetLinkCodeGroupByPayload<T extends LinkCodeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LinkCodeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LinkCodeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LinkCodeGroupByOutputType[P]>
+            : GetScalarType<T[P], LinkCodeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LinkCodeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    userId?: boolean
+    channel?: boolean
+    expiresAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["linkCode"]>
+
+  export type LinkCodeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    userId?: boolean
+    channel?: boolean
+    expiresAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["linkCode"]>
+
+  export type LinkCodeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    userId?: boolean
+    channel?: boolean
+    expiresAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["linkCode"]>
+
+  export type LinkCodeSelectScalar = {
+    id?: boolean
+    code?: boolean
+    userId?: boolean
+    channel?: boolean
+    expiresAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type LinkCodeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "userId" | "channel" | "expiresAt" | "createdAt", ExtArgs["result"]["linkCode"]>
+
+  export type $LinkCodePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LinkCode"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      code: string
+      userId: string
+      channel: string
+      expiresAt: Date
+      createdAt: Date
+    }, ExtArgs["result"]["linkCode"]>
+    composites: {}
+  }
+
+  type LinkCodeGetPayload<S extends boolean | null | undefined | LinkCodeDefaultArgs> = $Result.GetResult<Prisma.$LinkCodePayload, S>
+
+  type LinkCodeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LinkCodeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LinkCodeCountAggregateInputType | true
+    }
+
+  export interface LinkCodeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LinkCode'], meta: { name: 'LinkCode' } }
+    /**
+     * Find zero or one LinkCode that matches the filter.
+     * @param {LinkCodeFindUniqueArgs} args - Arguments to find a LinkCode
+     * @example
+     * // Get one LinkCode
+     * const linkCode = await prisma.linkCode.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LinkCodeFindUniqueArgs>(args: SelectSubset<T, LinkCodeFindUniqueArgs<ExtArgs>>): Prisma__LinkCodeClient<$Result.GetResult<Prisma.$LinkCodePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LinkCode that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LinkCodeFindUniqueOrThrowArgs} args - Arguments to find a LinkCode
+     * @example
+     * // Get one LinkCode
+     * const linkCode = await prisma.linkCode.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LinkCodeFindUniqueOrThrowArgs>(args: SelectSubset<T, LinkCodeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LinkCodeClient<$Result.GetResult<Prisma.$LinkCodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LinkCode that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkCodeFindFirstArgs} args - Arguments to find a LinkCode
+     * @example
+     * // Get one LinkCode
+     * const linkCode = await prisma.linkCode.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LinkCodeFindFirstArgs>(args?: SelectSubset<T, LinkCodeFindFirstArgs<ExtArgs>>): Prisma__LinkCodeClient<$Result.GetResult<Prisma.$LinkCodePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LinkCode that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkCodeFindFirstOrThrowArgs} args - Arguments to find a LinkCode
+     * @example
+     * // Get one LinkCode
+     * const linkCode = await prisma.linkCode.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LinkCodeFindFirstOrThrowArgs>(args?: SelectSubset<T, LinkCodeFindFirstOrThrowArgs<ExtArgs>>): Prisma__LinkCodeClient<$Result.GetResult<Prisma.$LinkCodePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LinkCodes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkCodeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LinkCodes
+     * const linkCodes = await prisma.linkCode.findMany()
+     * 
+     * // Get first 10 LinkCodes
+     * const linkCodes = await prisma.linkCode.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const linkCodeWithIdOnly = await prisma.linkCode.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LinkCodeFindManyArgs>(args?: SelectSubset<T, LinkCodeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkCodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LinkCode.
+     * @param {LinkCodeCreateArgs} args - Arguments to create a LinkCode.
+     * @example
+     * // Create one LinkCode
+     * const LinkCode = await prisma.linkCode.create({
+     *   data: {
+     *     // ... data to create a LinkCode
+     *   }
+     * })
+     * 
+     */
+    create<T extends LinkCodeCreateArgs>(args: SelectSubset<T, LinkCodeCreateArgs<ExtArgs>>): Prisma__LinkCodeClient<$Result.GetResult<Prisma.$LinkCodePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LinkCodes.
+     * @param {LinkCodeCreateManyArgs} args - Arguments to create many LinkCodes.
+     * @example
+     * // Create many LinkCodes
+     * const linkCode = await prisma.linkCode.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LinkCodeCreateManyArgs>(args?: SelectSubset<T, LinkCodeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LinkCodes and returns the data saved in the database.
+     * @param {LinkCodeCreateManyAndReturnArgs} args - Arguments to create many LinkCodes.
+     * @example
+     * // Create many LinkCodes
+     * const linkCode = await prisma.linkCode.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LinkCodes and only return the `id`
+     * const linkCodeWithIdOnly = await prisma.linkCode.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LinkCodeCreateManyAndReturnArgs>(args?: SelectSubset<T, LinkCodeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkCodePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LinkCode.
+     * @param {LinkCodeDeleteArgs} args - Arguments to delete one LinkCode.
+     * @example
+     * // Delete one LinkCode
+     * const LinkCode = await prisma.linkCode.delete({
+     *   where: {
+     *     // ... filter to delete one LinkCode
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LinkCodeDeleteArgs>(args: SelectSubset<T, LinkCodeDeleteArgs<ExtArgs>>): Prisma__LinkCodeClient<$Result.GetResult<Prisma.$LinkCodePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LinkCode.
+     * @param {LinkCodeUpdateArgs} args - Arguments to update one LinkCode.
+     * @example
+     * // Update one LinkCode
+     * const linkCode = await prisma.linkCode.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LinkCodeUpdateArgs>(args: SelectSubset<T, LinkCodeUpdateArgs<ExtArgs>>): Prisma__LinkCodeClient<$Result.GetResult<Prisma.$LinkCodePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LinkCodes.
+     * @param {LinkCodeDeleteManyArgs} args - Arguments to filter LinkCodes to delete.
+     * @example
+     * // Delete a few LinkCodes
+     * const { count } = await prisma.linkCode.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LinkCodeDeleteManyArgs>(args?: SelectSubset<T, LinkCodeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LinkCodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkCodeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LinkCodes
+     * const linkCode = await prisma.linkCode.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LinkCodeUpdateManyArgs>(args: SelectSubset<T, LinkCodeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LinkCodes and returns the data updated in the database.
+     * @param {LinkCodeUpdateManyAndReturnArgs} args - Arguments to update many LinkCodes.
+     * @example
+     * // Update many LinkCodes
+     * const linkCode = await prisma.linkCode.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LinkCodes and only return the `id`
+     * const linkCodeWithIdOnly = await prisma.linkCode.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LinkCodeUpdateManyAndReturnArgs>(args: SelectSubset<T, LinkCodeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkCodePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LinkCode.
+     * @param {LinkCodeUpsertArgs} args - Arguments to update or create a LinkCode.
+     * @example
+     * // Update or create a LinkCode
+     * const linkCode = await prisma.linkCode.upsert({
+     *   create: {
+     *     // ... data to create a LinkCode
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LinkCode we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LinkCodeUpsertArgs>(args: SelectSubset<T, LinkCodeUpsertArgs<ExtArgs>>): Prisma__LinkCodeClient<$Result.GetResult<Prisma.$LinkCodePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LinkCodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkCodeCountArgs} args - Arguments to filter LinkCodes to count.
+     * @example
+     * // Count the number of LinkCodes
+     * const count = await prisma.linkCode.count({
+     *   where: {
+     *     // ... the filter for the LinkCodes we want to count
+     *   }
+     * })
+    **/
+    count<T extends LinkCodeCountArgs>(
+      args?: Subset<T, LinkCodeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LinkCodeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LinkCode.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkCodeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LinkCodeAggregateArgs>(args: Subset<T, LinkCodeAggregateArgs>): Prisma.PrismaPromise<GetLinkCodeAggregateType<T>>
+
+    /**
+     * Group by LinkCode.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkCodeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LinkCodeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LinkCodeGroupByArgs['orderBy'] }
+        : { orderBy?: LinkCodeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LinkCodeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLinkCodeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LinkCode model
+   */
+  readonly fields: LinkCodeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LinkCode.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LinkCodeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LinkCode model
+   */
+  interface LinkCodeFieldRefs {
+    readonly id: FieldRef<"LinkCode", 'String'>
+    readonly code: FieldRef<"LinkCode", 'String'>
+    readonly userId: FieldRef<"LinkCode", 'String'>
+    readonly channel: FieldRef<"LinkCode", 'String'>
+    readonly expiresAt: FieldRef<"LinkCode", 'DateTime'>
+    readonly createdAt: FieldRef<"LinkCode", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LinkCode findUnique
+   */
+  export type LinkCodeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+    /**
+     * Filter, which LinkCode to fetch.
+     */
+    where: LinkCodeWhereUniqueInput
+  }
+
+  /**
+   * LinkCode findUniqueOrThrow
+   */
+  export type LinkCodeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+    /**
+     * Filter, which LinkCode to fetch.
+     */
+    where: LinkCodeWhereUniqueInput
+  }
+
+  /**
+   * LinkCode findFirst
+   */
+  export type LinkCodeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+    /**
+     * Filter, which LinkCode to fetch.
+     */
+    where?: LinkCodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LinkCodes to fetch.
+     */
+    orderBy?: LinkCodeOrderByWithRelationInput | LinkCodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LinkCodes.
+     */
+    cursor?: LinkCodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LinkCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LinkCodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LinkCodes.
+     */
+    distinct?: LinkCodeScalarFieldEnum | LinkCodeScalarFieldEnum[]
+  }
+
+  /**
+   * LinkCode findFirstOrThrow
+   */
+  export type LinkCodeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+    /**
+     * Filter, which LinkCode to fetch.
+     */
+    where?: LinkCodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LinkCodes to fetch.
+     */
+    orderBy?: LinkCodeOrderByWithRelationInput | LinkCodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LinkCodes.
+     */
+    cursor?: LinkCodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LinkCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LinkCodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LinkCodes.
+     */
+    distinct?: LinkCodeScalarFieldEnum | LinkCodeScalarFieldEnum[]
+  }
+
+  /**
+   * LinkCode findMany
+   */
+  export type LinkCodeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+    /**
+     * Filter, which LinkCodes to fetch.
+     */
+    where?: LinkCodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LinkCodes to fetch.
+     */
+    orderBy?: LinkCodeOrderByWithRelationInput | LinkCodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LinkCodes.
+     */
+    cursor?: LinkCodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LinkCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LinkCodes.
+     */
+    skip?: number
+    distinct?: LinkCodeScalarFieldEnum | LinkCodeScalarFieldEnum[]
+  }
+
+  /**
+   * LinkCode create
+   */
+  export type LinkCodeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+    /**
+     * The data needed to create a LinkCode.
+     */
+    data: XOR<LinkCodeCreateInput, LinkCodeUncheckedCreateInput>
+  }
+
+  /**
+   * LinkCode createMany
+   */
+  export type LinkCodeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LinkCodes.
+     */
+    data: LinkCodeCreateManyInput | LinkCodeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LinkCode createManyAndReturn
+   */
+  export type LinkCodeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+    /**
+     * The data used to create many LinkCodes.
+     */
+    data: LinkCodeCreateManyInput | LinkCodeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LinkCode update
+   */
+  export type LinkCodeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+    /**
+     * The data needed to update a LinkCode.
+     */
+    data: XOR<LinkCodeUpdateInput, LinkCodeUncheckedUpdateInput>
+    /**
+     * Choose, which LinkCode to update.
+     */
+    where: LinkCodeWhereUniqueInput
+  }
+
+  /**
+   * LinkCode updateMany
+   */
+  export type LinkCodeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LinkCodes.
+     */
+    data: XOR<LinkCodeUpdateManyMutationInput, LinkCodeUncheckedUpdateManyInput>
+    /**
+     * Filter which LinkCodes to update
+     */
+    where?: LinkCodeWhereInput
+    /**
+     * Limit how many LinkCodes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LinkCode updateManyAndReturn
+   */
+  export type LinkCodeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+    /**
+     * The data used to update LinkCodes.
+     */
+    data: XOR<LinkCodeUpdateManyMutationInput, LinkCodeUncheckedUpdateManyInput>
+    /**
+     * Filter which LinkCodes to update
+     */
+    where?: LinkCodeWhereInput
+    /**
+     * Limit how many LinkCodes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LinkCode upsert
+   */
+  export type LinkCodeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+    /**
+     * The filter to search for the LinkCode to update in case it exists.
+     */
+    where: LinkCodeWhereUniqueInput
+    /**
+     * In case the LinkCode found by the `where` argument doesn't exist, create a new LinkCode with this data.
+     */
+    create: XOR<LinkCodeCreateInput, LinkCodeUncheckedCreateInput>
+    /**
+     * In case the LinkCode was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LinkCodeUpdateInput, LinkCodeUncheckedUpdateInput>
+  }
+
+  /**
+   * LinkCode delete
+   */
+  export type LinkCodeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+    /**
+     * Filter which LinkCode to delete.
+     */
+    where: LinkCodeWhereUniqueInput
+  }
+
+  /**
+   * LinkCode deleteMany
+   */
+  export type LinkCodeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LinkCodes to delete
+     */
+    where?: LinkCodeWhereInput
+    /**
+     * Limit how many LinkCodes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LinkCode without action
+   */
+  export type LinkCodeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCode
+     */
+    select?: LinkCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkCode
+     */
+    omit?: LinkCodeOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14034,6 +15133,18 @@ export namespace Prisma {
   };
 
   export type SyncItemScalarFieldEnum = (typeof SyncItemScalarFieldEnum)[keyof typeof SyncItemScalarFieldEnum]
+
+
+  export const LinkCodeScalarFieldEnum: {
+    id: 'id',
+    code: 'code',
+    userId: 'userId',
+    channel: 'channel',
+    expiresAt: 'expiresAt',
+    createdAt: 'createdAt'
+  };
+
+  export type LinkCodeScalarFieldEnum = (typeof LinkCodeScalarFieldEnum)[keyof typeof LinkCodeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -14859,6 +15970,63 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"SyncItem"> | Date | string
   }
 
+  export type LinkCodeWhereInput = {
+    AND?: LinkCodeWhereInput | LinkCodeWhereInput[]
+    OR?: LinkCodeWhereInput[]
+    NOT?: LinkCodeWhereInput | LinkCodeWhereInput[]
+    id?: StringFilter<"LinkCode"> | string
+    code?: StringFilter<"LinkCode"> | string
+    userId?: StringFilter<"LinkCode"> | string
+    channel?: StringFilter<"LinkCode"> | string
+    expiresAt?: DateTimeFilter<"LinkCode"> | Date | string
+    createdAt?: DateTimeFilter<"LinkCode"> | Date | string
+  }
+
+  export type LinkCodeOrderByWithRelationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LinkCodeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    code?: string
+    AND?: LinkCodeWhereInput | LinkCodeWhereInput[]
+    OR?: LinkCodeWhereInput[]
+    NOT?: LinkCodeWhereInput | LinkCodeWhereInput[]
+    userId?: StringFilter<"LinkCode"> | string
+    channel?: StringFilter<"LinkCode"> | string
+    expiresAt?: DateTimeFilter<"LinkCode"> | Date | string
+    createdAt?: DateTimeFilter<"LinkCode"> | Date | string
+  }, "id" | "code">
+
+  export type LinkCodeOrderByWithAggregationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+    _count?: LinkCodeCountOrderByAggregateInput
+    _max?: LinkCodeMaxOrderByAggregateInput
+    _min?: LinkCodeMinOrderByAggregateInput
+  }
+
+  export type LinkCodeScalarWhereWithAggregatesInput = {
+    AND?: LinkCodeScalarWhereWithAggregatesInput | LinkCodeScalarWhereWithAggregatesInput[]
+    OR?: LinkCodeScalarWhereWithAggregatesInput[]
+    NOT?: LinkCodeScalarWhereWithAggregatesInput | LinkCodeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LinkCode"> | string
+    code?: StringWithAggregatesFilter<"LinkCode"> | string
+    userId?: StringWithAggregatesFilter<"LinkCode"> | string
+    channel?: StringWithAggregatesFilter<"LinkCode"> | string
+    expiresAt?: DateTimeWithAggregatesFilter<"LinkCode"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"LinkCode"> | Date | string
+  }
+
   export type CorsairIntegrationCreateInput = {
     id: string
     createdAt?: Date | string
@@ -15632,6 +16800,69 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LinkCodeCreateInput = {
+    id?: string
+    code: string
+    userId: string
+    channel: string
+    expiresAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type LinkCodeUncheckedCreateInput = {
+    id?: string
+    code: string
+    userId: string
+    channel: string
+    expiresAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type LinkCodeUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LinkCodeUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LinkCodeCreateManyInput = {
+    id?: string
+    code: string
+    userId: string
+    channel: string
+    expiresAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type LinkCodeUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LinkCodeUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -16217,6 +17448,33 @@ export namespace Prisma {
     timestamp?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type LinkCodeCountOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LinkCodeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LinkCodeMinOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    userId?: SortOrder
+    channel?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type CorsairAccountCreateNestedManyWithoutIntegrationInput = {
