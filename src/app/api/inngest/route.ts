@@ -6,11 +6,14 @@ import {
   channelCallbackReceived,
   channelMessageReceived,
   corsairWebhookReceived,
+  followUpReminders,
   gmailWatchOnConnect,
   gmailWatchRenew,
   processTask,
+  scheduledSend,
   scoreInboxBackfill,
   searchEmbeddingsBackfill,
+  snoozeWake,
 } from "../../../inngest/functions";
 
 export const { GET, POST, PUT } = serve({
@@ -25,5 +28,8 @@ export const { GET, POST, PUT } = serve({
     searchEmbeddingsBackfill,
     channelMessageReceived,
     channelCallbackReceived,
+    snoozeWake,
+    scheduledSend,
+    followUpReminders,
   ],
 });

@@ -4,13 +4,14 @@ import { type Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import { ClerkProvider, SignInButton, UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
-import { Lightning } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
 import { AgentDock } from "@/app/_components/agent-dock";
 import { CommandMenu } from "@/app/_components/command-menu";
+import { ShortcutProvider } from "@/app/_components/shortcut-provider";
+import { ToastProvider } from "@/app/_components/toast";
 import { cn } from "@/lib/utils";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -42,14 +43,17 @@ export default async function RootLayout({
       >
         <body>
           <TRPCReactProvider>
+            <ToastProvider>
             <header className="sticky top-0 z-40 flex h-12 items-center justify-between border-b border-border bg-background/80 px-4 backdrop-blur">
               <Link
                 href="/"
                 className="flex items-center gap-1.5 text-sm font-semibold tracking-tight"
               >
-                <Lightning
-                  weight="fill"
-                  className="size-4 text-primary"
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/logo/FIRE_SVG_Animated.svg"
+                  alt=""
+                  className="size-5"
                 />
                 Jack Sparrow
               </Link>
@@ -67,6 +71,12 @@ export default async function RootLayout({
                       className="text-xs text-muted-foreground hover:text-foreground"
                     >
                       Calendar
+                    </Link>
+                    <Link
+                      href="/scheduled"
+                      className="text-xs text-muted-foreground hover:text-foreground"
+                    >
+                      Scheduled
                     </Link>
                     <Link
                       href="/integrations"
@@ -89,9 +99,16 @@ export default async function RootLayout({
                 )}
               </nav>
             </header>
-            {children}
-            {userId && <AgentDock />}
-            {userId && <CommandMenu />}
+            {userId ? (
+              <ShortcutProvider>
+                {children}
+                <AgentDock />
+                <CommandMenu />
+              </ShortcutProvider>
+            ) : (
+              children
+            )}
+            </ToastProvider>
           </TRPCReactProvider>
         </body>
       </html>

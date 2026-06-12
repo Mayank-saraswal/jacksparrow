@@ -1,12 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { PaperPlaneTilt, FloppyDisk } from "@phosphor-icons/react";
+import { PaperPlaneTilt, FloppyDisk, Clock } from "@phosphor-icons/react";
 
 import { api } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/app/_components/toast";
+import { SnoozePopover } from "./snooze-popover";
 import {
   Sheet,
   SheetContent,
@@ -37,6 +39,9 @@ export function ComposeSheet({
   const [subject, setSubject] = React.useState("");
   const [body, setBody] = React.useState("");
   const [error, setError] = React.useState<string | null>(null);
+  const { toast } = useToast();
+  const general = api.preferences.getGeneral.useQuery();
+  const undoSeconds = general.data?.undoSendSeconds ?? 10;
 
   // Reset fields whenever the panel opens with new initial values.
   React.useEffect(() => {
@@ -54,10 +59,46 @@ export function ComposeSheet({
       .map((s) => s.trim())
       .filter(Boolean);
 
-  const send = api.inbox.sendMessage.useMutation({
-    onSuccess: () => {
+  const cancel = api.scheduling.cancel.useMutation();
+
+  // Every send is queued with the Undo-Send delay, then shows an undo toast.
+  const send = api.scheduling.schedule.useMutation({
+    onSuccess: (res) => {
       onOpenChange(false);
-      onSent?.();
+      toast({
+        title: undoSeconds > 0 ? "Sending…" : "Sent",
+        description: subject || "Your message",
+        duration: undoSeconds > 0 ? undoSeconds * 1000 : 4000,
+        action:
+          undoSeconds > 0
+            ? {
+                label: "Undo",
+                onClick: () => {
+                  cancel.mutate(
+                    { id: res.id },
+                    {
+                      onSuccess: () =>
+                        toast({ title: "Send canceled", duration: 3000 }),
+                    },
+                  );
+                },
+              }
+            : undefined,
+      });
+      // Refresh the thread list once the send window passes.
+      setTimeout(() => onSent?.(), (undoSeconds + 1) * 1000);
+    },
+    onError: (e) => setError(e.message),
+  });
+
+  // Send Later: schedule for a user-picked time (no undo window).
+  const scheduleLater = api.scheduling.schedule.useMutation({
+    onSuccess: (res) => {
+      onOpenChange(false);
+      toast({
+        title: "Scheduled",
+        description: `Sends ${new Date(res.sendAt).toLocaleString()}`,
+      });
     },
     onError: (e) => setError(e.message),
   });
@@ -69,6 +110,14 @@ export function ComposeSheet({
 
   const recipients = parseRecipients(to);
   const canSend = recipients.length > 0 && !send.isPending;
+
+  const draftFor = () => ({
+    to: recipients,
+    subject,
+    body,
+    threadId: initial?.threadId,
+    inReplyTo: initial?.inReplyTo,
+  });
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -101,6 +150,12 @@ export function ComposeSheet({
           <Textarea
             value={body}
             onChange={(e) => setBody(e.target.value)}
+            onKeyDown={(e) => {
+              if ((e.metaKey || e.ctrlKey) && e.key === "Enter" && canSend) {
+                e.preventDefault();
+                send.mutate({ draft: draftFor(), useUndoDelay: true });
+              }
+            }}
             placeholder="Write your message…"
             className="min-h-48"
           />
@@ -111,19 +166,20 @@ export function ComposeSheet({
             <Button
               size="sm"
               disabled={!canSend}
-              onClick={() =>
-                send.mutate({
-                  to: recipients,
-                  subject,
-                  body,
-                  threadId: initial?.threadId,
-                  inReplyTo: initial?.inReplyTo,
-                })
-              }
+              onClick={() => send.mutate({ draft: draftFor(), useUndoDelay: true })}
             >
               <PaperPlaneTilt weight="fill" />
               {send.isPending ? "Sending…" : "Send"}
             </Button>
+            <SnoozePopover
+              onSnooze={(iso) =>
+                scheduleLater.mutate({ draft: draftFor(), sendAt: iso })
+              }
+            >
+              <Button size="sm" variant="outline" disabled={!canSend}>
+                <Clock /> Send later
+              </Button>
+            </SnoozePopover>
             <Button
               size="sm"
               variant="ghost"

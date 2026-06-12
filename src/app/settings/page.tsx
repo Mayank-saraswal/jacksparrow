@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import { SectionLabel } from "@/components/ui/section-label";
 import { ShortcutSettings } from "./_components/shortcut-settings";
 import { ChannelLinks } from "./_components/channel-links";
+import { GeneralSettings } from "./_components/general-settings";
+import { SplitSettings } from "./_components/split-settings";
 
 export default async function SettingsPage() {
   const { userId } = await auth();
@@ -12,7 +14,7 @@ export default async function SettingsPage() {
   return (
     <main className="mx-auto w-full max-w-2xl px-6 py-12">
       <header className="mb-6">
-        <SectionLabel index={1} total={2}>
+        <SectionLabel index={1} total={4}>
           Settings
         </SectionLabel>
         <h1 className="mt-3 text-2xl font-bold tracking-tight">
@@ -24,8 +26,26 @@ export default async function SettingsPage() {
       </header>
       <ChannelLinks />
 
+      <header id="general" className="mt-10 mb-6 scroll-mt-16">
+        <SectionLabel index={2} total={4}>
+          Settings
+        </SectionLabel>
+        <h2 className="mt-3 text-2xl font-bold tracking-tight">
+          Sending &amp; follow-ups
+        </h2>
+      </header>
+      <GeneralSettings />
+
+      <header id="splits" className="mt-10 mb-6 scroll-mt-16">
+        <SectionLabel index={3} total={4}>
+          Settings
+        </SectionLabel>
+        <h2 className="mt-3 text-2xl font-bold tracking-tight">Split inbox</h2>
+      </header>
+      <SplitSettings />
+
       <header className="mt-10 mb-6">
-        <SectionLabel index={2} total={2}>
+        <SectionLabel index={4} total={4}>
           Settings
         </SectionLabel>
         <h2 className="mt-3 text-2xl font-bold tracking-tight">

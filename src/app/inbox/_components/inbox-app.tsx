@@ -4,10 +4,9 @@ import * as React from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
-import { PencilSimple, ArrowClockwise } from "@phosphor-icons/react";
+import { PencilSimple, ArrowClockwise, Clock } from "@phosphor-icons/react";
 
-import { api } from "@/trpc/react";
-import type { ThreadPreview } from "@/server/gmail";
+import { api, type RouterOutputs } from "@/trpc/react";
 import { useRealtimeSync } from "@/hooks/use-realtime-sync";
 import { cn } from "@/lib/utils";
 import {
@@ -15,17 +14,24 @@ import {
   resolveKey,
   isEditableTarget,
 } from "@/lib/shortcuts";
+import { DEFAULT_SPLITS, OTHER_SPLIT_ID } from "@/lib/split-rules";
 import { Button } from "@/components/ui/button";
 import { ThreadList } from "./thread-list";
 import { ThreadView } from "./thread-view";
 import { ComposeSheet, type ComposeInitial } from "./compose-sheet";
+import { SnoozePopover } from "./snooze-popover";
+import { useToast } from "@/app/_components/toast";
+
+type InboxThread = RouterOutputs["inbox"]["listThreads"]["threads"][number];
 
 const LIST_INPUT = { q: "in:inbox", limit: 25 } as const;
+const ALL_SPLIT_ID = "all";
 
 export function InboxApp() {
   const utils = api.useUtils();
   const { userId } = useAuth();
-  const [tab, setTab] = React.useState<"important" | "other">("other");
+  const { toast } = useToast();
+  const [activeSplit, setActiveSplit] = React.useState<string>(ALL_SPLIT_ID);
 
   // Live updates: when a new email arrives, refresh the thread list.
   useRealtimeSync(
@@ -46,8 +52,15 @@ export function InboxApp() {
 
   const threadsQuery = api.inbox.listThreads.useQuery(LIST_INPUT);
   const syncStatus = api.integrations.getSyncStatus.useQuery();
+  const splitsQuery = api.preferences.getSplits.useQuery();
 
-  const patchList = (updater: (threads: ThreadPreview[]) => ThreadPreview[]) =>
+  const splitRules = React.useMemo(
+    () =>
+      [...(splitsQuery.data ?? DEFAULT_SPLITS)].sort((a, b) => a.order - b.order),
+    [splitsQuery.data],
+  );
+
+  const patchList = (updater: (threads: InboxThread[]) => InboxThread[]) =>
     utils.inbox.listThreads.setData(LIST_INPUT, (old) =>
       old ? { ...old, threads: updater(old.threads) } : old,
     );
@@ -83,6 +96,19 @@ export function InboxApp() {
   const untrash = api.inbox.untrashThread.useMutation({
     onSettled: () => void utils.inbox.listThreads.invalidate(),
   });
+  const snooze = api.inbox.snooze.useMutation({
+    onMutate: ({ threadId }) => {
+      patchList((threads) => threads.filter((t) => t.threadId !== threadId));
+      if (selectedId === threadId) setSelectedId(null);
+    },
+    onSuccess: (res) => {
+      toast({
+        title: "Snoozed",
+        description: `Back at ${new Date(res.snoozeUntil).toLocaleString()}`,
+      });
+    },
+    onSettled: () => void utils.inbox.listThreads.invalidate(),
+  });
 
   const shortcuts = api.preferences.getShortcuts.useQuery();
   const overrides = React.useMemo(() => shortcuts.data ?? {}, [shortcuts.data]);
@@ -95,11 +121,20 @@ export function InboxApp() {
     if (t) setSelectedId(t);
   }, [searchParams]);
 
+  const allThreads = React.useMemo(
+    () => threadsQuery.data?.threads ?? [],
+    [threadsQuery.data],
+  );
+  const splitCounts = threadsQuery.data?.splitCounts ?? {};
+
+  const visible = React.useMemo(() => {
+    if (activeSplit === ALL_SPLIT_ID) return allThreads;
+    return allThreads.filter((t) => t.splitId === activeSplit);
+  }, [allThreads, activeSplit]);
+
   const handleSelect = (threadId: string) => {
     setSelectedId(threadId);
-    const target = threadsQuery.data?.threads.find(
-      (t) => t.threadId === threadId,
-    );
+    const target = allThreads.find((t) => t.threadId === threadId);
     if (target?.unread) {
       patchList((threads) =>
         threads.map((t) =>
@@ -110,17 +145,11 @@ export function InboxApp() {
     }
   };
 
-  const allThreads = threadsQuery.data?.threads ?? [];
-  // Important = threads scored urgent/important; everything else is Other.
-  const importantThreads = allThreads.filter(
-    (t) => t.priority?.label === "urgent" || t.priority?.label === "important",
-  );
-  const otherThreads = allThreads.filter(
-    (t) => !(t.priority?.label === "urgent" || t.priority?.label === "important"),
-  );
-  const visible = tab === "important" ? importantThreads : otherThreads;
+  const doSnooze = (threadId: string, iso: string) =>
+    snooze.mutate({ threadId, snoozeUntil: iso });
 
-  // Keyboard shortcuts (Phase 8). Single keys only fire outside text fields.
+  // Keyboard shortcuts. Single keys only fire outside text fields; navigation
+  // sequences + help are handled globally by ShortcutProvider.
   React.useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (isEditableTarget(e.target)) return;
@@ -137,6 +166,12 @@ export function InboxApp() {
         e.preventDefault();
         const target = idx <= 0 ? visible[0] : visible[idx - 1];
         if (target) handleSelect(target.threadId);
+      } else if (k("next_split")) {
+        e.preventDefault();
+        cycleSplit(1);
+      } else if (k("prev_split")) {
+        e.preventDefault();
+        cycleSplit(-1);
       } else if (k("compose")) {
         e.preventDefault();
         setCompose({ open: true });
@@ -173,6 +208,7 @@ export function InboxApp() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     visible,
     selectedId,
@@ -186,31 +222,72 @@ export function InboxApp() {
     untrash,
   ]);
 
+  // Tabs: All • <user splits> • Other.
+  const tabs = React.useMemo(
+    () => [
+      { id: ALL_SPLIT_ID, name: "All" },
+      ...splitRules.map((r) => ({ id: r.id, name: r.name })),
+      { id: OTHER_SPLIT_ID, name: "Other" },
+    ],
+    [splitRules],
+  );
+
+  const cycleSplit = (dir: 1 | -1) => {
+    const i = tabs.findIndex((t) => t.id === activeSplit);
+    const next = tabs[(i + dir + tabs.length) % tabs.length];
+    if (next) setActiveSplit(next.id);
+  };
+
+  const countFor = (id: string) =>
+    id === ALL_SPLIT_ID ? allThreads.length : (splitCounts[id] ?? 0);
+
   const gmailSynced = syncStatus.data?.gmail.backfilledAt != null;
   const showBackfillNotice =
     !threadsQuery.isLoading && allThreads.length === 0 && !gmailSynced;
+
+  const selectedThread = visible.find((t) => t.threadId === selectedId);
 
   return (
     <div className="flex h-[calc(100vh-3rem)] flex-col">
       {/* Toolbar */}
       <div className="flex items-center justify-between border-b border-border px-4 py-2">
-        <div className="inline-flex h-8 items-center border-b border-border">
-          {(["important", "other"] as const).map((t) => (
+        <div className="inline-flex h-8 items-center gap-0.5 overflow-x-auto">
+          {tabs.map((t) => (
             <button
-              key={t}
-              onClick={() => setTab(t)}
+              key={t.id}
+              onClick={() => setActiveSplit(t.id)}
               className={cn(
-                "inline-flex h-8 items-center border-b-2 px-2.5 text-xs font-medium capitalize transition-colors",
-                tab === t
+                "inline-flex h-8 shrink-0 items-center gap-1.5 border-b-2 px-2.5 text-xs font-medium transition-colors",
+                activeSplit === t.id
                   ? "border-primary text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
-              {t}
+              {t.name}
+              {countFor(t.id) > 0 && (
+                <span className="rounded-full bg-muted px-1.5 text-[10px] tabular-nums">
+                  {countFor(t.id)}
+                </span>
+              )}
             </button>
           ))}
+          <Link
+            href="/settings#splits"
+            className="ml-1 shrink-0 px-2 text-[11px] text-muted-foreground hover:text-foreground"
+          >
+            Manage
+          </Link>
         </div>
         <div className="flex items-center gap-1.5">
+          {selectedThread && (
+            <SnoozePopover
+              onSnooze={(iso) => doSnooze(selectedThread.threadId, iso)}
+            >
+              <Button size="sm" variant="ghost">
+                <Clock /> Snooze
+              </Button>
+            </SnoozePopover>
+          )}
           <Button
             size="sm"
             variant="ghost"
@@ -240,9 +317,9 @@ export function InboxApp() {
                 <Link href="/integrations">Go to integrations</Link>
               </Button>
             </div>
-          ) : tab === "important" && importantThreads.length === 0 ? (
+          ) : visible.length === 0 && !threadsQuery.isLoading ? (
             <div className="p-6 text-center text-xs text-muted-foreground">
-              Nothing urgent or important right now.
+              Nothing here right now.
             </div>
           ) : (
             <ThreadList
@@ -267,6 +344,7 @@ export function InboxApp() {
           <ThreadView
             threadId={selectedId}
             onCompose={(initial) => setCompose({ open: true, initial })}
+            onSnooze={(iso) => selectedId && doSnooze(selectedId, iso)}
           />
         </div>
 

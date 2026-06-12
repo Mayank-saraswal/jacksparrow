@@ -5,6 +5,9 @@ import {
   ArrowBendUpLeft,
   ArrowBendDoubleUpLeft,
   ArrowBendUpRight,
+  Clock,
+  BellRinging,
+  BellSlash,
 } from "@phosphor-icons/react";
 
 import { api } from "@/trpc/react";
@@ -14,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
 import { InviteCard } from "./invite-card";
+import { SnoozePopover } from "./snooze-popover";
+import { useToast } from "@/app/_components/toast";
 import type { ComposeInitial } from "./compose-sheet";
 
 function formatFull(iso: string | null) {
@@ -50,17 +55,51 @@ function MessageBody({ message }: { message: MessageDetail }) {
 export function ThreadView({
   threadId,
   onCompose,
+  onSnooze,
 }: {
   threadId: string | null;
   onCompose: (initial: ComposeInitial) => void;
+  onSnooze?: (iso: string) => void;
 }) {
   const thread = api.inbox.getThread.useQuery(
     { threadId: threadId ?? "" },
     { enabled: !!threadId },
   );
   const utils = api.useUtils();
+  const { toast } = useToast();
   const setPriority = api.triage.setPriority.useMutation({
     onSuccess: () => void utils.inbox.listThreads.invalidate(),
+  });
+
+  const followStatus = api.followups.statusForThreads.useQuery(
+    { threadIds: threadId ? [threadId] : [] },
+    { enabled: !!threadId },
+  );
+  const watching = !!(threadId && followStatus.data?.[threadId]);
+
+  const watchFollowUp = api.followups.watch.useMutation({
+    onSuccess: (res) => {
+      void followStatus.refetch();
+      toast({
+        title: "I'll remind you",
+        description: `If there's no reply by ${new Date(
+          res.remindAt,
+        ).toLocaleDateString()}`,
+      });
+    },
+  });
+  const dismissFollowUp = api.followups.dismiss.useMutation({
+    onSuccess: () => void followStatus.refetch(),
+  });
+  const draftFollowUp = api.followups.draftFollowUp.useMutation({
+    onSuccess: () => {
+      void utils.pending.list.invalidate();
+      void utils.pending.count.invalidate();
+      toast({
+        title: "Follow-up drafted",
+        description: "Review it in the actions tray.",
+      });
+    },
   });
 
   if (!threadId) {
@@ -136,6 +175,38 @@ export function ThreadView({
             onClick={() => replyTo("forward")}
           >
             <ArrowBendUpRight /> Forward
+          </Button>
+          {onSnooze && (
+            <SnoozePopover onSnooze={onSnooze}>
+              <Button size="xs" variant="outline">
+                <Clock /> Snooze
+              </Button>
+            </SnoozePopover>
+          )}
+          {watching ? (
+            <Button
+              size="xs"
+              variant="outline"
+              onClick={() => dismissFollowUp.mutate({ threadId })}
+            >
+              <BellSlash /> Watching
+            </Button>
+          ) : (
+            <Button
+              size="xs"
+              variant="outline"
+              onClick={() => watchFollowUp.mutate({ threadId })}
+            >
+              <BellRinging /> Remind me
+            </Button>
+          )}
+          <Button
+            size="xs"
+            variant="ghost"
+            disabled={draftFollowUp.isPending}
+            onClick={() => draftFollowUp.mutate({ threadId })}
+          >
+            Draft follow-up
           </Button>
         </div>
 

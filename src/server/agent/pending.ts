@@ -3,7 +3,7 @@ import "server-only";
 import { z } from "zod";
 
 import { getTenant } from "@/server/corsair";
-import { buildRawMessage } from "@/server/gmail";
+import { sendEmail, sendEmailSchema } from "@/server/agent/execute";
 
 /**
  * Shared draft-summary + execution logic for PendingActions, used by both the
@@ -11,14 +11,7 @@ import { buildRawMessage } from "@/server/gmail";
  * and the execution path stay identical everywhere.
  */
 
-export const sendEmailSchema = z.object({
-  to: z.array(z.string().email()).min(1),
-  cc: z.array(z.string().email()).optional(),
-  subject: z.string().default(""),
-  body: z.string().default(""),
-  threadId: z.string().optional(),
-  inReplyTo: z.string().optional(),
-});
+export { sendEmailSchema };
 
 export const createEventSchema = z.object({
   summary: z.string(),
@@ -123,16 +116,8 @@ export async function executePendingAction(
 
   switch (kind) {
     case "send_email": {
-      const p = sendEmailSchema.parse(payload);
-      const raw = buildRawMessage({
-        to: p.to,
-        cc: p.cc,
-        subject: p.subject,
-        body: p.body,
-        inReplyTo: p.inReplyTo,
-      });
-      await tenant.gmail.api.messages.send({ raw, threadId: p.threadId });
-      return { summary: `Sent email to ${p.to.join(", ")}` };
+      const res = await sendEmail(userId, payload);
+      return { summary: res.summary };
     }
     case "create_event": {
       const p = createEventSchema.parse(payload);

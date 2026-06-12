@@ -213,7 +213,43 @@ exports.Prisma.UserPreferenceScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   splitInboxRules: 'splitInboxRules',
-  shortcutOverrides: 'shortcutOverrides'
+  shortcutOverrides: 'shortcutOverrides',
+  undoSendSeconds: 'undoSendSeconds',
+  followUpDays: 'followUpDays'
+};
+
+exports.Prisma.SnoozedThreadScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  threadId: 'threadId',
+  corsairEntityId: 'corsairEntityId',
+  snoozeUntil: 'snoozeUntil',
+  status: 'status',
+  createdAt: 'createdAt',
+  wokenAt: 'wokenAt'
+};
+
+exports.Prisma.ScheduledEmailScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  draftPayload: 'draftPayload',
+  sendAt: 'sendAt',
+  status: 'status',
+  inngestRunId: 'inngestRunId',
+  error: 'error',
+  createdAt: 'createdAt',
+  sentAt: 'sentAt'
+};
+
+exports.Prisma.FollowUpScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  threadId: 'threadId',
+  lastSentAt: 'lastSentAt',
+  remindAt: 'remindAt',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SyncItemScalarFieldEnum = {
@@ -274,6 +310,9 @@ exports.Prisma.ModelName = {
   PriorityScore: 'PriorityScore',
   PendingAction: 'PendingAction',
   UserPreference: 'UserPreference',
+  SnoozedThread: 'SnoozedThread',
+  ScheduledEmail: 'ScheduledEmail',
+  FollowUp: 'FollowUp',
   SyncItem: 'SyncItem',
   LinkCode: 'LinkCode'
 };

@@ -2,14 +2,32 @@ import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 import { getTenant } from "@/server/corsair";
+import { inngest } from "@/inngest/client";
 import {
   buildRawMessage,
   threadDetail,
   threadPreview,
   type GmailThread,
+  type ThreadPreview,
 } from "@/server/gmail";
+import {
+  looksLikeCalendarInvite,
+  matchThreadToSplit,
+  parseSplitRules,
+  type MatchableThread,
+} from "@/lib/split-rules";
 
 const METADATA_HEADERS = ["Subject", "From", "To", "Date"];
+
+/** Build the split-matchable view of a preview (priority + invite heuristic). */
+function toMatchable(p: ThreadPreview): MatchableThread {
+  return {
+    fromEmail: p.fromEmail,
+    subject: p.subject,
+    priorityLabel: (p.priority?.label as MatchableThread["priorityLabel"]) ?? null,
+    hasCalendarInvite: looksLikeCalendarInvite(p.subject),
+  };
+}
 
 export const inboxRouter = createTRPCRouter({
   /**
@@ -23,6 +41,7 @@ export const inboxRouter = createTRPCRouter({
         q: z.string().default("in:inbox"),
         pageToken: z.string().optional(),
         limit: z.number().min(1).max(50).default(25),
+        splitId: z.string().optional(),
       }),
     )
     .query(async ({ ctx, input }) => {
@@ -66,8 +85,46 @@ export const inboxRouter = createTRPCRouter({
         preview.priority = s ? { label: s.label, reason: s.reason ?? "" } : null;
       }
 
+      // Annotate each thread with its split bucket and exclude snoozed threads.
+      const pref = await ctx.db.userPreference.findUnique({
+        where: { userId: ctx.userId },
+        select: { splitInboxRules: true },
+      });
+      const rules = parseSplitRules(
+        (pref?.splitInboxRules as { rules?: unknown })?.rules ??
+          pref?.splitInboxRules,
+      );
+
+      const snoozed = await ctx.db.snoozedThread.findMany({
+        where: {
+          userId: ctx.userId,
+          status: "snoozed",
+          threadId: { in: previews.map((p) => p.threadId) },
+        },
+        select: { threadId: true },
+      });
+      const snoozedSet = new Set(snoozed.map((s) => s.threadId));
+
+      const annotated = previews
+        .filter((p) => !snoozedSet.has(p.threadId))
+        .map((p) => ({
+          ...p,
+          splitId: matchThreadToSplit(toMatchable(p), rules),
+        }));
+
+      const splitCounts: Record<string, number> = {};
+      for (const t of annotated) {
+        splitCounts[t.splitId] = (splitCounts[t.splitId] ?? 0) + 1;
+      }
+
+      const threadsForSplit =
+        input.splitId && input.splitId !== "all"
+          ? annotated.filter((t) => t.splitId === input.splitId)
+          : annotated;
+
       return {
-        threads: previews,
+        threads: threadsForSplit,
+        splitCounts,
         nextPageToken: list.nextPageToken ?? null,
       };
     }),
@@ -224,4 +281,104 @@ export const inboxRouter = createTRPCRouter({
       });
       return { draftId: created.id ?? null };
     }),
+
+  /** Snooze a thread until `snoozeUntil`: archive it now, wake it later. */
+  snooze: protectedProcedure
+    .input(
+      z.object({
+        threadId: z.string().min(1),
+        snoozeUntil: z.string().datetime(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const wakeAt = new Date(input.snoozeUntil);
+      // Reject past times (with a 1-minute grace window).
+      if (wakeAt.getTime() < Date.now() - 60_000) {
+        throw new Error("Snooze time must be in the future");
+      }
+
+      const tenant = getTenant(ctx.userId);
+      // Verify ownership implicitly: the tenant can only see its own threads.
+      await tenant.gmail.api.threads.get({
+        id: input.threadId,
+        format: "minimal",
+      });
+
+      await ctx.db.user.upsert({
+        where: { id: ctx.userId },
+        create: { id: ctx.userId },
+        update: {},
+      });
+
+      const row = await ctx.db.snoozedThread.upsert({
+        where: {
+          userId_threadId: { userId: ctx.userId, threadId: input.threadId },
+        },
+        create: {
+          userId: ctx.userId,
+          threadId: input.threadId,
+          corsairEntityId: input.threadId,
+          snoozeUntil: wakeAt,
+          status: "snoozed",
+        },
+        update: {
+          snoozeUntil: wakeAt,
+          status: "snoozed",
+          wokenAt: null,
+        },
+      });
+
+      // Remove from inbox while snoozed.
+      await tenant.gmail.api.threads.modify({
+        id: input.threadId,
+        removeLabelIds: ["INBOX"],
+      });
+
+      await inngest.send({
+        name: "thread/snooze.created",
+        data: { snoozeId: row.id, userId: ctx.userId },
+      });
+
+      return { id: row.id, snoozeUntil: wakeAt.toISOString() };
+    }),
+
+  /** Cancel a snooze early and restore the thread to the inbox. */
+  unsnooze: protectedProcedure
+    .input(z.object({ threadId: z.string().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      const existing = await ctx.db.snoozedThread.findUnique({
+        where: {
+          userId_threadId: { userId: ctx.userId, threadId: input.threadId },
+        },
+      });
+      if (!existing) throw new Error("Snooze not found");
+      if (existing.userId !== ctx.userId) {
+        throw new Error("Snooze not found");
+      }
+
+      await ctx.db.snoozedThread.update({
+        where: { id: existing.id },
+        data: { status: "canceled" },
+      });
+
+      const tenant = getTenant(ctx.userId);
+      await tenant.gmail.api.threads.modify({
+        id: input.threadId,
+        addLabelIds: ["INBOX"],
+      });
+      return { ok: true };
+    }),
+
+  /** Threads currently snoozed, soonest wake first. */
+  snoozedThreads: protectedProcedure.query(async ({ ctx }) => {
+    const rows = await ctx.db.snoozedThread.findMany({
+      where: { userId: ctx.userId, status: "snoozed" },
+      orderBy: { snoozeUntil: "asc" },
+      select: { threadId: true, snoozeUntil: true },
+    });
+    return rows.map((r) => ({
+      threadId: r.threadId,
+      snoozeUntil: r.snoozeUntil.toISOString(),
+    }));
+  }),
 });

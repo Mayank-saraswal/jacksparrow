@@ -15,12 +15,12 @@ import {
 import { api } from "@/trpc/react";
 import { cn } from "@/lib/utils";
 import {
-  SHORTCUTS,
   resolveKey,
   matchesKey,
   isEditableTarget,
   type ShortcutOverrides,
 } from "@/lib/shortcuts";
+import { useShortcutContext } from "@/app/_components/shortcut-provider";
 import {
   Dialog,
   DialogContent,
@@ -37,8 +37,8 @@ interface Item {
 
 export function CommandMenu() {
   const router = useRouter();
+  const { openHelp } = useShortcutContext();
   const [open, setOpen] = React.useState(false);
-  const [cheatsheet, setCheatsheet] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const [debounced, setDebounced] = React.useState("");
   const [active, setActive] = React.useState(0);
@@ -107,7 +107,7 @@ export function CommandMenu() {
       id: "help",
       label: "Keyboard shortcuts",
       icon: <Keyboard />,
-      run: () => setCheatsheet(true),
+      run: () => openHelp(),
     },
   ];
 
@@ -139,11 +139,8 @@ export function CommandMenu() {
     close();
   };
 
-  // Global keybindings.
+  // Global keybindings. (Navigation sequences + help live in ShortcutProvider.)
   React.useEffect(() => {
-    let gPending = false;
-    let gTimer: ReturnType<typeof setTimeout> | undefined;
-
     const onKey = (e: KeyboardEvent) => {
       if (matchesKey(e, resolveKey("open_palette", overrides))) {
         e.preventDefault();
@@ -156,23 +153,6 @@ export function CommandMenu() {
         e.preventDefault();
         askAi("");
         return;
-      }
-      if (matchesKey(e, resolveKey("help", overrides))) {
-        e.preventDefault();
-        setCheatsheet(true);
-        return;
-      }
-      // `g` then `i`/`c` navigation sequence.
-      if (gPending) {
-        if (e.key === "i") router.push("/inbox");
-        else if (e.key === "c") router.push("/calendar");
-        gPending = false;
-        if (gTimer) clearTimeout(gTimer);
-        return;
-      }
-      if (e.key === "g") {
-        gPending = true;
-        gTimer = setTimeout(() => (gPending = false), 800);
       }
     };
 
@@ -234,25 +214,6 @@ export function CommandMenu() {
                   </span>
                 )}
               </button>
-            ))}
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={cheatsheet} onOpenChange={setCheatsheet}>
-        <DialogContent>
-          <DialogTitle>Keyboard shortcuts</DialogTitle>
-          <div className="max-h-96 space-y-1 overflow-y-auto">
-            {SHORTCUTS.map((s) => (
-              <div
-                key={s.id}
-                className="flex items-center justify-between py-1 text-xs"
-              >
-                <span className="text-muted-foreground">{s.label}</span>
-                <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px]">
-                  {resolveKey(s.id, overrides)}
-                </kbd>
-              </div>
             ))}
           </div>
         </DialogContent>
