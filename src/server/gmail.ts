@@ -1,5 +1,8 @@
 import "server-only";
 
+import { parseInvite, type ParsedInvite } from "@/server/calendar";
+import { parseAddress } from "@/lib/email";
+
 /**
  * Lightweight Gmail helpers: parse the message shapes Corsair returns from the
  * Gmail API into the preview/detail shapes our inbox UI needs, and build RFC822
@@ -69,6 +72,7 @@ export interface ThreadDetail {
   threadId: string;
   subject: string;
   messages: MessageDetail[];
+  invite: ParsedInvite | null;
 }
 
 function headerValue(headers: GmailHeader[] | undefined, name: string): string {
@@ -76,18 +80,6 @@ function headerValue(headers: GmailHeader[] | undefined, name: string): string {
     (h) => h.name?.toLowerCase() === name.toLowerCase(),
   );
   return match?.value ?? "";
-}
-
-/** Splits an RFC5322 address like `Jane Doe <jane@x.com>` into name + email. */
-export function parseAddress(raw: string): { name: string; email: string } {
-  const trimmed = raw.trim();
-  const angle = /^(.*?)<([^>]+)>$/.exec(trimmed);
-  if (angle) {
-    const name = angle[1]!.trim().replace(/^"|"$/g, "");
-    const email = angle[2]!.trim();
-    return { name: name || email, email };
-  }
-  return { name: trimmed, email: trimmed };
 }
 
 function toIso(value: GmailMessage["internalDate"]): string | null {
@@ -155,14 +147,39 @@ export function threadPreview(thread: GmailThread): ThreadPreview {
   };
 }
 
+/** Finds and decodes a text/calendar part anywhere in the payload. */
+function findCalendarBody(payload: GmailPayload | undefined): string | null {
+  if (!payload) return null;
+  const mime = payload.mimeType ?? "";
+  if (mime.startsWith("text/calendar") && payload.body?.data) {
+    return decodeBase64Url(payload.body.data);
+  }
+  for (const part of payload.parts ?? []) {
+    const found = findCalendarBody(part);
+    if (found) return found;
+  }
+  return null;
+}
+
 export function threadDetail(thread: GmailThread): ThreadDetail {
   const messages = thread.messages ?? [];
   const subject =
     headerValue(messages[0]?.payload?.headers, "Subject") || "(no subject)";
 
+  // Detect an invite from the most recent message that carries a VEVENT.
+  let invite: ParsedInvite | null = null;
+  for (let i = messages.length - 1; i >= 0; i--) {
+    const ics = findCalendarBody(messages[i]?.payload);
+    if (ics) {
+      invite = parseInvite(ics);
+      if (invite) break;
+    }
+  }
+
   return {
     threadId: thread.id ?? "",
     subject,
+    invite,
     messages: messages.map((m): MessageDetail => {
       const headers = m.payload?.headers;
       const from = parseAddress(headerValue(headers, "From"));

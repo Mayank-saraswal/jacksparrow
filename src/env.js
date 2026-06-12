@@ -22,6 +22,9 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string().min(1),
     // Clerk server key.
     CLERK_SECRET_KEY: z.string().min(1),
+    // OpenAI (Vercel AI SDK provider) — embeddings/LLM. Optional: features that
+    // need it are skipped when absent.
+    OPENAI_API_KEY: z.string().optional(),
   },
 
   /**
@@ -31,6 +34,9 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
+    // Supabase Realtime (browser). Optional: realtime is disabled when absent.
+    NEXT_PUBLIC_SUPABASE_URL: z.string().url().optional(),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().optional(),
   },
 
   /**
@@ -46,8 +52,11 @@ export const env = createEnv({
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
       process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

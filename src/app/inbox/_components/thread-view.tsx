@@ -8,10 +8,12 @@ import {
 } from "@phosphor-icons/react";
 
 import { api } from "@/trpc/react";
-import { parseAddress, type MessageDetail } from "@/server/gmail";
+import type { MessageDetail } from "@/server/gmail";
+import { parseAddress } from "@/lib/email";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
+import { InviteCard } from "./invite-card";
 import type { ComposeInitial } from "./compose-sheet";
 
 function formatFull(iso: string | null) {
@@ -135,6 +137,11 @@ export function ThreadView({
       </div>
 
       <div className="flex-1 overflow-y-auto">
+        {thread.data.invite && (
+          <div className="p-4 pb-0">
+            <InviteCard invite={thread.data.invite} />
+          </div>
+        )}
         {messages.map((m, i) => (
           <div key={m.id || i} className="p-4">
             <div className="mb-2 flex items-baseline justify-between gap-2">

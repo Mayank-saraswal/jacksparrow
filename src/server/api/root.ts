@@ -1,3 +1,4 @@
+import { calendarRouter } from "@/server/api/routers/calendar";
 import { inboxRouter } from "@/server/api/routers/inbox";
 import { integrationsRouter } from "@/server/api/routers/integrations";
 import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
@@ -10,6 +11,7 @@ import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
 export const appRouter = createTRPCRouter({
   integrations: integrationsRouter,
   inbox: inboxRouter,
+  calendar: calendarRouter,
 });
 
 // export type definition of API

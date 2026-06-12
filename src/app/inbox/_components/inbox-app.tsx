@@ -2,10 +2,12 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useAuth } from "@clerk/nextjs";
 import { PencilSimple, ArrowClockwise } from "@phosphor-icons/react";
 
 import { api } from "@/trpc/react";
 import type { ThreadPreview } from "@/server/gmail";
+import { useRealtimeSync } from "@/hooks/use-realtime-sync";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ThreadList } from "./thread-list";
@@ -16,7 +18,20 @@ const LIST_INPUT = { q: "in:inbox", limit: 25 } as const;
 
 export function InboxApp() {
   const utils = api.useUtils();
+  const { userId } = useAuth();
   const [tab, setTab] = React.useState<"important" | "other">("other");
+
+  // Live updates: when a new email arrives, refresh the thread list.
+  useRealtimeSync(
+    userId,
+    React.useCallback(
+      (row) => {
+        if (row.type === "email") void utils.inbox.listThreads.invalidate();
+      },
+      [utils],
+    ),
+  );
+
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [compose, setCompose] = React.useState<{
     open: boolean;

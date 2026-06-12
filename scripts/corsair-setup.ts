@@ -24,6 +24,7 @@ async function main() {
     CORSAIR_KEK,
     GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET,
+    GMAIL_PUBSUB_TOPIC,
   } = process.env;
 
   if (!DATABASE_URL || !CORSAIR_KEK) {
@@ -50,6 +51,8 @@ async function main() {
       gmail: {
         client_id: GOOGLE_CLIENT_ID,
         client_secret: GOOGLE_CLIENT_SECRET,
+        // Pub/Sub topic for Gmail push notifications (optional).
+        ...(GMAIL_PUBSUB_TOPIC ? { topic_id: GMAIL_PUBSUB_TOPIC } : {}),
       },
       googlecalendar: {
         client_id: GOOGLE_CLIENT_ID,
@@ -59,6 +62,9 @@ async function main() {
   });
 
   console.log(output);
+  if (GMAIL_PUBSUB_TOPIC) {
+    console.log(`Gmail topic_id set to ${GMAIL_PUBSUB_TOPIC}`);
+  }
   await pool.end();
 }
 

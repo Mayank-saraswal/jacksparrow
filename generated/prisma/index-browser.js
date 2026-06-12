@@ -215,6 +215,18 @@ exports.Prisma.UserPreferenceScalarFieldEnum = {
   shortcutOverrides: 'shortcutOverrides'
 };
 
+exports.Prisma.SyncItemScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  corsairEntityId: 'corsairEntityId',
+  type: 'type',
+  title: 'title',
+  snippet: 'snippet',
+  timestamp: 'timestamp',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -251,7 +263,8 @@ exports.Prisma.ModelName = {
   EmailEmbedding: 'EmailEmbedding',
   PriorityScore: 'PriorityScore',
   PendingAction: 'PendingAction',
-  UserPreference: 'UserPreference'
+  UserPreference: 'UserPreference',
+  SyncItem: 'SyncItem'
 };
 
 /**

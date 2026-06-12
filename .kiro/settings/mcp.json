@@ -5,7 +5,10 @@
       "disabled": false,
       "autoApprove": [
         "list_tables",
-        "execute_sql"
+        "execute_sql",
+        "get_project_url",
+        "get_publishable_keys",
+        "apply_migration"
       ]
     }
   }

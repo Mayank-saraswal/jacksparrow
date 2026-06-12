@@ -61,6 +61,12 @@ export default async function RootLayout({
                       Inbox
                     </Link>
                     <Link
+                      href="/calendar"
+                      className="text-xs text-muted-foreground hover:text-foreground"
+                    >
+                      Calendar
+                    </Link>
+                    <Link
                       href="/integrations"
                       className="text-xs text-muted-foreground hover:text-foreground"
                     >

@@ -63,6 +63,11 @@ export type PendingAction = $Result.DefaultSelection<Prisma.$PendingActionPayloa
  * 
  */
 export type UserPreference = $Result.DefaultSelection<Prisma.$UserPreferencePayload>
+/**
+ * Model SyncItem
+ * 
+ */
+export type SyncItem = $Result.DefaultSelection<Prisma.$SyncItemPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -281,6 +286,16 @@ export class PrismaClient<
     * ```
     */
   get userPreference(): Prisma.UserPreferenceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.syncItem`: Exposes CRUD operations for the **SyncItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SyncItems
+    * const syncItems = await prisma.syncItem.findMany()
+    * ```
+    */
+  get syncItem(): Prisma.SyncItemDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -731,7 +746,8 @@ export namespace Prisma {
     EmailEmbedding: 'EmailEmbedding',
     PriorityScore: 'PriorityScore',
     PendingAction: 'PendingAction',
-    UserPreference: 'UserPreference'
+    UserPreference: 'UserPreference',
+    SyncItem: 'SyncItem'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -750,7 +766,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent" | "user" | "channelLink" | "emailEmbedding" | "priorityScore" | "pendingAction" | "userPreference"
+      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent" | "user" | "channelLink" | "emailEmbedding" | "priorityScore" | "pendingAction" | "userPreference" | "syncItem"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1494,6 +1510,80 @@ export namespace Prisma {
           }
         }
       }
+      SyncItem: {
+        payload: Prisma.$SyncItemPayload<ExtArgs>
+        fields: Prisma.SyncItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SyncItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SyncItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncItemPayload>
+          }
+          findFirst: {
+            args: Prisma.SyncItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SyncItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncItemPayload>
+          }
+          findMany: {
+            args: Prisma.SyncItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncItemPayload>[]
+          }
+          create: {
+            args: Prisma.SyncItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncItemPayload>
+          }
+          createMany: {
+            args: Prisma.SyncItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SyncItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncItemPayload>[]
+          }
+          delete: {
+            args: Prisma.SyncItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncItemPayload>
+          }
+          update: {
+            args: Prisma.SyncItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.SyncItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SyncItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SyncItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.SyncItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncItemPayload>
+          }
+          aggregate: {
+            args: Prisma.SyncItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSyncItem>
+          }
+          groupBy: {
+            args: Prisma.SyncItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SyncItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SyncItemCountArgs<ExtArgs>
+            result: $Utils.Optional<SyncItemCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1600,6 +1690,7 @@ export namespace Prisma {
     priorityScore?: PriorityScoreOmit
     pendingAction?: PendingActionOmit
     userPreference?: UserPreferenceOmit
+    syncItem?: SyncItemOmit
   }
 
   /* Types for Logging */
@@ -12732,6 +12823,1053 @@ export namespace Prisma {
 
 
   /**
+   * Model SyncItem
+   */
+
+  export type AggregateSyncItem = {
+    _count: SyncItemCountAggregateOutputType | null
+    _min: SyncItemMinAggregateOutputType | null
+    _max: SyncItemMaxAggregateOutputType | null
+  }
+
+  export type SyncItemMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    corsairEntityId: string | null
+    type: string | null
+    title: string | null
+    snippet: string | null
+    timestamp: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SyncItemMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    corsairEntityId: string | null
+    type: string | null
+    title: string | null
+    snippet: string | null
+    timestamp: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SyncItemCountAggregateOutputType = {
+    id: number
+    userId: number
+    corsairEntityId: number
+    type: number
+    title: number
+    snippet: number
+    timestamp: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SyncItemMinAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    type?: true
+    title?: true
+    snippet?: true
+    timestamp?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SyncItemMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    type?: true
+    title?: true
+    snippet?: true
+    timestamp?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SyncItemCountAggregateInputType = {
+    id?: true
+    userId?: true
+    corsairEntityId?: true
+    type?: true
+    title?: true
+    snippet?: true
+    timestamp?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SyncItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SyncItem to aggregate.
+     */
+    where?: SyncItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SyncItems to fetch.
+     */
+    orderBy?: SyncItemOrderByWithRelationInput | SyncItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SyncItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SyncItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SyncItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SyncItems
+    **/
+    _count?: true | SyncItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SyncItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SyncItemMaxAggregateInputType
+  }
+
+  export type GetSyncItemAggregateType<T extends SyncItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateSyncItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSyncItem[P]>
+      : GetScalarType<T[P], AggregateSyncItem[P]>
+  }
+
+
+
+
+  export type SyncItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SyncItemWhereInput
+    orderBy?: SyncItemOrderByWithAggregationInput | SyncItemOrderByWithAggregationInput[]
+    by: SyncItemScalarFieldEnum[] | SyncItemScalarFieldEnum
+    having?: SyncItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SyncItemCountAggregateInputType | true
+    _min?: SyncItemMinAggregateInputType
+    _max?: SyncItemMaxAggregateInputType
+  }
+
+  export type SyncItemGroupByOutputType = {
+    id: string
+    userId: string
+    corsairEntityId: string
+    type: string
+    title: string
+    snippet: string
+    timestamp: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: SyncItemCountAggregateOutputType | null
+    _min: SyncItemMinAggregateOutputType | null
+    _max: SyncItemMaxAggregateOutputType | null
+  }
+
+  type GetSyncItemGroupByPayload<T extends SyncItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SyncItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SyncItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SyncItemGroupByOutputType[P]>
+            : GetScalarType<T[P], SyncItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SyncItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    type?: boolean
+    title?: boolean
+    snippet?: boolean
+    timestamp?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["syncItem"]>
+
+  export type SyncItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    type?: boolean
+    title?: boolean
+    snippet?: boolean
+    timestamp?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["syncItem"]>
+
+  export type SyncItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    type?: boolean
+    title?: boolean
+    snippet?: boolean
+    timestamp?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["syncItem"]>
+
+  export type SyncItemSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    corsairEntityId?: boolean
+    type?: boolean
+    title?: boolean
+    snippet?: boolean
+    timestamp?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SyncItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "corsairEntityId" | "type" | "title" | "snippet" | "timestamp" | "createdAt" | "updatedAt", ExtArgs["result"]["syncItem"]>
+
+  export type $SyncItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SyncItem"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      corsairEntityId: string
+      type: string
+      title: string
+      snippet: string
+      timestamp: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["syncItem"]>
+    composites: {}
+  }
+
+  type SyncItemGetPayload<S extends boolean | null | undefined | SyncItemDefaultArgs> = $Result.GetResult<Prisma.$SyncItemPayload, S>
+
+  type SyncItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SyncItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SyncItemCountAggregateInputType | true
+    }
+
+  export interface SyncItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SyncItem'], meta: { name: 'SyncItem' } }
+    /**
+     * Find zero or one SyncItem that matches the filter.
+     * @param {SyncItemFindUniqueArgs} args - Arguments to find a SyncItem
+     * @example
+     * // Get one SyncItem
+     * const syncItem = await prisma.syncItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SyncItemFindUniqueArgs>(args: SelectSubset<T, SyncItemFindUniqueArgs<ExtArgs>>): Prisma__SyncItemClient<$Result.GetResult<Prisma.$SyncItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SyncItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SyncItemFindUniqueOrThrowArgs} args - Arguments to find a SyncItem
+     * @example
+     * // Get one SyncItem
+     * const syncItem = await prisma.syncItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SyncItemFindUniqueOrThrowArgs>(args: SelectSubset<T, SyncItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SyncItemClient<$Result.GetResult<Prisma.$SyncItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SyncItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncItemFindFirstArgs} args - Arguments to find a SyncItem
+     * @example
+     * // Get one SyncItem
+     * const syncItem = await prisma.syncItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SyncItemFindFirstArgs>(args?: SelectSubset<T, SyncItemFindFirstArgs<ExtArgs>>): Prisma__SyncItemClient<$Result.GetResult<Prisma.$SyncItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SyncItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncItemFindFirstOrThrowArgs} args - Arguments to find a SyncItem
+     * @example
+     * // Get one SyncItem
+     * const syncItem = await prisma.syncItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SyncItemFindFirstOrThrowArgs>(args?: SelectSubset<T, SyncItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__SyncItemClient<$Result.GetResult<Prisma.$SyncItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SyncItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SyncItems
+     * const syncItems = await prisma.syncItem.findMany()
+     * 
+     * // Get first 10 SyncItems
+     * const syncItems = await prisma.syncItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const syncItemWithIdOnly = await prisma.syncItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SyncItemFindManyArgs>(args?: SelectSubset<T, SyncItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SyncItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SyncItem.
+     * @param {SyncItemCreateArgs} args - Arguments to create a SyncItem.
+     * @example
+     * // Create one SyncItem
+     * const SyncItem = await prisma.syncItem.create({
+     *   data: {
+     *     // ... data to create a SyncItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends SyncItemCreateArgs>(args: SelectSubset<T, SyncItemCreateArgs<ExtArgs>>): Prisma__SyncItemClient<$Result.GetResult<Prisma.$SyncItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SyncItems.
+     * @param {SyncItemCreateManyArgs} args - Arguments to create many SyncItems.
+     * @example
+     * // Create many SyncItems
+     * const syncItem = await prisma.syncItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SyncItemCreateManyArgs>(args?: SelectSubset<T, SyncItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SyncItems and returns the data saved in the database.
+     * @param {SyncItemCreateManyAndReturnArgs} args - Arguments to create many SyncItems.
+     * @example
+     * // Create many SyncItems
+     * const syncItem = await prisma.syncItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SyncItems and only return the `id`
+     * const syncItemWithIdOnly = await prisma.syncItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SyncItemCreateManyAndReturnArgs>(args?: SelectSubset<T, SyncItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SyncItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SyncItem.
+     * @param {SyncItemDeleteArgs} args - Arguments to delete one SyncItem.
+     * @example
+     * // Delete one SyncItem
+     * const SyncItem = await prisma.syncItem.delete({
+     *   where: {
+     *     // ... filter to delete one SyncItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SyncItemDeleteArgs>(args: SelectSubset<T, SyncItemDeleteArgs<ExtArgs>>): Prisma__SyncItemClient<$Result.GetResult<Prisma.$SyncItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SyncItem.
+     * @param {SyncItemUpdateArgs} args - Arguments to update one SyncItem.
+     * @example
+     * // Update one SyncItem
+     * const syncItem = await prisma.syncItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SyncItemUpdateArgs>(args: SelectSubset<T, SyncItemUpdateArgs<ExtArgs>>): Prisma__SyncItemClient<$Result.GetResult<Prisma.$SyncItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SyncItems.
+     * @param {SyncItemDeleteManyArgs} args - Arguments to filter SyncItems to delete.
+     * @example
+     * // Delete a few SyncItems
+     * const { count } = await prisma.syncItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SyncItemDeleteManyArgs>(args?: SelectSubset<T, SyncItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SyncItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SyncItems
+     * const syncItem = await prisma.syncItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SyncItemUpdateManyArgs>(args: SelectSubset<T, SyncItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SyncItems and returns the data updated in the database.
+     * @param {SyncItemUpdateManyAndReturnArgs} args - Arguments to update many SyncItems.
+     * @example
+     * // Update many SyncItems
+     * const syncItem = await prisma.syncItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SyncItems and only return the `id`
+     * const syncItemWithIdOnly = await prisma.syncItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SyncItemUpdateManyAndReturnArgs>(args: SelectSubset<T, SyncItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SyncItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SyncItem.
+     * @param {SyncItemUpsertArgs} args - Arguments to update or create a SyncItem.
+     * @example
+     * // Update or create a SyncItem
+     * const syncItem = await prisma.syncItem.upsert({
+     *   create: {
+     *     // ... data to create a SyncItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SyncItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SyncItemUpsertArgs>(args: SelectSubset<T, SyncItemUpsertArgs<ExtArgs>>): Prisma__SyncItemClient<$Result.GetResult<Prisma.$SyncItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SyncItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncItemCountArgs} args - Arguments to filter SyncItems to count.
+     * @example
+     * // Count the number of SyncItems
+     * const count = await prisma.syncItem.count({
+     *   where: {
+     *     // ... the filter for the SyncItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends SyncItemCountArgs>(
+      args?: Subset<T, SyncItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SyncItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SyncItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SyncItemAggregateArgs>(args: Subset<T, SyncItemAggregateArgs>): Prisma.PrismaPromise<GetSyncItemAggregateType<T>>
+
+    /**
+     * Group by SyncItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SyncItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SyncItemGroupByArgs['orderBy'] }
+        : { orderBy?: SyncItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SyncItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSyncItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SyncItem model
+   */
+  readonly fields: SyncItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SyncItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SyncItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SyncItem model
+   */
+  interface SyncItemFieldRefs {
+    readonly id: FieldRef<"SyncItem", 'String'>
+    readonly userId: FieldRef<"SyncItem", 'String'>
+    readonly corsairEntityId: FieldRef<"SyncItem", 'String'>
+    readonly type: FieldRef<"SyncItem", 'String'>
+    readonly title: FieldRef<"SyncItem", 'String'>
+    readonly snippet: FieldRef<"SyncItem", 'String'>
+    readonly timestamp: FieldRef<"SyncItem", 'DateTime'>
+    readonly createdAt: FieldRef<"SyncItem", 'DateTime'>
+    readonly updatedAt: FieldRef<"SyncItem", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SyncItem findUnique
+   */
+  export type SyncItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+    /**
+     * Filter, which SyncItem to fetch.
+     */
+    where: SyncItemWhereUniqueInput
+  }
+
+  /**
+   * SyncItem findUniqueOrThrow
+   */
+  export type SyncItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+    /**
+     * Filter, which SyncItem to fetch.
+     */
+    where: SyncItemWhereUniqueInput
+  }
+
+  /**
+   * SyncItem findFirst
+   */
+  export type SyncItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+    /**
+     * Filter, which SyncItem to fetch.
+     */
+    where?: SyncItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SyncItems to fetch.
+     */
+    orderBy?: SyncItemOrderByWithRelationInput | SyncItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SyncItems.
+     */
+    cursor?: SyncItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SyncItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SyncItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SyncItems.
+     */
+    distinct?: SyncItemScalarFieldEnum | SyncItemScalarFieldEnum[]
+  }
+
+  /**
+   * SyncItem findFirstOrThrow
+   */
+  export type SyncItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+    /**
+     * Filter, which SyncItem to fetch.
+     */
+    where?: SyncItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SyncItems to fetch.
+     */
+    orderBy?: SyncItemOrderByWithRelationInput | SyncItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SyncItems.
+     */
+    cursor?: SyncItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SyncItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SyncItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SyncItems.
+     */
+    distinct?: SyncItemScalarFieldEnum | SyncItemScalarFieldEnum[]
+  }
+
+  /**
+   * SyncItem findMany
+   */
+  export type SyncItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+    /**
+     * Filter, which SyncItems to fetch.
+     */
+    where?: SyncItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SyncItems to fetch.
+     */
+    orderBy?: SyncItemOrderByWithRelationInput | SyncItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SyncItems.
+     */
+    cursor?: SyncItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SyncItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SyncItems.
+     */
+    skip?: number
+    distinct?: SyncItemScalarFieldEnum | SyncItemScalarFieldEnum[]
+  }
+
+  /**
+   * SyncItem create
+   */
+  export type SyncItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+    /**
+     * The data needed to create a SyncItem.
+     */
+    data: XOR<SyncItemCreateInput, SyncItemUncheckedCreateInput>
+  }
+
+  /**
+   * SyncItem createMany
+   */
+  export type SyncItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SyncItems.
+     */
+    data: SyncItemCreateManyInput | SyncItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SyncItem createManyAndReturn
+   */
+  export type SyncItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many SyncItems.
+     */
+    data: SyncItemCreateManyInput | SyncItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SyncItem update
+   */
+  export type SyncItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+    /**
+     * The data needed to update a SyncItem.
+     */
+    data: XOR<SyncItemUpdateInput, SyncItemUncheckedUpdateInput>
+    /**
+     * Choose, which SyncItem to update.
+     */
+    where: SyncItemWhereUniqueInput
+  }
+
+  /**
+   * SyncItem updateMany
+   */
+  export type SyncItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SyncItems.
+     */
+    data: XOR<SyncItemUpdateManyMutationInput, SyncItemUncheckedUpdateManyInput>
+    /**
+     * Filter which SyncItems to update
+     */
+    where?: SyncItemWhereInput
+    /**
+     * Limit how many SyncItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SyncItem updateManyAndReturn
+   */
+  export type SyncItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+    /**
+     * The data used to update SyncItems.
+     */
+    data: XOR<SyncItemUpdateManyMutationInput, SyncItemUncheckedUpdateManyInput>
+    /**
+     * Filter which SyncItems to update
+     */
+    where?: SyncItemWhereInput
+    /**
+     * Limit how many SyncItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SyncItem upsert
+   */
+  export type SyncItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+    /**
+     * The filter to search for the SyncItem to update in case it exists.
+     */
+    where: SyncItemWhereUniqueInput
+    /**
+     * In case the SyncItem found by the `where` argument doesn't exist, create a new SyncItem with this data.
+     */
+    create: XOR<SyncItemCreateInput, SyncItemUncheckedCreateInput>
+    /**
+     * In case the SyncItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SyncItemUpdateInput, SyncItemUncheckedUpdateInput>
+  }
+
+  /**
+   * SyncItem delete
+   */
+  export type SyncItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+    /**
+     * Filter which SyncItem to delete.
+     */
+    where: SyncItemWhereUniqueInput
+  }
+
+  /**
+   * SyncItem deleteMany
+   */
+  export type SyncItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SyncItems to delete
+     */
+    where?: SyncItemWhereInput
+    /**
+     * Limit how many SyncItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SyncItem without action
+   */
+  export type SyncItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncItem
+     */
+    select?: SyncItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SyncItem
+     */
+    omit?: SyncItemOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -12867,6 +14005,21 @@ export namespace Prisma {
   };
 
   export type UserPreferenceScalarFieldEnum = (typeof UserPreferenceScalarFieldEnum)[keyof typeof UserPreferenceScalarFieldEnum]
+
+
+  export const SyncItemScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    corsairEntityId: 'corsairEntityId',
+    type: 'type',
+    title: 'title',
+    snippet: 'snippet',
+    timestamp: 'timestamp',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SyncItemScalarFieldEnum = (typeof SyncItemScalarFieldEnum)[keyof typeof SyncItemScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -13387,6 +14540,7 @@ export namespace Prisma {
 
   export type EmailEmbeddingWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    userId_corsairEntityId?: EmailEmbeddingUserIdCorsairEntityIdCompoundUniqueInput
     AND?: EmailEmbeddingWhereInput | EmailEmbeddingWhereInput[]
     OR?: EmailEmbeddingWhereInput[]
     NOT?: EmailEmbeddingWhereInput | EmailEmbeddingWhereInput[]
@@ -13396,7 +14550,7 @@ export namespace Prisma {
     subjectSnippet?: StringFilter<"EmailEmbedding"> | string
     indexedAt?: DateTimeFilter<"EmailEmbedding"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
+  }, "id" | "userId_corsairEntityId">
 
   export type EmailEmbeddingOrderByWithAggregationInput = {
     id?: SortOrder
@@ -13610,6 +14764,79 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"UserPreference"> | string
     splitInboxRules?: JsonWithAggregatesFilter<"UserPreference">
     shortcutOverrides?: JsonWithAggregatesFilter<"UserPreference">
+  }
+
+  export type SyncItemWhereInput = {
+    AND?: SyncItemWhereInput | SyncItemWhereInput[]
+    OR?: SyncItemWhereInput[]
+    NOT?: SyncItemWhereInput | SyncItemWhereInput[]
+    id?: StringFilter<"SyncItem"> | string
+    userId?: StringFilter<"SyncItem"> | string
+    corsairEntityId?: StringFilter<"SyncItem"> | string
+    type?: StringFilter<"SyncItem"> | string
+    title?: StringFilter<"SyncItem"> | string
+    snippet?: StringFilter<"SyncItem"> | string
+    timestamp?: DateTimeFilter<"SyncItem"> | Date | string
+    createdAt?: DateTimeFilter<"SyncItem"> | Date | string
+    updatedAt?: DateTimeFilter<"SyncItem"> | Date | string
+  }
+
+  export type SyncItemOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    snippet?: SortOrder
+    timestamp?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SyncItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_corsairEntityId?: SyncItemUserIdCorsairEntityIdCompoundUniqueInput
+    AND?: SyncItemWhereInput | SyncItemWhereInput[]
+    OR?: SyncItemWhereInput[]
+    NOT?: SyncItemWhereInput | SyncItemWhereInput[]
+    userId?: StringFilter<"SyncItem"> | string
+    corsairEntityId?: StringFilter<"SyncItem"> | string
+    type?: StringFilter<"SyncItem"> | string
+    title?: StringFilter<"SyncItem"> | string
+    snippet?: StringFilter<"SyncItem"> | string
+    timestamp?: DateTimeFilter<"SyncItem"> | Date | string
+    createdAt?: DateTimeFilter<"SyncItem"> | Date | string
+    updatedAt?: DateTimeFilter<"SyncItem"> | Date | string
+  }, "id" | "userId_corsairEntityId">
+
+  export type SyncItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    snippet?: SortOrder
+    timestamp?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SyncItemCountOrderByAggregateInput
+    _max?: SyncItemMaxOrderByAggregateInput
+    _min?: SyncItemMinOrderByAggregateInput
+  }
+
+  export type SyncItemScalarWhereWithAggregatesInput = {
+    AND?: SyncItemScalarWhereWithAggregatesInput | SyncItemScalarWhereWithAggregatesInput[]
+    OR?: SyncItemScalarWhereWithAggregatesInput[]
+    NOT?: SyncItemScalarWhereWithAggregatesInput | SyncItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SyncItem"> | string
+    userId?: StringWithAggregatesFilter<"SyncItem"> | string
+    corsairEntityId?: StringWithAggregatesFilter<"SyncItem"> | string
+    type?: StringWithAggregatesFilter<"SyncItem"> | string
+    title?: StringWithAggregatesFilter<"SyncItem"> | string
+    snippet?: StringWithAggregatesFilter<"SyncItem"> | string
+    timestamp?: DateTimeWithAggregatesFilter<"SyncItem"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"SyncItem"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SyncItem"> | Date | string
   }
 
   export type CorsairIntegrationCreateInput = {
@@ -14294,6 +15521,90 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
   }
 
+  export type SyncItemCreateInput = {
+    id?: string
+    userId: string
+    corsairEntityId: string
+    type: string
+    title: string
+    snippet: string
+    timestamp: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SyncItemUncheckedCreateInput = {
+    id?: string
+    userId: string
+    corsairEntityId: string
+    type: string
+    title: string
+    snippet: string
+    timestamp: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SyncItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    snippet?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SyncItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    snippet?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SyncItemCreateManyInput = {
+    id?: string
+    userId: string
+    corsairEntityId: string
+    type: string
+    title: string
+    snippet: string
+    timestamp: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SyncItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    snippet?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SyncItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    corsairEntityId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    snippet?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -14719,6 +16030,11 @@ export namespace Prisma {
     linkedAt?: SortOrder
   }
 
+  export type EmailEmbeddingUserIdCorsairEntityIdCompoundUniqueInput = {
+    userId: string
+    corsairEntityId: string
+  }
+
   export type EmailEmbeddingCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -14825,6 +16141,47 @@ export namespace Prisma {
   export type UserPreferenceMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+  }
+
+  export type SyncItemUserIdCorsairEntityIdCompoundUniqueInput = {
+    userId: string
+    corsairEntityId: string
+  }
+
+  export type SyncItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    snippet?: SortOrder
+    timestamp?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SyncItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    snippet?: SortOrder
+    timestamp?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SyncItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    corsairEntityId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    snippet?: SortOrder
+    timestamp?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type CorsairAccountCreateNestedManyWithoutIntegrationInput = {

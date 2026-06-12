@@ -2,6 +2,7 @@ import { processWebhook } from "corsair";
 import { NextResponse, type NextRequest } from "next/server";
 
 import { corsair } from "@/server/corsair";
+import { inngest } from "@/inngest/client";
 
 type ProcessWebhookArgs = Parameters<typeof processWebhook>;
 
@@ -10,10 +11,8 @@ type ProcessWebhookArgs = Parameters<typeof processWebhook>;
  *
  * Corsair inspects the headers/payload to route the webhook to the right
  * plugin, verifies the signature, and (in multi-tenant mode) scopes the write
- * to the tenant id passed via the query string.
- *
- * For now we just log what was received — event processing comes in a later
- * phase via `webhookHooks` + Inngest.
+ * to the tenant id passed via the query string. We then hand the result off to
+ * Inngest (`corsair/webhook.received`) for cache upsert + embedding + realtime.
  */
 export async function POST(request: NextRequest) {
   const url = new URL(request.url);
@@ -44,6 +43,20 @@ export async function POST(request: NextRequest) {
     console.log(
       `[corsair webhook] handled by ${result.plugin}.${result.action ?? "?"} (tenant=${tenantId ?? "n/a"})`,
     );
+
+    // Hand off to Inngest for cache upsert + embedding + realtime push.
+    const corsairEntityId = result.response?.corsairEntityId;
+    if (tenantId && corsairEntityId) {
+      await inngest.send({
+        name: "corsair/webhook.received",
+        data: {
+          tenantId,
+          plugin: result.plugin,
+          action: result.action ?? null,
+          corsairEntityId,
+        },
+      });
+    }
   } else {
     console.log(
       `[corsair webhook] received unmatched webhook (tenant=${tenantId ?? "n/a"})`,

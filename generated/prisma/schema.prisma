@@ -117,6 +117,7 @@ model EmailEmbedding {
   indexedAt       DateTime                     @default(now()) @map("indexed_at") @db.Timestamptz
   user            User                         @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([userId, corsairEntityId])
   @@index([userId])
   @@index([corsairEntityId])
   @@index([threadId])
@@ -163,4 +164,23 @@ model UserPreference {
   user              User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("user_preferences")
+}
+
+// Lightweight, realtime-friendly feed of changed entities (emails + events).
+// Written by the webhook → Inngest pipeline; clients subscribe via Supabase
+// Realtime and merge new rows into list views without a full refetch.
+model SyncItem {
+  id              String   @id @default(cuid())
+  userId          String   @map("user_id")
+  corsairEntityId String   @map("corsair_entity_id")
+  type            String // "email" | "event"
+  title           String
+  snippet         String
+  timestamp       DateTime @db.Timestamptz
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@unique([userId, corsairEntityId])
+  @@index([userId, timestamp])
+  @@map("sync_items")
 }
