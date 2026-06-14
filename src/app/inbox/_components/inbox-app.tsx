@@ -22,6 +22,7 @@ import { ComposeSheet, type ComposeInitial } from "./compose-sheet";
 import { SnoozePopover } from "./snooze-popover";
 import { SuggestionBanner } from "./suggestion-banner";
 import { useToast } from "@/app/_components/toast";
+import { usePublishCommandSelection } from "@/app/_components/command-context";
 
 type InboxThread = RouterOutputs["inbox"]["listThreads"]["threads"][number];
 
@@ -49,10 +50,24 @@ export function InboxApp() {
   );
 
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
+  const [selectedIds, setSelectedIds] = React.useState<Set<string>>(
+    () => new Set(),
+  );
   const [compose, setCompose] = React.useState<{
     open: boolean;
     initial?: ComposeInitial;
   }>({ open: false });
+
+  // Publish focus + multi-selection so the command palette can act on them.
+  const selectedIdsArray = React.useMemo(
+    () => Array.from(selectedIds),
+    [selectedIds],
+  );
+  usePublishCommandSelection({
+    view: "inbox",
+    focusedThreadId: selectedId,
+    selectedThreadIds: selectedIdsArray,
+  });
 
   const threadsQuery = api.inbox.listThreads.useQuery(LIST_INPUT);
   const syncStatus = api.integrations.getSyncStatus.useQuery();
@@ -244,6 +259,14 @@ export function InboxApp() {
         e.preventDefault();
         if (!sel.starred) signal(sel.threadId, "star", sel.fromEmail);
         toggleStar.mutate({ threadId: sel.threadId, starred: !sel.starred });
+      } else if (sel && k("select")) {
+        e.preventDefault();
+        setSelectedIds((prev) => {
+          const next = new Set(prev);
+          if (next.has(sel.threadId)) next.delete(sel.threadId);
+          else next.add(sel.threadId);
+          return next;
+        });
       } else if (sel && k("mark_unread")) {
         e.preventDefault();
         markUnread.mutate({ threadId: sel.threadId });

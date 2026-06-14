@@ -10,6 +10,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
 import { AgentDock } from "@/app/_components/agent-dock";
 import { CommandMenu } from "@/app/_components/command-menu";
+import { CommandContextProvider } from "@/app/_components/command-context";
 import { ShortcutProvider } from "@/app/_components/shortcut-provider";
 import { ToastProvider } from "@/app/_components/toast";
 import { cn } from "@/lib/utils";
@@ -119,9 +120,11 @@ export default async function RootLayout({
             </header>
             {userId ? (
               <ShortcutProvider>
-                {children}
-                <AgentDock />
-                <CommandMenu />
+                <CommandContextProvider>
+                  {children}
+                  <AgentDock />
+                  <CommandMenu />
+                </CommandContextProvider>
               </ShortcutProvider>
             ) : (
               children

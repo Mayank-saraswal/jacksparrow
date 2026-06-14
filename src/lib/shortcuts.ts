@@ -29,11 +29,13 @@ export const SHORTCUTS: ShortcutDef[] = [
   { id: "go_inbox", label: "Go to inbox", defaultKey: "g i", scope: "global" },
   { id: "go_calendar", label: "Go to calendar", defaultKey: "g c", scope: "global" },
   { id: "go_scheduled", label: "Go to scheduled", defaultKey: "g s", scope: "global" },
+  { id: "search", label: "Search", defaultKey: "/", scope: "global" },
   { id: "help", label: "Show shortcuts", defaultKey: "?", scope: "global" },
   // list (inbox list view)
   { id: "next_thread", label: "Next thread", defaultKey: "j", scope: "list" },
   { id: "prev_thread", label: "Previous thread", defaultKey: "k", scope: "list" },
   { id: "open_thread", label: "Open thread", defaultKey: "Enter", scope: "list" },
+  { id: "select", label: "Select thread", defaultKey: "x", scope: "list" },
   { id: "next_split", label: "Next split", defaultKey: "]", scope: "list" },
   { id: "prev_split", label: "Previous split", defaultKey: "[", scope: "list" },
   { id: "compose", label: "Compose", defaultKey: "c", scope: "list" },
@@ -111,15 +113,73 @@ function eventKey(e: KeyboardEvent): string {
   return e.key.length === 1 ? e.key.toLowerCase() : e.key.toLowerCase();
 }
 
-/** True when a single keyboard event satisfies a parsed step. */
-export function stepMatchesEvent(step: ParsedStep, e: KeyboardEvent): boolean {
-  const mod = e.metaKey || e.ctrlKey;
-  if (step.mod !== mod) return false;
-  if (step.alt !== e.altKey) return false;
+/**
+ * A provider-agnostic key event, decoupled from the DOM so chord/sequence
+ * matching is unit-testable without a real KeyboardEvent. `mod` is true when
+ * ⌘ (mac) or Ctrl (elsewhere) is held.
+ */
+export interface KeyToken {
+  mod: boolean;
+  shift: boolean;
+  alt: boolean;
+  key: string;
+}
+
+/** Build a KeyToken from a DOM KeyboardEvent. */
+export function tokenFromEvent(e: KeyboardEvent): KeyToken {
+  return {
+    mod: e.metaKey || e.ctrlKey,
+    shift: e.shiftKey,
+    alt: e.altKey,
+    key: eventKey(e),
+  };
+}
+
+/** True when a parsed step is satisfied by a KeyToken. */
+export function stepMatchesToken(step: ParsedStep, token: KeyToken): boolean {
+  if (step.mod !== token.mod) return false;
+  if (step.alt !== token.alt) return false;
   // Shift is only enforced when explicitly required; characters like "?" or "#"
   // already imply shift via the produced key value, so don't double-check.
-  if (step.shift && !e.shiftKey) return false;
-  return eventKey(e) === step.key;
+  if (step.shift && !token.shift) return false;
+  return token.key === step.key;
+}
+
+/** True when a single keyboard event satisfies a parsed step. */
+export function stepMatchesEvent(step: ParsedStep, e: KeyboardEvent): boolean {
+  return stepMatchesToken(step, tokenFromEvent(e));
+}
+
+export type SequenceAdvance =
+  | { status: "none" }
+  | { status: "partial"; nextIndex: number }
+  | { status: "complete" };
+
+/**
+ * Pure chord/sequence stepping. Given a parsed binding, the index of the next
+ * expected step, and an incoming token, returns whether the sequence advanced,
+ * completed, or fell through. A mismatch restarts from step 0 when the token
+ * matches the first step (so re-pressing the lead key re-arms the chord).
+ */
+export function advanceSequence(
+  binding: ParsedBinding,
+  index: number,
+  token: KeyToken,
+): SequenceAdvance {
+  const step = binding.steps[index];
+  if (step && stepMatchesToken(step, token)) {
+    const nextIndex = index + 1;
+    return nextIndex >= binding.steps.length
+      ? { status: "complete" }
+      : { status: "partial", nextIndex };
+  }
+  const first = binding.steps[0];
+  if (index > 0 && first && stepMatchesToken(first, token)) {
+    return binding.steps.length === 1
+      ? { status: "complete" }
+      : { status: "partial", nextIndex: 1 };
+  }
+  return { status: "none" };
 }
 
 /**

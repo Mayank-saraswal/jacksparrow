@@ -11307,6 +11307,7 @@ export namespace Prisma {
     corsairEntityId: string | null
     threadId: string | null
     subjectSnippet: string | null
+    contentHash: string | null
     indexedAt: Date | null
   }
 
@@ -11316,6 +11317,7 @@ export namespace Prisma {
     corsairEntityId: string | null
     threadId: string | null
     subjectSnippet: string | null
+    contentHash: string | null
     indexedAt: Date | null
   }
 
@@ -11325,6 +11327,7 @@ export namespace Prisma {
     corsairEntityId: number
     threadId: number
     subjectSnippet: number
+    contentHash: number
     indexedAt: number
     _all: number
   }
@@ -11336,6 +11339,7 @@ export namespace Prisma {
     corsairEntityId?: true
     threadId?: true
     subjectSnippet?: true
+    contentHash?: true
     indexedAt?: true
   }
 
@@ -11345,6 +11349,7 @@ export namespace Prisma {
     corsairEntityId?: true
     threadId?: true
     subjectSnippet?: true
+    contentHash?: true
     indexedAt?: true
   }
 
@@ -11354,6 +11359,7 @@ export namespace Prisma {
     corsairEntityId?: true
     threadId?: true
     subjectSnippet?: true
+    contentHash?: true
     indexedAt?: true
     _all?: true
   }
@@ -11436,6 +11442,7 @@ export namespace Prisma {
     corsairEntityId: string
     threadId: string
     subjectSnippet: string
+    contentHash: string | null
     indexedAt: Date
     _count: EmailEmbeddingCountAggregateOutputType | null
     _min: EmailEmbeddingMinAggregateOutputType | null
@@ -11462,6 +11469,7 @@ export namespace Prisma {
     corsairEntityId?: boolean
     threadId?: boolean
     subjectSnippet?: boolean
+    contentHash?: boolean
     indexedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["emailEmbedding"]>
@@ -11472,6 +11480,7 @@ export namespace Prisma {
     corsairEntityId?: boolean
     threadId?: boolean
     subjectSnippet?: boolean
+    contentHash?: boolean
     indexedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["emailEmbedding"]>
@@ -11482,6 +11491,7 @@ export namespace Prisma {
     corsairEntityId?: boolean
     threadId?: boolean
     subjectSnippet?: boolean
+    contentHash?: boolean
     indexedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["emailEmbedding"]>
@@ -11492,10 +11502,11 @@ export namespace Prisma {
     corsairEntityId?: boolean
     threadId?: boolean
     subjectSnippet?: boolean
+    contentHash?: boolean
     indexedAt?: boolean
   }
 
-  export type EmailEmbeddingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "corsairEntityId" | "threadId" | "subjectSnippet" | "indexedAt", ExtArgs["result"]["emailEmbedding"]>
+  export type EmailEmbeddingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "corsairEntityId" | "threadId" | "subjectSnippet" | "contentHash" | "indexedAt", ExtArgs["result"]["emailEmbedding"]>
   export type EmailEmbeddingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -11517,6 +11528,7 @@ export namespace Prisma {
       corsairEntityId: string
       threadId: string
       subjectSnippet: string
+      contentHash: string | null
       indexedAt: Date
     }, ExtArgs["result"]["emailEmbedding"]>
     composites: {}
@@ -11947,6 +11959,7 @@ export namespace Prisma {
     readonly corsairEntityId: FieldRef<"EmailEmbedding", 'String'>
     readonly threadId: FieldRef<"EmailEmbedding", 'String'>
     readonly subjectSnippet: FieldRef<"EmailEmbedding", 'String'>
+    readonly contentHash: FieldRef<"EmailEmbedding", 'String'>
     readonly indexedAt: FieldRef<"EmailEmbedding", 'DateTime'>
   }
     
@@ -44324,6 +44337,7 @@ export namespace Prisma {
     corsairEntityId: 'corsairEntityId',
     threadId: 'threadId',
     subjectSnippet: 'subjectSnippet',
+    contentHash: 'contentHash',
     indexedAt: 'indexedAt'
   };
 
@@ -45285,6 +45299,7 @@ export namespace Prisma {
     corsairEntityId?: StringFilter<"EmailEmbedding"> | string
     threadId?: StringFilter<"EmailEmbedding"> | string
     subjectSnippet?: StringFilter<"EmailEmbedding"> | string
+    contentHash?: StringNullableFilter<"EmailEmbedding"> | string | null
     indexedAt?: DateTimeFilter<"EmailEmbedding"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -45295,6 +45310,7 @@ export namespace Prisma {
     corsairEntityId?: SortOrder
     threadId?: SortOrder
     subjectSnippet?: SortOrder
+    contentHash?: SortOrderInput | SortOrder
     indexedAt?: SortOrder
     user?: UserOrderByWithRelationInput
   }
@@ -45309,6 +45325,7 @@ export namespace Prisma {
     corsairEntityId?: StringFilter<"EmailEmbedding"> | string
     threadId?: StringFilter<"EmailEmbedding"> | string
     subjectSnippet?: StringFilter<"EmailEmbedding"> | string
+    contentHash?: StringNullableFilter<"EmailEmbedding"> | string | null
     indexedAt?: DateTimeFilter<"EmailEmbedding"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId_corsairEntityId">
@@ -45319,6 +45336,7 @@ export namespace Prisma {
     corsairEntityId?: SortOrder
     threadId?: SortOrder
     subjectSnippet?: SortOrder
+    contentHash?: SortOrderInput | SortOrder
     indexedAt?: SortOrder
     _count?: EmailEmbeddingCountOrderByAggregateInput
     _max?: EmailEmbeddingMaxOrderByAggregateInput
@@ -45334,6 +45352,7 @@ export namespace Prisma {
     corsairEntityId?: StringWithAggregatesFilter<"EmailEmbedding"> | string
     threadId?: StringWithAggregatesFilter<"EmailEmbedding"> | string
     subjectSnippet?: StringWithAggregatesFilter<"EmailEmbedding"> | string
+    contentHash?: StringNullableWithAggregatesFilter<"EmailEmbedding"> | string | null
     indexedAt?: DateTimeWithAggregatesFilter<"EmailEmbedding"> | Date | string
   }
 
@@ -47826,6 +47845,7 @@ export namespace Prisma {
     corsairEntityId: string
     threadId: string
     subjectSnippet: string
+    contentHash?: string | null
     indexedAt?: Date | string
     user: UserCreateNestedOneWithoutEmailEmbeddingsInput
   }
@@ -47836,6 +47856,7 @@ export namespace Prisma {
     corsairEntityId: string
     threadId: string
     subjectSnippet: string
+    contentHash?: string | null
     indexedAt?: Date | string
   }
 
@@ -47844,6 +47865,7 @@ export namespace Prisma {
     corsairEntityId?: StringFieldUpdateOperationsInput | string
     threadId?: StringFieldUpdateOperationsInput | string
     subjectSnippet?: StringFieldUpdateOperationsInput | string
+    contentHash?: NullableStringFieldUpdateOperationsInput | string | null
     indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutEmailEmbeddingsNestedInput
   }
@@ -47854,6 +47876,7 @@ export namespace Prisma {
     corsairEntityId?: StringFieldUpdateOperationsInput | string
     threadId?: StringFieldUpdateOperationsInput | string
     subjectSnippet?: StringFieldUpdateOperationsInput | string
+    contentHash?: NullableStringFieldUpdateOperationsInput | string | null
     indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -47863,6 +47886,7 @@ export namespace Prisma {
     corsairEntityId: string
     threadId: string
     subjectSnippet: string
+    contentHash?: string | null
     indexedAt?: Date | string
   }
 
@@ -47871,6 +47895,7 @@ export namespace Prisma {
     corsairEntityId?: StringFieldUpdateOperationsInput | string
     threadId?: StringFieldUpdateOperationsInput | string
     subjectSnippet?: StringFieldUpdateOperationsInput | string
+    contentHash?: NullableStringFieldUpdateOperationsInput | string | null
     indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -47880,6 +47905,7 @@ export namespace Prisma {
     corsairEntityId?: StringFieldUpdateOperationsInput | string
     threadId?: StringFieldUpdateOperationsInput | string
     subjectSnippet?: StringFieldUpdateOperationsInput | string
+    contentHash?: NullableStringFieldUpdateOperationsInput | string | null
     indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -50584,6 +50610,7 @@ export namespace Prisma {
     corsairEntityId?: SortOrder
     threadId?: SortOrder
     subjectSnippet?: SortOrder
+    contentHash?: SortOrder
     indexedAt?: SortOrder
   }
 
@@ -50593,6 +50620,7 @@ export namespace Prisma {
     corsairEntityId?: SortOrder
     threadId?: SortOrder
     subjectSnippet?: SortOrder
+    contentHash?: SortOrder
     indexedAt?: SortOrder
   }
 
@@ -50602,6 +50630,7 @@ export namespace Prisma {
     corsairEntityId?: SortOrder
     threadId?: SortOrder
     subjectSnippet?: SortOrder
+    contentHash?: SortOrder
     indexedAt?: SortOrder
   }
 
@@ -54013,6 +54042,7 @@ export namespace Prisma {
     corsairEntityId: string
     threadId: string
     subjectSnippet: string
+    contentHash?: string | null
     indexedAt?: Date | string
   }
 
@@ -54021,6 +54051,7 @@ export namespace Prisma {
     corsairEntityId: string
     threadId: string
     subjectSnippet: string
+    contentHash?: string | null
     indexedAt?: Date | string
   }
 
@@ -54430,6 +54461,7 @@ export namespace Prisma {
     corsairEntityId?: StringFilter<"EmailEmbedding"> | string
     threadId?: StringFilter<"EmailEmbedding"> | string
     subjectSnippet?: StringFilter<"EmailEmbedding"> | string
+    contentHash?: StringNullableFilter<"EmailEmbedding"> | string | null
     indexedAt?: DateTimeFilter<"EmailEmbedding"> | Date | string
   }
 
@@ -57664,6 +57696,7 @@ export namespace Prisma {
     corsairEntityId: string
     threadId: string
     subjectSnippet: string
+    contentHash?: string | null
     indexedAt?: Date | string
   }
 
@@ -57794,6 +57827,7 @@ export namespace Prisma {
     corsairEntityId?: StringFieldUpdateOperationsInput | string
     threadId?: StringFieldUpdateOperationsInput | string
     subjectSnippet?: StringFieldUpdateOperationsInput | string
+    contentHash?: NullableStringFieldUpdateOperationsInput | string | null
     indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -57802,6 +57836,7 @@ export namespace Prisma {
     corsairEntityId?: StringFieldUpdateOperationsInput | string
     threadId?: StringFieldUpdateOperationsInput | string
     subjectSnippet?: StringFieldUpdateOperationsInput | string
+    contentHash?: NullableStringFieldUpdateOperationsInput | string | null
     indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -57810,6 +57845,7 @@ export namespace Prisma {
     corsairEntityId?: StringFieldUpdateOperationsInput | string
     threadId?: StringFieldUpdateOperationsInput | string
     subjectSnippet?: StringFieldUpdateOperationsInput | string
+    contentHash?: NullableStringFieldUpdateOperationsInput | string | null
     indexedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

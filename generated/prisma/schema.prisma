@@ -124,6 +124,7 @@ model EmailEmbedding {
   corsairEntityId String                       @map("corsair_entity_id")
   threadId        String                       @map("thread_id")
   subjectSnippet  String                       @map("subject_snippet")
+  contentHash     String?                      @map("content_hash")
   embedding       Unsupported("vector(1536)")?
   indexedAt       DateTime                     @default(now()) @map("indexed_at") @db.Timestamptz
   user            User                         @relation(fields: [userId], references: [id], onDelete: Cascade)

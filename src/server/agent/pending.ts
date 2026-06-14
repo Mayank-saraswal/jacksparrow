@@ -1,146 +1,56 @@
 import "server-only";
 
-import { z } from "zod";
-
 import { getTenant, getOrgTenant } from "@/server/corsair";
-import { sendEmail, sendEmailSchema } from "@/server/agent/execute";
-import { getMailProvider } from "@/server/mail/provider";
+import { sendEmail } from "@/server/agent/execute";
+import { getMailProvider, resolveMailPlugin } from "@/server/mail/provider";
+import { inngest } from "@/inngest/client";
 import { db } from "@/server/db";
+import {
+  sendEmailSchema,
+  sharedReplySchema,
+  slackReplySchema,
+  createEventSchema,
+  deleteEventSchema,
+  respondInviteSchema,
+  bulkArchiveSchema,
+  bulkLabelSchema,
+  snoozeThreadSchema,
+  scheduleSendSchema,
+  PENDING_KINDS,
+  OPERATION_PATH,
+  summarizePendingAction,
+  confirmationCopy,
+  aggregateBulkResults,
+  summarizeBulkResult,
+  type BulkOutcome,
+  type PendingKind,
+} from "@/lib/pending-kinds";
 
 /**
- * Shared draft-summary + execution logic for PendingActions, used by both the
- * web approval tray and (later) the Telegram/WhatsApp handlers so the UX copy
- * and the execution path stay identical everywhere.
+ * Server-side execution for PendingActions. The pure pieces (schemas, kind
+ * registry, draft summaries, confirmation copy, bulk aggregation) live in
+ * `@/lib/pending-kinds`; this module adds only the side-effectful executor used
+ * by the web approval tray and the Telegram/WhatsApp handlers — keeping copy +
+ * execution identical everywhere.
  */
 
-export { sendEmailSchema };
-
-export const sharedReplySchema = z.object({
-  sharedInboxId: z.string().min(1),
-  threadId: z.string().min(1),
-  to: z.array(z.email()).min(1),
-  cc: z.array(z.email()).optional(),
-  subject: z.string().default(""),
-  body: z.string().default(""),
-  inReplyTo: z.string().optional(),
-});
-
-export const slackReplySchema = z.object({
-  orgId: z.string().min(1),
-  channel: z.string().min(1),
-  text: z.string().min(1),
-  threadTs: z.string().optional(),
-});
-
-export const createEventSchema = z.object({
-  summary: z.string(),
-  description: z.string().optional(),
-  location: z.string().optional(),
-  start: z.string(),
-  end: z.string(),
-  timeZone: z.string().optional(),
-  attendees: z.array(z.string().email()).default([]),
-  calendarId: z.string().default("primary"),
-});
-
-export const deleteEventSchema = z.object({
-  eventId: z.string(),
-  calendarId: z.string().default("primary"),
-});
-
-export const respondInviteSchema = z.object({
-  eventId: z.string().optional(),
-  iCalUID: z.string().optional(),
-  response: z.enum(["accepted", "declined", "tentative"]),
-  calendarId: z.string().default("primary"),
-});
-
-export const PENDING_KINDS = [
-  "send_email",
-  "create_event",
-  "delete_event",
-  "respond_invite",
-  "shared_reply",
-  "slack_reply",
-] as const;
-export type PendingKind = (typeof PENDING_KINDS)[number];
-
-export const OPERATION_PATH: Record<PendingKind, string> = {
-  send_email: "gmail.api.messages.send",
-  create_event: "googlecalendar.api.events.create",
-  delete_event: "googlecalendar.api.events.delete",
-  respond_invite: "googlecalendar.api.events.update",
-  shared_reply: "mail.send",
-  slack_reply: "slack.api.messages.post",
+export {
+  sendEmailSchema,
+  sharedReplySchema,
+  slackReplySchema,
+  createEventSchema,
+  deleteEventSchema,
+  respondInviteSchema,
+  bulkArchiveSchema,
+  bulkLabelSchema,
+  snoozeThreadSchema,
+  scheduleSendSchema,
+  PENDING_KINDS,
+  OPERATION_PATH,
+  summarizePendingAction,
+  confirmationCopy,
+  type PendingKind,
 };
-
-function fmtTime(iso: string) {
-  const d = new Date(iso);
-  return Number.isNaN(d.getTime())
-    ? iso
-    : new Intl.DateTimeFormat(undefined, {
-        dateStyle: "medium",
-        timeStyle: "short",
-      }).format(d);
-}
-
-/** Human-readable one-liner for a pending action's draft. */
-export function summarizePendingAction(
-  kind: string,
-  payload: unknown,
-): string {
-  switch (kind) {
-    case "send_email": {
-      const p = sendEmailSchema.parse(payload);
-      const preview = p.subject || p.body.slice(0, 50);
-      return `Send email to ${p.to.join(", ")}: "${preview}"`;
-    }
-    case "create_event": {
-      const p = createEventSchema.parse(payload);
-      const who = p.attendees.length ? ` with ${p.attendees.join(", ")}` : "";
-      return `Create event "${p.summary}" at ${fmtTime(p.start)}${who}`;
-    }
-    case "delete_event": {
-      const p = deleteEventSchema.parse(payload);
-      return `Delete event ${p.eventId}`;
-    }
-    case "respond_invite": {
-      const p = respondInviteSchema.parse(payload);
-      return `RSVP "${p.response}" to the invite`;
-    }
-    case "shared_reply": {
-      const p = sharedReplySchema.parse(payload);
-      const preview = p.subject || p.body.slice(0, 50);
-      return `Reply from shared inbox to ${p.to.join(", ")}: "${preview}"`;
-    }
-    case "slack_reply": {
-      const p = slackReplySchema.parse(payload);
-      return `Send Slack message: "${p.text.slice(0, 60)}"`;
-    }
-    default:
-      return `Unknown action: ${kind}`;
-  }
-}
-
-/** Confirmation copy shown after an action executes (web tray + channels). */
-export function confirmationCopy(kind: string): string {
-  switch (kind) {
-    case "send_email":
-      return "Sent ✅";
-    case "create_event":
-      return "Event created ✅";
-    case "delete_event":
-      return "Event deleted ✅";
-    case "respond_invite":
-      return "RSVP sent ✅";
-    case "shared_reply":
-      return "Reply sent ✅";
-    case "slack_reply":
-      return "Slack message sent ✅";
-    default:
-      return "Done ✅";
-  }
-}
 
 /** Executes an approved pending action against Corsair. */
 export async function executePendingAction(
@@ -267,6 +177,106 @@ export async function executePendingAction(
         ...(p.threadTs ? { thread_ts: p.threadTs } : {}),
       });
       return { summary: "Slack message sent" };
+    }
+    case "bulk_archive": {
+      const p = bulkArchiveSchema.parse(payload);
+      const ref = { kind: "user", userId } as const;
+      const provider = getMailProvider(await resolveMailPlugin(ref), ref);
+      const outcomes: BulkOutcome[] = [];
+      for (const id of p.threadIds) {
+        try {
+          await provider.archive(id);
+          outcomes.push({ id, ok: true });
+        } catch (err) {
+          outcomes.push({
+            id,
+            ok: false,
+            error: err instanceof Error ? err.message : String(err),
+          });
+        }
+      }
+      const result = aggregateBulkResults(outcomes);
+      return { summary: summarizeBulkResult("Archived", result) };
+    }
+    case "bulk_label": {
+      const p = bulkLabelSchema.parse(payload);
+      const ref = { kind: "user", userId } as const;
+      const provider = getMailProvider(await resolveMailPlugin(ref), ref);
+      const add = p.addLabels ?? [];
+      const remove = p.removeLabels ?? [];
+      const outcomes: BulkOutcome[] = [];
+      for (const id of p.threadIds) {
+        try {
+          await provider.modifyLabels(id, add, remove);
+          outcomes.push({ id, ok: true });
+        } catch (err) {
+          outcomes.push({
+            id,
+            ok: false,
+            error: err instanceof Error ? err.message : String(err),
+          });
+        }
+      }
+      const result = aggregateBulkResults(outcomes);
+      return { summary: summarizeBulkResult("Labeled", result) };
+    }
+    case "snooze_thread": {
+      const p = snoozeThreadSchema.parse(payload);
+      const wakeAt = new Date(p.snoozeUntil);
+      if (wakeAt.getTime() < Date.now() - 60_000) {
+        throw new Error("Snooze time must be in the future");
+      }
+      await db.user.upsert({
+        where: { id: userId },
+        create: { id: userId },
+        update: {},
+      });
+      const row = await db.snoozedThread.upsert({
+        where: { userId_threadId: { userId, threadId: p.threadId } },
+        create: {
+          userId,
+          threadId: p.threadId,
+          corsairEntityId: p.threadId,
+          snoozeUntil: wakeAt,
+          status: "snoozed",
+        },
+        update: { snoozeUntil: wakeAt, status: "snoozed", wokenAt: null },
+      });
+      const ref = { kind: "user", userId } as const;
+      const provider = getMailProvider(await resolveMailPlugin(ref), ref);
+      await provider.archive(p.threadId);
+      await inngest.send({
+        name: "thread/snooze.created",
+        data: { snoozeId: row.id, userId },
+      });
+      return { summary: `Snoozed until ${new Date(p.snoozeUntil).toISOString()}` };
+    }
+    case "schedule_send": {
+      const p = scheduleSendSchema.parse(payload);
+      const sendAt = new Date(p.sendAt);
+      if (sendAt.getTime() < Date.now() - 60_000) {
+        throw new Error("Scheduled time must be in the future");
+      }
+      await db.user.upsert({
+        where: { id: userId },
+        create: { id: userId },
+        update: {},
+      });
+      const { sendAt: _omit, ...draft } = p;
+      void _omit;
+      const row = await db.scheduledEmail.create({
+        data: {
+          userId,
+          draftPayload: draft,
+          sendAt,
+          status: "scheduled",
+        },
+      });
+      await inngest.send({
+        name: "email/scheduled.send",
+        data: { scheduledId: row.id, userId },
+      });
+      return { summary: `Scheduled email to ${p.to.join(", ")}` };
     }
     default:
       throw new Error(`Unknown pending action kind: ${kind}`);

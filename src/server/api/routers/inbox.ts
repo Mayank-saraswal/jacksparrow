@@ -23,17 +23,10 @@ import {
   type SyncItemPreview,
 } from "@/lib/inbox-list";
 import {
-  generateThreadSummary,
-  getThreadEntityVersion,
+  resolveThreadSummary,
   shouldAutoSummarize,
-  type ThreadSummaryResult,
 } from "@/server/summary";
-import { summaryCacheDecision } from "@/lib/summary-cache";
-import {
-  assertWithinLimit,
-  incrementUsage,
-  ownerForContext,
-} from "@/server/billing/entitlements";
+import { ownerForContext } from "@/server/billing/entitlements";
 
 /** Build the split-matchable view of a preview (priority + invite heuristic). */
 function toMatchable(p: SyncItemPreview): MatchableThread {
@@ -440,77 +433,31 @@ export const inboxRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       const provider = await userProvider(ctx.userId);
       const detail = await provider.getThreadDetail(input.threadId);
-      const currentVersion = await getThreadEntityVersion(
-        ctx.userId,
-        input.threadId,
-        detail,
-      );
 
       const wordCount = detail.messages.reduce(
         (n, m) => n + (m.bodyText ?? m.snippet ?? "").split(/\s+/).length,
         0,
       );
+      const autoRender = shouldAutoSummarize(detail.messages.length, wordCount);
 
-      const cached = await ctx.db.threadSummary.findFirst({
-        where: { userId: ctx.userId, threadId: input.threadId },
-        orderBy: { createdAt: "desc" },
-      });
-
-      const state = summaryCacheDecision(currentVersion, cached?.entityVersion);
-
-      const toResult = (
-        row: NonNullable<typeof cached>,
-        stale: boolean,
-      ) => ({
-        tldr: row.summary,
-        keyPoints: row.keyPoints as string[],
-        actionItems: row.actionItems as ThreadSummaryResult["actionItems"],
-        unansweredQuestions: row.unansweredQuestions as string[],
-        stale,
-        generatedAt: row.createdAt.toISOString(),
-        autoRender: shouldAutoSummarize(detail.messages.length, wordCount),
-      });
-
-      if (state === "fresh" && cached) return toResult(cached, false);
-      if (state === "stale" && cached && !input.refresh)
-        return toResult(cached, true);
-
-      // Generating a fresh summary is a paid AI action — enforce the budget.
       const owner = ownerForContext(ctx.userId, ctx.orgId);
-      await assertWithinLimit(owner, ctx.userId, "summary");
-
-      const generated = await generateThreadSummary(detail);
-      if (!generated) {
-        if (cached) return toResult(cached, state === "stale");
-        return null;
-      }
-      void incrementUsage(owner, ctx.userId, "summary");
-
-      const saved = await ctx.db.threadSummary.upsert({
-        where: {
-          userId_threadId_entityVersion: {
-            userId: ctx.userId,
-            threadId: input.threadId,
-            entityVersion: currentVersion,
-          },
-        },
-        create: {
-          userId: ctx.userId,
-          threadId: input.threadId,
-          entityVersion: currentVersion,
-          summary: generated.tldr,
-          keyPoints: generated.keyPoints,
-          actionItems: generated.actionItems,
-          unansweredQuestions: generated.unansweredQuestions,
-          model: "gpt-4o-mini",
-        },
-        update: {
-          summary: generated.tldr,
-          keyPoints: generated.keyPoints,
-          actionItems: generated.actionItems,
-          unansweredQuestions: generated.unansweredQuestions,
-        },
+      const resolved = await resolveThreadSummary({
+        userId: ctx.userId,
+        threadId: input.threadId,
+        detail,
+        owner,
+        refresh: input.refresh,
       });
-      return toResult(saved, false);
+      if (!resolved) return null;
+
+      return {
+        tldr: resolved.result.tldr,
+        keyPoints: resolved.result.keyPoints,
+        actionItems: resolved.result.actionItems,
+        unansweredQuestions: resolved.result.unansweredQuestions,
+        stale: resolved.stale,
+        generatedAt: resolved.generatedAt,
+        autoRender,
+      };
     }),
 });

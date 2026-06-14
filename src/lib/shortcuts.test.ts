@@ -1,14 +1,25 @@
 import { describe, it, expect } from "vitest";
 
 import {
+  advanceSequence,
   buildKeymap,
   detectConflicts,
   normaliseBinding,
   parseBinding,
   prettyBinding,
   resolveKey,
+  stepMatchesToken,
+  type KeyToken,
   type ResolvedShortcut,
 } from "./shortcuts";
+
+const tok = (key: string, mods: Partial<KeyToken> = {}): KeyToken => ({
+  mod: false,
+  shift: false,
+  alt: false,
+  key,
+  ...mods,
+});
 
 describe("parseBinding", () => {
   it("parses a single key", () => {
@@ -45,6 +56,53 @@ describe("resolveKey", () => {
   it("prefers an override over the default", () => {
     expect(resolveKey("archive", { archive: "y" })).toBe("y");
     expect(resolveKey("archive", {})).toBe("e");
+  });
+
+  it("resolves the new Phase 1 bindings", () => {
+    expect(resolveKey("select", {})).toBe("x");
+    expect(resolveKey("search", {})).toBe("/");
+  });
+});
+
+describe("stepMatchesToken", () => {
+  it("matches a single key", () => {
+    const { steps } = parseBinding("e");
+    expect(stepMatchesToken(steps[0]!, tok("e"))).toBe(true);
+    expect(stepMatchesToken(steps[0]!, tok("r"))).toBe(false);
+  });
+
+  it("requires the mod state to match", () => {
+    const { steps } = parseBinding("mod+k");
+    expect(stepMatchesToken(steps[0]!, tok("k", { mod: true }))).toBe(true);
+    expect(stepMatchesToken(steps[0]!, tok("k"))).toBe(false);
+  });
+});
+
+describe("advanceSequence (chords)", () => {
+  it("advances then completes a g i chord", () => {
+    const b = parseBinding("g i");
+    const first = advanceSequence(b, 0, tok("g"));
+    expect(first).toEqual({ status: "partial", nextIndex: 1 });
+    const second = advanceSequence(b, 1, tok("i"));
+    expect(second).toEqual({ status: "complete" });
+  });
+
+  it("falls through on a non-matching key", () => {
+    const b = parseBinding("g i");
+    expect(advanceSequence(b, 1, tok("z"))).toEqual({ status: "none" });
+  });
+
+  it("re-arms when the lead key is pressed again mid-sequence", () => {
+    const b = parseBinding("g i");
+    expect(advanceSequence(b, 1, tok("g"))).toEqual({
+      status: "partial",
+      nextIndex: 1,
+    });
+  });
+
+  it("completes a single-step binding immediately", () => {
+    const b = parseBinding("e");
+    expect(advanceSequence(b, 0, tok("e"))).toEqual({ status: "complete" });
   });
 });
 

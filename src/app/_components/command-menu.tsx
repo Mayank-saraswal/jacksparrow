@@ -21,6 +21,7 @@ import {
   type ShortcutOverrides,
 } from "@/lib/shortcuts";
 import { useShortcutContext } from "@/app/_components/shortcut-provider";
+import { useCommandContext } from "@/app/_components/command-context";
 import {
   Dialog,
   DialogContent,
@@ -38,6 +39,7 @@ interface Item {
 export function CommandMenu() {
   const router = useRouter();
   const { openHelp } = useShortcutContext();
+  const { selection } = useCommandContext();
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const [debounced, setDebounced] = React.useState("");
@@ -60,10 +62,31 @@ export function CommandMenu() {
     { enabled: open && debounced.trim().length >= 2 },
   );
 
-  const askAi = (prompt: string) =>
-    window.dispatchEvent(
-      new CustomEvent("jacksparrow:ask-ai", { detail: { prompt } }),
-    );
+  // The threads an action should target: the multi-selection if any, else the
+  // focused thread.
+  const targetThreadIds = React.useMemo(() => {
+    if (selection.selectedThreadIds.length > 0)
+      return selection.selectedThreadIds;
+    return selection.focusedThreadId ? [selection.focusedThreadId] : [];
+  }, [selection.selectedThreadIds, selection.focusedThreadId]);
+
+  /**
+   * Route AI requests through the existing agent (Ask AI → /api/chat →
+   * buildAgentTools). When threads are selected we name them so the agent uses
+   * its bulk tools and the result lands in the approval tray.
+   */
+  const askAi = React.useCallback(
+    (prompt: string, withTargets = false) => {
+      const full =
+        withTargets && targetThreadIds.length > 0
+          ? `${prompt} (thread ids: ${targetThreadIds.join(", ")})`
+          : prompt;
+      window.dispatchEvent(
+        new CustomEvent("jacksparrow:ask-ai", { detail: { prompt: full } }),
+      );
+    },
+    [targetThreadIds],
+  );
 
   const close = () => {
     setOpen(false);
@@ -72,7 +95,49 @@ export function CommandMenu() {
   };
 
   // Static commands always available in the palette.
+  const hasTargets = targetThreadIds.length > 0;
+  const targetLabel =
+    targetThreadIds.length > 1
+      ? `${targetThreadIds.length} selected threads`
+      : "thread";
+
+  const threadActions: Item[] = hasTargets
+    ? [
+        {
+          id: "act_summarize",
+          label: `Summarize ${targetLabel}`,
+          icon: <Sparkle />,
+          run: () => askAi("Summarize", true),
+        },
+        {
+          id: "act_archive",
+          label: `Archive ${targetLabel}`,
+          icon: <ArrowsClockwise />,
+          run: () => askAi("Archive these threads", true),
+        },
+        {
+          id: "act_snooze",
+          label: `Snooze ${targetLabel} until tomorrow`,
+          icon: <CalendarBlank />,
+          run: () => askAi("Snooze these threads until tomorrow morning", true),
+        },
+        {
+          id: "act_label",
+          label: `Label ${targetLabel}…`,
+          icon: <Gear />,
+          run: () =>
+            askAi(
+              query.trim()
+                ? `Add the label "${query.trim()}" to these threads`
+                : "Add a label to these threads",
+              true,
+            ),
+        },
+      ]
+    : [];
+
   const commands: Item[] = [
+    ...threadActions,
     {
       id: "go_inbox",
       label: "Go to inbox",
@@ -86,10 +151,20 @@ export function CommandMenu() {
       run: () => router.push("/calendar"),
     },
     {
+      id: "go_scheduled",
+      label: "Go to scheduled",
+      icon: <CalendarBlank />,
+      run: () => router.push("/scheduled"),
+    },
+    {
       id: "ask_ai",
-      label: query ? `Ask AI: ${query}` : "Ask AI",
+      label: query
+        ? `Ask AI: ${query}`
+        : hasTargets
+          ? `Ask AI about ${targetLabel}`
+          : "Ask AI",
       icon: <Sparkle weight="fill" />,
-      run: () => askAi(query),
+      run: () => askAi(query, hasTargets),
     },
     {
       id: "reindex",
@@ -102,6 +177,12 @@ export function CommandMenu() {
       label: "Settings",
       icon: <Gear />,
       run: () => router.push("/settings"),
+    },
+    {
+      id: "go_integrations",
+      label: "Integrations",
+      icon: <Gear />,
+      run: () => router.push("/integrations"),
     },
     {
       id: "help",
@@ -158,7 +239,7 @@ export function CommandMenu() {
 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [overrides, router]);
+  }, [overrides, router, askAi]);
 
   return (
     <>

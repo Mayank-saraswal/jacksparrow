@@ -3,6 +3,12 @@ import { db } from "@/server/db";
 import { embedText, toVectorLiteral } from "@/server/embeddings";
 import { parseTenantId } from "@/server/corsair";
 import { parseAddress } from "@/lib/email";
+import { embeddingContentHash } from "@/lib/content-hash";
+import {
+  ownerForContext,
+  assertWithinLimit,
+  incrementUsage,
+} from "@/server/billing/entitlements";
 import { captureException } from "@/server/observability/sentry";
 import { pageOnCall } from "@/server/observability/pagerduty";
 import { scoreThread } from "./shared";
@@ -236,18 +242,39 @@ export const corsairWebhookReceived = inngest.createFunction(
 
     if (meta.type === "email") {
       await step.run("embed-email", async () => {
+        const contentHash = embeddingContentHash(meta.title, meta.snippet);
+
+        // Skip the OpenAI call entirely when content is unchanged.
+        const existing = await db.emailEmbedding.findUnique({
+          where: { userId_corsairEntityId: { userId, corsairEntityId } },
+          select: { contentHash: true },
+        });
+        if (existing?.contentHash === contentHash) {
+          return { skipped: "unchanged" };
+        }
+
+        // Embedding is a paid AI action — enforce the budget, skip if over.
+        const owner = ownerForContext(userId, orgId);
+        try {
+          await assertWithinLimit(owner, userId, "embedding");
+        } catch {
+          return { skipped: "limit" };
+        }
+
         const vector = await embedText(`${meta.title}\n${meta.snippet}`);
         if (!vector) return { embedded: false };
         const literal = toVectorLiteral(vector);
         await db.$executeRaw`
-          INSERT INTO email_embeddings (id, user_id, corsair_entity_id, thread_id, subject_snippet, embedding, indexed_at)
-          VALUES (gen_random_uuid()::text, ${userId}, ${corsairEntityId}, ${meta.threadId}, ${meta.title}, ${literal}::vector, now())
+          INSERT INTO email_embeddings (id, user_id, corsair_entity_id, thread_id, subject_snippet, embedding, content_hash, indexed_at)
+          VALUES (gen_random_uuid()::text, ${userId}, ${corsairEntityId}, ${meta.threadId}, ${meta.title}, ${literal}::vector, ${contentHash}, now())
           ON CONFLICT (user_id, corsair_entity_id)
           DO UPDATE SET embedding = EXCLUDED.embedding,
                         subject_snippet = EXCLUDED.subject_snippet,
                         thread_id = EXCLUDED.thread_id,
+                        content_hash = EXCLUDED.content_hash,
                         indexed_at = now()
         `;
+        void incrementUsage(owner, userId, "embedding");
         return { embedded: true };
       });
 

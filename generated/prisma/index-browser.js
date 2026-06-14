@@ -185,6 +185,7 @@ exports.Prisma.EmailEmbeddingScalarFieldEnum = {
   corsairEntityId: 'corsairEntityId',
   threadId: 'threadId',
   subjectSnippet: 'subjectSnippet',
+  contentHash: 'contentHash',
   indexedAt: 'indexedAt'
 };
 

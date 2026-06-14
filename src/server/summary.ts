@@ -7,6 +7,12 @@ import { z } from "zod";
 import { env } from "@/env";
 import { db } from "@/server/db";
 import { SUMMARY_MODEL } from "@/server/models";
+import { summaryCacheDecision } from "@/lib/summary-cache";
+import {
+  assertWithinLimit,
+  incrementUsage,
+  type OwnerRef,
+} from "@/server/billing/entitlements";
 import type { ThreadDetail } from "@/server/gmail";
 
 /**
@@ -111,4 +117,89 @@ export async function generateThreadSummary(
     }
   }
   return null;
+}
+
+export interface ResolvedThreadSummary {
+  result: ThreadSummaryResult;
+  stale: boolean;
+  generatedAt: string;
+}
+
+/**
+ * Single source of truth for the lazy/cached summary flow, shared by the inbox
+ * `summary` procedure and the agent `summarizeThread` tool. Returns the cached
+ * summary when fresh (or stale without `refresh`), otherwise enforces the AI
+ * budget, generates, increments usage, and persists. Returns null when no
+ * summary is available (no OpenAI key and no cache).
+ */
+export async function resolveThreadSummary(args: {
+  userId: string;
+  threadId: string;
+  detail: ThreadDetail;
+  owner: OwnerRef;
+  refresh?: boolean;
+}): Promise<ResolvedThreadSummary | null> {
+  const { userId, threadId, detail, owner } = args;
+  const refresh = args.refresh ?? false;
+
+  const currentVersion = await getThreadEntityVersion(userId, threadId, detail);
+  const cached = await db.threadSummary.findFirst({
+    where: { userId, threadId },
+    orderBy: { createdAt: "desc" },
+  });
+  const state = summaryCacheDecision(currentVersion, cached?.entityVersion);
+
+  const toResolved = (
+    row: NonNullable<typeof cached>,
+    stale: boolean,
+  ): ResolvedThreadSummary => ({
+    result: {
+      tldr: row.summary,
+      keyPoints: row.keyPoints as string[],
+      actionItems: row.actionItems as ThreadSummaryResult["actionItems"],
+      unansweredQuestions: row.unansweredQuestions as string[],
+    },
+    stale,
+    generatedAt: row.createdAt.toISOString(),
+  });
+
+  if (state === "fresh" && cached) return toResolved(cached, false);
+  if (state === "stale" && cached && !refresh) return toResolved(cached, true);
+
+  // Generating a fresh summary is a paid AI action — enforce the budget.
+  await assertWithinLimit(owner, userId, "summary");
+
+  const generated = await generateThreadSummary(detail);
+  if (!generated) {
+    if (cached) return toResolved(cached, state === "stale");
+    return null;
+  }
+  void incrementUsage(owner, userId, "summary");
+
+  const saved = await db.threadSummary.upsert({
+    where: {
+      userId_threadId_entityVersion: {
+        userId,
+        threadId,
+        entityVersion: currentVersion,
+      },
+    },
+    create: {
+      userId,
+      threadId,
+      entityVersion: currentVersion,
+      summary: generated.tldr,
+      keyPoints: generated.keyPoints,
+      actionItems: generated.actionItems,
+      unansweredQuestions: generated.unansweredQuestions,
+      model: SUMMARY_MODEL,
+    },
+    update: {
+      summary: generated.tldr,
+      keyPoints: generated.keyPoints,
+      actionItems: generated.actionItems,
+      unansweredQuestions: generated.unansweredQuestions,
+    },
+  });
+  return toResolved(saved, false);
 }
