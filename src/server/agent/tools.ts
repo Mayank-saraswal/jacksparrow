@@ -5,8 +5,8 @@ import { z } from "zod";
 
 import type { Prisma } from "../../../generated/prisma";
 import { db } from "@/server/db";
-import { getTenant } from "@/server/corsair";
-import { threadPreview, threadDetail } from "@/server/gmail";
+import { getTenant, type TenantRef } from "@/server/corsair";
+import { getMailProvider, resolveMailPlugin } from "@/server/mail/provider";
 import { normalizeEvent, type RawCalEvent } from "@/server/calendar";
 import {
   OPERATION_PATH,
@@ -17,8 +17,6 @@ import {
   respondInviteSchema,
   type PendingKind,
 } from "./pending";
-
-const METADATA_HEADERS = ["Subject", "From", "To", "Date"];
 
 /** Inserts a pending action and returns the message the model should relay. */
 async function createPending(
@@ -48,6 +46,7 @@ async function createPending(
 
 export function buildAgentTools(userId: string, channel = "web") {
   const tenant = getTenant(userId);
+  const ref: TenantRef = { kind: "user", userId };
 
   return {
     // ── Read-only (pass through) ──────────────────────────────────────────
@@ -58,32 +57,15 @@ export function buildAgentTools(userId: string, channel = "web") {
       }),
       execute: async ({ query }) => {
         try {
-          const list = await tenant.gmail.api.threads.list({
-            q: query ?? "in:inbox",
-            maxResults: 10,
-          });
-          const ids = (list.threads ?? [])
-            .map((t) => t.id)
-            .filter((id): id is string => typeof id === "string");
-          const threads = await Promise.all(
-            ids.map((id) =>
-              tenant.gmail.api.threads.get({
-                id,
-                format: "metadata",
-                metadataHeaders: METADATA_HEADERS,
-              }),
-            ),
-          );
-          return threads.map((t) => {
-            const p = threadPreview(t);
-            return {
-              threadId: p.threadId,
-              subject: p.subject,
-              from: p.fromEmail,
-              date: p.date,
-              snippet: p.snippet,
-            };
-          });
+          const provider = getMailProvider(await resolveMailPlugin(ref), ref);
+          const items = await provider.listThreads(query ?? "in:inbox", 10);
+          return items.map((i) => ({
+            threadId: i.threadId,
+            subject: i.subject,
+            from: i.from,
+            date: i.date,
+            snippet: i.snippet,
+          }));
         } catch (err) {
           return { error: err instanceof Error ? err.message : String(err) };
         }
@@ -95,11 +77,8 @@ export function buildAgentTools(userId: string, channel = "web") {
       inputSchema: z.object({ threadId: z.string() }),
       execute: async ({ threadId }) => {
         try {
-          const thread = await tenant.gmail.api.threads.get({
-            id: threadId,
-            format: "full",
-          });
-          const detail = threadDetail(thread);
+          const provider = getMailProvider(await resolveMailPlugin(ref), ref);
+          const detail = await provider.getThreadDetail(threadId);
           return {
             subject: detail.subject,
             messages: detail.messages.map((m) => ({

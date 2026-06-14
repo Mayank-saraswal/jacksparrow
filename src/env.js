@@ -47,6 +47,12 @@ export const env = createEnv({
     // OpenAI (Vercel AI SDK provider) — embeddings/LLM. Optional: features that
     // need it are skipped when absent.
     OPENAI_API_KEY: z.string().optional(),
+    // Observability (Phase 0, Fix 4). All optional — features no-op when absent.
+    SENTRY_DSN: z.string().optional(),
+    PAGERDUTY_ROUTING_KEY: z.string().optional(),
+    // Backfill rate limiting (Phase 0, Fix 3). Override the defaults (2 / 60).
+    BACKFILL_CONCURRENCY: z.coerce.number().optional(),
+    BACKFILL_THROTTLE_PER_MIN: z.coerce.number().optional(),
     // Telegram + WhatsApp command channels (Phase 10). All optional.
     TELEGRAM_BOT_TOKEN: z.string().optional(),
     TELEGRAM_WEBHOOK_SECRET: z.string().optional(),
@@ -96,6 +102,10 @@ export const env = createEnv({
     STRIPE_PRICE_ENTERPRISE_MONTHLY: process.env.STRIPE_PRICE_ENTERPRISE_MONTHLY,
     STRIPE_PRICE_ENTERPRISE_YEARLY: process.env.STRIPE_PRICE_ENTERPRISE_YEARLY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    SENTRY_DSN: process.env.SENTRY_DSN,
+    PAGERDUTY_ROUTING_KEY: process.env.PAGERDUTY_ROUTING_KEY,
+    BACKFILL_CONCURRENCY: process.env.BACKFILL_CONCURRENCY,
+    BACKFILL_THROTTLE_PER_MIN: process.env.BACKFILL_THROTTLE_PER_MIN,
     TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
     TELEGRAM_WEBHOOK_SECRET: process.env.TELEGRAM_WEBHOOK_SECRET,
     WHATSAPP_TOKEN: process.env.WHATSAPP_TOKEN,

@@ -14605,6 +14605,7 @@ export namespace Prisma {
     userId: string | null
     undoSendSeconds: number | null
     followUpDays: number | null
+    primaryMailPlugin: string | null
   }
 
   export type UserPreferenceMaxAggregateOutputType = {
@@ -14612,6 +14613,7 @@ export namespace Prisma {
     userId: string | null
     undoSendSeconds: number | null
     followUpDays: number | null
+    primaryMailPlugin: string | null
   }
 
   export type UserPreferenceCountAggregateOutputType = {
@@ -14621,6 +14623,7 @@ export namespace Prisma {
     shortcutOverrides: number
     undoSendSeconds: number
     followUpDays: number
+    primaryMailPlugin: number
     _all: number
   }
 
@@ -14640,6 +14643,7 @@ export namespace Prisma {
     userId?: true
     undoSendSeconds?: true
     followUpDays?: true
+    primaryMailPlugin?: true
   }
 
   export type UserPreferenceMaxAggregateInputType = {
@@ -14647,6 +14651,7 @@ export namespace Prisma {
     userId?: true
     undoSendSeconds?: true
     followUpDays?: true
+    primaryMailPlugin?: true
   }
 
   export type UserPreferenceCountAggregateInputType = {
@@ -14656,6 +14661,7 @@ export namespace Prisma {
     shortcutOverrides?: true
     undoSendSeconds?: true
     followUpDays?: true
+    primaryMailPlugin?: true
     _all?: true
   }
 
@@ -14752,6 +14758,7 @@ export namespace Prisma {
     shortcutOverrides: JsonValue
     undoSendSeconds: number
     followUpDays: number
+    primaryMailPlugin: string
     _count: UserPreferenceCountAggregateOutputType | null
     _avg: UserPreferenceAvgAggregateOutputType | null
     _sum: UserPreferenceSumAggregateOutputType | null
@@ -14780,6 +14787,7 @@ export namespace Prisma {
     shortcutOverrides?: boolean
     undoSendSeconds?: boolean
     followUpDays?: boolean
+    primaryMailPlugin?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userPreference"]>
 
@@ -14790,6 +14798,7 @@ export namespace Prisma {
     shortcutOverrides?: boolean
     undoSendSeconds?: boolean
     followUpDays?: boolean
+    primaryMailPlugin?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userPreference"]>
 
@@ -14800,6 +14809,7 @@ export namespace Prisma {
     shortcutOverrides?: boolean
     undoSendSeconds?: boolean
     followUpDays?: boolean
+    primaryMailPlugin?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userPreference"]>
 
@@ -14810,9 +14820,10 @@ export namespace Prisma {
     shortcutOverrides?: boolean
     undoSendSeconds?: boolean
     followUpDays?: boolean
+    primaryMailPlugin?: boolean
   }
 
-  export type UserPreferenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "splitInboxRules" | "shortcutOverrides" | "undoSendSeconds" | "followUpDays", ExtArgs["result"]["userPreference"]>
+  export type UserPreferenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "splitInboxRules" | "shortcutOverrides" | "undoSendSeconds" | "followUpDays" | "primaryMailPlugin", ExtArgs["result"]["userPreference"]>
   export type UserPreferenceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -14835,6 +14846,7 @@ export namespace Prisma {
       shortcutOverrides: Prisma.JsonValue
       undoSendSeconds: number
       followUpDays: number
+      primaryMailPlugin: string
     }, ExtArgs["result"]["userPreference"]>
     composites: {}
   }
@@ -15265,6 +15277,7 @@ export namespace Prisma {
     readonly shortcutOverrides: FieldRef<"UserPreference", 'Json'>
     readonly undoSendSeconds: FieldRef<"UserPreference", 'Int'>
     readonly followUpDays: FieldRef<"UserPreference", 'Int'>
+    readonly primaryMailPlugin: FieldRef<"UserPreference", 'String'>
   }
     
 
@@ -18998,6 +19011,11 @@ export namespace Prisma {
     type: string | null
     title: string | null
     snippet: string | null
+    threadId: string | null
+    fromName: string | null
+    fromEmail: string | null
+    unread: boolean | null
+    starred: boolean | null
     timestamp: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -19012,6 +19030,11 @@ export namespace Prisma {
     type: string | null
     title: string | null
     snippet: string | null
+    threadId: string | null
+    fromName: string | null
+    fromEmail: string | null
+    unread: boolean | null
+    starred: boolean | null
     timestamp: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -19026,6 +19049,11 @@ export namespace Prisma {
     type: number
     title: number
     snippet: number
+    threadId: number
+    fromName: number
+    fromEmail: number
+    unread: number
+    starred: number
     timestamp: number
     createdAt: number
     updatedAt: number
@@ -19042,6 +19070,11 @@ export namespace Prisma {
     type?: true
     title?: true
     snippet?: true
+    threadId?: true
+    fromName?: true
+    fromEmail?: true
+    unread?: true
+    starred?: true
     timestamp?: true
     createdAt?: true
     updatedAt?: true
@@ -19056,6 +19089,11 @@ export namespace Prisma {
     type?: true
     title?: true
     snippet?: true
+    threadId?: true
+    fromName?: true
+    fromEmail?: true
+    unread?: true
+    starred?: true
     timestamp?: true
     createdAt?: true
     updatedAt?: true
@@ -19070,6 +19108,11 @@ export namespace Prisma {
     type?: true
     title?: true
     snippet?: true
+    threadId?: true
+    fromName?: true
+    fromEmail?: true
+    unread?: true
+    starred?: true
     timestamp?: true
     createdAt?: true
     updatedAt?: true
@@ -19157,6 +19200,11 @@ export namespace Prisma {
     type: string
     title: string
     snippet: string
+    threadId: string | null
+    fromName: string | null
+    fromEmail: string | null
+    unread: boolean
+    starred: boolean
     timestamp: Date
     createdAt: Date
     updatedAt: Date
@@ -19188,6 +19236,11 @@ export namespace Prisma {
     type?: boolean
     title?: boolean
     snippet?: boolean
+    threadId?: boolean
+    fromName?: boolean
+    fromEmail?: boolean
+    unread?: boolean
+    starred?: boolean
     timestamp?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -19202,6 +19255,11 @@ export namespace Prisma {
     type?: boolean
     title?: boolean
     snippet?: boolean
+    threadId?: boolean
+    fromName?: boolean
+    fromEmail?: boolean
+    unread?: boolean
+    starred?: boolean
     timestamp?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -19216,6 +19274,11 @@ export namespace Prisma {
     type?: boolean
     title?: boolean
     snippet?: boolean
+    threadId?: boolean
+    fromName?: boolean
+    fromEmail?: boolean
+    unread?: boolean
+    starred?: boolean
     timestamp?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -19230,12 +19293,17 @@ export namespace Prisma {
     type?: boolean
     title?: boolean
     snippet?: boolean
+    threadId?: boolean
+    fromName?: boolean
+    fromEmail?: boolean
+    unread?: boolean
+    starred?: boolean
     timestamp?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SyncItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "orgId" | "sharedInboxId" | "corsairEntityId" | "type" | "title" | "snippet" | "timestamp" | "createdAt" | "updatedAt", ExtArgs["result"]["syncItem"]>
+  export type SyncItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "orgId" | "sharedInboxId" | "corsairEntityId" | "type" | "title" | "snippet" | "threadId" | "fromName" | "fromEmail" | "unread" | "starred" | "timestamp" | "createdAt" | "updatedAt", ExtArgs["result"]["syncItem"]>
 
   export type $SyncItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "SyncItem"
@@ -19249,6 +19317,11 @@ export namespace Prisma {
       type: string
       title: string
       snippet: string
+      threadId: string | null
+      fromName: string | null
+      fromEmail: string | null
+      unread: boolean
+      starred: boolean
       timestamp: Date
       createdAt: Date
       updatedAt: Date
@@ -19683,6 +19756,11 @@ export namespace Prisma {
     readonly type: FieldRef<"SyncItem", 'String'>
     readonly title: FieldRef<"SyncItem", 'String'>
     readonly snippet: FieldRef<"SyncItem", 'String'>
+    readonly threadId: FieldRef<"SyncItem", 'String'>
+    readonly fromName: FieldRef<"SyncItem", 'String'>
+    readonly fromEmail: FieldRef<"SyncItem", 'String'>
+    readonly unread: FieldRef<"SyncItem", 'Boolean'>
+    readonly starred: FieldRef<"SyncItem", 'Boolean'>
     readonly timestamp: FieldRef<"SyncItem", 'DateTime'>
     readonly createdAt: FieldRef<"SyncItem", 'DateTime'>
     readonly updatedAt: FieldRef<"SyncItem", 'DateTime'>
@@ -44288,7 +44366,8 @@ export namespace Prisma {
     splitInboxRules: 'splitInboxRules',
     shortcutOverrides: 'shortcutOverrides',
     undoSendSeconds: 'undoSendSeconds',
-    followUpDays: 'followUpDays'
+    followUpDays: 'followUpDays',
+    primaryMailPlugin: 'primaryMailPlugin'
   };
 
   export type UserPreferenceScalarFieldEnum = (typeof UserPreferenceScalarFieldEnum)[keyof typeof UserPreferenceScalarFieldEnum]
@@ -44346,6 +44425,11 @@ export namespace Prisma {
     type: 'type',
     title: 'title',
     snippet: 'snippet',
+    threadId: 'threadId',
+    fromName: 'fromName',
+    fromEmail: 'fromEmail',
+    unread: 'unread',
+    starred: 'starred',
     timestamp: 'timestamp',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -44743,6 +44827,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -44753,13 +44844,6 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -45414,6 +45498,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonFilter<"UserPreference">
     undoSendSeconds?: IntFilter<"UserPreference"> | number
     followUpDays?: IntFilter<"UserPreference"> | number
+    primaryMailPlugin?: StringFilter<"UserPreference"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -45424,6 +45509,7 @@ export namespace Prisma {
     shortcutOverrides?: SortOrder
     undoSendSeconds?: SortOrder
     followUpDays?: SortOrder
+    primaryMailPlugin?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -45437,6 +45523,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonFilter<"UserPreference">
     undoSendSeconds?: IntFilter<"UserPreference"> | number
     followUpDays?: IntFilter<"UserPreference"> | number
+    primaryMailPlugin?: StringFilter<"UserPreference"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
 
@@ -45447,6 +45534,7 @@ export namespace Prisma {
     shortcutOverrides?: SortOrder
     undoSendSeconds?: SortOrder
     followUpDays?: SortOrder
+    primaryMailPlugin?: SortOrder
     _count?: UserPreferenceCountOrderByAggregateInput
     _avg?: UserPreferenceAvgOrderByAggregateInput
     _max?: UserPreferenceMaxOrderByAggregateInput
@@ -45464,6 +45552,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonWithAggregatesFilter<"UserPreference">
     undoSendSeconds?: IntWithAggregatesFilter<"UserPreference"> | number
     followUpDays?: IntWithAggregatesFilter<"UserPreference"> | number
+    primaryMailPlugin?: StringWithAggregatesFilter<"UserPreference"> | string
   }
 
   export type SnoozedThreadWhereInput = {
@@ -45695,6 +45784,11 @@ export namespace Prisma {
     type?: StringFilter<"SyncItem"> | string
     title?: StringFilter<"SyncItem"> | string
     snippet?: StringFilter<"SyncItem"> | string
+    threadId?: StringNullableFilter<"SyncItem"> | string | null
+    fromName?: StringNullableFilter<"SyncItem"> | string | null
+    fromEmail?: StringNullableFilter<"SyncItem"> | string | null
+    unread?: BoolFilter<"SyncItem"> | boolean
+    starred?: BoolFilter<"SyncItem"> | boolean
     timestamp?: DateTimeFilter<"SyncItem"> | Date | string
     createdAt?: DateTimeFilter<"SyncItem"> | Date | string
     updatedAt?: DateTimeFilter<"SyncItem"> | Date | string
@@ -45709,6 +45803,11 @@ export namespace Prisma {
     type?: SortOrder
     title?: SortOrder
     snippet?: SortOrder
+    threadId?: SortOrderInput | SortOrder
+    fromName?: SortOrderInput | SortOrder
+    fromEmail?: SortOrderInput | SortOrder
+    unread?: SortOrder
+    starred?: SortOrder
     timestamp?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -45727,6 +45826,11 @@ export namespace Prisma {
     type?: StringFilter<"SyncItem"> | string
     title?: StringFilter<"SyncItem"> | string
     snippet?: StringFilter<"SyncItem"> | string
+    threadId?: StringNullableFilter<"SyncItem"> | string | null
+    fromName?: StringNullableFilter<"SyncItem"> | string | null
+    fromEmail?: StringNullableFilter<"SyncItem"> | string | null
+    unread?: BoolFilter<"SyncItem"> | boolean
+    starred?: BoolFilter<"SyncItem"> | boolean
     timestamp?: DateTimeFilter<"SyncItem"> | Date | string
     createdAt?: DateTimeFilter<"SyncItem"> | Date | string
     updatedAt?: DateTimeFilter<"SyncItem"> | Date | string
@@ -45741,6 +45845,11 @@ export namespace Prisma {
     type?: SortOrder
     title?: SortOrder
     snippet?: SortOrder
+    threadId?: SortOrderInput | SortOrder
+    fromName?: SortOrderInput | SortOrder
+    fromEmail?: SortOrderInput | SortOrder
+    unread?: SortOrder
+    starred?: SortOrder
     timestamp?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -45761,6 +45870,11 @@ export namespace Prisma {
     type?: StringWithAggregatesFilter<"SyncItem"> | string
     title?: StringWithAggregatesFilter<"SyncItem"> | string
     snippet?: StringWithAggregatesFilter<"SyncItem"> | string
+    threadId?: StringNullableWithAggregatesFilter<"SyncItem"> | string | null
+    fromName?: StringNullableWithAggregatesFilter<"SyncItem"> | string | null
+    fromEmail?: StringNullableWithAggregatesFilter<"SyncItem"> | string | null
+    unread?: BoolWithAggregatesFilter<"SyncItem"> | boolean
+    starred?: BoolWithAggregatesFilter<"SyncItem"> | boolean
     timestamp?: DateTimeWithAggregatesFilter<"SyncItem"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"SyncItem"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"SyncItem"> | Date | string
@@ -47941,6 +48055,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
     undoSendSeconds?: number
     followUpDays?: number
+    primaryMailPlugin?: string
     user: UserCreateNestedOneWithoutPreferenceInput
   }
 
@@ -47951,6 +48066,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
     undoSendSeconds?: number
     followUpDays?: number
+    primaryMailPlugin?: string
   }
 
   export type UserPreferenceUpdateInput = {
@@ -47959,6 +48075,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
+    primaryMailPlugin?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutPreferenceNestedInput
   }
 
@@ -47969,6 +48086,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
+    primaryMailPlugin?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserPreferenceCreateManyInput = {
@@ -47978,6 +48096,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
     undoSendSeconds?: number
     followUpDays?: number
+    primaryMailPlugin?: string
   }
 
   export type UserPreferenceUpdateManyMutationInput = {
@@ -47986,6 +48105,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
+    primaryMailPlugin?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserPreferenceUncheckedUpdateManyInput = {
@@ -47995,6 +48115,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
+    primaryMailPlugin?: StringFieldUpdateOperationsInput | string
   }
 
   export type SnoozedThreadCreateInput = {
@@ -48241,6 +48362,11 @@ export namespace Prisma {
     type: string
     title: string
     snippet: string
+    threadId?: string | null
+    fromName?: string | null
+    fromEmail?: string | null
+    unread?: boolean
+    starred?: boolean
     timestamp: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -48255,6 +48381,11 @@ export namespace Prisma {
     type: string
     title: string
     snippet: string
+    threadId?: string | null
+    fromName?: string | null
+    fromEmail?: string | null
+    unread?: boolean
+    starred?: boolean
     timestamp: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -48269,6 +48400,11 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     snippet?: StringFieldUpdateOperationsInput | string
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    fromEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    unread?: BoolFieldUpdateOperationsInput | boolean
+    starred?: BoolFieldUpdateOperationsInput | boolean
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -48283,6 +48419,11 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     snippet?: StringFieldUpdateOperationsInput | string
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    fromEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    unread?: BoolFieldUpdateOperationsInput | boolean
+    starred?: BoolFieldUpdateOperationsInput | boolean
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -48297,6 +48438,11 @@ export namespace Prisma {
     type: string
     title: string
     snippet: string
+    threadId?: string | null
+    fromName?: string | null
+    fromEmail?: string | null
+    unread?: boolean
+    starred?: boolean
     timestamp: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -48311,6 +48457,11 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     snippet?: StringFieldUpdateOperationsInput | string
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    fromEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    unread?: BoolFieldUpdateOperationsInput | boolean
+    starred?: BoolFieldUpdateOperationsInput | boolean
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -48325,6 +48476,11 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     snippet?: StringFieldUpdateOperationsInput | string
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    fromEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    unread?: BoolFieldUpdateOperationsInput | boolean
+    starred?: BoolFieldUpdateOperationsInput | boolean
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50542,6 +50698,7 @@ export namespace Prisma {
     shortcutOverrides?: SortOrder
     undoSendSeconds?: SortOrder
     followUpDays?: SortOrder
+    primaryMailPlugin?: SortOrder
   }
 
   export type UserPreferenceAvgOrderByAggregateInput = {
@@ -50554,6 +50711,7 @@ export namespace Prisma {
     userId?: SortOrder
     undoSendSeconds?: SortOrder
     followUpDays?: SortOrder
+    primaryMailPlugin?: SortOrder
   }
 
   export type UserPreferenceMinOrderByAggregateInput = {
@@ -50561,6 +50719,7 @@ export namespace Prisma {
     userId?: SortOrder
     undoSendSeconds?: SortOrder
     followUpDays?: SortOrder
+    primaryMailPlugin?: SortOrder
   }
 
   export type UserPreferenceSumOrderByAggregateInput = {
@@ -50694,6 +50853,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type SyncItemUserIdCorsairEntityIdCompoundUniqueInput = {
     userId: string
     corsairEntityId: string
@@ -50708,6 +50872,11 @@ export namespace Prisma {
     type?: SortOrder
     title?: SortOrder
     snippet?: SortOrder
+    threadId?: SortOrder
+    fromName?: SortOrder
+    fromEmail?: SortOrder
+    unread?: SortOrder
+    starred?: SortOrder
     timestamp?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -50722,6 +50891,11 @@ export namespace Prisma {
     type?: SortOrder
     title?: SortOrder
     snippet?: SortOrder
+    threadId?: SortOrder
+    fromName?: SortOrder
+    fromEmail?: SortOrder
+    unread?: SortOrder
+    starred?: SortOrder
     timestamp?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -50736,9 +50910,22 @@ export namespace Prisma {
     type?: SortOrder
     title?: SortOrder
     snippet?: SortOrder
+    threadId?: SortOrder
+    fromName?: SortOrder
+    fromEmail?: SortOrder
+    unread?: SortOrder
+    starred?: SortOrder
     timestamp?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type LinkCodeCountOrderByAggregateInput = {
@@ -51018,11 +51205,6 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type MembershipListRelationFilter = {
     every?: MembershipWhereInput
     some?: MembershipWhereInput
@@ -51100,14 +51282,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     memberLevelAnalytics?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type OrganizationScalarRelationFilter = {
@@ -52557,6 +52731,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFollowUpsInput, UserUpdateWithoutFollowUpsInput>, UserUncheckedUpdateWithoutFollowUpsInput>
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type UserCreateNestedOneWithoutSentSamplesInput = {
     create?: XOR<UserCreateWithoutSentSamplesInput, UserUncheckedCreateWithoutSentSamplesInput>
     connectOrCreate?: UserCreateOrConnectWithoutSentSamplesInput
@@ -52729,10 +52907,6 @@ export namespace Prisma {
     connectOrCreate?: DailyOrgStatCreateOrConnectWithoutOrganizationInput | DailyOrgStatCreateOrConnectWithoutOrganizationInput[]
     createMany?: DailyOrgStatCreateManyOrganizationInputEnvelope
     connect?: DailyOrgStatWhereUniqueInput | DailyOrgStatWhereUniqueInput[]
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type MembershipUpdateManyWithoutOrganizationNestedInput = {
@@ -53404,6 +53578,19 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -53418,19 +53605,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -53930,6 +54104,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
     undoSendSeconds?: number
     followUpDays?: number
+    primaryMailPlugin?: string
   }
 
   export type UserPreferenceUncheckedCreateWithoutUserInput = {
@@ -53938,6 +54113,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
     undoSendSeconds?: number
     followUpDays?: number
+    primaryMailPlugin?: string
   }
 
   export type UserPreferenceCreateOrConnectWithoutUserInput = {
@@ -54336,6 +54512,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
+    primaryMailPlugin?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserPreferenceUncheckedUpdateWithoutUserInput = {
@@ -54344,6 +54521,7 @@ export namespace Prisma {
     shortcutOverrides?: JsonNullValueInput | InputJsonValue
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
+    primaryMailPlugin?: StringFieldUpdateOperationsInput | string
   }
 
   export type SnoozedThreadUpsertWithWhereUniqueWithoutUserInput = {

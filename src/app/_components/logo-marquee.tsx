@@ -17,15 +17,15 @@ const LOGOS = [
 
 export function LogoMarquee() {
   return (
-    <div className="marquee-mask overflow-hidden py-2">
-      <div className="flex w-max animate-marquee items-center gap-12 pr-12">
+    <div className="marquee-mask overflow-hidden py-4">
+      <div className="flex w-max animate-marquee items-center gap-16 pr-16">
         {[...LOGOS, ...LOGOS].map((name, i) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             key={`${name}-${i}`}
             src={`/logo/${name}.png`}
             alt={name}
-            className="h-6 w-auto shrink-0 opacity-50 grayscale transition hover:opacity-100 hover:grayscale-0"
+            className="h-40 w-auto shrink-0 opacity-50 grayscale transition hover:opacity-100 hover:grayscale-0"
           />
         ))}
       </div>

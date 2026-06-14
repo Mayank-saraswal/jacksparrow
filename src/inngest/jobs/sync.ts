@@ -2,6 +2,9 @@ import { inngest } from "../client";
 import { db } from "@/server/db";
 import { embedText, toVectorLiteral } from "@/server/embeddings";
 import { parseTenantId } from "@/server/corsair";
+import { parseAddress } from "@/lib/email";
+import { captureException } from "@/server/observability/sentry";
+import { pageOnCall } from "@/server/observability/pagerduty";
 import { scoreThread } from "./shared";
 
 /**
@@ -22,7 +25,18 @@ interface GmailEntityData {
   snippet?: string;
   threadId?: string;
   internalDate?: string | number;
+  labelIds?: string[];
   payload?: { headers?: { name?: string; value?: string }[] };
+}
+
+interface OutlookEntityData {
+  subject?: string;
+  bodyPreview?: string;
+  conversationId?: string;
+  receivedDateTime?: string;
+  isRead?: boolean;
+  flag?: { flagStatus?: string };
+  from?: { name?: string; address?: string };
 }
 
 interface CalendarEntityData {
@@ -43,7 +57,11 @@ interface DerivedMeta {
   title: string;
   snippet: string;
   sender: string;
+  fromName: string;
+  fromEmail: string;
   threadId: string;
+  unread: boolean;
+  starred: boolean;
   timestamp: Date;
 }
 
@@ -69,7 +87,11 @@ function deriveMeta(
       title: ev.summary ?? "(event)",
       snippet: ev.location ?? "",
       sender: "",
+      fromName: "",
+      fromEmail: "",
       threadId: "",
+      unread: false,
+      starred: false,
       timestamp: startIso ? safeDate(startIso) : new Date(),
     };
   }
@@ -82,8 +104,32 @@ function deriveMeta(
       title: msg.channel ? `#${msg.channel}` : "Slack message",
       snippet: text.slice(0, 200),
       sender: msg.user ?? "",
+      fromName: "",
+      fromEmail: msg.user ?? "",
       threadId: msg.ts ?? entityId,
+      unread: false,
+      starred: false,
       timestamp: msg.ts ? safeDate(Number(msg.ts) * 1000) : new Date(),
+    };
+  }
+
+  if (plugin === "outlook") {
+    const m = data as OutlookEntityData;
+    const fromName = m.from?.name ?? "";
+    const fromEmail = (m.from?.address ?? "").toLowerCase();
+    const snippet = m.bodyPreview ?? "";
+    const subject = m.subject ?? "";
+    return {
+      type: "email",
+      title: subject || (snippet ? snippet.slice(0, 80) : "Email"),
+      snippet,
+      sender: fromEmail,
+      fromName,
+      fromEmail,
+      threadId: m.conversationId ?? entityId,
+      unread: m.isRead === false,
+      starred: m.flag?.flagStatus === "flagged",
+      timestamp: m.receivedDateTime ? safeDate(m.receivedDateTime) : new Date(),
     };
   }
 
@@ -91,12 +137,19 @@ function deriveMeta(
   const header = (name: string) =>
     m.payload?.headers?.find((h) => h.name?.toLowerCase() === name)?.value ?? "";
   const snippet = m.snippet ?? "";
+  const fromHeader = header("from");
+  const parsed = parseAddress(fromHeader);
+  const labelIds = m.labelIds ?? [];
   return {
     type: "email",
     title: header("subject") || (snippet ? snippet.slice(0, 80) : "Email"),
     snippet,
-    sender: header("from"),
+    sender: fromHeader,
+    fromName: parsed.name,
+    fromEmail: parsed.email.toLowerCase(),
     threadId: m.threadId ?? (entityType === "threads" ? entityId : ""),
+    unread: labelIds.includes("UNREAD"),
+    starred: labelIds.includes("STARRED"),
     timestamp: safeDate(m.internalDate),
   };
 }
@@ -106,6 +159,14 @@ export const corsairWebhookReceived = inngest.createFunction(
     id: "corsair-webhook-received",
     retries: 3,
     triggers: { event: "corsair/webhook.received" },
+    onFailure: async ({ error }) => {
+      // Dead-lettered sync event: alert on-call + record in Sentry.
+      captureException(error, { fn: "corsair-webhook-received" });
+      await pageOnCall(
+        `corsair-webhook-received exhausted retries: ${error.message}`,
+        "error",
+      );
+    },
   },
   async ({ event, step }) => {
     const { tenantId, plugin, corsairEntityId } =
@@ -151,6 +212,11 @@ export const corsairWebhookReceived = inngest.createFunction(
           type: meta.type,
           title: meta.title,
           snippet: meta.snippet,
+          threadId: meta.threadId || null,
+          fromName: meta.fromName || null,
+          fromEmail: meta.fromEmail || null,
+          unread: meta.unread,
+          starred: meta.starred,
           timestamp: meta.timestamp,
         },
         update: {
@@ -158,6 +224,11 @@ export const corsairWebhookReceived = inngest.createFunction(
           type: meta.type,
           title: meta.title,
           snippet: meta.snippet,
+          threadId: meta.threadId || null,
+          fromName: meta.fromName || null,
+          fromEmail: meta.fromEmail || null,
+          unread: meta.unread,
+          starred: meta.starred,
           timestamp: meta.timestamp,
         },
       });

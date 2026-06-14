@@ -1,14 +1,10 @@
 "use client";
 
 import {
-  EnvelopeSimple,
-  CalendarBlank,
-  MicrosoftOutlookLogo,
   CheckCircle,
   Warning,
   CircleNotch,
   ArrowsClockwise,
-  type Icon,
 } from "@phosphor-icons/react";
 
 import { api } from "@/trpc/react";
@@ -27,22 +23,22 @@ type SupportedPlugin = "gmail" | "googlecalendar" | "outlook";
 
 const PLUGIN_META: Record<
   SupportedPlugin,
-  { name: string; description: string; icon: Icon }
+  { name: string; description: string; logo: string }
 > = {
   gmail: {
     name: "Gmail",
     description: "Read, send, and organize email from your Google account.",
-    icon: EnvelopeSimple,
+    logo: "/logo/gmail.svg",
   },
   googlecalendar: {
     name: "Google Calendar",
     description: "Sync events and availability from your calendars.",
-    icon: CalendarBlank,
+    logo: "/logo/google-calendar.svg",
   },
   outlook: {
     name: "Outlook",
     description: "Read, send, and organize email from your Microsoft account.",
-    icon: MicrosoftOutlookLogo,
+    logo: "/logo/outlook.svg",
   },
 };
 
@@ -94,7 +90,6 @@ export function IntegrationsList() {
     <div className="grid gap-4 sm:grid-cols-2">
       {statusQuery.data.map(({ plugin, state }) => {
         const meta = PLUGIN_META[plugin];
-        const Logo = meta.icon;
         const connected = state === "connected";
         const missingCreds = state === "missing_credentials";
         const backfilledAt = sync?.[plugin]?.backfilledAt ?? null;
@@ -108,8 +103,9 @@ export function IntegrationsList() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <span className="flex size-8 items-center justify-center rounded-lg bg-accent text-accent-foreground">
-                    <Logo className="size-4" />
+                  <span className="flex size-9 items-center justify-center rounded-lg bg-white p-1.5 ring-1 ring-border">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={meta.logo} alt="" className="size-full object-contain" />
                   </span>
                   <CardTitle>{meta.name}</CardTitle>
                 </div>

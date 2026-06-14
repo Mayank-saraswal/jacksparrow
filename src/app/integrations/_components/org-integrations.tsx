@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  SlackLogo,
-  EnvelopeSimple,
-  MicrosoftOutlookLogo,
-  Lock,
-} from "@phosphor-icons/react";
+import { SlackLogo, Lock } from "@phosphor-icons/react";
 
 import { api } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
@@ -38,19 +33,19 @@ export function OrgIntegrations() {
       key: "gmail",
       name: "Shared Gmail inbox",
       description: "Connect support@ or sales@ for the team to triage together.",
-      icon: EnvelopeSimple,
+      logo: "/logo/gmail.svg",
     },
     {
       key: "outlook",
       name: "Shared Outlook inbox",
       description: "Connect a shared Microsoft mailbox for collaborative triage.",
-      icon: MicrosoftOutlookLogo,
+      logo: "/logo/outlook.svg",
     },
     {
       key: "slack",
       name: "Slack",
       description: "Bring DMs and mentions into your unified stream.",
-      icon: SlackLogo,
+      logo: null,
     },
   ] as const;
 
@@ -65,13 +60,21 @@ export function OrgIntegrations() {
       </p>
       <div className="grid gap-4 sm:grid-cols-2">
         {cards.map((c) => {
-          const Logo = c.icon;
           return (
             <Card key={c.key} className="rounded-xl">
               <CardHeader>
                 <div className="flex items-center gap-2.5">
-                  <span className="flex size-8 items-center justify-center rounded-lg bg-accent text-accent-foreground">
-                    <Logo className="size-4" />
+                  <span className="flex size-9 items-center justify-center rounded-lg bg-white p-1.5 ring-1 ring-border">
+                    {c.logo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={c.logo}
+                        alt=""
+                        className="size-full object-contain"
+                      />
+                    ) : (
+                      <SlackLogo className="size-4 text-[#4A154B]" />
+                    )}
                   </span>
                   <CardTitle>{c.name}</CardTitle>
                 </div>

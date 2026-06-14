@@ -1,21 +1,27 @@
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
-import { getTenant } from "@/server/corsair";
+import type { PrismaClient } from "../../../../generated/prisma";
 import { inngest } from "@/inngest/client";
 import {
-  buildRawMessage,
-  threadDetail,
-  threadPreview,
-  type GmailThread,
-  type ThreadPreview,
-} from "@/server/gmail";
+  getMailProvider,
+  resolveMailPlugin,
+  type MailProvider,
+} from "@/server/mail/provider";
+import type { TenantRef } from "@/server/corsair";
 import {
   looksLikeCalendarInvite,
   matchThreadToSplit,
   parseSplitRules,
   type MatchableThread,
+  type SplitRule,
 } from "@/lib/split-rules";
+import {
+  decodeCursor,
+  encodeCursor,
+  syncItemToPreview,
+  type SyncItemPreview,
+} from "@/lib/inbox-list";
 import {
   generateThreadSummary,
   getThreadEntityVersion,
@@ -29,10 +35,8 @@ import {
   ownerForContext,
 } from "@/server/billing/entitlements";
 
-const METADATA_HEADERS = ["Subject", "From", "To", "Date"];
-
 /** Build the split-matchable view of a preview (priority + invite heuristic). */
-function toMatchable(p: ThreadPreview): MatchableThread {
+function toMatchable(p: SyncItemPreview): MatchableThread {
   return {
     fromEmail: p.fromEmail,
     subject: p.subject,
@@ -41,11 +45,121 @@ function toMatchable(p: ThreadPreview): MatchableThread {
   };
 }
 
+type PreviewWithSplit = SyncItemPreview & { splitId: string };
+
+/** Resolve the current user's mail provider (Gmail or Outlook). */
+async function userProvider(userId: string): Promise<MailProvider> {
+  const ref: TenantRef = { kind: "user", userId };
+  return getMailProvider(await resolveMailPlugin(ref), ref);
+}
+
+/** Loads the user's split-inbox rules (falling back to defaults). */
+async function loadSplitRules(
+  db: PrismaClient,
+  userId: string,
+): Promise<SplitRule[]> {
+  const pref = await db.userPreference.findUnique({
+    where: { userId },
+    select: { splitInboxRules: true },
+  });
+  return parseSplitRules(
+    (pref?.splitInboxRules as { rules?: unknown })?.rules ??
+      pref?.splitInboxRules,
+  );
+}
+
+/**
+ * Attach priority labels, drop snoozed threads, bucket into splits and count.
+ * Shared by both the sync_items path and the live-provider fallback.
+ */
+async function annotateAndSplit(
+  db: PrismaClient,
+  userId: string,
+  previews: SyncItemPreview[],
+  splitId: string | undefined,
+): Promise<{ threads: PreviewWithSplit[]; splitCounts: Record<string, number> }> {
+  const threadIds = previews.map((p) => p.threadId);
+
+  const scores = await db.priorityScore.findMany({
+    where: { userId, threadId: { in: threadIds } },
+    select: { threadId: true, label: true, reason: true },
+  });
+  const scoreByThread = new Map(scores.map((s) => [s.threadId, s]));
+  for (const preview of previews) {
+    if (preview.priority) continue;
+    const s = scoreByThread.get(preview.threadId);
+    preview.priority = s ? { label: s.label, reason: s.reason ?? "" } : null;
+  }
+
+  const snoozed = await db.snoozedThread.findMany({
+    where: { userId, status: "snoozed", threadId: { in: threadIds } },
+    select: { threadId: true },
+  });
+  const snoozedSet = new Set(snoozed.map((s) => s.threadId));
+
+  const rules = await loadSplitRules(db, userId);
+  const annotated = previews
+    .filter((p) => !snoozedSet.has(p.threadId))
+    .map((p) => ({ ...p, splitId: matchThreadToSplit(toMatchable(p), rules) }));
+
+  const splitCounts: Record<string, number> = {};
+  for (const t of annotated) {
+    splitCounts[t.splitId] = (splitCounts[t.splitId] ?? 0) + 1;
+  }
+
+  const threads =
+    splitId && splitId !== "all"
+      ? annotated.filter((t) => t.splitId === splitId)
+      : annotated;
+
+  return { threads, splitCounts };
+}
+
+/**
+ * Fallback list path for accounts that have not synced any items yet: hydrate
+ * previews live from the provider. Provider-agnostic (Gmail or Outlook).
+ */
+async function listThreadsLive(
+  db: PrismaClient,
+  userId: string,
+  input: { q: string; limit: number; splitId?: string },
+): Promise<{
+  threads: PreviewWithSplit[];
+  splitCounts: Record<string, number>;
+  nextPageToken: string | null;
+}> {
+  const provider = await userProvider(userId);
+  const items = await provider.listThreads(input.q, input.limit);
+  const previews: SyncItemPreview[] = items.map((item) => ({
+    threadId: item.threadId,
+    subject: item.subject || "(no subject)",
+    snippet: item.snippet,
+    fromName: item.fromName,
+    fromEmail: item.from,
+    date: item.date,
+    unread: item.unread,
+    starred: item.starred,
+    labelIds: [
+      ...(item.unread ? ["UNREAD"] : []),
+      ...(item.starred ? ["STARRED"] : []),
+    ],
+    messageCount: 1,
+    priority: null,
+  }));
+  const { threads, splitCounts } = await annotateAndSplit(
+    db,
+    userId,
+    previews,
+    input.splitId,
+  );
+  return { threads, splitCounts, nextPageToken: null };
+}
+
 export const inboxRouter = createTRPCRouter({
   /**
-   * Lists threads for the current view. Gmail's list endpoint returns only ids,
-   * so we hydrate each thread via threads.get (format=metadata) to get
-   * subject/from/date — which also warms Corsair's local cache.
+   * Lists threads for the current view from `sync_items` (the realtime feed),
+   * using keyset pagination ordered by `(timestamp DESC, id DESC)`. Falls back
+   * to a live provider fetch for accounts that haven't synced any items yet.
    */
   listThreads: protectedProcedure
     .input(
@@ -57,170 +171,117 @@ export const inboxRouter = createTRPCRouter({
       }),
     )
     .query(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
+      const cursor = input.pageToken ? decodeCursor(input.pageToken) : null;
 
-      const list = await tenant.gmail.api.threads.list({
-        q: input.q,
-        maxResults: input.limit,
-        pageToken: input.pageToken,
-      });
-
-      const ids = (list.threads ?? [])
-        .map((t) => t.id)
-        .filter((id): id is string => typeof id === "string");
-
-      const threads = await Promise.all(
-        ids.map((id) =>
-          tenant.gmail.api.threads.get({
-            id,
-            format: "metadata",
-            metadataHeaders: METADATA_HEADERS,
-          }),
-        ),
-      );
-
-      const previews = threads.map((t) =>
-        threadPreview(t as unknown as GmailThread),
-      );
-
-      // Attach priority labels (Phase 6) by thread id.
-      const scores = await ctx.db.priorityScore.findMany({
+      const rows = await ctx.db.syncItem.findMany({
         where: {
           userId: ctx.userId,
-          threadId: { in: previews.map((p) => p.threadId) },
+          type: "email",
+          ...(cursor
+            ? {
+                OR: [
+                  { timestamp: { lt: cursor.timestamp } },
+                  { timestamp: cursor.timestamp, id: { lt: cursor.id } },
+                ],
+              }
+            : {}),
         },
-        select: { threadId: true, label: true, reason: true },
+        orderBy: [{ timestamp: "desc" }, { id: "desc" }],
+        take: input.limit,
       });
-      const scoreByThread = new Map(scores.map((s) => [s.threadId, s]));
-      for (const preview of previews) {
-        const s = scoreByThread.get(preview.threadId);
-        preview.priority = s ? { label: s.label, reason: s.reason ?? "" } : null;
+
+      // Cold start: no synced items — hydrate live from the provider.
+      if (rows.length === 0 && !cursor) {
+        return listThreadsLive(ctx.db, ctx.userId, input);
       }
 
-      // Annotate each thread with its split bucket and exclude snoozed threads.
-      const pref = await ctx.db.userPreference.findUnique({
-        where: { userId: ctx.userId },
-        select: { splitInboxRules: true },
+      // Realtime sync writes one row per message entity; collapse to one row
+      // per thread (rows are already ordered newest-first).
+      const seenThreads = new Set<string>();
+      const deduped = rows.filter((r) => {
+        const key = r.threadId ?? r.corsairEntityId;
+        if (seenThreads.has(key)) return false;
+        seenThreads.add(key);
+        return true;
       });
-      const rules = parseSplitRules(
-        (pref?.splitInboxRules as { rules?: unknown })?.rules ??
-          pref?.splitInboxRules,
+
+      const previews = deduped.map((r) => syncItemToPreview(r, null));
+      const { threads, splitCounts } = await annotateAndSplit(
+        ctx.db,
+        ctx.userId,
+        previews,
+        input.splitId,
       );
 
-      const snoozed = await ctx.db.snoozedThread.findMany({
-        where: {
-          userId: ctx.userId,
-          status: "snoozed",
-          threadId: { in: previews.map((p) => p.threadId) },
-        },
-        select: { threadId: true },
-      });
-      const snoozedSet = new Set(snoozed.map((s) => s.threadId));
+      const last = rows[rows.length - 1];
+      const nextPageToken =
+        rows.length === input.limit && last
+          ? encodeCursor(last.timestamp, last.id)
+          : null;
 
-      const annotated = previews
-        .filter((p) => !snoozedSet.has(p.threadId))
-        .map((p) => ({
-          ...p,
-          splitId: matchThreadToSplit(toMatchable(p), rules),
-        }));
-
-      const splitCounts: Record<string, number> = {};
-      for (const t of annotated) {
-        splitCounts[t.splitId] = (splitCounts[t.splitId] ?? 0) + 1;
-      }
-
-      const threadsForSplit =
-        input.splitId && input.splitId !== "all"
-          ? annotated.filter((t) => t.splitId === input.splitId)
-          : annotated;
-
-      return {
-        threads: threadsForSplit,
-        splitCounts,
-        nextPageToken: list.nextPageToken ?? null,
-      };
+      return { threads, splitCounts, nextPageToken };
     }),
 
   getThread: protectedProcedure
     .input(z.object({ threadId: z.string() }))
     .query(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
-      const thread = await tenant.gmail.api.threads.get({
-        id: input.threadId,
-        format: "full",
-      });
-      return threadDetail(thread);
+      const provider = await userProvider(ctx.userId);
+      return provider.getThreadDetail(input.threadId);
     }),
 
   archiveThread: protectedProcedure
     .input(z.object({ threadId: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
-      await tenant.gmail.api.threads.modify({
-        id: input.threadId,
-        removeLabelIds: ["INBOX"],
-      });
+      const provider = await userProvider(ctx.userId);
+      await provider.archive(input.threadId);
       return { ok: true };
     }),
 
   unarchiveThread: protectedProcedure
     .input(z.object({ threadId: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
-      await tenant.gmail.api.threads.modify({
-        id: input.threadId,
-        addLabelIds: ["INBOX"],
-      });
+      const provider = await userProvider(ctx.userId);
+      await provider.unarchive(input.threadId);
       return { ok: true };
     }),
 
   untrashThread: protectedProcedure
     .input(z.object({ threadId: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
-      await tenant.gmail.api.threads.untrash({ id: input.threadId });
+      const provider = await userProvider(ctx.userId);
+      await provider.untrash(input.threadId);
       return { ok: true };
     }),
 
   markRead: protectedProcedure
     .input(z.object({ threadId: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
-      await tenant.gmail.api.threads.modify({
-        id: input.threadId,
-        removeLabelIds: ["UNREAD"],
-      });
+      const provider = await userProvider(ctx.userId);
+      await provider.setRead(input.threadId, true);
       return { ok: true };
     }),
 
   markUnread: protectedProcedure
     .input(z.object({ threadId: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
-      await tenant.gmail.api.threads.modify({
-        id: input.threadId,
-        addLabelIds: ["UNREAD"],
-      });
+      const provider = await userProvider(ctx.userId);
+      await provider.setRead(input.threadId, false);
       return { ok: true };
     }),
 
   toggleStar: protectedProcedure
     .input(z.object({ threadId: z.string(), starred: z.boolean() }))
     .mutation(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
-      await tenant.gmail.api.threads.modify({
-        id: input.threadId,
-        addLabelIds: input.starred ? ["STARRED"] : [],
-        removeLabelIds: input.starred ? [] : ["STARRED"],
-      });
+      const provider = await userProvider(ctx.userId);
+      await provider.setStar(input.threadId, input.starred);
       return { ok: true };
     }),
 
   trashThread: protectedProcedure
     .input(z.object({ threadId: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
-      await tenant.gmail.api.threads.trash({ id: input.threadId });
+      const provider = await userProvider(ctx.userId);
+      await provider.trash(input.threadId);
       return { ok: true };
     }),
 
@@ -238,22 +299,18 @@ export const inboxRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
-      const raw = buildRawMessage({
+      const provider = await userProvider(ctx.userId);
+      const result = await provider.send({
         to: input.to,
         cc: input.cc,
         bcc: input.bcc,
         subject: input.subject,
         body: input.body,
         html: input.html,
+        threadId: input.threadId,
         inReplyTo: input.inReplyTo,
       });
-
-      const result = await tenant.gmail.api.messages.send({
-        raw,
-        threadId: input.threadId,
-      });
-      return { id: result.id ?? null, threadId: result.threadId ?? null };
+      return { id: result.id, threadId: input.threadId ?? null };
     }),
 
   saveDraft: protectedProcedure
@@ -269,29 +326,19 @@ export const inboxRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
-      const raw = buildRawMessage({
-        to: input.to,
-        cc: input.cc,
-        subject: input.subject,
-        body: input.body,
-        html: input.html,
-      });
-
-      const message = { raw, threadId: input.threadId };
-
-      if (input.draftId) {
-        const updated = await tenant.gmail.api.drafts.update({
-          id: input.draftId,
-          draft: { message },
-        });
-        return { draftId: updated.id ?? null };
-      }
-
-      const created = await tenant.gmail.api.drafts.create({
-        draft: { message },
-      });
-      return { draftId: created.id ?? null };
+      const provider = await userProvider(ctx.userId);
+      const result = await provider.saveDraft(
+        {
+          to: input.to,
+          cc: input.cc,
+          subject: input.subject,
+          body: input.body,
+          html: input.html,
+          threadId: input.threadId,
+        },
+        input.draftId,
+      );
+      return { draftId: result.draftId };
     }),
 
   /** Snooze a thread until `snoozeUntil`: archive it now, wake it later. */
@@ -309,12 +356,7 @@ export const inboxRouter = createTRPCRouter({
         throw new Error("Snooze time must be in the future");
       }
 
-      const tenant = getTenant(ctx.userId);
-      // Verify ownership implicitly: the tenant can only see its own threads.
-      await tenant.gmail.api.threads.get({
-        id: input.threadId,
-        format: "minimal",
-      });
+      const provider = await userProvider(ctx.userId);
 
       await ctx.db.user.upsert({
         where: { id: ctx.userId },
@@ -341,10 +383,7 @@ export const inboxRouter = createTRPCRouter({
       });
 
       // Remove from inbox while snoozed.
-      await tenant.gmail.api.threads.modify({
-        id: input.threadId,
-        removeLabelIds: ["INBOX"],
-      });
+      await provider.archive(input.threadId);
 
       await inngest.send({
         name: "thread/snooze.created",
@@ -373,11 +412,8 @@ export const inboxRouter = createTRPCRouter({
         data: { status: "canceled" },
       });
 
-      const tenant = getTenant(ctx.userId);
-      await tenant.gmail.api.threads.modify({
-        id: input.threadId,
-        addLabelIds: ["INBOX"],
-      });
+      const provider = await userProvider(ctx.userId);
+      await provider.unarchive(input.threadId);
       return { ok: true };
     }),
 
@@ -402,12 +438,8 @@ export const inboxRouter = createTRPCRouter({
   summary: protectedProcedure
     .input(z.object({ threadId: z.string().min(1), refresh: z.boolean().default(false) }))
     .query(async ({ ctx, input }) => {
-      const tenant = getTenant(ctx.userId);
-      const raw = await tenant.gmail.api.threads.get({
-        id: input.threadId,
-        format: "full",
-      });
-      const detail = threadDetail(raw);
+      const provider = await userProvider(ctx.userId);
+      const detail = await provider.getThreadDetail(input.threadId);
       const currentVersion = await getThreadEntityVersion(
         ctx.userId,
         input.threadId,

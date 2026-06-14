@@ -218,7 +218,8 @@ exports.Prisma.UserPreferenceScalarFieldEnum = {
   splitInboxRules: 'splitInboxRules',
   shortcutOverrides: 'shortcutOverrides',
   undoSendSeconds: 'undoSendSeconds',
-  followUpDays: 'followUpDays'
+  followUpDays: 'followUpDays',
+  primaryMailPlugin: 'primaryMailPlugin'
 };
 
 exports.Prisma.SnoozedThreadScalarFieldEnum = {
@@ -264,6 +265,11 @@ exports.Prisma.SyncItemScalarFieldEnum = {
   type: 'type',
   title: 'title',
   snippet: 'snippet',
+  threadId: 'threadId',
+  fromName: 'fromName',
+  fromEmail: 'fromEmail',
+  unread: 'unread',
+  starred: 'starred',
   timestamp: 'timestamp',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

@@ -17,6 +17,8 @@ import { createCorsair } from "corsair";
 import { setupCorsair } from "corsair/setup";
 import { gmail } from "@corsair-dev/gmail";
 import { googlecalendar } from "@corsair-dev/googlecalendar";
+import { outlook } from "@corsair-dev/outlook";
+import { slack } from "@corsair-dev/slack";
 
 async function main() {
   const {
@@ -25,6 +27,10 @@ async function main() {
     GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET,
     GMAIL_PUBSUB_TOPIC,
+    MICROSOFT_CLIENT_ID,
+    MICROSOFT_CLIENT_SECRET,
+    SLACK_CLIENT_ID,
+    SLACK_CLIENT_SECRET,
   } = process.env;
 
   if (!DATABASE_URL || !CORSAIR_KEK) {
@@ -39,26 +45,42 @@ async function main() {
   const pool = new Pool({ connectionString: DATABASE_URL });
 
   const corsair = createCorsair({
-    plugins: [gmail(), googlecalendar()],
+    plugins: [gmail(), googlecalendar(), outlook(), slack()],
     database: pool,
     kek: CORSAIR_KEK,
     multiTenancy: true,
   });
 
+  const credentials: Record<string, any> = {
+    gmail: {
+      client_id: GOOGLE_CLIENT_ID,
+      client_secret: GOOGLE_CLIENT_SECRET,
+      // Pub/Sub topic for Gmail push notifications (optional).
+      ...(GMAIL_PUBSUB_TOPIC ? { topic_id: GMAIL_PUBSUB_TOPIC } : {}),
+    },
+    googlecalendar: {
+      client_id: GOOGLE_CLIENT_ID,
+      client_secret: GOOGLE_CLIENT_SECRET,
+    },
+  };
+
+  if (MICROSOFT_CLIENT_ID && MICROSOFT_CLIENT_SECRET) {
+    credentials.outlook = {
+      client_id: MICROSOFT_CLIENT_ID,
+      client_secret: MICROSOFT_CLIENT_SECRET,
+    };
+  }
+
+  if (SLACK_CLIENT_ID && SLACK_CLIENT_SECRET) {
+    credentials.slack = {
+      client_id: SLACK_CLIENT_ID,
+      client_secret: SLACK_CLIENT_SECRET,
+    };
+  }
+
   const output = await setupCorsair(corsair, {
     // Integration-level credentials are shared across all tenants.
-    credentials: {
-      gmail: {
-        client_id: GOOGLE_CLIENT_ID,
-        client_secret: GOOGLE_CLIENT_SECRET,
-        // Pub/Sub topic for Gmail push notifications (optional).
-        ...(GMAIL_PUBSUB_TOPIC ? { topic_id: GMAIL_PUBSUB_TOPIC } : {}),
-      },
-      googlecalendar: {
-        client_id: GOOGLE_CLIENT_ID,
-        client_secret: GOOGLE_CLIENT_SECRET,
-      },
-    },
+    credentials,
   });
 
   console.log(output);

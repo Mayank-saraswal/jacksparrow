@@ -177,6 +177,8 @@ model UserPreference {
   shortcutOverrides Json   @default("{}") @map("shortcut_overrides")
   undoSendSeconds   Int    @default(10) @map("undo_send_seconds")
   followUpDays      Int    @default(3) @map("follow_up_days")
+  // Which mail backend drives the inbox when both Gmail + Outlook are connected.
+  primaryMailPlugin String @default("gmail") @map("primary_mail_plugin")
   user              User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("user_preferences")
@@ -245,12 +247,20 @@ model SyncItem {
   type            String // "email" | "event" | "slack"
   title           String
   snippet         String
+  // List-rendering fields so the inbox can be served from SyncItem without a
+  // live provider round-trip (Phase 0, Fix 1).
+  threadId        String?  @map("thread_id")
+  fromName        String?  @map("from_name")
+  fromEmail       String?  @map("from_email")
+  unread          Boolean  @default(false)
+  starred         Boolean  @default(false)
   timestamp       DateTime @db.Timestamptz
   createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz
 
   @@unique([userId, corsairEntityId])
   @@index([userId, timestamp])
+  @@index([userId, type, timestamp])
   @@index([orgId, timestamp])
   @@index([sharedInboxId, timestamp])
   @@map("sync_items")
