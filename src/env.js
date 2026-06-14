@@ -75,6 +75,9 @@ export const env = createEnv({
     // OpenAI (Vercel AI SDK provider) — embeddings/LLM. Optional: features that
     // need it are skipped when absent.
     OPENAI_API_KEY: z.string().optional(),
+    // mem0 (https://mem0.ai) — long-term memory for the assistant chat.
+    // Optional: chat memory is skipped (no-op) when absent.
+    MEM0_API_KEY: z.string().optional(),
     // Observability (Phase 0, Fix 4). All optional — features no-op when absent.
     SENTRY_DSN: z.string().optional(),
     PAGERDUTY_ROUTING_KEY: z.string().optional(),
@@ -156,6 +159,7 @@ export const env = createEnv({
     STRIPE_PRICE_ENTERPRISE_MONTHLY: process.env.STRIPE_PRICE_ENTERPRISE_MONTHLY,
     STRIPE_PRICE_ENTERPRISE_YEARLY: process.env.STRIPE_PRICE_ENTERPRISE_YEARLY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    MEM0_API_KEY: process.env.MEM0_API_KEY,
     SENTRY_DSN: process.env.SENTRY_DSN,
     PAGERDUTY_ROUTING_KEY: process.env.PAGERDUTY_ROUTING_KEY,
     BACKFILL_CONCURRENCY: process.env.BACKFILL_CONCURRENCY,

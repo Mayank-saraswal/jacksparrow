@@ -62,6 +62,12 @@ export default async function RootLayout({
                 {userId ? (
                   <>
                     <Link
+                      href="/dashboard"
+                      className="text-xs text-muted-foreground hover:text-foreground"
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
                       href="/inbox"
                       className="text-xs text-muted-foreground hover:text-foreground"
                     >
@@ -106,8 +112,8 @@ export default async function RootLayout({
                     <OrganizationSwitcher
                       hidePersonal={false}
                       afterCreateOrganizationUrl="/settings/organization"
-                      afterSelectOrganizationUrl="/inbox"
-                      afterSelectPersonalUrl="/inbox"
+                      afterSelectOrganizationUrl="/dashboard"
+                      afterSelectPersonalUrl="/dashboard"
                     />
                     <UserButton />
                   </>

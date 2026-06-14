@@ -45,3 +45,7 @@ yarn-error.log*
 # idea files
 .idea
 firecrawl.html
+referance-landingpage*
+
+# Design reference scaffold (Vite app, not part of the Next build)
+/referance-landingpage
