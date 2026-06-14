@@ -17,6 +17,12 @@ import { createCorsair } from "corsair";
 import { setupCorsair } from "corsair/setup";
 import { gmail } from "@corsair-dev/gmail";
 import { googlecalendar } from "@corsair-dev/googlecalendar";
+import { hubspot } from "@corsair-dev/hubspot";
+import { notion } from "@corsair-dev/notion";
+import { linear } from "@corsair-dev/linear";
+import { jira } from "@corsair-dev/jira";
+import { zoom } from "@corsair-dev/zoom";
+import { teams } from "@corsair-dev/teams";
 import { outlook } from "@corsair-dev/outlook";
 import { slack } from "@corsair-dev/slack";
 
@@ -45,7 +51,18 @@ async function main() {
   const pool = new Pool({ connectionString: DATABASE_URL });
 
   const corsair = createCorsair({
-    plugins: [gmail(), googlecalendar(), outlook(), slack()],
+    plugins: [
+      gmail(),
+      googlecalendar(),
+      outlook(),
+      slack(),
+      hubspot(),
+      notion(),
+      linear(),
+      jira(),
+      zoom(),
+      teams(),
+    ],
     database: pool,
     kek: CORSAIR_KEK,
     multiTenancy: true,
@@ -76,6 +93,21 @@ async function main() {
       client_id: SLACK_CLIENT_ID,
       client_secret: SLACK_CLIENT_SECRET,
     };
+  }
+
+  // Phase 2 integrations — optional, registered only when both vars are set.
+  const phase2: [string, string?, string?][] = [
+    ["hubspot", process.env.HUBSPOT_CLIENT_ID, process.env.HUBSPOT_CLIENT_SECRET],
+    ["notion", process.env.NOTION_CLIENT_ID, process.env.NOTION_CLIENT_SECRET],
+    ["linear", process.env.LINEAR_CLIENT_ID, process.env.LINEAR_CLIENT_SECRET],
+    ["jira", process.env.JIRA_CLIENT_ID, process.env.JIRA_CLIENT_SECRET],
+    ["zoom", process.env.ZOOM_CLIENT_ID, process.env.ZOOM_CLIENT_SECRET],
+    ["teams", process.env.TEAMS_CLIENT_ID, process.env.TEAMS_CLIENT_SECRET],
+  ];
+  for (const [name, id, secret] of phase2) {
+    if (id && secret) {
+      credentials[name] = { client_id: id, client_secret: secret };
+    }
   }
 
   const output = await setupCorsair(corsair, {

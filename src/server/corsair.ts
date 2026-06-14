@@ -6,6 +6,12 @@ import { gmail } from "@corsair-dev/gmail";
 import { googlecalendar } from "@corsair-dev/googlecalendar";
 import { outlook } from "@corsair-dev/outlook";
 import { slack } from "@corsair-dev/slack";
+import { hubspot } from "@corsair-dev/hubspot";
+import { notion } from "@corsair-dev/notion";
+import { linear } from "@corsair-dev/linear";
+import { jira } from "@corsair-dev/jira";
+import { zoom } from "@corsair-dev/zoom";
+import { teams } from "@corsair-dev/teams";
 
 import { env } from "@/env";
 
@@ -24,7 +30,18 @@ const pool =
 
 function createCorsairInstance() {
   return createCorsair({
-    plugins: [gmail(), googlecalendar(), outlook(), slack()],
+    plugins: [
+      gmail(),
+      googlecalendar(),
+      outlook(),
+      slack(),
+      hubspot(),
+      notion(),
+      linear(),
+      jira(),
+      zoom(),
+      teams(),
+    ],
     database: pool,
     kek: env.CORSAIR_KEK,
     multiTenancy: true,
@@ -47,6 +64,12 @@ export const SUPPORTED_PLUGINS = [
   "googlecalendar",
   "outlook",
   "slack",
+  "hubspot",
+  "notion",
+  "linear",
+  "jira",
+  "zoom",
+  "teams",
 ] as const;
 export type RegisteredPlugin = (typeof SUPPORTED_PLUGINS)[number];
 
@@ -59,9 +82,37 @@ export function isSupportedPlugin(value: string): value is RegisteredPlugin {
 }
 
 /** Plugins that connect at the personal (per-user) level. */
-export const USER_PLUGINS = ["gmail", "googlecalendar", "outlook"] as const;
+export const USER_PLUGINS = [
+  "gmail",
+  "googlecalendar",
+  "outlook",
+  "notion",
+  "zoom",
+] as const;
 /** Plugins that connect at the org level (tenant `org:{orgId}`). */
-export const ORG_PLUGINS = ["gmail", "outlook", "slack"] as const;
+export const ORG_PLUGINS = [
+  "gmail",
+  "outlook",
+  "slack",
+  "hubspot",
+  "linear",
+  "jira",
+  "teams",
+] as const;
+
+/**
+ * Plan capability flag required to connect/use a plugin (Phase 2). Plugins not
+ * listed here need no plan gate beyond a connection (mail/calendar/slack and the
+ * user-level Notion/Zoom).
+ */
+export const PLUGIN_FEATURE: Partial<
+  Record<RegisteredPlugin, "crm" | "issueTracker" | "meetings">
+> = {
+  hubspot: "crm",
+  linear: "issueTracker",
+  jira: "issueTracker",
+  teams: "meetings",
+};
 
 /**
  * A tenant reference. Personal Gmail/Calendar accounts stay per-user
@@ -103,4 +154,27 @@ export function getTenant(clerkUserId: string) {
 /** Org-shared Corsair tenant (`org:{orgId}`). */
 export function getOrgTenant(orgId: string) {
   return getTenantFor({ kind: "org", orgId });
+}
+
+/**
+ * Per-plugin connection state for a tenant (e.g. `{ hubspot: "connected" }`).
+ * Used by agent tools to return a structured `not-connected` error instead of
+ * throwing when an integration isn't set up.
+ */
+export async function getConnectionStatus(
+  ref: TenantRef,
+): Promise<Record<string, string>> {
+  const status = await corsair.manage.connectionStatus.get({
+    tenantId: tenantId(ref),
+  });
+  return status;
+}
+
+/** True when `plugin` is connected for the tenant. */
+export async function isConnected(
+  ref: TenantRef,
+  plugin: RegisteredPlugin,
+): Promise<boolean> {
+  const status = await getConnectionStatus(ref);
+  return status[plugin] === "connected";
 }

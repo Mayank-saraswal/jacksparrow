@@ -7,9 +7,11 @@ import { db } from "@/server/db";
 import {
   corsair,
   isSupportedPlugin,
+  PLUGIN_FEATURE,
   tenantId as toTenantId,
   type TenantRef,
 } from "@/server/corsair";
+import { hasFeature, orgOwner } from "@/server/billing/entitlements";
 
 /**
  * Starts the OAuth flow for the given plugin.
@@ -50,6 +52,26 @@ export async function GET(
       return NextResponse.json({ error: "Admin required" }, { status: 403 });
     }
     ref = { kind: "org", orgId };
+  }
+
+  // Plan-gate integrations that require a paid capability (HubSpot/Linear/Jira/
+  // Teams). The billable owner is the org for org-scoped connects.
+  const feature = PLUGIN_FEATURE[plugin];
+  if (feature) {
+    const owner =
+      ref.kind === "org" ? orgOwner(ref.orgId) : orgOwner(orgId ?? "");
+    if (ref.kind !== "org") {
+      return NextResponse.json(
+        { error: "This integration is connected at the organization level." },
+        { status: 400 },
+      );
+    }
+    if (!(await hasFeature(owner, feature))) {
+      return NextResponse.json(
+        { error: "Your plan does not include this integration." },
+        { status: 403 },
+      );
+    }
   }
 
   const tenant = toTenantId(ref);

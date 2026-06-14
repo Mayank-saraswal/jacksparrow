@@ -47,6 +47,31 @@ export function OrgIntegrations() {
       description: "Bring DMs and mentions into your unified stream.",
       logo: null,
     },
+    {
+      key: "hubspot",
+      name: "HubSpot",
+      description: "Log threads to contacts and surface deal context. Business+.",
+      logo: "/logo/hubspot.svg",
+    },
+    {
+      key: "linear",
+      name: "Linear",
+      description: "Turn emails into Linear issues. Business+.",
+      logo: "/logo/linear.svg",
+    },
+    {
+      key: "jira",
+      name: "Jira",
+      description: "Turn emails into Jira issues. Business+.",
+      logo: "/logo/jira.svg",
+    },
+    {
+      key: "teams",
+      name: "Microsoft Teams",
+      description:
+        "Team chat & channels. Teams meeting links use your connected Microsoft (Outlook) calendar.",
+      logo: "/logo/teams.svg",
+    },
   ] as const;
 
   return (

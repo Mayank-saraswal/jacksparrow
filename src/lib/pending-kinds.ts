@@ -50,6 +50,8 @@ export const createEventSchema = z.object({
   timeZone: z.string().optional(),
   attendees: z.array(z.string().email()).default([]),
   calendarId: z.string().default("primary"),
+  // Phase 2: attach a video meeting created via Zoom/Teams/Meet before the event.
+  meetingProvider: z.enum(["none", "zoom", "teams", "meet"]).default("none"),
 });
 
 export const deleteEventSchema = z.object({
@@ -89,6 +91,53 @@ export const scheduleSendSchema = sendEmailSchema.extend({
   sendAt: z.string().datetime(),
 });
 
+// ── Phase 2 — integration write kinds ─────────────────────────────────────────
+export const hubspotLogEmailSchema = z.object({
+  orgId: z.string().min(1),
+  contactEmail: z.string().email(),
+  threadId: z.string().min(1),
+  subject: z.string().default(""),
+  body: z.string().default(""),
+  occurredAt: z.string().datetime().optional(),
+});
+
+export const hubspotCreateTaskSchema = z.object({
+  orgId: z.string().min(1),
+  contactEmail: z.string().email(),
+  title: z.string().min(1),
+  dueDate: z.string().datetime().optional(),
+  notes: z.string().optional(),
+});
+
+export const notionCreatePageSchema = z.object({
+  parentId: z.string().optional(),
+  title: z.string().min(1),
+  contentMarkdown: z.string().default(""),
+});
+
+export const notionAppendBlockSchema = z.object({
+  pageId: z.string().min(1),
+  contentMarkdown: z.string().min(1),
+});
+
+export const linearCreateIssueSchema = z.object({
+  orgId: z.string().min(1),
+  teamId: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().default(""),
+  priority: z.number().int().min(0).max(4).optional(),
+  assigneeId: z.string().optional(),
+});
+
+export const jiraCreateIssueSchema = z.object({
+  orgId: z.string().min(1),
+  projectKey: z.string().min(1),
+  issueType: z.string().default("Task"),
+  summary: z.string().min(1),
+  description: z.string().default(""),
+  assigneeId: z.string().optional(),
+});
+
 // ── Kind registry ─────────────────────────────────────────────────────────────
 export const PENDING_KINDS = [
   "send_email",
@@ -101,6 +150,12 @@ export const PENDING_KINDS = [
   "bulk_label",
   "snooze_thread",
   "schedule_send",
+  "hubspot_log_email",
+  "hubspot_create_task",
+  "notion_create_page",
+  "notion_append_block",
+  "linear_create_issue",
+  "jira_create_issue",
 ] as const;
 export type PendingKind = (typeof PENDING_KINDS)[number];
 
@@ -115,6 +170,12 @@ export const OPERATION_PATH: Record<PendingKind, string> = {
   bulk_label: "mail.modifyLabels",
   snooze_thread: "mail.archive",
   schedule_send: "mail.scheduleSend",
+  hubspot_log_email: "hubspot.api.engagements.create",
+  hubspot_create_task: "hubspot.api.engagements.create",
+  notion_create_page: "notion.api.pages.createPage",
+  notion_append_block: "notion.api.blocks.appendBlock",
+  linear_create_issue: "linear.api.issues.create",
+  jira_create_issue: "jira.api.issues.create",
 };
 
 export function fmtTime(iso: string): string {
@@ -178,6 +239,30 @@ export function summarizePendingAction(kind: string, payload: unknown): string {
       const preview = p.subject || p.body.slice(0, 50);
       return `Schedule email to ${p.to.join(", ")} at ${fmtTime(p.sendAt)}: "${preview}"`;
     }
+    case "hubspot_log_email": {
+      const p = hubspotLogEmailSchema.parse(payload);
+      return `Log email to HubSpot contact ${p.contactEmail}`;
+    }
+    case "hubspot_create_task": {
+      const p = hubspotCreateTaskSchema.parse(payload);
+      return `Create HubSpot task "${p.title}" for ${p.contactEmail}`;
+    }
+    case "notion_create_page": {
+      const p = notionCreatePageSchema.parse(payload);
+      return `Create Notion page "${p.title}"`;
+    }
+    case "notion_append_block": {
+      const p = notionAppendBlockSchema.parse(payload);
+      return `Append to Notion page ${p.pageId}`;
+    }
+    case "linear_create_issue": {
+      const p = linearCreateIssueSchema.parse(payload);
+      return `Create Linear issue "${p.title}"`;
+    }
+    case "jira_create_issue": {
+      const p = jiraCreateIssueSchema.parse(payload);
+      return `Create Jira ${p.issueType} "${p.summary}" in ${p.projectKey}`;
+    }
     default:
       return `Unknown action: ${kind}`;
   }
@@ -206,6 +291,18 @@ export function confirmationCopy(kind: string): string {
       return "Snoozed ✅";
     case "schedule_send":
       return "Email scheduled ✅";
+    case "hubspot_log_email":
+      return "Logged to HubSpot ✅";
+    case "hubspot_create_task":
+      return "HubSpot task created ✅";
+    case "notion_create_page":
+      return "Notion page created ✅";
+    case "notion_append_block":
+      return "Added to Notion ✅";
+    case "linear_create_issue":
+      return "Linear issue created ✅";
+    case "jira_create_issue":
+      return "Jira issue created ✅";
     default:
       return "Done ✅";
   }

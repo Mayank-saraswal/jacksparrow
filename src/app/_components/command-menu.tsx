@@ -10,6 +10,8 @@ import {
   ArrowsClockwise,
   Gear,
   Keyboard,
+  Plus,
+  Buildings,
 } from "@phosphor-icons/react";
 
 import { api } from "@/trpc/react";
@@ -132,6 +134,32 @@ export function CommandMenu() {
                 : "Add a label to these threads",
               true,
             ),
+        },
+        {
+          id: "act_notion",
+          label: `Save ${targetLabel} to Notion`,
+          icon: <Sparkle />,
+          run: () =>
+            askAi(
+              "Summarize this email thread and save it to Notion as a new page",
+              true,
+            ),
+        },
+        {
+          id: "act_issue",
+          label: `Create issue from ${targetLabel}`,
+          icon: <Plus />,
+          run: () =>
+            askAi(
+              "Create an issue in our issue tracker from this email thread",
+              true,
+            ),
+        },
+        {
+          id: "act_hubspot",
+          label: `Log ${targetLabel} to HubSpot`,
+          icon: <Buildings />,
+          run: () => askAi("Log this email thread to the HubSpot contact", true),
         },
       ]
     : [];

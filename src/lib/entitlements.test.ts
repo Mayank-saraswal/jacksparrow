@@ -22,6 +22,19 @@ describe("plan limits", () => {
     expect(PLAN_LIMITS.free.slack).toBe(false);
   });
 
+  it("gates Phase 2 integrations (crm/issueTracker/meetings) to business+enterprise", () => {
+    expect(PLAN_LIMITS.free.crm).toBe(false);
+    expect(PLAN_LIMITS.pro.crm).toBe(false);
+    expect(PLAN_LIMITS.business.crm).toBe(true);
+    expect(PLAN_LIMITS.enterprise.crm).toBe(true);
+    for (const flag of ["issueTracker", "meetings"] as const) {
+      expect(PLAN_LIMITS.free[flag]).toBe(false);
+      expect(PLAN_LIMITS.pro[flag]).toBe(false);
+      expect(PLAN_LIMITS.business[flag]).toBe(true);
+      expect(PLAN_LIMITS.enterprise[flag]).toBe(true);
+    }
+  });
+
   it("pro is unlimited accounts / 2000 actions / shared inboxes, no slack", () => {
     expect(PLAN_LIMITS.pro.maxAccounts).toBe(Number.POSITIVE_INFINITY);
     expect(PLAN_LIMITS.pro.aiActionsPerMonth).toBe(2000);

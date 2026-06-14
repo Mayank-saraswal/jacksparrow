@@ -351,7 +351,9 @@ exports.Prisma.OrganizationScalarFieldEnum = {
   name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  memberLevelAnalytics: 'memberLevelAnalytics'
+  memberLevelAnalytics: 'memberLevelAnalytics',
+  defaultIssueTracker: 'defaultIssueTracker',
+  defaultMeetingProvider: 'defaultMeetingProvider'
 };
 
 exports.Prisma.MembershipScalarFieldEnum = {

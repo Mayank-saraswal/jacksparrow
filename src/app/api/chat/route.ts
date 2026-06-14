@@ -44,7 +44,7 @@ export async function POST(req: Request) {
       "Resolve relative dates to absolute ISO datetimes before calling tools.",
     ].join(" "),
     messages,
-    tools: buildAgentTools(userId),
+    tools: buildAgentTools(userId, "web", orgId ?? null),
     stopWhen: stepCountIs(6),
   });
 

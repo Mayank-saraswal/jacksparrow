@@ -14,6 +14,10 @@ export interface PlanLimits {
   aiActionsPerMonth: number;
   sharedInboxes: boolean;
   slack: boolean;
+  // Phase 2 — integration capability gates.
+  crm: boolean;
+  issueTracker: boolean;
+  meetings: boolean;
   // Phase 4 — Enterprise-only capabilities.
   sso: boolean;
   auditLogs: boolean;
@@ -27,6 +31,9 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
     aiActionsPerMonth: 100,
     sharedInboxes: false,
     slack: false,
+    crm: false,
+    issueTracker: false,
+    meetings: false,
     sso: false,
     auditLogs: false,
     retention: false,
@@ -37,6 +44,9 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
     aiActionsPerMonth: 2000,
     sharedInboxes: true,
     slack: false,
+    crm: false,
+    issueTracker: false,
+    meetings: false,
     sso: false,
     auditLogs: false,
     retention: false,
@@ -47,6 +57,9 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
     aiActionsPerMonth: 2000,
     sharedInboxes: true,
     slack: true,
+    crm: true,
+    issueTracker: true,
+    meetings: true,
     sso: false,
     auditLogs: false,
     retention: false,
@@ -57,6 +70,9 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
     aiActionsPerMonth: 10000,
     sharedInboxes: true,
     slack: true,
+    crm: true,
+    issueTracker: true,
+    meetings: true,
     sso: true,
     auditLogs: true,
     retention: true,
@@ -65,7 +81,14 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
 };
 
 /** Enterprise-gated feature flags, keyed off PlanLimits. */
-export type EnterpriseFeature = "sso" | "auditLogs" | "retention" | "analytics";
+export type EnterpriseFeature =
+  | "sso"
+  | "auditLogs"
+  | "retention"
+  | "analytics"
+  | "crm"
+  | "issueTracker"
+  | "meetings";
 
 export function planLimits(plan: Plan): PlanLimits {
   return PLAN_LIMITS[plan];

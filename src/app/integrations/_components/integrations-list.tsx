@@ -19,7 +19,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-type SupportedPlugin = "gmail" | "googlecalendar" | "outlook";
+type SupportedPlugin =
+  | "gmail"
+  | "googlecalendar"
+  | "outlook"
+  | "notion"
+  | "zoom";
+
+const BACKFILL_PLUGINS = ["gmail", "googlecalendar", "outlook"] as const;
+type BackfillPlugin = (typeof BACKFILL_PLUGINS)[number];
+
+function isBackfillPlugin(p: string): p is BackfillPlugin {
+  return (BACKFILL_PLUGINS as readonly string[]).includes(p);
+}
 
 const PLUGIN_META: Record<
   SupportedPlugin,
@@ -39,6 +51,16 @@ const PLUGIN_META: Record<
     name: "Outlook",
     description: "Read, send, and organize email from your Microsoft account.",
     logo: "/logo/outlook.svg",
+  },
+  notion: {
+    name: "Notion",
+    description: "Save email threads and summaries to your Notion workspace.",
+    logo: "/logo/notion.svg",
+  },
+  zoom: {
+    name: "Zoom",
+    description: "Attach Zoom meeting links to calendar events you create.",
+    logo: "/logo/zoom.svg",
   },
 };
 
@@ -60,8 +82,11 @@ export function IntegrationsList() {
       const statuses = statusQuery.data;
       if (!sync || !statuses) return 2500;
       const anySyncing = statuses.some(
-        (s) => s.state === "connected" && sync[s.plugin].backfilledAt == null,
-      );
+          (s) =>
+            s.state === "connected" &&
+            isBackfillPlugin(s.plugin) &&
+            sync[s.plugin].backfilledAt == null,
+        );
       return anySyncing ? 2500 : false;
     },
   });
@@ -92,9 +117,12 @@ export function IntegrationsList() {
         const meta = PLUGIN_META[plugin];
         const connected = state === "connected";
         const missingCreds = state === "missing_credentials";
-        const backfilledAt = sync?.[plugin]?.backfilledAt ?? null;
-        const syncing = connected && backfilledAt == null;
-        const synced = connected && backfilledAt != null;
+        const backfillCapable = isBackfillPlugin(plugin);
+        const backfilledAt =
+          backfillCapable && sync ? sync[plugin].backfilledAt : null;
+        // Non-backfill integrations (Notion/Zoom) are "synced" once connected.
+        const syncing = connected && backfillCapable && backfilledAt == null;
+        const synced = connected && (!backfillCapable || backfilledAt != null);
         const isResyncing =
           resync.isPending && resync.variables?.plugin === plugin;
 
@@ -163,17 +191,21 @@ export function IntegrationsList() {
                   <Button asChild variant="outline" size="sm">
                     <a href={`/api/integrations/${plugin}/connect`}>Reconnect</a>
                   </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    disabled={syncing || isResyncing}
-                    onClick={() => resync.mutate({ plugin })}
-                  >
-                    <ArrowsClockwise
-                      className={isResyncing ? "animate-spin" : ""}
-                    />
-                    Resync
-                  </Button>
+                  {backfillCapable && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      disabled={syncing || isResyncing}
+                      onClick={() => {
+                        if (isBackfillPlugin(plugin)) resync.mutate({ plugin });
+                      }}
+                    >
+                      <ArrowsClockwise
+                        className={isResyncing ? "animate-spin" : ""}
+                      />
+                      Resync
+                    </Button>
+                  )}
                 </>
               ) : (
                 <Button

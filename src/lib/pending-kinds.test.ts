@@ -30,6 +30,63 @@ describe("pending kind registry", () => {
       ]),
     );
   });
+
+  it("includes the Phase 2 integration write kinds", () => {
+    expect(PENDING_KINDS).toEqual(
+      expect.arrayContaining([
+        "hubspot_log_email",
+        "hubspot_create_task",
+        "notion_create_page",
+        "notion_append_block",
+        "linear_create_issue",
+        "jira_create_issue",
+      ]),
+    );
+  });
+});
+
+describe("summarizePendingAction — Phase 2 kinds", () => {
+  it("summarizes hubspot/notion/issue kinds", () => {
+    expect(
+      summarizePendingAction("hubspot_log_email", {
+        orgId: "o",
+        contactEmail: "a@x.com",
+        threadId: "t",
+        subject: "Hi",
+        body: "b",
+      }),
+    ).toContain("a@x.com");
+    expect(
+      summarizePendingAction("notion_create_page", {
+        title: "Notes",
+        contentMarkdown: "# x",
+      }),
+    ).toContain('"Notes"');
+    expect(
+      summarizePendingAction("linear_create_issue", {
+        orgId: "o",
+        teamId: "tm",
+        title: "Bug",
+        description: "",
+      }),
+    ).toContain("Linear issue");
+    expect(
+      summarizePendingAction("jira_create_issue", {
+        orgId: "o",
+        projectKey: "ENG",
+        issueType: "Bug",
+        summary: "Crash",
+        description: "",
+      }),
+    ).toContain("ENG");
+  });
+
+  it("provides confirmation copy for Phase 2 kinds", () => {
+    expect(confirmationCopy("hubspot_log_email")).toContain("HubSpot");
+    expect(confirmationCopy("notion_create_page")).toContain("Notion");
+    expect(confirmationCopy("linear_create_issue")).toContain("Linear");
+    expect(confirmationCopy("jira_create_issue")).toContain("Jira");
+  });
 });
 
 describe("summarizePendingAction — new kinds", () => {

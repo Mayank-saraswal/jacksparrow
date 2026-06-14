@@ -53,6 +53,7 @@ export function EventDialog({
   const [location, setLocation] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [attendees, setAttendees] = React.useState("");
+  const [addMeet, setAddMeet] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
@@ -74,6 +75,7 @@ export function EventDialog({
       setLocation("");
       setDescription("");
       setAttendees("");
+      setAddMeet(true);
     }
   }, [open, event, defaultStart]);
 
@@ -112,7 +114,7 @@ export function EventDialog({
     if (isEdit && event) {
       update.mutate({ ...payload, eventId: event.id });
     } else {
-      create.mutate(payload);
+      create.mutate({ ...payload, addMeet });
     }
   };
 
@@ -166,6 +168,18 @@ export function EventDialog({
             placeholder="Description"
             className="min-h-20"
           />
+
+          {!isEdit && (
+            <label className="flex items-center gap-2 text-xs text-muted-foreground">
+              <input
+                type="checkbox"
+                checked={addMeet}
+                onChange={(e) => setAddMeet(e.target.checked)}
+                className="size-3.5 accent-primary"
+              />
+              Add Google Meet video link (invite emailed to attendees)
+            </label>
+          )}
 
           {canRespond && event && (
             <div className="flex items-center gap-1.5 rounded-lg border border-border p-2">

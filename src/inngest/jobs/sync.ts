@@ -4,6 +4,7 @@ import { embedText, toVectorLiteral } from "@/server/embeddings";
 import { parseTenantId } from "@/server/corsair";
 import { parseAddress } from "@/lib/email";
 import { embeddingContentHash } from "@/lib/content-hash";
+import { logger } from "@/server/logger";
 import {
   ownerForContext,
   assertWithinLimit,
@@ -12,6 +13,14 @@ import {
 import { captureException } from "@/server/observability/sentry";
 import { pageOnCall } from "@/server/observability/pagerduty";
 import { scoreThread } from "./shared";
+
+/** Plugins whose webhooks feed the in-app sync_items feed (inbox/calendar). */
+const SYNCED_PLUGINS = new Set([
+  "gmail",
+  "outlook",
+  "googlecalendar",
+  "slack",
+]);
 
 /**
  * Realtime sync pipeline (Phase 5). Emitted from the Corsair webhook route when
@@ -195,6 +204,18 @@ export const corsairWebhookReceived = inngest.createFunction(
     });
 
     if (!entity) return { skipped: "entity-not-found" };
+
+    // Phase 2: integration webhooks (HubSpot/Notion/Linear/Jira/Zoom/Teams) are
+    // not part of the inbox/calendar feed. Don't silently coerce them into the
+    // gmail branch — log and skip so we never write bogus sync_items.
+    if (!SYNCED_PLUGINS.has(plugin)) {
+      logger.info("sync: skipping non-feed integration webhook", {
+        tenantId,
+        plugin,
+        corsairEntityId,
+      });
+      return { skipped: "unsynced-plugin", plugin };
+    }
 
     const meta = deriveMeta(
       plugin,

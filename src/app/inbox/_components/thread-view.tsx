@@ -19,6 +19,7 @@ import { Separator } from "@/components/ui/separator";
 import { InviteCard } from "./invite-card";
 import { SnoozePopover } from "./snooze-popover";
 import { SummaryCard } from "./summary-card";
+import { CrmPanel } from "./crm-panel";
 import { useToast } from "@/app/_components/toast";
 import type { ComposeInitial } from "./compose-sheet";
 
@@ -242,6 +243,16 @@ export function ThreadView({
         <div className="p-4 pb-0">
           <SummaryCard threadId={thread.data.threadId} autoRender={autoRender} />
         </div>
+        {counterpartEmail && (
+          <div className="p-4 pb-0">
+            <CrmPanel
+              threadId={thread.data.threadId}
+              contactEmail={counterpartEmail}
+              subject={subject}
+              body={(last?.bodyText ?? last?.snippet ?? "").slice(0, 4000)}
+            />
+          </div>
+        )}
         {thread.data.invite && (
           <div className="p-4 pb-0">
             <InviteCard invite={thread.data.invite} />

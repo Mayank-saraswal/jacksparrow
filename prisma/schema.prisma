@@ -406,6 +406,11 @@ model Organization {
   // Org toggle: when off, analytics show org totals only (no per-member rows).
   memberLevelAnalytics Boolean @default(true) @map("member_level_analytics")
 
+  // Phase 2: which provider the generic "create issue" / meeting tools prefer
+  // when more than one is connected for the org.
+  defaultIssueTracker String? @map("default_issue_tracker")
+  defaultMeetingProvider String? @map("default_meeting_provider")
+
   memberships     Membership[]
   sharedInboxes   SharedInbox[]
   ssoConnections  SsoConnection[]

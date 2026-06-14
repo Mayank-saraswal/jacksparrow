@@ -1,6 +1,7 @@
   import { billingRouter } from "@/server/api/routers/billing";
 import { calendarRouter } from "@/server/api/routers/calendar";
 import { channelsRouter } from "@/server/api/routers/channels";
+import { crmRouter } from "@/server/api/routers/crm";
 import { draftsRouter } from "@/server/api/routers/drafts";
 import { followupsRouter } from "@/server/api/routers/followups";
 import { inboxRouter } from "@/server/api/routers/inbox";
@@ -29,6 +30,7 @@ export const appRouter = createTRPCRouter({
   inbox: inboxRouter,
   calendar: calendarRouter,
   triage: triageRouter,
+  crm: crmRouter,
   pending: pendingRouter,
   search: searchRouter,
   preferences: preferencesRouter,

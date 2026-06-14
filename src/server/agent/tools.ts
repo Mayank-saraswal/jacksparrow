@@ -6,13 +6,18 @@ import { z } from "zod";
 import type { Prisma } from "../../../generated/prisma";
 import { env } from "@/env";
 import { db } from "@/server/db";
-import { getTenant, type TenantRef } from "@/server/corsair";
+import { getTenant, getOrgTenant, isConnected, type TenantRef } from "@/server/corsair";
 import { getMailProvider, resolveMailPlugin } from "@/server/mail/provider";
+import { resolveIssueTracker } from "@/server/issues/provider";
+import { availableMeetingProviders } from "@/server/meetings/provider";
+import { getMembership } from "@/server/authz";
 import { normalizeEvent, type RawCalEvent } from "@/server/calendar";
 import { embedText, toVectorLiteral } from "@/server/embeddings";
 import { resolveThreadSummary } from "@/server/summary";
 import {
   ownerForContext,
+  orgOwner,
+  hasFeature,
   assertWithinLimit,
   incrementUsage,
 } from "@/server/billing/entitlements";
@@ -57,9 +62,30 @@ async function createPending(
   return `Drafted — awaiting the user's approval: ${summary}. This has NOT been done yet; tell the user to approve it.`;
 }
 
-export function buildAgentTools(userId: string, channel = "web") {
+export function buildAgentTools(
+  userId: string,
+  channel = "web",
+  orgId: string | null = null,
+) {
   const tenant = getTenant(userId);
   const ref: TenantRef = { kind: "user", userId };
+
+  /**
+   * Gate an org-level integration: requires an active org, membership, and the
+   * plan capability. Returns a structured error the tool surfaces to the model.
+   */
+  const orgGate = async (
+    feature: "crm" | "issueTracker" | "meetings",
+  ): Promise<
+    { ok: true; orgId: string } | { ok: false; error: Record<string, string> }
+  > => {
+    if (!orgId) return { ok: false, error: { error: "no-org" } };
+    const member = await getMembership(orgId, userId);
+    if (!member) return { ok: false, error: { error: "forbidden" } };
+    if (!(await hasFeature(orgOwner(orgId), feature)))
+      return { ok: false, error: { error: "upgrade-required" } };
+    return { ok: true, orgId };
+  };
 
   return {
     // ── Read-only (pass through) ──────────────────────────────────────────
@@ -208,7 +234,7 @@ export function buildAgentTools(userId: string, channel = "web") {
 
     createEvent: tool({
       description:
-        "Draft a calendar event (ISO start/end). Creates a pending action the user must approve.",
+        "Draft a calendar event (ISO start/end) and invite attendees (e.g. a client). Set meetingProvider to add a video link: 'meet' (Google Meet — default for Google users, link lands on the Google Calendar event and the invite is emailed to attendees), 'zoom' (needs Zoom connected), or 'teams' (needs a Microsoft/Outlook account). Call meetingAvailableProviders to see what's connected. Creates a pending action the user must approve.",
       inputSchema: createEventSchema,
       execute: (args) => createPending(userId, channel, "create_event", args),
     }),
@@ -282,6 +308,257 @@ export function buildAgentTools(userId: string, channel = "web") {
         }
         return createPending(userId, channel, "schedule_send", args);
       },
+    }),
+
+    // ── HubSpot (org-level CRM) ───────────────────────────────────────────
+    hubspotFindContact: tool({
+      description:
+        "Look up a HubSpot contact by email (org CRM). Returns id, name, company, lifecycle stage.",
+      inputSchema: z.object({ email: z.string().email() }),
+      execute: async ({ email }) => {
+        const gate = await orgGate("crm");
+        if (!gate.ok) return gate.error;
+        if (!(await isConnected({ kind: "org", orgId: gate.orgId }, "hubspot")))
+          return { error: "not-connected", plugin: "hubspot" };
+        try {
+          const orgTenant = getOrgTenant(gate.orgId);
+          const res = await orgTenant.hubspot.api.contacts.search({
+            query: email,
+            limit: 1,
+            properties: ["email", "firstname", "lastname", "company", "lifecyclestage"],
+          });
+          const contact = (res as { results?: Record<string, unknown>[] })
+            .results?.[0];
+          if (!contact) return { found: false };
+          return { found: true, contact };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    hubspotContactContext: tool({
+      description:
+        "HubSpot deal context for a contact email (org CRM): open deals (name, stage, amount, close date).",
+      inputSchema: z.object({ email: z.string().email() }),
+      execute: async ({ email }) => {
+        const gate = await orgGate("crm");
+        if (!gate.ok) return gate.error;
+        if (!(await isConnected({ kind: "org", orgId: gate.orgId }, "hubspot")))
+          return { error: "not-connected", plugin: "hubspot" };
+        try {
+          const orgTenant = getOrgTenant(gate.orgId);
+          const deals = await orgTenant.hubspot.api.deals.search({
+            query: email,
+            limit: 10,
+            properties: ["dealname", "dealstage", "amount", "closedate"],
+          });
+          return {
+            deals:
+              (deals as { results?: Record<string, unknown>[] }).results ?? [],
+          };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    hubspotLogEmail: tool({
+      description:
+        "Log an email thread to a HubSpot contact (org CRM). Creates a pending action the user must approve.",
+      inputSchema: z.object({
+        contactEmail: z.string().email(),
+        threadId: z.string().min(1),
+        subject: z.string().default(""),
+        body: z.string().default(""),
+        occurredAt: z.string().datetime().optional(),
+      }),
+      execute: async (args) => {
+        const gate = await orgGate("crm");
+        if (!gate.ok) return gate.error;
+        return createPending(userId, channel, "hubspot_log_email", {
+          ...args,
+          orgId: gate.orgId,
+        });
+      },
+    }),
+
+    hubspotCreateTask: tool({
+      description:
+        "Create a HubSpot task for a contact (org CRM). Creates a pending action the user must approve.",
+      inputSchema: z.object({
+        contactEmail: z.string().email(),
+        title: z.string().min(1),
+        dueDate: z.string().datetime().optional(),
+        notes: z.string().optional(),
+      }),
+      execute: async (args) => {
+        const gate = await orgGate("crm");
+        if (!gate.ok) return gate.error;
+        return createPending(userId, channel, "hubspot_create_task", {
+          ...args,
+          orgId: gate.orgId,
+        });
+      },
+    }),
+
+    // ── Notion (user-level docs) ──────────────────────────────────────────
+    notionSearch: tool({
+      description: "Search the user's Notion pages/databases by text.",
+      inputSchema: z.object({
+        query: z.string().min(1),
+        limit: z.number().min(1).max(20).default(10),
+      }),
+      execute: async ({ query, limit }) => {
+        if (!(await isConnected(ref, "notion")))
+          return { error: "not-connected", plugin: "notion" };
+        try {
+          const res = await tenant.notion.api.pages.searchPage({
+            query,
+            page_size: limit,
+          });
+          const results =
+            (res as { results?: Record<string, unknown>[] }).results ?? [];
+          return { results };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    notionCreatePage: tool({
+      description:
+        "Create a Notion page from markdown content (e.g. an email thread). Creates a pending action the user must approve.",
+      inputSchema: z.object({
+        parentId: z.string().optional(),
+        title: z.string().min(1),
+        contentMarkdown: z.string().default(""),
+      }),
+      execute: async (args) => {
+        if (!(await isConnected(ref, "notion")))
+          return { error: "not-connected", plugin: "notion" };
+        return createPending(userId, channel, "notion_create_page", args);
+      },
+    }),
+
+    notionAppendBlock: tool({
+      description:
+        "Append markdown content to an existing Notion page. Creates a pending action the user must approve.",
+      inputSchema: z.object({
+        pageId: z.string().min(1),
+        contentMarkdown: z.string().min(1),
+      }),
+      execute: async (args) => {
+        if (!(await isConnected(ref, "notion")))
+          return { error: "not-connected", plugin: "notion" };
+        return createPending(userId, channel, "notion_append_block", args);
+      },
+    }),
+
+    // ── Issue trackers (org-level Linear/Jira) ────────────────────────────
+    linearListTeams: tool({
+      description: "List Linear teams for the org (issue tracker).",
+      inputSchema: z.object({}),
+      execute: async () => {
+        const gate = await orgGate("issueTracker");
+        if (!gate.ok) return gate.error;
+        if (!(await isConnected({ kind: "org", orgId: gate.orgId }, "linear")))
+          return { error: "not-connected", plugin: "linear" };
+        const resolved = await resolveIssueTracker(gate.orgId, "linear");
+        if (!resolved.ok) return { error: "not-connected", plugin: "linear" };
+        try {
+          return { teams: await resolved.provider.listTargets() };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    jiraListProjects: tool({
+      description: "List Jira projects for the org (issue tracker).",
+      inputSchema: z.object({}),
+      execute: async () => {
+        const gate = await orgGate("issueTracker");
+        if (!gate.ok) return gate.error;
+        if (!(await isConnected({ kind: "org", orgId: gate.orgId }, "jira")))
+          return { error: "not-connected", plugin: "jira" };
+        const resolved = await resolveIssueTracker(gate.orgId, "jira");
+        if (!resolved.ok) return { error: "not-connected", plugin: "jira" };
+        try {
+          return { projects: await resolved.provider.listTargets() };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    searchIssues: tool({
+      description:
+        "Search existing issues in the org's issue tracker (Linear or Jira, whichever is connected).",
+      inputSchema: z.object({
+        query: z.string().min(1),
+        provider: z.enum(["linear", "jira"]).optional(),
+      }),
+      execute: async ({ query, provider }) => {
+        const gate = await orgGate("issueTracker");
+        if (!gate.ok) return gate.error;
+        const resolved = await resolveIssueTracker(gate.orgId, provider);
+        if (!resolved.ok) return { error: "not-connected", plugin: "issues" };
+        try {
+          return {
+            provider: resolved.provider.tracker,
+            issues: await resolved.provider.searchIssues(query),
+          };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    createIssue: tool({
+      description:
+        "Create an issue from an email (org issue tracker). Routes to Linear or Jira based on what's connected. `target` is the Linear teamId or Jira projectKey. Creates a pending action the user must approve.",
+      inputSchema: z.object({
+        target: z.string().min(1),
+        title: z.string().min(1),
+        description: z.string().default(""),
+        provider: z.enum(["linear", "jira"]).optional(),
+        issueType: z.string().optional(),
+        priority: z.number().int().min(0).max(4).optional(),
+        assigneeId: z.string().optional(),
+      }),
+      execute: async (args) => {
+        const gate = await orgGate("issueTracker");
+        if (!gate.ok) return gate.error;
+        const resolved = await resolveIssueTracker(gate.orgId, args.provider);
+        if (!resolved.ok) return { error: "not-connected", plugin: "issues" };
+        if (resolved.provider.tracker === "linear") {
+          return createPending(userId, channel, "linear_create_issue", {
+            orgId: gate.orgId,
+            teamId: args.target,
+            title: args.title,
+            description: args.description,
+            ...(args.priority !== undefined ? { priority: args.priority } : {}),
+            ...(args.assigneeId ? { assigneeId: args.assigneeId } : {}),
+          });
+        }
+        return createPending(userId, channel, "jira_create_issue", {
+          orgId: gate.orgId,
+          projectKey: args.target,
+          issueType: args.issueType ?? "Task",
+          summary: args.title,
+          description: args.description,
+          ...(args.assigneeId ? { assigneeId: args.assigneeId } : {}),
+        });
+      },
+    }),
+
+    // ── Meeting links ─────────────────────────────────────────────────────
+    meetingAvailableProviders: tool({
+      description:
+        "Which video meeting providers (zoom/teams) are connected, for attaching a join link to a new calendar event.",
+      inputSchema: z.object({}),
+      execute: () => availableMeetingProviders(userId, orgId),
     }),
   };
 }

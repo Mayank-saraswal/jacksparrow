@@ -27804,6 +27804,8 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     memberLevelAnalytics: boolean | null
+    defaultIssueTracker: string | null
+    defaultMeetingProvider: string | null
   }
 
   export type OrganizationMaxAggregateOutputType = {
@@ -27812,6 +27814,8 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     memberLevelAnalytics: boolean | null
+    defaultIssueTracker: string | null
+    defaultMeetingProvider: string | null
   }
 
   export type OrganizationCountAggregateOutputType = {
@@ -27820,6 +27824,8 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     memberLevelAnalytics: number
+    defaultIssueTracker: number
+    defaultMeetingProvider: number
     _all: number
   }
 
@@ -27830,6 +27836,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     memberLevelAnalytics?: true
+    defaultIssueTracker?: true
+    defaultMeetingProvider?: true
   }
 
   export type OrganizationMaxAggregateInputType = {
@@ -27838,6 +27846,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     memberLevelAnalytics?: true
+    defaultIssueTracker?: true
+    defaultMeetingProvider?: true
   }
 
   export type OrganizationCountAggregateInputType = {
@@ -27846,6 +27856,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     memberLevelAnalytics?: true
+    defaultIssueTracker?: true
+    defaultMeetingProvider?: true
     _all?: true
   }
 
@@ -27927,6 +27939,8 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     memberLevelAnalytics: boolean
+    defaultIssueTracker: string | null
+    defaultMeetingProvider: string | null
     _count: OrganizationCountAggregateOutputType | null
     _min: OrganizationMinAggregateOutputType | null
     _max: OrganizationMaxAggregateOutputType | null
@@ -27952,6 +27966,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: boolean
+    defaultMeetingProvider?: boolean
     memberships?: boolean | Organization$membershipsArgs<ExtArgs>
     sharedInboxes?: boolean | Organization$sharedInboxesArgs<ExtArgs>
     ssoConnections?: boolean | Organization$ssoConnectionsArgs<ExtArgs>
@@ -27967,6 +27983,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: boolean
+    defaultMeetingProvider?: boolean
   }, ExtArgs["result"]["organization"]>
 
   export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -27975,6 +27993,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: boolean
+    defaultMeetingProvider?: boolean
   }, ExtArgs["result"]["organization"]>
 
   export type OrganizationSelectScalar = {
@@ -27983,9 +28003,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: boolean
+    defaultMeetingProvider?: boolean
   }
 
-  export type OrganizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "memberLevelAnalytics", ExtArgs["result"]["organization"]>
+  export type OrganizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "memberLevelAnalytics" | "defaultIssueTracker" | "defaultMeetingProvider", ExtArgs["result"]["organization"]>
   export type OrganizationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     memberships?: boolean | Organization$membershipsArgs<ExtArgs>
     sharedInboxes?: boolean | Organization$sharedInboxesArgs<ExtArgs>
@@ -28014,6 +28036,8 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       memberLevelAnalytics: boolean
+      defaultIssueTracker: string | null
+      defaultMeetingProvider: string | null
     }, ExtArgs["result"]["organization"]>
     composites: {}
   }
@@ -28448,6 +28472,8 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Organization", 'DateTime'>
     readonly updatedAt: FieldRef<"Organization", 'DateTime'>
     readonly memberLevelAnalytics: FieldRef<"Organization", 'Boolean'>
+    readonly defaultIssueTracker: FieldRef<"Organization", 'String'>
+    readonly defaultMeetingProvider: FieldRef<"Organization", 'String'>
   }
     
 
@@ -44548,7 +44574,9 @@ export namespace Prisma {
     name: 'name',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    memberLevelAnalytics: 'memberLevelAnalytics'
+    memberLevelAnalytics: 'memberLevelAnalytics',
+    defaultIssueTracker: 'defaultIssueTracker',
+    defaultMeetingProvider: 'defaultMeetingProvider'
   };
 
   export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
@@ -46371,6 +46399,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Organization"> | Date | string
     updatedAt?: DateTimeFilter<"Organization"> | Date | string
     memberLevelAnalytics?: BoolFilter<"Organization"> | boolean
+    defaultIssueTracker?: StringNullableFilter<"Organization"> | string | null
+    defaultMeetingProvider?: StringNullableFilter<"Organization"> | string | null
     memberships?: MembershipListRelationFilter
     sharedInboxes?: SharedInboxListRelationFilter
     ssoConnections?: SsoConnectionListRelationFilter
@@ -46385,6 +46415,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     memberLevelAnalytics?: SortOrder
+    defaultIssueTracker?: SortOrderInput | SortOrder
+    defaultMeetingProvider?: SortOrderInput | SortOrder
     memberships?: MembershipOrderByRelationAggregateInput
     sharedInboxes?: SharedInboxOrderByRelationAggregateInput
     ssoConnections?: SsoConnectionOrderByRelationAggregateInput
@@ -46402,6 +46434,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Organization"> | Date | string
     updatedAt?: DateTimeFilter<"Organization"> | Date | string
     memberLevelAnalytics?: BoolFilter<"Organization"> | boolean
+    defaultIssueTracker?: StringNullableFilter<"Organization"> | string | null
+    defaultMeetingProvider?: StringNullableFilter<"Organization"> | string | null
     memberships?: MembershipListRelationFilter
     sharedInboxes?: SharedInboxListRelationFilter
     ssoConnections?: SsoConnectionListRelationFilter
@@ -46416,6 +46450,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     memberLevelAnalytics?: SortOrder
+    defaultIssueTracker?: SortOrderInput | SortOrder
+    defaultMeetingProvider?: SortOrderInput | SortOrder
     _count?: OrganizationCountOrderByAggregateInput
     _max?: OrganizationMaxOrderByAggregateInput
     _min?: OrganizationMinOrderByAggregateInput
@@ -46430,6 +46466,8 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Organization"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Organization"> | Date | string
     memberLevelAnalytics?: BoolWithAggregatesFilter<"Organization"> | boolean
+    defaultIssueTracker?: StringNullableWithAggregatesFilter<"Organization"> | string | null
+    defaultMeetingProvider?: StringNullableWithAggregatesFilter<"Organization"> | string | null
   }
 
   export type MembershipWhereInput = {
@@ -49002,6 +49040,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
@@ -49016,6 +49056,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
@@ -49030,6 +49072,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
@@ -49044,6 +49088,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -49058,6 +49104,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
   }
 
   export type OrganizationUpdateManyMutationInput = {
@@ -49066,6 +49114,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrganizationUncheckedUpdateManyInput = {
@@ -49074,6 +49124,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MembershipCreateInput = {
@@ -51295,6 +51347,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     memberLevelAnalytics?: SortOrder
+    defaultIssueTracker?: SortOrder
+    defaultMeetingProvider?: SortOrder
   }
 
   export type OrganizationMaxOrderByAggregateInput = {
@@ -51303,6 +51357,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     memberLevelAnalytics?: SortOrder
+    defaultIssueTracker?: SortOrder
+    defaultMeetingProvider?: SortOrder
   }
 
   export type OrganizationMinOrderByAggregateInput = {
@@ -51311,6 +51367,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     memberLevelAnalytics?: SortOrder
+    defaultIssueTracker?: SortOrder
+    defaultMeetingProvider?: SortOrder
   }
 
   export type OrganizationScalarRelationFilter = {
@@ -56692,6 +56750,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyCreateNestedOneWithoutOrganizationInput
@@ -56705,6 +56765,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyUncheckedCreateNestedOneWithoutOrganizationInput
@@ -56734,6 +56796,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUpdateOneWithoutOrganizationNestedInput
@@ -56747,6 +56811,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUncheckedUpdateOneWithoutOrganizationNestedInput
@@ -56760,6 +56826,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyCreateNestedOneWithoutOrganizationInput
@@ -56773,6 +56841,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyUncheckedCreateNestedOneWithoutOrganizationInput
@@ -56886,6 +56956,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUpdateOneWithoutOrganizationNestedInput
@@ -56899,6 +56971,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUncheckedUpdateOneWithoutOrganizationNestedInput
@@ -57302,6 +57376,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyCreateNestedOneWithoutOrganizationInput
@@ -57315,6 +57391,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyUncheckedCreateNestedOneWithoutOrganizationInput
@@ -57344,6 +57422,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUpdateOneWithoutOrganizationNestedInput
@@ -57357,6 +57437,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUncheckedUpdateOneWithoutOrganizationNestedInput
@@ -57370,6 +57452,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
@@ -57383,6 +57467,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
@@ -57412,6 +57498,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
@@ -57425,6 +57513,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -57438,6 +57528,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
@@ -57451,6 +57543,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
@@ -57480,6 +57574,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
@@ -57493,6 +57589,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -57506,6 +57604,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
@@ -57519,6 +57619,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     memberLevelAnalytics?: boolean
+    defaultIssueTracker?: string | null
+    defaultMeetingProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
@@ -57548,6 +57650,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
@@ -57561,6 +57665,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
+    defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput

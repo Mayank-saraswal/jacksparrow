@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 import { getTenant } from "@/server/corsair";
+import { createGoogleCalendarEvent } from "@/server/calendar/google-event";
 import {
   normalizeEvent,
   type CalendarSummary,
@@ -80,9 +81,33 @@ export const calendarRouter = createTRPCRouter({
     .input(
       eventBodyInput.extend({
         calendarId: z.string().default("primary"),
+        // Attach a native Google Meet link to the event (Calendar API
+        // conferenceData). The invite + Meet link are emailed to attendees.
+        addMeet: z.boolean().default(false),
       }),
     )
     .mutation(async ({ ctx, input }) => {
+      // Google Meet needs conferenceData, which the Corsair wrapper strips — so
+      // a Meet event goes through the direct Calendar REST helper.
+      if (input.addMeet && input.start.dateTime && input.end.dateTime) {
+        const result = await createGoogleCalendarEvent(ctx.userId, {
+          calendarId: input.calendarId,
+          summary: input.summary,
+          description: input.description,
+          location: input.location,
+          startDateTime: input.start.dateTime,
+          endDateTime: input.end.dateTime,
+          timeZone: input.start.timeZone ?? "UTC",
+          attendees: input.attendees,
+          withMeet: true,
+        });
+        return {
+          id: result.id ?? "",
+          meetLink: result.meetLink,
+          htmlLink: result.htmlLink,
+        };
+      }
+
       const tenant = getTenant(ctx.userId);
       const result = await tenant.googlecalendar.api.events.create({
         calendarId: input.calendarId,
