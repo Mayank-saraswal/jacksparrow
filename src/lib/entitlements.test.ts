@@ -111,14 +111,32 @@ describe("monthlyPeriodStart", () => {
 });
 
 describe("limit checks", () => {
-  it("metricLimit follows the plan's AI budget", () => {
+  it("metricLimit returns the per-metric budget, not one shared cap", () => {
     expect(metricLimit("free", "ai_action")).toBe(100);
-    expect(metricLimit("pro", "summary")).toBe(2000);
+    expect(metricLimit("free", "embedding")).toBe(1000);
+    expect(metricLimit("free", "summary")).toBe(50);
+    expect(metricLimit("pro", "ai_action")).toBe(2000);
+    expect(metricLimit("pro", "summary")).toBe(1000);
+    expect(metricLimit("pro", "embedding")).toBe(20000);
+    expect(metricLimit("enterprise", "summary")).toBe(5000);
   });
 
-  it("isWithinLimit is strict (used < limit)", () => {
+  it("ai_action budget equals aiActionsPerMonth for every plan", () => {
+    for (const plan of ["free", "pro", "business", "enterprise"] as const) {
+      expect(metricLimit(plan, "ai_action")).toBe(
+        PLAN_LIMITS[plan].aiActionsPerMonth,
+      );
+    }
+  });
+
+  it("isWithinLimit is strict (used < limit) and per-metric", () => {
     expect(isWithinLimit("free", "ai_action", 99)).toBe(true);
     expect(isWithinLimit("free", "ai_action", 100)).toBe(false);
+    expect(isWithinLimit("free", "summary", 49)).toBe(true);
+    expect(isWithinLimit("free", "summary", 50)).toBe(false);
+    // summary cap is independent of the agent-action cap
+    expect(isWithinLimit("free", "summary", 60)).toBe(false);
+    expect(isWithinLimit("free", "ai_action", 60)).toBe(true);
   });
 });
 

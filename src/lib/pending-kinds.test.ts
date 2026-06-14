@@ -11,6 +11,9 @@ import {
   bulkLabelSchema,
   snoozeThreadSchema,
   scheduleSendSchema,
+  taskCreateSchema,
+  supportCreateTicketSchema,
+  supportReplyTicketSchema,
 } from "./pending-kinds";
 
 describe("pending kind registry", () => {
@@ -42,6 +45,88 @@ describe("pending kind registry", () => {
         "jira_create_issue",
       ]),
     );
+  });
+
+  it("includes the Phase 3 integration write kinds", () => {
+    expect(PENDING_KINDS).toEqual(
+      expect.arrayContaining([
+        "task_create",
+        "support_create_ticket",
+        "support_reply_ticket",
+        "support_update_ticket",
+      ]),
+    );
+  });
+});
+
+describe("summarizePendingAction — Phase 3 kinds", () => {
+  it("summarizes task + support kinds", () => {
+    expect(
+      summarizePendingAction("task_create", {
+        title: "Follow up with Acme",
+        provider: "todoist",
+      }),
+    ).toContain("Follow up with Acme");
+    expect(
+      summarizePendingAction("support_create_ticket", {
+        orgId: "o",
+        requesterEmail: "c@x.com",
+        subject: "Login broken",
+        body: "",
+      }),
+    ).toContain("c@x.com");
+    expect(
+      summarizePendingAction("support_reply_ticket", {
+        orgId: "o",
+        ticketId: "42",
+        body: "On it",
+        public: true,
+      }),
+    ).toContain("Reply to");
+    expect(
+      summarizePendingAction("support_reply_ticket", {
+        orgId: "o",
+        ticketId: "42",
+        body: "note",
+        public: false,
+      }),
+    ).toContain("internal note");
+    expect(
+      summarizePendingAction("support_update_ticket", {
+        orgId: "o",
+        ticketId: "42",
+        status: "solved",
+      }),
+    ).toContain("status=solved");
+  });
+
+  it("provides confirmation copy for Phase 3 kinds", () => {
+    expect(confirmationCopy("task_create")).toContain("Task");
+    expect(confirmationCopy("support_create_ticket")).toContain("Ticket");
+    expect(confirmationCopy("support_reply_ticket")).toContain("Ticket");
+    expect(confirmationCopy("support_update_ticket")).toContain("Ticket");
+  });
+
+  it("validates Phase 3 schemas", () => {
+    expect(
+      taskCreateSchema.safeParse({ title: "x", provider: "asana" }).success,
+    ).toBe(true);
+    expect(taskCreateSchema.safeParse({ title: "" }).success).toBe(false);
+    expect(
+      supportReplyTicketSchema.safeParse({
+        orgId: "o",
+        ticketId: "1",
+        body: "hi",
+        public: true,
+      }).success,
+    ).toBe(true);
+    expect(
+      supportCreateTicketSchema.safeParse({
+        orgId: "o",
+        requesterEmail: "not-an-email",
+        subject: "s",
+      }).success,
+    ).toBe(false);
   });
 });
 

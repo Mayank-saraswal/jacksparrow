@@ -15,6 +15,8 @@ export const AUDIT_ACTIONS = [
   "integration.issue_created",
   "integration.task_created",
   "integration.meeting_created",
+  "integration.ticket_created",
+  "integration.ticket_updated",
   "shared_inbox.created",
   "shared_inbox.deleted",
   "thread.assigned",

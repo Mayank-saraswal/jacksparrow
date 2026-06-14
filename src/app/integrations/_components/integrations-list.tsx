@@ -24,7 +24,12 @@ type SupportedPlugin =
   | "googlecalendar"
   | "outlook"
   | "notion"
-  | "zoom";
+  | "zoom"
+  | "cal"
+  | "calendly"
+  | "fireflies"
+  | "todoist"
+  | "asana";
 
 const BACKFILL_PLUGINS = ["gmail", "googlecalendar", "outlook"] as const;
 type BackfillPlugin = (typeof BACKFILL_PLUGINS)[number];
@@ -61,6 +66,31 @@ const PLUGIN_META: Record<
     name: "Zoom",
     description: "Attach Zoom meeting links to calendar events you create.",
     logo: "/logo/zoom.svg",
+  },
+  cal: {
+    name: "Cal.com",
+    description: "Insert Cal.com booking links into email drafts.",
+    logo: "/logo/cal.svg",
+  },
+  calendly: {
+    name: "Calendly",
+    description: "Insert Calendly scheduling links into email drafts.",
+    logo: "/logo/calendly.svg",
+  },
+  fireflies: {
+    name: "Fireflies",
+    description: "Turn meeting transcripts into summaries, tasks, and follow-ups.",
+    logo: "/logo/fireflies.svg",
+  },
+  todoist: {
+    name: "Todoist",
+    description: "Turn emails into Todoist tasks.",
+    logo: "/logo/todoist.svg",
+  },
+  asana: {
+    name: "Asana",
+    description: "Turn emails into Asana tasks.",
+    logo: "/logo/asana.svg",
   },
 };
 

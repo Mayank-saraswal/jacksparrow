@@ -101,6 +101,7 @@ model User {
   triageFeedback   TriageFeedback[]
   senderAffinities SenderAffinity[]
   ruleSuggestions  RuleSuggestion[]
+  meetingSummaries MeetingSummary[]
 
   @@map("users")
 }
@@ -172,15 +173,18 @@ model PendingAction {
 }
 
 model UserPreference {
-  id                String @id @default(cuid())
-  userId            String @unique @map("user_id")
-  splitInboxRules   Json   @default("{}") @map("split_inbox_rules")
-  shortcutOverrides Json   @default("{}") @map("shortcut_overrides")
-  undoSendSeconds   Int    @default(10) @map("undo_send_seconds")
-  followUpDays      Int    @default(3) @map("follow_up_days")
+  id                        String  @id @default(cuid())
+  userId                    String  @unique @map("user_id")
+  splitInboxRules           Json    @default("{}") @map("split_inbox_rules")
+  shortcutOverrides         Json    @default("{}") @map("shortcut_overrides")
+  undoSendSeconds           Int     @default(10) @map("undo_send_seconds")
+  followUpDays              Int     @default(3) @map("follow_up_days")
   // Which mail backend drives the inbox when both Gmail + Outlook are connected.
-  primaryMailPlugin String @default("gmail") @map("primary_mail_plugin")
-  user              User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  primaryMailPlugin         String  @default("gmail") @map("primary_mail_plugin")
+  // Phase 3 — preferred provider when multiple of a kind are connected.
+  defaultTaskProvider       String? @map("default_task_provider")
+  defaultSchedulingProvider String? @map("default_scheduling_provider")
+  user                      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("user_preferences")
 }
@@ -407,6 +411,8 @@ model Organization {
   // when more than one is connected for the org.
   defaultIssueTracker    String? @map("default_issue_tracker")
   defaultMeetingProvider String? @map("default_meeting_provider")
+  // Phase 3: preferred support desk (zendesk/intercom) when both connected.
+  defaultSupportProvider String? @map("default_support_provider")
 
   memberships     Membership[]
   sharedInboxes   SharedInbox[]
@@ -458,6 +464,9 @@ model ThreadAssignment {
   threadId        String   @map("thread_id")
   assigneeUserId  String?  @map("assignee_user_id")
   status          String   @default("open") // open | assigned | snoozed | closed
+  // Phase 3 — link to an external support ticket (Zendesk/Intercom).
+  supportProvider String?  @map("support_provider")
+  supportTicketId String?  @map("support_ticket_id")
   updatedByUserId String   @map("updated_by_user_id")
   createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz
@@ -483,6 +492,28 @@ model ThreadComment {
 
   @@index([sharedInboxId, threadId])
   @@map("thread_comments")
+}
+
+// Phase 3 — structured summary of an external meeting (Fireflies transcript).
+// Reuses the same summarizer as email threads; action items spawn FollowUps.
+model MeetingSummary {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  meetingId   String   @map("meeting_id")
+  source      String   @default("fireflies")
+  title       String   @default("")
+  tldr        String
+  keyPoints   Json     @default("[]") @map("key_points")
+  actionItems Json     @default("[]") @map("action_items")
+  attendees   Json     @default("[]")
+  occurredAt  DateTime @map("occurred_at") @db.Timestamptz
+  model       String?
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, meetingId])
+  @@index([userId, occurredAt])
+  @@map("meeting_summaries")
 }
 
 // Audit trail of everything that happened on a shared-inbox thread.

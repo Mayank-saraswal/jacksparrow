@@ -12,6 +12,13 @@ import { linear } from "@corsair-dev/linear";
 import { jira } from "@corsair-dev/jira";
 import { zoom } from "@corsair-dev/zoom";
 import { teams } from "@corsair-dev/teams";
+import { cal } from "@corsair-dev/cal";
+import { calendly } from "@corsair-dev/calendly";
+import { fireflies } from "@corsair-dev/fireflies";
+import { zendesk } from "@corsair-dev/zendesk";
+import { intercom } from "@corsair-dev/intercom";
+import { todoist } from "@corsair-dev/todoist";
+import { asana } from "@corsair-dev/asana";
 
 import { env } from "@/env";
 
@@ -41,6 +48,13 @@ function createCorsairInstance() {
       jira(),
       zoom(),
       teams(),
+      cal(),
+      calendly(),
+      fireflies(),
+      zendesk(),
+      intercom(),
+      todoist(),
+      asana(),
     ],
     database: pool,
     kek: env.CORSAIR_KEK,
@@ -70,6 +84,13 @@ export const SUPPORTED_PLUGINS = [
   "jira",
   "zoom",
   "teams",
+  "cal",
+  "calendly",
+  "fireflies",
+  "zendesk",
+  "intercom",
+  "todoist",
+  "asana",
 ] as const;
 export type RegisteredPlugin = (typeof SUPPORTED_PLUGINS)[number];
 
@@ -88,6 +109,11 @@ export const USER_PLUGINS = [
   "outlook",
   "notion",
   "zoom",
+  "cal",
+  "calendly",
+  "fireflies",
+  "todoist",
+  "asana",
 ] as const;
 /** Plugins that connect at the org level (tenant `org:{orgId}`). */
 export const ORG_PLUGINS = [
@@ -98,20 +124,28 @@ export const ORG_PLUGINS = [
   "linear",
   "jira",
   "teams",
+  "zendesk",
+  "intercom",
 ] as const;
 
 /**
- * Plan capability flag required to connect/use a plugin (Phase 2). Plugins not
- * listed here need no plan gate beyond a connection (mail/calendar/slack and the
- * user-level Notion/Zoom).
+ * Plan capability flag required to connect/use a plugin. Plugins not listed
+ * here need no plan gate beyond a connection (mail/calendar/slack, the
+ * user-level Notion/Zoom/Cal/Calendly/Todoist/Asana).
  */
 export const PLUGIN_FEATURE: Partial<
-  Record<RegisteredPlugin, "crm" | "issueTracker" | "meetings">
+  Record<
+    RegisteredPlugin,
+    "crm" | "issueTracker" | "meetings" | "support" | "meetingIntelligence"
+  >
 > = {
   hubspot: "crm",
   linear: "issueTracker",
   jira: "issueTracker",
   teams: "meetings",
+  fireflies: "meetingIntelligence",
+  zendesk: "support",
+  intercom: "support",
 };
 
 /**

@@ -10,14 +10,19 @@ export type UsageMetric = "ai_action" | "embedding" | "summary";
 export interface PlanLimits {
   /** Max connected accounts (Infinity = unlimited). */
   maxAccounts: number;
-  /** AI actions allowed per USER per month. */
+  /** AI actions allowed per USER per month (== metricLimits.ai_action). */
   aiActionsPerMonth: number;
+  /** Per-metric monthly caps so embeddings/summaries don't share one budget. */
+  metricLimits: Record<UsageMetric, number>;
   sharedInboxes: boolean;
   slack: boolean;
   // Phase 2 — integration capability gates.
   crm: boolean;
   issueTracker: boolean;
   meetings: boolean;
+  // Phase 3 — integration capability gates.
+  support: boolean;
+  meetingIntelligence: boolean;
   // Phase 4 — Enterprise-only capabilities.
   sso: boolean;
   auditLogs: boolean;
@@ -29,11 +34,14 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
   free: {
     maxAccounts: 1,
     aiActionsPerMonth: 100,
+    metricLimits: { ai_action: 100, embedding: 1000, summary: 50 },
     sharedInboxes: false,
     slack: false,
     crm: false,
     issueTracker: false,
     meetings: false,
+    support: false,
+    meetingIntelligence: false,
     sso: false,
     auditLogs: false,
     retention: false,
@@ -42,11 +50,14 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
   pro: {
     maxAccounts: Number.POSITIVE_INFINITY,
     aiActionsPerMonth: 2000,
+    metricLimits: { ai_action: 2000, embedding: 20000, summary: 1000 },
     sharedInboxes: true,
     slack: false,
     crm: false,
     issueTracker: false,
     meetings: false,
+    support: false,
+    meetingIntelligence: true,
     sso: false,
     auditLogs: false,
     retention: false,
@@ -55,11 +66,14 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
   business: {
     maxAccounts: Number.POSITIVE_INFINITY,
     aiActionsPerMonth: 2000,
+    metricLimits: { ai_action: 2000, embedding: 20000, summary: 1000 },
     sharedInboxes: true,
     slack: true,
     crm: true,
     issueTracker: true,
     meetings: true,
+    support: true,
+    meetingIntelligence: true,
     sso: false,
     auditLogs: false,
     retention: false,
@@ -68,11 +82,14 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
   enterprise: {
     maxAccounts: Number.POSITIVE_INFINITY,
     aiActionsPerMonth: 10000,
+    metricLimits: { ai_action: 10000, embedding: 200000, summary: 5000 },
     sharedInboxes: true,
     slack: true,
     crm: true,
     issueTracker: true,
     meetings: true,
+    support: true,
+    meetingIntelligence: true,
     sso: true,
     auditLogs: true,
     retention: true,
@@ -88,7 +105,9 @@ export type EnterpriseFeature =
   | "analytics"
   | "crm"
   | "issueTracker"
-  | "meetings";
+  | "meetings"
+  | "support"
+  | "meetingIntelligence";
 
 export function planLimits(plan: Plan): PlanLimits {
   return PLAN_LIMITS[plan];
@@ -151,9 +170,8 @@ export function monthlyPeriodStart(now: Date = new Date()): Date {
 
 /** The monthly cap for a metric under a plan (Infinity = unlimited). */
 export function metricLimit(plan: Plan, metric: UsageMetric): number {
-  // All three AI metrics draw from the same monthly AI-action budget.
-  void metric;
-  return planLimits(plan).aiActionsPerMonth;
+  // Per-metric budgets so embeddings/summaries don't drain the agent-action cap.
+  return planLimits(plan).metricLimits[metric];
 }
 
 /** True when one more action of `metric` is allowed given `used` so far. */

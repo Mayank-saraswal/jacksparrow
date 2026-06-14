@@ -220,7 +220,9 @@ exports.Prisma.UserPreferenceScalarFieldEnum = {
   shortcutOverrides: 'shortcutOverrides',
   undoSendSeconds: 'undoSendSeconds',
   followUpDays: 'followUpDays',
-  primaryMailPlugin: 'primaryMailPlugin'
+  primaryMailPlugin: 'primaryMailPlugin',
+  defaultTaskProvider: 'defaultTaskProvider',
+  defaultSchedulingProvider: 'defaultSchedulingProvider'
 };
 
 exports.Prisma.SnoozedThreadScalarFieldEnum = {
@@ -353,7 +355,8 @@ exports.Prisma.OrganizationScalarFieldEnum = {
   updatedAt: 'updatedAt',
   memberLevelAnalytics: 'memberLevelAnalytics',
   defaultIssueTracker: 'defaultIssueTracker',
-  defaultMeetingProvider: 'defaultMeetingProvider'
+  defaultMeetingProvider: 'defaultMeetingProvider',
+  defaultSupportProvider: 'defaultSupportProvider'
 };
 
 exports.Prisma.MembershipScalarFieldEnum = {
@@ -381,6 +384,8 @@ exports.Prisma.ThreadAssignmentScalarFieldEnum = {
   threadId: 'threadId',
   assigneeUserId: 'assigneeUserId',
   status: 'status',
+  supportProvider: 'supportProvider',
+  supportTicketId: 'supportTicketId',
   updatedByUserId: 'updatedByUserId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -392,6 +397,21 @@ exports.Prisma.ThreadCommentScalarFieldEnum = {
   threadId: 'threadId',
   authorUserId: 'authorUserId',
   body: 'body',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.MeetingSummaryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  meetingId: 'meetingId',
+  source: 'source',
+  title: 'title',
+  tldr: 'tldr',
+  keyPoints: 'keyPoints',
+  actionItems: 'actionItems',
+  attendees: 'attendees',
+  occurredAt: 'occurredAt',
+  model: 'model',
   createdAt: 'createdAt'
 };
 
@@ -552,6 +572,7 @@ exports.Prisma.ModelName = {
   SharedInbox: 'SharedInbox',
   ThreadAssignment: 'ThreadAssignment',
   ThreadComment: 'ThreadComment',
+  MeetingSummary: 'MeetingSummary',
   AssignmentEvent: 'AssignmentEvent',
   BillingCustomer: 'BillingCustomer',
   Subscription: 'Subscription',

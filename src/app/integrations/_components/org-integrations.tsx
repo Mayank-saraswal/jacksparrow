@@ -72,6 +72,18 @@ export function OrgIntegrations() {
         "Team chat & channels. Teams meeting links use your connected Microsoft (Outlook) calendar.",
       logo: "/logo/teams.svg",
     },
+    {
+      key: "zendesk",
+      name: "Zendesk",
+      description: "Turn shared-inbox threads into Zendesk tickets. Business+.",
+      logo: "/logo/zendesk.svg",
+    },
+    {
+      key: "intercom",
+      name: "Intercom",
+      description: "Reply and triage Intercom conversations from the shared inbox. Business+.",
+      logo: "/logo/intercom.svg",
+    },
   ] as const;
 
   return (

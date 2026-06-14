@@ -144,6 +144,11 @@ export type ThreadAssignment = $Result.DefaultSelection<Prisma.$ThreadAssignment
  */
 export type ThreadComment = $Result.DefaultSelection<Prisma.$ThreadCommentPayload>
 /**
+ * Model MeetingSummary
+ * 
+ */
+export type MeetingSummary = $Result.DefaultSelection<Prisma.$MeetingSummaryPayload>
+/**
  * Model AssignmentEvent
  * 
  */
@@ -571,6 +576,16 @@ export class PrismaClient<
     * ```
     */
   get threadComment(): Prisma.ThreadCommentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.meetingSummary`: Exposes CRUD operations for the **MeetingSummary** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MeetingSummaries
+    * const meetingSummaries = await prisma.meetingSummary.findMany()
+    * ```
+    */
+  get meetingSummary(): Prisma.MeetingSummaryDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.assignmentEvent`: Exposes CRUD operations for the **AssignmentEvent** model.
@@ -1138,6 +1153,7 @@ export namespace Prisma {
     SharedInbox: 'SharedInbox',
     ThreadAssignment: 'ThreadAssignment',
     ThreadComment: 'ThreadComment',
+    MeetingSummary: 'MeetingSummary',
     AssignmentEvent: 'AssignmentEvent',
     BillingCustomer: 'BillingCustomer',
     Subscription: 'Subscription',
@@ -1166,7 +1182,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent" | "user" | "channelLink" | "emailEmbedding" | "priorityScore" | "pendingAction" | "userPreference" | "snoozedThread" | "scheduledEmail" | "followUp" | "syncItem" | "linkCode" | "sentMessageSample" | "styleProfile" | "threadSummary" | "triageFeedback" | "senderAffinity" | "ruleSuggestion" | "organization" | "membership" | "sharedInbox" | "threadAssignment" | "threadComment" | "assignmentEvent" | "billingCustomer" | "subscription" | "usageRecord" | "stripeEvent" | "auditLog" | "ssoConnection" | "retentionPolicy" | "legalHold" | "dailyOrgStat"
+      modelProps: "corsairIntegration" | "corsairAccount" | "corsairEntity" | "corsairEvent" | "user" | "channelLink" | "emailEmbedding" | "priorityScore" | "pendingAction" | "userPreference" | "snoozedThread" | "scheduledEmail" | "followUp" | "syncItem" | "linkCode" | "sentMessageSample" | "styleProfile" | "threadSummary" | "triageFeedback" | "senderAffinity" | "ruleSuggestion" | "organization" | "membership" | "sharedInbox" | "threadAssignment" | "threadComment" | "meetingSummary" | "assignmentEvent" | "billingCustomer" | "subscription" | "usageRecord" | "stripeEvent" | "auditLog" | "ssoConnection" | "retentionPolicy" | "legalHold" | "dailyOrgStat"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3094,6 +3110,80 @@ export namespace Prisma {
           }
         }
       }
+      MeetingSummary: {
+        payload: Prisma.$MeetingSummaryPayload<ExtArgs>
+        fields: Prisma.MeetingSummaryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MeetingSummaryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingSummaryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MeetingSummaryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingSummaryPayload>
+          }
+          findFirst: {
+            args: Prisma.MeetingSummaryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingSummaryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MeetingSummaryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingSummaryPayload>
+          }
+          findMany: {
+            args: Prisma.MeetingSummaryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingSummaryPayload>[]
+          }
+          create: {
+            args: Prisma.MeetingSummaryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingSummaryPayload>
+          }
+          createMany: {
+            args: Prisma.MeetingSummaryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MeetingSummaryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingSummaryPayload>[]
+          }
+          delete: {
+            args: Prisma.MeetingSummaryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingSummaryPayload>
+          }
+          update: {
+            args: Prisma.MeetingSummaryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingSummaryPayload>
+          }
+          deleteMany: {
+            args: Prisma.MeetingSummaryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MeetingSummaryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MeetingSummaryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingSummaryPayload>[]
+          }
+          upsert: {
+            args: Prisma.MeetingSummaryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingSummaryPayload>
+          }
+          aggregate: {
+            args: Prisma.MeetingSummaryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMeetingSummary>
+          }
+          groupBy: {
+            args: Prisma.MeetingSummaryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MeetingSummaryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MeetingSummaryCountArgs<ExtArgs>
+            result: $Utils.Optional<MeetingSummaryCountAggregateOutputType> | number
+          }
+        }
+      }
       AssignmentEvent: {
         payload: Prisma.$AssignmentEventPayload<ExtArgs>
         fields: Prisma.AssignmentEventFieldRefs
@@ -3956,6 +4046,7 @@ export namespace Prisma {
     sharedInbox?: SharedInboxOmit
     threadAssignment?: ThreadAssignmentOmit
     threadComment?: ThreadCommentOmit
+    meetingSummary?: MeetingSummaryOmit
     assignmentEvent?: AssignmentEventOmit
     billingCustomer?: BillingCustomerOmit
     subscription?: SubscriptionOmit
@@ -4129,6 +4220,7 @@ export namespace Prisma {
     triageFeedback: number
     senderAffinities: number
     ruleSuggestions: number
+    meetingSummaries: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4144,6 +4236,7 @@ export namespace Prisma {
     triageFeedback?: boolean | UserCountOutputTypeCountTriageFeedbackArgs
     senderAffinities?: boolean | UserCountOutputTypeCountSenderAffinitiesArgs
     ruleSuggestions?: boolean | UserCountOutputTypeCountRuleSuggestionsArgs
+    meetingSummaries?: boolean | UserCountOutputTypeCountMeetingSummariesArgs
   }
 
   // Custom InputTypes
@@ -4239,6 +4332,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountRuleSuggestionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RuleSuggestionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMeetingSummariesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MeetingSummaryWhereInput
   }
 
 
@@ -8977,6 +9077,7 @@ export namespace Prisma {
     triageFeedback?: boolean | User$triageFeedbackArgs<ExtArgs>
     senderAffinities?: boolean | User$senderAffinitiesArgs<ExtArgs>
     ruleSuggestions?: boolean | User$ruleSuggestionsArgs<ExtArgs>
+    meetingSummaries?: boolean | User$meetingSummariesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -9026,6 +9127,7 @@ export namespace Prisma {
     triageFeedback?: boolean | User$triageFeedbackArgs<ExtArgs>
     senderAffinities?: boolean | User$senderAffinitiesArgs<ExtArgs>
     ruleSuggestions?: boolean | User$ruleSuggestionsArgs<ExtArgs>
+    meetingSummaries?: boolean | User$meetingSummariesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -9048,6 +9150,7 @@ export namespace Prisma {
       triageFeedback: Prisma.$TriageFeedbackPayload<ExtArgs>[]
       senderAffinities: Prisma.$SenderAffinityPayload<ExtArgs>[]
       ruleSuggestions: Prisma.$RuleSuggestionPayload<ExtArgs>[]
+      meetingSummaries: Prisma.$MeetingSummaryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9465,6 +9568,7 @@ export namespace Prisma {
     triageFeedback<T extends User$triageFeedbackArgs<ExtArgs> = {}>(args?: Subset<T, User$triageFeedbackArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TriageFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     senderAffinities<T extends User$senderAffinitiesArgs<ExtArgs> = {}>(args?: Subset<T, User$senderAffinitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SenderAffinityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ruleSuggestions<T extends User$ruleSuggestionsArgs<ExtArgs> = {}>(args?: Subset<T, User$ruleSuggestionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RuleSuggestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    meetingSummaries<T extends User$meetingSummariesArgs<ExtArgs> = {}>(args?: Subset<T, User$meetingSummariesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10212,6 +10316,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RuleSuggestionScalarFieldEnum | RuleSuggestionScalarFieldEnum[]
+  }
+
+  /**
+   * User.meetingSummaries
+   */
+  export type User$meetingSummariesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryInclude<ExtArgs> | null
+    where?: MeetingSummaryWhereInput
+    orderBy?: MeetingSummaryOrderByWithRelationInput | MeetingSummaryOrderByWithRelationInput[]
+    cursor?: MeetingSummaryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MeetingSummaryScalarFieldEnum | MeetingSummaryScalarFieldEnum[]
   }
 
   /**
@@ -14619,6 +14747,8 @@ export namespace Prisma {
     undoSendSeconds: number | null
     followUpDays: number | null
     primaryMailPlugin: string | null
+    defaultTaskProvider: string | null
+    defaultSchedulingProvider: string | null
   }
 
   export type UserPreferenceMaxAggregateOutputType = {
@@ -14627,6 +14757,8 @@ export namespace Prisma {
     undoSendSeconds: number | null
     followUpDays: number | null
     primaryMailPlugin: string | null
+    defaultTaskProvider: string | null
+    defaultSchedulingProvider: string | null
   }
 
   export type UserPreferenceCountAggregateOutputType = {
@@ -14637,6 +14769,8 @@ export namespace Prisma {
     undoSendSeconds: number
     followUpDays: number
     primaryMailPlugin: number
+    defaultTaskProvider: number
+    defaultSchedulingProvider: number
     _all: number
   }
 
@@ -14657,6 +14791,8 @@ export namespace Prisma {
     undoSendSeconds?: true
     followUpDays?: true
     primaryMailPlugin?: true
+    defaultTaskProvider?: true
+    defaultSchedulingProvider?: true
   }
 
   export type UserPreferenceMaxAggregateInputType = {
@@ -14665,6 +14801,8 @@ export namespace Prisma {
     undoSendSeconds?: true
     followUpDays?: true
     primaryMailPlugin?: true
+    defaultTaskProvider?: true
+    defaultSchedulingProvider?: true
   }
 
   export type UserPreferenceCountAggregateInputType = {
@@ -14675,6 +14813,8 @@ export namespace Prisma {
     undoSendSeconds?: true
     followUpDays?: true
     primaryMailPlugin?: true
+    defaultTaskProvider?: true
+    defaultSchedulingProvider?: true
     _all?: true
   }
 
@@ -14772,6 +14912,8 @@ export namespace Prisma {
     undoSendSeconds: number
     followUpDays: number
     primaryMailPlugin: string
+    defaultTaskProvider: string | null
+    defaultSchedulingProvider: string | null
     _count: UserPreferenceCountAggregateOutputType | null
     _avg: UserPreferenceAvgAggregateOutputType | null
     _sum: UserPreferenceSumAggregateOutputType | null
@@ -14801,6 +14943,8 @@ export namespace Prisma {
     undoSendSeconds?: boolean
     followUpDays?: boolean
     primaryMailPlugin?: boolean
+    defaultTaskProvider?: boolean
+    defaultSchedulingProvider?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userPreference"]>
 
@@ -14812,6 +14956,8 @@ export namespace Prisma {
     undoSendSeconds?: boolean
     followUpDays?: boolean
     primaryMailPlugin?: boolean
+    defaultTaskProvider?: boolean
+    defaultSchedulingProvider?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userPreference"]>
 
@@ -14823,6 +14969,8 @@ export namespace Prisma {
     undoSendSeconds?: boolean
     followUpDays?: boolean
     primaryMailPlugin?: boolean
+    defaultTaskProvider?: boolean
+    defaultSchedulingProvider?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userPreference"]>
 
@@ -14834,9 +14982,11 @@ export namespace Prisma {
     undoSendSeconds?: boolean
     followUpDays?: boolean
     primaryMailPlugin?: boolean
+    defaultTaskProvider?: boolean
+    defaultSchedulingProvider?: boolean
   }
 
-  export type UserPreferenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "splitInboxRules" | "shortcutOverrides" | "undoSendSeconds" | "followUpDays" | "primaryMailPlugin", ExtArgs["result"]["userPreference"]>
+  export type UserPreferenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "splitInboxRules" | "shortcutOverrides" | "undoSendSeconds" | "followUpDays" | "primaryMailPlugin" | "defaultTaskProvider" | "defaultSchedulingProvider", ExtArgs["result"]["userPreference"]>
   export type UserPreferenceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -14860,6 +15010,8 @@ export namespace Prisma {
       undoSendSeconds: number
       followUpDays: number
       primaryMailPlugin: string
+      defaultTaskProvider: string | null
+      defaultSchedulingProvider: string | null
     }, ExtArgs["result"]["userPreference"]>
     composites: {}
   }
@@ -15291,6 +15443,8 @@ export namespace Prisma {
     readonly undoSendSeconds: FieldRef<"UserPreference", 'Int'>
     readonly followUpDays: FieldRef<"UserPreference", 'Int'>
     readonly primaryMailPlugin: FieldRef<"UserPreference", 'String'>
+    readonly defaultTaskProvider: FieldRef<"UserPreference", 'String'>
+    readonly defaultSchedulingProvider: FieldRef<"UserPreference", 'String'>
   }
     
 
@@ -27806,6 +27960,7 @@ export namespace Prisma {
     memberLevelAnalytics: boolean | null
     defaultIssueTracker: string | null
     defaultMeetingProvider: string | null
+    defaultSupportProvider: string | null
   }
 
   export type OrganizationMaxAggregateOutputType = {
@@ -27816,6 +27971,7 @@ export namespace Prisma {
     memberLevelAnalytics: boolean | null
     defaultIssueTracker: string | null
     defaultMeetingProvider: string | null
+    defaultSupportProvider: string | null
   }
 
   export type OrganizationCountAggregateOutputType = {
@@ -27826,6 +27982,7 @@ export namespace Prisma {
     memberLevelAnalytics: number
     defaultIssueTracker: number
     defaultMeetingProvider: number
+    defaultSupportProvider: number
     _all: number
   }
 
@@ -27838,6 +27995,7 @@ export namespace Prisma {
     memberLevelAnalytics?: true
     defaultIssueTracker?: true
     defaultMeetingProvider?: true
+    defaultSupportProvider?: true
   }
 
   export type OrganizationMaxAggregateInputType = {
@@ -27848,6 +28006,7 @@ export namespace Prisma {
     memberLevelAnalytics?: true
     defaultIssueTracker?: true
     defaultMeetingProvider?: true
+    defaultSupportProvider?: true
   }
 
   export type OrganizationCountAggregateInputType = {
@@ -27858,6 +28017,7 @@ export namespace Prisma {
     memberLevelAnalytics?: true
     defaultIssueTracker?: true
     defaultMeetingProvider?: true
+    defaultSupportProvider?: true
     _all?: true
   }
 
@@ -27941,6 +28101,7 @@ export namespace Prisma {
     memberLevelAnalytics: boolean
     defaultIssueTracker: string | null
     defaultMeetingProvider: string | null
+    defaultSupportProvider: string | null
     _count: OrganizationCountAggregateOutputType | null
     _min: OrganizationMinAggregateOutputType | null
     _max: OrganizationMaxAggregateOutputType | null
@@ -27968,6 +28129,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: boolean
     defaultMeetingProvider?: boolean
+    defaultSupportProvider?: boolean
     memberships?: boolean | Organization$membershipsArgs<ExtArgs>
     sharedInboxes?: boolean | Organization$sharedInboxesArgs<ExtArgs>
     ssoConnections?: boolean | Organization$ssoConnectionsArgs<ExtArgs>
@@ -27985,6 +28147,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: boolean
     defaultMeetingProvider?: boolean
+    defaultSupportProvider?: boolean
   }, ExtArgs["result"]["organization"]>
 
   export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -27995,6 +28158,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: boolean
     defaultMeetingProvider?: boolean
+    defaultSupportProvider?: boolean
   }, ExtArgs["result"]["organization"]>
 
   export type OrganizationSelectScalar = {
@@ -28005,9 +28169,10 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: boolean
     defaultMeetingProvider?: boolean
+    defaultSupportProvider?: boolean
   }
 
-  export type OrganizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "memberLevelAnalytics" | "defaultIssueTracker" | "defaultMeetingProvider", ExtArgs["result"]["organization"]>
+  export type OrganizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "memberLevelAnalytics" | "defaultIssueTracker" | "defaultMeetingProvider" | "defaultSupportProvider", ExtArgs["result"]["organization"]>
   export type OrganizationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     memberships?: boolean | Organization$membershipsArgs<ExtArgs>
     sharedInboxes?: boolean | Organization$sharedInboxesArgs<ExtArgs>
@@ -28038,6 +28203,7 @@ export namespace Prisma {
       memberLevelAnalytics: boolean
       defaultIssueTracker: string | null
       defaultMeetingProvider: string | null
+      defaultSupportProvider: string | null
     }, ExtArgs["result"]["organization"]>
     composites: {}
   }
@@ -28474,6 +28640,7 @@ export namespace Prisma {
     readonly memberLevelAnalytics: FieldRef<"Organization", 'Boolean'>
     readonly defaultIssueTracker: FieldRef<"Organization", 'String'>
     readonly defaultMeetingProvider: FieldRef<"Organization", 'String'>
+    readonly defaultSupportProvider: FieldRef<"Organization", 'String'>
   }
     
 
@@ -31276,6 +31443,8 @@ export namespace Prisma {
     threadId: string | null
     assigneeUserId: string | null
     status: string | null
+    supportProvider: string | null
+    supportTicketId: string | null
     updatedByUserId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -31287,6 +31456,8 @@ export namespace Prisma {
     threadId: string | null
     assigneeUserId: string | null
     status: string | null
+    supportProvider: string | null
+    supportTicketId: string | null
     updatedByUserId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -31298,6 +31469,8 @@ export namespace Prisma {
     threadId: number
     assigneeUserId: number
     status: number
+    supportProvider: number
+    supportTicketId: number
     updatedByUserId: number
     createdAt: number
     updatedAt: number
@@ -31311,6 +31484,8 @@ export namespace Prisma {
     threadId?: true
     assigneeUserId?: true
     status?: true
+    supportProvider?: true
+    supportTicketId?: true
     updatedByUserId?: true
     createdAt?: true
     updatedAt?: true
@@ -31322,6 +31497,8 @@ export namespace Prisma {
     threadId?: true
     assigneeUserId?: true
     status?: true
+    supportProvider?: true
+    supportTicketId?: true
     updatedByUserId?: true
     createdAt?: true
     updatedAt?: true
@@ -31333,6 +31510,8 @@ export namespace Prisma {
     threadId?: true
     assigneeUserId?: true
     status?: true
+    supportProvider?: true
+    supportTicketId?: true
     updatedByUserId?: true
     createdAt?: true
     updatedAt?: true
@@ -31417,6 +31596,8 @@ export namespace Prisma {
     threadId: string
     assigneeUserId: string | null
     status: string
+    supportProvider: string | null
+    supportTicketId: string | null
     updatedByUserId: string
     createdAt: Date
     updatedAt: Date
@@ -31445,6 +31626,8 @@ export namespace Prisma {
     threadId?: boolean
     assigneeUserId?: boolean
     status?: boolean
+    supportProvider?: boolean
+    supportTicketId?: boolean
     updatedByUserId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -31457,6 +31640,8 @@ export namespace Prisma {
     threadId?: boolean
     assigneeUserId?: boolean
     status?: boolean
+    supportProvider?: boolean
+    supportTicketId?: boolean
     updatedByUserId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -31469,6 +31654,8 @@ export namespace Prisma {
     threadId?: boolean
     assigneeUserId?: boolean
     status?: boolean
+    supportProvider?: boolean
+    supportTicketId?: boolean
     updatedByUserId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -31481,12 +31668,14 @@ export namespace Prisma {
     threadId?: boolean
     assigneeUserId?: boolean
     status?: boolean
+    supportProvider?: boolean
+    supportTicketId?: boolean
     updatedByUserId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ThreadAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sharedInboxId" | "threadId" | "assigneeUserId" | "status" | "updatedByUserId" | "createdAt" | "updatedAt", ExtArgs["result"]["threadAssignment"]>
+  export type ThreadAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sharedInboxId" | "threadId" | "assigneeUserId" | "status" | "supportProvider" | "supportTicketId" | "updatedByUserId" | "createdAt" | "updatedAt", ExtArgs["result"]["threadAssignment"]>
   export type ThreadAssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sharedInbox?: boolean | SharedInboxDefaultArgs<ExtArgs>
   }
@@ -31508,6 +31697,8 @@ export namespace Prisma {
       threadId: string
       assigneeUserId: string | null
       status: string
+      supportProvider: string | null
+      supportTicketId: string | null
       updatedByUserId: string
       createdAt: Date
       updatedAt: Date
@@ -31940,6 +32131,8 @@ export namespace Prisma {
     readonly threadId: FieldRef<"ThreadAssignment", 'String'>
     readonly assigneeUserId: FieldRef<"ThreadAssignment", 'String'>
     readonly status: FieldRef<"ThreadAssignment", 'String'>
+    readonly supportProvider: FieldRef<"ThreadAssignment", 'String'>
+    readonly supportTicketId: FieldRef<"ThreadAssignment", 'String'>
     readonly updatedByUserId: FieldRef<"ThreadAssignment", 'String'>
     readonly createdAt: FieldRef<"ThreadAssignment", 'DateTime'>
     readonly updatedAt: FieldRef<"ThreadAssignment", 'DateTime'>
@@ -33425,6 +33618,1143 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ThreadCommentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MeetingSummary
+   */
+
+  export type AggregateMeetingSummary = {
+    _count: MeetingSummaryCountAggregateOutputType | null
+    _min: MeetingSummaryMinAggregateOutputType | null
+    _max: MeetingSummaryMaxAggregateOutputType | null
+  }
+
+  export type MeetingSummaryMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    meetingId: string | null
+    source: string | null
+    title: string | null
+    tldr: string | null
+    occurredAt: Date | null
+    model: string | null
+    createdAt: Date | null
+  }
+
+  export type MeetingSummaryMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    meetingId: string | null
+    source: string | null
+    title: string | null
+    tldr: string | null
+    occurredAt: Date | null
+    model: string | null
+    createdAt: Date | null
+  }
+
+  export type MeetingSummaryCountAggregateOutputType = {
+    id: number
+    userId: number
+    meetingId: number
+    source: number
+    title: number
+    tldr: number
+    keyPoints: number
+    actionItems: number
+    attendees: number
+    occurredAt: number
+    model: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type MeetingSummaryMinAggregateInputType = {
+    id?: true
+    userId?: true
+    meetingId?: true
+    source?: true
+    title?: true
+    tldr?: true
+    occurredAt?: true
+    model?: true
+    createdAt?: true
+  }
+
+  export type MeetingSummaryMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    meetingId?: true
+    source?: true
+    title?: true
+    tldr?: true
+    occurredAt?: true
+    model?: true
+    createdAt?: true
+  }
+
+  export type MeetingSummaryCountAggregateInputType = {
+    id?: true
+    userId?: true
+    meetingId?: true
+    source?: true
+    title?: true
+    tldr?: true
+    keyPoints?: true
+    actionItems?: true
+    attendees?: true
+    occurredAt?: true
+    model?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type MeetingSummaryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MeetingSummary to aggregate.
+     */
+    where?: MeetingSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingSummaries to fetch.
+     */
+    orderBy?: MeetingSummaryOrderByWithRelationInput | MeetingSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MeetingSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingSummaries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MeetingSummaries
+    **/
+    _count?: true | MeetingSummaryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MeetingSummaryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MeetingSummaryMaxAggregateInputType
+  }
+
+  export type GetMeetingSummaryAggregateType<T extends MeetingSummaryAggregateArgs> = {
+        [P in keyof T & keyof AggregateMeetingSummary]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMeetingSummary[P]>
+      : GetScalarType<T[P], AggregateMeetingSummary[P]>
+  }
+
+
+
+
+  export type MeetingSummaryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MeetingSummaryWhereInput
+    orderBy?: MeetingSummaryOrderByWithAggregationInput | MeetingSummaryOrderByWithAggregationInput[]
+    by: MeetingSummaryScalarFieldEnum[] | MeetingSummaryScalarFieldEnum
+    having?: MeetingSummaryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MeetingSummaryCountAggregateInputType | true
+    _min?: MeetingSummaryMinAggregateInputType
+    _max?: MeetingSummaryMaxAggregateInputType
+  }
+
+  export type MeetingSummaryGroupByOutputType = {
+    id: string
+    userId: string
+    meetingId: string
+    source: string
+    title: string
+    tldr: string
+    keyPoints: JsonValue
+    actionItems: JsonValue
+    attendees: JsonValue
+    occurredAt: Date
+    model: string | null
+    createdAt: Date
+    _count: MeetingSummaryCountAggregateOutputType | null
+    _min: MeetingSummaryMinAggregateOutputType | null
+    _max: MeetingSummaryMaxAggregateOutputType | null
+  }
+
+  type GetMeetingSummaryGroupByPayload<T extends MeetingSummaryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MeetingSummaryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MeetingSummaryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MeetingSummaryGroupByOutputType[P]>
+            : GetScalarType<T[P], MeetingSummaryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MeetingSummarySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    meetingId?: boolean
+    source?: boolean
+    title?: boolean
+    tldr?: boolean
+    keyPoints?: boolean
+    actionItems?: boolean
+    attendees?: boolean
+    occurredAt?: boolean
+    model?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meetingSummary"]>
+
+  export type MeetingSummarySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    meetingId?: boolean
+    source?: boolean
+    title?: boolean
+    tldr?: boolean
+    keyPoints?: boolean
+    actionItems?: boolean
+    attendees?: boolean
+    occurredAt?: boolean
+    model?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meetingSummary"]>
+
+  export type MeetingSummarySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    meetingId?: boolean
+    source?: boolean
+    title?: boolean
+    tldr?: boolean
+    keyPoints?: boolean
+    actionItems?: boolean
+    attendees?: boolean
+    occurredAt?: boolean
+    model?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meetingSummary"]>
+
+  export type MeetingSummarySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    meetingId?: boolean
+    source?: boolean
+    title?: boolean
+    tldr?: boolean
+    keyPoints?: boolean
+    actionItems?: boolean
+    attendees?: boolean
+    occurredAt?: boolean
+    model?: boolean
+    createdAt?: boolean
+  }
+
+  export type MeetingSummaryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "meetingId" | "source" | "title" | "tldr" | "keyPoints" | "actionItems" | "attendees" | "occurredAt" | "model" | "createdAt", ExtArgs["result"]["meetingSummary"]>
+  export type MeetingSummaryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MeetingSummaryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MeetingSummaryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $MeetingSummaryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MeetingSummary"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      meetingId: string
+      source: string
+      title: string
+      tldr: string
+      keyPoints: Prisma.JsonValue
+      actionItems: Prisma.JsonValue
+      attendees: Prisma.JsonValue
+      occurredAt: Date
+      model: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["meetingSummary"]>
+    composites: {}
+  }
+
+  type MeetingSummaryGetPayload<S extends boolean | null | undefined | MeetingSummaryDefaultArgs> = $Result.GetResult<Prisma.$MeetingSummaryPayload, S>
+
+  type MeetingSummaryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MeetingSummaryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MeetingSummaryCountAggregateInputType | true
+    }
+
+  export interface MeetingSummaryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MeetingSummary'], meta: { name: 'MeetingSummary' } }
+    /**
+     * Find zero or one MeetingSummary that matches the filter.
+     * @param {MeetingSummaryFindUniqueArgs} args - Arguments to find a MeetingSummary
+     * @example
+     * // Get one MeetingSummary
+     * const meetingSummary = await prisma.meetingSummary.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MeetingSummaryFindUniqueArgs>(args: SelectSubset<T, MeetingSummaryFindUniqueArgs<ExtArgs>>): Prisma__MeetingSummaryClient<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MeetingSummary that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MeetingSummaryFindUniqueOrThrowArgs} args - Arguments to find a MeetingSummary
+     * @example
+     * // Get one MeetingSummary
+     * const meetingSummary = await prisma.meetingSummary.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MeetingSummaryFindUniqueOrThrowArgs>(args: SelectSubset<T, MeetingSummaryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MeetingSummaryClient<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MeetingSummary that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingSummaryFindFirstArgs} args - Arguments to find a MeetingSummary
+     * @example
+     * // Get one MeetingSummary
+     * const meetingSummary = await prisma.meetingSummary.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MeetingSummaryFindFirstArgs>(args?: SelectSubset<T, MeetingSummaryFindFirstArgs<ExtArgs>>): Prisma__MeetingSummaryClient<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MeetingSummary that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingSummaryFindFirstOrThrowArgs} args - Arguments to find a MeetingSummary
+     * @example
+     * // Get one MeetingSummary
+     * const meetingSummary = await prisma.meetingSummary.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MeetingSummaryFindFirstOrThrowArgs>(args?: SelectSubset<T, MeetingSummaryFindFirstOrThrowArgs<ExtArgs>>): Prisma__MeetingSummaryClient<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MeetingSummaries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingSummaryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MeetingSummaries
+     * const meetingSummaries = await prisma.meetingSummary.findMany()
+     * 
+     * // Get first 10 MeetingSummaries
+     * const meetingSummaries = await prisma.meetingSummary.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const meetingSummaryWithIdOnly = await prisma.meetingSummary.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MeetingSummaryFindManyArgs>(args?: SelectSubset<T, MeetingSummaryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MeetingSummary.
+     * @param {MeetingSummaryCreateArgs} args - Arguments to create a MeetingSummary.
+     * @example
+     * // Create one MeetingSummary
+     * const MeetingSummary = await prisma.meetingSummary.create({
+     *   data: {
+     *     // ... data to create a MeetingSummary
+     *   }
+     * })
+     * 
+     */
+    create<T extends MeetingSummaryCreateArgs>(args: SelectSubset<T, MeetingSummaryCreateArgs<ExtArgs>>): Prisma__MeetingSummaryClient<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MeetingSummaries.
+     * @param {MeetingSummaryCreateManyArgs} args - Arguments to create many MeetingSummaries.
+     * @example
+     * // Create many MeetingSummaries
+     * const meetingSummary = await prisma.meetingSummary.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MeetingSummaryCreateManyArgs>(args?: SelectSubset<T, MeetingSummaryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MeetingSummaries and returns the data saved in the database.
+     * @param {MeetingSummaryCreateManyAndReturnArgs} args - Arguments to create many MeetingSummaries.
+     * @example
+     * // Create many MeetingSummaries
+     * const meetingSummary = await prisma.meetingSummary.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MeetingSummaries and only return the `id`
+     * const meetingSummaryWithIdOnly = await prisma.meetingSummary.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MeetingSummaryCreateManyAndReturnArgs>(args?: SelectSubset<T, MeetingSummaryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MeetingSummary.
+     * @param {MeetingSummaryDeleteArgs} args - Arguments to delete one MeetingSummary.
+     * @example
+     * // Delete one MeetingSummary
+     * const MeetingSummary = await prisma.meetingSummary.delete({
+     *   where: {
+     *     // ... filter to delete one MeetingSummary
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MeetingSummaryDeleteArgs>(args: SelectSubset<T, MeetingSummaryDeleteArgs<ExtArgs>>): Prisma__MeetingSummaryClient<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MeetingSummary.
+     * @param {MeetingSummaryUpdateArgs} args - Arguments to update one MeetingSummary.
+     * @example
+     * // Update one MeetingSummary
+     * const meetingSummary = await prisma.meetingSummary.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MeetingSummaryUpdateArgs>(args: SelectSubset<T, MeetingSummaryUpdateArgs<ExtArgs>>): Prisma__MeetingSummaryClient<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MeetingSummaries.
+     * @param {MeetingSummaryDeleteManyArgs} args - Arguments to filter MeetingSummaries to delete.
+     * @example
+     * // Delete a few MeetingSummaries
+     * const { count } = await prisma.meetingSummary.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MeetingSummaryDeleteManyArgs>(args?: SelectSubset<T, MeetingSummaryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MeetingSummaries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingSummaryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MeetingSummaries
+     * const meetingSummary = await prisma.meetingSummary.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MeetingSummaryUpdateManyArgs>(args: SelectSubset<T, MeetingSummaryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MeetingSummaries and returns the data updated in the database.
+     * @param {MeetingSummaryUpdateManyAndReturnArgs} args - Arguments to update many MeetingSummaries.
+     * @example
+     * // Update many MeetingSummaries
+     * const meetingSummary = await prisma.meetingSummary.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MeetingSummaries and only return the `id`
+     * const meetingSummaryWithIdOnly = await prisma.meetingSummary.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MeetingSummaryUpdateManyAndReturnArgs>(args: SelectSubset<T, MeetingSummaryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MeetingSummary.
+     * @param {MeetingSummaryUpsertArgs} args - Arguments to update or create a MeetingSummary.
+     * @example
+     * // Update or create a MeetingSummary
+     * const meetingSummary = await prisma.meetingSummary.upsert({
+     *   create: {
+     *     // ... data to create a MeetingSummary
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MeetingSummary we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MeetingSummaryUpsertArgs>(args: SelectSubset<T, MeetingSummaryUpsertArgs<ExtArgs>>): Prisma__MeetingSummaryClient<$Result.GetResult<Prisma.$MeetingSummaryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MeetingSummaries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingSummaryCountArgs} args - Arguments to filter MeetingSummaries to count.
+     * @example
+     * // Count the number of MeetingSummaries
+     * const count = await prisma.meetingSummary.count({
+     *   where: {
+     *     // ... the filter for the MeetingSummaries we want to count
+     *   }
+     * })
+    **/
+    count<T extends MeetingSummaryCountArgs>(
+      args?: Subset<T, MeetingSummaryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MeetingSummaryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MeetingSummary.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingSummaryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MeetingSummaryAggregateArgs>(args: Subset<T, MeetingSummaryAggregateArgs>): Prisma.PrismaPromise<GetMeetingSummaryAggregateType<T>>
+
+    /**
+     * Group by MeetingSummary.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingSummaryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MeetingSummaryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MeetingSummaryGroupByArgs['orderBy'] }
+        : { orderBy?: MeetingSummaryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MeetingSummaryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMeetingSummaryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MeetingSummary model
+   */
+  readonly fields: MeetingSummaryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MeetingSummary.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MeetingSummaryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MeetingSummary model
+   */
+  interface MeetingSummaryFieldRefs {
+    readonly id: FieldRef<"MeetingSummary", 'String'>
+    readonly userId: FieldRef<"MeetingSummary", 'String'>
+    readonly meetingId: FieldRef<"MeetingSummary", 'String'>
+    readonly source: FieldRef<"MeetingSummary", 'String'>
+    readonly title: FieldRef<"MeetingSummary", 'String'>
+    readonly tldr: FieldRef<"MeetingSummary", 'String'>
+    readonly keyPoints: FieldRef<"MeetingSummary", 'Json'>
+    readonly actionItems: FieldRef<"MeetingSummary", 'Json'>
+    readonly attendees: FieldRef<"MeetingSummary", 'Json'>
+    readonly occurredAt: FieldRef<"MeetingSummary", 'DateTime'>
+    readonly model: FieldRef<"MeetingSummary", 'String'>
+    readonly createdAt: FieldRef<"MeetingSummary", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MeetingSummary findUnique
+   */
+  export type MeetingSummaryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingSummary to fetch.
+     */
+    where: MeetingSummaryWhereUniqueInput
+  }
+
+  /**
+   * MeetingSummary findUniqueOrThrow
+   */
+  export type MeetingSummaryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingSummary to fetch.
+     */
+    where: MeetingSummaryWhereUniqueInput
+  }
+
+  /**
+   * MeetingSummary findFirst
+   */
+  export type MeetingSummaryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingSummary to fetch.
+     */
+    where?: MeetingSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingSummaries to fetch.
+     */
+    orderBy?: MeetingSummaryOrderByWithRelationInput | MeetingSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MeetingSummaries.
+     */
+    cursor?: MeetingSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingSummaries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MeetingSummaries.
+     */
+    distinct?: MeetingSummaryScalarFieldEnum | MeetingSummaryScalarFieldEnum[]
+  }
+
+  /**
+   * MeetingSummary findFirstOrThrow
+   */
+  export type MeetingSummaryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingSummary to fetch.
+     */
+    where?: MeetingSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingSummaries to fetch.
+     */
+    orderBy?: MeetingSummaryOrderByWithRelationInput | MeetingSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MeetingSummaries.
+     */
+    cursor?: MeetingSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingSummaries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MeetingSummaries.
+     */
+    distinct?: MeetingSummaryScalarFieldEnum | MeetingSummaryScalarFieldEnum[]
+  }
+
+  /**
+   * MeetingSummary findMany
+   */
+  export type MeetingSummaryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingSummaries to fetch.
+     */
+    where?: MeetingSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingSummaries to fetch.
+     */
+    orderBy?: MeetingSummaryOrderByWithRelationInput | MeetingSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MeetingSummaries.
+     */
+    cursor?: MeetingSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingSummaries.
+     */
+    skip?: number
+    distinct?: MeetingSummaryScalarFieldEnum | MeetingSummaryScalarFieldEnum[]
+  }
+
+  /**
+   * MeetingSummary create
+   */
+  export type MeetingSummaryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MeetingSummary.
+     */
+    data: XOR<MeetingSummaryCreateInput, MeetingSummaryUncheckedCreateInput>
+  }
+
+  /**
+   * MeetingSummary createMany
+   */
+  export type MeetingSummaryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MeetingSummaries.
+     */
+    data: MeetingSummaryCreateManyInput | MeetingSummaryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MeetingSummary createManyAndReturn
+   */
+  export type MeetingSummaryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * The data used to create many MeetingSummaries.
+     */
+    data: MeetingSummaryCreateManyInput | MeetingSummaryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MeetingSummary update
+   */
+  export type MeetingSummaryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MeetingSummary.
+     */
+    data: XOR<MeetingSummaryUpdateInput, MeetingSummaryUncheckedUpdateInput>
+    /**
+     * Choose, which MeetingSummary to update.
+     */
+    where: MeetingSummaryWhereUniqueInput
+  }
+
+  /**
+   * MeetingSummary updateMany
+   */
+  export type MeetingSummaryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MeetingSummaries.
+     */
+    data: XOR<MeetingSummaryUpdateManyMutationInput, MeetingSummaryUncheckedUpdateManyInput>
+    /**
+     * Filter which MeetingSummaries to update
+     */
+    where?: MeetingSummaryWhereInput
+    /**
+     * Limit how many MeetingSummaries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MeetingSummary updateManyAndReturn
+   */
+  export type MeetingSummaryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * The data used to update MeetingSummaries.
+     */
+    data: XOR<MeetingSummaryUpdateManyMutationInput, MeetingSummaryUncheckedUpdateManyInput>
+    /**
+     * Filter which MeetingSummaries to update
+     */
+    where?: MeetingSummaryWhereInput
+    /**
+     * Limit how many MeetingSummaries to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MeetingSummary upsert
+   */
+  export type MeetingSummaryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MeetingSummary to update in case it exists.
+     */
+    where: MeetingSummaryWhereUniqueInput
+    /**
+     * In case the MeetingSummary found by the `where` argument doesn't exist, create a new MeetingSummary with this data.
+     */
+    create: XOR<MeetingSummaryCreateInput, MeetingSummaryUncheckedCreateInput>
+    /**
+     * In case the MeetingSummary was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MeetingSummaryUpdateInput, MeetingSummaryUncheckedUpdateInput>
+  }
+
+  /**
+   * MeetingSummary delete
+   */
+  export type MeetingSummaryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryInclude<ExtArgs> | null
+    /**
+     * Filter which MeetingSummary to delete.
+     */
+    where: MeetingSummaryWhereUniqueInput
+  }
+
+  /**
+   * MeetingSummary deleteMany
+   */
+  export type MeetingSummaryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MeetingSummaries to delete
+     */
+    where?: MeetingSummaryWhereInput
+    /**
+     * Limit how many MeetingSummaries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MeetingSummary without action
+   */
+  export type MeetingSummaryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingSummary
+     */
+    select?: MeetingSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingSummary
+     */
+    omit?: MeetingSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingSummaryInclude<ExtArgs> | null
   }
 
 
@@ -44407,7 +45737,9 @@ export namespace Prisma {
     shortcutOverrides: 'shortcutOverrides',
     undoSendSeconds: 'undoSendSeconds',
     followUpDays: 'followUpDays',
-    primaryMailPlugin: 'primaryMailPlugin'
+    primaryMailPlugin: 'primaryMailPlugin',
+    defaultTaskProvider: 'defaultTaskProvider',
+    defaultSchedulingProvider: 'defaultSchedulingProvider'
   };
 
   export type UserPreferenceScalarFieldEnum = (typeof UserPreferenceScalarFieldEnum)[keyof typeof UserPreferenceScalarFieldEnum]
@@ -44576,7 +45908,8 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     memberLevelAnalytics: 'memberLevelAnalytics',
     defaultIssueTracker: 'defaultIssueTracker',
-    defaultMeetingProvider: 'defaultMeetingProvider'
+    defaultMeetingProvider: 'defaultMeetingProvider',
+    defaultSupportProvider: 'defaultSupportProvider'
   };
 
   export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
@@ -44613,6 +45946,8 @@ export namespace Prisma {
     threadId: 'threadId',
     assigneeUserId: 'assigneeUserId',
     status: 'status',
+    supportProvider: 'supportProvider',
+    supportTicketId: 'supportTicketId',
     updatedByUserId: 'updatedByUserId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -44631,6 +45966,24 @@ export namespace Prisma {
   };
 
   export type ThreadCommentScalarFieldEnum = (typeof ThreadCommentScalarFieldEnum)[keyof typeof ThreadCommentScalarFieldEnum]
+
+
+  export const MeetingSummaryScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    meetingId: 'meetingId',
+    source: 'source',
+    title: 'title',
+    tldr: 'tldr',
+    keyPoints: 'keyPoints',
+    actionItems: 'actionItems',
+    attendees: 'attendees',
+    occurredAt: 'occurredAt',
+    model: 'model',
+    createdAt: 'createdAt'
+  };
+
+  export type MeetingSummaryScalarFieldEnum = (typeof MeetingSummaryScalarFieldEnum)[keyof typeof MeetingSummaryScalarFieldEnum]
 
 
   export const AssignmentEventScalarFieldEnum: {
@@ -45183,6 +46536,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackListRelationFilter
     senderAffinities?: SenderAffinityListRelationFilter
     ruleSuggestions?: RuleSuggestionListRelationFilter
+    meetingSummaries?: MeetingSummaryListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -45207,6 +46561,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackOrderByRelationAggregateInput
     senderAffinities?: SenderAffinityOrderByRelationAggregateInput
     ruleSuggestions?: RuleSuggestionOrderByRelationAggregateInput
+    meetingSummaries?: MeetingSummaryOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -45234,6 +46589,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackListRelationFilter
     senderAffinities?: SenderAffinityListRelationFilter
     ruleSuggestions?: RuleSuggestionListRelationFilter
+    meetingSummaries?: MeetingSummaryListRelationFilter
   }, "id">
 
   export type UserOrderByWithAggregationInput = {
@@ -45546,6 +46902,8 @@ export namespace Prisma {
     undoSendSeconds?: IntFilter<"UserPreference"> | number
     followUpDays?: IntFilter<"UserPreference"> | number
     primaryMailPlugin?: StringFilter<"UserPreference"> | string
+    defaultTaskProvider?: StringNullableFilter<"UserPreference"> | string | null
+    defaultSchedulingProvider?: StringNullableFilter<"UserPreference"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -45557,6 +46915,8 @@ export namespace Prisma {
     undoSendSeconds?: SortOrder
     followUpDays?: SortOrder
     primaryMailPlugin?: SortOrder
+    defaultTaskProvider?: SortOrderInput | SortOrder
+    defaultSchedulingProvider?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -45571,6 +46931,8 @@ export namespace Prisma {
     undoSendSeconds?: IntFilter<"UserPreference"> | number
     followUpDays?: IntFilter<"UserPreference"> | number
     primaryMailPlugin?: StringFilter<"UserPreference"> | string
+    defaultTaskProvider?: StringNullableFilter<"UserPreference"> | string | null
+    defaultSchedulingProvider?: StringNullableFilter<"UserPreference"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
 
@@ -45582,6 +46944,8 @@ export namespace Prisma {
     undoSendSeconds?: SortOrder
     followUpDays?: SortOrder
     primaryMailPlugin?: SortOrder
+    defaultTaskProvider?: SortOrderInput | SortOrder
+    defaultSchedulingProvider?: SortOrderInput | SortOrder
     _count?: UserPreferenceCountOrderByAggregateInput
     _avg?: UserPreferenceAvgOrderByAggregateInput
     _max?: UserPreferenceMaxOrderByAggregateInput
@@ -45600,6 +46964,8 @@ export namespace Prisma {
     undoSendSeconds?: IntWithAggregatesFilter<"UserPreference"> | number
     followUpDays?: IntWithAggregatesFilter<"UserPreference"> | number
     primaryMailPlugin?: StringWithAggregatesFilter<"UserPreference"> | string
+    defaultTaskProvider?: StringNullableWithAggregatesFilter<"UserPreference"> | string | null
+    defaultSchedulingProvider?: StringNullableWithAggregatesFilter<"UserPreference"> | string | null
   }
 
   export type SnoozedThreadWhereInput = {
@@ -46401,6 +47767,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFilter<"Organization"> | boolean
     defaultIssueTracker?: StringNullableFilter<"Organization"> | string | null
     defaultMeetingProvider?: StringNullableFilter<"Organization"> | string | null
+    defaultSupportProvider?: StringNullableFilter<"Organization"> | string | null
     memberships?: MembershipListRelationFilter
     sharedInboxes?: SharedInboxListRelationFilter
     ssoConnections?: SsoConnectionListRelationFilter
@@ -46417,6 +47784,7 @@ export namespace Prisma {
     memberLevelAnalytics?: SortOrder
     defaultIssueTracker?: SortOrderInput | SortOrder
     defaultMeetingProvider?: SortOrderInput | SortOrder
+    defaultSupportProvider?: SortOrderInput | SortOrder
     memberships?: MembershipOrderByRelationAggregateInput
     sharedInboxes?: SharedInboxOrderByRelationAggregateInput
     ssoConnections?: SsoConnectionOrderByRelationAggregateInput
@@ -46436,6 +47804,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFilter<"Organization"> | boolean
     defaultIssueTracker?: StringNullableFilter<"Organization"> | string | null
     defaultMeetingProvider?: StringNullableFilter<"Organization"> | string | null
+    defaultSupportProvider?: StringNullableFilter<"Organization"> | string | null
     memberships?: MembershipListRelationFilter
     sharedInboxes?: SharedInboxListRelationFilter
     ssoConnections?: SsoConnectionListRelationFilter
@@ -46452,6 +47821,7 @@ export namespace Prisma {
     memberLevelAnalytics?: SortOrder
     defaultIssueTracker?: SortOrderInput | SortOrder
     defaultMeetingProvider?: SortOrderInput | SortOrder
+    defaultSupportProvider?: SortOrderInput | SortOrder
     _count?: OrganizationCountOrderByAggregateInput
     _max?: OrganizationMaxOrderByAggregateInput
     _min?: OrganizationMinOrderByAggregateInput
@@ -46468,6 +47838,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolWithAggregatesFilter<"Organization"> | boolean
     defaultIssueTracker?: StringNullableWithAggregatesFilter<"Organization"> | string | null
     defaultMeetingProvider?: StringNullableWithAggregatesFilter<"Organization"> | string | null
+    defaultSupportProvider?: StringNullableWithAggregatesFilter<"Organization"> | string | null
   }
 
   export type MembershipWhereInput = {
@@ -46614,6 +47985,8 @@ export namespace Prisma {
     threadId?: StringFilter<"ThreadAssignment"> | string
     assigneeUserId?: StringNullableFilter<"ThreadAssignment"> | string | null
     status?: StringFilter<"ThreadAssignment"> | string
+    supportProvider?: StringNullableFilter<"ThreadAssignment"> | string | null
+    supportTicketId?: StringNullableFilter<"ThreadAssignment"> | string | null
     updatedByUserId?: StringFilter<"ThreadAssignment"> | string
     createdAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
     updatedAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
@@ -46626,6 +47999,8 @@ export namespace Prisma {
     threadId?: SortOrder
     assigneeUserId?: SortOrderInput | SortOrder
     status?: SortOrder
+    supportProvider?: SortOrderInput | SortOrder
+    supportTicketId?: SortOrderInput | SortOrder
     updatedByUserId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -46642,6 +48017,8 @@ export namespace Prisma {
     threadId?: StringFilter<"ThreadAssignment"> | string
     assigneeUserId?: StringNullableFilter<"ThreadAssignment"> | string | null
     status?: StringFilter<"ThreadAssignment"> | string
+    supportProvider?: StringNullableFilter<"ThreadAssignment"> | string | null
+    supportTicketId?: StringNullableFilter<"ThreadAssignment"> | string | null
     updatedByUserId?: StringFilter<"ThreadAssignment"> | string
     createdAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
     updatedAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
@@ -46654,6 +48031,8 @@ export namespace Prisma {
     threadId?: SortOrder
     assigneeUserId?: SortOrderInput | SortOrder
     status?: SortOrder
+    supportProvider?: SortOrderInput | SortOrder
+    supportTicketId?: SortOrderInput | SortOrder
     updatedByUserId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -46671,6 +48050,8 @@ export namespace Prisma {
     threadId?: StringWithAggregatesFilter<"ThreadAssignment"> | string
     assigneeUserId?: StringNullableWithAggregatesFilter<"ThreadAssignment"> | string | null
     status?: StringWithAggregatesFilter<"ThreadAssignment"> | string
+    supportProvider?: StringNullableWithAggregatesFilter<"ThreadAssignment"> | string | null
+    supportTicketId?: StringNullableWithAggregatesFilter<"ThreadAssignment"> | string | null
     updatedByUserId?: StringWithAggregatesFilter<"ThreadAssignment"> | string
     createdAt?: DateTimeWithAggregatesFilter<"ThreadAssignment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ThreadAssignment"> | Date | string
@@ -46734,6 +48115,97 @@ export namespace Prisma {
     authorUserId?: StringWithAggregatesFilter<"ThreadComment"> | string
     body?: StringWithAggregatesFilter<"ThreadComment"> | string
     createdAt?: DateTimeWithAggregatesFilter<"ThreadComment"> | Date | string
+  }
+
+  export type MeetingSummaryWhereInput = {
+    AND?: MeetingSummaryWhereInput | MeetingSummaryWhereInput[]
+    OR?: MeetingSummaryWhereInput[]
+    NOT?: MeetingSummaryWhereInput | MeetingSummaryWhereInput[]
+    id?: StringFilter<"MeetingSummary"> | string
+    userId?: StringFilter<"MeetingSummary"> | string
+    meetingId?: StringFilter<"MeetingSummary"> | string
+    source?: StringFilter<"MeetingSummary"> | string
+    title?: StringFilter<"MeetingSummary"> | string
+    tldr?: StringFilter<"MeetingSummary"> | string
+    keyPoints?: JsonFilter<"MeetingSummary">
+    actionItems?: JsonFilter<"MeetingSummary">
+    attendees?: JsonFilter<"MeetingSummary">
+    occurredAt?: DateTimeFilter<"MeetingSummary"> | Date | string
+    model?: StringNullableFilter<"MeetingSummary"> | string | null
+    createdAt?: DateTimeFilter<"MeetingSummary"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type MeetingSummaryOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    meetingId?: SortOrder
+    source?: SortOrder
+    title?: SortOrder
+    tldr?: SortOrder
+    keyPoints?: SortOrder
+    actionItems?: SortOrder
+    attendees?: SortOrder
+    occurredAt?: SortOrder
+    model?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type MeetingSummaryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_meetingId?: MeetingSummaryUserIdMeetingIdCompoundUniqueInput
+    AND?: MeetingSummaryWhereInput | MeetingSummaryWhereInput[]
+    OR?: MeetingSummaryWhereInput[]
+    NOT?: MeetingSummaryWhereInput | MeetingSummaryWhereInput[]
+    userId?: StringFilter<"MeetingSummary"> | string
+    meetingId?: StringFilter<"MeetingSummary"> | string
+    source?: StringFilter<"MeetingSummary"> | string
+    title?: StringFilter<"MeetingSummary"> | string
+    tldr?: StringFilter<"MeetingSummary"> | string
+    keyPoints?: JsonFilter<"MeetingSummary">
+    actionItems?: JsonFilter<"MeetingSummary">
+    attendees?: JsonFilter<"MeetingSummary">
+    occurredAt?: DateTimeFilter<"MeetingSummary"> | Date | string
+    model?: StringNullableFilter<"MeetingSummary"> | string | null
+    createdAt?: DateTimeFilter<"MeetingSummary"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId_meetingId">
+
+  export type MeetingSummaryOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    meetingId?: SortOrder
+    source?: SortOrder
+    title?: SortOrder
+    tldr?: SortOrder
+    keyPoints?: SortOrder
+    actionItems?: SortOrder
+    attendees?: SortOrder
+    occurredAt?: SortOrder
+    model?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: MeetingSummaryCountOrderByAggregateInput
+    _max?: MeetingSummaryMaxOrderByAggregateInput
+    _min?: MeetingSummaryMinOrderByAggregateInput
+  }
+
+  export type MeetingSummaryScalarWhereWithAggregatesInput = {
+    AND?: MeetingSummaryScalarWhereWithAggregatesInput | MeetingSummaryScalarWhereWithAggregatesInput[]
+    OR?: MeetingSummaryScalarWhereWithAggregatesInput[]
+    NOT?: MeetingSummaryScalarWhereWithAggregatesInput | MeetingSummaryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MeetingSummary"> | string
+    userId?: StringWithAggregatesFilter<"MeetingSummary"> | string
+    meetingId?: StringWithAggregatesFilter<"MeetingSummary"> | string
+    source?: StringWithAggregatesFilter<"MeetingSummary"> | string
+    title?: StringWithAggregatesFilter<"MeetingSummary"> | string
+    tldr?: StringWithAggregatesFilter<"MeetingSummary"> | string
+    keyPoints?: JsonWithAggregatesFilter<"MeetingSummary">
+    actionItems?: JsonWithAggregatesFilter<"MeetingSummary">
+    attendees?: JsonWithAggregatesFilter<"MeetingSummary">
+    occurredAt?: DateTimeWithAggregatesFilter<"MeetingSummary"> | Date | string
+    model?: StringNullableWithAggregatesFilter<"MeetingSummary"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"MeetingSummary"> | Date | string
   }
 
   export type AssignmentEventWhereInput = {
@@ -47719,6 +49191,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -47743,6 +49216,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -47767,6 +49241,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -47791,6 +49266,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -48120,6 +49596,8 @@ export namespace Prisma {
     undoSendSeconds?: number
     followUpDays?: number
     primaryMailPlugin?: string
+    defaultTaskProvider?: string | null
+    defaultSchedulingProvider?: string | null
     user: UserCreateNestedOneWithoutPreferenceInput
   }
 
@@ -48131,6 +49609,8 @@ export namespace Prisma {
     undoSendSeconds?: number
     followUpDays?: number
     primaryMailPlugin?: string
+    defaultTaskProvider?: string | null
+    defaultSchedulingProvider?: string | null
   }
 
   export type UserPreferenceUpdateInput = {
@@ -48140,6 +49620,8 @@ export namespace Prisma {
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
     primaryMailPlugin?: StringFieldUpdateOperationsInput | string
+    defaultTaskProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSchedulingProvider?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutPreferenceNestedInput
   }
 
@@ -48151,6 +49633,8 @@ export namespace Prisma {
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
     primaryMailPlugin?: StringFieldUpdateOperationsInput | string
+    defaultTaskProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSchedulingProvider?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserPreferenceCreateManyInput = {
@@ -48161,6 +49645,8 @@ export namespace Prisma {
     undoSendSeconds?: number
     followUpDays?: number
     primaryMailPlugin?: string
+    defaultTaskProvider?: string | null
+    defaultSchedulingProvider?: string | null
   }
 
   export type UserPreferenceUpdateManyMutationInput = {
@@ -48170,6 +49656,8 @@ export namespace Prisma {
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
     primaryMailPlugin?: StringFieldUpdateOperationsInput | string
+    defaultTaskProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSchedulingProvider?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserPreferenceUncheckedUpdateManyInput = {
@@ -48180,6 +49668,8 @@ export namespace Prisma {
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
     primaryMailPlugin?: StringFieldUpdateOperationsInput | string
+    defaultTaskProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSchedulingProvider?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SnoozedThreadCreateInput = {
@@ -49042,6 +50532,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
@@ -49058,6 +50549,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
@@ -49074,6 +50566,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
@@ -49090,6 +50583,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -49106,6 +50600,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
   }
 
   export type OrganizationUpdateManyMutationInput = {
@@ -49116,6 +50611,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrganizationUncheckedUpdateManyInput = {
@@ -49126,6 +50622,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MembershipCreateInput = {
@@ -49276,6 +50773,8 @@ export namespace Prisma {
     threadId: string
     assigneeUserId?: string | null
     status?: string
+    supportProvider?: string | null
+    supportTicketId?: string | null
     updatedByUserId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -49288,6 +50787,8 @@ export namespace Prisma {
     threadId: string
     assigneeUserId?: string | null
     status?: string
+    supportProvider?: string | null
+    supportTicketId?: string | null
     updatedByUserId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -49298,6 +50799,8 @@ export namespace Prisma {
     threadId?: StringFieldUpdateOperationsInput | string
     assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    supportProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    supportTicketId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedByUserId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49310,6 +50813,8 @@ export namespace Prisma {
     threadId?: StringFieldUpdateOperationsInput | string
     assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    supportProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    supportTicketId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedByUserId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49321,6 +50826,8 @@ export namespace Prisma {
     threadId: string
     assigneeUserId?: string | null
     status?: string
+    supportProvider?: string | null
+    supportTicketId?: string | null
     updatedByUserId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -49331,6 +50838,8 @@ export namespace Prisma {
     threadId?: StringFieldUpdateOperationsInput | string
     assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    supportProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    supportTicketId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedByUserId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49342,6 +50851,8 @@ export namespace Prisma {
     threadId?: StringFieldUpdateOperationsInput | string
     assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    supportProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    supportTicketId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedByUserId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49406,6 +50917,110 @@ export namespace Prisma {
     threadId?: StringFieldUpdateOperationsInput | string
     authorUserId?: StringFieldUpdateOperationsInput | string
     body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MeetingSummaryCreateInput = {
+    id?: string
+    meetingId: string
+    source?: string
+    title?: string
+    tldr: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt: Date | string
+    model?: string | null
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutMeetingSummariesInput
+  }
+
+  export type MeetingSummaryUncheckedCreateInput = {
+    id?: string
+    userId: string
+    meetingId: string
+    source?: string
+    title?: string
+    tldr: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt: Date | string
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type MeetingSummaryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tldr?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMeetingSummariesNestedInput
+  }
+
+  export type MeetingSummaryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tldr?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MeetingSummaryCreateManyInput = {
+    id?: string
+    userId: string
+    meetingId: string
+    source?: string
+    title?: string
+    tldr: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt: Date | string
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type MeetingSummaryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tldr?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MeetingSummaryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tldr?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -50525,6 +52140,12 @@ export namespace Prisma {
     none?: RuleSuggestionWhereInput
   }
 
+  export type MeetingSummaryListRelationFilter = {
+    every?: MeetingSummaryWhereInput
+    some?: MeetingSummaryWhereInput
+    none?: MeetingSummaryWhereInput
+  }
+
   export type ChannelLinkOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -50570,6 +52191,10 @@ export namespace Prisma {
   }
 
   export type RuleSuggestionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MeetingSummaryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -50780,6 +52405,8 @@ export namespace Prisma {
     undoSendSeconds?: SortOrder
     followUpDays?: SortOrder
     primaryMailPlugin?: SortOrder
+    defaultTaskProvider?: SortOrder
+    defaultSchedulingProvider?: SortOrder
   }
 
   export type UserPreferenceAvgOrderByAggregateInput = {
@@ -50793,6 +52420,8 @@ export namespace Prisma {
     undoSendSeconds?: SortOrder
     followUpDays?: SortOrder
     primaryMailPlugin?: SortOrder
+    defaultTaskProvider?: SortOrder
+    defaultSchedulingProvider?: SortOrder
   }
 
   export type UserPreferenceMinOrderByAggregateInput = {
@@ -50801,6 +52430,8 @@ export namespace Prisma {
     undoSendSeconds?: SortOrder
     followUpDays?: SortOrder
     primaryMailPlugin?: SortOrder
+    defaultTaskProvider?: SortOrder
+    defaultSchedulingProvider?: SortOrder
   }
 
   export type UserPreferenceSumOrderByAggregateInput = {
@@ -51349,6 +52980,7 @@ export namespace Prisma {
     memberLevelAnalytics?: SortOrder
     defaultIssueTracker?: SortOrder
     defaultMeetingProvider?: SortOrder
+    defaultSupportProvider?: SortOrder
   }
 
   export type OrganizationMaxOrderByAggregateInput = {
@@ -51359,6 +52991,7 @@ export namespace Prisma {
     memberLevelAnalytics?: SortOrder
     defaultIssueTracker?: SortOrder
     defaultMeetingProvider?: SortOrder
+    defaultSupportProvider?: SortOrder
   }
 
   export type OrganizationMinOrderByAggregateInput = {
@@ -51369,6 +53002,7 @@ export namespace Prisma {
     memberLevelAnalytics?: SortOrder
     defaultIssueTracker?: SortOrder
     defaultMeetingProvider?: SortOrder
+    defaultSupportProvider?: SortOrder
   }
 
   export type OrganizationScalarRelationFilter = {
@@ -51484,6 +53118,8 @@ export namespace Prisma {
     threadId?: SortOrder
     assigneeUserId?: SortOrder
     status?: SortOrder
+    supportProvider?: SortOrder
+    supportTicketId?: SortOrder
     updatedByUserId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -51495,6 +53131,8 @@ export namespace Prisma {
     threadId?: SortOrder
     assigneeUserId?: SortOrder
     status?: SortOrder
+    supportProvider?: SortOrder
+    supportTicketId?: SortOrder
     updatedByUserId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -51506,6 +53144,8 @@ export namespace Prisma {
     threadId?: SortOrder
     assigneeUserId?: SortOrder
     status?: SortOrder
+    supportProvider?: SortOrder
+    supportTicketId?: SortOrder
     updatedByUserId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -51535,6 +53175,50 @@ export namespace Prisma {
     threadId?: SortOrder
     authorUserId?: SortOrder
     body?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MeetingSummaryUserIdMeetingIdCompoundUniqueInput = {
+    userId: string
+    meetingId: string
+  }
+
+  export type MeetingSummaryCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    meetingId?: SortOrder
+    source?: SortOrder
+    title?: SortOrder
+    tldr?: SortOrder
+    keyPoints?: SortOrder
+    actionItems?: SortOrder
+    attendees?: SortOrder
+    occurredAt?: SortOrder
+    model?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MeetingSummaryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    meetingId?: SortOrder
+    source?: SortOrder
+    title?: SortOrder
+    tldr?: SortOrder
+    occurredAt?: SortOrder
+    model?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MeetingSummaryMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    meetingId?: SortOrder
+    source?: SortOrder
+    title?: SortOrder
+    tldr?: SortOrder
+    occurredAt?: SortOrder
+    model?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -52222,6 +53906,13 @@ export namespace Prisma {
     connect?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
   }
 
+  export type MeetingSummaryCreateNestedManyWithoutUserInput = {
+    create?: XOR<MeetingSummaryCreateWithoutUserInput, MeetingSummaryUncheckedCreateWithoutUserInput> | MeetingSummaryCreateWithoutUserInput[] | MeetingSummaryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MeetingSummaryCreateOrConnectWithoutUserInput | MeetingSummaryCreateOrConnectWithoutUserInput[]
+    createMany?: MeetingSummaryCreateManyUserInputEnvelope
+    connect?: MeetingSummaryWhereUniqueInput | MeetingSummaryWhereUniqueInput[]
+  }
+
   export type ChannelLinkUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ChannelLinkCreateWithoutUserInput, ChannelLinkUncheckedCreateWithoutUserInput> | ChannelLinkCreateWithoutUserInput[] | ChannelLinkUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ChannelLinkCreateOrConnectWithoutUserInput | ChannelLinkCreateOrConnectWithoutUserInput[]
@@ -52316,6 +54007,13 @@ export namespace Prisma {
     connectOrCreate?: RuleSuggestionCreateOrConnectWithoutUserInput | RuleSuggestionCreateOrConnectWithoutUserInput[]
     createMany?: RuleSuggestionCreateManyUserInputEnvelope
     connect?: RuleSuggestionWhereUniqueInput | RuleSuggestionWhereUniqueInput[]
+  }
+
+  export type MeetingSummaryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MeetingSummaryCreateWithoutUserInput, MeetingSummaryUncheckedCreateWithoutUserInput> | MeetingSummaryCreateWithoutUserInput[] | MeetingSummaryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MeetingSummaryCreateOrConnectWithoutUserInput | MeetingSummaryCreateOrConnectWithoutUserInput[]
+    createMany?: MeetingSummaryCreateManyUserInputEnvelope
+    connect?: MeetingSummaryWhereUniqueInput | MeetingSummaryWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -52510,6 +54208,20 @@ export namespace Prisma {
     deleteMany?: RuleSuggestionScalarWhereInput | RuleSuggestionScalarWhereInput[]
   }
 
+  export type MeetingSummaryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MeetingSummaryCreateWithoutUserInput, MeetingSummaryUncheckedCreateWithoutUserInput> | MeetingSummaryCreateWithoutUserInput[] | MeetingSummaryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MeetingSummaryCreateOrConnectWithoutUserInput | MeetingSummaryCreateOrConnectWithoutUserInput[]
+    upsert?: MeetingSummaryUpsertWithWhereUniqueWithoutUserInput | MeetingSummaryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MeetingSummaryCreateManyUserInputEnvelope
+    set?: MeetingSummaryWhereUniqueInput | MeetingSummaryWhereUniqueInput[]
+    disconnect?: MeetingSummaryWhereUniqueInput | MeetingSummaryWhereUniqueInput[]
+    delete?: MeetingSummaryWhereUniqueInput | MeetingSummaryWhereUniqueInput[]
+    connect?: MeetingSummaryWhereUniqueInput | MeetingSummaryWhereUniqueInput[]
+    update?: MeetingSummaryUpdateWithWhereUniqueWithoutUserInput | MeetingSummaryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MeetingSummaryUpdateManyWithWhereWithoutUserInput | MeetingSummaryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MeetingSummaryScalarWhereInput | MeetingSummaryScalarWhereInput[]
+  }
+
   export type ChannelLinkUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ChannelLinkCreateWithoutUserInput, ChannelLinkUncheckedCreateWithoutUserInput> | ChannelLinkCreateWithoutUserInput[] | ChannelLinkUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ChannelLinkCreateOrConnectWithoutUserInput | ChannelLinkCreateOrConnectWithoutUserInput[]
@@ -52696,6 +54408,20 @@ export namespace Prisma {
     update?: RuleSuggestionUpdateWithWhereUniqueWithoutUserInput | RuleSuggestionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: RuleSuggestionUpdateManyWithWhereWithoutUserInput | RuleSuggestionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: RuleSuggestionScalarWhereInput | RuleSuggestionScalarWhereInput[]
+  }
+
+  export type MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MeetingSummaryCreateWithoutUserInput, MeetingSummaryUncheckedCreateWithoutUserInput> | MeetingSummaryCreateWithoutUserInput[] | MeetingSummaryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MeetingSummaryCreateOrConnectWithoutUserInput | MeetingSummaryCreateOrConnectWithoutUserInput[]
+    upsert?: MeetingSummaryUpsertWithWhereUniqueWithoutUserInput | MeetingSummaryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MeetingSummaryCreateManyUserInputEnvelope
+    set?: MeetingSummaryWhereUniqueInput | MeetingSummaryWhereUniqueInput[]
+    disconnect?: MeetingSummaryWhereUniqueInput | MeetingSummaryWhereUniqueInput[]
+    delete?: MeetingSummaryWhereUniqueInput | MeetingSummaryWhereUniqueInput[]
+    connect?: MeetingSummaryWhereUniqueInput | MeetingSummaryWhereUniqueInput[]
+    update?: MeetingSummaryUpdateWithWhereUniqueWithoutUserInput | MeetingSummaryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MeetingSummaryUpdateManyWithWhereWithoutUserInput | MeetingSummaryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MeetingSummaryScalarWhereInput | MeetingSummaryScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutChannelLinksInput = {
@@ -53336,6 +55062,20 @@ export namespace Prisma {
     upsert?: SharedInboxUpsertWithoutCommentsInput
     connect?: SharedInboxWhereUniqueInput
     update?: XOR<XOR<SharedInboxUpdateToOneWithWhereWithoutCommentsInput, SharedInboxUpdateWithoutCommentsInput>, SharedInboxUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type UserCreateNestedOneWithoutMeetingSummariesInput = {
+    create?: XOR<UserCreateWithoutMeetingSummariesInput, UserUncheckedCreateWithoutMeetingSummariesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMeetingSummariesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutMeetingSummariesNestedInput = {
+    create?: XOR<UserCreateWithoutMeetingSummariesInput, UserUncheckedCreateWithoutMeetingSummariesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMeetingSummariesInput
+    upsert?: UserUpsertWithoutMeetingSummariesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMeetingSummariesInput, UserUpdateWithoutMeetingSummariesInput>, UserUncheckedUpdateWithoutMeetingSummariesInput>
   }
 
   export type SharedInboxCreateNestedOneWithoutEventsInput = {
@@ -54194,6 +55934,8 @@ export namespace Prisma {
     undoSendSeconds?: number
     followUpDays?: number
     primaryMailPlugin?: string
+    defaultTaskProvider?: string | null
+    defaultSchedulingProvider?: string | null
   }
 
   export type UserPreferenceUncheckedCreateWithoutUserInput = {
@@ -54203,6 +55945,8 @@ export namespace Prisma {
     undoSendSeconds?: number
     followUpDays?: number
     primaryMailPlugin?: string
+    defaultTaskProvider?: string | null
+    defaultSchedulingProvider?: string | null
   }
 
   export type UserPreferenceCreateOrConnectWithoutUserInput = {
@@ -54467,6 +56211,44 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MeetingSummaryCreateWithoutUserInput = {
+    id?: string
+    meetingId: string
+    source?: string
+    title?: string
+    tldr: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt: Date | string
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type MeetingSummaryUncheckedCreateWithoutUserInput = {
+    id?: string
+    meetingId: string
+    source?: string
+    title?: string
+    tldr: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt: Date | string
+    model?: string | null
+    createdAt?: Date | string
+  }
+
+  export type MeetingSummaryCreateOrConnectWithoutUserInput = {
+    where: MeetingSummaryWhereUniqueInput
+    create: XOR<MeetingSummaryCreateWithoutUserInput, MeetingSummaryUncheckedCreateWithoutUserInput>
+  }
+
+  export type MeetingSummaryCreateManyUserInputEnvelope = {
+    data: MeetingSummaryCreateManyUserInput | MeetingSummaryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ChannelLinkUpsertWithWhereUniqueWithoutUserInput = {
     where: ChannelLinkWhereUniqueInput
     update: XOR<ChannelLinkUpdateWithoutUserInput, ChannelLinkUncheckedUpdateWithoutUserInput>
@@ -54603,6 +56385,8 @@ export namespace Prisma {
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
     primaryMailPlugin?: StringFieldUpdateOperationsInput | string
+    defaultTaskProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSchedulingProvider?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserPreferenceUncheckedUpdateWithoutUserInput = {
@@ -54612,6 +56396,8 @@ export namespace Prisma {
     undoSendSeconds?: IntFieldUpdateOperationsInput | number
     followUpDays?: IntFieldUpdateOperationsInput | number
     primaryMailPlugin?: StringFieldUpdateOperationsInput | string
+    defaultTaskProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSchedulingProvider?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SnoozedThreadUpsertWithWhereUniqueWithoutUserInput = {
@@ -54878,6 +56664,40 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RuleSuggestion"> | Date | string
   }
 
+  export type MeetingSummaryUpsertWithWhereUniqueWithoutUserInput = {
+    where: MeetingSummaryWhereUniqueInput
+    update: XOR<MeetingSummaryUpdateWithoutUserInput, MeetingSummaryUncheckedUpdateWithoutUserInput>
+    create: XOR<MeetingSummaryCreateWithoutUserInput, MeetingSummaryUncheckedCreateWithoutUserInput>
+  }
+
+  export type MeetingSummaryUpdateWithWhereUniqueWithoutUserInput = {
+    where: MeetingSummaryWhereUniqueInput
+    data: XOR<MeetingSummaryUpdateWithoutUserInput, MeetingSummaryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MeetingSummaryUpdateManyWithWhereWithoutUserInput = {
+    where: MeetingSummaryScalarWhereInput
+    data: XOR<MeetingSummaryUpdateManyMutationInput, MeetingSummaryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MeetingSummaryScalarWhereInput = {
+    AND?: MeetingSummaryScalarWhereInput | MeetingSummaryScalarWhereInput[]
+    OR?: MeetingSummaryScalarWhereInput[]
+    NOT?: MeetingSummaryScalarWhereInput | MeetingSummaryScalarWhereInput[]
+    id?: StringFilter<"MeetingSummary"> | string
+    userId?: StringFilter<"MeetingSummary"> | string
+    meetingId?: StringFilter<"MeetingSummary"> | string
+    source?: StringFilter<"MeetingSummary"> | string
+    title?: StringFilter<"MeetingSummary"> | string
+    tldr?: StringFilter<"MeetingSummary"> | string
+    keyPoints?: JsonFilter<"MeetingSummary">
+    actionItems?: JsonFilter<"MeetingSummary">
+    attendees?: JsonFilter<"MeetingSummary">
+    occurredAt?: DateTimeFilter<"MeetingSummary"> | Date | string
+    model?: StringNullableFilter<"MeetingSummary"> | string | null
+    createdAt?: DateTimeFilter<"MeetingSummary"> | Date | string
+  }
+
   export type UserCreateWithoutChannelLinksInput = {
     id: string
     createdAt?: Date | string
@@ -54899,6 +56719,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutChannelLinksInput = {
@@ -54922,6 +56743,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutChannelLinksInput = {
@@ -54961,6 +56783,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChannelLinksInput = {
@@ -54984,6 +56807,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEmailEmbeddingsInput = {
@@ -55007,6 +56831,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmailEmbeddingsInput = {
@@ -55030,6 +56855,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmailEmbeddingsInput = {
@@ -55069,6 +56895,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmailEmbeddingsInput = {
@@ -55092,6 +56919,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPriorityScoresInput = {
@@ -55115,6 +56943,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPriorityScoresInput = {
@@ -55138,6 +56967,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPriorityScoresInput = {
@@ -55177,6 +57007,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPriorityScoresInput = {
@@ -55200,6 +57031,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPendingActionsInput = {
@@ -55223,6 +57055,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPendingActionsInput = {
@@ -55246,6 +57079,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPendingActionsInput = {
@@ -55285,6 +57119,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPendingActionsInput = {
@@ -55308,6 +57143,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPreferenceInput = {
@@ -55331,6 +57167,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPreferenceInput = {
@@ -55354,6 +57191,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPreferenceInput = {
@@ -55393,6 +57231,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPreferenceInput = {
@@ -55416,6 +57255,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSnoozedThreadsInput = {
@@ -55439,6 +57279,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSnoozedThreadsInput = {
@@ -55462,6 +57303,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSnoozedThreadsInput = {
@@ -55501,6 +57343,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSnoozedThreadsInput = {
@@ -55524,6 +57367,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutScheduledEmailsInput = {
@@ -55547,6 +57391,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutScheduledEmailsInput = {
@@ -55570,6 +57415,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutScheduledEmailsInput = {
@@ -55609,6 +57455,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutScheduledEmailsInput = {
@@ -55632,6 +57479,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutFollowUpsInput = {
@@ -55655,6 +57503,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFollowUpsInput = {
@@ -55678,6 +57527,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFollowUpsInput = {
@@ -55717,6 +57567,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFollowUpsInput = {
@@ -55740,6 +57591,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSentSamplesInput = {
@@ -55763,6 +57615,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSentSamplesInput = {
@@ -55786,6 +57639,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSentSamplesInput = {
@@ -55825,6 +57679,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentSamplesInput = {
@@ -55848,6 +57703,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutStyleProfileInput = {
@@ -55871,6 +57727,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStyleProfileInput = {
@@ -55894,6 +57751,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStyleProfileInput = {
@@ -55933,6 +57791,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStyleProfileInput = {
@@ -55956,6 +57815,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutThreadSummariesInput = {
@@ -55979,6 +57839,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutThreadSummariesInput = {
@@ -56002,6 +57863,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutThreadSummariesInput = {
@@ -56041,6 +57903,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutThreadSummariesInput = {
@@ -56064,6 +57927,7 @@ export namespace Prisma {
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutTriageFeedbackInput = {
@@ -56087,6 +57951,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTriageFeedbackInput = {
@@ -56110,6 +57975,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTriageFeedbackInput = {
@@ -56149,6 +58015,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTriageFeedbackInput = {
@@ -56172,6 +58039,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSenderAffinitiesInput = {
@@ -56195,6 +58063,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSenderAffinitiesInput = {
@@ -56218,6 +58087,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSenderAffinitiesInput = {
@@ -56257,6 +58127,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSenderAffinitiesInput = {
@@ -56280,6 +58151,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutRuleSuggestionsInput = {
@@ -56303,6 +58175,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
     triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRuleSuggestionsInput = {
@@ -56326,6 +58199,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
     triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
     senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    meetingSummaries?: MeetingSummaryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRuleSuggestionsInput = {
@@ -56365,6 +58239,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
     triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRuleSuggestionsInput = {
@@ -56388,6 +58263,7 @@ export namespace Prisma {
     threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
     triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
     senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    meetingSummaries?: MeetingSummaryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MembershipCreateWithoutOrganizationInput = {
@@ -56752,6 +58628,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyCreateNestedOneWithoutOrganizationInput
@@ -56767,6 +58644,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyUncheckedCreateNestedOneWithoutOrganizationInput
@@ -56798,6 +58676,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUpdateOneWithoutOrganizationNestedInput
@@ -56813,6 +58692,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUncheckedUpdateOneWithoutOrganizationNestedInput
@@ -56828,6 +58708,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyCreateNestedOneWithoutOrganizationInput
@@ -56843,6 +58724,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyUncheckedCreateNestedOneWithoutOrganizationInput
@@ -56860,6 +58742,8 @@ export namespace Prisma {
     threadId: string
     assigneeUserId?: string | null
     status?: string
+    supportProvider?: string | null
+    supportTicketId?: string | null
     updatedByUserId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -56870,6 +58754,8 @@ export namespace Prisma {
     threadId: string
     assigneeUserId?: string | null
     status?: string
+    supportProvider?: string | null
+    supportTicketId?: string | null
     updatedByUserId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -56958,6 +58844,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUpdateOneWithoutOrganizationNestedInput
@@ -56973,6 +58860,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUncheckedUpdateOneWithoutOrganizationNestedInput
@@ -57005,6 +58893,8 @@ export namespace Prisma {
     threadId?: StringFilter<"ThreadAssignment"> | string
     assigneeUserId?: StringNullableFilter<"ThreadAssignment"> | string | null
     status?: StringFilter<"ThreadAssignment"> | string
+    supportProvider?: StringNullableFilter<"ThreadAssignment"> | string | null
+    supportTicketId?: StringNullableFilter<"ThreadAssignment"> | string | null
     updatedByUserId?: StringFilter<"ThreadAssignment"> | string
     createdAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
     updatedAt?: DateTimeFilter<"ThreadAssignment"> | Date | string
@@ -57195,6 +59085,118 @@ export namespace Prisma {
     events?: AssignmentEventUncheckedUpdateManyWithoutSharedInboxNestedInput
   }
 
+  export type UserCreateWithoutMeetingSummariesInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    channelLinks?: ChannelLinkCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailCreateNestedManyWithoutUserInput
+    followUps?: FollowUpCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutMeetingSummariesInput = {
+    id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    calendarBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    channelLinks?: ChannelLinkUncheckedCreateNestedManyWithoutUserInput
+    emailEmbeddings?: EmailEmbeddingUncheckedCreateNestedManyWithoutUserInput
+    priorityScores?: PriorityScoreUncheckedCreateNestedManyWithoutUserInput
+    pendingActions?: PendingActionUncheckedCreateNestedManyWithoutUserInput
+    preference?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+    snoozedThreads?: SnoozedThreadUncheckedCreateNestedManyWithoutUserInput
+    scheduledEmails?: ScheduledEmailUncheckedCreateNestedManyWithoutUserInput
+    followUps?: FollowUpUncheckedCreateNestedManyWithoutUserInput
+    sentSamples?: SentMessageSampleUncheckedCreateNestedManyWithoutUserInput
+    styleProfile?: StyleProfileUncheckedCreateNestedOneWithoutUserInput
+    threadSummaries?: ThreadSummaryUncheckedCreateNestedManyWithoutUserInput
+    triageFeedback?: TriageFeedbackUncheckedCreateNestedManyWithoutUserInput
+    senderAffinities?: SenderAffinityUncheckedCreateNestedManyWithoutUserInput
+    ruleSuggestions?: RuleSuggestionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutMeetingSummariesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMeetingSummariesInput, UserUncheckedCreateWithoutMeetingSummariesInput>
+  }
+
+  export type UserUpsertWithoutMeetingSummariesInput = {
+    update: XOR<UserUpdateWithoutMeetingSummariesInput, UserUncheckedUpdateWithoutMeetingSummariesInput>
+    create: XOR<UserCreateWithoutMeetingSummariesInput, UserUncheckedCreateWithoutMeetingSummariesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMeetingSummariesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMeetingSummariesInput, UserUncheckedUpdateWithoutMeetingSummariesInput>
+  }
+
+  export type UserUpdateWithoutMeetingSummariesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMeetingSummariesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    calendarBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    channelLinks?: ChannelLinkUncheckedUpdateManyWithoutUserNestedInput
+    emailEmbeddings?: EmailEmbeddingUncheckedUpdateManyWithoutUserNestedInput
+    priorityScores?: PriorityScoreUncheckedUpdateManyWithoutUserNestedInput
+    pendingActions?: PendingActionUncheckedUpdateManyWithoutUserNestedInput
+    preference?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+    snoozedThreads?: SnoozedThreadUncheckedUpdateManyWithoutUserNestedInput
+    scheduledEmails?: ScheduledEmailUncheckedUpdateManyWithoutUserNestedInput
+    followUps?: FollowUpUncheckedUpdateManyWithoutUserNestedInput
+    sentSamples?: SentMessageSampleUncheckedUpdateManyWithoutUserNestedInput
+    styleProfile?: StyleProfileUncheckedUpdateOneWithoutUserNestedInput
+    threadSummaries?: ThreadSummaryUncheckedUpdateManyWithoutUserNestedInput
+    triageFeedback?: TriageFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    senderAffinities?: SenderAffinityUncheckedUpdateManyWithoutUserNestedInput
+    ruleSuggestions?: RuleSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type SharedInboxCreateWithoutEventsInput = {
     id?: string
     name: string
@@ -57378,6 +59380,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyCreateNestedOneWithoutOrganizationInput
@@ -57393,6 +59396,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     retentionPolicy?: RetentionPolicyUncheckedCreateNestedOneWithoutOrganizationInput
@@ -57424,6 +59428,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUpdateOneWithoutOrganizationNestedInput
@@ -57439,6 +59444,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     retentionPolicy?: RetentionPolicyUncheckedUpdateOneWithoutOrganizationNestedInput
@@ -57454,6 +59460,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
@@ -57469,6 +59476,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
@@ -57500,6 +59508,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
@@ -57515,6 +59524,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -57530,6 +59540,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
@@ -57545,6 +59556,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
@@ -57576,6 +59588,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
@@ -57591,6 +59604,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -57606,6 +59620,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionCreateNestedManyWithoutOrganizationInput
@@ -57621,6 +59636,7 @@ export namespace Prisma {
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
+    defaultSupportProvider?: string | null
     memberships?: MembershipUncheckedCreateNestedManyWithoutOrganizationInput
     sharedInboxes?: SharedInboxUncheckedCreateNestedManyWithoutOrganizationInput
     ssoConnections?: SsoConnectionUncheckedCreateNestedManyWithoutOrganizationInput
@@ -57652,6 +59668,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUpdateManyWithoutOrganizationNestedInput
@@ -57667,6 +59684,7 @@ export namespace Prisma {
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultSupportProvider?: NullableStringFieldUpdateOperationsInput | string | null
     memberships?: MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
     sharedInboxes?: SharedInboxUncheckedUpdateManyWithoutOrganizationNestedInput
     ssoConnections?: SsoConnectionUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -57904,6 +59922,20 @@ export namespace Prisma {
     kind: string
     payload?: JsonNullValueInput | InputJsonValue
     status?: string
+    createdAt?: Date | string
+  }
+
+  export type MeetingSummaryCreateManyUserInput = {
+    id?: string
+    meetingId: string
+    source?: string
+    title?: string
+    tldr: string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt: Date | string
+    model?: string | null
     createdAt?: Date | string
   }
 
@@ -58258,6 +60290,48 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MeetingSummaryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tldr?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MeetingSummaryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tldr?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MeetingSummaryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tldr?: StringFieldUpdateOperationsInput | string
+    keyPoints?: JsonNullValueInput | InputJsonValue
+    actionItems?: JsonNullValueInput | InputJsonValue
+    attendees?: JsonNullValueInput | InputJsonValue
+    occurredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MembershipCreateManyOrganizationInput = {
     id?: string
     userId: string
@@ -58453,6 +60527,8 @@ export namespace Prisma {
     threadId: string
     assigneeUserId?: string | null
     status?: string
+    supportProvider?: string | null
+    supportTicketId?: string | null
     updatedByUserId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -58480,6 +60556,8 @@ export namespace Prisma {
     threadId?: StringFieldUpdateOperationsInput | string
     assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    supportProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    supportTicketId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedByUserId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -58490,6 +60568,8 @@ export namespace Prisma {
     threadId?: StringFieldUpdateOperationsInput | string
     assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    supportProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    supportTicketId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedByUserId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -58500,6 +60580,8 @@ export namespace Prisma {
     threadId?: StringFieldUpdateOperationsInput | string
     assigneeUserId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    supportProvider?: NullableStringFieldUpdateOperationsInput | string | null
+    supportTicketId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedByUserId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

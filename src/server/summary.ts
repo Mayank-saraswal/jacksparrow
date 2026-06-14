@@ -81,21 +81,25 @@ function threadToText(detail: ThreadDetail): string {
 }
 
 /**
- * Generates a structured summary. Retries once with the validation error
- * appended if the model returns schema-invalid output, then returns null.
+ * Generates a structured summary from arbitrary document text (email thread,
+ * meeting transcript, …). Retries once with the validation error appended if
+ * the model returns schema-invalid output, then returns null. This is the ONE
+ * summarizer — email threads and Fireflies transcripts both flow through it.
  */
-export async function generateThreadSummary(
-  detail: ThreadDetail,
-): Promise<ThreadSummaryResult | null> {
+export async function summarizeDocument(input: {
+  title: string;
+  text: string;
+  kind?: string;
+}): Promise<ThreadSummaryResult | null> {
   if (!env.OPENAI_API_KEY) return null;
 
   const base = [
-    "Summarize this email thread for the recipient (the user is \"me\").",
+    `Summarize this ${input.kind ?? "email thread"} for the recipient (the user is "me").`,
     "Be terse and factual. Do not invent information.",
     "",
-    `Subject: ${detail.subject}`,
+    `Subject: ${input.title}`,
     "",
-    threadToText(detail),
+    input.text,
   ].join("\n");
 
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -117,6 +121,20 @@ export async function generateThreadSummary(
     }
   }
   return null;
+}
+
+/**
+ * Generates a structured summary for a Gmail/Outlook thread. Thin wrapper over
+ * `summarizeDocument` so the email path is unchanged.
+ */
+export async function generateThreadSummary(
+  detail: ThreadDetail,
+): Promise<ThreadSummaryResult | null> {
+  return summarizeDocument({
+    title: detail.subject,
+    text: threadToText(detail),
+    kind: "email thread",
+  });
 }
 
 export interface ResolvedThreadSummary {

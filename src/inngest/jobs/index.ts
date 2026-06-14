@@ -12,6 +12,7 @@
  */
 export { processTask, backfillIntegration } from "./backfill";
 export { corsairWebhookReceived } from "./sync";
+export { firefliesTranscriptReady } from "./fireflies";
 export { gmailWatchOnConnect, gmailWatchRenew } from "./gmail-watch";
 export { scoreInboxBackfill } from "./triage";
 export { searchEmbeddingsBackfill } from "./search";

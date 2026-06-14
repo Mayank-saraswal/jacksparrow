@@ -23,6 +23,13 @@ import { linear } from "@corsair-dev/linear";
 import { jira } from "@corsair-dev/jira";
 import { zoom } from "@corsair-dev/zoom";
 import { teams } from "@corsair-dev/teams";
+import { cal } from "@corsair-dev/cal";
+import { calendly } from "@corsair-dev/calendly";
+import { fireflies } from "@corsair-dev/fireflies";
+import { zendesk } from "@corsair-dev/zendesk";
+import { intercom } from "@corsair-dev/intercom";
+import { todoist } from "@corsair-dev/todoist";
+import { asana } from "@corsair-dev/asana";
 import { outlook } from "@corsair-dev/outlook";
 import { slack } from "@corsair-dev/slack";
 
@@ -62,6 +69,13 @@ async function main() {
       jira(),
       zoom(),
       teams(),
+      cal(),
+      calendly(),
+      fireflies(),
+      zendesk(),
+      intercom(),
+      todoist(),
+      asana(),
     ],
     database: pool,
     kek: CORSAIR_KEK,
@@ -103,6 +117,13 @@ async function main() {
     ["jira", process.env.JIRA_CLIENT_ID, process.env.JIRA_CLIENT_SECRET],
     ["zoom", process.env.ZOOM_CLIENT_ID, process.env.ZOOM_CLIENT_SECRET],
     ["teams", process.env.TEAMS_CLIENT_ID, process.env.TEAMS_CLIENT_SECRET],
+    ["cal", process.env.CAL_CLIENT_ID, process.env.CAL_CLIENT_SECRET],
+    ["calendly", process.env.CALENDLY_CLIENT_ID, process.env.CALENDLY_CLIENT_SECRET],
+    ["fireflies", process.env.FIREFLIES_CLIENT_ID, process.env.FIREFLIES_CLIENT_SECRET],
+    ["zendesk", process.env.ZENDESK_CLIENT_ID, process.env.ZENDESK_CLIENT_SECRET],
+    ["intercom", process.env.INTERCOM_CLIENT_ID, process.env.INTERCOM_CLIENT_SECRET],
+    ["todoist", process.env.TODOIST_CLIENT_ID, process.env.TODOIST_CLIENT_SECRET],
+    ["asana", process.env.ASANA_CLIENT_ID, process.env.ASANA_CLIENT_SECRET],
   ];
   for (const [name, id, secret] of phase2) {
     if (id && secret) {

@@ -138,6 +138,40 @@ export const jiraCreateIssueSchema = z.object({
   assigneeId: z.string().optional(),
 });
 
+// ── Phase 3 — integration write kinds ─────────────────────────────────────────
+export const taskCreateSchema = z.object({
+  provider: z.enum(["todoist", "asana"]).optional(),
+  title: z.string().min(1),
+  notes: z.string().optional(),
+  dueDate: z.string().datetime().optional(),
+  projectId: z.string().optional(),
+});
+
+export const supportCreateTicketSchema = z.object({
+  orgId: z.string().min(1),
+  requesterEmail: z.string().email(),
+  subject: z.string().min(1),
+  body: z.string().default(""),
+  priority: z.string().optional(),
+  threadId: z.string().optional(),
+  sharedInboxId: z.string().optional(),
+});
+
+export const supportReplyTicketSchema = z.object({
+  orgId: z.string().min(1),
+  ticketId: z.string().min(1),
+  body: z.string().min(1),
+  public: z.boolean(),
+});
+
+export const supportUpdateTicketSchema = z.object({
+  orgId: z.string().min(1),
+  ticketId: z.string().min(1),
+  status: z.string().optional(),
+  assigneeId: z.string().optional(),
+  priority: z.string().optional(),
+});
+
 // ── Kind registry ─────────────────────────────────────────────────────────────
 export const PENDING_KINDS = [
   "send_email",
@@ -156,6 +190,10 @@ export const PENDING_KINDS = [
   "notion_append_block",
   "linear_create_issue",
   "jira_create_issue",
+  "task_create",
+  "support_create_ticket",
+  "support_reply_ticket",
+  "support_update_ticket",
 ] as const;
 export type PendingKind = (typeof PENDING_KINDS)[number];
 
@@ -176,6 +214,10 @@ export const OPERATION_PATH: Record<PendingKind, string> = {
   notion_append_block: "notion.api.blocks.appendBlock",
   linear_create_issue: "linear.api.issues.create",
   jira_create_issue: "jira.api.issues.create",
+  task_create: "tasks.create",
+  support_create_ticket: "support.tickets.create",
+  support_reply_ticket: "support.tickets.reply",
+  support_update_ticket: "support.tickets.update",
 };
 
 export function fmtTime(iso: string): string {
@@ -263,6 +305,28 @@ export function summarizePendingAction(kind: string, payload: unknown): string {
       const p = jiraCreateIssueSchema.parse(payload);
       return `Create Jira ${p.issueType} "${p.summary}" in ${p.projectKey}`;
     }
+    case "task_create": {
+      const p = taskCreateSchema.parse(payload);
+      const where = p.provider ? ` (${p.provider})` : "";
+      return `Create task "${p.title}"${where}`;
+    }
+    case "support_create_ticket": {
+      const p = supportCreateTicketSchema.parse(payload);
+      return `Create support ticket "${p.subject}" for ${p.requesterEmail}`;
+    }
+    case "support_reply_ticket": {
+      const p = supportReplyTicketSchema.parse(payload);
+      return `${p.public ? "Reply to" : "Add internal note on"} ticket ${p.ticketId}`;
+    }
+    case "support_update_ticket": {
+      const p = supportUpdateTicketSchema.parse(payload);
+      const bits = [
+        p.status ? `status=${p.status}` : "",
+        p.priority ? `priority=${p.priority}` : "",
+        p.assigneeId ? `assignee=${p.assigneeId}` : "",
+      ].filter(Boolean);
+      return `Update ticket ${p.ticketId}${bits.length ? `: ${bits.join(", ")}` : ""}`;
+    }
     default:
       return `Unknown action: ${kind}`;
   }
@@ -303,6 +367,14 @@ export function confirmationCopy(kind: string): string {
       return "Linear issue created ✅";
     case "jira_create_issue":
       return "Jira issue created ✅";
+    case "task_create":
+      return "Task created ✅";
+    case "support_create_ticket":
+      return "Ticket created ✅";
+    case "support_reply_ticket":
+      return "Ticket updated ✅";
+    case "support_update_ticket":
+      return "Ticket updated ✅";
     default:
       return "Done ✅";
   }

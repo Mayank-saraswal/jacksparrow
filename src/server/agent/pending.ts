@@ -4,6 +4,8 @@ import { getTenant, getOrgTenant } from "@/server/corsair";
 import { sendEmail } from "@/server/agent/execute";
 import { getMailProvider, resolveMailPlugin } from "@/server/mail/provider";
 import { resolveIssueTracker } from "@/server/issues/provider";
+import { resolveTaskProvider, taskProviderFor } from "@/server/tasks/provider";
+import { resolveSupportProvider } from "@/server/support/provider";
 import {
   resolveZoomMeeting,
   resolveTeamsMeeting,
@@ -31,6 +33,10 @@ import {
   notionAppendBlockSchema,
   linearCreateIssueSchema,
   jiraCreateIssueSchema,
+  taskCreateSchema,
+  supportCreateTicketSchema,
+  supportReplyTicketSchema,
+  supportUpdateTicketSchema,
   PENDING_KINDS,
   OPERATION_PATH,
   summarizePendingAction,
@@ -67,6 +73,10 @@ export {
   notionAppendBlockSchema,
   linearCreateIssueSchema,
   jiraCreateIssueSchema,
+  taskCreateSchema,
+  supportCreateTicketSchema,
+  supportReplyTicketSchema,
+  supportUpdateTicketSchema,
   PENDING_KINDS,
   OPERATION_PATH,
   summarizePendingAction,
@@ -78,7 +88,7 @@ export {
 async function assertOrgWriteAllowed(
   userId: string,
   orgId: string,
-  feature: "crm" | "issueTracker" | "meetings",
+  feature: "crm" | "issueTracker" | "meetings" | "support",
 ): Promise<void> {
   const member = await db.membership.findUnique({
     where: { orgId_userId: { orgId, userId } },
@@ -518,6 +528,101 @@ export async function executePendingAction(
           created.identifier ? ` (${created.identifier})` : ""
         }`,
       };
+    }
+    case "task_create": {
+      const p = taskCreateSchema.parse(payload);
+      const resolved = await resolveTaskProvider(userId, p.provider);
+      if (!resolved.ok) throw new Error("No task app is connected");
+      const provider = p.provider
+        ? taskProviderFor(p.provider, userId)
+        : resolved.provider;
+      const created = await provider.createTask({
+        title: p.title,
+        notes: p.notes,
+        dueDate: p.dueDate,
+        projectId: p.projectId,
+      });
+      return {
+        summary: `Created ${provider.app} task "${p.title}"${
+          created.url ? ` — ${created.url}` : ""
+        }`,
+      };
+    }
+    case "support_create_ticket": {
+      const p = supportCreateTicketSchema.parse(payload);
+      await assertOrgWriteAllowed(userId, p.orgId, "support");
+      const resolved = await resolveSupportProvider(p.orgId);
+      if (!resolved.ok) throw new Error("No support desk is connected");
+      const result = await resolved.provider.createTicket({
+        requesterEmail: p.requesterEmail,
+        subject: p.subject,
+        body: p.body,
+        priority: p.priority,
+      });
+      if (!result.ok) {
+        throw new Error(
+          `${resolved.provider.desk} ticket creation is not supported by the connected integration`,
+        );
+      }
+      // Link the ticket to the shared-inbox thread + record the event.
+      if (p.sharedInboxId && p.threadId) {
+        await db.threadAssignment.updateMany({
+          where: { sharedInboxId: p.sharedInboxId, threadId: p.threadId },
+          data: {
+            supportProvider: resolved.provider.desk,
+            supportTicketId: result.id,
+          },
+        });
+        await db.assignmentEvent.create({
+          data: {
+            sharedInboxId: p.sharedInboxId,
+            threadId: p.threadId,
+            actorUserId: userId,
+            kind: "ticket_created",
+            meta: { ticketId: result.id, desk: resolved.provider.desk },
+          },
+        });
+      }
+      audit({ userId, orgId: p.orgId, actorType: "agent" }, "integration.ticket_created", {
+        targetType: `${resolved.provider.desk}_ticket`,
+        targetId: result.id,
+      });
+      return { summary: `Created ${resolved.provider.desk} ticket ${result.id}` };
+    }
+    case "support_reply_ticket": {
+      const p = supportReplyTicketSchema.parse(payload);
+      await assertOrgWriteAllowed(userId, p.orgId, "support");
+      const resolved = await resolveSupportProvider(p.orgId);
+      if (!resolved.ok) throw new Error("No support desk is connected");
+      await resolved.provider.replyTicket({
+        ticketId: p.ticketId,
+        body: p.body,
+        public: p.public,
+      });
+      audit({ userId, orgId: p.orgId, actorType: "agent" }, "integration.ticket_updated", {
+        targetType: `${resolved.provider.desk}_ticket_reply`,
+        targetId: p.ticketId,
+      });
+      return {
+        summary: `${p.public ? "Replied to" : "Noted on"} ${resolved.provider.desk} ticket ${p.ticketId}`,
+      };
+    }
+    case "support_update_ticket": {
+      const p = supportUpdateTicketSchema.parse(payload);
+      await assertOrgWriteAllowed(userId, p.orgId, "support");
+      const resolved = await resolveSupportProvider(p.orgId);
+      if (!resolved.ok) throw new Error("No support desk is connected");
+      await resolved.provider.updateTicket({
+        ticketId: p.ticketId,
+        status: p.status,
+        assigneeId: p.assigneeId,
+        priority: p.priority,
+      });
+      audit({ userId, orgId: p.orgId, actorType: "agent" }, "integration.ticket_updated", {
+        targetType: `${resolved.provider.desk}_ticket_update`,
+        targetId: p.ticketId,
+      });
+      return { summary: `Updated ${resolved.provider.desk} ticket ${p.ticketId}` };
     }
     default:
       throw new Error(`Unknown pending action kind: ${kind}`);

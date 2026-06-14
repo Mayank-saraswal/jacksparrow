@@ -7,15 +7,22 @@
       "dependencies": {
         "@ai-sdk/openai": "^3.0.70",
         "@clerk/nextjs": "^7.5.1",
+        "@corsair-dev/asana": "0.1.3",
+        "@corsair-dev/cal": "0.1.3",
+        "@corsair-dev/calendly": "0.1.3",
+        "@corsair-dev/fireflies": "0.1.3",
         "@corsair-dev/gmail": "^0.1.4",
         "@corsair-dev/googlecalendar": "^0.1.3",
         "@corsair-dev/hubspot": "0.1.6",
+        "@corsair-dev/intercom": "0.1.3",
         "@corsair-dev/jira": "0.1.4",
         "@corsair-dev/linear": "0.1.4",
         "@corsair-dev/notion": "0.1.4",
         "@corsair-dev/outlook": "^0.1.3",
         "@corsair-dev/slack": "^0.1.4",
         "@corsair-dev/teams": "0.1.3",
+        "@corsair-dev/todoist": "0.1.3",
+        "@corsair-dev/zendesk": "0.1.1",
         "@corsair-dev/zoom": "0.1.3",
         "@phosphor-icons/react": "^2.1.10",
         "@prisma/client": "^6.6.0",
@@ -174,11 +181,21 @@
 
     "@clerk/shared": ["@clerk/shared@4.17.0", "", { "dependencies": { "@tanstack/query-core": "^5.100.6", "dequal": "2.0.3", "glob-to-regexp": "0.4.1", "js-cookie": "3.0.7" }, "peerDependencies": { "react": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0", "react-dom": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0" }, "optionalPeers": ["react", "react-dom"] }, "sha512-YeQ+6zDmqyor1mPHjZx18j+LssL6Pobvid8hb7HQMioSo8sGDBEVi/Z12bs+gUhe9KbdP+ygHsKOqqeGAPuPZA=="],
 
+    "@corsair-dev/asana": ["@corsair-dev/asana@0.1.3", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-Yw7Nc5DMn3IPSuERScC/w2/FKxMYd5R1i4L87WgJmLEZuU2NzZZvZVmhSgsfBQmx5tLDu9+jl5DA/FZOX53dwA=="],
+
+    "@corsair-dev/cal": ["@corsair-dev/cal@0.1.3", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-IvrQqDZ0Xx0H+qfZDc6+3vS3UudqfxGqvembC15JIgHwPQNU9HtFroJWa2pAtD3WMARwomdtepgAiVAyd/zpYA=="],
+
+    "@corsair-dev/calendly": ["@corsair-dev/calendly@0.1.3", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-GFpV/Cv8cTuABTUgaR6LxwE/czStdDbiDfC27VeifGPU1htfjhTKhDp11iALFquMQEiGdwe7eNVkCNas2PV6zA=="],
+
+    "@corsair-dev/fireflies": ["@corsair-dev/fireflies@0.1.3", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-jhF3jT44262oLb5ZQSB8XAQxnUa7NakQiv/sxHZRBTtaQyJfyDVKYD3EfximPw8xnzukVCb+XvS9QcfumeZc9w=="],
+
     "@corsair-dev/gmail": ["@corsair-dev/gmail@0.1.4", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-jaAa+NUzJtm0YWDFdcKgR4rm4vvm2ODe6dLXK/FHOxvCdcrrDhHEJ9mZArNcY+K8ieJnL/hXFSX9a2uzsDC5jg=="],
 
     "@corsair-dev/googlecalendar": ["@corsair-dev/googlecalendar@0.1.3", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-9T8nOXn7V7yZc+eFfE7YOPolNOZe93d4fVB8480iildss6lquOw4Io2GYoarIuDSOdFxmRyHcMMsVE0IdSCIBA=="],
 
     "@corsair-dev/hubspot": ["@corsair-dev/hubspot@0.1.6", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-M1Z4eeoptJ4NTboObfNte+N5RIryUUV5Eax7eD4UAo7kum6JVwONdBWyqKScdWmL5nZx+xhuz4BcA3ryH7U4vw=="],
+
+    "@corsair-dev/intercom": ["@corsair-dev/intercom@0.1.3", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-fiuoU/CTcMmEY64Q0PRzPXdzkHwB5f5YwZvopzjjDYJG1RvYJXsHFjcRjT13PJvxlv7CPXKWdQUSav+MpJ34yA=="],
 
     "@corsair-dev/jira": ["@corsair-dev/jira@0.1.4", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-nrq6YfSGTR+s33Nt0BeBjcIveLDMNxBZ8sdXWlUsq9EcV4Ho8eXtkqGgp6HkPTuBcLsL+RRPcpRaU0Mx8GZ/xA=="],
 
@@ -191,6 +208,10 @@
     "@corsair-dev/slack": ["@corsair-dev/slack@0.1.4", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-QSx51uSCzx/TCXJoJO4WXwQRkblYM07kibXsT+xPi85GFSHmUy/9E5iMUAa6PqEDJxFungobOZh8uXnVd59Yxw=="],
 
     "@corsair-dev/teams": ["@corsair-dev/teams@0.1.3", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-LMZaQrtODsMrWFPldYYRJqJh1CbbaABpewU2cJbNvbpwy3IckROTqsT5P+Uh77wYnA1rqtJl3MnUc99Ouh5Pqg=="],
+
+    "@corsair-dev/todoist": ["@corsair-dev/todoist@0.1.3", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-1D6GAFPz72CLe8oSKwcmYOEGaS0k6sEu5WjX4p6oyMwVosFJ9cJvLeOPpbnAZ4Hr1t3m3EvKtcHfoyZazQb3Ew=="],
+
+    "@corsair-dev/zendesk": ["@corsair-dev/zendesk@0.1.1", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-CZejiKGJp+yALoE07wL9JgK4+R0FhOFCU+vZjYY3NwShDDuqSMfH/3vm6aeFujyfQit0sBljtiZFXTGBobWUlA=="],
 
     "@corsair-dev/zoom": ["@corsair-dev/zoom@0.1.3", "", { "dependencies": { "jest": "^29.7.0" }, "peerDependencies": { "corsair": ">=0.1.0", "zod": "^4.1.13" } }, "sha512-qf/YIjN9LsZhbD0P7PydCdp45XM1zWyA7b1Remu1DqeXGvcmKPsm1jKAmjUBRHS0r4ACSN6nSvq0tHPPfEB9qg=="],
 

@@ -11,7 +11,7 @@ import {
   tenantId as toTenantId,
   type TenantRef,
 } from "@/server/corsair";
-import { hasFeature, orgOwner } from "@/server/billing/entitlements";
+import { hasFeature, orgOwner, userOwner } from "@/server/billing/entitlements";
 
 /**
  * Starts the OAuth flow for the given plugin.
@@ -54,18 +54,12 @@ export async function GET(
     ref = { kind: "org", orgId };
   }
 
-  // Plan-gate integrations that require a paid capability (HubSpot/Linear/Jira/
-  // Teams). The billable owner is the org for org-scoped connects.
+  // Plan-gate integrations that require a paid capability. Org integrations
+  // (HubSpot/Linear/Jira/Teams/Zendesk/Intercom) bill to the org; user-level
+  // ones (Fireflies → meetingIntelligence) bill to the user.
   const feature = PLUGIN_FEATURE[plugin];
   if (feature) {
-    const owner =
-      ref.kind === "org" ? orgOwner(ref.orgId) : orgOwner(orgId ?? "");
-    if (ref.kind !== "org") {
-      return NextResponse.json(
-        { error: "This integration is connected at the organization level." },
-        { status: 400 },
-      );
-    }
+    const owner = ref.kind === "org" ? orgOwner(ref.orgId) : userOwner(userId);
     if (!(await hasFeature(owner, feature))) {
       return NextResponse.json(
         { error: "Your plan does not include this integration." },

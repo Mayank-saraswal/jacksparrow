@@ -9,6 +9,9 @@ import { db } from "@/server/db";
 import { getTenant, getOrgTenant, isConnected, type TenantRef } from "@/server/corsair";
 import { getMailProvider, resolveMailPlugin } from "@/server/mail/provider";
 import { resolveIssueTracker } from "@/server/issues/provider";
+import { resolveTaskProvider } from "@/server/tasks/provider";
+import { resolveSchedulingProvider } from "@/server/scheduling/provider";
+import { resolveSupportProvider } from "@/server/support/provider";
 import { availableMeetingProviders } from "@/server/meetings/provider";
 import { getMembership } from "@/server/authz";
 import { normalizeEvent, type RawCalEvent } from "@/server/calendar";
@@ -75,7 +78,7 @@ export function buildAgentTools(
    * plan capability. Returns a structured error the tool surfaces to the model.
    */
   const orgGate = async (
-    feature: "crm" | "issueTracker" | "meetings",
+    feature: "crm" | "issueTracker" | "meetings" | "support",
   ): Promise<
     { ok: true; orgId: string } | { ok: false; error: Record<string, string> }
   > => {
@@ -559,6 +562,218 @@ export function buildAgentTools(
         "Which video meeting providers (zoom/teams) are connected, for attaching a join link to a new calendar event.",
       inputSchema: z.object({}),
       execute: () => availableMeetingProviders(userId, orgId),
+    }),
+
+    // ── Scheduling links (Cal.com / Calendly) ─────────────────────────────
+    schedulingListEventTypes: tool({
+      description:
+        "List the user's bookable scheduling links (Cal.com / Calendly) — name, duration, URL — to insert into an email draft.",
+      inputSchema: z.object({
+        provider: z.enum(["calendly", "cal"]).optional(),
+      }),
+      execute: async ({ provider }) => {
+        const resolved = await resolveSchedulingProvider(userId, provider);
+        if (!resolved.ok) return { error: "not-connected", plugin: "scheduling" };
+        try {
+          const res = await resolved.provider.listEventTypes();
+          if (!res.ok)
+            return { error: "listing-unsupported", plugin: resolved.provider.app };
+          return { provider: resolved.provider.app, links: res.links };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    insertSchedulingLink: tool({
+      description:
+        "Return the booking URL for a scheduling event type so it can be inserted into a draft. This is NOT an external write — it just returns a link.",
+      inputSchema: z.object({
+        eventTypeId: z.string().min(1),
+        provider: z.enum(["calendly", "cal"]).optional(),
+      }),
+      execute: async ({ eventTypeId, provider }) => {
+        const resolved = await resolveSchedulingProvider(userId, provider);
+        if (!resolved.ok) return { error: "not-connected", plugin: "scheduling" };
+        try {
+          const res = await resolved.provider.listEventTypes();
+          if (!res.ok)
+            return { error: "listing-unsupported", plugin: resolved.provider.app };
+          const link = res.links.find((l) => l.eventTypeId === eventTypeId);
+          if (!link) return { error: "not-found" };
+          return { url: link.url, name: link.name };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    // ── Tasks (Todoist / Asana / Phase-2 providers) ───────────────────────
+    taskListProjects: tool({
+      description: "List projects in the user's connected task app (Todoist/Asana).",
+      inputSchema: z.object({
+        provider: z.enum(["todoist", "asana"]).optional(),
+      }),
+      execute: async ({ provider }) => {
+        const resolved = await resolveTaskProvider(userId, provider);
+        if (!resolved.ok) return { error: "not-connected", plugin: "tasks" };
+        try {
+          return {
+            provider: resolved.provider.app,
+            projects: await resolved.provider.listProjects(),
+          };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    createTask: tool({
+      description:
+        "Create a task from an email in the user's task app (Todoist/Asana). Creates a pending action the user must approve.",
+      inputSchema: z.object({
+        title: z.string().min(1),
+        notes: z.string().optional(),
+        dueDate: z.string().datetime().optional(),
+        projectId: z.string().optional(),
+        provider: z.enum(["todoist", "asana"]).optional(),
+      }),
+      execute: async (args) => {
+        const resolved = await resolveTaskProvider(userId, args.provider);
+        if (!resolved.ok) return { error: "not-connected", plugin: "tasks" };
+        return createPending(userId, channel, "task_create", {
+          ...args,
+          provider: resolved.provider.app,
+        });
+      },
+    }),
+
+    // ── Fireflies (meeting intelligence) ──────────────────────────────────
+    firefliesListMeetings: tool({
+      description: "List the user's recent Fireflies meeting transcripts.",
+      inputSchema: z.object({ limit: z.number().min(1).max(50).default(10) }),
+      execute: async ({ limit }) => {
+        if (!(await isConnected(ref, "fireflies")))
+          return { error: "not-connected", plugin: "fireflies" };
+        try {
+          const res = await tenant.fireflies.api.transcripts.list({ limit });
+          return { transcripts: res };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    firefliesGetTranscript: tool({
+      description: "Get a Fireflies transcript by id (title, attendees, sentences).",
+      inputSchema: z.object({ meetingId: z.string().min(1) }),
+      execute: async ({ meetingId }) => {
+        if (!(await isConnected(ref, "fireflies")))
+          return { error: "not-connected", plugin: "fireflies" };
+        try {
+          const res = await tenant.fireflies.api.transcripts.get({
+            transcriptId: meetingId,
+          });
+          return { transcript: res };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    // ── Support desk (Zendesk / Intercom) ─────────────────────────────────
+    supportFindTicket: tool({
+      description: "Find support tickets for a requester email (org Zendesk/Intercom).",
+      inputSchema: z.object({ email: z.string().email() }),
+      execute: async ({ email }) => {
+        const gate = await orgGate("support");
+        if (!gate.ok) return gate.error;
+        const resolved = await resolveSupportProvider(gate.orgId);
+        if (!resolved.ok) return { error: "not-connected", plugin: "support" };
+        try {
+          return {
+            desk: resolved.provider.desk,
+            tickets: await resolved.provider.findTicketByEmail(email),
+          };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    supportTicketContext: tool({
+      description: "Get a support ticket's status, priority, assignee, last update.",
+      inputSchema: z.object({ ticketId: z.string().min(1) }),
+      execute: async ({ ticketId }) => {
+        const gate = await orgGate("support");
+        if (!gate.ok) return gate.error;
+        const resolved = await resolveSupportProvider(gate.orgId);
+        if (!resolved.ok) return { error: "not-connected", plugin: "support" };
+        try {
+          const ticket = await resolved.provider.getTicket(ticketId);
+          return ticket ? { ticket } : { error: "not-found" };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
+    }),
+
+    supportCreateTicket: tool({
+      description:
+        "Open a support ticket (org Zendesk/Intercom). Creates a pending action the user must approve.",
+      inputSchema: z.object({
+        requesterEmail: z.string().email(),
+        subject: z.string().min(1),
+        body: z.string().default(""),
+        priority: z.string().optional(),
+        threadId: z.string().optional(),
+        sharedInboxId: z.string().optional(),
+      }),
+      execute: async (args) => {
+        const gate = await orgGate("support");
+        if (!gate.ok) return gate.error;
+        return createPending(userId, channel, "support_create_ticket", {
+          ...args,
+          orgId: gate.orgId,
+        });
+      },
+    }),
+
+    supportReplyTicket: tool({
+      description:
+        "Reply to a support ticket (public reply) or add an internal note (org Zendesk/Intercom). Creates a pending action the user must approve.",
+      inputSchema: z.object({
+        ticketId: z.string().min(1),
+        body: z.string().min(1),
+        public: z.boolean().default(true),
+      }),
+      execute: async (args) => {
+        const gate = await orgGate("support");
+        if (!gate.ok) return gate.error;
+        return createPending(userId, channel, "support_reply_ticket", {
+          ...args,
+          orgId: gate.orgId,
+        });
+      },
+    }),
+
+    supportUpdateTicket: tool({
+      description:
+        "Update a support ticket's status/assignee/priority (org Zendesk/Intercom). Creates a pending action the user must approve.",
+      inputSchema: z.object({
+        ticketId: z.string().min(1),
+        status: z.string().optional(),
+        assigneeId: z.string().optional(),
+        priority: z.string().optional(),
+      }),
+      execute: async (args) => {
+        const gate = await orgGate("support");
+        if (!gate.ok) return gate.error;
+        return createPending(userId, channel, "support_update_ticket", {
+          ...args,
+          orgId: gate.orgId,
+        });
+      },
     }),
   };
 }

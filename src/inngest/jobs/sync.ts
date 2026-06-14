@@ -205,6 +205,16 @@ export const corsairWebhookReceived = inngest.createFunction(
 
     if (!entity) return { skipped: "entity-not-found" };
 
+    // Fireflies: route a completed transcript to its dedicated pipeline
+    // (summary → MeetingSummary → FollowUp → SyncItem). Idempotent downstream.
+    if (plugin === "fireflies") {
+      await step.sendEvent("route-fireflies", {
+        name: "fireflies/transcript.ready",
+        data: { tenantId, transcriptId: entity.entityId, corsairEntityId },
+      });
+      return { routed: "fireflies" };
+    }
+
     // Phase 2: integration webhooks (HubSpot/Notion/Linear/Jira/Zoom/Teams) are
     // not part of the inbox/calendar feed. Don't silently coerce them into the
     // gmail branch — log and skip so we never write bogus sync_items.
