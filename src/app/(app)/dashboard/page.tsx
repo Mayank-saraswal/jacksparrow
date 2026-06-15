@@ -60,17 +60,17 @@ export default async function DashboardPage() {
               <Link
                 key={q.href}
                 href={q.href}
-                className="group flex items-center gap-3 rounded-xl border border-border bg-card p-3 transition hover:border-primary/40"
+                className="group flex items-center gap-3 rounded-xl bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] border border-transparent hover:border-[rgba(0,0,0,0.06)] p-3 transition-colors text-[#262626]"
               >
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent text-primary">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm border border-[#E8E8E8] text-[#262626] group-hover:border-[rgba(0,0,0,0.2)] transition-colors">
                   <Icon weight="fill" className="size-4" />
                 </span>
                 <span className="min-w-0">
                   <span className="flex items-center gap-1 text-sm font-medium">
                     {q.label}
-                    <ArrowRight className="size-3 opacity-0 transition group-hover:opacity-100" />
+                    <ArrowRight className="size-3 text-[rgba(0,0,0,0.48)] opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5" />
                   </span>
-                  <span className="block truncate text-[11px] text-muted-foreground">
+                  <span className="block truncate text-[11px] text-[rgba(0,0,0,0.48)]">
                     {q.desc}
                   </span>
                 </span>
