@@ -75,7 +75,7 @@ export function AsciiSignal({ className }: { className?: string }) {
         const rightGlow = 1 - smoothstep(0, 0.18, Math.abs(1 - nx - wave));
         const intensity = Math.max(leftGlow, rightGlow) * band;
         if (intensity < 0.02) continue;
-        ctx.fillStyle = `rgba(255,106,0,${intensity * 0.9})`;
+        ctx.fillStyle = `rgba(161,85,0,${intensity * 0.9})`;
         if (Math.random() < 0.015) g.char = randomChar();
         ctx.fillText(g.char, px, py);
       }

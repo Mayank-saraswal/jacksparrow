@@ -11,6 +11,7 @@ import {
   PlugsConnected,
   GearSix,
   ChatCircleDots,
+  CreditCard,
 } from "@phosphor-icons/react";
 
 import { cn } from "@/lib/utils";
@@ -21,11 +22,12 @@ const NAV = [
   { href: "/calendar", label: "Calendar", icon: CalendarBlank },
   { href: "/team", label: "Team", icon: UsersThree },
   { href: "/integrations", label: "Integrations", icon: PlugsConnected },
-  { href: "/settings", label: "Settings", icon: GearSix },
 ];
 
-export function DashboardSidebar() {
+export function AppSidebar() {
   const pathname = usePathname();
+  const isSettingsActive = pathname.startsWith("/settings") && pathname !== "/settings/billing";
+  const isBillingActive = pathname === "/settings/billing";
 
   return (
     <aside className="hidden w-56 shrink-0 flex-col border-r border-border bg-card/40 md:flex">
@@ -60,7 +62,41 @@ export function DashboardSidebar() {
           );
         })}
       </nav>
-      <div className="px-4 py-4 text-[11px] text-muted-foreground">
+      
+      <div className="px-2 pb-2 space-y-0.5">
+        <Link
+          href="/settings/billing"
+          className={cn(
+            "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition",
+            isBillingActive
+              ? "bg-accent text-accent-foreground"
+              : "text-muted-foreground hover:bg-muted hover:text-foreground",
+          )}
+        >
+          <CreditCard
+            weight={isBillingActive ? "fill" : "regular"}
+            className="size-4 shrink-0"
+          />
+          Billing
+        </Link>
+        <Link
+          href="/settings"
+          className={cn(
+            "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition",
+            isSettingsActive
+              ? "bg-accent text-accent-foreground"
+              : "text-muted-foreground hover:bg-muted hover:text-foreground",
+          )}
+        >
+          <GearSix
+            weight={isSettingsActive ? "fill" : "regular"}
+            className="size-4 shrink-0"
+          />
+          Settings
+        </Link>
+      </div>
+
+      <div className="px-4 py-4 text-[11px] text-muted-foreground border-t border-border">
         <p className="flex items-center gap-1.5">
           <span className="size-1.5 rounded-full bg-emerald-500" /> All systems
           synced

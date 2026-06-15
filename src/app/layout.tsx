@@ -61,54 +61,6 @@ export default async function RootLayout({
               <nav className="flex items-center gap-3">
                 {userId ? (
                   <>
-                    <Link
-                      href="/dashboard"
-                      className="text-xs text-muted-foreground hover:text-foreground"
-                    >
-                      Dashboard
-                    </Link>
-                    <Link
-                      href="/inbox"
-                      className="text-xs text-muted-foreground hover:text-foreground"
-                    >
-                      Inbox
-                    </Link>
-                    <Link
-                      href="/calendar"
-                      className="text-xs text-muted-foreground hover:text-foreground"
-                    >
-                      Calendar
-                    </Link>
-                    <Link
-                      href="/scheduled"
-                      className="text-xs text-muted-foreground hover:text-foreground"
-                    >
-                      Scheduled
-                    </Link>
-                    <Link
-                      href="/team"
-                      className="text-xs text-muted-foreground hover:text-foreground"
-                    >
-                      Team
-                    </Link>
-                    <Link
-                      href="/integrations"
-                      className="text-xs text-muted-foreground hover:text-foreground"
-                    >
-                      Integrations
-                    </Link>
-                    <Link
-                      href="/settings"
-                      className="text-xs text-muted-foreground hover:text-foreground"
-                    >
-                      Settings
-                    </Link>
-                    <Link
-                      href="/settings/billing"
-                      className="text-xs text-muted-foreground hover:text-foreground"
-                    >
-                      Billing
-                    </Link>
                     <OrganizationSwitcher
                       hidePersonal={false}
                       afterCreateOrganizationUrl="/settings/organization"

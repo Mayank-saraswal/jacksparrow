@@ -82,32 +82,35 @@ export default async function Home() {
       {/* Announcement bar */}
       <div className="mx-auto max-w-[1112px] px-4 pt-3 md:px-14">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[10px] bg-primary px-4 py-2.5 text-center text-[13px] tracking-wide text-primary-foreground">
-            <span className="opacity-95">
-              Introducing your AI chief of staff. It works your inbox so you can
-              sleep.{" "}
-            </span>
-            <Link href={primaryHref} className="font-medium underline">
-              Try it now →
-            </Link>
+          <div className="group relative overflow-hidden rounded-[10px] bg-primary px-4 py-2.5 text-center text-[13px] tracking-wide text-primary-foreground">
+            <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-20 transition duration-700 group-hover:opacity-40" />
+            <div className="relative z-10">
+              <span className="opacity-95">
+                Introducing your AI chief of staff. It works your inbox so you can
+                sleep.{" "}
+              </span>
+              <Link href={primaryHref} className="font-medium underline">
+                Try it now →
+              </Link>
+            </div>
           </div>
         </Reveal>
       </div>
 
       {/* Hero */}
-      <section className="relative">
-        <div className="fc-blueprint pointer-events-none absolute inset-0 -z-10" />
-        <div className="fc-sunrise pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]" />
-        <AsciiSignal className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-40" />
+      <section className="relative z-0">
+        <div className="fc-blueprint pointer-events-none absolute inset-0 z-0 opacity-50" />
+        <div className="fc-sunrise pointer-events-none absolute inset-x-0 top-0 z-0 h-[520px]" />
+        <AsciiSignal className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-40 mix-blend-multiply" />
 
-        <Frame className="mx-auto max-w-[1112px]">
+        <Frame className="relative z-10 mx-auto max-w-[1112px]">
           <div className="mx-auto flex max-w-3xl flex-col items-center px-6 pt-16 pb-16 text-center sm:pt-24">
             <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 py-1 pr-1 pl-3 text-xs font-medium backdrop-blur">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#E8E8E8] bg-white pl-3 pr-1 py-1 text-sm font-medium text-[#262626] group cursor-pointer hover:border-[rgba(0,0,0,0.2)] transition-colors shadow-sm">
                 Sleep more, inbox less
-                <span className="inline-flex size-[18px] items-center justify-center rounded-full bg-foreground text-background">
-                  <ArrowRight className="size-2.5" weight="bold" />
-                </span>
+                <div className="w-6 h-6 rounded-full bg-[#262626] flex items-center justify-center text-white group-hover:bg-[#FF4C00] transition-colors shrink-0">
+                  <ArrowRight className="h-3 w-3" weight="bold" />
+                </div>
               </span>
             </Reveal>
 
@@ -129,19 +132,18 @@ export default async function Home() {
 
             <Reveal delay={240}>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <Button asChild size="lg" className="fc-cta rounded-[10px]">
-                  <Link href={primaryHref}>
-                    <MoonStars weight="fill" /> Get more sleep
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="rounded-[10px]"
+                <Link
+                  href={primaryHref}
+                  className="bg-[#FF4C00] text-white px-6 h-10 rounded-lg flex items-center justify-center gap-2 hover:bg-[#e64400] transition-colors font-medium shadow-sm text-sm"
                 >
-                  <Link href="#features">See how it works</Link>
-                </Button>
+                  <MoonStars weight="fill" className="size-4" /> Get more sleep
+                </Link>
+                <Link
+                  href="#features"
+                  className="inline-flex items-center justify-center rounded-lg bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-6 h-10 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
+                >
+                  See how it works
+                </Link>
               </div>
             </Reveal>
           </div>
@@ -149,8 +151,9 @@ export default async function Home() {
           {/* Product mock */}
           <div className="border-t border-border px-4 pt-10 pb-12 sm:px-10">
             <Reveal delay={320}>
-              <div className="mx-auto max-w-3xl overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-                <div className="flex items-center gap-1.5 border-b border-border px-3 py-2">
+              <div className="group relative mx-auto max-w-3xl overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+                <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-10 transition duration-700 group-hover:opacity-20" />
+                <div className="relative z-10 flex items-center gap-1.5 border-b border-border px-3 py-2 bg-card/50 backdrop-blur-sm">
                   <span className="size-2.5 rounded-full bg-destructive/40" />
                   <span className="size-2.5 rounded-full bg-amber-400/50" />
                   <span className="size-2.5 rounded-full bg-emerald-400/50" />
@@ -158,8 +161,8 @@ export default async function Home() {
                     jacksparrow / inbox
                   </span>
                 </div>
-                <div className="grid gap-px bg-border sm:grid-cols-[1fr_1.3fr]">
-                  <div className="space-y-2 bg-background p-3 text-left">
+                <div className="relative z-10 grid gap-px bg-border/50 sm:grid-cols-[1fr_1.3fr]">
+                  <div className="space-y-2 bg-background/80 backdrop-blur-md p-3 text-left">
                     {[
                       {
                         from: "Sarah Lin",
@@ -193,8 +196,8 @@ export default async function Home() {
                       </div>
                     ))}
                   </div>
-                  <div className="bg-background p-3 text-left">
-                    <div className="rounded-lg bg-accent/50 p-2.5">
+                  <div className="bg-background/80 backdrop-blur-md p-3 text-left">
+                    <div className="rounded-lg bg-accent/60 backdrop-blur-sm p-2.5 drop-shadow-sm">
                       <p className="flex items-center gap-1.5 font-mono text-[10px] tracking-widest text-primary uppercase">
                         <Sparkle weight="fill" className="size-3" /> Drafted ·
                         awaiting approval
@@ -249,23 +252,26 @@ export default async function Home() {
               const Icon = f.icon;
               return (
                 <Reveal key={f.index} delay={i * 80}>
-                  <div className="h-full rounded-xl border border-border bg-card p-5 transition hover:border-primary/40">
-                    <p className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground uppercase">
-                      <span className="text-primary">
-                        [ {String(f.index).padStart(2, "0")} /{" "}
-                        {String(FEATURES.length).padStart(2, "0")} ]
-                      </span>{" "}
-                      · {f.label}
-                    </p>
-                    <span className="mt-3 flex size-9 items-center justify-center rounded-lg bg-accent text-primary">
-                      <Icon weight="fill" className="size-4" />
-                    </span>
-                    <h3 className="mt-3 text-base font-semibold tracking-tight">
-                      {f.title}
-                    </h3>
-                    <p className="mt-1.5 text-sm text-muted-foreground">
-                      {f.body}
-                    </p>
+                  <div className="group relative h-full overflow-hidden rounded-xl border border-border bg-card p-5 transition hover:border-primary/40">
+                    <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-5 transition duration-700 group-hover:opacity-30" />
+                    <div className="relative z-10">
+                      <p className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground uppercase">
+                        <span className="text-primary">
+                          [ {String(f.index).padStart(2, "0")} /{" "}
+                          {String(FEATURES.length).padStart(2, "0")} ]
+                        </span>{" "}
+                        · {f.label}
+                      </p>
+                      <span className="mt-3 flex size-9 items-center justify-center rounded-lg bg-accent text-primary">
+                        <Icon weight="fill" className="size-4" />
+                      </span>
+                      <h3 className="mt-3 text-base font-semibold tracking-tight">
+                        {f.title}
+                      </h3>
+                      <p className="mt-1.5 text-sm text-muted-foreground">
+                        {f.body}
+                      </p>
+                    </div>
                   </div>
                 </Reveal>
               );
@@ -306,11 +312,12 @@ export default async function Home() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="overflow-hidden rounded-xl border border-border bg-[oklch(0.18_0.01_60)] font-mono text-[12px] text-neutral-200 shadow-lg">
-              <div className="flex items-center gap-2 border-b border-white/10 px-3 py-2 text-neutral-400">
+            <div className="relative overflow-hidden rounded-xl border border-border bg-[oklch(0.18_0.01_60)] font-mono text-[12px] text-neutral-200 shadow-lg">
+              <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-15" />
+              <div className="relative z-10 flex items-center gap-2 border-b border-white/10 px-3 py-2 text-neutral-400 backdrop-blur-sm bg-black/20">
                 <ChatCircleDots className="size-3.5" /> ask
               </div>
-              <pre className="overflow-x-auto p-4 leading-relaxed">
+              <pre className="relative z-10 overflow-x-auto p-4 leading-relaxed drop-shadow-md">
                 <span className="text-neutral-400">{"> "}</span>
                 schedule a call with bob@x.com Thursday 9am{"\n"}
                 {"  "}and email him that I look forward to it{"\n\n"}
@@ -332,12 +339,13 @@ export default async function Home() {
         <div className="px-6 py-12">
           <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
             {STATS.map((s, i) => (
-              <Reveal key={s.label} delay={i * 80} className="bg-card">
-                <div className="p-6 text-center">
-                  <p className="text-3xl font-medium tracking-tight text-primary">
+              <Reveal key={s.label} delay={i * 80} className="group relative overflow-hidden bg-card">
+                <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-5 transition duration-700 group-hover:opacity-30" />
+                <div className="relative z-10 p-6 text-center">
+                  <p className="text-3xl font-medium tracking-tight text-primary drop-shadow-md">
                     {s.value}
                   </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
+                  <p className="mt-1 text-xs text-muted-foreground drop-shadow-sm">
                     {s.label}
                   </p>
                 </div>
@@ -373,13 +381,16 @@ export default async function Home() {
               { q: "Telegram + inbox is unreasonably good.", by: "@alexr" },
             ].map((t, i) => (
               <Reveal key={t.by} delay={i * 80}>
-                <figure className="h-full rounded-xl border border-border bg-card p-5">
-                  <blockquote className="text-sm">
-                    &ldquo;{t.q}&rdquo;
-                  </blockquote>
-                  <figcaption className="mt-3 font-mono text-[11px] text-muted-foreground">
-                    {t.by}
-                  </figcaption>
+                <figure className="group relative h-full overflow-hidden rounded-xl border border-border bg-card p-5">
+                  <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-5 transition duration-500 group-hover:opacity-25" />
+                  <div className="relative z-10">
+                    <blockquote className="text-sm drop-shadow-sm">
+                      &ldquo;{t.q}&rdquo;
+                    </blockquote>
+                    <figcaption className="mt-3 font-mono text-[11px] text-muted-foreground drop-shadow-sm">
+                      {t.by}
+                    </figcaption>
+                  </div>
                 </figure>
               </Reveal>
             ))}
@@ -407,19 +418,18 @@ export default async function Home() {
                 nothing sends without your approval.
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <Button asChild size="lg" className="fc-cta rounded-[10px]">
-                  <Link href={primaryHref}>
-                    <MoonStars weight="fill" /> Get more sleep
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="rounded-[10px]"
+                <Link
+                  href={primaryHref}
+                  className="bg-[#FF4C00] text-white px-6 h-10 rounded-lg flex items-center justify-center gap-2 hover:bg-[#e64400] transition-colors font-medium shadow-sm text-sm"
                 >
-                  <Link href="/integrations">Connect accounts</Link>
-                </Button>
+                  <MoonStars weight="fill" className="size-4" /> Get more sleep
+                </Link>
+                <Link
+                  href="/integrations"
+                  className="inline-flex items-center justify-center rounded-lg bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-6 h-10 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
+                >
+                  Connect accounts
+                </Link>
               </div>
             </div>
           </Reveal>
