@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Star, Archive, Trash } from "@phosphor-icons/react";
 
 import type { ThreadPreview } from "@/server/gmail";
@@ -46,9 +47,9 @@ export function ThreadList({
 }) {
   if (isLoading) {
     return (
-      <div className="flex flex-col">
+      <div className="flex flex-col p-2">
         {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="flex flex-col gap-2 border-b border-border p-3">
+          <div key={i} className="flex flex-col gap-2 border-b border-[rgba(0,0,0,0.05)] p-3">
             <div className="flex justify-between">
               <Skeleton className="h-3 w-28" />
               <Skeleton className="h-3 w-10" />
@@ -63,18 +64,25 @@ export function ThreadList({
 
   if (threads.length === 0) {
     return (
-      <div className="p-6 text-center text-xs text-muted-foreground">
+      <div className="p-6 text-center text-xs text-[rgba(0,0,0,0.48)]">
         Nothing here.
       </div>
     );
   }
 
   return (
-    <ul className="flex flex-col">
+    <ul className="flex flex-col p-2 gap-0.5">
       {threads.map((t) => {
         const active = t.threadId === selectedId;
         return (
-          <li key={t.threadId}>
+          <li key={t.threadId} className="relative z-10">
+            {active && (
+              <motion.div
+                layoutId="inboxActiveBg"
+                className="absolute inset-0 bg-white shadow-sm border border-[#E8E8E8] rounded-xl -z-10"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+              />
+            )}
             <div
               role="button"
               tabIndex={0}
@@ -83,15 +91,16 @@ export function ThreadList({
                 if (e.key === "Enter") onSelect(t.threadId);
               }}
               className={cn(
-                "group flex cursor-pointer flex-col gap-1 border-b border-border px-3 py-2.5 transition-colors hover:bg-muted/60",
-                active && "bg-accent/60",
+                "group flex cursor-pointer flex-col gap-1 px-3 py-2.5 transition-colors rounded-xl",
+                !active && "hover:bg-[rgba(0,0,0,0.04)]",
+                !active && "border-b border-[rgba(0,0,0,0.05)] rounded-none"
               )}
             >
               <div className="flex items-center gap-2">
                 <span
                   className={cn(
                     "size-1.5 shrink-0 rounded-full",
-                    t.unread ? "bg-primary" : "bg-transparent",
+                    t.unread ? "bg-[#262626]" : "bg-transparent",
                   )}
                 />
                 {t.priority && (

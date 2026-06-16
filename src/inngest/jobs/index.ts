@@ -25,7 +25,7 @@ export {
 } from "./style";
 export { ruleSuggestionsCron } from "./suggestions";
 export { clerkOrgSync, clerkMembershipSync } from "./orgs";
-export { stripeWebhookReceived, billingSeatsSync } from "./billing";
+export { dodoWebhookReceived, billingSeatsSync } from "./billing";
 export { memberOffboarding } from "./offboarding";
 export { retentionPurgeCron, retentionPurge } from "./retention";
 export { analyticsCron, analyticsBackfill } from "./analytics";

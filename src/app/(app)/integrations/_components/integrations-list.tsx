@@ -1,5 +1,7 @@
 "use client";
 
+import * as React from "react";
+import { motion } from "framer-motion";
 import {
   CheckCircle,
   Warning,
@@ -9,7 +11,6 @@ import {
 
 import { api } from "@/trpc/react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -103,6 +104,7 @@ function formatSyncedAt(date: Date | null) {
 }
 
 export function IntegrationsList() {
+  const [hoveredCard, setHoveredCard] = React.useState<string | null>(null);
   const utils = api.useUtils();
   const statusQuery = api.integrations.status.useQuery();
   const syncQuery = api.integrations.getSyncStatus.useQuery(undefined, {
@@ -142,7 +144,10 @@ export function IntegrationsList() {
   const sync = syncQuery.data;
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div 
+      className="grid gap-1.5 sm:grid-cols-2 p-2 bg-[rgba(0,0,0,0.02)] rounded-[1.25rem] relative"
+      onMouseLeave={() => setHoveredCard(null)}
+    >
       {statusQuery.data.map(({ plugin, state }) => {
         const meta = PLUGIN_META[plugin];
         const connected = state === "connected";
@@ -157,100 +162,118 @@ export function IntegrationsList() {
           resync.isPending && resync.variables?.plugin === plugin;
 
         return (
-          <Card key={plugin} className="rounded-xl">
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-white p-1.5 ring-1 ring-border">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={meta.logo} alt="" className="size-full object-contain" />
-                  </span>
-                  <CardTitle>{meta.name}</CardTitle>
-                </div>
-                {synced && (
-                  <Badge variant="success">
-                    <CheckCircle weight="fill" /> Connected
-                  </Badge>
-                )}
-                {syncing && (
-                  <Badge variant="warning">
-                    <CircleNotch className="animate-spin" /> Syncing
-                  </Badge>
-                )}
-                {missingCreds && (
-                  <Badge variant="warning">
-                    <Warning weight="fill" /> Setup required
-                  </Badge>
-                )}
-                {state === "not_connected" && (
-                  <Badge variant="outline">Not connected</Badge>
-                )}
-              </div>
-              <CardDescription>{meta.description}</CardDescription>
-            </CardHeader>
-
-            <CardContent>
-              {missingCreds ? (
-                <p className="text-xs text-muted-foreground">
-                  This integration isn&apos;t configured yet. An admin needs to
-                  register the Google OAuth credentials (run{" "}
-                  <code className="rounded bg-muted px-1 py-0.5 text-[11px]">
-                    bun run corsair:setup
-                  </code>
-                  ).
-                </p>
-              ) : syncing ? (
-                <p className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <CircleNotch className="size-3.5 animate-spin text-primary" />
-                  Syncing your inbox… this runs in the background.
-                </p>
-              ) : synced ? (
-                <p className="text-xs text-muted-foreground">
-                  Last synced {formatSyncedAt(backfilledAt)}.
-                </p>
-              ) : (
-                <p className="text-xs text-muted-foreground">
-                  Connect your Google account to enable {meta.name}.
-                </p>
-              )}
-            </CardContent>
-
-            <CardFooter>
-              {connected ? (
-                <>
-                  <Button asChild variant="outline" size="sm">
-                    <a href={`/api/integrations/${plugin}/connect`}>Reconnect</a>
-                  </Button>
-                  {backfillCapable && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      disabled={syncing || isResyncing}
-                      onClick={() => {
-                        if (isBackfillPlugin(plugin)) resync.mutate({ plugin });
-                      }}
-                    >
-                      <ArrowsClockwise
-                        className={isResyncing ? "animate-spin" : ""}
-                      />
-                      Resync
-                    </Button>
+          <div 
+            key={plugin} 
+            className="relative z-10"
+            onMouseEnter={() => setHoveredCard(plugin)}
+          >
+            {hoveredCard === plugin && (
+              <motion.div
+                layoutId="integrationHoverBg"
+                className="absolute inset-0 bg-white shadow-sm border border-[#E8E8E8] rounded-xl -z-10"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+              />
+            )}
+            <Card className="rounded-xl border-transparent bg-transparent shadow-none">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex size-9 items-center justify-center rounded-lg bg-white p-1.5 shadow-sm border border-[#E8E8E8]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={meta.logo} alt="" className="size-full object-contain" />
+                    </span>
+                    <CardTitle className="text-[#262626]">{meta.name}</CardTitle>
+                  </div>
+                  {synced && (
+                    <Badge variant="success">
+                      <CheckCircle weight="fill" /> Connected
+                    </Badge>
                   )}
-                </>
-              ) : (
-                <Button
-                  asChild
-                  size="sm"
-                  aria-disabled={missingCreds}
-                  className={
-                    missingCreds ? "pointer-events-none opacity-50" : ""
-                  }
-                >
-                  <a href={`/api/integrations/${plugin}/connect`}>Connect</a>
-                </Button>
-              )}
-            </CardFooter>
-          </Card>
+                  {syncing && (
+                    <Badge variant="secondary" className="bg-[rgba(0,0,0,0.04)] text-[#262626] hover:bg-[rgba(0,0,0,0.08)]">
+                      <CircleNotch className="animate-spin mr-1" /> Syncing
+                    </Badge>
+                  )}
+                  {missingCreds && (
+                    <Badge variant="secondary" className="bg-[rgba(0,0,0,0.04)] text-[#262626] hover:bg-[rgba(0,0,0,0.08)]">
+                      <Warning weight="fill" className="mr-1" /> Setup required
+                    </Badge>
+                  )}
+                  {state === "not_connected" && (
+                    <Badge variant="outline" className="text-[rgba(0,0,0,0.48)] border-[#E8E8E8]">Not connected</Badge>
+                  )}
+                </div>
+                <CardDescription>{meta.description}</CardDescription>
+              </CardHeader>
+  
+              <CardContent>
+                {missingCreds ? (
+                  <p className="text-xs text-muted-foreground">
+                    This integration isn&apos;t configured yet. An admin needs to
+                    register the Google OAuth credentials (run{" "}
+                    <code className="rounded bg-muted px-1 py-0.5 text-[11px]">
+                      bun run corsair:setup
+                    </code>
+                    ).
+                  </p>
+                ) : syncing ? (
+                  <p className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <CircleNotch className="size-3.5 animate-spin text-[#262626]" />
+                    Syncing your inbox… this runs in the background.
+                  </p>
+                ) : synced ? (
+                  <p className="text-xs text-muted-foreground">
+                    Last synced {formatSyncedAt(backfilledAt)}.
+                  </p>
+                ) : (
+                  <p className="text-xs text-muted-foreground">
+                    Connect your Google account to enable {meta.name}.
+                  </p>
+                )}
+              </CardContent>
+  
+              <CardFooter className="gap-2">
+                {connected ? (
+                  <>
+                    <a
+                      href={`/api/integrations/${plugin}/connect`}
+                      className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
+                    >
+                      Reconnect
+                    </a>
+                    {backfillCapable && (
+                      <button
+                        disabled={syncing || isResyncing}
+                        onClick={() => {
+                          if (isBackfillPlugin(plugin)) resync.mutate({ plugin });
+                        }}
+                        className={
+                          "inline-flex items-center gap-1.5 rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] " +
+                          (syncing || isResyncing ? "opacity-50 pointer-events-none" : "")
+                        }
+                      >
+                        <ArrowsClockwise
+                          className={isResyncing ? "animate-spin" : ""}
+                        />
+                        Resync
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  <a
+                    href={`/api/integrations/${plugin}/connect`}
+                    aria-disabled={missingCreds}
+                    className={
+                      "inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] " +
+                      (missingCreds ? "opacity-50 pointer-events-none" : "")
+                    }
+                  >
+                    Connect
+                  </a>
+                )}
+              </CardFooter>
+            </Card>
+          </div>
         );
       })}
     </div>

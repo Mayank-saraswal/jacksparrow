@@ -44,6 +44,7 @@ async function main() {
     MICROSOFT_CLIENT_SECRET,
     SLACK_CLIENT_ID,
     SLACK_CLIENT_SECRET,
+    SLACK_SIGNING_SECRET,
   } = process.env;
 
   if (!DATABASE_URL || !CORSAIR_KEK) {
@@ -62,7 +63,10 @@ async function main() {
       gmail(),
       googlecalendar(),
       outlook(),
-      slack(),
+      slack({
+        authType: "oauth_2",
+        signingSecret: SLACK_SIGNING_SECRET,
+      }),
       hubspot(),
       notion(),
       linear(),

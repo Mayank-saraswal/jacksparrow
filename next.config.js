@@ -16,6 +16,9 @@ const config = {
   outputFileTracingExcludes: {
     "*": ["./referance-landingpage/**"],
   },
+  serverActions: {
+    allowedOrigins: ["jacksparrow.mayanksaraswal.in"],
+  },
 };
 
 export default config;

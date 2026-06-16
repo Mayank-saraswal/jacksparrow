@@ -4,7 +4,7 @@ import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 import { assertAdmin } from "@/server/authz";
 import { env } from "@/env";
-import { getStripe, configuredPrices } from "@/server/billing/stripe";
+import { getDodo, configuredProducts } from "@/server/billing/dodo";
 import {
   getEntitlements,
   ownerForContext,
@@ -82,36 +82,25 @@ export const billingRouter = createTRPCRouter({
     };
   }),
 
-  /** Configured paid prices (plan + interval + Stripe price id). */
-  prices: protectedProcedure.query(() => {
-    return configuredPrices();
+  /** Configured paid products (plan + interval + Dodo product id). */
+  products: protectedProcedure.query(() => {
+    return configuredProducts();
   }),
 
-  /** Creates a Stripe Checkout session and returns its URL. */
+  /** Creates a Dodo Payments Checkout session and returns its URL. */
   createCheckout: protectedProcedure
-    .input(z.object({ priceId: z.string().min(1) }))
+    .input(z.object({ productId: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
-      const stripe = getStripe();
-      if (!stripe) {
+      const dodo = getDodo();
+      if (!dodo) {
         throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Billing not configured." });
       }
-      const valid = configuredPrices().some((p) => p.priceId === input.priceId);
+      const valid = configuredProducts().some((p) => p.productId === input.productId);
       if (!valid) {
-        throw new TRPCError({ code: "BAD_REQUEST", message: "Unknown price." });
+        throw new TRPCError({ code: "BAD_REQUEST", message: "Unknown product." });
       }
 
       const owner = await resolveOwner(ctx);
-
-      // Reuse an existing Stripe customer for this owner if present.
-      const existing = await ctx.db.billingCustomer.findUnique({
-        where: {
-          ownerType_ownerId: {
-            ownerType: owner.ownerType,
-            ownerId: owner.ownerId,
-          },
-        },
-        select: { stripeCustomerId: true },
-      });
 
       const seats =
         owner.ownerType === "org"
@@ -122,17 +111,9 @@ export const billingRouter = createTRPCRouter({
           : 1;
 
       const billingUrl = `${env.APP_URL}/settings/billing`;
-      const session = await stripe.checkout.sessions.create({
-        mode: "subscription",
-        ...(existing
-          ? { customer: existing.stripeCustomerId }
-          : { client_reference_id: `${owner.ownerType}:${owner.ownerId}` }),
-        line_items: [{ price: input.priceId, quantity: seats }],
-        success_url: `${billingUrl}?checkout=success`,
-        cancel_url: `${billingUrl}?checkout=cancel`,
-        subscription_data: {
-          metadata: { ownerType: owner.ownerType, ownerId: owner.ownerId },
-        },
+      const session = await dodo.checkoutSessions.create({
+        product_cart: [{ product_id: input.productId, quantity: seats }],
+        return_url: `${billingUrl}?checkout=success`,
         metadata: {
           ownerType: owner.ownerType,
           ownerId: owner.ownerId,
@@ -140,16 +121,16 @@ export const billingRouter = createTRPCRouter({
         },
       });
 
-      if (!session.url) {
+      if (!session.checkout_url) {
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "No checkout URL." });
       }
-      return { url: session.url };
+      return { url: session.checkout_url };
     }),
 
-  /** Creates a Stripe Customer Portal session for managing the subscription. */
+  /** Redirects to the Dodo Payments Customer Portal for managing the subscription. */
   createPortalSession: protectedProcedure.mutation(async ({ ctx }) => {
-    const stripe = getStripe();
-    if (!stripe) {
+    const dodo = getDodo();
+    if (!dodo) {
       throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Billing not configured." });
     }
     const owner = await resolveOwner(ctx);
@@ -157,15 +138,15 @@ export const billingRouter = createTRPCRouter({
       where: {
         ownerType_ownerId: { ownerType: owner.ownerType, ownerId: owner.ownerId },
       },
-      select: { stripeCustomerId: true },
+      select: { dodoCustomerId: true },
     });
     if (!customer) {
       throw new TRPCError({ code: "NOT_FOUND", message: "No billing account yet." });
     }
-    const session = await stripe.billingPortal.sessions.create({
-      customer: customer.stripeCustomerId,
-      return_url: `${env.APP_URL}/settings/billing`,
-    });
-    return { url: session.url };
+
+    // Dodo Payments provides a unified customer portal at customer.dodopayments.com.
+    // The SDK's customer portal session can also be used via the @dodopayments/nextjs adapter.
+    const portalUrl = `https://customer.dodopayments.com?customer_id=${encodeURIComponent(customer.dodoCustomerId)}`;
+    return { url: portalUrl };
   }),
 });

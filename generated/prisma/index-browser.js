@@ -429,14 +429,14 @@ exports.Prisma.BillingCustomerScalarFieldEnum = {
   id: 'id',
   ownerType: 'ownerType',
   ownerId: 'ownerId',
-  stripeCustomerId: 'stripeCustomerId',
+  dodoCustomerId: 'dodoCustomerId',
   createdAt: 'createdAt'
 };
 
 exports.Prisma.SubscriptionScalarFieldEnum = {
   id: 'id',
   billingCustomerId: 'billingCustomerId',
-  stripeSubscriptionId: 'stripeSubscriptionId',
+  dodoSubscriptionId: 'dodoSubscriptionId',
   plan: 'plan',
   status: 'status',
   seats: 'seats',
@@ -455,7 +455,7 @@ exports.Prisma.UsageRecordScalarFieldEnum = {
   periodStart: 'periodStart'
 };
 
-exports.Prisma.StripeEventScalarFieldEnum = {
+exports.Prisma.WebhookEventScalarFieldEnum = {
   id: 'id',
   type: 'type',
   processedAt: 'processedAt'
@@ -577,7 +577,7 @@ exports.Prisma.ModelName = {
   BillingCustomer: 'BillingCustomer',
   Subscription: 'Subscription',
   UsageRecord: 'UsageRecord',
-  StripeEvent: 'StripeEvent',
+  WebhookEvent: 'WebhookEvent',
   AuditLog: 'AuditLog',
   SsoConnection: 'SsoConnection',
   RetentionPolicy: 'RetentionPolicy',

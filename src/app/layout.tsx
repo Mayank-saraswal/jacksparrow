@@ -61,6 +61,12 @@ export default async function RootLayout({
               <nav className="flex items-center gap-3">
                 {userId ? (
                   <>
+                    <Link
+                      href="/dashboard"
+                      className="text-sm font-medium text-muted-foreground hover:text-[#262626] transition-colors"
+                    >
+                      Dashboard
+                    </Link>
                     <OrganizationSwitcher
                       hidePersonal={false}
                       afterCreateOrganizationUrl="/settings/organization"

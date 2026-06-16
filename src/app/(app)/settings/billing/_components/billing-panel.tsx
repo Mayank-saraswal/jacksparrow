@@ -30,7 +30,7 @@ function UsageBar({ used, limit }: { used: number; limit: number }) {
 
 export function BillingPanel() {
   const state = api.billing.getState.useQuery();
-  const prices = api.billing.prices.useQuery();
+  const products = api.billing.products.useQuery();
 
   const checkout = api.billing.createCheckout.useMutation({
     onSuccess: (r) => {
@@ -107,11 +107,11 @@ export function BillingPanel() {
         <p className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground uppercase">
           Plans
         </p>
-        {prices.data && prices.data.length > 0 ? (
+        {products.data && products.data.length > 0 ? (
           <div className="grid gap-2 sm:grid-cols-2">
-            {prices.data.map((p) => (
+            {products.data.map((p) => (
               <div
-                key={p.priceId}
+                key={p.productId}
                 className="flex items-center justify-between rounded-md border border-border p-3"
               >
                 <div>
@@ -123,7 +123,7 @@ export function BillingPanel() {
                 <Button
                   size="sm"
                   disabled={checkout.isPending}
-                  onClick={() => checkout.mutate({ priceId: p.priceId })}
+                  onClick={() => checkout.mutate({ productId: p.productId })}
                 >
                   {s.plan === p.plan ? "Current" : "Upgrade"}
                 </Button>

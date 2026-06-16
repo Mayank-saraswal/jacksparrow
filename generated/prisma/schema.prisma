@@ -532,14 +532,14 @@ model AssignmentEvent {
   @@map("assignment_events")
 }
 
-// ── Billing (Stripe) ─────────────────────────────────────────────────────────
+// ── Billing (Dodo Payments) ──────────────────────────────────────────────────
 
 model BillingCustomer {
-  id               String   @id @default(cuid())
-  ownerType        String   @map("owner_type") // "user" | "org"
-  ownerId          String   @map("owner_id")
-  stripeCustomerId String   @unique @map("stripe_customer_id")
-  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz
+  id             String   @id @default(cuid())
+  ownerType      String   @map("owner_type") // "user" | "org"
+  ownerId        String   @map("owner_id")
+  dodoCustomerId String   @unique @map("dodo_customer_id")
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz
 
   subscriptions Subscription[]
 
@@ -548,15 +548,15 @@ model BillingCustomer {
 }
 
 model Subscription {
-  id                   String    @id @default(cuid())
-  billingCustomerId    String    @map("billing_customer_id")
-  stripeSubscriptionId String    @unique @map("stripe_subscription_id")
-  plan                 String // "free" | "pro" | "business"
-  status               String // active | trialing | past_due | canceled | ...
-  seats                Int       @default(1)
-  currentPeriodEnd     DateTime? @map("current_period_end") @db.Timestamptz
-  cancelAtPeriodEnd    Boolean   @default(false) @map("cancel_at_period_end")
-  updatedAt            DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  id                 String    @id @default(cuid())
+  billingCustomerId  String    @map("billing_customer_id")
+  dodoSubscriptionId String    @unique @map("dodo_subscription_id")
+  plan               String // "free" | "pro" | "business" | "enterprise"
+  status             String // active | on_hold | cancelled | expired | ...
+  seats              Int       @default(1)
+  currentPeriodEnd   DateTime? @map("current_period_end") @db.Timestamptz
+  cancelAtPeriodEnd  Boolean   @default(false) @map("cancel_at_period_end")
+  updatedAt          DateTime  @updatedAt @map("updated_at") @db.Timestamptz
 
   billingCustomer BillingCustomer @relation(fields: [billingCustomerId], references: [id], onDelete: Cascade)
 
@@ -579,13 +579,13 @@ model UsageRecord {
   @@map("usage_records")
 }
 
-// Dedupe table for Stripe webhook idempotency.
-model StripeEvent {
-  id          String   @id // Stripe event id
+// Dedupe table for Dodo Payments webhook idempotency.
+model WebhookEvent {
+  id          String   @id // Dodo webhook event id
   type        String
   processedAt DateTime @default(now()) @map("processed_at") @db.Timestamptz
 
-  @@map("stripe_events")
+  @@map("webhook_events")
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

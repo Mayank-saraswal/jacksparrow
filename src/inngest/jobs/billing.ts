@@ -1,140 +1,170 @@
-import type Stripe from "stripe";
-
 import { inngest } from "../client";
 import { db } from "@/server/db";
 import { auditSystem } from "@/server/audit";
-import { getStripe, planForPriceId } from "@/server/billing/stripe";
+import { getDodo, planForProductId } from "@/server/billing/dodo";
 
 /**
- * Billing jobs. The Stripe webhook route verifies + enqueues; these handlers do
- * the idempotent work (dedupe by Stripe event id), and a seat-sync job keeps
+ * Billing jobs. The Dodo webhook route verifies + enqueues; these handlers do
+ * the idempotent work (dedupe by webhook id), and a seat-sync job keeps
  * org subscription quantities aligned with membership.
  */
 
-/** Upserts a Subscription row from a Stripe subscription object. */
-async function upsertSubscription(sub: Stripe.Subscription): Promise<void> {
-  const stripe = getStripe();
-  if (!stripe) return;
+/** Payload shape from Dodo Payments subscription webhooks. */
+interface DodoSubscriptionPayload {
+  payload_type: "Subscription";
+  subscription_id: string;
+  customer: { customer_id: string };
+  product_id: string;
+  status: string;
+  next_billing_date?: string | null;
+  metadata?: Record<string, string>;
+  recurring_pre_tax_amount?: number;
+  quantity?: number;
+  cancel_at_next_billing_date?: boolean;
+}
 
-  const customerId =
-    typeof sub.customer === "string" ? sub.customer : sub.customer.id;
+/** Upserts a Subscription row from a Dodo subscription webhook payload. */
+async function upsertSubscription(
+  sub: DodoSubscriptionPayload,
+  ownerType: string,
+  ownerId: string,
+): Promise<void> {
+  const customerId = sub.customer.customer_id;
 
-  const customer = await db.billingCustomer.findUnique({
-    where: { stripeCustomerId: customerId },
+  // Ensure we have a BillingCustomer for this Dodo customer.
+  const customer = await db.billingCustomer.upsert({
+    where: { ownerType_ownerId: { ownerType, ownerId } },
+    create: { ownerType, ownerId, dodoCustomerId: customerId },
+    update: { dodoCustomerId: customerId },
     select: { id: true },
   });
-  if (!customer) {
-    console.error(`[billing] no BillingCustomer for ${customerId}`);
-    return;
-  }
 
-  const item = sub.items.data[0];
-  const priceId = item?.price.id ?? "";
-  const plan = planForPriceId(priceId);
-  const seats = item?.quantity ?? 1;
-  const periodEnd = item?.current_period_end ?? null;
+  const plan = planForProductId(sub.product_id);
+  const seats = sub.quantity ?? 1;
+
+  // Map Dodo statuses to our internal statuses.
+  const status = mapDodoStatus(sub.status);
+
+  const periodEnd = sub.next_billing_date ? new Date(sub.next_billing_date) : null;
 
   await db.subscription.upsert({
-    where: { stripeSubscriptionId: sub.id },
+    where: { dodoSubscriptionId: sub.subscription_id },
     create: {
       billingCustomerId: customer.id,
-      stripeSubscriptionId: sub.id,
+      dodoSubscriptionId: sub.subscription_id,
       plan,
-      status: sub.status,
+      status,
       seats,
-      currentPeriodEnd: periodEnd ? new Date(periodEnd * 1000) : null,
-      cancelAtPeriodEnd: sub.cancel_at_period_end,
+      currentPeriodEnd: periodEnd,
+      cancelAtPeriodEnd: sub.cancel_at_next_billing_date ?? false,
     },
     update: {
       plan,
-      status: sub.status,
+      status,
       seats,
-      currentPeriodEnd: periodEnd ? new Date(periodEnd * 1000) : null,
-      cancelAtPeriodEnd: sub.cancel_at_period_end,
+      currentPeriodEnd: periodEnd,
+      cancelAtPeriodEnd: sub.cancel_at_next_billing_date ?? false,
     },
   });
 
-  // Compliance audit for plan changes (owner resolved from the customer).
-  const owner = await db.billingCustomer.findUnique({
-    where: { id: customer.id },
-    select: { ownerType: true, ownerId: true },
-  });
+  // Compliance audit for plan changes.
   auditSystem("billing.plan_changed", {
-    orgId: owner?.ownerType === "org" ? owner.ownerId : null,
-    actorUserId: owner?.ownerType === "user" ? owner.ownerId : null,
+    orgId: ownerType === "org" ? ownerId : null,
+    actorUserId: ownerType === "user" ? ownerId : null,
     targetType: "subscription",
-    targetId: sub.id,
-    meta: { plan, status: sub.status, seats },
+    targetId: sub.subscription_id,
+    meta: { plan, status, seats },
   });
 }
 
-export const stripeWebhookReceived = inngest.createFunction(
+/**
+ * Maps Dodo Payments subscription statuses to our internal status vocabulary
+ * used by `effectivePlan()` in `@/lib/entitlements.ts`.
+ */
+function mapDodoStatus(dodoStatus: string): string {
+  switch (dodoStatus) {
+    case "active":
+    case "renewed":
+      return "active";
+    case "on_hold":
+      return "past_due";
+    case "cancelled":
+      return "canceled";
+    case "expired":
+    case "failed":
+      return "canceled";
+    default:
+      return dodoStatus;
+  }
+}
+
+export const dodoWebhookReceived = inngest.createFunction(
   {
-    id: "stripe-webhook-received",
+    id: "dodo-webhook-received",
     retries: 3,
-    triggers: { event: "stripe/webhook.received" },
+    triggers: { event: "dodo/webhook.received" },
   },
   async ({ event, step }) => {
-    const { id, type, data } = event.data as {
-      id: string;
-      type: string;
-      data: Stripe.Event.Data;
+    const { webhookId, payload } = event.data as {
+      webhookId: string;
+      payload: {
+        type: string;
+        business_id?: string;
+        timestamp?: string;
+        data: Record<string, unknown>;
+      };
     };
 
+    const { type, data } = payload;
+
+    // Deduplicate by webhook id.
     const isNew = await step.run("dedupe", async () => {
-      const existing = await db.stripeEvent.findUnique({ where: { id } });
+      const existing = await db.webhookEvent.findUnique({ where: { id: webhookId } });
       return !existing;
     });
     if (!isNew) return { skipped: "duplicate" };
 
-    const stripe = getStripe();
-    if (!stripe) return { skipped: "stripe-not-configured" };
-
     await step.run("handle", async () => {
+      // Extract owner info from subscription metadata (set during checkout).
+      const subData = data as unknown as DodoSubscriptionPayload;
+      const meta = subData.metadata ?? {};
+      const ownerType = meta.ownerType === "org" ? "org" : "user";
+      const ownerId = meta.ownerId ?? "";
+
       switch (type) {
-        case "checkout.session.completed": {
-          const session = data.object as Stripe.Checkout.Session;
-          const meta = session.metadata ?? {};
-          const ownerType = meta.ownerType === "org" ? "org" : "user";
-          const ownerId = meta.ownerId ?? "";
-          const customerId =
-            typeof session.customer === "string"
-              ? session.customer
-              : session.customer?.id;
-          if (ownerId && customerId) {
-            await db.billingCustomer.upsert({
-              where: { ownerType_ownerId: { ownerType, ownerId } },
-              create: { ownerType, ownerId, stripeCustomerId: customerId },
-              update: { stripeCustomerId: customerId },
+        case "subscription.active":
+        case "subscription.updated":
+        case "subscription.renewed":
+        case "subscription.plan_changed": {
+          if (ownerId) {
+            await upsertSubscription(subData, ownerType, ownerId);
+          }
+          break;
+        }
+        case "subscription.on_hold": {
+          // Payment failed, subscription on hold — map to past_due for grace window.
+          if (ownerId) {
+            await upsertSubscription(subData, ownerType, ownerId);
+          }
+          break;
+        }
+        case "subscription.cancelled":
+        case "subscription.expired":
+        case "subscription.failed": {
+          if (subData.subscription_id) {
+            await db.subscription.updateMany({
+              where: { dodoSubscriptionId: subData.subscription_id },
+              data: { status: mapDodoStatus(subData.status) },
             });
           }
-          if (session.subscription) {
-            const subId =
-              typeof session.subscription === "string"
-                ? session.subscription
-                : session.subscription.id;
-            const sub = await stripe.subscriptions.retrieve(subId);
-            await upsertSubscription(sub);
-          }
           break;
         }
-        case "customer.subscription.updated":
-        case "customer.subscription.deleted": {
-          const sub = data.object as Stripe.Subscription;
-          await upsertSubscription(sub);
-          break;
-        }
-        case "invoice.payment_failed": {
-          const invoice = data.object as Stripe.Invoice & {
-            subscription?: string | { id: string };
-          };
-          const subId =
-            typeof invoice.subscription === "string"
-              ? invoice.subscription
-              : invoice.subscription?.id;
-          if (subId) {
+        case "payment.failed": {
+          // Mark the associated subscription as past_due if we can find it.
+          const paymentData = data as { subscription_id?: string };
+          if (paymentData.subscription_id) {
             await db.subscription.updateMany({
-              where: { stripeSubscriptionId: subId },
+              where: { dodoSubscriptionId: paymentData.subscription_id },
               data: { status: "past_due" },
             });
           }
@@ -146,9 +176,9 @@ export const stripeWebhookReceived = inngest.createFunction(
     });
 
     await step.run("record-event", async () => {
-      await db.stripeEvent.upsert({
-        where: { id },
-        create: { id, type },
+      await db.webhookEvent.upsert({
+        where: { id: webhookId },
+        create: { id: webhookId, type },
         update: {},
       });
     });
@@ -158,7 +188,7 @@ export const stripeWebhookReceived = inngest.createFunction(
 );
 
 /**
- * Keeps an org's Stripe subscription quantity in sync with its active member
+ * Keeps an org's Dodo subscription quantity in sync with its active member
  * count. Debounced per-org via a concurrency key so a burst of membership
  * changes collapses into one update.
  */
@@ -171,8 +201,8 @@ export const billingSeatsSync = inngest.createFunction(
   },
   async ({ event, step }) => {
     const { orgId } = event.data as { orgId: string };
-    const stripe = getStripe();
-    if (!stripe) return { skipped: "stripe-not-configured" };
+    const dodo = getDodo();
+    if (!dodo) return { skipped: "dodo-not-configured" };
 
     const target = await step.run("count-members", async () => {
       const members = await db.membership.count({ where: { orgId } });
@@ -188,7 +218,7 @@ export const billingSeatsSync = inngest.createFunction(
       const sub = await db.subscription.findFirst({
         where: { billingCustomerId: customer.id },
         orderBy: { updatedAt: "desc" },
-        select: { stripeSubscriptionId: true, seats: true, status: true },
+        select: { dodoSubscriptionId: true, seats: true, status: true },
       });
       return sub;
     });
@@ -197,18 +227,30 @@ export const billingSeatsSync = inngest.createFunction(
     if (subInfo.seats === target) return { skipped: "unchanged", seats: target };
     if (subInfo.status === "canceled") return { skipped: "canceled" };
 
-    await step.run("update-stripe-quantity", async () => {
-      const sub = await stripe.subscriptions.retrieve(
-        subInfo.stripeSubscriptionId,
-      );
-      const itemId = sub.items.data[0]?.id;
-      if (!itemId) return;
-      await stripe.subscriptions.update(subInfo.stripeSubscriptionId, {
-        items: [{ id: itemId, quantity: target }],
-        proration_behavior: "create_prorations",
+    await step.run("update-dodo-quantity", async () => {
+      // Retrieve the current subscription to get the product_id for changePlan.
+      const currentSub = await db.subscription.findFirst({
+        where: { dodoSubscriptionId: subInfo.dodoSubscriptionId },
+        select: { plan: true },
       });
+
+      // Look up the product ID for this plan from configured products.
+      const { configuredProducts } = await import("@/server/billing/dodo");
+      const products = configuredProducts();
+      const product = products.find((p) => p.plan === currentSub?.plan);
+
+      if (product) {
+        // Use changePlan to update the quantity on the Dodo subscription.
+        await dodo.subscriptions.changePlan(subInfo.dodoSubscriptionId, {
+          product_id: product.productId,
+          quantity: target,
+          proration_billing_mode: "prorated_immediately",
+        });
+      }
+
+      // Always update local DB to track seats.
       await db.subscription.updateMany({
-        where: { stripeSubscriptionId: subInfo.stripeSubscriptionId },
+        where: { dodoSubscriptionId: subInfo.dodoSubscriptionId },
         data: { seats: target },
       });
     });

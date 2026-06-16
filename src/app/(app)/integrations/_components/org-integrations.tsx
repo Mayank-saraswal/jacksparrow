@@ -1,9 +1,10 @@
 "use client";
 
+import * as React from "react";
+import { motion } from "framer-motion";
 import { SlackLogo, Lock } from "@phosphor-icons/react";
 
 import { api } from "@/trpc/react";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -19,6 +20,7 @@ import {
  * connect links use `?scope=org` so the grant lands under the org tenant.
  */
 export function OrgIntegrations() {
+  const [hoveredCard, setHoveredCard] = React.useState<string | null>(null);
   const current = api.organization.current.useQuery(undefined, {
     retry: false,
   });
@@ -88,50 +90,71 @@ export function OrgIntegrations() {
 
   return (
     <section className="mt-10">
-      <h2 className="text-lg font-semibold tracking-tight">
+      <h2 className="text-lg font-semibold tracking-tight text-[#262626]">
         {current.data.name} · team connections
       </h2>
-      <p className="mt-1 mb-4 text-sm text-muted-foreground">
+      <p className="mt-1 mb-4 text-sm text-[rgba(0,0,0,0.48)]">
         Shared across your organization.{" "}
         {isAdmin ? "" : "Only admins can connect these."}
       </p>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div 
+        className="grid gap-1.5 sm:grid-cols-2 p-2 bg-[rgba(0,0,0,0.02)] rounded-[1.25rem] relative"
+        onMouseLeave={() => setHoveredCard(null)}
+      >
         {cards.map((c) => {
           return (
-            <Card key={c.key} className="rounded-xl">
-              <CardHeader>
-                <div className="flex items-center gap-2.5">
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-white p-1.5 ring-1 ring-border">
-                    {c.logo ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={c.logo}
-                        alt=""
-                        className="size-full object-contain"
-                      />
-                    ) : (
-                      <SlackLogo className="size-4 text-[#4A154B]" />
-                    )}
-                  </span>
-                  <CardTitle>{c.name}</CardTitle>
-                </div>
-                <CardDescription>{c.description}</CardDescription>
-              </CardHeader>
-              <CardContent />
-              <CardFooter>
-                {isAdmin ? (
-                  <Button asChild size="sm">
-                    <a href={`/api/integrations/${c.key}/connect?scope=org`}>
+            <div 
+              key={c.key} 
+              className="relative z-10"
+              onMouseEnter={() => setHoveredCard(c.key)}
+            >
+              {hoveredCard === c.key && (
+                <motion.div
+                  layoutId="orgIntegrationHoverBg"
+                  className="absolute inset-0 bg-white shadow-sm border border-[#E8E8E8] rounded-xl -z-10"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                />
+              )}
+              <Card className="rounded-xl border-transparent bg-transparent shadow-none">
+                <CardHeader>
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex size-9 items-center justify-center rounded-lg bg-white p-1.5 shadow-sm border border-[#E8E8E8]">
+                      {c.logo ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={c.logo}
+                          alt=""
+                          className="size-full object-contain"
+                        />
+                      ) : (
+                        <SlackLogo className="size-4 text-[#4A154B]" />
+                      )}
+                    </span>
+                    <CardTitle className="text-[#262626]">{c.name}</CardTitle>
+                  </div>
+                  <CardDescription>{c.description}</CardDescription>
+                </CardHeader>
+                <CardContent />
+                <CardFooter>
+                  {isAdmin ? (
+                    <a
+                      href={`/api/integrations/${c.key}/connect?scope=org`}
+                      className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
+                    >
                       Connect
                     </a>
-                  </Button>
-                ) : (
-                  <Button size="sm" variant="outline" disabled title="Admins only">
-                    <Lock /> Admins only
-                  </Button>
-                )}
-              </CardFooter>
-            </Card>
+                  ) : (
+                    <button
+                      disabled
+                      title="Admins only"
+                      className="inline-flex items-center gap-1.5 rounded-md bg-[rgba(0,0,0,0.04)] px-3 py-1.5 text-sm font-medium text-[#262626] border border-transparent opacity-50 pointer-events-none"
+                    >
+                      <Lock className="size-4" /> Admins only
+                    </button>
+                  )}
+                </CardFooter>
+              </Card>
+            </div>
           );
         })}
       </div>

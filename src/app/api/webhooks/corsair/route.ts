@@ -46,6 +46,20 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Intercept Slack url_verification immediately to bypass multi-tenant account lookups.
+    // Slack sends this globally without a tenantId.
+    if (
+      typeof body === "object" &&
+      body !== null &&
+      body.type === "url_verification" &&
+      typeof body.challenge === "string"
+    ) {
+      return new NextResponse(body.challenge, {
+        status: 200,
+        headers: { "Content-Type": "text/plain" },
+      });
+    }
+
     const result = await processWebhook(corsair, headers, body, { tenantId });
 
     if (result.plugin) {

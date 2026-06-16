@@ -19,7 +19,6 @@ import { zendesk } from "@corsair-dev/zendesk";
 import { intercom } from "@corsair-dev/intercom";
 import { todoist } from "@corsair-dev/todoist";
 import { asana } from "@corsair-dev/asana";
-
 import { env } from "@/env";
 
 /**
@@ -27,7 +26,7 @@ import { env } from "@/env";
  * pg.Pool across hot reloads in development to avoid exhausting connections.
  */
 const globalForCorsair = globalThis as unknown as {
-  corsairPool: Pool | undefined;
+  corsairPool: Pool | undefined;  
   corsair: ReturnType<typeof createCorsairInstance> | undefined;
 };
 
@@ -41,7 +40,10 @@ function createCorsairInstance() {
       gmail(),
       googlecalendar(),
       outlook(),
-      slack(),
+      slack({
+        authType: "oauth_2",
+        signingSecret: env.SLACK_SIGNING_SECRET,
+      }),
       hubspot(),
       notion(),
       linear(),
