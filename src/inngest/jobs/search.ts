@@ -13,7 +13,10 @@ export const searchEmbeddingsBackfill = inngest.createFunction(
     triggers: { event: "search/embeddings.requested" },
   },
   async ({ event, step }) => {
-    const { clerkUserId } = event.data as { clerkUserId: string };
+    const { clerkUserId, limit = 50 } = event.data as {
+      clerkUserId: string;
+      limit?: number;
+    };
 
     await step.run("ensure-user", async () => {
       await db.user.upsert({
@@ -33,7 +36,7 @@ export const searchEmbeddingsBackfill = inngest.createFunction(
       const rows = await db.corsairEntity.findMany({
         where: { accountId: { in: accountIds }, entityType: "threads" },
         orderBy: { updatedAt: "desc" },
-        take: 200,
+        take: limit,
         select: { id: true, entityId: true, data: true },
       });
       return rows.map((r) => ({
@@ -51,7 +54,7 @@ export const searchEmbeddingsBackfill = inngest.createFunction(
         const literal = toVectorLiteral(vector);
         await db.$executeRaw`
           INSERT INTO email_embeddings (id, user_id, corsair_entity_id, thread_id, subject_snippet, embedding, indexed_at)
-          VALUES (gen_random_uuid()::text, ${clerkUserId}, ${e.id}, ${e.entityId}, ${e.snippet.slice(0, 200)}, ${literal}::vector, now())
+          VALUES (gen_random_uuid()::text, ${clerkUserId}, ${e.id}, ${e.entityId}, ${e.snippet.slice(0, 200)}, ${literal}::public.vector, now())
           ON CONFLICT (user_id, corsair_entity_id)
           DO UPDATE SET embedding = EXCLUDED.embedding, indexed_at = now()
         `;

@@ -221,6 +221,10 @@ export const backfillIntegration = inngest.createFunction(
             where: { id: clerkUserId },
             data: { gmailBackfilledAt: new Date() },
           });
+          await inngest.send({
+            name: "search/embeddings.requested",
+            data: { clerkUserId, limit: 50 },
+          });
         });
       }
       return { plugin, tenant: ref.kind, pages: page, threads: total };
@@ -279,6 +283,10 @@ export const backfillIntegration = inngest.createFunction(
           await db.user.update({
             where: { id: clerkUserId },
             data: { outlookBackfilledAt: new Date() },
+          });
+          await inngest.send({
+            name: "search/embeddings.requested",
+            data: { clerkUserId, limit: 50 },
           });
         });
       }

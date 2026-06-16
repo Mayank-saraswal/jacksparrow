@@ -149,9 +149,40 @@ function deriveMeta(
   }
 
   const m = data as GmailEntityData;
+  let parsedHeaders: { name: string; value: string }[] = m.payload?.headers ?? [];
+  let snippet = m.snippet ?? "";
+
+  // If Corsair synced the raw message instead of payload, extract headers manually
+  if (m.raw && parsedHeaders.length === 0) {
+    try {
+      const decoded = Buffer.from(m.raw, "base64").toString("utf8");
+      const headerBlock = decoded.split(/\r?\n\r?\n/)[0];
+      const lines = headerBlock.split(/\r?\n/);
+      let currentHeader = "";
+      for (const line of lines) {
+        if (/^\s/.test(line) && parsedHeaders.length > 0) {
+          // Folded header
+          parsedHeaders[parsedHeaders.length - 1].value += " " + line.trim();
+        } else {
+          const match = line.match(/^([A-Za-z0-9\-]+):\s*(.*)$/);
+          if (match) {
+            parsedHeaders.push({ name: match[1], value: match[2] });
+          }
+        }
+      }
+      if (!snippet) {
+        // Try to get a basic snippet from the plain text body part or the start of the body
+        const bodyBlock = decoded.substring(headerBlock.length + 4);
+        snippet = bodyBlock.replace(/<[^>]*>?/gm, "").replace(/\s+/g, " ").slice(0, 150);
+      }
+    } catch (e) {
+      // Ignore parse errors
+    }
+  }
+
   const header = (name: string) =>
-    m.payload?.headers?.find((h) => h.name?.toLowerCase() === name)?.value ?? "";
-  const snippet = m.snippet ?? "";
+    parsedHeaders.find((h) => h.name?.toLowerCase() === name)?.value ?? "";
+  
   const fromHeader = header("from");
   const parsed = parseAddress(fromHeader);
   const labelIds = m.labelIds ?? [];
@@ -227,6 +258,12 @@ export const corsairWebhookReceived = inngest.createFunction(
       return { skipped: "unsynced-plugin", plugin };
     }
 
+    // Gmail syncs multiple entity types (messages, threads, labels, drafts),
+    // but the unified feed only displays individual messages.
+    if (plugin === "gmail" && entity.entityType !== "messages") {
+      return { skipped: "not-feed-entity-type", entityType: entity.entityType };
+    }
+
     const meta = deriveMeta(
       plugin,
       entity.entityType,
@@ -272,7 +309,7 @@ export const corsairWebhookReceived = inngest.createFunction(
     });
 
     if (meta.type === "email") {
-      await step.run("embed-email", async () => {
+      const embedResult = await step.run("embed-email", async () => {
         const contentHash = embeddingContentHash(meta.title, meta.snippet);
 
         // Skip the OpenAI call entirely when content is unchanged.
@@ -297,7 +334,7 @@ export const corsairWebhookReceived = inngest.createFunction(
         const literal = toVectorLiteral(vector);
         await db.$executeRaw`
           INSERT INTO email_embeddings (id, user_id, corsair_entity_id, thread_id, subject_snippet, embedding, content_hash, indexed_at)
-          VALUES (gen_random_uuid()::text, ${userId}, ${corsairEntityId}, ${meta.threadId}, ${meta.title}, ${literal}::vector, ${contentHash}, now())
+          VALUES (gen_random_uuid()::text, ${userId}, ${corsairEntityId}, ${meta.threadId}, ${meta.title}, ${literal}::public.vector, ${contentHash}, now())
           ON CONFLICT (user_id, corsair_entity_id)
           DO UPDATE SET embedding = EXCLUDED.embedding,
                         subject_snippet = EXCLUDED.subject_snippet,
@@ -308,6 +345,10 @@ export const corsairWebhookReceived = inngest.createFunction(
         void incrementUsage(owner, userId, "embedding");
         return { embedded: true };
       });
+
+      if ("skipped" in embedResult && embedResult.skipped) {
+        return { skipped: embedResult.skipped };
+      }
 
       if (meta.threadId) {
         await step.run("triage-email", () =>

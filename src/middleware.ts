@@ -1,7 +1,8 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 /**
- * Routes that require an authenticated Clerk session.
+ * Routes that require an authenticated Clerk session and an active organization.
  *
  * The Corsair webhook endpoint (/api/webhooks/corsair) and the Inngest endpoint
  * are intentionally left public — they are called by external services and do
@@ -12,11 +13,22 @@ const isProtectedRoute = createRouteMatcher([
   "/api/integrations(.*)",
   "/team(.*)",
   "/settings(.*)",
+  "/dashboard(.*)",
+  "/inbox(.*)",
+  "/calendar(.*)",
+  "/scheduled(.*)",
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {
     await auth.protect();
+    
+    // Force organization creation
+    const { orgId } = await auth();
+    if (!orgId) {
+      const onboardingUrl = new URL("/onboarding", req.url);
+      return NextResponse.redirect(onboardingUrl);
+    }
   }
 });
 

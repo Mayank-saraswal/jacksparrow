@@ -5,6 +5,8 @@ import { corsair } from "@/server/corsair";
 import { inngest } from "@/inngest/client";
 import { logger } from "@/server/logger";
 import { captureException, captureMessage } from "@/server/observability/sentry";
+import { clerkClient } from "@clerk/nextjs/server";
+import { db } from "@/server/db";
 
 type ProcessWebhookArgs = Parameters<typeof processWebhook>;
 
@@ -22,10 +24,15 @@ type ProcessWebhookArgs = Parameters<typeof processWebhook>;
  */
 export async function POST(request: NextRequest) {
   const url = new URL(request.url);
-  const tenantId =
+  let tenantId =
     url.searchParams.get("tenantId") ??
     url.searchParams.get("tenant") ??
     undefined;
+
+  logger.info("DEBUG: Webhook entry", {
+    url: request.url,
+    tenantIdParam: tenantId,
+  });
 
   try {
     const headers = Object.fromEntries(
@@ -60,7 +67,41 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const result = await processWebhook(corsair, headers, body, { tenantId });
+    // [Fallback for Gmail Webhooks]
+    // Google Pub/Sub sends Gmail webhooks to the global endpoint without a tenantId query param.
+    // We must extract the emailAddress from the base64-encoded payload and query Clerk to find
+    // the associated user.
+    let resolvedTenantId = tenantId === "default" ? undefined : tenantId;
+    if (!resolvedTenantId && typeof body === "object" && body !== null) {
+      logger.info("DEBUG: Gmail webhook body received", { body });
+      const b = body as any;
+      if (b.message?.data) {
+        try {
+          const decoded = Buffer.from(b.message.data, "base64").toString("utf8");
+          const parsed = JSON.parse(decoded);
+          if (parsed.emailAddress) {
+            const clerk = typeof clerkClient === "function" ? await (clerkClient as any)() : clerkClient;
+            const users = await clerk.users.getUserList({ emailAddress: [parsed.emailAddress] });
+            if (users.data.length > 0) {
+              resolvedTenantId = users.data[0].id;
+              logger.info("corsair webhook resolved tenant via Clerk", {
+                tenantId: resolvedTenantId,
+                emailAddress: parsed.emailAddress,
+              });
+            }
+          }
+        } catch (e: any) {
+          logger.warn("Failed to parse Gmail webhook payload for tenant resolution", {
+            error: e.message,
+            stack: e.stack,
+            data: b.message.data,
+          });
+        }
+      }
+    }
+
+    const options = resolvedTenantId ? { tenantId: resolvedTenantId } : undefined;
+    const result = await processWebhook(corsair, headers, body, options);
 
     if (result.plugin) {
       const action = result.action ?? null;
@@ -68,16 +109,37 @@ export async function POST(request: NextRequest) {
         tenantId,
         plugin: result.plugin,
         action,
+        resultResponse: JSON.stringify(result.response),
       });
 
       // Hand off to Inngest for cache upsert + embedding + realtime push.
-      const corsairEntityId = result.response?.corsairEntityId;
-      if (tenantId && corsairEntityId) {
+      let entityIds: string[] = [];
+      if (result.response?.corsairEntityId) {
+        entityIds.push(result.response.corsairEntityId);
+      } else if (resolvedTenantId && result.plugin === "gmail") {
+        try {
+          const entities = await db.corsairEntity.findMany({
+            where: { 
+              account: { tenantId: resolvedTenantId },
+              updatedAt: { gte: new Date(Date.now() - 15000) }
+            },
+            orderBy: { updatedAt: "desc" },
+            take: 20,
+            select: { id: true },
+          });
+          entityIds = entities.map((e) => e.id);
+        } catch (e) {
+          logger.error("Failed to fetch recent entities for gmail webhook", { error: e });
+        }
+      }
+
+      for (const corsairEntityId of entityIds) {
+        logger.info("DEBUG: Sending to Inngest", { resolvedTenantId, corsairEntityId, plugin: result.plugin });
         try {
           await inngest.send({
             name: "corsair/webhook.received",
             data: {
-              tenantId,
+              tenantId: resolvedTenantId,
               plugin: result.plugin,
               action,
               corsairEntityId,
@@ -86,14 +148,14 @@ export async function POST(request: NextRequest) {
         } catch (sendErr) {
           // The webhook was processed but we failed to enqueue downstream work.
           logger.error("corsair webhook inngest send failed", {
-            tenantId,
+            tenantId: resolvedTenantId,
             plugin: result.plugin,
             action,
             corsairEntityId,
           });
           captureException(sendErr, {
             scope: "corsair-webhook.inngest-send",
-            tenantId,
+            tenantId: resolvedTenantId,
             plugin: result.plugin,
             action,
             corsairEntityId,

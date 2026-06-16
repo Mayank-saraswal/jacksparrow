@@ -34,7 +34,13 @@ const geist = Geist({
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const { userId } = await auth();
+  let userId: string | null = null;
+  try {
+    const authSession = await auth();
+    userId = authSession.userId;
+  } catch (e) {
+    // clerkMiddleware was skipped for this request (e.g. 404 on a static file)
+  }
 
   return (
     <ClerkProvider>
@@ -68,10 +74,9 @@ export default async function RootLayout({
                       Dashboard
                     </Link>
                     <OrganizationSwitcher
-                      hidePersonal={false}
+                      hidePersonal={true}
                       afterCreateOrganizationUrl="/settings/organization"
                       afterSelectOrganizationUrl="/dashboard"
-                      afterSelectPersonalUrl="/dashboard"
                     />
                     <UserButton />
                   </>

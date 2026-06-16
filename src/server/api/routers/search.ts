@@ -32,7 +32,7 @@ export const searchRouter = createTRPCRouter({
             SELECT thread_id, subject_snippet
             FROM email_embeddings
             WHERE user_id = ${userId} AND embedding IS NOT NULL
-            ORDER BY embedding <=> ${toVectorLiteral(vector)}::vector
+            ORDER BY embedding <=> ${toVectorLiteral(vector)}::public.vector
             LIMIT 20`
         : Promise.resolve([]);
 

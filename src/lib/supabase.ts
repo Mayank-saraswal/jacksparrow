@@ -23,7 +23,7 @@ export function getSupabaseBrowser(
     env.NEXT_PUBLIC_SUPABASE_URL,
     env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     {
-      accessToken: async () => (await getToken()) ?? null,
+      // accessToken: async () => (await getToken()) ?? null,
       realtime: { params: { eventsPerSecond: 5 } },
     },
   );

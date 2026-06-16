@@ -112,7 +112,7 @@ export async function retrieveStyleSamples(
         SELECT body_text AS "bodyText", to_domain AS "toDomain", word_count AS "wordCount"
         FROM sent_message_samples
         WHERE user_id = ${userId} AND embedding IS NOT NULL
-        ORDER BY embedding <=> ${toVectorLiteral(vector)}::vector
+        ORDER BY embedding <=> ${toVectorLiteral(vector)}::public.vector
         LIMIT ${k}`
     : Promise.resolve([]);
 
@@ -176,7 +176,7 @@ export async function persistSamples(
       await db.$executeRaw`
         INSERT INTO sent_message_samples
           (id, user_id, corsair_entity_id, thread_id, to_domain, body_text, word_count, embedding, created_at)
-        VALUES (gen_random_uuid()::text, ${userId}, ${s.messageId}, ${s.threadId}, ${s.toDomain}, ${s.bodyText}, ${s.wordCount}, ${literal}::vector, now())
+        VALUES (gen_random_uuid()::text, ${userId}, ${s.messageId}, ${s.threadId}, ${s.toDomain}, ${s.bodyText}, ${s.wordCount}, ${literal}::public.vector, now())
         ON CONFLICT (user_id, corsair_entity_id) DO NOTHING`;
     } else {
       await db.sentMessageSample

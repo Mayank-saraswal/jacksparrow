@@ -214,10 +214,10 @@ export function buildAgentTools(
           { thread_id: string; subject_snippet: string; score: number }[]
         >`
           SELECT thread_id, subject_snippet,
-                 1 - (embedding <=> ${literal}::vector) AS score
+                 1 - (embedding <=> ${literal}::public.vector) AS score
           FROM email_embeddings
           WHERE user_id = ${userId} AND embedding IS NOT NULL
-          ORDER BY embedding <=> ${literal}::vector
+          ORDER BY embedding <=> ${literal}::public.vector
           LIMIT ${limit}`;
         return rows.map((r) => ({
           threadId: r.thread_id,
