@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
-import { corsair, USER_PLUGINS } from "@/server/corsair";
+import { corsair, USER_PLUGINS, ORG_PLUGINS } from "@/server/corsair";
 import { inngest } from "@/inngest/client";
 
 export type PluginConnectionState =
@@ -24,6 +24,27 @@ export const integrationsRouter = createTRPCRouter({
     });
 
     return USER_PLUGINS.map((plugin) => ({
+      plugin,
+      state: status[plugin] ?? "not_connected",
+    }));
+  }),
+
+  /**
+   * Connection status for organization-level integrations.
+   */
+  orgStatus: protectedProcedure.query(async ({ ctx }) => {
+    if (!ctx.orgId) {
+      return ORG_PLUGINS.map((plugin) => ({
+        plugin,
+        state: "not_connected" as const,
+      }));
+    }
+
+    const status = await corsair.manage.connectionStatus.get({
+      tenantId: `org:${ctx.orgId}`,
+    });
+
+    return ORG_PLUGINS.map((plugin) => ({
       plugin,
       state: status[plugin] ?? "not_connected",
     }));

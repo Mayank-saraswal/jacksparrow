@@ -63,7 +63,7 @@ export const env = createEnv({
     CLERK_SECRET_KEY: z.string().min(1),
     // Clerk webhook signing secret (org + membership sync). Optional so the app
     // boots without team features configured.
-    CLERK_WEBHOOK_SECRET: z.string().optional(),
+    CLERK_WEBHOOK_SIGNING_SECRET: z.string().optional(),
     // Dodo Payments billing (Phase 3). Optional: billing is disabled when absent.
     DODO_PAYMENTS_API_KEY: z.string().optional(),
     DODO_PAYMENTS_WEBHOOK_KEY: z.string().optional(),
@@ -152,7 +152,7 @@ export const env = createEnv({
     ASANA_CLIENT_SECRET: process.env.ASANA_CLIENT_SECRET,
     SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
-    CLERK_WEBHOOK_SECRET: process.env.CLERK_WEBHOOK_SECRET,
+    CLERK_WEBHOOK_SIGNING_SECRET: process.env.CLERK_WEBHOOK_SIGNING_SECRET,
     DODO_PAYMENTS_API_KEY: process.env.DODO_PAYMENTS_API_KEY,
     DODO_PAYMENTS_WEBHOOK_KEY: process.env.DODO_PAYMENTS_WEBHOOK_KEY,
     DODO_PAYMENTS_ENVIRONMENT: process.env.DODO_PAYMENTS_ENVIRONMENT,

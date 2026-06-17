@@ -225,7 +225,7 @@ function Composer({
             onSend();
           }
         }}
-        rows={big ? 3 : 1}
+        rows={big ? 4 : 2}
         placeholder="Paste a doc, an email, or a question to get started…"
         disabled={busy}
         className="w-full resize-none bg-transparent px-4 py-3 pr-12 text-sm outline-none placeholder:text-muted-foreground disabled:opacity-60"

@@ -68,7 +68,7 @@ async function main() {
         signingSecret: SLACK_SIGNING_SECRET,
       }),
       hubspot(),
-      notion(),
+      notion({ authType: "oauth_2" }),
       linear(),
       jira(),
       zoom(),

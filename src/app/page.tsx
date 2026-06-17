@@ -148,78 +148,7 @@ export default async function Home() {
             </Reveal>
           </div>
 
-          {/* Product mock */}
-          <div className="border-t border-border px-4 pt-10 pb-12 sm:px-10">
-            <Reveal delay={320}>
-              <div className="group relative mx-auto max-w-3xl overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-                <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-10 transition duration-700 group-hover:opacity-20" />
-                <div className="relative z-10 flex items-center gap-1.5 border-b border-border px-3 py-2 bg-card/50 backdrop-blur-sm">
-                  <span className="size-2.5 rounded-full bg-destructive/40" />
-                  <span className="size-2.5 rounded-full bg-amber-400/50" />
-                  <span className="size-2.5 rounded-full bg-emerald-400/50" />
-                  <span className="ml-2 font-mono text-[11px] text-muted-foreground">
-                    jacksparrow / inbox
-                  </span>
-                </div>
-                <div className="relative z-10 grid gap-px bg-border/50 sm:grid-cols-[1fr_1.3fr]">
-                  <div className="space-y-2 bg-background/80 backdrop-blur-md p-3 text-left">
-                    {[
-                      {
-                        from: "Sarah Lin",
-                        subj: "Re: Q3 launch plan",
-                        dot: "bg-red-500",
-                      },
-                      {
-                        from: "Stripe",
-                        subj: "Your receipt",
-                        dot: "bg-muted-foreground/30",
-                      },
-                      {
-                        from: "Antonio",
-                        subj: "Lunch Thursday?",
-                        dot: "bg-amber-500",
-                      },
-                    ].map((m) => (
-                      <div
-                        key={m.subj}
-                        className="flex items-center gap-2 rounded-md px-2 py-1.5 hover:bg-muted"
-                      >
-                        <span className={`size-1.5 rounded-full ${m.dot}`} />
-                        <div className="min-w-0">
-                          <p className="truncate text-xs font-medium">
-                            {m.from}
-                          </p>
-                          <p className="truncate text-[11px] text-muted-foreground">
-                            {m.subj}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="bg-background/80 backdrop-blur-md p-3 text-left">
-                    <div className="rounded-lg bg-accent/60 backdrop-blur-sm p-2.5 drop-shadow-sm">
-                      <p className="flex items-center gap-1.5 font-mono text-[10px] tracking-widest text-primary uppercase">
-                        <Sparkle weight="fill" className="size-3" /> Drafted ·
-                        awaiting approval
-                      </p>
-                      <p className="mt-1.5 text-xs">
-                        Reply to Sarah: &ldquo;I&apos;m in for the Q3 plan —
-                        let&apos;s lock Thursday 3pm.&rdquo;
-                      </p>
-                      <div className="mt-2 flex gap-1.5">
-                        <span className="rounded-md bg-primary px-2 py-0.5 text-[10px] text-primary-foreground">
-                          Approve
-                        </span>
-                        <span className="rounded-md border border-border px-2 py-0.5 text-[10px]">
-                          Edit
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
+
         </Frame>
       </section>
 

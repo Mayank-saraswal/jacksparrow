@@ -2,9 +2,10 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { SlackLogo, Lock } from "@phosphor-icons/react";
+import { SlackLogo, Lock, CheckCircle } from "@phosphor-icons/react";
 
 import { api } from "@/trpc/react";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -23,6 +24,9 @@ export function OrgIntegrations() {
   const [hoveredCard, setHoveredCard] = React.useState<string | null>(null);
   const current = api.organization.current.useQuery(undefined, {
     retry: false,
+  });
+  const statusQuery = api.integrations.orgStatus.useQuery(undefined, {
+    enabled: !!current.data,
   });
 
   // No active org → nothing to show here.
@@ -102,6 +106,9 @@ export function OrgIntegrations() {
         onMouseLeave={() => setHoveredCard(null)}
       >
         {cards.map((c) => {
+          const status = statusQuery.data?.find((s) => s.plugin === c.key)?.state;
+          const connected = status === "connected";
+
           return (
             <div 
               key={c.key} 
@@ -117,20 +124,27 @@ export function OrgIntegrations() {
               )}
               <Card className="rounded-xl border-transparent bg-transparent shadow-none">
                 <CardHeader>
-                  <div className="flex items-center gap-2.5">
-                    <span className="flex size-9 items-center justify-center rounded-lg bg-white p-1.5 shadow-sm border border-[#E8E8E8]">
-                      {c.logo ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={c.logo}
-                          alt=""
-                          className="size-full object-contain"
-                        />
-                      ) : (
-                        <SlackLogo className="size-4 text-[#4A154B]" />
-                      )}
-                    </span>
-                    <CardTitle className="text-[#262626]">{c.name}</CardTitle>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <span className="flex size-9 items-center justify-center rounded-lg bg-white p-1.5 shadow-sm border border-[#E8E8E8]">
+                        {c.logo ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={c.logo}
+                            alt=""
+                            className="size-full object-contain"
+                          />
+                        ) : (
+                          <SlackLogo className="size-4 text-[#4A154B]" />
+                        )}
+                      </span>
+                      <CardTitle className="text-[#262626]">{c.name}</CardTitle>
+                    </div>
+                    {connected && (
+                      <Badge variant="success">
+                        <CheckCircle weight="fill" /> Connected
+                      </Badge>
+                    )}
                   </div>
                   <CardDescription>{c.description}</CardDescription>
                 </CardHeader>
@@ -141,7 +155,7 @@ export function OrgIntegrations() {
                       href={`/api/integrations/${c.key}/connect?scope=org`}
                       className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
                     >
-                      Connect
+                      {connected ? "Reconnect" : "Connect"}
                     </a>
                   ) : (
                     <button

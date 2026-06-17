@@ -45,7 +45,7 @@ function createCorsairInstance() {
         signingSecret: env.SLACK_SIGNING_SECRET,
       }),
       hubspot(),
-      notion(),
+      notion({ authType: "oauth_2" }),
       linear(),
       jira(),
       zoom(),
