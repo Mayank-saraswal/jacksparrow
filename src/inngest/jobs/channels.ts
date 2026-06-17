@@ -36,7 +36,7 @@ export const channelMessageReceived = inngest.createFunction(
         sendChannelText(
           channel,
           externalChatId,
-          "Link this chat first: open Jack Sparrow → Settings → Connect, then send me the code (Telegram: /link CODE).",
+          "Link this chat first: open Phoenix → Settings → Connect, then send me the code (Telegram: /link CODE).",
         ),
       );
       return { needsLink: true };

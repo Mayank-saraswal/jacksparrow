@@ -1,6 +1,6 @@
 # Security & Authorization Model
 
-This document describes how Jack Sparrow isolates tenants and authorizes
+This document describes how Phoenix isolates tenants and authorizes
 requests after the Phase 3 (Teams) work.
 
 ## Identity

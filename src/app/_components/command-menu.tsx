@@ -84,7 +84,7 @@ export function CommandMenu() {
           ? `${prompt} (thread ids: ${targetThreadIds.join(", ")})`
           : prompt;
       window.dispatchEvent(
-        new CustomEvent("jacksparrow:ask-ai", { detail: { prompt: full } }),
+        new CustomEvent("phoenix:ask-ai", { detail: { prompt: full } }),
       );
     },
     [targetThreadIds],

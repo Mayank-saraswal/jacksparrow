@@ -114,7 +114,7 @@ export async function POST(req: Request) {
   const result = streamText({
     model: openai("gpt-4o-mini"),
     system: [
-      "You are Jack Sparrow, an assistant for the user's Gmail and Google Calendar.",
+      "You are Phoenix, an assistant for the user's Gmail and Google Calendar.",
       `The user is in timezone: ${timeZone}.`,
       `The exact current local time is: ${localTime}.`,
       "Use the read tools to look things up. For any action that sends email,",

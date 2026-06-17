@@ -160,7 +160,7 @@ export const followUpReminders = inngest.createFunction(
           await sendChannelText(
             link.channel,
             link.externalChatId,
-            `⏰ No reply yet on a thread you're watching. Open Phoenix to follow up: ${env.APP_URL}/inbox`,
+            ` No reply yet on a thread you're watching. Open Phoenix to follow up: ${env.APP_URL}/inbox`,
           );
         }
       });

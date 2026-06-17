@@ -25,8 +25,8 @@ export function AgentDock() {
       setPrompt(detail?.prompt ?? "");
       setChatOpen(true);
     };
-    window.addEventListener("jacksparrow:ask-ai", onAsk);
-    return () => window.removeEventListener("jacksparrow:ask-ai", onAsk);
+    window.addEventListener("phoenix:ask-ai", onAsk);
+    return () => window.removeEventListener("phoenix:ask-ai", onAsk);
   }, []);
 
   return (
