@@ -14,6 +14,7 @@ import { CommandContextProvider } from "@/app/_components/command-context";
 import { ShortcutProvider } from "@/app/_components/shortcut-provider";
 import { ToastProvider } from "@/app/_components/toast";
 import { cn } from "@/lib/utils";
+import { Agentation } from "agentation";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -98,6 +99,7 @@ export default async function RootLayout({
             ) : (
               children
             )}
+            {process.env.NODE_ENV === "development" && <Agentation />}
             </ToastProvider>
           </TRPCReactProvider>
         </body>

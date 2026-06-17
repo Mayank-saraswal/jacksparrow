@@ -77,3 +77,5 @@ When the agent drafts a write action it creates a `PendingAction` (channel =
 Tapping **Approve** executes via the shared `executePendingAction` (identical to
 the web tray), **Reject** cancels, and **Edit in app** replies with a deep link
 to the web Pending Actions tray.
+
+ZOOM_SECRET_TOKEN="f41gk8dmQeeloG2NtfD5pA"

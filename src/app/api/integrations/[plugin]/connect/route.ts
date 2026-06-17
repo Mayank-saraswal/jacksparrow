@@ -71,6 +71,7 @@ export async function GET(
   const tenant = toTenantId(ref);
   const redirectUri = `${env.APP_URL}/api/integrations/${plugin}/callback`;
 
+
   const { url, state } = await generateOAuthUrl(corsair, plugin, {
     tenantId: tenant,
     redirectUri,

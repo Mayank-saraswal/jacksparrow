@@ -42,6 +42,7 @@ interface GmailEntityData {
   internalDate?: string | number;
   labelIds?: string[];
   payload?: { headers?: { name?: string; value?: string }[] };
+  raw?: string;
 }
 
 interface OutlookEntityData {
@@ -149,23 +150,28 @@ function deriveMeta(
   }
 
   const m = data as GmailEntityData;
-  let parsedHeaders: { name: string; value: string }[] = m.payload?.headers ?? [];
+  let parsedHeaders: { name: string; value: string }[] = (m.payload?.headers ?? []).filter(
+    (h): h is { name: string; value: string } => typeof h.name === "string" && typeof h.value === "string"
+  );
   let snippet = m.snippet ?? "";
 
   // If Corsair synced the raw message instead of payload, extract headers manually
   if (m.raw && parsedHeaders.length === 0) {
     try {
       const decoded = Buffer.from(m.raw, "base64").toString("utf8");
-      const headerBlock = decoded.split(/\r?\n\r?\n/)[0];
+      const parts = decoded.split(/\r?\n\r?\n/);
+      const headerBlock = parts[0] ?? "";
       const lines = headerBlock.split(/\r?\n/);
-      let currentHeader = "";
       for (const line of lines) {
         if (/^\s/.test(line) && parsedHeaders.length > 0) {
           // Folded header
-          parsedHeaders[parsedHeaders.length - 1].value += " " + line.trim();
+          const lastHeader = parsedHeaders[parsedHeaders.length - 1];
+          if (lastHeader) {
+            lastHeader.value += " " + line.trim();
+          }
         } else {
           const match = line.match(/^([A-Za-z0-9\-]+):\s*(.*)$/);
-          if (match) {
+          if (match && match[1] && match[2]) {
             parsedHeaders.push({ name: match[1], value: match[2] });
           }
         }

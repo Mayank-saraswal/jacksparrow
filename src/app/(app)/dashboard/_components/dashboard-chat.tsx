@@ -7,7 +7,6 @@ import {
   PenNib,
   GraduationCap,
   Coffee,
-  Sparkle,
 } from "@phosphor-icons/react";
 
 import { cn } from "@/lib/utils";
@@ -111,8 +110,7 @@ export function DashboardChat({ firstName }: { firstName: string }) {
     <div className="flex h-full flex-col">
       {empty ? (
         <div className="flex flex-1 flex-col items-center justify-center px-4">
-          <div className="mb-8 flex items-center gap-2 text-2xl font-medium tracking-tight sm:text-3xl">
-            <Sparkle weight="fill" className="size-6 text-primary" />
+          <div className="mb-8 flex items-center text-2xl font-medium tracking-tight sm:text-3xl">
             {greeting()}, {firstName}
           </div>
           <Composer
@@ -132,9 +130,9 @@ export function DashboardChat({ firstName }: { firstName: string }) {
                   type="button"
                   onClick={() => void send(s.prompt)}
                   disabled={busy}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground transition hover:border-primary/40 hover:text-foreground disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground transition hover:border-foreground/20 hover:text-foreground disabled:opacity-50"
                 >
-                  <Icon className="size-3.5 text-primary" />
+                  <Icon className="size-3.5" />
                   {s.label}
                 </button>
               );
@@ -205,7 +203,7 @@ function Composer({
   return (
     <div
       className={cn(
-        "relative w-full rounded-2xl border border-border bg-card shadow-sm focus-within:border-primary/50",
+        "relative w-full rounded-2xl border border-border bg-card shadow-sm focus-within:border-foreground/20",
         big ? "max-w-2xl" : "",
       )}
     >
@@ -229,7 +227,7 @@ function Composer({
         onClick={onSend}
         disabled={busy || !input.trim()}
         aria-label="Send"
-        className="absolute right-2.5 bottom-2.5 inline-flex size-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition hover:opacity-90 disabled:opacity-40"
+        className="absolute right-2.5 bottom-2.5 inline-flex size-8 items-center justify-center rounded-full bg-foreground text-background transition hover:opacity-90 disabled:opacity-40"
       >
         <ArrowUp weight="bold" className="size-4" />
       </button>

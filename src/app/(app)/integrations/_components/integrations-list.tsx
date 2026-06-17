@@ -61,37 +61,37 @@ const PLUGIN_META: Record<
   notion: {
     name: "Notion",
     description: "Save email threads and summaries to your Notion workspace.",
-    logo: "/logo/notion.svg",
+    logo: "/logo/notion.png",
   },
   zoom: {
     name: "Zoom",
     description: "Attach Zoom meeting links to calendar events you create.",
-    logo: "/logo/zoom.svg",
+    logo: "/logo/zoom.png",
   },
   cal: {
     name: "Cal.com",
     description: "Insert Cal.com booking links into email drafts.",
-    logo: "/logo/cal.svg",
+    logo: "/logo/cal.png",
   },
   calendly: {
     name: "Calendly",
     description: "Insert Calendly scheduling links into email drafts.",
-    logo: "/logo/calendly.svg",
+    logo: "/logo/calendly.png",
   },
   fireflies: {
     name: "Fireflies",
     description: "Turn meeting transcripts into summaries, tasks, and follow-ups.",
-    logo: "/logo/fireflies.svg",
+    logo: "/logo/fireflies.png",
   },
   todoist: {
     name: "Todoist",
     description: "Turn emails into Todoist tasks.",
-    logo: "/logo/todoist.svg",
+    logo: "/logo/todoist.png",
   },
   asana: {
     name: "Asana",
     description: "Turn emails into Asana tasks.",
-    logo: "/logo/asana.svg",
+    logo: "/logo/asana.webp",
   },
 };
 

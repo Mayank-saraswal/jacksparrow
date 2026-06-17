@@ -36,7 +36,7 @@ export function AppSidebar() {
         <ChatCircleDots weight="fill" className="size-5 text-[#FF4C00]" />
         <span className="text-sm font-bold tracking-tight text-[#262626]">Workspace</span>
       </div>
-      
+
       <div className="flex-1 px-3 pb-3 flex flex-col">
         <nav className="flex-1 flex flex-col p-1 bg-[rgba(0,0,0,0.04)] rounded-xl relative space-y-0.5">
           {NAV.map((item) => {
@@ -71,7 +71,7 @@ export function AppSidebar() {
               </Link>
             );
           })}
-          
+
           {/* Spacer to push the bottom links down */}
           <div className="flex-1" />
 
