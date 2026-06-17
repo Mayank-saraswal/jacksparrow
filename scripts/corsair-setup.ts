@@ -20,7 +20,7 @@ import { googlecalendar } from "@corsair-dev/googlecalendar";
 import { hubspot } from "@corsair-dev/hubspot";
 import { notion } from "@corsair-dev/notion";
 import { linear } from "@corsair-dev/linear";
-import { jira } from "@corsair-dev/jira";
+import { jira } from "../src/server/plugins/jira";
 import { zoom } from "@corsair-dev/zoom";
 import { teams } from "@corsair-dev/teams";
 import { cal } from "@corsair-dev/cal";
@@ -69,8 +69,8 @@ async function main() {
       }),
       hubspot(),
       notion({ authType: "oauth_2" }),
-      linear(),
-      jira(),
+      linear({ authType: "oauth_2" }),
+      jira({ authType: "oauth_2" }),
       zoom(),
       teams(),
       cal(),

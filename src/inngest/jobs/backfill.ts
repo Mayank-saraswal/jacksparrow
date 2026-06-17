@@ -226,6 +226,13 @@ export const backfillIntegration = inngest.createFunction(
             data: { clerkUserId, limit: 50 },
           });
         });
+      } else if (ref.kind === "org" && orgId) {
+        await step.run("mark-org-gmail-backfilled", async () => {
+          await db.organization.update({
+            where: { id: orgId },
+            data: { gmailBackfilledAt: new Date() },
+          });
+        });
       }
       return { plugin, tenant: ref.kind, pages: page, threads: total };
     }
@@ -287,6 +294,13 @@ export const backfillIntegration = inngest.createFunction(
           await inngest.send({
             name: "search/embeddings.requested",
             data: { clerkUserId, limit: 50 },
+          });
+        });
+      } else if (ref.kind === "org" && orgId) {
+        await step.run("mark-org-outlook-backfilled", async () => {
+          await db.organization.update({
+            where: { id: orgId },
+            data: { outlookBackfilledAt: new Date() },
           });
         });
       }

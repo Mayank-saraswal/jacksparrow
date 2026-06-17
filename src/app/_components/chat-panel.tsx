@@ -12,6 +12,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@clerk/nextjs";
 
 interface Msg {
   role: "user" | "assistant";
@@ -29,6 +30,7 @@ export function ChatPanel({
   initialPrompt?: string;
   onActivity?: () => void;
 }) {
+  const { orgId } = useAuth();
   const [messages, setMessages] = React.useState<Msg[]>([]);
   const [input, setInput] = React.useState("");
   const [busy, setBusy] = React.useState(false);
@@ -49,7 +51,7 @@ export function ChatPanel({
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: next }),
+        body: JSON.stringify({ messages: next, orgId }),
       });
       if (!res.ok || !res.body) {
         throw new Error(await res.text());

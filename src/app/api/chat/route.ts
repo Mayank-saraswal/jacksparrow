@@ -36,6 +36,7 @@ function messageText(msg: ModelMessage | undefined): string {
 
 export async function POST(req: Request) {
   const { userId, orgId } = await auth();
+  console.log('[chat API] auth() returned:', { userId, orgId });
   if (!userId) return new Response("Unauthorized", { status: 401 });
   if (!env.OPENAI_API_KEY) {
     return new Response("AI is not configured (missing OPENAI_API_KEY).", {
@@ -43,18 +44,33 @@ export async function POST(req: Request) {
     });
   }
 
+  const body = (await req.json()) as { 
+    messages?: ModelMessage[]; 
+    conversationId?: string; 
+    timeZone?: string; 
+    orgId?: string; 
+  };
+  const messages = body.messages ?? [];
+  let conversationId = body.conversationId;
+  const timeZone = body.timeZone || "UTC";
+
+  let activeOrgId = body.orgId || orgId || null;
+  if (activeOrgId) {
+    const member = await db.membership.findFirst({
+      where: { userId, orgId: activeOrgId },
+    });
+    if (!member) {
+      activeOrgId = null;
+    }
+  }
+
   // Each agent message is a paid AI action.
-  const owner = ownerForContext(userId, orgId ?? null);
+  const owner = ownerForContext(userId, activeOrgId);
   try {
     await assertWithinLimit(owner, userId, "ai_action");
   } catch {
     return new Response("limit_exceeded", { status: 403 });
   }
-
-  const body = (await req.json()) as { messages?: ModelMessage[]; conversationId?: string; timeZone?: string };
-  const messages = body.messages ?? [];
-  let conversationId = body.conversationId;
-  const timeZone = body.timeZone || "UTC";
 
   // Format the exact local time for the AI's prompt
   const localTime = new Intl.DateTimeFormat("en-US", {
@@ -109,7 +125,7 @@ export async function POST(req: Request) {
       memoryBlock,
     ].join(" "),
     messages,
-    tools: buildAgentTools(userId, "web", orgId ?? null),
+    tools: buildAgentTools(userId, "web", activeOrgId),
     stopWhen: stepCountIs(6),
     onFinish: async ({ text }) => {
       try {

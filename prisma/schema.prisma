@@ -408,6 +408,11 @@ model Organization {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
 
+  // Org-level backfill completion timestamps (mirrors User.*BackfilledAt).
+  // null = currently syncing; set = last sync completed at this time.
+  gmailBackfilledAt    DateTime? @map("gmail_backfilled_at") @db.Timestamptz
+  outlookBackfilledAt  DateTime? @map("outlook_backfilled_at") @db.Timestamptz
+
   // Org toggle: when off, analytics show org totals only (no per-member rows).
   memberLevelAnalytics Boolean @default(true) @map("member_level_analytics")
 

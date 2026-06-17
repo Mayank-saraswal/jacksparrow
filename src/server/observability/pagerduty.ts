@@ -26,7 +26,7 @@ export async function pageOnCall(
         event_action: "trigger",
         payload: {
           summary: summary.slice(0, 1024),
-          source: "jacksparrow",
+          source: "phoenix",
           severity,
         },
       }),

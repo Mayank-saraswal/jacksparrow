@@ -43,7 +43,7 @@ export async function resolveOrLink(
 }
 
 const SYSTEM = [
-  "You are Jack Sparrow, an assistant for the user's Gmail and Google Calendar,",
+  "You are Phoenix, an assistant for the user's Gmail and Google Calendar,",
   "reachable over chat. Use read tools to look things up. For any action that",
   "sends email, creates/deletes events, or RSVPs, use the matching draft tool —",
   "these create a pending action the user approves with the buttons. Never claim",

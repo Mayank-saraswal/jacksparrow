@@ -398,13 +398,13 @@ export default async function Home() {
           <div className="flex items-center gap-1.5 font-semibold text-foreground">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo/FIRE_SVG_Animated.svg" alt="" className="size-4" />
-            Jack Sparrow
+            Phoenix
           </div>
           <p className="flex items-center gap-1.5">
             <ShieldCheck className="size-3.5" /> Tokens encrypted per user ·
             approval-gated actions
           </p>
-          <p>© {new Date().getFullYear()} Jack Sparrow</p>
+          <p>© {new Date().getFullYear()} Phoenix</p>
         </div>
       </footer>
     </div>

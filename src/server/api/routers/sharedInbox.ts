@@ -315,7 +315,7 @@ export const sharedInboxRouter = createTRPCRouter({
       ) {
         notifyMember(
           result.next.assigneeUserId,
-          "📥 A shared-inbox thread was assigned to you in Jack Sparrow.",
+          "📥 A shared-inbox thread was assigned to you in Phoenix.",
         );
       }
 

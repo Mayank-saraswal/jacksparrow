@@ -1,4 +1,4 @@
-import "server-only";
+// import "server-only";
 
 import { Pool } from "pg";
 import { createCorsair } from "corsair";
@@ -9,7 +9,7 @@ import { slack } from "@corsair-dev/slack";
 import { hubspot } from "@corsair-dev/hubspot";
 import { notion } from "@corsair-dev/notion";
 import { linear } from "@corsair-dev/linear";
-import { jira } from "@corsair-dev/jira";
+import { jira } from "./plugins/jira";
 import { zoom } from "@corsair-dev/zoom";
 import { teams } from "@corsair-dev/teams";
 import { cal } from "@corsair-dev/cal";
@@ -26,7 +26,7 @@ import { env } from "@/env";
  * pg.Pool across hot reloads in development to avoid exhausting connections.
  */
 const globalForCorsair = globalThis as unknown as {
-  corsairPool: Pool | undefined;  
+  corsairPool: Pool | undefined;
   corsair: ReturnType<typeof createCorsairInstance> | undefined;
 };
 
@@ -46,8 +46,8 @@ function createCorsairInstance() {
       }),
       hubspot(),
       notion({ authType: "oauth_2" }),
-      linear(),
-      jira(),
+      linear({ authType: "oauth_2" }),
+      jira({ authType: "oauth_2" }),
       zoom(),
       teams(),
       cal(),

@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jack Sparrow",
+  title: "Phoenix",
   description: "Your AI-powered inbox.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
@@ -63,7 +63,7 @@ export default async function RootLayout({
                   alt=""
                   className="size-5"
                 />
-                Jack Sparrow
+                Phoenix
               </Link>
               <nav className="flex items-center gap-3">
                 {userId ? (

@@ -28207,6 +28207,8 @@ export namespace Prisma {
     name: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    gmailBackfilledAt: Date | null
+    outlookBackfilledAt: Date | null
     memberLevelAnalytics: boolean | null
     defaultIssueTracker: string | null
     defaultMeetingProvider: string | null
@@ -28218,6 +28220,8 @@ export namespace Prisma {
     name: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    gmailBackfilledAt: Date | null
+    outlookBackfilledAt: Date | null
     memberLevelAnalytics: boolean | null
     defaultIssueTracker: string | null
     defaultMeetingProvider: string | null
@@ -28229,6 +28233,8 @@ export namespace Prisma {
     name: number
     createdAt: number
     updatedAt: number
+    gmailBackfilledAt: number
+    outlookBackfilledAt: number
     memberLevelAnalytics: number
     defaultIssueTracker: number
     defaultMeetingProvider: number
@@ -28242,6 +28248,8 @@ export namespace Prisma {
     name?: true
     createdAt?: true
     updatedAt?: true
+    gmailBackfilledAt?: true
+    outlookBackfilledAt?: true
     memberLevelAnalytics?: true
     defaultIssueTracker?: true
     defaultMeetingProvider?: true
@@ -28253,6 +28261,8 @@ export namespace Prisma {
     name?: true
     createdAt?: true
     updatedAt?: true
+    gmailBackfilledAt?: true
+    outlookBackfilledAt?: true
     memberLevelAnalytics?: true
     defaultIssueTracker?: true
     defaultMeetingProvider?: true
@@ -28264,6 +28274,8 @@ export namespace Prisma {
     name?: true
     createdAt?: true
     updatedAt?: true
+    gmailBackfilledAt?: true
+    outlookBackfilledAt?: true
     memberLevelAnalytics?: true
     defaultIssueTracker?: true
     defaultMeetingProvider?: true
@@ -28348,6 +28360,8 @@ export namespace Prisma {
     name: string
     createdAt: Date
     updatedAt: Date
+    gmailBackfilledAt: Date | null
+    outlookBackfilledAt: Date | null
     memberLevelAnalytics: boolean
     defaultIssueTracker: string | null
     defaultMeetingProvider: string | null
@@ -28376,6 +28390,8 @@ export namespace Prisma {
     name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    gmailBackfilledAt?: boolean
+    outlookBackfilledAt?: boolean
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: boolean
     defaultMeetingProvider?: boolean
@@ -28394,6 +28410,8 @@ export namespace Prisma {
     name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    gmailBackfilledAt?: boolean
+    outlookBackfilledAt?: boolean
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: boolean
     defaultMeetingProvider?: boolean
@@ -28405,6 +28423,8 @@ export namespace Prisma {
     name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    gmailBackfilledAt?: boolean
+    outlookBackfilledAt?: boolean
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: boolean
     defaultMeetingProvider?: boolean
@@ -28416,13 +28436,15 @@ export namespace Prisma {
     name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    gmailBackfilledAt?: boolean
+    outlookBackfilledAt?: boolean
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: boolean
     defaultMeetingProvider?: boolean
     defaultSupportProvider?: boolean
   }
 
-  export type OrganizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "memberLevelAnalytics" | "defaultIssueTracker" | "defaultMeetingProvider" | "defaultSupportProvider", ExtArgs["result"]["organization"]>
+  export type OrganizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "gmailBackfilledAt" | "outlookBackfilledAt" | "memberLevelAnalytics" | "defaultIssueTracker" | "defaultMeetingProvider" | "defaultSupportProvider", ExtArgs["result"]["organization"]>
   export type OrganizationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     memberships?: boolean | Organization$membershipsArgs<ExtArgs>
     sharedInboxes?: boolean | Organization$sharedInboxesArgs<ExtArgs>
@@ -28450,6 +28472,8 @@ export namespace Prisma {
       name: string
       createdAt: Date
       updatedAt: Date
+      gmailBackfilledAt: Date | null
+      outlookBackfilledAt: Date | null
       memberLevelAnalytics: boolean
       defaultIssueTracker: string | null
       defaultMeetingProvider: string | null
@@ -28887,6 +28911,8 @@ export namespace Prisma {
     readonly name: FieldRef<"Organization", 'String'>
     readonly createdAt: FieldRef<"Organization", 'DateTime'>
     readonly updatedAt: FieldRef<"Organization", 'DateTime'>
+    readonly gmailBackfilledAt: FieldRef<"Organization", 'DateTime'>
+    readonly outlookBackfilledAt: FieldRef<"Organization", 'DateTime'>
     readonly memberLevelAnalytics: FieldRef<"Organization", 'Boolean'>
     readonly defaultIssueTracker: FieldRef<"Organization", 'String'>
     readonly defaultMeetingProvider: FieldRef<"Organization", 'String'>
@@ -48302,6 +48328,8 @@ export namespace Prisma {
     name: 'name',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    gmailBackfilledAt: 'gmailBackfilledAt',
+    outlookBackfilledAt: 'outlookBackfilledAt',
     memberLevelAnalytics: 'memberLevelAnalytics',
     defaultIssueTracker: 'defaultIssueTracker',
     defaultMeetingProvider: 'defaultMeetingProvider',
@@ -50185,6 +50213,8 @@ export namespace Prisma {
     name?: StringFilter<"Organization"> | string
     createdAt?: DateTimeFilter<"Organization"> | Date | string
     updatedAt?: DateTimeFilter<"Organization"> | Date | string
+    gmailBackfilledAt?: DateTimeNullableFilter<"Organization"> | Date | string | null
+    outlookBackfilledAt?: DateTimeNullableFilter<"Organization"> | Date | string | null
     memberLevelAnalytics?: BoolFilter<"Organization"> | boolean
     defaultIssueTracker?: StringNullableFilter<"Organization"> | string | null
     defaultMeetingProvider?: StringNullableFilter<"Organization"> | string | null
@@ -50202,6 +50232,8 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    gmailBackfilledAt?: SortOrderInput | SortOrder
+    outlookBackfilledAt?: SortOrderInput | SortOrder
     memberLevelAnalytics?: SortOrder
     defaultIssueTracker?: SortOrderInput | SortOrder
     defaultMeetingProvider?: SortOrderInput | SortOrder
@@ -50222,6 +50254,8 @@ export namespace Prisma {
     name?: StringFilter<"Organization"> | string
     createdAt?: DateTimeFilter<"Organization"> | Date | string
     updatedAt?: DateTimeFilter<"Organization"> | Date | string
+    gmailBackfilledAt?: DateTimeNullableFilter<"Organization"> | Date | string | null
+    outlookBackfilledAt?: DateTimeNullableFilter<"Organization"> | Date | string | null
     memberLevelAnalytics?: BoolFilter<"Organization"> | boolean
     defaultIssueTracker?: StringNullableFilter<"Organization"> | string | null
     defaultMeetingProvider?: StringNullableFilter<"Organization"> | string | null
@@ -50239,6 +50273,8 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    gmailBackfilledAt?: SortOrderInput | SortOrder
+    outlookBackfilledAt?: SortOrderInput | SortOrder
     memberLevelAnalytics?: SortOrder
     defaultIssueTracker?: SortOrderInput | SortOrder
     defaultMeetingProvider?: SortOrderInput | SortOrder
@@ -50256,6 +50292,8 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Organization"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Organization"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Organization"> | Date | string
+    gmailBackfilledAt?: DateTimeNullableWithAggregatesFilter<"Organization"> | Date | string | null
+    outlookBackfilledAt?: DateTimeNullableWithAggregatesFilter<"Organization"> | Date | string | null
     memberLevelAnalytics?: BoolWithAggregatesFilter<"Organization"> | boolean
     defaultIssueTracker?: StringNullableWithAggregatesFilter<"Organization"> | string | null
     defaultMeetingProvider?: StringNullableWithAggregatesFilter<"Organization"> | string | null
@@ -53067,6 +53105,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -53084,6 +53124,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -53101,6 +53143,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -53118,6 +53162,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -53135,6 +53181,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -53146,6 +53194,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -53157,6 +53207,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -55639,6 +55691,8 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    gmailBackfilledAt?: SortOrder
+    outlookBackfilledAt?: SortOrder
     memberLevelAnalytics?: SortOrder
     defaultIssueTracker?: SortOrder
     defaultMeetingProvider?: SortOrder
@@ -55650,6 +55704,8 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    gmailBackfilledAt?: SortOrder
+    outlookBackfilledAt?: SortOrder
     memberLevelAnalytics?: SortOrder
     defaultIssueTracker?: SortOrder
     defaultMeetingProvider?: SortOrder
@@ -55661,6 +55717,8 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    gmailBackfilledAt?: SortOrder
+    outlookBackfilledAt?: SortOrder
     memberLevelAnalytics?: SortOrder
     defaultIssueTracker?: SortOrder
     defaultMeetingProvider?: SortOrder
@@ -61571,6 +61629,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -61587,6 +61647,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -61619,6 +61681,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -61635,6 +61699,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -61651,6 +61717,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -61667,6 +61735,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -61787,6 +61857,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -61803,6 +61875,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -62327,6 +62401,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -62343,6 +62419,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -62375,6 +62453,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -62391,6 +62471,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -62407,6 +62489,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -62423,6 +62507,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -62455,6 +62541,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -62471,6 +62559,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -62487,6 +62577,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -62503,6 +62595,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -62535,6 +62629,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -62551,6 +62647,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -62567,6 +62665,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -62583,6 +62683,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    gmailBackfilledAt?: Date | string | null
+    outlookBackfilledAt?: Date | string | null
     memberLevelAnalytics?: boolean
     defaultIssueTracker?: string | null
     defaultMeetingProvider?: string | null
@@ -62615,6 +62717,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -62631,6 +62735,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gmailBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    outlookBackfilledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberLevelAnalytics?: BoolFieldUpdateOperationsInput | boolean
     defaultIssueTracker?: NullableStringFieldUpdateOperationsInput | string | null
     defaultMeetingProvider?: NullableStringFieldUpdateOperationsInput | string | null

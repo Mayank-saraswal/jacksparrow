@@ -32,6 +32,7 @@ function greeting(): string {
 
 import { useRouter } from "next/navigation";
 import { api } from "@/trpc/react";
+import { useAuth } from "@clerk/nextjs";
 
 export function DashboardChat({ 
   firstName, 
@@ -44,6 +45,7 @@ export function DashboardChat({
 }) {
   const router = useRouter();
   const utils = api.useUtils();
+  const { orgId } = useAuth();
   const [messages, setMessages] = React.useState<Msg[]>(initialMessages);
   const [conversationId, setConversationId] = React.useState<string | undefined>(initialConversationId);
   const [input, setInput] = React.useState("");
@@ -73,6 +75,7 @@ export function DashboardChat({
         body: JSON.stringify({ 
           messages: next, 
           conversationId,
+          orgId,
           timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
         }),
       });

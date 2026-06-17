@@ -353,6 +353,8 @@ exports.Prisma.OrganizationScalarFieldEnum = {
   name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  gmailBackfilledAt: 'gmailBackfilledAt',
+  outlookBackfilledAt: 'outlookBackfilledAt',
   memberLevelAnalytics: 'memberLevelAnalytics',
   defaultIssueTracker: 'defaultIssueTracker',
   defaultMeetingProvider: 'defaultMeetingProvider',

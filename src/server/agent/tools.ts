@@ -12,7 +12,7 @@ import { resolveIssueTracker } from "@/server/issues/provider";
 import { resolveTaskProvider } from "@/server/tasks/provider";
 import { resolveSchedulingProvider } from "@/server/scheduling/provider";
 import { resolveSupportProvider } from "@/server/support/provider";
-import { availableMeetingProviders } from "@/server/meetings/provider";
+import { availableMeetingProviders, resolveZoomMeeting } from "@/server/meetings/provider";
 import { getMembership } from "@/server/authz";
 import { normalizeEvent, type RawCalEvent } from "@/server/calendar";
 import { embedText, toVectorLiteral } from "@/server/embeddings";
@@ -562,6 +562,34 @@ export function buildAgentTools(
         "Which video meeting providers (zoom/teams) are connected, for attaching a join link to a new calendar event.",
       inputSchema: z.object({}),
       execute: () => availableMeetingProviders(userId, orgId),
+    }),
+
+    createZoomMeeting: tool({
+      description:
+        "Create a Zoom meeting immediately. Returns the join link and passcode. Use this if the user wants the Zoom link right now to share, or if you need to include the Zoom link/passcode in a drafted email or other integration before the calendar event is approved.",
+      inputSchema: z.object({
+        topic: z.string().describe("Meeting topic/title"),
+        startTime: z.string().describe("ISO start time"),
+        durationMinutes: z.number().int().min(15).max(1440).default(30),
+      }),
+      execute: async ({ topic, startTime, durationMinutes }) => {
+        const resolved = await resolveZoomMeeting(userId);
+        if (!resolved.ok) return { error: "not-connected", plugin: "zoom" };
+        try {
+          const meeting = await resolved.create({
+            topic,
+            startTime,
+            durationMinutes,
+          });
+          return {
+            success: true,
+            joinUrl: meeting.joinUrl,
+            password: meeting.password,
+          };
+        } catch (err) {
+          return { error: err instanceof Error ? err.message : String(err) };
+        }
+      },
     }),
 
     // ── Scheduling links (Cal.com / Calendly) ─────────────────────────────
