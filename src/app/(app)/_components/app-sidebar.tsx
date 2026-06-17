@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   SquaresFour,
@@ -14,6 +14,8 @@ import {
   ChatCircleDots,
   CreditCard,
   Plus,
+  Pencil,
+  Trash,
 } from "@phosphor-icons/react";
 import { api } from "@/trpc/react";
 
@@ -99,18 +101,7 @@ export function AppSidebar() {
                 conversations?.map((conv) => {
                   const isActive = pathname === `/dashboard/c/${conv.id}`;
                   return (
-                    <Link
-                      key={conv.id}
-                      href={`/dashboard/c/${conv.id}`}
-                      className={cn(
-                        "flex items-center text-left px-2 py-1.5 text-xs font-medium rounded-md cursor-pointer truncate transition-colors",
-                        isActive 
-                          ? "text-[#262626] bg-[rgba(0,0,0,0.06)]"
-                          : "text-[rgba(0,0,0,0.6)] hover:text-[#262626] hover:bg-[rgba(0,0,0,0.04)]"
-                      )}
-                    >
-                      {conv.title}
-                    </Link>
+                    <ChatItem key={conv.id} conv={conv} isActive={isActive} />
                   );
                 })
               )}
@@ -171,5 +162,80 @@ export function AppSidebar() {
         </p>
       </div>
     </aside>
+  );
+}
+
+function ChatItem({ conv, isActive }: { conv: { id: string; title: string }; isActive: boolean }) {
+  const [isRenaming, setIsRenaming] = React.useState(false);
+  const [title, setTitle] = React.useState(conv.title);
+  const utils = api.useUtils();
+  const router = useRouter();
+
+  const renameMutation = api.chat.renameConversation.useMutation({
+    onSuccess: () => void utils.chat.getConversations.invalidate(),
+  });
+  
+  const deleteMutation = api.chat.deleteConversation.useMutation({
+    onSuccess: () => {
+      void utils.chat.getConversations.invalidate();
+      if (isActive) router.push("/dashboard");
+    },
+  });
+
+  const handleRename = () => {
+    if (title.trim() && title !== conv.title) {
+      renameMutation.mutate({ conversationId: conv.id, title: title.trim() });
+    }
+    setIsRenaming(false);
+  };
+
+  return (
+    <div className={cn(
+      "group relative flex items-center justify-between px-2 py-1.5 text-xs font-medium rounded-md transition-colors",
+      isActive 
+        ? "text-[#262626] bg-[rgba(0,0,0,0.06)]"
+        : "text-[rgba(0,0,0,0.6)] hover:text-[#262626] hover:bg-[rgba(0,0,0,0.04)]"
+    )}>
+      {isRenaming ? (
+        <input
+          autoFocus
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          onBlur={handleRename}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleRename();
+            if (e.key === "Escape") {
+              setTitle(conv.title);
+              setIsRenaming(false);
+            }
+          }}
+          className="flex-1 min-w-0 bg-white border border-[#E8E8E8] rounded px-1.5 py-0.5 outline-none focus:ring-1 focus:ring-[#FF4C00] text-[#262626]"
+        />
+      ) : (
+        <Link href={`/dashboard/c/${conv.id}`} className="flex-1 min-w-0 truncate block pr-12">
+          {conv.title}
+        </Link>
+      )}
+
+      {!isRenaming && (
+        <div className="absolute right-2 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button 
+            onClick={(e) => { e.preventDefault(); setIsRenaming(true); }}
+            className="text-[rgba(0,0,0,0.4)] hover:text-[#FF4C00] transition-colors"
+            title="Rename"
+          >
+            <Pencil className="size-3.5" />
+          </button>
+          <button 
+            onClick={(e) => { e.preventDefault(); deleteMutation.mutate({ conversationId: conv.id }); }}
+            className="text-[rgba(0,0,0,0.4)] hover:text-red-500 transition-colors"
+            title="Delete"
+            disabled={deleteMutation.isPending}
+          >
+            <Trash className="size-3.5" />
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
