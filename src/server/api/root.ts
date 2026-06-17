@@ -1,5 +1,6 @@
-  import { billingRouter } from "@/server/api/routers/billing";
+import { billingRouter } from "@/server/api/routers/billing";
 import { calendarRouter } from "@/server/api/routers/calendar";
+import { chatRouter } from "@/server/api/routers/chat";
 import { channelsRouter } from "@/server/api/routers/channels";
 import { crmRouter } from "@/server/api/routers/crm";
 import { draftsRouter } from "@/server/api/routers/drafts";
@@ -46,6 +47,7 @@ export const appRouter = createTRPCRouter({
   auditLog: auditLogRouter,
   retention: retentionRouter,
   sso: ssoRouter,
+  chat: chatRouter,
 });
 
 // export type definition of API

@@ -23,8 +23,6 @@ const SUGGESTIONS = [
   { icon: Coffee, label: "Schedule a meeting", prompt: "Schedule a 30-minute meeting with my last email contact for tomorrow morning." },
 ];
 
-const STORAGE_KEY = "jacksparrow:dashboard-chat";
-
 function greeting(): string {
   const h = new Date().getHours();
   if (h < 12) return "Morning";
@@ -32,29 +30,28 @@ function greeting(): string {
   return "Evening";
 }
 
-export function DashboardChat({ firstName }: { firstName: string }) {
-  const [messages, setMessages] = React.useState<Msg[]>([]);
+import { useRouter } from "next/navigation";
+import { api } from "@/trpc/react";
+
+export function DashboardChat({ 
+  firstName, 
+  initialMessages = [], 
+  conversationId: initialConversationId 
+}: { 
+  firstName: string;
+  initialMessages?: Msg[];
+  conversationId?: string;
+}) {
+  const router = useRouter();
+  const utils = api.useUtils();
+  const [messages, setMessages] = React.useState<Msg[]>(initialMessages);
+  const [conversationId, setConversationId] = React.useState<string | undefined>(initialConversationId);
   const [input, setInput] = React.useState("");
   const [busy, setBusy] = React.useState(false);
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const taRef = React.useRef<HTMLTextAreaElement>(null);
 
-  // Restore the visible thread for this browser session.
   React.useEffect(() => {
-    try {
-      const raw = sessionStorage.getItem(STORAGE_KEY);
-      if (raw) setMessages(JSON.parse(raw) as Msg[]);
-    } catch {
-      /* ignore malformed cache */
-    }
-  }, []);
-
-  React.useEffect(() => {
-    try {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
-    } catch {
-      /* storage may be unavailable */
-    }
     scrollRef.current?.scrollTo({
       top: scrollRef.current.scrollHeight,
       behavior: "smooth",
@@ -73,9 +70,20 @@ export function DashboardChat({ firstName }: { firstName: string }) {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: next }),
+        body: JSON.stringify({ 
+          messages: next, 
+          conversationId,
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        }),
       });
       if (!res.ok || !res.body) throw new Error(await res.text());
+
+      const newConvId = res.headers.get("x-conversation-id");
+      if (newConvId && newConvId !== conversationId) {
+        setConversationId(newConvId);
+        window.history.replaceState({}, "", `/dashboard/c/${newConvId}`);
+        void utils.chat.getConversations.invalidate();
+      }
 
       const reader = res.body.getReader();
       const decoder = new TextDecoder();

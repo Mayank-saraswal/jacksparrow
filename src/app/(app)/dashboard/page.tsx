@@ -53,7 +53,7 @@ export default async function DashboardPage() {
     <>
       {/* Assistant — reuses the existing /api/chat agent path */}
       <div className="min-h-0 flex-1 flex flex-col">
-        <DashboardChat firstName={firstName} />
+        <DashboardChat key="new-chat" firstName={firstName} />
       </div>
     </>
   );

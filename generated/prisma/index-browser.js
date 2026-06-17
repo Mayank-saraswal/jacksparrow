@@ -519,6 +519,22 @@ exports.Prisma.DailyOrgStatScalarFieldEnum = {
   dims: 'dims'
 };
 
+exports.Prisma.ChatConversationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ChatMessageScalarFieldEnum = {
+  id: 'id',
+  conversationId: 'conversationId',
+  role: 'role',
+  content: 'content',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -582,7 +598,9 @@ exports.Prisma.ModelName = {
   SsoConnection: 'SsoConnection',
   RetentionPolicy: 'RetentionPolicy',
   LegalHold: 'LegalHold',
-  DailyOrgStat: 'DailyOrgStat'
+  DailyOrgStat: 'DailyOrgStat',
+  ChatConversation: 'ChatConversation',
+  ChatMessage: 'ChatMessage'
 };
 
 /**
