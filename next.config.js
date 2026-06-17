@@ -12,6 +12,7 @@ const config = {
   // "Application Data" junction with EPERM. It also stops the nested
   // referance-landingpage/ lockfile from being mistaken for the workspace root.
   outputFileTracingRoot: import.meta.dirname,
+  output: "standalone",
   // Keep build-time file tracing from descending into the design-reference app.
   outputFileTracingExcludes: {
     "*": ["./referance-landingpage/**"],

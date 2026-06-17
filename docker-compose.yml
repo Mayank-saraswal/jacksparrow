@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - INNGEST_DEV=1
+      # Point to the inngest container service
+      - INNGEST_EVENT_KEY=local
+      - INNGEST_SIGNING_KEY=local
+    depends_on:
+      - inngest
+    restart: always
+
+  inngest:
+    image: inngest/inngest:latest
+    ports:
+      - "8288:8288"
+    # The Inngest dev server needs to point to the app service inside the docker network
+    command: -u http://app:3000/api/inngest
+    restart: always
+
+  # Commented Postgres database service for full local development offline.
+  # To use: uncomment the database service, the volume, and update DATABASE_URL in .env to
+  # postgresql://postgres:password@db:5432/jacksparrow
+  #
+  # db:
+  #   image: postgres:15-alpine
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: password
+  #     POSTGRES_DB: jacksparrow
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+  #   restart: always
+
+# volumes:
+#   pgdata:

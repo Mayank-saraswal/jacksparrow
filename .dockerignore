@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+build
+dist
+.env
+.env*.local
+.git
+.gitignore
+*.md
+*.log
+patches
+scripts/create-zoom-patch.mjs
+# Note: Keep the patches/ folder in the build context so docker build can access it during stage 1 (installing dependencies)
+# We will NOT ignore patches/ here, but we can ignore specific unnecessary scripts.
+# Wait, let's keep patches/ enabled.
