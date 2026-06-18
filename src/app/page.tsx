@@ -15,6 +15,7 @@ import { Reveal } from "./_components/reveal";
 import { Frame, SectionRule } from "./_components/landing-frame";
 import { AsciiSignal } from "./_components/ascii-signal";
 import { WorkflowAnimation } from "./_components/workflow-animation";
+import { LandingChatInput } from "./_components/landing-chat-input";
 
 const FEATURES = [
   {
@@ -119,7 +120,13 @@ export default async function Home() {
 
             <Reveal delay={80}>
               <h1 className="mt-6 text-[40px] leading-[1.05] font-medium tracking-tight text-balance sm:text-6xl">
-                The AI assistant that runs your inbox and calendar
+                The AI{" "}
+                <LandingChatInput 
+                  isSignedIn={!!userId} 
+                  placeholder="Assistant"
+                  className="w-[220px] sm:w-[300px] inline-flex align-middle mx-2 my-[-8px] shadow-sm" 
+                />{" "}
+                that runs your inbox and calendar
                 <br className="hidden sm:inline" /> so you can{" "}
                 <span className="text-primary">sleep 2 hours more</span>
               </h1>
@@ -134,18 +141,12 @@ export default async function Home() {
             </Reveal>
 
             <Reveal delay={240}>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  href={primaryHref}
-                  className="bg-[#FF4C00] text-white px-6 h-10 rounded-full flex items-center justify-center gap-2 hover:bg-[#e64400] transition-colors font-medium shadow-sm text-sm"
-                >
-                  <MoonStars weight="fill" className="size-4" /> Get more sleep
-                </Link>
+              <div className="mt-6 flex justify-center">
                 <Link
                   href="#features"
-                  className="inline-flex items-center justify-center rounded-full bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] px-6 h-10 text-sm font-medium text-white transition-colors border border-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.1)]"
+                  className="text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors underline decoration-border underline-offset-4 hover:decoration-foreground"
                 >
-                  See how it works
+                  Or see how it works ↓
                 </Link>
               </div>
             </Reveal>
@@ -266,13 +267,12 @@ export default async function Home() {
               </div>
               <pre className="relative z-10 overflow-x-auto p-4 leading-relaxed drop-shadow-md">
                 <span className="text-neutral-400">{"> "}</span>
-                schedule a call with bob@x.com Thursday 9am{"\n"}
-                {"  "}and email him that I look forward to it{"\n\n"}
-                <span className="text-primary">drafted 2 actions ✓</span>
-                {"\n"}
-                {"  "}1. create_event · Thu 09:00 · bob@x.com{"\n"}
-                {"  "}2. send_email · bob@x.com{"\n\n"}
-                <span className="text-neutral-400">awaiting approval…</span>
+                {"schedule a call with bob@x.com Thursday 9am\n"}
+                {"  and email him that I look forward to it\n\n"}
+                <span className="text-primary">{"drafted 2 actions ✓"}</span>
+                {"\n  1. create_event · Thu 09:00 · bob@x.com\n"}
+                {"  2. send_email · bob@x.com\n\n"}
+                <span className="text-neutral-400">{"awaiting approval…"}</span>
               </pre>
             </div>
           </Reveal>
