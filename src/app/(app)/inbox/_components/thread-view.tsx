@@ -34,19 +34,106 @@ function formatFull(iso: string | null) {
       }).format(d);
 }
 
+function isHexColorDark(hex: string): boolean {
+  let cleanHex = hex;
+  if (cleanHex.length === 3) {
+    const c0 = cleanHex[0];
+    const c1 = cleanHex[1];
+    const c2 = cleanHex[2];
+    if (c0 !== undefined && c1 !== undefined && c2 !== undefined) {
+      cleanHex = c0 + c0 + c1 + c1 + c2 + c2;
+    }
+  }
+  if (cleanHex.length !== 6) return false;
+  
+  const r = parseInt(cleanHex.slice(0, 2), 16);
+  const g = parseInt(cleanHex.slice(2, 4), 16);
+  const b = parseInt(cleanHex.slice(4, 6), 16);
+  
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  return brightness < 120;
+}
+
+function isHtmlDark(html: string): boolean {
+  // 1. Check bgcolor attribute
+  const bgcolorMatch = /bgcolor\s*=\s*["']#?([0-9a-fA-F]{3,6})["']/i.exec(html);
+  if (bgcolorMatch?.[1]) {
+    if (isHexColorDark(bgcolorMatch[1])) return true;
+  }
+
+  // 2. Check inline styles (hex values)
+  const bgStyleRegex = /background(?:-color)?\s*:\s*#?([0-9a-fA-F]{3,6})/gi;
+  let match;
+  while ((match = bgStyleRegex.exec(html)) !== null) {
+    if (match[1] && isHexColorDark(match[1])) {
+      return true;
+    }
+  }
+
+  // 3. Check inline styles (rgb/rgba values)
+  const rgbRegex = /background(?:-color)?\s*:\s*rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/gi;
+  while ((match = rgbRegex.exec(html)) !== null) {
+    if (match[1] && match[2] && match[3]) {
+      const r = parseInt(match[1], 10);
+      const g = parseInt(match[2], 10);
+      const b = parseInt(match[3], 10);
+      const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+      if (brightness < 120) return true;
+    }
+  }
+
+  return false;
+}
+
 function MessageBody({ message }: { message: MessageDetail }) {
-  if (message.bodyHtml) {
-    // Render untrusted email HTML in a sandboxed iframe (no scripts) to
-    // prevent it from accessing our app.
+  const [isInverted, setIsInverted] = React.useState(true);
+  const bodyHtml = message.bodyHtml;
+
+  const isNativelyDark = bodyHtml ? isHtmlDark(bodyHtml) : false;
+  const shouldInvert = isInverted && !isNativelyDark;
+
+  const formattedHtml = (() => {
+    if (!bodyHtml) return "";
+    if (!shouldInvert) return bodyHtml;
+
+    const styles = `
+      <style id="dark-inversion-style">
+        html {
+          filter: invert(0.9) hue-rotate(180deg) !important;
+          background-color: #ffffff !important;
+        }
+        /* Re-invert media elements to restore original colors */
+        img, video, svg, [style*="background-image"] {
+          filter: invert(1.11) hue-rotate(180deg) !important;
+        }
+      </style>
+    `;
+
+    if (bodyHtml.includes("</head>")) {
+      return bodyHtml.replace("</head>", `${styles}</head>`);
+    }
+    return styles + bodyHtml;
+  })();
+
+  if (bodyHtml) {
     return (
-      <iframe
-        title={`message-${message.id}`}
-        sandbox=""
-        srcDoc={message.bodyHtml}
-        className="h-96 w-full rounded-md border border-border bg-white"
-      />
+      <div className="relative group">
+        <iframe
+          title={`message-${message.id}`}
+          sandbox=""
+          srcDoc={formattedHtml}
+          className="h-96 w-full rounded-md border border-border bg-white"
+        />
+        <button
+          onClick={() => setIsInverted(!isInverted)}
+          className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-neutral-900/80 hover:bg-neutral-800 text-white rounded px-2 py-1 text-[10px] font-medium z-20"
+        >
+          {shouldInvert ? "Show Original" : "Show Dark"}
+        </button>
+      </div>
     );
   }
+
   return (
     <p className="text-sm whitespace-pre-wrap text-foreground/90">
       {message.bodyText ?? message.snippet}

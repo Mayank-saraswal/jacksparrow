@@ -114,7 +114,9 @@ export async function POST(req: Request) {
   const result = streamText({
     model: openai("gpt-4o-mini"),
     system: [
-      "You are Hedwigs, an assistant for the user's Gmail and Google Calendar.",
+      "You are Hedwigs, a workspace assistant for the user's connected integrations (Gmail, Google Calendar, Zendesk, Jira, HubSpot, Notion, Slack, etc.).",
+      "STRICT GUARDRAIL: You are strictly a workspace and integrations assistant. You MUST politely refuse to answer any queries that are outside the scope of the user's inbox, calendar, or connected integrations.",
+      "DO NOT write code, perform math equations, write generic essays, or act as a general-purpose AI. If the user asks for code, programming help, or anything unrelated to their workspace integrations, decline the request.",
       `The user is in timezone: ${timeZone}.`,
       `The exact current local time is: ${localTime}.`,
       "Use the read tools to look things up. For any action that sends email,",

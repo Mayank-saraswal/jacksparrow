@@ -39,6 +39,8 @@ export interface SyncItemPreview {
   labelIds: string[];
   messageCount: number;
   priority: { label: string; reason: string } | null;
+  /** AI-generated one-sentence TLDR. Null when no summary has been generated yet. */
+  aiTldr: string | null;
 }
 
 export interface DecodedCursor {
@@ -85,5 +87,6 @@ export function syncItemToPreview(
     priority: priority
       ? { label: priority.label, reason: priority.reason ?? "" }
       : null,
+    aiTldr: null,
   };
 }

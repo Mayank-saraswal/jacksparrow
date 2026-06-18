@@ -53,6 +53,8 @@ export interface ThreadPreview {
   labelIds: string[];
   messageCount: number;
   priority: { label: string; reason: string } | null;
+  /** AI-generated one-sentence TLDR. Null when no summary exists yet. */
+  aiTldr: string | null;
 }
 
 export interface MessageDetail {
@@ -146,6 +148,7 @@ export function threadPreview(thread: GmailThread): ThreadPreview {
     labelIds,
     messageCount: messages.length,
     priority: null,
+    aiTldr: null,
   };
 }
 

@@ -138,6 +138,7 @@ async function listThreadsLive(
     ],
     messageCount: 1,
     priority: null,
+    aiTldr: null,
   }));
   const { threads, splitCounts } = await annotateAndSplit(
     db,
@@ -198,7 +199,25 @@ export const inboxRouter = createTRPCRouter({
         return true;
       });
 
-      const previews = deduped.map((r) => syncItemToPreview(r, null));
+      // Batch-fetch cached AI TLDRs for all visible threads.
+      const visibleThreadIds = deduped
+        .map((r) => r.threadId)
+        .filter((id): id is string => id !== null);
+      const cachedSummaries = await ctx.db.threadSummary.findMany({
+        where: { userId: ctx.userId, threadId: { in: visibleThreadIds } },
+        orderBy: { createdAt: "desc" },
+        select: { threadId: true, summary: true },
+        distinct: ["threadId"],
+      });
+      const tldrByThread = new Map<string, string>(
+        cachedSummaries.map((s) => [s.threadId, s.summary]),
+      );
+
+      const previews = deduped.map((r) => {
+        const p = syncItemToPreview(r, null);
+        p.aiTldr = tldrByThread.get(r.threadId ?? "") ?? null;
+        return p;
+      });
       const { threads, splitCounts } = await annotateAndSplit(
         ctx.db,
         ctx.userId,

@@ -51,7 +51,7 @@ function ZendeskConnectButton({ connected }: { connected: boolean }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]">
+        <button className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-white/5 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-white/10 px-3 py-1.5 text-sm font-medium text-[#262626] dark:text-neutral-200 transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] dark:hover:border-neutral-800">
           {connected ? "Reconnect" : "Connect"}
         </button>
       </DialogTrigger>
@@ -195,10 +195,10 @@ export function OrgIntegrations() {
 
   return (
     <section className="mt-10">
-      <h2 className="text-lg font-semibold tracking-tight text-[#262626]">
+      <h2 className="text-lg font-semibold tracking-tight text-[#262626] dark:text-neutral-200">
         {current.data.name} · team connections
       </h2>
-      <p className="mt-1 mb-4 text-sm text-[rgba(0,0,0,0.48)]">
+      <p className="mt-1 mb-4 text-sm text-[rgba(0,0,0,0.48)] dark:text-neutral-400">
         Shared across your organization.{" "}
         {isAdmin ? "" : "Only admins can connect these."}
       </p>
@@ -227,7 +227,7 @@ export function OrgIntegrations() {
               {hoveredCard === c.key && (
                 <motion.div
                   layoutId="orgIntegrationHoverBg"
-                  className="absolute inset-0 bg-white shadow-sm border border-[#E8E8E8] rounded-xl -z-10"
+                  className="absolute inset-0 bg-neutral-900/60 shadow-sm border border-neutral-800/50 rounded-xl -z-10"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                 />
               )}
@@ -247,7 +247,7 @@ export function OrgIntegrations() {
                           <SlackLogo className="size-4 text-[#4A154B]" />
                         )}
                       </span>
-                      <CardTitle className="text-[#262626]">{c.name}</CardTitle>
+                      <CardTitle className="text-[#262626] dark:text-neutral-200">{c.name}</CardTitle>
                     </div>
                     {synced && (
                       <Badge variant="success">
@@ -255,7 +255,7 @@ export function OrgIntegrations() {
                       </Badge>
                     )}
                     {syncing && (
-                      <Badge variant="secondary" className="bg-[rgba(0,0,0,0.04)] text-[#262626] hover:bg-[rgba(0,0,0,0.08)]">
+                      <Badge variant="secondary" className="bg-[rgba(0,0,0,0.04)] dark:bg-neutral-800 text-[#262626] dark:text-neutral-300 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-neutral-700">
                         <CircleNotch className="animate-spin mr-1" /> Syncing
                       </Badge>
                     )}
@@ -266,7 +266,7 @@ export function OrgIntegrations() {
                 <CardContent>
                   {syncing ? (
                     <p className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <CircleNotch className="size-3.5 animate-spin text-[#262626]" />
+                    <CircleNotch className="size-3.5 animate-spin text-[#262626] dark:text-neutral-300" />
                       Syncing your inbox… this runs in the background.
                     </p>
                   ) : synced ? (
@@ -284,7 +284,7 @@ export function OrgIntegrations() {
                       ) : (
                         <a
                           href={`/api/integrations/${c.key}/connect?scope=org`}
-                          className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
+                          className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-white/5 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-white/10 px-3 py-1.5 text-sm font-medium text-[#262626] dark:text-neutral-200 transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] dark:hover:border-neutral-800"
                         >
                           {connected ? "Reconnect" : "Connect"}
                         </a>
@@ -298,7 +298,7 @@ export function OrgIntegrations() {
                             }
                           }}
                           className={
-                            "inline-flex items-center gap-1.5 rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] " +
+                            "inline-flex items-center gap-1.5 rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-white/5 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-white/10 px-3 py-1.5 text-sm font-medium text-[#262626] dark:text-neutral-200 transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] dark:hover:border-neutral-800 " +
                             (syncing || isResyncing ? "opacity-50 pointer-events-none" : "")
                           }
                         >
@@ -313,7 +313,7 @@ export function OrgIntegrations() {
                     <button
                       disabled
                       title="Admins only"
-                      className="inline-flex items-center gap-1.5 rounded-md bg-[rgba(0,0,0,0.04)] px-3 py-1.5 text-sm font-medium text-[#262626] border border-transparent opacity-50 pointer-events-none"
+                      className="inline-flex items-center gap-1.5 rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-white/5 px-3 py-1.5 text-sm font-medium text-[#262626] dark:text-neutral-200 border border-transparent opacity-50 pointer-events-none"
                     >
                       <Lock className="size-4" /> Admins only
                     </button>

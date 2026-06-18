@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Archive, Trash } from "@phosphor-icons/react";
+import { Star, Archive, Trash, Sparkle } from "@phosphor-icons/react";
 
 import type { ThreadPreview } from "@/server/gmail";
 import { cn } from "@/lib/utils";
@@ -132,7 +132,14 @@ export function ThreadList({
                     t.unread ? "text-foreground" : "text-muted-foreground",
                   )}
                 >
-                  {t.subject}
+                  {t.aiTldr !== null && (
+                    <Sparkle
+                      weight="fill"
+                      className="mr-1 inline size-3 shrink-0 text-primary opacity-70"
+                      aria-label="AI summary"
+                    />
+                  )}
+                  {t.aiTldr ?? t.subject}
                   {t.messageCount > 1 && (
                     <span className="ml-1 text-[11px] text-muted-foreground">
                       ({t.messageCount})

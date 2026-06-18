@@ -183,6 +183,8 @@ export const backfillIntegration = inngest.createFunction(
       let pageToken: string | undefined;
       let page = 0;
       let total = 0;
+      // Collect thread IDs from the first hydrated page to summarise on connect.
+      const backfillThreadIds: string[] = [];
       do {
         const cursor: string | undefined = pageToken;
         const result = await step.run(`gmail-threads-page-${page}`, async () => {
@@ -208,6 +210,10 @@ export const backfillIntegration = inngest.createFunction(
             await hydrateGmailThreads(tenant, clerkUserId, result.ids);
             return { hydrated: result.ids.length };
           });
+          // Collect thread IDs for backfill summarization (cap at 25).
+          for (const id of result.ids) {
+            if (backfillThreadIds.length < 25) backfillThreadIds.push(id);
+          }
         }
 
         total += result.ids.length;
@@ -221,10 +227,22 @@ export const backfillIntegration = inngest.createFunction(
             where: { id: clerkUserId },
             data: { gmailBackfilledAt: new Date() },
           });
-          await inngest.send({
-            name: "search/embeddings.requested",
-            data: { clerkUserId, limit: 50 },
-          });
+          await inngest.send([
+            {
+              name: "search/embeddings.requested",
+              data: { clerkUserId, limit: 50 },
+            },
+            // Eagerly generate AI TLDRs for the last 25 threads so the inbox
+            // list shows summaries immediately after first connect.
+            ...(backfillThreadIds.length > 0
+              ? [
+                  {
+                    name: "thread/summarize.backfill" as const,
+                    data: { userId: clerkUserId, threadIds: backfillThreadIds },
+                  },
+                ]
+              : []),
+          ]);
         });
       } else if (ref.kind === "org" && orgId) {
         await step.run("mark-org-gmail-backfilled", async () => {

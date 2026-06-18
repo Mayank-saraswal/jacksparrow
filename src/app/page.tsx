@@ -13,6 +13,7 @@ import {
 
 import { Reveal } from "./_components/reveal";
 import { Frame, SectionRule } from "./_components/landing-frame";
+import { AsciiSignal } from "./_components/ascii-signal";
 
 const FEATURES = [
   {
@@ -79,13 +80,16 @@ export default async function Home() {
       {/* Announcement bar */}
       <div className="mx-auto max-w-[1112px] px-4 pt-3 md:px-14">
         <Reveal>
-          <div className="group relative overflow-hidden rounded-[10px] bg-primary px-4 py-2.5 text-center text-[13px] tracking-wide text-primary-foreground">
+          <div className="group relative overflow-hidden rounded-[10px] bg-gradient-to-r from-neutral-50 to-neutral-100 dark:from-neutral-950 dark:to-neutral-900 border border-border/60 px-4 py-2.5 text-center text-[13px] tracking-wide text-foreground font-medium">
             <div className="relative z-10">
-              <span className="opacity-95">
+              <span className="opacity-90">
                 Introducing your AI chief of staff. It works your inbox so you can
                 sleep.{" "}
               </span>
-              <Link href={primaryHref} className="font-medium underline">
+              <Link
+                href={primaryHref}
+                className="inline-block font-semibold bg-gradient-to-r from-[#FF4C00] to-[#ff8c00] bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+              >
                 Try it now →
               </Link>
             </div>
@@ -97,6 +101,9 @@ export default async function Home() {
       <section className="relative z-0">
         <div className="fc-blueprint pointer-events-none absolute inset-0 z-0 opacity-50" />
         <div className="fc-sunrise pointer-events-none absolute inset-x-0 top-0 z-0 h-[520px]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[600px] overflow-hidden opacity-60 mix-blend-screen">
+          <AsciiSignal className="absolute inset-0 size-full" />
+        </div>
 
         <Frame className="relative z-10 mx-auto max-w-[1112px]">
           <div className="mx-auto flex max-w-3xl flex-col items-center px-6 pt-16 pb-16 text-center sm:pt-24">
@@ -111,7 +118,7 @@ export default async function Home() {
 
             <Reveal delay={80}>
               <h1 className="mt-6 text-[40px] leading-[1.05] font-medium tracking-tight text-balance sm:text-6xl">
-                It works for you and runs your day
+                The AI assistant that runs your inbox and calendar
                 <br className="hidden sm:inline" /> so you can{" "}
                 <span className="text-primary">sleep 2 hours more</span>
               </h1>
@@ -135,7 +142,7 @@ export default async function Home() {
                 </Link>
                 <Link
                   href="#features"
-                  className="inline-flex items-center justify-center rounded-full bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-6 h-10 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
+                  className="inline-flex items-center justify-center rounded-full bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] px-6 h-10 text-sm font-medium text-white transition-colors border border-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.1)]"
                 >
                   See how it works
                 </Link>
@@ -143,7 +150,18 @@ export default async function Home() {
             </Reveal>
           </div>
 
-
+          <Reveal delay={320}>
+            <div className="relative mx-auto mt-4 max-w-5xl px-6 sm:mt-8 pb-16">
+              <div className="overflow-hidden rounded-2xl border border-border bg-background shadow-2xl dark:shadow-[0_0_80px_-20px_rgba(255,76,0,0.15)] ring-1 ring-white/10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/inbox-feature.png"
+                  alt="Hedwigs Inbox Feature"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+          </Reveal>
         </Frame>
       </section>
 
@@ -175,7 +193,7 @@ export default async function Home() {
                         </span>{" "}
                         · {f.label}
                       </p>
-                      <span className="mt-3 flex size-9 items-center justify-center rounded-lg bg-accent text-foreground">
+                      <span className="mt-3 flex size-9 items-center justify-center rounded-lg text-foreground">
                         <Icon weight="fill" className="size-4" />
                       </span>
                       <h3 className="mt-3 text-base font-semibold tracking-tight">
@@ -449,7 +467,7 @@ export default async function Home() {
                 </Link>
                 <Link
                   href="/integrations"
-                  className="inline-flex items-center justify-center rounded-full bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-6 h-10 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
+                  className="inline-flex items-center justify-center rounded-full bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] px-6 h-10 text-sm font-medium text-white transition-colors border border-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.1)]"
                 >
                   Connect accounts
                 </Link>

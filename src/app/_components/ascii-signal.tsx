@@ -12,20 +12,10 @@ interface Glyph {
   seed: number;
 }
 
-function smoothstep(a: number, b: number, t: number): number {
-  const x = Math.max(0, Math.min(1, (t - a) / (b - a)));
-  return x * x * (3 - 2 * x);
-}
-
 function randomChar(): string {
   return CHARS[Math.floor(Math.random() * CHARS.length)]!;
 }
 
-/**
- * Animated ASCII "signal" background — orange glyphs glow as two waves sweep
- * across the grid. Sizes itself to its (relative-positioned) parent and stops
- * on prefers-reduced-motion.
- */
 export function AsciiSignal({ className }: { className?: string }) {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
@@ -40,6 +30,24 @@ export function AsciiSignal({ className }: { className?: string }) {
     let rows = 0;
     let glyphs: Glyph[] = [];
     let raf = 0;
+    
+    // Mouse tracking for flashlight effect
+    let mouseX = -1000;
+    let mouseY = -1000;
+    let isHovering = false;
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      isHovering = true;
+    };
+    
+    const onMouseLeave = () => {
+      isHovering = false;
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseleave", onMouseLeave);
 
     const resize = () => {
       const w = parent?.clientWidth ?? window.innerWidth;
@@ -59,24 +67,42 @@ export function AsciiSignal({ className }: { className?: string }) {
     const draw = (timeMs: number) => {
       const time = timeMs * 0.001;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      if (!isHovering) {
+        raf = requestAnimationFrame(draw);
+        return;
+      }
+
       ctx.font = "12px monospace";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 
-      const wave = (time * 0.5) % 1;
+      const rect = canvas.getBoundingClientRect();
+      const localX = mouseX - rect.left;
+      const localY = mouseY - rect.top;
 
       for (const g of glyphs) {
         const px = g.gx * CELL + CELL / 2;
         const py = g.gy * CELL + CELL / 2;
-        const nx = px / canvas.width;
-        const ny = py / canvas.height;
-        const band = 0.5 + 0.5 * Math.sin(ny * 10 + g.seed + time * 2);
-        const leftGlow = 1 - smoothstep(0, 0.18, Math.abs(nx - wave));
-        const rightGlow = 1 - smoothstep(0, 0.18, Math.abs(1 - nx - wave));
-        const intensity = Math.max(leftGlow, rightGlow) * band;
-        if (intensity < 0.02) continue;
-        ctx.fillStyle = `rgba(161,85,0,${intensity * 0.9})`;
-        if (Math.random() < 0.015) g.char = randomChar();
+        
+        const dx = px - localX;
+        const dy = py - localY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        const radius = 180; // Size of the flashlight
+        
+        if (dist > radius) continue;
+        
+        const intensity = 1 - (dist / radius);
+        const band = 0.5 + 0.5 * Math.sin(g.seed + time * 5);
+        const finalIntensity = intensity * band;
+
+        if (finalIntensity < 0.05) continue;
+        
+        // Gray color
+        ctx.fillStyle = `rgba(160, 160, 160, ${finalIntensity})`;
+        
+        if (Math.random() < 0.05) g.char = randomChar();
         ctx.fillText(g.char, px, py);
       }
       raf = requestAnimationFrame(draw);
@@ -86,9 +112,7 @@ export function AsciiSignal({ className }: { className?: string }) {
     const ro = new ResizeObserver(resize);
     if (parent) ro.observe(parent);
 
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
       draw(0);
       cancelAnimationFrame(raf);
@@ -99,6 +123,8 @@ export function AsciiSignal({ className }: { className?: string }) {
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      window.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseleave", onMouseLeave);
     };
   }, []);
 

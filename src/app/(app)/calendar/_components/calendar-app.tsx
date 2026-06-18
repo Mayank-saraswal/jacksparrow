@@ -162,7 +162,7 @@ export function CalendarApp() {
               Week
             </button>
           </div>
-          <Button size="sm" onClick={() => setDialog({ open: true })}>
+          <Button size="sm" className="rounded-full" onClick={() => setDialog({ open: true })}>
             <Plus weight="bold" /> New event
           </Button>
         </div>

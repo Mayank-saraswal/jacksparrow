@@ -394,6 +394,13 @@ export const corsairWebhookReceived = inngest.createFunction(
           name: "style/ingest.sent",
           data: { userId, threadId: meta.threadId },
         });
+
+        // Fire-and-forget: generate a TLDR so the inbox list can show it
+        // immediately without the user having to open the thread.
+        await step.sendEvent("request-thread-summary", {
+          name: "thread/summarize.requested",
+          data: { userId, orgId, threadId: meta.threadId },
+        });
       }
     }
 

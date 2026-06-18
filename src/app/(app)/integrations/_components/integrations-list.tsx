@@ -170,7 +170,7 @@ export function IntegrationsList() {
             {hoveredCard === plugin && (
               <motion.div
                 layoutId="integrationHoverBg"
-                className="absolute inset-0 bg-white shadow-sm border border-[#E8E8E8] rounded-xl -z-10"
+                className="absolute inset-0 bg-neutral-900/60 shadow-sm border border-neutral-800/50 rounded-xl -z-10"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
               />
             )}
@@ -182,7 +182,7 @@ export function IntegrationsList() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={meta.logo} alt="" className="size-full object-contain" />
                     </span>
-                    <CardTitle className="text-[#262626]">{meta.name}</CardTitle>
+                    <CardTitle className="text-[#262626] dark:text-neutral-200">{meta.name}</CardTitle>
                   </div>
                   {synced && (
                     <Badge variant="success">
@@ -190,17 +190,17 @@ export function IntegrationsList() {
                     </Badge>
                   )}
                   {syncing && (
-                    <Badge variant="secondary" className="bg-[rgba(0,0,0,0.04)] text-[#262626] hover:bg-[rgba(0,0,0,0.08)]">
+                    <Badge variant="secondary" className="bg-[rgba(0,0,0,0.04)] dark:bg-neutral-800 text-[#262626] dark:text-neutral-300 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-neutral-700">
                       <CircleNotch className="animate-spin mr-1" /> Syncing
                     </Badge>
                   )}
                   {missingCreds && (
-                    <Badge variant="secondary" className="bg-[rgba(0,0,0,0.04)] text-[#262626] hover:bg-[rgba(0,0,0,0.08)]">
+                    <Badge variant="secondary" className="bg-[rgba(0,0,0,0.04)] dark:bg-neutral-800 text-[#262626] dark:text-neutral-300 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-neutral-700">
                       <Warning weight="fill" className="mr-1" /> Setup required
                     </Badge>
                   )}
                   {state === "not_connected" && (
-                    <Badge variant="outline" className="text-[rgba(0,0,0,0.48)] border-[#E8E8E8]">Not connected</Badge>
+                    <Badge variant="outline" className="text-muted-foreground border-border">Not connected</Badge>
                   )}
                 </div>
                 <CardDescription>{meta.description}</CardDescription>
@@ -218,7 +218,7 @@ export function IntegrationsList() {
                   </p>
                 ) : syncing ? (
                   <p className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <CircleNotch className="size-3.5 animate-spin text-[#262626]" />
+                    <CircleNotch className="size-3.5 animate-spin text-[#262626] dark:text-neutral-300" />
                     Syncing your inbox… this runs in the background.
                   </p>
                 ) : synced ? (
@@ -237,7 +237,7 @@ export function IntegrationsList() {
                   <>
                     <a
                       href={`/api/integrations/${plugin}/connect`}
-                      className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
+                      className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-white/5 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-white/10 px-3 py-1.5 text-sm font-medium text-[#262626] dark:text-neutral-200 transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] dark:hover:border-neutral-800"
                     >
                       Reconnect
                     </a>
@@ -248,7 +248,7 @@ export function IntegrationsList() {
                           if (isBackfillPlugin(plugin)) resync.mutate({ plugin });
                         }}
                         className={
-                          "inline-flex items-center gap-1.5 rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] " +
+                          "inline-flex items-center gap-1.5 rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-white/5 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-white/10 px-3 py-1.5 text-sm font-medium text-[#262626] dark:text-neutral-200 transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] dark:hover:border-neutral-800 " +
                           (syncing || isResyncing ? "opacity-50 pointer-events-none" : "")
                         }
                       >
@@ -264,7 +264,7 @@ export function IntegrationsList() {
                     href={`/api/integrations/${plugin}/connect`}
                     aria-disabled={missingCreds}
                     className={
-                      "inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] " +
+                      "inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-white/5 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-white/10 px-3 py-1.5 text-sm font-medium text-[#262626] dark:text-neutral-200 transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] dark:hover:border-neutral-800 " +
                       (missingCreds ? "opacity-50 pointer-events-none" : "")
                     }
                   >
