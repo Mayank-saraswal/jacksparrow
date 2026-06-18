@@ -35,7 +35,7 @@ export function LandingChatInput({
   return (
     <form 
       onSubmit={handleSubmit}
-      className={`relative flex items-center group ${className || "w-full max-w-[500px] mx-auto mt-8"}`}
+      className={`relative flex items-center group ${className ?? "w-full max-w-[500px] mx-auto mt-8"}`}
     >
       <div className="absolute left-4 z-10 flex items-center justify-center pointer-events-none text-muted-foreground group-focus-within:text-[#FF4C00] transition-colors duration-300">
         <Sparkle weight="fill" className="size-5" />

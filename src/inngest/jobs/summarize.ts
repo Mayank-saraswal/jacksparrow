@@ -121,18 +121,11 @@ export const autoSummarizeThread = inngest.createFunction(
     concurrency: { key: "event.data.userId", limit: 5 },
   },
   async ({ event, step }) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const { userId, orgId, threadId } = event.data as AutoSummarizeThreadData;
 
-    /* eslint-disable @typescript-eslint/no-unsafe-assignment,
-                       @typescript-eslint/no-unsafe-call,
-                       @typescript-eslint/no-unsafe-member-access */
     const result: SummaryOutcome = await step.run("generate-summary", () =>
       generateAndPersistSummary(userId, orgId, threadId),
     );
-    /* eslint-enable @typescript-eslint/no-unsafe-assignment,
-                      @typescript-eslint/no-unsafe-call,
-                      @typescript-eslint/no-unsafe-member-access */
 
     console.info("[auto-summarize-thread]", { userId, threadId, outcome: result.outcome });
     return result;
@@ -153,22 +146,15 @@ export const summarizeBackfill = inngest.createFunction(
     concurrency: { key: "event.data.userId", limit: 1 },
   },
   async ({ event, step }) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const { userId, threadIds } = event.data as SummarizeBackfillData;
     const results: Array<{ threadId: string; outcome: string }> = [];
 
     for (const threadId of threadIds) {
       // Each thread is its own named step so Inngest can retry partial failures.
-      /* eslint-disable @typescript-eslint/no-unsafe-assignment,
-                         @typescript-eslint/no-unsafe-call,
-                         @typescript-eslint/no-unsafe-member-access */
       const result: SummaryOutcome = await step.run(
         `summarize-${threadId}`,
         () => generateAndPersistSummary(userId, null, threadId),
       );
-      /* eslint-enable @typescript-eslint/no-unsafe-assignment,
-                        @typescript-eslint/no-unsafe-call,
-                        @typescript-eslint/no-unsafe-member-access */
       results.push({ threadId, outcome: result.outcome });
     }
 
