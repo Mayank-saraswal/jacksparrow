@@ -15,7 +15,7 @@ const config = {
   output: "standalone",
   // Keep build-time file tracing from descending into the design-reference app.
   outputFileTracingExcludes: {
-    "*": ["./referance-landingpage/**"],
+    "*": ["./referance-landingpage/**", "C:/Users/**", "C:\\Users\\**"],
   },
   experimental: {
     serverActions: {

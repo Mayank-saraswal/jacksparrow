@@ -98,7 +98,7 @@ export async function GET(
           subdomain = parts[0];
         }
       } catch {
-        subdomain = subdomain.replace(/^https?:\/\//i, "").split(".")[0] || subdomain;
+        subdomain = subdomain.replace(/^https?:\/\//i, "").split(".")[0] ?? subdomain;
       }
     }
     // Remove any remaining invalid characters

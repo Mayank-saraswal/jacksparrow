@@ -150,7 +150,7 @@ function deriveMeta(
   }
 
   const m = data as GmailEntityData;
-  let parsedHeaders: { name: string; value: string }[] = (m.payload?.headers ?? []).filter(
+  const parsedHeaders: { name: string; value: string }[] = (m.payload?.headers ?? []).filter(
     (h): h is { name: string; value: string } => typeof h.name === "string" && typeof h.value === "string"
   );
   let snippet = m.snippet ?? "";
@@ -170,8 +170,8 @@ function deriveMeta(
             lastHeader.value += " " + line.trim();
           }
         } else {
-          const match = line.match(/^([A-Za-z0-9\-]+):\s*(.*)$/);
-          if (match && match[1] && match[2]) {
+          const match = /^([A-Za-z0-9\-]+):\s*(.*)$/.exec(line);
+          if (match?.[1] && match?.[2]) {
             parsedHeaders.push({ name: match[1], value: match[2] });
           }
         }
@@ -181,7 +181,7 @@ function deriveMeta(
         const bodyBlock = decoded.substring(headerBlock.length + 4);
         snippet = bodyBlock.replace(/<[^>]*>?/gm, "").replace(/\s+/g, " ").slice(0, 150);
       }
-    } catch (e) {
+    } catch {
       // Ignore parse errors
     }
   }

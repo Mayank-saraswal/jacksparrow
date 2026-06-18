@@ -88,7 +88,7 @@ export async function GET(
 
       // Verify the state token is valid and extract the tenant info
       const decoded = decodeOAuthState(state, { maxAgeMs: 10 * 60 * 1000 });
-      if (!decoded || decoded.plugin !== "zendesk") {
+      if (decoded?.plugin !== "zendesk") {
         return redirectWith("error", "invalid_state");
       }
       const tenantId = decoded.tenantId;
@@ -154,7 +154,7 @@ export async function GET(
         return redirectWith("error", "zendesk_integration_missing");
       }
 
-      let account = await db.corsairAccount.findFirst({
+      const account = await db.corsairAccount.findFirst({
         where: { tenantId, integrationId: integration.id },
       });
       if (!account) {
@@ -219,9 +219,10 @@ export async function GET(
     }
 
     return redirectWith("connected", result.plugin);
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error(`[corsair oauth] callback failed for ${plugin}:`, err);
-    return redirectWith("error", "oauth_failed&details=" + encodeURIComponent(err?.message || "unknown"));
+    const errMsg = err instanceof Error ? err.message : String(err);
+    return redirectWith("error", "oauth_failed&details=" + encodeURIComponent(errMsg));
   }
 }
 

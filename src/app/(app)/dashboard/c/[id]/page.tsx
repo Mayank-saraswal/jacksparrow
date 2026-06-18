@@ -22,7 +22,7 @@ export default async function ChatConversationPage({
     },
   });
 
-  if (!conversation || conversation.userId !== userId) {
+  if (conversation?.userId !== userId) {
     redirect("/dashboard");
   }
 

@@ -14,7 +14,7 @@ let cached: SupabaseClient | null = null;
  * auth provider — see WEBHOOKS.md).
  */
 export function getSupabaseBrowser(
-  getToken: () => Promise<string | null>,
+  _getToken: () => Promise<string | null>,
 ): SupabaseClient | null {
   if (!env.NEXT_PUBLIC_SUPABASE_URL || !env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     return null;

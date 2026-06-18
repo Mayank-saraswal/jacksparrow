@@ -1,4 +1,3 @@
-import "@/styles/globals.css";
 
 import { type Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
@@ -39,7 +38,7 @@ export default async function RootLayout({
   try {
     const authSession = await auth();
     userId = authSession.userId;
-  } catch (e) {
+  } catch {
     // clerkMiddleware was skipped for this request (e.g. 404 on a static file)
   }
 

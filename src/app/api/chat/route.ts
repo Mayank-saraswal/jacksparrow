@@ -52,9 +52,9 @@ export async function POST(req: Request) {
   };
   const messages = body.messages ?? [];
   let conversationId = body.conversationId;
-  const timeZone = body.timeZone || "UTC";
+  const timeZone = body.timeZone ?? "UTC";
 
-  let activeOrgId = body.orgId || orgId || null;
+  let activeOrgId = body.orgId ?? orgId ?? null;
   if (activeOrgId) {
     const member = await db.membership.findFirst({
       where: { userId, orgId: activeOrgId },
@@ -133,7 +133,7 @@ export async function POST(req: Request) {
         if (text) {
           await db.chatMessage.create({
             data: {
-              conversationId: conversationId!,
+              conversationId,
               role: "assistant",
               content: text,
             },

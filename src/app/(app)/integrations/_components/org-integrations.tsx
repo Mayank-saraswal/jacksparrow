@@ -280,12 +280,7 @@ export function OrgIntegrations() {
                   {isAdmin ? (
                     <>
                       {c.key === "zendesk" ? (
-                        <button
-                          disabled
-                          className="inline-flex items-center gap-1.5 rounded-md bg-[rgba(0,0,0,0.04)] px-3 py-1.5 text-sm font-medium text-[#262626] border border-transparent opacity-50 pointer-events-none"
-                        >
-                          Coming soon
-                        </button>
+                        <ZendeskConnectButton connected={connected} />
                       ) : (
                         <a
                           href={`/api/integrations/${c.key}/connect?scope=org`}

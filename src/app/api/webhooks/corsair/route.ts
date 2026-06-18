@@ -3,7 +3,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { processWebhook } from "corsair";
 import { NextResponse, type NextRequest } from "next/server";
 
@@ -30,7 +29,7 @@ type ProcessWebhookArgs = Parameters<typeof processWebhook>;
  */
 export async function POST(request: NextRequest) {
   const url = new URL(request.url);
-  let tenantId =
+  const tenantId =
     url.searchParams.get("tenantId") ??
     url.searchParams.get("tenant") ??
     undefined;

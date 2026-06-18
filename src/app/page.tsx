@@ -11,7 +11,6 @@ import {
   MoonStars,
 } from "@phosphor-icons/react/dist/ssr";
 
-import { Button } from "@/components/ui/button";
 import { Reveal } from "./_components/reveal";
 import { LogoMarquee } from "./_components/logo-marquee";
 import { AsciiSignal } from "./_components/ascii-signal";

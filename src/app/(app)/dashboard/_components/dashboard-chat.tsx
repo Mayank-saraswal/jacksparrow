@@ -30,7 +30,6 @@ function greeting(): string {
   return "Evening";
 }
 
-import { useRouter } from "next/navigation";
 import { api } from "@/trpc/react";
 import { useAuth } from "@clerk/nextjs";
 
@@ -43,7 +42,6 @@ export function DashboardChat({
   initialMessages?: Msg[];
   conversationId?: string;
 }) {
-  const router = useRouter();
   const utils = api.useUtils();
   const { orgId } = useAuth();
   const [messages, setMessages] = React.useState<Msg[]>(initialMessages);
