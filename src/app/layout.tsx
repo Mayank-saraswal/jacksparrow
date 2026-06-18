@@ -4,6 +4,7 @@ import { Geist, JetBrains_Mono } from "next/font/google";
 import { ClerkProvider, SignInButton, UserButton, OrganizationSwitcher } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
+import "@/styles/globals.css";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
