@@ -49,7 +49,7 @@ export function ThreadList({
     return (
       <div className="flex flex-col p-2">
         {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="flex flex-col gap-2 border-b border-[rgba(0,0,0,0.05)] p-3">
+          <div key={i} className="flex flex-col gap-2 border-b border-border p-3">
             <div className="flex justify-between">
               <Skeleton className="h-3 w-28" />
               <Skeleton className="h-3 w-10" />
@@ -64,7 +64,7 @@ export function ThreadList({
 
   if (threads.length === 0) {
     return (
-      <div className="p-6 text-center text-xs text-[rgba(0,0,0,0.48)]">
+      <div className="p-6 text-center text-xs text-muted-foreground">
         Nothing here.
       </div>
     );
@@ -79,7 +79,7 @@ export function ThreadList({
             {active && (
               <motion.div
                 layoutId="inboxActiveBg"
-                className="absolute inset-0 bg-white shadow-sm border border-[#E8E8E8] rounded-xl -z-10"
+                className="absolute inset-0 bg-background shadow-sm border border-border rounded-xl -z-10"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
               />
             )}
@@ -92,15 +92,15 @@ export function ThreadList({
               }}
               className={cn(
                 "group flex cursor-pointer flex-col gap-1 px-3 py-2.5 transition-colors rounded-xl",
-                !active && "hover:bg-[rgba(0,0,0,0.04)]",
-                !active && "border-b border-[rgba(0,0,0,0.05)] rounded-none"
+                !active && "hover:bg-accent",
+                !active && "border-b border-border rounded-none"
               )}
             >
               <div className="flex items-center gap-2">
                 <span
                   className={cn(
                     "size-1.5 shrink-0 rounded-full",
-                    t.unread ? "bg-[#262626]" : "bg-transparent",
+                    t.unread ? "bg-foreground" : "bg-transparent",
                   )}
                 />
                 {t.priority && (

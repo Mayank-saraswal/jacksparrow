@@ -30,7 +30,7 @@ services:
 
   # Commented Postgres database service for full local development offline.
   # To use: uncomment the database service, the volume, and update DATABASE_URL in .env to
-  # postgresql://postgres:password@db:5432/phoenix
+  # postgresql://postgres:password@db:5432/hedwigs
   #
   # db:
   #   image: postgres:15-alpine
@@ -39,7 +39,7 @@ services:
   #   environment:
   #     POSTGRES_USER: postgres
   #     POSTGRES_PASSWORD: password
-  #     POSTGRES_DB: phoenix
+  #     POSTGRES_DB: hedwigs
   #   volumes:
   #     - pgdata:/var/lib/postgresql/data
   #   restart: always

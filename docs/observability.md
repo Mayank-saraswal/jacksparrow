@@ -51,7 +51,7 @@ The `onFailure` handlers already page directly via the Events API, which is the
 fast path. To additionally route Sentry **issues** to PagerDuty (recommended, so
 spikes in non-fatal errors are visible):
 
-1. In PagerDuty, create a service (e.g. "Phoenix Pipeline") and add a
+1. In PagerDuty, create a service (e.g. "Hedwigs Pipeline") and add a
    **Sentry** integration to it. Copy the generated routing key.
 2. In Sentry, open **Settings → Integrations → PagerDuty**, install it, and paste
    the service + routing key.

@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Phoenix",
+  title: "Hedwigs",
   description: "Your AI-powered inbox.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
@@ -31,6 +31,8 @@ const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
 });
+
+import { dark } from "@clerk/themes";
 
 export default async function RootLayout({
   children,
@@ -44,49 +46,66 @@ export default async function RootLayout({
   }
 
   return (
-    <ClerkProvider>
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+    <ClerkProvider appearance={{ baseTheme: dark } as any}>
       <html
         lang="en"
-        className={cn(geist.variable, "font-mono", jetbrainsMono.variable)}
+        className={cn(geist.variable, "font-mono", jetbrainsMono.variable, "dark")}
+        style={{ colorScheme: "dark" }}
       >
         <body>
           <TRPCReactProvider>
             <ToastProvider>
             <header className="sticky top-0 z-40 flex h-12 items-center justify-between border-b border-border bg-background/80 px-4 backdrop-blur">
-              <Link
-                href="/"
-                className="flex items-center gap-1.5 text-sm font-semibold tracking-tight"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/logo/FIRE_SVG_Animated.svg"
-                  alt=""
-                  className="size-5"
-                />
-                Phoenix
-              </Link>
-              <nav className="flex items-center gap-3">
-                {userId ? (
-                  <>
-                    <Link
-                      href="/dashboard"
-                      className="text-sm font-medium text-muted-foreground hover:text-[#262626] transition-colors"
-                    >
-                      Dashboard
-                    </Link>
-                    <OrganizationSwitcher
-                      hidePersonal={true}
-                      afterCreateOrganizationUrl="/settings/organization"
-                      afterSelectOrganizationUrl="/dashboard"
-                    />
-                    <UserButton />
-                  </>
-                ) : (
-                  <SignInButton mode="modal">
-                    <Button size="sm">Sign in</Button>
-                  </SignInButton>
-                )}
-              </nav>
+              <div className="flex items-center gap-6">
+                <Link
+                  href="/"
+                  className="flex items-center gap-1.5 text-sm font-semibold tracking-tight"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/logo/FIRE_SVG_Animated.svg"
+                    alt=""
+                    className="size-5"
+                  />
+                  Hedwigs
+                </Link>
+              </div>
+              <div className="flex items-center gap-6">
+                <nav className="hidden md:flex items-center gap-4 text-xs font-medium text-muted-foreground">
+                  <Link href="/#features" className="hover:text-foreground transition-colors">
+                    Features
+                  </Link>
+                  <Link href="/#pricing" className="hover:text-foreground transition-colors">
+                    Pricing
+                  </Link>
+                  <Link href="/integrations" className="hover:text-foreground transition-colors">
+                    Integrations
+                  </Link>
+                </nav>
+                <nav className="flex items-center gap-3">
+                  {userId ? (
+                    <>
+                      <Link
+                        href="/dashboard"
+                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        Dashboard
+                      </Link>
+                      <OrganizationSwitcher
+                        hidePersonal={true}
+                        afterCreateOrganizationUrl="/settings/organization"
+                        afterSelectOrganizationUrl="/dashboard"
+                      />
+                      <UserButton />
+                    </>
+                  ) : (
+                    <SignInButton mode="modal">
+                      <Button size="sm">Sign in</Button>
+                    </SignInButton>
+                  )}
+                </nav>
+              </div>
             </header>
             {userId ? (
               <ShortcutProvider>

@@ -12,8 +12,6 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 
 import { Reveal } from "./_components/reveal";
-import { LogoMarquee } from "./_components/logo-marquee";
-import { AsciiSignal } from "./_components/ascii-signal";
 import { Frame, SectionRule } from "./_components/landing-frame";
 
 const FEATURES = [
@@ -82,7 +80,6 @@ export default async function Home() {
       <div className="mx-auto max-w-[1112px] px-4 pt-3 md:px-14">
         <Reveal>
           <div className="group relative overflow-hidden rounded-[10px] bg-primary px-4 py-2.5 text-center text-[13px] tracking-wide text-primary-foreground">
-            <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-20 transition duration-700 group-hover:opacity-40" />
             <div className="relative z-10">
               <span className="opacity-95">
                 Introducing your AI chief of staff. It works your inbox so you can
@@ -100,7 +97,6 @@ export default async function Home() {
       <section className="relative z-0">
         <div className="fc-blueprint pointer-events-none absolute inset-0 z-0 opacity-50" />
         <div className="fc-sunrise pointer-events-none absolute inset-x-0 top-0 z-0 h-[520px]" />
-        <AsciiSignal className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-40 mix-blend-multiply" />
 
         <Frame className="relative z-10 mx-auto max-w-[1112px]">
           <div className="mx-auto flex max-w-3xl flex-col items-center px-6 pt-16 pb-16 text-center sm:pt-24">
@@ -133,13 +129,13 @@ export default async function Home() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <Link
                   href={primaryHref}
-                  className="bg-[#FF4C00] text-white px-6 h-10 rounded-lg flex items-center justify-center gap-2 hover:bg-[#e64400] transition-colors font-medium shadow-sm text-sm"
+                  className="bg-[#FF4C00] text-white px-6 h-10 rounded-full flex items-center justify-center gap-2 hover:bg-[#e64400] transition-colors font-medium shadow-sm text-sm"
                 >
                   <MoonStars weight="fill" className="size-4" /> Get more sleep
                 </Link>
                 <Link
                   href="#features"
-                  className="inline-flex items-center justify-center rounded-lg bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-6 h-10 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
+                  className="inline-flex items-center justify-center rounded-full bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-6 h-10 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
                 >
                   See how it works
                 </Link>
@@ -151,17 +147,7 @@ export default async function Home() {
         </Frame>
       </section>
 
-      {/* Trusted by */}
-      <Frame className="mx-auto max-w-[1112px] border-t border-border">
-        <div className="px-6 py-12">
-          <p className="mb-6 text-center font-mono text-[11px] tracking-[0.18em] text-muted-foreground uppercase">
-            Built for teams who live in their inbox
-          </p>
-          <LogoMarquee />
-        </div>
-      </Frame>
-
-      <SectionRule index={1} total={6} title="Main Features" />
+      <SectionRule index={1} total={7} title="Main Features" />
 
       {/* Features */}
       <Frame id="features" className="mx-auto max-w-[1112px]">
@@ -180,17 +166,16 @@ export default async function Home() {
               const Icon = f.icon;
               return (
                 <Reveal key={f.index} delay={i * 80}>
-                  <div className="group relative h-full overflow-hidden rounded-xl border border-border bg-card p-5 transition hover:border-primary/40">
-                    <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-5 transition duration-700 group-hover:opacity-30" />
+                  <div className="group relative h-full overflow-hidden rounded-xl border border-border fc-card-gradient p-5 transition hover:border-neutral-400">
                     <div className="relative z-10">
                       <p className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground uppercase">
-                        <span className="text-primary">
+                        <span className="text-neutral-500">
                           [ {String(f.index).padStart(2, "0")} /{" "}
                           {String(FEATURES.length).padStart(2, "0")} ]
                         </span>{" "}
                         · {f.label}
                       </p>
-                      <span className="mt-3 flex size-9 items-center justify-center rounded-lg bg-accent text-primary">
+                      <span className="mt-3 flex size-9 items-center justify-center rounded-lg bg-accent text-foreground">
                         <Icon weight="fill" className="size-4" />
                       </span>
                       <h3 className="mt-3 text-base font-semibold tracking-tight">
@@ -208,7 +193,7 @@ export default async function Home() {
         </div>
       </Frame>
 
-      <SectionRule index={2} total={6} title="Agent" />
+      <SectionRule index={2} total={7} title="Agent" />
 
       {/* Code / terminal panel */}
       <Frame className="mx-auto max-w-[1112px]">
@@ -241,7 +226,6 @@ export default async function Home() {
 
           <Reveal delay={120}>
             <div className="relative overflow-hidden rounded-xl border border-border bg-[oklch(0.18_0.01_60)] font-mono text-[12px] text-neutral-200 shadow-lg">
-              <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-15" />
               <div className="relative z-10 flex items-center gap-2 border-b border-white/10 px-3 py-2 text-neutral-400 backdrop-blur-sm bg-black/20">
                 <ChatCircleDots className="size-3.5" /> ask
               </div>
@@ -260,17 +244,16 @@ export default async function Home() {
         </div>
       </Frame>
 
-      <SectionRule index={3} total={6} title="Results" />
+      <SectionRule index={3} total={7} title="Results" />
 
       {/* Stats */}
       <Frame className="mx-auto max-w-[1112px]">
         <div className="px-6 py-12">
           <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
             {STATS.map((s, i) => (
-              <Reveal key={s.label} delay={i * 80} className="group relative overflow-hidden bg-card">
-                <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-5 transition duration-700 group-hover:opacity-30" />
+              <Reveal key={s.label} delay={i * 80} className="group relative overflow-hidden fc-card-gradient">
                 <div className="relative z-10 p-6 text-center">
-                  <p className="text-3xl font-medium tracking-tight text-primary drop-shadow-md">
+                  <p className="text-3xl font-medium tracking-tight text-foreground drop-shadow-md">
                     {s.value}
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground drop-shadow-sm">
@@ -283,7 +266,7 @@ export default async function Home() {
         </div>
       </Frame>
 
-      <SectionRule index={4} total={6} title="Testimonials" />
+      <SectionRule index={4} total={7} title="Testimonials" />
 
       {/* Testimonials */}
       <Frame className="mx-auto max-w-[1112px]">
@@ -309,8 +292,7 @@ export default async function Home() {
               { q: "Telegram + inbox is unreasonably good.", by: "@alexr" },
             ].map((t, i) => (
               <Reveal key={t.by} delay={i * 80}>
-                <figure className="group relative h-full overflow-hidden rounded-xl border border-border bg-card p-5">
-                  <AsciiSignal className="pointer-events-none absolute inset-0 z-0 opacity-5 transition duration-500 group-hover:opacity-25" />
+                <figure className="group relative h-full overflow-hidden rounded-xl border border-border fc-card-gradient p-5">
                   <div className="relative z-10">
                     <blockquote className="text-sm drop-shadow-sm">
                       &ldquo;{t.q}&rdquo;
@@ -326,14 +308,127 @@ export default async function Home() {
         </div>
       </Frame>
 
-      <SectionRule index={5} total={6} title="Get Started" />
+      <SectionRule index={5} total={7} title="Pricing" />
+
+      {/* Pricing cards */}
+      <Frame id="pricing" className="mx-auto max-w-[1112px]">
+        <div className="px-6 py-16">
+          <Reveal className="mb-10 text-center">
+            <p className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground uppercase">
+              <span className="text-primary">{"// "}</span>Simple pricing
+            </p>
+            <h2 className="mt-3 text-2xl font-medium tracking-tight sm:text-4xl">
+              Plans that scale with your sleep
+            </h2>
+          </Reveal>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                name: "Free",
+                price: "$0",
+                period: "/month",
+                desc: "Perfect for personal email triage.",
+                cta: "Get started",
+                href: primaryHref,
+                features: [
+                  "1 connected account",
+                  "100 AI actions / month",
+                  "Standard email delivery",
+                  "Single user workspace",
+                ],
+              },
+              {
+                name: "Pro",
+                price: "$19",
+                period: "/month",
+                desc: "For active professionals and power users.",
+                cta: "Upgrade to Pro",
+                href: primaryHref,
+                features: [
+                  "Unlimited connected accounts",
+                  "2,000 AI actions / month",
+                  "Shared inboxes",
+                  "Priority support response",
+                ],
+              },
+              {
+                name: "Business",
+                price: "$49",
+                period: "/month",
+                desc: "For team collaboration and business tools.",
+                cta: "Try Business free",
+                href: primaryHref,
+                features: [
+                  "Everything in Pro",
+                  "Slack integration channel",
+                  "CRM integrations",
+                  "Issue Tracker & Meetings",
+                ],
+              },
+              {
+                name: "Enterprise",
+                price: "Custom",
+                period: "",
+                desc: "For teams requiring compliance and dedicated resources.",
+                cta: "Contact Sales",
+                href: "mailto:sales@hedwigs.site",
+                features: [
+                  "Everything in Business",
+                  "Single Sign-On (SSO)",
+                  "Custom Audit Logs",
+                  "Advanced Retention Policies",
+                ],
+              },
+            ].map((p, i) => (
+              <Reveal key={p.name} delay={i * 80}>
+                <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-border fc-card-gradient p-6 transition hover:border-neutral-400">
+                  <div className="relative z-10">
+                    <p className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground uppercase">
+                      {p.name}
+                    </p>
+                    <div className="mt-4 flex items-baseline gap-1">
+                      <span className="text-3xl font-medium tracking-tight text-foreground">
+                        {p.price}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {p.period}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-xs text-muted-foreground min-h-[32px]">
+                      {p.desc}
+                    </p>
+                    <ul className="mt-6 space-y-2 text-xs text-muted-foreground border-t border-border/60 pt-6">
+                      {p.features.map((f) => (
+                        <li key={f} className="flex items-start gap-2">
+                          <Check className="size-3.5 text-neutral-600 shrink-0 mt-0.5" />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="relative z-10 mt-8">
+                    <Link
+                      href={p.href}
+                      className="flex w-full items-center justify-center rounded-full h-9 px-4 text-xs font-medium transition-colors shadow-xs bg-[rgba(0,0,0,0.04)] text-[#262626] hover:bg-[rgba(0,0,0,0.08)]"
+                    >
+                      {p.cta}
+                    </Link>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </Frame>
+
+      <SectionRule index={6} total={7} title="Get Started" />
 
       {/* CTA */}
       <Frame className="mx-auto max-w-[1112px]">
         <div className="px-6 py-16">
           <Reveal>
-            <div className="fc-sunrise relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center">
-              <AsciiSignal className="pointer-events-none absolute inset-0 -z-10 opacity-50" />
+            <div className="fc-sunrise relative overflow-hidden rounded-2xl border border-border fc-card-gradient p-10 text-center">
               <div className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-card/40 via-card/70 to-card" />
               <p className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground uppercase">
                 <span className="text-primary">{"// "}</span>Get started
@@ -348,13 +443,13 @@ export default async function Home() {
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                 <Link
                   href={primaryHref}
-                  className="bg-[#FF4C00] text-white px-6 h-10 rounded-lg flex items-center justify-center gap-2 hover:bg-[#e64400] transition-colors font-medium shadow-sm text-sm"
+                  className="bg-[#FF4C00] text-white px-6 h-10 rounded-full flex items-center justify-center gap-2 hover:bg-[#e64400] transition-colors font-medium shadow-sm text-sm"
                 >
                   <MoonStars weight="fill" className="size-4" /> Get more sleep
                 </Link>
                 <Link
                   href="/integrations"
-                  className="inline-flex items-center justify-center rounded-lg bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-6 h-10 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
+                  className="inline-flex items-center justify-center rounded-full bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-6 h-10 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
                 >
                   Connect accounts
                 </Link>
@@ -364,7 +459,7 @@ export default async function Home() {
         </div>
       </Frame>
 
-      <SectionRule index={6} total={6} title="FAQ" />
+      <SectionRule index={7} total={7} title="FAQ" />
 
       {/* FAQ */}
       <Frame className="mx-auto max-w-[1112px]">
@@ -392,18 +487,26 @@ export default async function Home() {
 
       {/* Footer */}
       <footer className="relative overflow-hidden border-t border-border">
-        <AsciiSignal className="pointer-events-none absolute inset-0 -z-10 opacity-30" />
         <div className="mx-auto flex max-w-[1112px] flex-col items-center justify-between gap-4 px-6 py-8 text-xs text-muted-foreground sm:flex-row">
           <div className="flex items-center gap-1.5 font-semibold text-foreground">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo/FIRE_SVG_Animated.svg" alt="" className="size-4" />
-            Phoenix
+            Hedwigs
           </div>
           <p className="flex items-center gap-1.5">
             <ShieldCheck className="size-3.5" /> Tokens encrypted per user ·
             approval-gated actions
           </p>
-          <p>© {new Date().getFullYear()} Phoenix</p>
+          <div className="flex items-center gap-3">
+            <Link href="/privacy" className="hover:text-foreground transition-colors">
+              Privacy
+            </Link>
+            <span>·</span>
+            <Link href="/terms" className="hover:text-foreground transition-colors">
+              Terms
+            </Link>
+          </div>
+          <p>© {new Date().getFullYear()} Hedwigs</p>
         </div>
       </footer>
     </div>

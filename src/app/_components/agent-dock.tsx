@@ -25,8 +25,8 @@ export function AgentDock() {
       setPrompt(detail?.prompt ?? "");
       setChatOpen(true);
     };
-    window.addEventListener("phoenix:ask-ai", onAsk);
-    return () => window.removeEventListener("phoenix:ask-ai", onAsk);
+    window.addEventListener("hedwigs:ask-ai", onAsk);
+    return () => window.removeEventListener("hedwigs:ask-ai", onAsk);
   }, []);
 
   return (
@@ -35,7 +35,7 @@ export function AgentDock() {
         <Button
           variant="outline"
           size="sm"
-          className="relative"
+          className="relative rounded-full"
           onClick={() => setTrayOpen(true)}
         >
           <Tray /> Pending
@@ -45,7 +45,7 @@ export function AgentDock() {
             </span>
           )}
         </Button>
-        <Button size="sm" onClick={() => setChatOpen(true)}>
+        <Button size="sm" className="rounded-full" onClick={() => setChatOpen(true)}>
           <Sparkle weight="fill" /> Ask AI
         </Button>
       </div>

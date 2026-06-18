@@ -19,7 +19,7 @@ const config = {
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ["jacksparrow.mayanksaraswal.in"],
+      allowedOrigins: ["jacksparrow.mayanksaraswal.in", "www.hedwigs.site", "hedwigs.site"],
     },
   },
 };

@@ -363,7 +363,7 @@ export function InboxApp() {
             <SnoozePopover
               onSnooze={(iso) => doSnooze(selectedThread.threadId, iso)}
             >
-              <Button size="sm" variant="ghost">
+              <Button size="sm" variant="ghost" className="rounded-full">
                 <Clock /> Snooze
               </Button>
             </SnoozePopover>
@@ -371,6 +371,7 @@ export function InboxApp() {
           <Button
             size="sm"
             variant="ghost"
+            className="rounded-full"
             onClick={() => void threadsQuery.refetch()}
           >
             <ArrowClockwise
@@ -378,7 +379,7 @@ export function InboxApp() {
             />
             Refresh
           </Button>
-          <Button size="sm" onClick={() => setCompose({ open: true })}>
+          <Button size="sm" className="rounded-full" onClick={() => setCompose({ open: true })}>
             <PencilSimple weight="fill" /> Compose
           </Button>
         </div>

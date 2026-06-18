@@ -47,7 +47,7 @@ export default async function SettingsPage() {
           Learned triage
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Senders Phoenix has learned to prioritise or mute for you.
+          Senders Hedwigs has learned to prioritise or mute for you.
         </p>
       </header>
       <TriageSettings />
