@@ -67,12 +67,12 @@ export function jira<const T extends CustomJiraPluginOptions>(options?: CustomJi
       return `Bearer ${accessToken}`;
     }
     if (origKeyBuilder) {
-      return origKeyBuilder(i as unknown as Parameters<typeof origKeyBuilder>[0], t as "endpoint" | "webhook");
+      return origKeyBuilder(i, t as "endpoint" | "webhook");
     }
     return "";
   };
 
-  plugin.keyBuilder = newKeyBuilder as unknown as typeof plugin.keyBuilder;
+  plugin.keyBuilder = newKeyBuilder;
 
   // Custom API wrapper that does not use Basic Auth
   async function fetchJiraApi<TResponse>(url: string, key: string, cloudUrl: string, opts: FetchJiraApiOptions = {}): Promise<TResponse> {
@@ -140,7 +140,7 @@ export function jira<const T extends CustomJiraPluginOptions>(options?: CustomJi
           }
         }
       }
-      await logEventFromContext(o, "jira.projects.list", { ...s } as Record<string, unknown>, "completed");
+      await logEventFromContext(o, "jira.projects.list", { ...s }, "completed");
       return data;
     }
   };
@@ -182,7 +182,7 @@ export function jira<const T extends CustomJiraPluginOptions>(options?: CustomJi
           }
         }
       }
-      await logEventFromContext(o, "jira.issues.search", { ...s } as Record<string, unknown>, "completed");
+      await logEventFromContext(o, "jira.issues.search", { ...s }, "completed");
       return data;
     },
 
@@ -222,7 +222,7 @@ export function jira<const T extends CustomJiraPluginOptions>(options?: CustomJi
           console.warn("Failed to save issue to db:", e);
         }
       }
-      await logEventFromContext(o, "jira.issues.create", { ...s } as Record<string, unknown>, "completed");
+      await logEventFromContext(o, "jira.issues.create", { ...s }, "completed");
       return data;
     }
   };
@@ -237,5 +237,5 @@ export function jira<const T extends CustomJiraPluginOptions>(options?: CustomJi
     ...plugin,
     keyBuilder: newKeyBuilder,
     endpoints
-  } as unknown as ExternalJiraPlugin<JiraPluginOptions>;
+  };
 }

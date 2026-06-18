@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { zendesk as baseZendesk } from "@corsair-dev/zendesk";
 import type {
@@ -13,7 +12,7 @@ import type {
 } from "@corsair-dev/zendesk";
 
 import { request, type OpenAPIConfig } from "corsair/http";
-import { logEventFromContext, type AuthTypes } from "corsair/core";
+import { logEventFromContext } from "corsair/core";
 
 // ── Custom options: allow oauth_2 in addition to api_key ──────────────────────
 export type CustomZendeskPluginOptions = Omit<ZendeskPluginOptions, "authType"> & {

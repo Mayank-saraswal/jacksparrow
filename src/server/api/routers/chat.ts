@@ -29,7 +29,7 @@ export const chatRouter = createTRPCRouter({
         },
       });
 
-      if (!conv || conv.userId !== ctx.userId) {
+      if (conv?.userId !== ctx.userId) {
         throw new Error("Conversation not found or unauthorized");
       }
 
@@ -44,7 +44,7 @@ export const chatRouter = createTRPCRouter({
         where: { id: input.conversationId },
       });
 
-      if (!conv || conv.userId !== ctx.userId) {
+      if (conv?.userId !== ctx.userId) {
         throw new Error("Unauthorized");
       }
 
@@ -63,7 +63,7 @@ export const chatRouter = createTRPCRouter({
         where: { id: input.conversationId },
       });
 
-      if (!conv || conv.userId !== ctx.userId) {
+      if (conv?.userId !== ctx.userId) {
         throw new Error("Unauthorized");
       }
 
