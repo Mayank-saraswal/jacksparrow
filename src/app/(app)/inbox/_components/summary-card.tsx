@@ -52,7 +52,7 @@ export function SummaryCard({
         <span className="text-xs text-muted-foreground">
           Long thread — generate a summary?
         </span>
-        <Button size="xs" variant="outline" onClick={() => setEnabled(true)}>
+        <Button size="xs" variant="outline" className="rounded-full" onClick={() => setEnabled(true)}>
           <Sparkle weight="fill" /> Summarize
         </Button>
       </div>
