@@ -20,6 +20,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 const BACKFILL_PLUGINS = ["gmail", "outlook"] as const;
 type OrgBackfillPlugin = (typeof BACKFILL_PLUGINS)[number];
@@ -34,6 +43,49 @@ function formatSyncedAt(date: Date | null) {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);
+}
+
+function ZendeskConnectButton({ connected }: { connected: boolean }) {
+  const [subdomain, setSubdomain] = React.useState("");
+  
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]">
+          {connected ? "Reconnect" : "Connect"}
+        </button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Connect Zendesk</DialogTitle>
+          <DialogDescription>
+            Enter your Zendesk subdomain. For example, if your Zendesk URL is <strong>https://acme.zendesk.com</strong>, enter <strong>acme</strong>.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="py-4">
+          <Input 
+            value={subdomain} 
+            onChange={(e) => setSubdomain(e.target.value)} 
+            placeholder="acme" 
+            autoFocus
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && subdomain.trim()) {
+                window.location.href = `/api/integrations/zendesk/connect?scope=org&subdomain=${encodeURIComponent(subdomain.trim())}&t=${Date.now()}`;
+              }
+            }}
+          />
+        </div>
+        <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 mt-4">
+          <a
+            href={subdomain.trim() ? `/api/integrations/zendesk/connect?scope=org&subdomain=${encodeURIComponent(subdomain.trim())}&t=${Date.now()}` : "#"}
+            className={`inline-flex items-center rounded-md px-4 py-2 text-sm font-medium transition-colors ${subdomain.trim() ? 'bg-primary text-primary-foreground hover:bg-primary/90' : 'bg-muted text-muted-foreground pointer-events-none opacity-50'}`}
+          >
+            Continue
+          </a>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 }
 
 /**
@@ -227,12 +279,21 @@ export function OrgIntegrations() {
                 <CardFooter className="gap-2">
                   {isAdmin ? (
                     <>
-                      <a
-                        href={`/api/integrations/${c.key}/connect?scope=org`}
-                        className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
-                      >
-                        {connected ? "Reconnect" : "Connect"}
-                      </a>
+                      {c.key === "zendesk" ? (
+                        <button
+                          disabled
+                          className="inline-flex items-center gap-1.5 rounded-md bg-[rgba(0,0,0,0.04)] px-3 py-1.5 text-sm font-medium text-[#262626] border border-transparent opacity-50 pointer-events-none"
+                        >
+                          Coming soon
+                        </button>
+                      ) : (
+                        <a
+                          href={`/api/integrations/${c.key}/connect?scope=org`}
+                          className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] hover:bg-[rgba(0,0,0,0.08)] px-3 py-1.5 text-sm font-medium text-[#262626] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
+                        >
+                          {connected ? "Reconnect" : "Connect"}
+                        </a>
+                      )}
                       {connected && backfillCapable && (
                         <button
                           disabled={syncing || isResyncing}

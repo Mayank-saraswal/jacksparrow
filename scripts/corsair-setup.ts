@@ -26,7 +26,7 @@ import { teams } from "@corsair-dev/teams";
 import { cal } from "@corsair-dev/cal";
 import { calendly } from "@corsair-dev/calendly";
 import { fireflies } from "@corsair-dev/fireflies";
-import { zendesk } from "@corsair-dev/zendesk";
+import { zendesk } from "../src/server/plugins/zendesk";
 import { intercom } from "@corsair-dev/intercom";
 import { todoist } from "@corsair-dev/todoist";
 import { asana } from "@corsair-dev/asana";
@@ -67,7 +67,7 @@ async function main() {
         authType: "oauth_2",
         signingSecret: SLACK_SIGNING_SECRET,
       }),
-      hubspot(),
+      hubspot({ authType: "oauth_2" }),
       notion({ authType: "oauth_2" }),
       linear({ authType: "oauth_2" }),
       jira({ authType: "oauth_2" }),
@@ -76,7 +76,7 @@ async function main() {
       cal(),
       calendly(),
       fireflies(),
-      zendesk(),
+      zendesk({ authType: "oauth_2" }),
       intercom(),
       todoist(),
       asana(),

@@ -92,7 +92,7 @@ export function AppSidebar() {
               <span className="text-[11px] font-bold uppercase tracking-wider text-[rgba(0,0,0,0.48)]">Recent Chats</span>
             </div>
             
-            <div className="flex flex-col gap-0.5 px-1">
+            <div className="flex flex-col gap-0.5 px-1 max-h-[120px] overflow-y-auto pr-0.5">
               {chatsLoading ? (
                 <div className="px-2 py-1.5 text-xs text-muted-foreground animate-pulse">Loading...</div>
               ) : conversations?.length === 0 ? (

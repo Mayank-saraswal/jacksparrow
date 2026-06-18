@@ -247,3 +247,4 @@ referance-landingpage*
 .kiro/skills/agentation-self-driving/SKILL.md
 .kiro/skills/agentation-self-driving/references/two-session-workflow.md
 .gitignore
+.env.example

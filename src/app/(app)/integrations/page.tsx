@@ -28,7 +28,7 @@ export default async function IntegrationsPage({
     typeof params.connected === "string" ? params.connected : undefined;
   const errorKey = typeof params.error === "string" ? params.error : undefined;
   const errorMessage = errorKey
-    ? (ERROR_MESSAGES[errorKey] ?? "Connection failed. Please try again.")
+    ? (ERROR_MESSAGES[errorKey] ?? `Connection failed (${errorKey}). Please try again.`)
     : undefined;
 
   return (

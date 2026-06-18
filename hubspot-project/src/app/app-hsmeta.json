@@ -1,0 +1,42 @@
+{
+  "uid": "jacksparrow_hubspot_app",
+  "type": "app",
+  "config": {
+    "description": "An example to demonstrate how to build a marketplace app with developer projects.",
+    "name": "hedwigs",
+    "distribution": "marketplace",
+    "auth": {
+      "type": "oauth",
+      "redirectUrls": [
+        "http://localhost:3000/api/integrations/hubspot/callback",
+        "https://jacksparrow.mayanksaraswal.in/api/integrations/hubspot/callback"
+      ],
+      "requiredScopes": [
+        "oauth",
+        "crm.objects.contacts.read",
+        "crm.objects.contacts.write"
+      ],
+      "optionalScopes": [
+        "crm.objects.deals.read",
+        "crm.objects.deals.write",
+        "crm.objects.owners.read",
+        "crm.objects.companies.read",
+        "crm.objects.companies.write"
+      ],
+      "conditionallyRequiredScopes": []
+    },
+    "permittedUrls": {
+      "fetch": [
+        "https://api.hubapi.com"
+      ],
+      "iframe": [],
+      "img": []
+    },
+    "support": {
+      "supportEmail": "support@example.com",
+      "documentationUrl": "https://example.com/docs",
+      "supportUrl": "https://example.com/support",
+      "supportPhone": "+18005555555"
+    }
+  }
+}
