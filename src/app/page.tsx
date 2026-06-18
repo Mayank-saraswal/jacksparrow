@@ -14,6 +14,7 @@ import {
 import { Reveal } from "./_components/reveal";
 import { Frame, SectionRule } from "./_components/landing-frame";
 import { AsciiSignal } from "./_components/ascii-signal";
+import { WorkflowAnimation } from "./_components/workflow-animation";
 
 const FEATURES = [
   {
@@ -164,6 +165,22 @@ export default async function Home() {
           </Reveal>
         </Frame>
       </section>
+
+      <Frame className="mx-auto max-w-[1112px]">
+        <div className="px-6 py-16 border-t border-border/50">
+          <Reveal className="mb-4 text-center">
+            <p className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground uppercase">
+              <span className="text-primary">{"// "}</span>How it works
+            </p>
+            <h2 className="mt-3 text-2xl font-medium tracking-tight sm:text-4xl">
+              From signal to drafted action
+            </h2>
+          </Reveal>
+          <Reveal delay={100}>
+            <WorkflowAnimation />
+          </Reveal>
+        </div>
+      </Frame>
 
       <SectionRule index={1} total={7} title="Main Features" />
 
