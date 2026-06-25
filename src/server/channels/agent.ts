@@ -99,7 +99,7 @@ export async function runChannelAgent(
       model: openai("gpt-4o-mini"),
       system: `${SYSTEM} Today is ${new Date().toISOString()}.`,
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      messages: messages as any,
+      messages: messages as import("ai").CoreMessage[],
       tools: buildAgentTools(userId, channel),
       stopWhen: stepCountIs(6),
     });
