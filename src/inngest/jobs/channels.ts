@@ -47,7 +47,7 @@ export const channelMessageReceived = inngest.createFunction(
         sendChannelText(
           channel,
           externalChatId,
-          "✅ Linked! Ask me to triage email, draft replies, or schedule events.",
+          "✅ Connected! Ask me to triage email, draft replies, or schedule events.",
         ),
       );
       return { linked: true };

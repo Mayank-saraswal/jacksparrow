@@ -267,3 +267,4 @@ upgrade_all.ts
 
 # clerk configuration (can include secrets)
 /.clerk/
+scratch.js
