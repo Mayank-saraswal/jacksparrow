@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { driver } from "driver.js";
+import { driver, type DriveStep } from "driver.js";
 import "driver.js/dist/driver.css";
 
 export function ProductTour() {
@@ -10,10 +10,7 @@ export function ProductTour() {
     if (hasSeenTour) return;
 
     const timer = setTimeout(() => {
-      const dynamicSteps: {
-        element: string;
-        popover: { title: string; description: string; side?: string; align?: string };
-      }[] = [];
+      const dynamicSteps: DriveStep[] = [];
 
       if (document.querySelector("#tour-sidebar")) {
         dynamicSteps.push({
