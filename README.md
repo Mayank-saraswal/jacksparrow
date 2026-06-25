@@ -1,29 +1,88 @@
-# Create T3 App
+# 🦉 Hedwigs (formerly Jacksparrow)
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+**The AI chief of staff that runs your inbox and calendar so you can sleep 2 hours more.**
 
-## What's next? How do I make an app with this?
+Hedwigs is a smart, collaborative inbox and productivity workspace. It brings all your daily communication and management tools into a single, unified interface powered by an AI assistant that triages, drafts, and schedules across every app you work in.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+---
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## 🚀 Features
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+1. **Smart Triage & Shared Inboxes**: Connect personal or shared team mailboxes (Gmail, Outlook). Every email is scored the moment it lands—urgent, important, or noise.
+2. **AI Assistant**: A built-in AI agent that drafts replies, schedules events, and prepares follow-ups. **You stay in control** — the agent drafts the actions, but nothing leaves your account without your explicit approval.
+3. **Massive Integration Ecosystem**: Jira, Linear, HubSpot, Slack, Notion, Zoom, Teams, Zendesk, Intercom, Calendly, Todoist, Asana, and Fireflies. Turn emails into Jira issues, save them to HubSpot, or auto-generate Teams/Zoom links for calendar events.
+4. **Keyboard-First & Fast**: Command palette, single-key shortcuts, and an undo stack let you fly through your inbox without touching the mouse. Hybrid search surfaces the right thread in under a second.
 
-## Learn More
+---
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## 🛠️ Tech Stack
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+- **Framework**: [Next.js](https://nextjs.org) (React, TypeScript)
+- **Authentication**: [Clerk](https://clerk.com/)
+- **Database & Realtime**: [Supabase](https://supabase.com) (PostgreSQL) + [Prisma ORM](https://prisma.io)
+- **Integrations & OAuth**: Corsair SDK
+- **Background Jobs**: [Inngest](https://inngest.com)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com)
+- **AI Models**: Vercel AI SDK + OpenAI
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+---
 
-## How do I deploy this?
+## 🧪 Hackathon Demo Credentials
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+If you are reviewing this project for a hackathon, you can use the following demo credentials to explore the platform without setting up your own accounts:
+
+**User 1:**
+- **Email:** `piyush@chaicode.com`
+- **Password:** `chaicodehq`
+
+**User 2:**
+- **Email:** `hitesh@chaicode.com`
+- **Password:** `chaicodehq`
+
+*(Both accounts are pre-seeded with the Business Membership plan).*
+
+---
+
+## 💻 Local Setup
+
+1. **Clone & Install Dependencies**
+   ```bash
+   git clone <repo-url> hedwigs
+   cd hedwigs
+   bun install
+   ```
+
+2. **Environment Variables**
+   Create a `.env` file based on `.env.example` and fill in your Supabase, Clerk, and Corsair credentials.
+
+3. **Set up Database & Integrations**
+   ```bash
+   bunx prisma db push
+   bun run corsair:setup
+   ```
+
+4. **Run the Development Server**
+   ```bash
+   bun run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+5. **Start the Inngest Background Worker**
+   In a separate terminal window:
+   ```bash
+   npx inngest-cli@latest dev
+   ```
+
+---
+
+## 🐞 Recent Fixes & Engineering Highlights
+
+- **Seamless Rebranding:** Successfully migrated callbacks, routes, and brand assets from the legacy `Jacksparrow` name to `Hedwigs` on `https://www.hedwigs.site/`.
+- **Zendesk Subdomain OAuth:** Overcame Zendesk's non-standard OAuth requirements by building a custom API flow to parse subdomains dynamically and manage secure state exchanges.
+- **HubSpot Scope Alignment:** Resolved persistent connection issues by reverse-engineering HubSpot's exact required scope combinations in the developer portal.
+- **EPERM Build Resolutions:** Mitigated strict Windows file-system locking restrictions during the Next.js/Tailwind tracing steps by implementing isolated `USERPROFILE` builds.
+- **Real-Time Sync Enhancements:** Optimized Inngest job queues and Supabase realtime subscriptions to provide instantaneous UI updates for connection statuses and mailbox syncs.
+
+---
+
+> Built for the **Corsair x Chaicode Hackathon**.

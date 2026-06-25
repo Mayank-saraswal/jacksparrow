@@ -121,10 +121,10 @@ export default async function Home() {
             <Reveal delay={80}>
               <h1 className="mt-6 text-[40px] leading-[1.05] font-medium tracking-tight text-balance sm:text-6xl">
                 The AI{" "}
-                <LandingChatInput 
-                  isSignedIn={!!userId} 
+                <LandingChatInput
+                  isSignedIn={!!userId}
                   placeholder="Assistant"
-                  className="w-[220px] sm:w-[300px] inline-flex align-middle mx-2 my-[-8px] shadow-sm" 
+                  className="w-[220px] sm:w-[300px] inline-flex align-middle mx-2 my-[-8px] shadow-sm"
                 />{" "}
                 that runs your inbox and calendar
                 <br className="hidden sm:inline" /> so you can{" "}
