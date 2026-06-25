@@ -1,8 +1,7 @@
 
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
-import { ClerkProvider, UserButton, OrganizationSwitcher } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
+import { ClerkProvider, SignedIn, SignedOut, UserButton, OrganizationSwitcher } from "@clerk/nextjs";
 import Link from "next/link";
 import "@/styles/globals.css";
 
@@ -16,7 +15,7 @@ import { ToastProvider } from "@/app/_components/toast";
 import { cn } from "@/lib/utils";
 import { Agentation } from "agentation";
 import { DemoLoginPopover } from "@/app/_components/site-header";
-
+import { dark } from "@clerk/themes";
 
 export const metadata: Metadata = {
   title: "Hedwigs",
@@ -29,22 +28,12 @@ const geist = Geist({
   variable: "--font-geist-sans",
 });
 
-import { dark } from "@clerk/themes";
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  let userId: string | null = null;
-  try {
-    const authSession = await auth();
-    userId = authSession.userId;
-  } catch {
-    // clerkMiddleware was skipped for this request (e.g. 404 on a static file)
-  }
-
   return (
-    <ClerkProvider 
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim().padEnd(34, '=') ?? undefined} 
+    <ClerkProvider
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim().padEnd(34, '=') ?? undefined}
       appearance={{ theme: [dark] }}
     >
       <html
@@ -83,30 +72,29 @@ export default async function RootLayout({
                   </Link>
                 </nav>
                 <nav className="flex items-center gap-3">
-                  {userId ? (
-                    <>
-                      <Link
-                        href="/dashboard"
-                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        Dashboard
-                      </Link>
-                      <OrganizationSwitcher
-                        hidePersonal={true}
-                        afterCreateOrganizationUrl="/dashboard"
-                        afterSelectOrganizationUrl="/dashboard"
-                      />
-                      <UserButton />
-                    </>
-                  ) : (
+                  <SignedIn>
+                    <Link
+                      href="/dashboard"
+                      className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      Dashboard
+                    </Link>
+                    <OrganizationSwitcher
+                      hidePersonal={true}
+                      afterCreateOrganizationUrl="/dashboard"
+                      afterSelectOrganizationUrl="/dashboard"
+                    />
+                    <UserButton />
+                  </SignedIn>
+                  <SignedOut>
                     <DemoLoginPopover>
                       <Button size="sm">Sign in</Button>
                     </DemoLoginPopover>
-                  )}
+                  </SignedOut>
                 </nav>
               </div>
             </header>
-            {userId ? (
+            <SignedIn>
               <ShortcutProvider>
                 <CommandContextProvider>
                   {children}
@@ -114,9 +102,10 @@ export default async function RootLayout({
                   <CommandMenu />
                 </CommandContextProvider>
               </ShortcutProvider>
-            ) : (
-              children
-            )}
+            </SignedIn>
+            <SignedOut>
+              {children}
+            </SignedOut>
             {process.env.NODE_ENV === "development" && <Agentation />}
             </ToastProvider>
           </TRPCReactProvider>
