@@ -4,6 +4,7 @@ import { inngest } from "@/inngest/client";
 import {
   verifyTelegramSecret,
   answerTelegramCallback,
+  sendTelegramTyping,
 } from "@/server/channels/telegram";
 
 interface TelegramUpdate {
@@ -48,6 +49,9 @@ export async function POST(req: NextRequest) {
   const text = update.message?.text;
   const chatId = update.message?.chat?.id;
   if (chatId && typeof text === "string") {
+    // Instantly show typing indicator to acknowledge receipt while Inngest processes.
+    await sendTelegramTyping(chatId).catch(console.error);
+
     await inngest.send({
       name: "channel/message.received",
       data: { channel: "telegram", externalChatId: String(chatId), text },

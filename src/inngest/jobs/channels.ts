@@ -20,57 +20,45 @@ export const channelMessageReceived = inngest.createFunction(
     retries: 2,
     triggers: { event: "channel/message.received" },
   },
-  async ({ event, step }) => {
+  async ({ event }) => {
     const { channel, externalChatId, text } = event.data as {
       channel: string;
       externalChatId: string;
       text: string;
     };
 
-    const resolved = await step.run("resolve", () =>
-      resolveOrLink(channel, externalChatId, text),
-    );
+    const resolved = await resolveOrLink(channel, externalChatId, text);
 
     if (!resolved.userId) {
-      await step.run("reply-link", () =>
-        sendChannelText(
-          channel,
-          externalChatId,
-          "Link this chat first: open Hedwigs → Settings → Connect, then send me the code (Telegram: /link CODE).",
-        ),
+      await sendChannelText(
+        channel,
+        externalChatId,
+        "Link this chat first: open Hedwigs → Settings → Connect, then send me the code (Telegram: /link CODE).",
       );
       return { needsLink: true };
     }
 
     if (resolved.justLinked) {
-      await step.run("reply-linked", () =>
-        sendChannelText(
-          channel,
-          externalChatId,
-          "✅ Connected! Ask me to triage email, draft replies, or schedule events.",
-        ),
+      await sendChannelText(
+        channel,
+        externalChatId,
+        "✅ Connected! Ask me to triage email, draft replies, or schedule events.",
       );
       return { linked: true };
     }
 
     const userId = resolved.userId;
-    const agent = await step.run("agent", () =>
-      runChannelAgent(userId, channel, text),
-    );
+    const agent = await runChannelAgent(userId, channel, text);
 
     if (agent.text) {
-      await step.run("reply-text", () =>
-        sendChannelText(channel, externalChatId, agent.text),
-      );
+      await sendChannelText(channel, externalChatId, agent.text);
     }
     for (const p of agent.pending) {
-      await step.run(`approval-${p.id}`, () =>
-        sendChannelApproval(
-          channel,
-          externalChatId,
-          summarizePendingAction(p.kind, p.draftPayload),
-          p.id,
-        ),
+      await sendChannelApproval(
+        channel,
+        externalChatId,
+        summarizePendingAction(p.kind, p.draftPayload),
+        p.id,
       );
     }
     return { replied: true, pending: agent.pending.length };
@@ -83,7 +71,7 @@ export const channelCallbackReceived = inngest.createFunction(
     retries: 2,
     triggers: { event: "channel/callback.received" },
   },
-  async ({ event, step }) => {
+  async ({ event }) => {
     const { channel, externalChatId, decision, actionId } = event.data as {
       channel: string;
       externalChatId: string;
@@ -91,86 +79,73 @@ export const channelCallbackReceived = inngest.createFunction(
       actionId: string;
     };
 
-    const ctx = await step.run("authorize", async () => {
-      const action = await db.pendingAction.findUnique({
-        where: { id: actionId },
-      });
-      const link = await db.channelLink.findUnique({
-        where: { channel_externalChatId: { channel, externalChatId } },
-      });
-      if (!action) return { ok: false as const, reason: "missing" };
-      if (link?.userId !== action.userId)
-        return { ok: false as const, reason: "unauthorized" };
-      if (action.status !== "pending")
-        return { ok: false as const, reason: "resolved" };
-      return {
-        ok: true as const,
-        userId: action.userId,
-        kind: action.kind,
-        draftPayload: action.draftPayload,
-      };
+    const action = await db.pendingAction.findUnique({
+      where: { id: actionId },
     });
+    const link = await db.channelLink.findUnique({
+      where: { channel_externalChatId: { channel, externalChatId } },
+    });
+    
+    let ctx;
+    if (!action) ctx = { ok: false as const, reason: "missing" };
+    else if (link?.userId !== action.userId) ctx = { ok: false as const, reason: "unauthorized" };
+    else if (action.status !== "pending") ctx = { ok: false as const, reason: "resolved" };
+    else ctx = {
+      ok: true as const,
+      userId: action.userId,
+      kind: action.kind,
+      draftPayload: action.draftPayload,
+    };
 
     if (!ctx.ok) {
-      await step.run("reply-invalid", () =>
-        sendChannelText(channel, externalChatId, "That action is no longer available."),
-      );
+      await sendChannelText(channel, externalChatId, "That action is no longer available.");
       return { skipped: ctx.reason };
     }
 
     if (decision === "edit") {
-      await step.run("reply-edit", () =>
-        sendChannelText(
-          channel,
-          externalChatId,
-          `Open the app to edit: ${env.APP_URL}/inbox`,
-        ),
+      await sendChannelText(
+        channel,
+        externalChatId,
+        `Open the app to edit: ${env.APP_URL}/inbox`,
       );
       return { edit: true };
     }
 
     if (decision === "reject") {
-      await step.run("reject", async () => {
-        await db.pendingAction.update({
-          where: { id: actionId },
-          data: { status: "rejected", resolvedAt: new Date() },
-        });
+      await db.pendingAction.update({
+        where: { id: actionId },
+        data: { status: "rejected", resolvedAt: new Date() },
       });
-      await step.run("reply-reject", () =>
-        sendChannelText(channel, externalChatId, "Cancelled ❌"),
-      );
+      await sendChannelText(channel, externalChatId, "Cancelled ❌");
       return { rejected: true };
     }
 
     // approve — execute exactly once.
-    const exec = await step.run("execute", async () => {
-      try {
-        const res = await executePendingAction(
-          ctx.userId,
-          ctx.kind,
-          ctx.draftPayload,
-        );
-        await db.pendingAction.update({
-          where: { id: actionId },
-          data: { status: "executed", resolvedAt: new Date() },
-        });
-        return { ok: true as const, summary: res.summary };
-      } catch (err) {
-        return {
-          ok: false as const,
-          error: err instanceof Error ? err.message : String(err),
-        };
-      }
-    });
+    let exec;
+    try {
+      const res = await executePendingAction(
+        ctx.userId,
+        ctx.kind,
+        ctx.draftPayload,
+      );
+      await db.pendingAction.update({
+        where: { id: actionId },
+        data: { status: "executed", resolvedAt: new Date() },
+      });
+      exec = { ok: true as const, summary: res.summary };
+    } catch (err) {
+      exec = {
+        ok: false as const,
+        error: err instanceof Error ? err.message : String(err),
+      };
+    }
 
-    await step.run("reply-result", () =>
-      sendChannelText(
-        channel,
-        externalChatId,
-        exec.ok
-          ? `${confirmationCopy(ctx.kind)} ${exec.summary}`
-          : `Failed: ${exec.error}`,
-      ),
+    await sendChannelText(
+      channel,
+      externalChatId,
+      exec.ok
+        ? `${confirmationCopy(ctx.kind)} ${exec.summary}`
+        : `Failed: ${exec.error}`,
     );
     return { executed: exec.ok };
   },

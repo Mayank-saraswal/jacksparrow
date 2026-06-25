@@ -30,6 +30,12 @@ export async function sendTelegramText(
   await call("sendMessage", { chat_id: chatId, text });
 }
 
+export async function sendTelegramTyping(
+  chatId: string | number,
+): Promise<void> {
+  await call("sendChatAction", { chat_id: chatId, action: "typing" });
+}
+
 export async function sendTelegramApproval(
   chatId: string | number,
   text: string,
