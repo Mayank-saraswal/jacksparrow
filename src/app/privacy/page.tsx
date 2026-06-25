@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
+import { TrustedBy } from "../_components/trusted-by";
 
 export const metadata = {
   title: "Privacy Policy · Hedwigs",
@@ -8,7 +9,8 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="mx-auto max-w-[800px] px-6 py-16 font-mono text-sm leading-relaxed text-[#262626]">
+    <div className="flex flex-col min-h-screen w-full overflow-hidden">
+      <div className="flex-1 mx-auto max-w-[800px] w-full px-6 py-16 font-mono text-sm leading-relaxed text-[#262626]">
       <Link
         href="/"
         className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors mb-8"
@@ -72,6 +74,8 @@ export default function PrivacyPage() {
           </p>
         </section>
       </div>
+      </div>
+      <TrustedBy />
     </div>
   );
 }
