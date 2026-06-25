@@ -10,7 +10,10 @@ export function ProductTour() {
     if (hasSeenTour) return;
 
     const timer = setTimeout(() => {
-      const dynamicSteps: any[] = [];
+      const dynamicSteps: {
+        element: string;
+        popover: { title: string; description: string; side?: string; align?: string };
+      }[] = [];
 
       if (document.querySelector("#tour-sidebar")) {
         dynamicSteps.push({

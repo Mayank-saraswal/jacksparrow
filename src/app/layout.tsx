@@ -1,7 +1,7 @@
 
 import { type Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
-import { ClerkProvider, SignInButton, UserButton, OrganizationSwitcher } from "@clerk/nextjs";
+import { ClerkProvider, UserButton, OrganizationSwitcher } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import "@/styles/globals.css";

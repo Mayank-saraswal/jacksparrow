@@ -50,6 +50,7 @@ export function DemoLoginPopover({ children }: { children: React.ReactNode }) {
           className="text-sm px-2 py-2 hover:bg-muted rounded-md transition-colors font-medium flex items-center justify-between gap-2 w-full text-left disabled:opacity-50"
         >
           <div className="flex items-center gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo/piyush-garg.webp" alt="Piyush Sir" className="size-6 rounded-full object-cover" /> Login as Piyush Sir
           </div>
           {loadingUser === "piyush@chaicode.com" && <span className="text-xs text-muted-foreground animate-pulse">Loading...</span>}
@@ -60,6 +61,7 @@ export function DemoLoginPopover({ children }: { children: React.ReactNode }) {
           className="text-sm px-2 py-2 hover:bg-muted rounded-md transition-colors font-medium flex items-center justify-between gap-2 w-full text-left disabled:opacity-50"
         >
           <div className="flex items-center gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo/hiteshsir.jpg" alt="Hitesh Sir" className="size-6 rounded-full object-cover" /> Login as Hitesh Sir
           </div>
           {loadingUser === "hitesh@chaicode.com" && <span className="text-xs text-muted-foreground animate-pulse">Loading...</span>}
