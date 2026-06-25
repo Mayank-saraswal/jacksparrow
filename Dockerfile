@@ -35,7 +35,6 @@ ENV NODE_ENV=production
 # Don't run production as root
 RUN groupadd --system --gid 1001 nodejs
 RUN useradd --system --uid 1001 --gid 1001 nextjs
-USER nextjs
 
 COPY --from=builder /usr/src/app/public ./public
 
@@ -50,6 +49,8 @@ COPY --from=builder --chown=nextjs:nodejs /usr/src/app/.next/static ./.next/stat
 COPY --from=builder --chown=nextjs:nodejs /usr/src/app/prisma ./prisma
 
 COPY entrypoint.sh ./
+
+USER nextjs
 
 EXPOSE 3000
 
