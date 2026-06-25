@@ -10,7 +10,6 @@ import { corsair } from "@/server/corsair";
 import { inngest } from "@/inngest/client";
 import { logger } from "@/server/logger";
 import { captureException, captureMessage } from "@/server/observability/sentry";
-import { clerkClient } from "@clerk/nextjs/server";
 import { db } from "@/server/db";
 
 type ProcessWebhookArgs = Parameters<typeof processWebhook>;
