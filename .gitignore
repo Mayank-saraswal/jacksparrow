@@ -257,3 +257,8 @@ verify_users.mjs
 check_prod_env.mjs
 create_live_users.mjs
 generate_magic_links.mjs
+
+# AI setup scripts and configs
+setup_db.js
+upgrade_user.ts
+.mcp.json
