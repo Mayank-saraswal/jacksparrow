@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Hedwigs",
   description: "Your AI-powered inbox.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [{ rel: "icon", url: "/logo/FIRE_SVG_Animated.svg", type: "image/svg+xml" }],
 };
 
 const geist = Geist({
@@ -95,7 +95,7 @@ export default async function RootLayout({
                       </Link>
                       <OrganizationSwitcher
                         hidePersonal={true}
-                        afterCreateOrganizationUrl="/settings/organization"
+                        afterCreateOrganizationUrl="/dashboard"
                         afterSelectOrganizationUrl="/dashboard"
                       />
                       <UserButton />

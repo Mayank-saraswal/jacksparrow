@@ -42,6 +42,7 @@
         "corsair": "^0.1.76",
         "dodopayments": "^2.38.1",
         "dotenv": "^17.4.2",
+        "driver.js": "^1.5.0",
         "framer-motion": "^12.40.0",
         "inngest": "^4.5.1",
         "next": "^15.2.3",
@@ -1383,6 +1384,8 @@
     "dodopayments": ["dodopayments@2.38.1", "", { "dependencies": { "standardwebhooks": "^1.0.0" }, "bin": { "dodopayments": "bin/cli" } }, "sha512-OjrwIjPG/k1W7SApH/E5uKMZSm/7jqjZTGZAdvHX9FKMN9tQf0lbT4thDw5i9Q/C0IVsr/5ZKEWjW7GNeyv1hA=="],
 
     "dotenv": ["dotenv@17.4.2", "", {}, "sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw=="],
+
+    "driver.js": ["driver.js@1.5.0", "", {}, "sha512-j31Yi1V3/fTCI6+JmS6Z30bHE3YbpT5+UlrsN0o5aswCuZVDwfaZKsMSN0tMCQbWk99RNXxEyAhALC1otj31/w=="],
 
     "dunder-proto": ["dunder-proto@1.0.1", "", { "dependencies": { "call-bind-apply-helpers": "^1.0.1", "es-errors": "^1.3.0", "gopd": "^1.2.0" } }, "sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A=="],
 

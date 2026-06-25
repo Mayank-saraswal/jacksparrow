@@ -1,4 +1,5 @@
 import { AppSidebar } from "./_components/app-sidebar";
+import { ProductTour } from "./_components/product-tour";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,6 +8,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <div className="flex min-w-0 flex-1 flex-col overflow-y-auto">
         {children}
       </div>
+      <ProductTour />
     </div>
   );
 }

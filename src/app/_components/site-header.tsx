@@ -1,16 +1,29 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { OrganizationSwitcher, SignInButton, UserButton } from "@clerk/nextjs";
+import { getDemoLoginUrl } from "@/app/actions/demo-login";
 
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
-const PIYUSH_LINK = "https://accounts.hedwigs.site/sign-in?__clerk_ticket=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlaXMiOjI1OTIwMDAsImV4cCI6MTc4NDk3NDA1OCwiaWlkIjoiaW5zXzNGSXN1OTdCd0dLcllxRmNTV2dEV3k1QzhIcSIsInNpZCI6InNpdF8zRmNsNXpmSVh4aGMxMFdoVnFxY3d6VnlmZEIiLCJzdCI6InNpZ25faW5fdG9rZW4ifQ.YNsskizK7l2Hr12fGzvaZBIRCJNUoPY8Rml2HaOGQvmZoGsQGmDaMHqFxd68ZmGkvXW3blqhVD4CCvbT4pesi2hvAmAvljzvGOZQFiaFlHP4LoeF3X2eC1X6_rU0J4mcquxVgW1HmPhsv_nZ2ABZOsAkJ0kqbATrJQOgeb41-3cWDMCKC0M1dJmA6ruaZLkgUbbChxvuOWo6jatLZIrdqPzfgD96GYuNe3biHXl4LKQdl8rEpFyjcyK7v7RB_8A_caLZ83NQBvPTYUktDhgwVah4ueDkQVbjtYYdEgeXVeI53jah80Q4Xnm9r4gP5qGew40loLksEvh-gmMxA75BWQ";
-const HITESH_LINK = "https://accounts.hedwigs.site/sign-in?__clerk_ticket=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlaXMiOjI1OTIwMDAsImV4cCI6MTc4NDk3NDA1OCwiaWlkIjoiaW5zXzNGSXN1OTdCd0dLcllxRmNTV2dEV3k1QzhIcSIsInNpZCI6InNpdF8zRmNsNXVyUzJDMWJ0cHRpSm9UQWhXVzE5eUQiLCJzdCI6InNpZ25faW5fdG9rZW4ifQ.r7wJIXzB_x5wiuc_3gh51BB_YHiLFMspDu_Tcwu6fF0XkErAMej40vJnL43Rdk6Oj5-HOZJGDm6Vj3yDJNBcccPKlb0Jgitmz7zNEAWcttpiIapv6cQBhp2VEgupqoysXVxx0cK6zmZe99INpFjwZSI9sMmmjqq4rdWW48JvH-tjzw-Ue7SKqN1cbl7EVdadI7v63KnzJa7M0HrqUvgExeH1yBEA-UZTW_IxQkQwbvEaab0M_F6TeoYVXGUq0Kiv7ZC8uxfZDSqR6JRZjoUaAWrjQQvKA8ls8ajJU9TIckva_dDsOpzPAtHegNCmvTIIA9MeudVmVmi8ffazeJ2LQQ";
-
 export function DemoLoginPopover({ children }: { children: React.ReactNode }) {
+  const [loadingUser, setLoadingUser] = useState<string | null>(null);
+
+  const handleDemoLogin = async (email: string) => {
+    try {
+      setLoadingUser(email);
+      const url = await getDemoLoginUrl(email);
+      window.location.href = url;
+    } catch (err) {
+      console.error(err);
+      alert("Failed to generate demo login link. " + (err instanceof Error ? err.message : ""));
+      setLoadingUser(null);
+    }
+  };
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -18,7 +31,7 @@ export function DemoLoginPopover({ children }: { children: React.ReactNode }) {
       </PopoverTrigger>
       <PopoverContent align="end" className="w-64 p-2 flex flex-col gap-1 shadow-xl">
         <p className="text-[10px] font-semibold text-muted-foreground mb-1 px-2 uppercase tracking-wider">Default</p>
-        <SignInButton mode="modal">
+        <SignInButton mode="modal" forceRedirectUrl="/dashboard" signUpForceRedirectUrl="/dashboard">
           <button className="text-sm px-2 py-2 hover:bg-muted rounded-md transition-colors font-medium flex items-center gap-2 text-left w-full">
             <span className="size-6 flex items-center justify-center bg-primary/10 rounded-full">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -31,12 +44,26 @@ export function DemoLoginPopover({ children }: { children: React.ReactNode }) {
         <div className="my-1 border-t border-border mx-1" />
         
         <p className="text-[10px] font-semibold text-muted-foreground mb-1 mt-1 px-2 uppercase tracking-wider">Hackathon Demo</p>
-        <a href={PIYUSH_LINK} className="text-sm px-2 py-2 hover:bg-muted rounded-md transition-colors font-medium flex items-center gap-2">
-          <img src="/logo/piyush-garg.webp" alt="Piyush Sir" className="size-6 rounded-full object-cover" /> Login as Piyush Sir
-        </a>
-        <a href={HITESH_LINK} className="text-sm px-2 py-2 hover:bg-muted rounded-md transition-colors font-medium flex items-center gap-2">
-          <img src="/logo/hiteshsir.jpg" alt="Hitesh Sir" className="size-6 rounded-full object-cover" /> Login as Hitesh Sir
-        </a>
+        <button 
+          onClick={() => handleDemoLogin("piyush@chaicode.com")}
+          disabled={loadingUser !== null}
+          className="text-sm px-2 py-2 hover:bg-muted rounded-md transition-colors font-medium flex items-center justify-between gap-2 w-full text-left disabled:opacity-50"
+        >
+          <div className="flex items-center gap-2">
+            <img src="/logo/piyush-garg.webp" alt="Piyush Sir" className="size-6 rounded-full object-cover" /> Login as Piyush Sir
+          </div>
+          {loadingUser === "piyush@chaicode.com" && <span className="text-xs text-muted-foreground animate-pulse">Loading...</span>}
+        </button>
+        <button 
+          onClick={() => handleDemoLogin("hitesh@chaicode.com")}
+          disabled={loadingUser !== null}
+          className="text-sm px-2 py-2 hover:bg-muted rounded-md transition-colors font-medium flex items-center justify-between gap-2 w-full text-left disabled:opacity-50"
+        >
+          <div className="flex items-center gap-2">
+            <img src="/logo/hiteshsir.jpg" alt="Hitesh Sir" className="size-6 rounded-full object-cover" /> Login as Hitesh Sir
+          </div>
+          {loadingUser === "hitesh@chaicode.com" && <span className="text-xs text-muted-foreground animate-pulse">Loading...</span>}
+        </button>
       </PopoverContent>
     </Popover>
   );

@@ -37,7 +37,7 @@ export function AppSidebar() {
   const { data: conversations, isLoading: chatsLoading } = api.chat.getConversations.useQuery();
 
   return (
-    <aside className="hidden w-56 shrink-0 flex-col border-r border-border bg-sidebar md:flex">
+    <aside id="tour-sidebar" className="hidden w-56 shrink-0 flex-col border-r border-border bg-sidebar md:flex">
       <div className="flex items-center gap-2 px-5 py-5 mb-2">
         <ChatCircleDots weight="fill" className="size-5 text-primary" />
         <span className="text-sm font-bold tracking-tight text-sidebar-foreground">Workspace</span>

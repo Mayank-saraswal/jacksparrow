@@ -116,7 +116,7 @@ export function DashboardChat({
   const empty = messages.length === 0;
 
   return (
-    <div className="flex h-full flex-col">
+    <div id="tour-chat" className="flex h-full flex-col">
       {empty ? (
         <div className="flex flex-1 flex-col items-center justify-center px-4">
           <div className="mb-8 flex items-center text-2xl font-medium tracking-tight sm:text-3xl">
