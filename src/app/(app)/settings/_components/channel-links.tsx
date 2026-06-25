@@ -6,13 +6,15 @@ import { TelegramLogo, WhatsappLogo, CheckCircle } from "@phosphor-icons/react";
 import { api } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
 
+import { QRCodeSVG } from "qrcode.react";
+
 type Channel = "telegram" | "whatsapp";
 
 const META: Record<Channel, { name: string; icon: React.ReactNode; hint: string }> = {
   telegram: {
     name: "Telegram",
     icon: <TelegramLogo weight="fill" className="size-5" />,
-    hint: "In Telegram, message your bot: /link CODE",
+    hint: "Scan the QR code to connect your Telegram account directly, or message /link CODE",
   },
   whatsapp: {
     name: "WhatsApp",
@@ -76,14 +78,26 @@ export function ChannelLinks() {
                 </Button>
               </div>
             ) : code ? (
-              <div className="mt-2">
-                <p className="text-xs text-muted-foreground">{meta.hint}</p>
-                <p className="mt-1 font-mono text-lg font-semibold tracking-widest">
-                  {code}
-                </p>
-                <p className="text-[10px] text-muted-foreground">
-                  Expires in 10 minutes.
-                </p>
+              <div className="mt-4 flex flex-col items-center justify-center space-y-3 rounded-lg bg-muted/50 p-4">
+                {channel === "telegram" && (
+                  <div className="rounded-xl bg-white p-2 shadow-sm">
+                    <QRCodeSVG
+                      value={`https://t.me/hedwigsaibot?start=${code}`}
+                      size={140}
+                      level="Q"
+                      includeMargin={false}
+                    />
+                  </div>
+                )}
+                <div className="text-center">
+                  <p className="text-xs text-muted-foreground">{meta.hint}</p>
+                  <p className="mt-2 font-mono text-xl font-bold tracking-widest text-foreground">
+                    {code}
+                  </p>
+                  <p className="mt-1 text-[10px] font-medium text-muted-foreground/80 uppercase tracking-wider">
+                    Expires in 10 minutes
+                  </p>
+                </div>
               </div>
             ) : (
               <div className="mt-2">

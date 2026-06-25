@@ -26,7 +26,7 @@ export async function resolveOrLink(
   });
   if (link) return { userId: link.userId, justLinked: false };
 
-  const code = text.replace(/^\/link\s+/i, "").trim().toUpperCase();
+  const code = text.replace(/^\/(link|start)\s+/i, "").trim().toUpperCase();
   if (code.length >= 4 && code.length <= 12) {
     const lc = await db.linkCode.findUnique({ where: { code } });
     if (lc?.channel === channel && lc.expiresAt > new Date()) {

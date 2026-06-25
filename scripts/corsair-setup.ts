@@ -120,7 +120,7 @@ async function main() {
     ["linear", process.env.LINEAR_CLIENT_ID, process.env.LINEAR_CLIENT_SECRET],
     ["jira", process.env.JIRA_CLIENT_ID, process.env.JIRA_CLIENT_SECRET],
     ["zoom", process.env.ZOOM_CLIENT_ID, process.env.ZOOM_CLIENT_SECRET],
-    ["teams", process.env.TEAMS_CLIENT_ID, process.env.TEAMS_CLIENT_SECRET],
+    ["teams", process.env.TEAMS_CLIENT_ID || process.env.MICROSOFT_CLIENT_ID, process.env.TEAMS_CLIENT_SECRET || process.env.MICROSOFT_CLIENT_SECRET],
     ["cal", process.env.CAL_CLIENT_ID, process.env.CAL_CLIENT_SECRET],
     ["calendly", process.env.CALENDLY_CLIENT_ID, process.env.CALENDLY_CLIENT_SECRET],
     ["fireflies", process.env.FIREFLIES_CLIENT_ID, process.env.FIREFLIES_CLIENT_SECRET],

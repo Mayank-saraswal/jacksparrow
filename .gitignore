@@ -261,4 +261,9 @@ generate_magic_links.mjs
 # AI setup scripts and configs
 setup_db.js
 upgrade_user.ts
+upgrade_orgs.ts
+upgrade_all.ts
 .mcp.json
+
+# clerk configuration (can include secrets)
+/.clerk/
