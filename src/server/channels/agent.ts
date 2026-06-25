@@ -98,8 +98,7 @@ export async function runChannelAgent(
     const result = await generateText({
       model: openai("gpt-4o-mini"),
       system: `${SYSTEM} Today is ${new Date().toISOString()}.`,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      messages: messages as import("ai").CoreMessage[],
+      messages,
       tools: buildAgentTools(userId, channel),
       stopWhen: stepCountIs(6),
     });
