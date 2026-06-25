@@ -16,6 +16,7 @@ import { Frame, SectionRule } from "./_components/landing-frame";
 import { AsciiSignal } from "./_components/ascii-signal";
 import { WorkflowAnimation } from "./_components/workflow-animation";
 import { LandingChatInput } from "./_components/landing-chat-input";
+import { TrustedBy } from "./_components/trusted-by";
 
 const FEATURES = [
   {
@@ -166,6 +167,8 @@ export default async function Home() {
           </Reveal>
         </Frame>
       </section>
+
+      <TrustedBy />
 
       <Frame className="mx-auto max-w-[1112px]">
         <div className="px-6 py-16 border-t border-border/50">

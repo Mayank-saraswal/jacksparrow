@@ -66,6 +66,28 @@ export function DemoLoginPopover({ children }: { children: React.ReactNode }) {
           </div>
           {loadingUser === "hitesh@chaicode.com" && <span className="text-xs text-muted-foreground animate-pulse">Loading...</span>}
         </button>
+        <button 
+          onClick={() => handleDemoLogin("manu@aceternity.com")}
+          disabled={loadingUser !== null}
+          className="text-sm px-2 py-2 hover:bg-muted rounded-md transition-colors font-medium flex items-center justify-between gap-2 w-full text-left disabled:opacity-50"
+        >
+          <div className="flex items-center gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo/mannupaji.jpg" alt="Manu Paji" className="size-6 rounded-full object-cover" /> Login as Manu Paji
+          </div>
+          {loadingUser === "manu@aceternity.com" && <span className="text-xs text-muted-foreground animate-pulse">Loading...</span>}
+        </button>
+        <button 
+          onClick={() => handleDemoLogin("dev@corsair.com")}
+          disabled={loadingUser !== null}
+          className="text-sm px-2 py-2 hover:bg-muted rounded-md transition-colors font-medium flex items-center justify-between gap-2 w-full text-left disabled:opacity-50"
+        >
+          <div className="flex items-center gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo/devjain.jpg" alt="Dev Jain" className="size-6 rounded-full object-cover" /> Login as Dev Jain
+          </div>
+          {loadingUser === "dev@corsair.com" && <span className="text-xs text-muted-foreground animate-pulse">Loading...</span>}
+        </button>
       </PopoverContent>
     </Popover>
   );
