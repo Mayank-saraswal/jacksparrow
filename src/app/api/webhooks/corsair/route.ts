@@ -85,10 +85,16 @@ export async function POST(request: NextRequest) {
           const decoded = Buffer.from(b.message.data, "base64").toString("utf8");
           const parsed = JSON.parse(decoded);
           if (parsed.emailAddress) {
-            const clerk = typeof clerkClient === "function" ? await (clerkClient as any)() : clerkClient;
-            const users = await clerk.users.getUserList({ emailAddress: [parsed.emailAddress] });
-            if (users.data.length > 0) {
-              resolvedTenantId = users.data[0].id;
+            const { createClerkClient } = await import("@clerk/nextjs/server");
+            const customClerk = createClerkClient({
+              secretKey: process.env.CLERK_SECRET_KEY?.trim(),
+              publishableKey: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim()
+            });
+            
+            const users = await customClerk.users.getUserList({ emailAddress: [parsed.emailAddress] });
+            const firstUser = users.data[0];
+            if (firstUser) {
+              resolvedTenantId = firstUser.id;
               logger.info("corsair webhook resolved tenant via Clerk", {
                 tenantId: resolvedTenantId,
                 emailAddress: parsed.emailAddress,
