@@ -191,6 +191,7 @@ export function OrgIntegrations() {
       name: "Intercom",
       description: "Reply and triage Intercom conversations from the shared inbox. Business+.",
       logo: "/logo/intercom.png",
+      comingSoon: true,
     },
   ] as const;
 
