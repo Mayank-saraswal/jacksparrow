@@ -95,6 +95,32 @@ function gmailProvider(ref: TenantRef): MailProvider {
   return {
     plugin: "gmail",
     async listThreads(query, limit) {
+      // 1. Local PostgreSQL sync layer (Corsair DB)
+      const options = {
+        limit,
+        ...(query ? { data: { snippet: { contains: query } } } : {}),
+      };
+      
+      const dbThreads = await tenant.gmail.db.threads.search(options).catch(() => []);
+      
+      if (dbThreads && dbThreads.length > 0) {
+        return dbThreads.map((t) => {
+          // Corsair stores the raw Gmail thread object in `t.data`
+          const p = threadPreview(t.data);
+          return {
+            threadId: p.threadId,
+            subject: p.subject,
+            from: p.fromEmail,
+            fromName: p.fromName,
+            date: p.date,
+            snippet: p.snippet,
+            unread: p.unread,
+            starred: p.starred,
+          };
+        });
+      }
+
+      // 2. Fallback to network-dependent API if DB hasn't backfilled yet
       const list = await tenant.gmail.api.threads.list({
         q: query,
         maxResults: limit,
@@ -297,13 +323,40 @@ function outlookProvider(ref: TenantRef): MailProvider {
   return {
     plugin: "outlook",
     async listThreads(query, limit) {
+      // 1. Local PostgreSQL sync layer (Corsair DB)
+      const options = {
+        limit,
+        ...(query ? { data: { bodyPreview: { contains: query } } } : {}),
+      };
+      
+      const dbMessages = await tenant.outlook.db.messages.search(options).catch(() => []);
+      
+      if (dbMessages && dbMessages.length > 0) {
+        return dbMessages.map((t) => {
+          const m = t.data as unknown as OutlookApiMessage;
+          return {
+            threadId: m.conversationId ?? m.id ?? "",
+            subject: m.subject ?? "(no subject)",
+            from: (m.from?.address ?? "").toLowerCase(),
+            fromName: m.from?.name ?? "",
+            date: m.receivedDateTime
+              ? new Date(m.receivedDateTime).toISOString()
+              : null,
+            snippet: m.bodyPreview ?? "",
+            unread: m.isRead === false,
+            starred: false,
+          };
+        });
+      }
+
+      // 2. Fallback to network-dependent API
       const out = await tenant.outlook.api.messages.list({
         top: limit,
         orderby: ["receivedDateTime desc"],
         ...(query ? { subject_contains: query } : {}),
       });
       const items = (out as { value?: OutlookApiMessage[] }).value ?? [];
-      return items.map((m) => ({
+      return items.map((m: OutlookApiMessage) => ({
         threadId: m.conversationId ?? m.id ?? "",
         subject: m.subject ?? "(no subject)",
         from: (m.from?.address ?? "").toLowerCase(),
