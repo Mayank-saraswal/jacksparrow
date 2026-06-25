@@ -10,16 +10,27 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 const PIYUSH_LINK = "https://accounts.hedwigs.site/sign-in?__clerk_ticket=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlaXMiOjI1OTIwMDAsImV4cCI6MTc4NDk3NDA1OCwiaWlkIjoiaW5zXzNGSXN1OTdCd0dLcllxRmNTV2dEV3k1QzhIcSIsInNpZCI6InNpdF8zRmNsNXpmSVh4aGMxMFdoVnFxY3d6VnlmZEIiLCJzdCI6InNpZ25faW5fdG9rZW4ifQ.YNsskizK7l2Hr12fGzvaZBIRCJNUoPY8Rml2HaOGQvmZoGsQGmDaMHqFxd68ZmGkvXW3blqhVD4CCvbT4pesi2hvAmAvljzvGOZQFiaFlHP4LoeF3X2eC1X6_rU0J4mcquxVgW1HmPhsv_nZ2ABZOsAkJ0kqbATrJQOgeb41-3cWDMCKC0M1dJmA6ruaZLkgUbbChxvuOWo6jatLZIrdqPzfgD96GYuNe3biHXl4LKQdl8rEpFyjcyK7v7RB_8A_caLZ83NQBvPTYUktDhgwVah4ueDkQVbjtYYdEgeXVeI53jah80Q4Xnm9r4gP5qGew40loLksEvh-gmMxA75BWQ";
 const HITESH_LINK = "https://accounts.hedwigs.site/sign-in?__clerk_ticket=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlaXMiOjI1OTIwMDAsImV4cCI6MTc4NDk3NDA1OCwiaWlkIjoiaW5zXzNGSXN1OTdCd0dLcllxRmNTV2dEV3k1QzhIcSIsInNpZCI6InNpdF8zRmNsNXVyUzJDMWJ0cHRpSm9UQWhXVzE5eUQiLCJzdCI6InNpZ25faW5fdG9rZW4ifQ.r7wJIXzB_x5wiuc_3gh51BB_YHiLFMspDu_Tcwu6fF0XkErAMej40vJnL43Rdk6Oj5-HOZJGDm6Vj3yDJNBcccPKlb0Jgitmz7zNEAWcttpiIapv6cQBhp2VEgupqoysXVxx0cK6zmZe99INpFjwZSI9sMmmjqq4rdWW48JvH-tjzw-Ue7SKqN1cbl7EVdadI7v63KnzJa7M0HrqUvgExeH1yBEA-UZTW_IxQkQwbvEaab0M_F6TeoYVXGUq0Kiv7ZC8uxfZDSqR6JRZjoUaAWrjQQvKA8ls8ajJU9TIckva_dDsOpzPAtHegNCmvTIIA9MeudVmVmi8ffazeJ2LQQ";
 
-function DemoLoginPopover({ triggerClassName }: { triggerClassName?: string }) {
+export function DemoLoginPopover({ children }: { children: React.ReactNode }) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button className={triggerClassName} type="button">
-          Demo Login
-        </button>
+        {children}
       </PopoverTrigger>
-      <PopoverContent align="end" className="w-60 p-2 flex flex-col gap-1 shadow-xl">
-        <p className="text-xs font-semibold text-muted-foreground mb-1 px-2 uppercase tracking-wider">Hackathon Demo</p>
+      <PopoverContent align="end" className="w-64 p-2 flex flex-col gap-1 shadow-xl">
+        <p className="text-[10px] font-semibold text-muted-foreground mb-1 px-2 uppercase tracking-wider">Default</p>
+        <SignInButton mode="modal">
+          <button className="text-sm px-2 py-2 hover:bg-muted rounded-md transition-colors font-medium flex items-center gap-2 text-left w-full">
+            <span className="size-6 flex items-center justify-center bg-primary/10 rounded-full">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo/FIRE_SVG_Animated.svg" alt="Hedwigs" className="size-4" />
+            </span>
+            Standard Sign In
+          </button>
+        </SignInButton>
+
+        <div className="my-1 border-t border-border mx-1" />
+        
+        <p className="text-[10px] font-semibold text-muted-foreground mb-1 mt-1 px-2 uppercase tracking-wider">Hackathon Demo</p>
         <a href={PIYUSH_LINK} className="text-sm px-2 py-2 hover:bg-muted rounded-md transition-colors font-medium flex items-center gap-2">
           <img src="/logo/piyush-garg.webp" alt="Piyush Sir" className="size-6 rounded-full object-cover" /> Login as Piyush Sir
         </a>
@@ -55,14 +66,9 @@ export function SiteHeader({ userId }: { userId: string | null }) {
               Dashboard
             </Link>
           ) : (
-            <div className="flex items-center gap-4">
-              <SignInButton mode="modal">
-                <button className="landing-nav-login" type="button">
-                  Log in
-                </button>
-              </SignInButton>
-              <DemoLoginPopover triggerClassName="landing-nav-login font-medium text-primary" />
-            </div>
+            <DemoLoginPopover>
+              <button className="landing-nav-login" type="button">Log in</button>
+            </DemoLoginPopover>
           )}
           <Link
             href={userId ? "/dashboard" : "/sign-up"}
@@ -103,12 +109,9 @@ export function SiteHeader({ userId }: { userId: string | null }) {
             <UserButton />
           </>
         ) : (
-          <div className="flex items-center gap-2">
-            <SignInButton mode="modal">
-              <Button variant="ghost" size="sm">Sign in</Button>
-            </SignInButton>
-            <DemoLoginPopover triggerClassName="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 px-3" />
-          </div>
+          <DemoLoginPopover>
+            <Button variant="ghost" size="sm">Sign in</Button>
+          </DemoLoginPopover>
         )}
       </nav>
     </header>

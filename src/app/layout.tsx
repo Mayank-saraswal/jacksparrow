@@ -15,6 +15,7 @@ import { ShortcutProvider } from "@/app/_components/shortcut-provider";
 import { ToastProvider } from "@/app/_components/toast";
 import { cn } from "@/lib/utils";
 import { Agentation } from "agentation";
+import { DemoLoginPopover } from "@/app/_components/site-header";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -100,9 +101,9 @@ export default async function RootLayout({
                       <UserButton />
                     </>
                   ) : (
-                    <SignInButton mode="modal">
+                    <DemoLoginPopover>
                       <Button size="sm">Sign in</Button>
-                    </SignInButton>
+                    </DemoLoginPopover>
                   )}
                 </nav>
               </div>
