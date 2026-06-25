@@ -8,7 +8,7 @@
     "check": "next lint && tsc --noEmit",
     "corsair:setup": "bun run scripts/corsair-setup.ts",
     "gmail:watch": "bun run scripts/gmail-watch.ts",
-    "db:generate": "prisma migrate dev",
+    "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
