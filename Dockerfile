@@ -7,6 +7,7 @@ FROM base AS deps
 # Copy package manifests and patches
 COPY package.json bun.lock ./
 COPY patches ./patches
+COPY prisma ./prisma
 # Install dependencies including the Zoom patch
 RUN bun install --frozen-lockfile
 
