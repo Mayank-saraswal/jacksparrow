@@ -1,6 +1,6 @@
 
 import { type Metadata } from "next";
-import { Geist, JetBrains_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import { ClerkProvider, UserButton, OrganizationSwitcher } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
@@ -17,10 +17,6 @@ import { cn } from "@/lib/utils";
 import { Agentation } from "agentation";
 import { DemoLoginPopover } from "@/app/_components/site-header";
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-});
 
 export const metadata: Metadata = {
   title: "Hedwigs",
@@ -51,7 +47,7 @@ export default async function RootLayout({
     <ClerkProvider appearance={{ baseTheme: dark } as any}>
       <html
         lang="en"
-        className={cn(geist.variable, "font-mono", jetbrainsMono.variable, "dark")}
+        className={cn(geist.variable, "font-sans", "dark")}
         style={{ colorScheme: "dark" }}
       >
         <body>
