@@ -10,40 +10,52 @@ export function ProductTour() {
     if (hasSeenTour) return;
 
     const timer = setTimeout(() => {
+      const dynamicSteps: any[] = [];
+
+      if (document.querySelector("#tour-sidebar")) {
+        dynamicSteps.push({
+          element: "#tour-sidebar",
+          popover: {
+            title: "Your Command Center",
+            description: "Access your Inbox, Calendar, Team, and Integrations all from this central sidebar. Everything you need is one click away.",
+            side: "right",
+            align: "start",
+          },
+        });
+      }
+
+      if (document.querySelector("#tour-chat")) {
+        dynamicSteps.push({
+          element: "#tour-chat",
+          popover: {
+            title: "Meet Your AI Assistant",
+            description: "This isn't just a chat box. Ask it to 'schedule a meeting with Bob' or 'draft a reply', and it will orchestrate your inbox for you.",
+            side: "left",
+            align: "center",
+          },
+        });
+      }
+
+      if (document.querySelector("#tour-dock")) {
+        dynamicSteps.push({
+          element: "#tour-dock",
+          popover: {
+            title: "Quick Actions & AI",
+            description: "Access your pending tasks and your AI assistant from here at any time. (Tip: Hit Cmd+K anywhere to open the command menu!)",
+            side: "left",
+            align: "end",
+          },
+        });
+      }
+
+      if (dynamicSteps.length === 0) return;
+
       const driverObj = driver({
         showProgress: true,
         animate: true,
         allowClose: false,
         popoverClass: "driverjs-theme-dark",
-        steps: [
-          {
-            element: "#tour-sidebar",
-            popover: {
-              title: "Your Command Center",
-              description: "Access your Inbox, Calendar, Team, and Integrations all from this central sidebar. Everything you need is one click away.",
-              side: "right",
-              align: "start",
-            },
-          },
-          {
-            element: "#tour-chat",
-            popover: {
-              title: "Meet Your AI Assistant",
-              description: "This isn't just a chat box. Ask it to 'schedule a meeting with Bob' or 'draft a reply', and it will orchestrate your inbox for you.",
-              side: "left",
-              align: "center",
-            },
-          },
-          {
-            element: "#tour-dock",
-            popover: {
-              title: "Quick Actions & AI",
-              description: "Access your pending tasks and your AI assistant from here at any time. (Tip: Hit Cmd+K anywhere to open the command menu!)",
-              side: "left",
-              align: "end",
-            },
-          },
-        ],
+        steps: dynamicSteps,
         onDestroyStarted: () => {
           if (driverObj.hasNextStep()) {
             driverObj.destroy();

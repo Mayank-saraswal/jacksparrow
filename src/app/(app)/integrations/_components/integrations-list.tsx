@@ -160,6 +160,7 @@ export function IntegrationsList() {
         const synced = connected && (!backfillCapable || backfilledAt != null);
         const isResyncing =
           resync.isPending && resync.variables?.plugin === plugin;
+        const isComingSoon = ["cal", "calendly", "fireflies", "asana", "todoist"].includes(plugin);
 
         return (
           <div 
@@ -260,16 +261,25 @@ export function IntegrationsList() {
                     )}
                   </>
                 ) : (
-                  <a
-                    href={`/api/integrations/${plugin}/connect`}
-                    aria-disabled={missingCreds}
-                    className={
-                      "inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-white/5 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-white/10 px-3 py-1.5 text-sm font-medium text-[#262626] dark:text-neutral-200 transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] dark:hover:border-neutral-800 " +
-                      (missingCreds ? "opacity-50 pointer-events-none" : "")
-                    }
-                  >
-                    Connect
-                  </a>
+                  isComingSoon ? (
+                    <button
+                      disabled
+                      className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-white/5 px-3 py-1.5 text-sm font-medium text-[#262626] dark:text-neutral-200 border border-transparent opacity-50 cursor-not-allowed"
+                    >
+                      Coming soon
+                    </button>
+                  ) : (
+                    <a
+                      href={`/api/integrations/${plugin}/connect`}
+                      aria-disabled={missingCreds}
+                      className={
+                        "inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-white/5 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-white/10 px-3 py-1.5 text-sm font-medium text-[#262626] dark:text-neutral-200 transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] dark:hover:border-neutral-800 " +
+                        (missingCreds ? "opacity-50 pointer-events-none" : "")
+                      }
+                    >
+                      Connect
+                    </a>
+                  )
                 )}
               </CardFooter>
             </Card>
