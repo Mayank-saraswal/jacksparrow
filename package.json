@@ -63,6 +63,7 @@
     "corsair": "^0.1.76",
     "dodopayments": "^2.38.1",
     "dotenv": "^17.4.2",
+    "driver.js": "^1.5.0",
     "framer-motion": "^12.40.0",
     "inngest": "^4.5.1",
     "next": "^15.2.3",
