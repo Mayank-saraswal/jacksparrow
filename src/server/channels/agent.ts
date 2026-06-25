@@ -60,12 +60,46 @@ export async function runChannelAgent(
     return { text: "AI is not configured yet.", pending: [] };
   }
   const start = new Date();
+  
+  // Find or create conversation thread for this channel
+  let conversation = await db.chatConversation.findFirst({
+    where: { userId, title: `channel:${channel}` },
+  });
+  
+  conversation ??= await db.chatConversation.create({
+    data: { userId, title: `channel:${channel}` },
+  });
+
+  // Fetch last 15 messages for context
+  const history = await db.chatMessage.findMany({
+    where: { conversationId: conversation.id },
+    orderBy: { createdAt: "desc" },
+    take: 15,
+  });
+  history.reverse(); // put back in chronological order
+
+  const messages: { role: "user" | "assistant"; content: string }[] = history.map((m) => ({
+    role: m.role as "user" | "assistant",
+    content: m.content,
+  }));
+  messages.push({ role: "user", content: text });
+
+  // Save the incoming user message
+  await db.chatMessage.create({
+    data: {
+      conversationId: conversation.id,
+      role: "user",
+      content: text,
+    },
+  });
+
   let resultText: string;
   try {
     const result = await generateText({
       model: openai("gpt-4o-mini"),
       system: `${SYSTEM} Today is ${new Date().toISOString()}.`,
-      prompt: text,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      messages: messages as any,
       tools: buildAgentTools(userId, channel),
       stopWhen: stepCountIs(6),
     });
@@ -92,8 +126,19 @@ export async function runChannelAgent(
       ? "I've drafted that — approve it below."
       : "Done.";
 
+  const finalReply = resultText.trim() || fallback;
+
+  // Save the assistant's reply for future context
+  await db.chatMessage.create({
+    data: {
+      conversationId: conversation.id,
+      role: "assistant",
+      content: finalReply,
+    },
+  });
+
   return {
-    text: resultText.trim() || fallback,
+    text: finalReply,
     pending: pending.map((p) => ({
       id: p.id,
       kind: p.kind,
