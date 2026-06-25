@@ -47,7 +47,7 @@ export default async function RootLayout({
     <ClerkProvider 
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim().padEnd(34, '=') ?? undefined} 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      appearance={{ baseTheme: dark as Theme }}
+      appearance={{ theme: [dark] }}
     >
       <html
         lang="en"
