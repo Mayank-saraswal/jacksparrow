@@ -44,7 +44,10 @@ export default async function RootLayout({
 
   return (
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-    <ClerkProvider appearance={{ baseTheme: dark } as any}>
+    <ClerkProvider 
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim().padEnd(34, '=') || undefined} 
+      appearance={{ baseTheme: dark } as any}
+    >
       <html
         lang="en"
         className={cn(geist.variable, "font-sans", "dark")}
