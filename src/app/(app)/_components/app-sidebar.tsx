@@ -83,6 +83,7 @@ export function AppSidebar() {
           <div className="flex-1 overflow-y-auto mt-4 pt-4 border-t border-border flex flex-col gap-1">
             <Link
               href="/dashboard"
+              prefetch={true}
               className="flex items-center gap-2.5 px-3 py-2 text-sm font-medium rounded-lg text-foreground bg-background border border-border shadow-sm hover:bg-accent transition-colors mb-2 mx-1"
             >
               <Plus className="size-4 shrink-0" />
@@ -111,6 +112,7 @@ export function AppSidebar() {
 
           <Link
             href="/settings/billing"
+            prefetch={true}
             className={cn(
               "relative flex items-center gap-2.5 px-3 py-2 text-sm font-medium rounded-lg z-10 transition-colors",
               isBillingActive
@@ -133,6 +135,7 @@ export function AppSidebar() {
           </Link>
           <Link
             href="/settings"
+            prefetch={true}
             className={cn(
               "relative flex items-center gap-2.5 px-3 py-2 text-sm font-medium rounded-lg z-10 transition-colors",
               isSettingsActive
@@ -213,7 +216,7 @@ function ChatItem({ conv, isActive }: { conv: { id: string; title: string }; isA
           className="flex-1 min-w-0 bg-background border border-border rounded px-1.5 py-0.5 outline-none focus:ring-1 focus:ring-primary text-foreground"
         />
       ) : (
-        <Link href={`/dashboard/c/${conv.id}`} className="flex-1 min-w-0 truncate block pr-12">
+        <Link href={`/dashboard/c/${conv.id}`} prefetch={true} className="flex-1 min-w-0 truncate block pr-12">
           {conv.title}
         </Link>
       )}

@@ -395,7 +395,7 @@ export function InboxApp() {
                 Your inbox hasn&apos;t finished syncing yet.
               </p>
               <Button asChild size="sm" variant="outline">
-                <Link href="/integrations">Go to integrations</Link>
+                <Link href="/integrations" prefetch={true}>Go to integrations</Link>
               </Button>
             </div>
           ) : visible.length === 0 && !threadsQuery.isLoading ? (
