@@ -51,7 +51,7 @@ export function SiteHeader({ userId }: { userId: string | null }) {
 
         <div className="landing-nav-actions">
           {userId ? (
-            <Link href="/dashboard" className="landing-nav-login">
+            <Link href="/dashboard" prefetch={true} className="landing-nav-login">
               Dashboard
             </Link>
           ) : (
@@ -90,6 +90,7 @@ export function SiteHeader({ userId }: { userId: string | null }) {
           <>
             <Link
               href="/dashboard"
+              prefetch={true}
               className="text-muted-foreground text-sm font-medium transition-colors hover:text-[#262626]"
             >
               Dashboard
