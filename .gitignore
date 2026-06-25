@@ -249,3 +249,11 @@ referance-landingpage*
 .gitignore
 .env.example
 .env.example
+check_env.mjs
+.gitignore
+check_users.mjs
+create_test_users.mjs
+verify_users.mjs
+check_prod_env.mjs
+create_live_users.mjs
+generate_magic_links.mjs

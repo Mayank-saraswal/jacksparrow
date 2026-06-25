@@ -27,19 +27,7 @@ Hedwigs is a smart, collaborative inbox and productivity workspace. It brings al
 
 ---
 
-## 🧪 Hackathon Demo Credentials
 
-If you are reviewing this project for a hackathon, you can use the following demo credentials to explore the platform without setting up your own accounts:
-
-**User 1:**
-- **Email:** `piyush@chaicode.com`
-- **Password:** `chaicodehq`
-
-**User 2:**
-- **Email:** `hitesh@chaicode.com`
-- **Password:** `chaicodehq`
-
-*(Both accounts are pre-seeded with the Business Membership plan).*
 
 ---
 
