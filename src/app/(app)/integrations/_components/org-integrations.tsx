@@ -159,6 +159,7 @@ export function OrgIntegrations() {
       name: "HubSpot",
       description: "Log threads to contacts and surface deal context. Business+.",
       logo: "/logo/hubspot.svg",
+      comingSoon: true,
     },
     {
       key: "linear",
@@ -247,7 +248,14 @@ export function OrgIntegrations() {
                           <SlackLogo className="size-4 text-[#4A154B]" />
                         )}
                       </span>
-                      <CardTitle className="text-[#262626] dark:text-neutral-200">{c.name}</CardTitle>
+                      <CardTitle className="text-[#262626] dark:text-neutral-200 flex items-center gap-2">
+                        {c.name}
+                        {("comingSoon" in c && c.comingSoon) && (
+                          <Badge variant="outline" className="text-[10px] uppercase font-semibold text-muted-foreground bg-muted/50">
+                            Coming soon
+                          </Badge>
+                        )}
+                      </CardTitle>
                     </div>
                     {synced && (
                       <Badge variant="success">
@@ -283,8 +291,12 @@ export function OrgIntegrations() {
                         <ZendeskConnectButton connected={connected} />
                       ) : (
                         <a
-                          href={`/api/integrations/${c.key}/connect?scope=org`}
-                          className="inline-flex items-center rounded-md bg-[rgba(0,0,0,0.04)] dark:bg-white/5 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-white/10 px-3 py-1.5 text-sm font-medium text-[#262626] dark:text-neutral-200 transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)] dark:hover:border-neutral-800"
+                          href={("comingSoon" in c && c.comingSoon) ? "#" : `/api/integrations/${c.key}/connect?scope=org`}
+                          className={`inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium transition-colors border ${
+                            ("comingSoon" in c && c.comingSoon)
+                              ? "bg-[rgba(0,0,0,0.02)] dark:bg-white/5 text-muted-foreground opacity-50 cursor-not-allowed border-transparent pointer-events-none"
+                              : "bg-[rgba(0,0,0,0.04)] dark:bg-white/5 hover:bg-[rgba(0,0,0,0.08)] dark:hover:bg-white/10 text-[#262626] dark:text-neutral-200 border-transparent hover:border-[rgba(0,0,0,0.06)] dark:hover:border-neutral-800"
+                          }`}
                         >
                           {connected ? "Reconnect" : "Connect"}
                         </a>
