@@ -19,6 +19,7 @@ import { Separator } from "@/components/ui/separator";
 import { InviteCard } from "./invite-card";
 import { SnoozePopover } from "./snooze-popover";
 import { SummaryCard } from "./summary-card";
+import { InsightCard } from "../../dashboard/_components/insight-card";
 import { CrmPanel } from "./crm-panel";
 import { useToast } from "@/app/_components/toast";
 import type { ComposeInitial } from "./compose-sheet";
@@ -159,6 +160,11 @@ export function ThreadView({
   const setPriority = api.triage.setPriority.useMutation({
     onSuccess: () => void utils.inbox.listThreads.invalidate(),
   });
+
+  const insight = api.feed.getInsightByEntityId.useQuery(
+    { plugin: "gmail", pluginEntityId: threadId ?? "" },
+    { enabled: !!threadId },
+  );
 
   const followStatus = api.followups.statusForThreads.useQuery(
     { threadIds: threadId ? [threadId] : [] },
@@ -327,6 +333,14 @@ export function ThreadView({
       </div>
 
       <div className="flex-1 overflow-y-auto">
+        {insight.data && insight.data.status !== "dismissed" && (
+          <div className="p-4 pb-0">
+            <InsightCard
+              insight={insight.data as any}
+              onHandled={() => void insight.refetch()}
+            />
+          </div>
+        )}
         <div className="p-4 pb-0">
           <SummaryCard threadId={thread.data.threadId} autoRender={autoRender} />
         </div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { auth } from "@clerk/nextjs/server";
+import { Show } from "@clerk/nextjs";
 import {
   ArrowRight,
   CalendarBlank,
@@ -75,9 +75,6 @@ const FAQS = [
 ];
 
 export default async function Home() {
-  const { userId } = await auth();
-  const primaryHref = userId ? "/dashboard" : "/sign-up";
-
   return (
     <div className="overflow-x-hidden bg-background">
       {/* Announcement bar */}
@@ -89,12 +86,22 @@ export default async function Home() {
                 Introducing your AI chief of staff. It works your inbox so you can
                 sleep.{" "}
               </span>
-              <Link
-                href={primaryHref}
-                className="inline-block font-semibold bg-gradient-to-r from-[#FF4C00] to-[#ff8c00] bg-clip-text text-transparent hover:opacity-80 transition-opacity"
-              >
-                Try it now →
-              </Link>
+              <Show when="signed-in">
+                <Link
+                  href="/dashboard"
+                  className="inline-block font-semibold bg-gradient-to-r from-[#FF4C00] to-[#ff8c00] bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+                >
+                  Go to Dashboard →
+                </Link>
+              </Show>
+              <Show when="signed-out">
+                <Link
+                  href="/sign-up"
+                  className="inline-block font-semibold bg-gradient-to-r from-[#FF4C00] to-[#ff8c00] bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+                >
+                  Try it now →
+                </Link>
+              </Show>
             </div>
           </div>
         </Reveal>
@@ -123,7 +130,6 @@ export default async function Home() {
               <h1 className="mt-6 text-[40px] leading-[1.05] font-medium tracking-tight text-balance sm:text-6xl">
                 The AI{" "}
                 <LandingChatInput
-                  isSignedIn={!!userId}
                   placeholder="Assistant"
                   className="w-[220px] sm:w-[300px] inline-flex align-middle mx-2 my-[-8px] shadow-sm"
                 />{" "}
@@ -268,7 +274,7 @@ export default async function Home() {
               <div className="relative z-10 flex items-center gap-2 border-b border-white/10 px-3 py-2 text-neutral-400 backdrop-blur-sm bg-black/20">
                 <ChatCircleDots className="size-3.5" /> ask
               </div>
-              <pre className="relative z-10 overflow-x-auto p-4 leading-relaxed drop-shadow-md">
+              <pre suppressHydrationWarning className="relative z-10 overflow-x-auto p-4 leading-relaxed drop-shadow-md">
                 <span className="text-neutral-400">{"> "}</span>
                 {"schedule a call with bob@x.com Thursday 9am\n"}
                 {"  and email him that I look forward to it\n\n"}
@@ -368,7 +374,7 @@ export default async function Home() {
                 period: "/month",
                 desc: "Perfect for personal email triage.",
                 cta: "Get started",
-                href: primaryHref,
+                href: "/sign-up",
                 features: [
                   "1 connected account",
                   "100 AI actions / month",
@@ -382,7 +388,7 @@ export default async function Home() {
                 period: "/month",
                 desc: "For active professionals and power users.",
                 cta: "Upgrade to Pro",
-                href: primaryHref,
+                href: "/sign-up",
                 features: [
                   "Unlimited connected accounts",
                   "2,000 AI actions / month",
@@ -396,7 +402,7 @@ export default async function Home() {
                 period: "/month",
                 desc: "For team collaboration and business tools.",
                 cta: "Try Business free",
-                href: primaryHref,
+                href: "/sign-up",
                 features: [
                   "Everything in Pro",
                   "Slack integration channel",
@@ -480,7 +486,7 @@ export default async function Home() {
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                 <Link
-                  href={primaryHref}
+                  href="/sign-up"
                   className="bg-[#FF4C00] text-white px-6 h-10 rounded-full flex items-center justify-center gap-2 hover:bg-[#e64400] transition-colors font-medium shadow-sm text-sm"
                 >
                   <MoonStars weight="fill" className="size-4" /> Get more sleep

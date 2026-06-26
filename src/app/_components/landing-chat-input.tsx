@@ -3,17 +3,17 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Sparkle } from "@phosphor-icons/react/dist/ssr";
+import { useAuth } from "@clerk/nextjs";
 
-export function LandingChatInput({ 
-  isSignedIn, 
+export function LandingChatInput({
   className,
   placeholder = "Ask the AI assistant to do something..."
-}: { 
-  isSignedIn: boolean;
+}: {
   className?: string;
   placeholder?: string;
 }) {
   const router = useRouter();
+  const { isSignedIn } = useAuth();
   const [query, setQuery] = React.useState("");
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -33,7 +33,7 @@ export function LandingChatInput({
   };
 
   return (
-    <form 
+    <form
       onSubmit={handleSubmit}
       className={`relative flex items-center group ${className ?? "w-full max-w-[500px] mx-auto mt-8"}`}
     >

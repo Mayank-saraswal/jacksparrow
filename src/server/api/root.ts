@@ -19,6 +19,7 @@ import { analyticsRouter } from "@/server/api/routers/analytics";
 import { auditLogRouter } from "@/server/api/routers/auditLog";
 import { retentionRouter } from "@/server/api/routers/retention";
 import { ssoRouter } from "@/server/api/routers/sso";
+import { feedRouter } from "@/server/api/routers/feed";
 import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
 
 /**
@@ -47,6 +48,7 @@ export const appRouter = createTRPCRouter({
   auditLog: auditLogRouter,
   retention: retentionRouter,
   sso: ssoRouter,
+  feed: feedRouter,
   chat: chatRouter,
 });
 

@@ -32,3 +32,4 @@ export { retentionPurgeCron, retentionPurge } from "./retention";
 export { analyticsCron, analyticsBackfill } from "./analytics";
 export { accountExport, accountDeletionSweep, accountDelete } from "./gdpr";
 export { auditExport } from "./audit-export";
+export { classifyActionInsight } from "./insight";

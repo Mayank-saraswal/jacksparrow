@@ -30,9 +30,6 @@ export default clerkMiddleware(async (auth, req) => {
       return NextResponse.redirect(onboardingUrl);
     }
   }
-}, {
-  publishableKey: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim(),
-  secretKey: process.env.CLERK_SECRET_KEY?.trim(),
 });
 
 export const config = {

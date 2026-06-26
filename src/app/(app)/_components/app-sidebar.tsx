@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 
 const NAV = [
   { href: "/dashboard", label: "Overview", icon: SquaresFour },
+  { href: "/dashboard/chat", label: "AI Chat", icon: ChatCircleDots },
   { href: "/inbox", label: "Inbox", icon: Tray },
   { href: "/calendar", label: "Calendar", icon: CalendarBlank },
   { href: "/team", label: "Team", icon: UsersThree },
@@ -50,6 +51,8 @@ export function AppSidebar() {
             const active =
               item.href === "/dashboard"
                 ? pathname === "/dashboard"
+                : item.href === "/dashboard/chat"
+                ? pathname === "/dashboard/chat"
                 : pathname.startsWith(item.href);
             return (
               <Link
@@ -82,7 +85,7 @@ export function AppSidebar() {
           {/* Chat History Section */}
           <div className="flex-1 overflow-y-auto mt-4 pt-4 border-t border-border flex flex-col gap-1">
             <Link
-              href="/dashboard"
+              href="/dashboard/chat"
               prefetch={true}
               className="flex items-center gap-2.5 px-3 py-2 text-sm font-medium rounded-lg text-foreground bg-background border border-border shadow-sm hover:bg-accent transition-colors mb-2 mx-1"
             >

@@ -118,19 +118,22 @@ export function DashboardChat({
   return (
     <div id="tour-chat" className="flex h-full flex-col">
       {empty ? (
-        <div className="flex flex-1 flex-col items-center justify-center px-4">
-          <div className="mb-8 flex items-center text-2xl font-medium tracking-tight sm:text-3xl">
-            {greeting()}, {firstName}
+        <div className="flex h-full flex-col items-center justify-center p-4 mt-[-10vh]">
+          <div className="mb-8 text-center">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground drop-shadow-sm">How can I help you?</h2>
+            <p className="text-sm text-muted-foreground mt-1">I can draft emails, summarize threads, or search your inbox.</p>
           </div>
-          <Composer
-            input={input}
-            setInput={setInput}
-            busy={busy}
-            onSend={() => void send(input)}
-            taRef={taRef}
-            big
-          />
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+          <div className="w-full max-w-2xl">
+            <Composer
+              input={input}
+              setInput={setInput}
+              busy={busy}
+              onSend={() => void send(input)}
+              taRef={taRef}
+              big={true}
+            />
+          </div>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2 max-w-2xl">
             {SUGGESTIONS.map((s) => {
               const Icon = s.icon;
               return (
@@ -139,9 +142,9 @@ export function DashboardChat({
                   type="button"
                   onClick={() => void send(s.prompt)}
                   disabled={busy}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground transition hover:border-foreground/20 hover:text-foreground disabled:opacity-50"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/[0.03] px-3 py-1.5 text-[11px] font-medium tracking-wide text-muted-foreground transition hover:bg-white/[0.08] hover:text-foreground disabled:opacity-50"
                 >
-                  <Icon className="size-3.5" />
+                  <Icon className="size-3.5 opacity-70" />
                   {s.label}
                 </button>
               );
@@ -212,7 +215,7 @@ function Composer({
   return (
     <div
       className={cn(
-        "relative w-full rounded-2xl border border-border bg-card shadow-sm focus-within:border-foreground/20",
+        "relative w-full rounded-2xl border border-white/10 bg-black/40 shadow-inner focus-within:border-white/20 focus-within:bg-black/60 transition-all",
         big ? "max-w-2xl" : "",
       )}
     >
@@ -229,14 +232,14 @@ function Composer({
         rows={big ? 4 : 2}
         placeholder="Paste a doc, an email, or a question to get started…"
         disabled={busy}
-        className="w-full resize-none bg-transparent px-4 py-3 pr-12 text-sm outline-none placeholder:text-muted-foreground disabled:opacity-60"
+        className="w-full resize-none bg-transparent px-4 py-3.5 pr-12 text-sm outline-none placeholder:text-muted-foreground/70 disabled:opacity-60"
       />
       <button
         type="button"
         onClick={onSend}
         disabled={busy || !input.trim()}
         aria-label="Send"
-        className="absolute right-2.5 bottom-2.5 inline-flex size-8 items-center justify-center rounded-full bg-foreground text-background transition hover:opacity-90 disabled:opacity-40"
+        className="absolute right-2.5 bottom-2.5 inline-flex size-8 items-center justify-center rounded-xl bg-white text-black transition hover:scale-105 active:scale-95 disabled:opacity-30 disabled:hover:scale-100"
       >
         <ArrowUp weight="bold" className="size-4" />
       </button>

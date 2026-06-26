@@ -401,6 +401,26 @@ export const corsairWebhookReceived = inngest.createFunction(
           name: "thread/summarize.requested",
           data: { userId, orgId, threadId: meta.threadId },
         });
+
+        // Fire-and-forget: classify the action intent for the AI dashboard feed.
+        // This creates an ActionInsight row that powers the action cards.
+        await step.sendEvent("classify-action-intent", {
+          name: "integration/insight.classify",
+          data: {
+            userId,
+            orgId,
+            plugin,
+            pluginEntityId: meta.threadId,
+            title: meta.title,
+            content: meta.snippet,
+            sourceData: {
+              sender: meta.sender,
+              fromName: meta.fromName,
+              fromEmail: meta.fromEmail,
+              corsairEntityId,
+            },
+          },
+        });
       }
     }
 
