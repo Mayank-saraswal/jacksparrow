@@ -35,7 +35,8 @@ export function InboxApp() {
   const { toast } = useToast();
   const [activeSplit, setActiveSplit] = React.useState<string>(ALL_SPLIT_ID);
 
-  // Live updates: when a new email arrives, refresh the thread list + summaries.
+  // Live updates: when a new email arrives, refresh the thread list + summaries
+  // and eagerly prefetch the body so clicking the new email is instant.
   useRealtimeSync(
     userId,
     React.useCallback(
@@ -43,6 +44,14 @@ export function InboxApp() {
         if (row.type === "email") {
           void utils.inbox.listThreads.invalidate();
           void utils.inbox.summary.invalidate();
+          // Eagerly prefetch the body of the newly arrived email so it's
+          // ready in the React Query cache by the time the user clicks it.
+          if (row.corsair_entity_id) {
+            void utils.inbox.getThread.prefetch(
+              { threadId: row.corsair_entity_id },
+              { staleTime: 5 * 60 * 1000 },
+            );
+          }
         }
       },
       [utils],
@@ -72,6 +81,33 @@ export function InboxApp() {
   const threadsQuery = api.inbox.listThreads.useQuery(LIST_INPUT);
   const syncStatus = api.integrations.getSyncStatus.useQuery();
   const splitsQuery = api.preferences.getSplits.useQuery();
+
+  // ── Eager background prefetching ──────────────────────────────────────────
+  // Once the thread list is loaded, silently prefetch the full thread detail
+  // (messages, body HTML) for the top 20 visible threads. This means clicking
+  // any visible email renders instantly from the React Query cache — zero
+  // spinner, zero network wait.
+  //
+  // Edge cases:
+  //  - Uses a ref to track already-prefetched IDs so re-renders don't fire
+  //    duplicate requests.
+  //  - staleTime of 5 minutes prevents re-fetching bodies that were already
+  //    fetched recently (e.g. from a realtime push).
+  //  - Only fires when threadsQuery.data changes (new list from server or
+  //    cache restore from IndexedDB).
+  const prefetchedRef = React.useRef<Set<string>>(new Set());
+  React.useEffect(() => {
+    const threads = threadsQuery.data?.threads;
+    if (!threads?.length) return;
+    for (const thread of threads.slice(0, 20)) {
+      if (prefetchedRef.current.has(thread.threadId)) continue;
+      prefetchedRef.current.add(thread.threadId);
+      void utils.inbox.getThread.prefetch(
+        { threadId: thread.threadId },
+        { staleTime: 5 * 60 * 1000 },
+      );
+    }
+  }, [threadsQuery.data?.threads, utils]);
 
   const splitRules = React.useMemo(
     () =>

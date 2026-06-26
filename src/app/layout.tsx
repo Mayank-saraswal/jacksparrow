@@ -1,7 +1,7 @@
 
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
-import { ClerkProvider, SignedIn, SignedOut, UserButton, OrganizationSwitcher } from "@clerk/nextjs";
+import { ClerkProvider, Show, UserButton, OrganizationSwitcher } from "@clerk/nextjs";
 import Link from "next/link";
 import "@/styles/globals.css";
 
@@ -72,7 +72,7 @@ export default function RootLayout({
                   </Link>
                 </nav>
                 <nav className="flex items-center gap-3">
-                  <SignedIn>
+                  <Show when="signed-in">
                     <Link
                       href="/dashboard"
                       className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -85,16 +85,16 @@ export default function RootLayout({
                       afterSelectOrganizationUrl="/dashboard"
                     />
                     <UserButton />
-                  </SignedIn>
-                  <SignedOut>
+                  </Show>
+                  <Show when="signed-out">
                     <DemoLoginPopover>
                       <Button size="sm">Sign in</Button>
                     </DemoLoginPopover>
-                  </SignedOut>
+                  </Show>
                 </nav>
               </div>
             </header>
-            <SignedIn>
+            <Show when="signed-in">
               <ShortcutProvider>
                 <CommandContextProvider>
                   {children}
@@ -102,10 +102,10 @@ export default function RootLayout({
                   <CommandMenu />
                 </CommandContextProvider>
               </ShortcutProvider>
-            </SignedIn>
-            <SignedOut>
+            </Show>
+            <Show when="signed-out">
               {children}
-            </SignedOut>
+            </Show>
             {process.env.NODE_ENV === "development" && <Agentation />}
             </ToastProvider>
           </TRPCReactProvider>

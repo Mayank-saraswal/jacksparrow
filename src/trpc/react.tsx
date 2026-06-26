@@ -1,6 +1,7 @@
 "use client";
 
 import { QueryClientProvider, type QueryClient } from "@tanstack/react-query";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { httpBatchStreamLink, loggerLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 import { type inferRouterInputs, type inferRouterOutputs } from "@trpc/server";
@@ -9,6 +10,7 @@ import SuperJSON from "superjson";
 
 import { type AppRouter } from "@/server/api/root";
 import { createQueryClient } from "./query-client";
+import { createIDBPersister } from "@/lib/idb-persister";
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined;
 const getQueryClient = () => {
@@ -21,6 +23,10 @@ const getQueryClient = () => {
 
   return clientQueryClientSingleton;
 };
+
+// IDB persister singleton — SSR-safe (undefined on server).
+const persister =
+  typeof window !== "undefined" ? createIDBPersister() : undefined;
 
 export const api = createTRPCReact<AppRouter>();
 
@@ -62,12 +68,32 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
     }),
   );
 
+  const inner = (
+    <api.Provider client={trpcClient} queryClient={queryClient}>
+      {props.children}
+    </api.Provider>
+  );
+
+  // On the server there is no IndexedDB — use plain QueryClientProvider.
+  if (typeof window === "undefined" || !persister) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        {inner}
+      </QueryClientProvider>
+    );
+  }
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <api.Provider client={trpcClient} queryClient={queryClient}>
-        {props.children}
-      </api.Provider>
-    </QueryClientProvider>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{
+        persister,
+        // Cached data older than 24 hours is discarded on restore.
+        maxAge: 24 * 60 * 60 * 1000,
+      }}
+    >
+      {inner}
+    </PersistQueryClientProvider>
   );
 }
 
